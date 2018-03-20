@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Set Paths -->
+  <PropertyGroup>
+    <RepoRoot>$(MSBuildThisFileDirectory)..\</RepoRoot>
+    <RequestedVerbosity Condition=" '$(RequestedVerbosity)' == '' ">minimal</RequestedVerbosity>
+    
+    <!-- Set Output Paths-->
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    
+    <!-- Set Drop folders -->
+    <DropFolder>$(RepoRoot)drop\$(Configuration)\</DropFolder>
+    <DropFolderNetStandard>$(DropFolder)netstandard\</DropFolderNetStandard>
+    <NugetPackageDropFolder>$(DropFolder)packages</NugetPackageDropFolder>
+    
+    <!-- Set Nuget exe path -->
+    <NuGetExePath Condition="'$(NuGetExePath)' == ''">$(RepoRoot)external\nuget.exe</NuGetExePath>
+  </PropertyGroup>
+</Project>

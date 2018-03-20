@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <Import Project="..\..\properties\service_fabric_managed_dotnetstandard.props" />
+  <PropertyGroup>
+    <AssemblyName>Microsoft.ServiceFabric.Client</AssemblyName>
+    <RootNamespace>Microsoft.ServiceFabric.Client</RootNamespace>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.ServiceFabric.Common\Microsoft.ServiceFabric.Common.csproj" />
+  </ItemGroup>
+</Project>

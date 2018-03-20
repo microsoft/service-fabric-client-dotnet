@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\properties\service_fabric_nuget.props" />
+  <PropertyGroup>
+    <Id>Microsoft.ServiceFabric.Client.Http</Id>
+    <Title>Microsoft.ServiceFabric.Client.Http</Title>
+    <Description>This package contains the reference assemblies for connecting to Service Fabric cluster over Http and performing operations to create and manage micro-services.</Description>
+    <Summary>This package contains the reference assemblies for connecting to Service Fabric cluster over Http and performing operations to create and manage micro-services.</Summary>
+  </PropertyGroup>
+  
+  <Import Project="$(NuProjPath)\NuProj.props" />
+  <Import Project="$(NuProjPath)\NuProj.targets" />
+  
+  <ItemGroup>
+    <File Include="$(DropFolderNetStandard)\Microsoft.ServiceFabric.Common.dll">
+      <TargetPath>lib\netstandard2.0</TargetPath>
+    </File>
+    <File Include="$(DropFolderNetStandard)\Microsoft.ServiceFabric.Common.xml">
+      <TargetPath>lib\netstandard2.0</TargetPath>
+    </File>
+    <File Include="$(DropFolderNetStandard)\Microsoft.ServiceFabric.Client.dll">
+      <TargetPath>lib\netstandard2.0</TargetPath>
+    </File>
+    <File Include="$(DropFolderNetStandard)\Microsoft.ServiceFabric.Client.xml">
+      <TargetPath>lib\netstandard2.0</TargetPath>
+    </File>
+    <File Include="$(DropFolderNetStandard)\Microsoft.ServiceFabric.Client.Http.dll">
+      <TargetPath>lib\netstandard2.0</TargetPath>
+    </File>
+    <File Include="$(DropFolderNetStandard)\Microsoft.ServiceFabric.Client.Http.xml">
+      <TargetPath>lib\netstandard2.0</TargetPath>
+    </File>
+  </ItemGroup>
+  <Target Name="BeforeBuild">
+    <PropertyGroup>
+      <PackageVersion>$(ClientLibNuGetPackageVersion)</PackageVersion>
+    </PropertyGroup>
+    <ItemGroup>
+      <Dependency Include="Newtonsoft.Json">
+        <Version>10.0.3</Version>
+      </Dependency>
+    </ItemGroup>
+  </Target>
+</Project>
