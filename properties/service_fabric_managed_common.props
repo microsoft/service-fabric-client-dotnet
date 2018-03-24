@@ -11,19 +11,29 @@
     <!-- Don't append TargetFramework to output path. -->
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <Platforms>x64</Platforms>
-  </PropertyGroup>
+    </PropertyGroup>
 
   <!-- Cls Compliant -->
   <PropertyGroup>
     <AssemblyClsCompliant>true</AssemblyClsCompliant>
   </PropertyGroup>
 
-  <!-- AllowUnsafeBlocks -->
+  <!-- set DebugType to full -->
+  <PropertyGroup>
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <!-- Enable /highentropyva flag -->
+  <PropertyGroup>
+    <HighEntropyVA>true</HighEntropyVA>
+  </PropertyGroup>
+
+  <!-- Set AllowUnsafeBlocks to false -->
   <PropertyGroup>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   
-  <!-- Enable signing with Key.snk -->
+  <!-- Enable delay signing with Key.snk -->
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
     <DelaySign>true</DelaySign>

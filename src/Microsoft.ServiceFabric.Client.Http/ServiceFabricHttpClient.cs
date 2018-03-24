@@ -400,7 +400,6 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             // Sends request, if Exception is thrown because Server Cert is not validated OR its Forbidden because of invalid client creds,
             // refreshes security settings by calling the func and retires request one more time. If it faisl again Excpetion is thrown.
-            ServiceFabricHttpClientEventSource.Current.Send($"{this.ClientId}:{requestId}", requestUri.ToString());
 
             var tryCount = 1;
 
@@ -417,6 +416,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 {
                     // Get the request using the Func as same request cannot be resent.
                     var request = FinalRequestFunc();
+                    ServiceFabricHttpClientEventSource.Current.Send($"{this.ClientId}:{requestId}", $"{request.Method.Method} Request Url: {requestUri}");
                     response = await this.httpClient.SendAsync(request, cancellationToken);                    
                 }
                 catch(AuthenticationException ex)
