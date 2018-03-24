@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="TimeBasedBackupScheduleDescription" />.
+    /// Converter for <see cref="ApplicationEvent" />.
     /// </summary>
-    internal class TimeBasedBackupScheduleDescriptionConverter
+    internal class ApplicationEventConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static TimeBasedBackupScheduleDescription Deserialize(JsonReader reader)
+        internal static ApplicationEvent Deserialize(JsonReader reader)
         {
             reader.ReadStartObject();
             var obj = GetFromJsonProperties(reader);
@@ -34,26 +34,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static TimeBasedBackupScheduleDescription GetFromJsonProperties(JsonReader reader)
+        internal static ApplicationEvent GetFromJsonProperties(JsonReader reader)
         {
-            var scheduleFrequencyType = default(BackupScheduleFrequencyType?);
-            var runDays = default(IEnumerable<DayOfWeek?>);
-            var runTimes = default(IEnumerable<DateTime?>);
+            var eventInstanceId = default(Guid?);
+            var timeStamp = default(DateTime?);
+            var hasCorrelatedEvents = default(bool?);
+            var applicationId = default(string);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ScheduleFrequencyType", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                 {
-                    scheduleFrequencyType = BackupScheduleFrequencyTypeConverter.Deserialize(reader);
+                    eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("RunDays", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                 {
-                    runDays = reader.ReadList(DayOfWeekConverter.Deserialize);
+                    timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("RunTimes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
                 {
-                    runTimes = reader.ReadList(JsonReaderExtensions.ReadValueAsDateTime);
+                    hasCorrelatedEvents = reader.ReadValueAsBool();
+                }
+                else if (string.Compare("ApplicationId", propName, StringComparison.Ordinal) == 0)
+                {
+                    applicationId = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -62,10 +67,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new TimeBasedBackupScheduleDescription(
-                scheduleFrequencyType: scheduleFrequencyType,
-                runDays: runDays,
-                runTimes: runTimes);
+            return new ApplicationEvent(
+                eventInstanceId: eventInstanceId,
+                timeStamp: timeStamp,
+                hasCorrelatedEvents: hasCorrelatedEvents,
+                applicationId: applicationId);
         }
 
         /// <summary>
@@ -73,16 +79,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, TimeBasedBackupScheduleDescription obj)
+        internal static void Serialize(JsonWriter writer, ApplicationEvent obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.ScheduleKind.ToString(), "ScheduleKind", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.ScheduleFrequencyType, "ScheduleFrequencyType", BackupScheduleFrequencyTypeConverter.Serialize);
-            writer.WriteEnumerableProperty(obj.RunTimes, "RunTimes", (w, v) => writer.WriteDateTimeValue(v));
-            if (obj.RunDays != null)
+            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
+            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
+            writer.WriteProperty(obj.ApplicationId, "ApplicationId", JsonWriterExtensions.WriteStringValue);
+            if (obj.HasCorrelatedEvents != null)
             {
-                writer.WriteEnumerableProperty(obj.RunDays, "RunDays", DayOfWeekConverter.Serialize);
+                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
             }
 
             writer.WriteEndObject();

@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="FrequencyBasedBackupScheduleDescription" />.
+    /// Converter for <see cref="AnalysisEventMetadata" />.
     /// </summary>
-    internal class FrequencyBasedBackupScheduleDescriptionConverter
+    internal class AnalysisEventMetadataConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static FrequencyBasedBackupScheduleDescription Deserialize(JsonReader reader)
+        internal static AnalysisEventMetadata Deserialize(JsonReader reader)
         {
             reader.ReadStartObject();
             var obj = GetFromJsonProperties(reader);
@@ -34,16 +34,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static FrequencyBasedBackupScheduleDescription GetFromJsonProperties(JsonReader reader)
+        internal static AnalysisEventMetadata GetFromJsonProperties(JsonReader reader)
         {
-            var interval = default(TimeSpan?);
+            var delay = default(TimeSpan?);
+            var duration = default(TimeSpan?);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Interval", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Delay", propName, StringComparison.Ordinal) == 0)
                 {
-                    interval = reader.ReadValueAsTimeSpan();
+                    delay = reader.ReadValueAsTimeSpan();
+                }
+                else if (string.Compare("Duration", propName, StringComparison.Ordinal) == 0)
+                {
+                    duration = reader.ReadValueAsTimeSpan();
                 }
                 else
                 {
@@ -52,8 +57,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new FrequencyBasedBackupScheduleDescription(
-                interval: interval);
+            return new AnalysisEventMetadata(
+                delay: delay,
+                duration: duration);
         }
 
         /// <summary>
@@ -61,12 +67,20 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, FrequencyBasedBackupScheduleDescription obj)
+        internal static void Serialize(JsonWriter writer, AnalysisEventMetadata obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.ScheduleKind.ToString(), "ScheduleKind", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.Interval, "Interval", JsonWriterExtensions.WriteTimeSpanValue);
+            if (obj.Delay != null)
+            {
+                writer.WriteProperty(obj.Delay, "Delay", JsonWriterExtensions.WriteTimeSpanValue);
+            }
+
+            if (obj.Duration != null)
+            {
+                writer.WriteProperty(obj.Duration, "Duration", JsonWriterExtensions.WriteTimeSpanValue);
+            }
+
             writer.WriteEndObject();
         }
     }

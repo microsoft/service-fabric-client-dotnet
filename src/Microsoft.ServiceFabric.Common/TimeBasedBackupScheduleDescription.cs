@@ -18,12 +18,13 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="scheduleFrequencyType">Describes the frequency with which to run the time based backup schedule.
         /// . Possible values include: 'Invalid', 'Daily', 'Weekly'</param>
-        /// <param name="runTimes">List of times when to trigger backup during a day.</param>
+        /// <param name="runTimes">Represents the list of exact time during the day in ISO8601 format. Like '19:00:00' will
+        /// represent '7PM' during the day. Date specified along with time will be ignored.</param>
         /// <param name="runDays">List of days of a week when to trigger the periodic backup. This is valid only when the
         /// backup schedule frequency type is weekly.</param>
         public TimeBasedBackupScheduleDescription(
             BackupScheduleFrequencyType? scheduleFrequencyType,
-            IEnumerable<TimeSpan?> runTimes,
+            IEnumerable<DateTime?> runTimes,
             IEnumerable<DayOfWeek?> runDays = default(IEnumerable<DayOfWeek?>))
             : base(
                 Common.BackupScheduleKind.TimeBased)
@@ -48,8 +49,9 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<DayOfWeek?> RunDays { get; }
 
         /// <summary>
-        /// Gets list of times when to trigger backup during a day.
+        /// Gets represents the list of exact time during the day in ISO8601 format. Like '19:00:00' will represent '7PM'
+        /// during the day. Date specified along with time will be ignored.
         /// </summary>
-        public IEnumerable<TimeSpan?> RunTimes { get; }
+        public IEnumerable<DateTime?> RunTimes { get; }
     }
 }

@@ -22,9 +22,9 @@ namespace Microsoft.ServiceFabric.Common
         /// backed up (as specified in backup policy). This parameter is useful to be able to enumerate backups from another
         /// cluster where you may intend to restore.</param>
         /// <param name="backupEntity">Indicates the entity for which to enumerate backups.</param>
-        /// <param name="startDateTimeFilter">Specifies the start date time in UTC from which to enumerate backups. If not
+        /// <param name="startDateTimeFilter">Specifies the start date time in ISO8601 from which to enumerate backups. If not
         /// specified, backups are enumerated from the beginning.</param>
-        /// <param name="endDateTimeFilter">Specifies the end date time in UTC till which to enumerate backups. If not
+        /// <param name="endDateTimeFilter">Specifies the end date time in ISO8601 till which to enumerate backups. If not
         /// specified, backups are enumerated till the end.</param>
         /// <param name="latest">If specified as true, gets the most recent backup (within the specified time range) for every
         /// partition under the specified backup entity.</param>
@@ -45,14 +45,14 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets specifies the start date time in UTC from which to enumerate backups. If not specified, backups are enumerated
-        /// from the beginning.
+        /// Gets specifies the start date time in ISO8601 from which to enumerate backups. If not specified, backups are
+        /// enumerated from the beginning.
         /// </summary>
         public DateTime? StartDateTimeFilter { get; }
 
         /// <summary>
-        /// Gets specifies the end date time in UTC till which to enumerate backups. If not specified, backups are enumerated
-        /// till the end.
+        /// Gets specifies the end date time in ISO8601 till which to enumerate backups. If not specified, backups are
+        /// enumerated till the end.
         /// </summary>
         public DateTime? EndDateTimeFilter { get; }
 

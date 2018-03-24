@@ -16,31 +16,21 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the FrequencyBasedBackupScheduleDescription class.
         /// </summary>
-        /// <param name="intervalType">Describes the backup schedule interval type with which to take periodic backups.
-        /// . Possible values include: 'Invalid', 'Hours', 'Minutes'</param>
-        /// <param name="interval">Defines the interval with which backups are periodically taken.</param>
+        /// <param name="interval">Defines the interval with which backups are periodically taken. It should be specified in
+        /// ISO8601 format. Timespan in seconds is not supported and will be ignored while creating the policy.</param>
         public FrequencyBasedBackupScheduleDescription(
-            BackupScheduleIntervalType? intervalType,
-            int? interval)
+            TimeSpan? interval)
             : base(
                 Common.BackupScheduleKind.FrequencyBased)
         {
-            intervalType.ThrowIfNull(nameof(intervalType));
             interval.ThrowIfNull(nameof(interval));
-            interval?.ThrowIfOutOfInclusiveRange("interval", 1, 2147483647);
-            this.IntervalType = intervalType;
             this.Interval = interval;
         }
 
         /// <summary>
-        /// Gets describes the backup schedule interval type with which to take periodic backups.
-        /// . Possible values include: 'Invalid', 'Hours', 'Minutes'
+        /// Gets defines the interval with which backups are periodically taken. It should be specified in ISO8601 format.
+        /// Timespan in seconds is not supported and will be ignored while creating the policy.
         /// </summary>
-        public BackupScheduleIntervalType? IntervalType { get; }
-
-        /// <summary>
-        /// Gets defines the interval with which backups are periodically taken.
-        /// </summary>
-        public int? Interval { get; }
+        public TimeSpan? Interval { get; }
     }
 }

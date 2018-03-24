@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="FrequencyBasedBackupScheduleDescription" />.
+    /// Converter for <see cref="ContainerEvent" />.
     /// </summary>
-    internal class FrequencyBasedBackupScheduleDescriptionConverter
+    internal class ContainerEventConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static FrequencyBasedBackupScheduleDescription Deserialize(JsonReader reader)
+        internal static ContainerEvent Deserialize(JsonReader reader)
         {
             reader.ReadStartObject();
             var obj = GetFromJsonProperties(reader);
@@ -34,16 +34,26 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static FrequencyBasedBackupScheduleDescription GetFromJsonProperties(JsonReader reader)
+        internal static ContainerEvent GetFromJsonProperties(JsonReader reader)
         {
-            var interval = default(TimeSpan?);
+            var eventInstanceId = default(Guid?);
+            var timeStamp = default(DateTime?);
+            var hasCorrelatedEvents = default(bool?);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Interval", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                 {
-                    interval = reader.ReadValueAsTimeSpan();
+                    eventInstanceId = reader.ReadValueAsGuid();
+                }
+                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                {
+                    timeStamp = reader.ReadValueAsDateTime();
+                }
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                {
+                    hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
                 else
                 {
@@ -52,8 +62,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new FrequencyBasedBackupScheduleDescription(
-                interval: interval);
+            return new ContainerEvent(
+                eventInstanceId: eventInstanceId,
+                timeStamp: timeStamp,
+                hasCorrelatedEvents: hasCorrelatedEvents);
         }
 
         /// <summary>
@@ -61,12 +73,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, FrequencyBasedBackupScheduleDescription obj)
+        internal static void Serialize(JsonWriter writer, ContainerEvent obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.ScheduleKind.ToString(), "ScheduleKind", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.Interval, "Interval", JsonWriterExtensions.WriteTimeSpanValue);
+            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
+            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
+            if (obj.HasCorrelatedEvents != null)
+            {
+                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+            }
+
             writer.WriteEndObject();
         }
     }

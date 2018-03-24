@@ -272,11 +272,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="latest">Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.</param>
         /// <param name ="startDateTimeFilter">Specify the start date time from which to enumerate backups, in datetime format.
-        /// The date time must be specified in UTC. This is an optional parameter. If not specified, all backups from the
-        /// beginning are enumerated.</param>
+        /// The date time must be specified in ISO8601 format. This is an optional parameter. If not specified, all backups
+        /// from the beginning are enumerated.</param>
         /// <param name ="endDateTimeFilter">Specify the end date time till which to enumerate backups, in datetime format. The
-        /// date time must be specified in UTC. This is an optional parameter. If not specified, enumeration is done till the
-        /// most recent backup.</param>
+        /// date time must be specified in ISO8601 format. This is an optional parameter. If not specified, enumeration is done
+        /// till the most recent backup.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
@@ -451,11 +451,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="latest">Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.</param>
         /// <param name ="startDateTimeFilter">Specify the start date time from which to enumerate backups, in datetime format.
-        /// The date time must be specified in UTC. This is an optional parameter. If not specified, all backups from the
-        /// beginning are enumerated.</param>
+        /// The date time must be specified in ISO8601 format. This is an optional parameter. If not specified, all backups
+        /// from the beginning are enumerated.</param>
         /// <param name ="endDateTimeFilter">Specify the end date time till which to enumerate backups, in datetime format. The
-        /// date time must be specified in UTC. This is an optional parameter. If not specified, enumeration is done till the
-        /// most recent backup.</param>
+        /// date time must be specified in ISO8601 format. This is an optional parameter. If not specified, enumeration is done
+        /// till the most recent backup.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
@@ -621,11 +621,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="latest">Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.</param>
         /// <param name ="startDateTimeFilter">Specify the start date time from which to enumerate backups, in datetime format.
-        /// The date time must be specified in UTC. This is an optional parameter. If not specified, all backups from the
-        /// beginning are enumerated.</param>
+        /// The date time must be specified in ISO8601 format. This is an optional parameter. If not specified, all backups
+        /// from the beginning are enumerated.</param>
         /// <param name ="endDateTimeFilter">Specify the end date time till which to enumerate backups, in datetime format. The
-        /// date time must be specified in UTC. This is an optional parameter. If not specified, enumeration is done till the
-        /// most recent backup.</param>
+        /// date time must be specified in ISO8601 format. This is an optional parameter. If not specified, enumeration is done
+        /// till the most recent backup.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

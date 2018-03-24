@@ -584,6 +584,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.Services = new ServiceClient(this);
             this.ServicePackages = new ServicePackageClient(this);
             this.ServiceTypes = new ServiceTypeClient(this);
+            this.EventsStore = new EventsStoreClient(this);
         }
     }
 }

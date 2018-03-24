@@ -116,5 +116,11 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <returns>The <see cref="IServiceTypeClient"/></returns>
         IServiceTypeClient ServiceTypes { get; }
+
+        /// <summary>
+        /// Gets EventStore Client to query events related to applciaitons, services replicas and contianers..
+        /// </summary>
+        /// <returns>The <see cref="IEventsStoreClient"/></returns>
+        IEventsStoreClient EventsStore { get; }
     }
 }

@@ -113,6 +113,12 @@ namespace Microsoft.ServiceFabric.Client
         public IServiceTypeClient ServiceTypes { get; protected set; }
 
         /// <summary>
+        /// Gets EventStore Client to query events related to applciaitons, services replicas and contianers..
+        /// </summary>
+        /// <returns>The <see cref="IEventsStoreClient"/></returns>
+        public IEventsStoreClient EventsStore { get; protected set; }
+
+        /// <summary>
         /// Gets the client settings for connecting to cluster.
         /// </summary>
         /// <value><see cref="ClientSettings"/> for connecting to cluster.</value>
