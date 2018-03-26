@@ -23,10 +23,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PartitionLoadInformation Deserialize(JsonReader reader)
         {
-            reader.ReadStartObject();
-            var obj = GetFromJsonProperties(reader);
-            reader.ReadEndObject();
-            return obj;
+            return reader.Deserialize(GetFromJsonProperties);
         }
 
         /// <summary>

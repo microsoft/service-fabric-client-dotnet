@@ -488,6 +488,39 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
+        /// Deserializes Json representing of type T.
+        /// </summary>
+        /// <typeparam name="T">Type to deserialize into.</typeparam>
+        /// <param name="reader">Json Reader.</param>
+        /// <param name="GetFromJsonPropertiesFunc">Delegate to parse json properties for type T.</param>
+        /// <returns>Deserialized object of type T. returns default(T) if Json Token represented by reader is null
+        /// OR its an empty Json.</returns>
+        public static T Deserialize<T>(this JsonReader reader, Func<JsonReader, T> GetFromJsonPropertiesFunc)
+        {
+            var obj = default(T);
+
+            // handle null json Token.
+            if (reader.TokenType.Equals(JsonToken.Null))
+            {
+                reader.Read();
+                return obj;
+            }
+
+            // handle Empty Json.
+            reader.ReadStartObject();
+            if (reader.TokenType.Equals(JsonToken.EndObject))
+            {
+                reader.ReadEndObject();
+                return obj;
+            }
+
+            // not empty json, get value by reading properties.
+            obj = GetFromJsonPropertiesFunc.Invoke(reader);
+            reader.ReadEndObject();
+            return obj;
+        }
+
+        /// <summary>
         /// Parses type T from string value
         /// </summary>
         /// <typeparam name="T">Type T to parse value as.</typeparam>

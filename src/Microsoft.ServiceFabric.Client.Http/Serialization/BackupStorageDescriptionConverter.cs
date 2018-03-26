@@ -23,7 +23,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static BackupStorageDescription Deserialize(JsonReader reader)
         {
-            reader.ReadStartObject();
+            return reader.Deserialize(GetFromJsonProperties);
+        }
+
+        /// <summary>
+        /// Gets the object from Json properties.
+        /// </summary>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
+        /// <returns>The object Value.</returns>
+        internal static BackupStorageDescription GetFromJsonProperties(JsonReader reader)
+        {
             BackupStorageDescription obj;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("StorageKind", StringComparison.Ordinal))
@@ -45,7 +54,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 throw new InvalidOperationException("Unknown StorageKind.");
             }
 
-            reader.ReadEndObject();
             return obj;
         }
 

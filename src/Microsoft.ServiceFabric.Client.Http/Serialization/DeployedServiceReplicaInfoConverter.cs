@@ -23,7 +23,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static DeployedServiceReplicaInfo Deserialize(JsonReader reader)
         {
-            reader.ReadStartObject();
+            return reader.Deserialize(GetFromJsonProperties);
+        }
+
+        /// <summary>
+        /// Gets the object from Json properties.
+        /// </summary>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
+        /// <returns>The object Value.</returns>
+        internal static DeployedServiceReplicaInfo GetFromJsonProperties(JsonReader reader)
+        {
             DeployedServiceReplicaInfo obj;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("ServiceKind", StringComparison.Ordinal))
@@ -45,7 +54,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 throw new InvalidOperationException("Unknown ServiceKind.");
             }
 
-            reader.ReadEndObject();
             return obj;
         }
 

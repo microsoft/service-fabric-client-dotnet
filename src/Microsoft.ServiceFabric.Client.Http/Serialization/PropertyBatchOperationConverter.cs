@@ -23,7 +23,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PropertyBatchOperation Deserialize(JsonReader reader)
         {
-            reader.ReadStartObject();
+            return reader.Deserialize(GetFromJsonProperties);
+        }
+
+        /// <summary>
+        /// Gets the object from Json properties.
+        /// </summary>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
+        /// <returns>The object Value.</returns>
+        internal static PropertyBatchOperation GetFromJsonProperties(JsonReader reader)
+        {
             PropertyBatchOperation obj;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
@@ -61,7 +70,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 throw new InvalidOperationException("Unknown Kind.");
             }
 
-            reader.ReadEndObject();
             return obj;
         }
 
