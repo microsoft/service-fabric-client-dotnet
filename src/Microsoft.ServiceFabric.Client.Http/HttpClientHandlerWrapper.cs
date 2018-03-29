@@ -75,6 +75,10 @@ namespace Microsoft.ServiceFabric.Client.Http
                 // and dotnet core, so ServerCertificateValidatorHttpWrapper.ValidateServerCertificate throws AuthenticationException which allows ServiceFabricHttpClient to detect it and make decisions.
                 this.httpClientHandler.ServerCertificateCustomValidationCallback = this.serverCertValidator.ValidateServerCertificate;
             }
+            else if (settings.SecurityType == SecurityType.Windows)
+            {
+                this.httpClientHandler.UseDefaultCredentials = true;
+            }
 
             this.securityConfigured = true;
         }

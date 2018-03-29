@@ -22,6 +22,11 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// <summary>
         /// Cluster is secured with claims token acquired from Azure Active Directory.
         /// </summary>
-        Claims
+        Claims,
+
+        /// <summary>
+        /// Cluster is secured with Windows credentials.
+        /// </summary>
+        Windows
     }
 }
