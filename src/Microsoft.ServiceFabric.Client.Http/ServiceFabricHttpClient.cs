@@ -230,7 +230,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 }
             }
 
-            return default(IEnumerable<T>);
+            return retValue;
         }
 
         /// <summary>
