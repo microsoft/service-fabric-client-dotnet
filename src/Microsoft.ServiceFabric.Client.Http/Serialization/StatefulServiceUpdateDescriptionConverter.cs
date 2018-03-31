@@ -39,6 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>);
             var servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>);
             var defaultMoveCost = default(MoveCost?);
+            var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var targetReplicaSetSize = default(int?);
             var minReplicaSetSize = default(int?);
             var replicaRestartWaitDurationSeconds = default(string);
@@ -71,6 +72,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("DefaultMoveCost", propName, StringComparison.Ordinal) == 0)
                 {
                     defaultMoveCost = MoveCostConverter.Deserialize(reader);
+                }
+                else if (string.Compare("ScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                {
+                    scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
                 }
                 else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.Ordinal) == 0)
                 {
@@ -106,6 +111,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 loadMetrics: loadMetrics,
                 servicePlacementPolicies: servicePlacementPolicies,
                 defaultMoveCost: defaultMoveCost,
+                scalingPolicies: scalingPolicies,
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
                 replicaRestartWaitDurationSeconds: replicaRestartWaitDurationSeconds,
@@ -147,6 +153,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ServicePlacementPolicies != null)
             {
                 writer.WriteEnumerableProperty(obj.ServicePlacementPolicies, "ServicePlacementPolicies", ServicePlacementPolicyDescriptionConverter.Serialize);
+            }
+
+            if (obj.ScalingPolicies != null)
+            {
+                writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
             if (obj.TargetReplicaSetSize != null)

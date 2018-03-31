@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var hasCorrelatedEvents = default(bool?);
             var partitionId = default(PartitionId);
             var metadata = default(AnalysisEventMetadata);
+            var whenMoveCompleted = default(DateTime?);
             var previousNode = default(NodeName);
             var currentNode = default(NodeName);
             var moveReason = default(string);
@@ -65,6 +66,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("Metadata", propName, StringComparison.Ordinal) == 0)
                 {
                     metadata = AnalysisEventMetadataConverter.Deserialize(reader);
+                }
+                else if (string.Compare("WhenMoveCompleted", propName, StringComparison.Ordinal) == 0)
+                {
+                    whenMoveCompleted = reader.ReadValueAsDateTime();
                 }
                 else if (string.Compare("PreviousNode", propName, StringComparison.Ordinal) == 0)
                 {
@@ -95,6 +100,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 hasCorrelatedEvents: hasCorrelatedEvents,
                 partitionId: partitionId,
                 metadata: metadata,
+                whenMoveCompleted: whenMoveCompleted,
                 previousNode: previousNode,
                 currentNode: currentNode,
                 moveReason: moveReason,
@@ -115,6 +121,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.PartitionId, "PartitionId", PartitionIdConverter.Serialize);
             writer.WriteProperty(obj.Metadata, "Metadata", AnalysisEventMetadataConverter.Serialize);
+            writer.WriteProperty(obj.WhenMoveCompleted, "WhenMoveCompleted", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.PreviousNode, "PreviousNode", NodeNameConverter.Serialize);
             writer.WriteProperty(obj.CurrentNode, "CurrentNode", NodeNameConverter.Serialize);
             writer.WriteProperty(obj.MoveReason, "MoveReason", JsonWriterExtensions.WriteStringValue);

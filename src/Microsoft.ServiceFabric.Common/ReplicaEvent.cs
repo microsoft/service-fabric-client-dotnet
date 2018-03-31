@@ -18,6 +18,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
+        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="partitionId">An internal ID used by Service Fabric to uniquely identify a partition. This is a
         /// randomly generated GUID when the service was created. The partition ID is unique and does not change for the
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
@@ -27,10 +28,11 @@ namespace Microsoft.ServiceFabric.Common
         /// replica gets dropped and another replica gets created on the same node for the same partition, it will get a
         /// different value for the id. Sometimes the id of a stateless service instance is also referred as a replica
         /// id.</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ReplicaEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
+            FabricEventKind? kind,
             PartitionId partitionId,
             ReplicaId replicaId,
             bool? hasCorrelatedEvents = default(bool?))

@@ -73,7 +73,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<ContainerEvent>> GetContainersEventListAsync(
+        public Task<IEnumerable<ContainerInstanceEvent>> GetContainersEventListAsync(
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -108,7 +108,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponseAsList(RequestFunc, url, ContainerEventConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsList(RequestFunc, url, ContainerInstanceEventConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -193,8 +193,8 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<NodeEvent>> GetNodeEventList1Async(
-            NodeName nodeName,
+        public Task<IEnumerable<ApplicationEvent>> GetApplicationEventListAsync(
+            ApplicationName applicationName,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -203,13 +203,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? skipCorrelationLookup = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            nodeName.ThrowIfNull(nameof(nodeName));
+            applicationName.ThrowIfNull(nameof(applicationName));
             startTimeUtc.ThrowIfNull(nameof(startTimeUtc));
             endTimeUtc.ThrowIfNull(nameof(endTimeUtc));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
-            var url = "Events/Nodes/{nodeName}/$/Events";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            var url = "EventsStore/Applications/{applicationId}/$/Events";
+            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -231,12 +231,11 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponseAsList(RequestFunc, url, NodeEventConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsList(RequestFunc, url, ApplicationEventConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<ApplicationEvent>> GetApplicationEventListAsync(
-            ApplicationName applicationName,
+        public Task<IEnumerable<ApplicationEvent>> GetApplicationsEventListAsync(
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -245,13 +244,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? skipCorrelationLookup = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
             startTimeUtc.ThrowIfNull(nameof(startTimeUtc));
             endTimeUtc.ThrowIfNull(nameof(endTimeUtc));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
-            var url = "EventsStore/Applications/{applicationId}/$/Events";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            var url = "EventsStore/Applications/Events";
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

@@ -46,6 +46,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var isDefaultMoveCostSpecified = default(bool?);
             var servicePackageActivationMode = default(ServicePackageActivationMode?);
             var serviceDnsName = default(string);
+            var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var instanceCount = default(int?);
 
             do
@@ -103,6 +104,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     serviceDnsName = reader.ReadValueAsString();
                 }
+                else if (string.Compare("ScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                {
+                    scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
+                }
                 else if (string.Compare("InstanceCount", propName, StringComparison.Ordinal) == 0)
                 {
                     instanceCount = reader.ReadValueAsInt();
@@ -128,6 +133,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 isDefaultMoveCostSpecified: isDefaultMoveCostSpecified,
                 servicePackageActivationMode: servicePackageActivationMode,
                 serviceDnsName: serviceDnsName,
+                scalingPolicies: scalingPolicies,
                 instanceCount: instanceCount);
         }
 
@@ -185,6 +191,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ServiceDnsName != null)
             {
                 writer.WriteProperty(obj.ServiceDnsName, "ServiceDnsName", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ScalingPolicies != null)
+            {
+                writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
             writer.WriteEndObject();

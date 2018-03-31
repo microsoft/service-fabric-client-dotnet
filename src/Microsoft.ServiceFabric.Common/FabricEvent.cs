@@ -19,7 +19,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="kind">The kind of FabricEvent.</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         protected FabricEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
@@ -46,7 +46,7 @@ namespace Microsoft.ServiceFabric.Common
         public DateTime? TimeStamp { get; }
 
         /// <summary>
-        /// Gets shows that there is existing related events available.
+        /// Gets shows there is existing related events available.
         /// </summary>
         public bool? HasCorrelatedEvents { get; }
 

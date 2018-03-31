@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <summary>
         /// Gets the object from Json properties.
         /// </summary>
-        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
         internal static ServiceEvent GetFromJsonProperties(JsonReader reader)
         {
@@ -41,30 +41,63 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (propName.Equals("Kind", StringComparison.Ordinal))
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
-                }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
-                {
-                    timeStamp = reader.ReadValueAsDateTime();
-                }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
-                {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
-                }
-                else if (string.Compare("ServiceId", propName, StringComparison.Ordinal) == 0)
-                {
-                    serviceId = reader.ReadValueAsString();
+                    var propValue = reader.ReadValueAsString();
+
+                    if (propValue.Equals("ServiceCreated", StringComparison.Ordinal))
+                    {
+                        return ServiceCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ServiceDeleted", StringComparison.Ordinal))
+                    {
+                        return ServiceDeletedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ServiceHealthReportCreated", StringComparison.Ordinal))
+                    {
+                        return ServiceHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ServiceHealthReportExpired", StringComparison.Ordinal))
+                    {
+                        return ServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ServiceEvent", StringComparison.Ordinal))
+                    {
+                        // kind specified as same type, deserialize using properties.
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unknown Discriminator.");
+                    }
                 }
                 else
                 {
-                    reader.SkipPropertyValue();
+                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    {
+                        timeStamp = reader.ReadValueAsDateTime();
+                    }
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    {
+                        hasCorrelatedEvents = reader.ReadValueAsBool();
+                    }
+                    else if (string.Compare("ServiceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        serviceId = reader.ReadValueAsString();
+                    }
+                    else
+                    {
+                        reader.SkipPropertyValue();
+                    }
                 }
             }
             while (reader.TokenType != JsonToken.EndObject);
 
             return new ServiceEvent(
+                kind: Common.FabricEventKind.ServiceEvent,
                 eventInstanceId: eventInstanceId,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,

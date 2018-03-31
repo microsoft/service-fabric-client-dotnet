@@ -39,6 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>);
             var servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>);
             var defaultMoveCost = default(MoveCost?);
+            var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var instanceCount = default(int?);
 
             do
@@ -68,6 +69,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     defaultMoveCost = MoveCostConverter.Deserialize(reader);
                 }
+                else if (string.Compare("ScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                {
+                    scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
+                }
                 else if (string.Compare("InstanceCount", propName, StringComparison.Ordinal) == 0)
                 {
                     instanceCount = reader.ReadValueAsInt();
@@ -86,6 +91,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 loadMetrics: loadMetrics,
                 servicePlacementPolicies: servicePlacementPolicies,
                 defaultMoveCost: defaultMoveCost,
+                scalingPolicies: scalingPolicies,
                 instanceCount: instanceCount);
         }
 
@@ -123,6 +129,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ServicePlacementPolicies != null)
             {
                 writer.WriteEnumerableProperty(obj.ServicePlacementPolicies, "ServicePlacementPolicies", ServicePlacementPolicyDescriptionConverter.Serialize);
+            }
+
+            if (obj.ScalingPolicies != null)
+            {
+                writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
             if (obj.InstanceCount != null)

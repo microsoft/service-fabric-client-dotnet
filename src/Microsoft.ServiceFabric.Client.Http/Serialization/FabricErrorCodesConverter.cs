@@ -290,6 +290,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricErrorCodes.FABRIC_E_NODE_IS_UP;
             }
+            else if (string.Compare(value, "E_FAIL", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.E_FAIL;
+            }
             else if (string.Compare(value, "FABRIC_E_BACKUP_IS_ENABLED", StringComparison.Ordinal) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_IS_ENABLED;
@@ -325,6 +329,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (string.Compare(value, "FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING", StringComparison.Ordinal) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING;
+            }
+            else if (string.Compare(value, "FABRIC_E_INVALID_SERVICE_SCALING_POLICY", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.FABRIC_E_INVALID_SERVICE_SCALING_POLICY;
             }
             else if (string.Compare(value, "E_INVALIDARG", StringComparison.Ordinal) == 0)
             {
@@ -541,6 +549,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case FabricErrorCodes.FABRIC_E_NODE_IS_UP:
                     writer.WriteStringValue("FABRIC_E_NODE_IS_UP");
                     break;
+                case FabricErrorCodes.E_FAIL:
+                    writer.WriteStringValue("E_FAIL");
+                    break;
                 case FabricErrorCodes.FABRIC_E_BACKUP_IS_ENABLED:
                     writer.WriteStringValue("FABRIC_E_BACKUP_IS_ENABLED");
                     break;
@@ -567,6 +578,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case FabricErrorCodes.FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING:
                     writer.WriteStringValue("FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING");
+                    break;
+                case FabricErrorCodes.FABRIC_E_INVALID_SERVICE_SCALING_POLICY:
+                    writer.WriteStringValue("FABRIC_E_INVALID_SERVICE_SCALING_POLICY");
                     break;
                 case FabricErrorCodes.E_INVALIDARG:
                     writer.WriteStringValue("E_INVALIDARG");

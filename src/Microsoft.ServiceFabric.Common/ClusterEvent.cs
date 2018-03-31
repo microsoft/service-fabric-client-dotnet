@@ -18,10 +18,12 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="kind">The kind of FabricEvent.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ClusterEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
+            FabricEventKind? kind,
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,

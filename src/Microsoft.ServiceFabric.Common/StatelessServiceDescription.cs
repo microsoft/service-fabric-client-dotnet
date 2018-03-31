@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 'ExclusiveProcess'</param>
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
+        /// <param name="scalingPolicies">Scaling policies for this service.</param>
         public StatelessServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -52,7 +53,8 @@ namespace Microsoft.ServiceFabric.Common
             MoveCost? defaultMoveCost = default(MoveCost?),
             bool? isDefaultMoveCostSpecified = default(bool?),
             ServicePackageActivationMode? servicePackageActivationMode = default(ServicePackageActivationMode?),
-            string serviceDnsName = default(string))
+            string serviceDnsName = default(string),
+            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>))
             : base(
                 serviceName,
                 serviceTypeName,
@@ -67,7 +69,8 @@ namespace Microsoft.ServiceFabric.Common
                 defaultMoveCost,
                 isDefaultMoveCostSpecified,
                 servicePackageActivationMode,
-                serviceDnsName)
+                serviceDnsName,
+                scalingPolicies)
         {
             instanceCount.ThrowIfNull(nameof(instanceCount));
             instanceCount?.ThrowIfLessThan("instanceCount", -1);

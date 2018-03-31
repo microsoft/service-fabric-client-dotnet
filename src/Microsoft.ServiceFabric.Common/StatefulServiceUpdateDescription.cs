@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - Correlation - Indicates the CorrelationScheme property is set. The value is 128.
         /// - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
+        /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -44,6 +45,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">Specifies the move cost for the service. Possible values include: 'Zero', 'Low',
         /// 'Medium', 'High'</param>
+        /// <param name="scalingPolicies">Scaling policies for this service.</param>
         /// <param name="targetReplicaSetSize">The target replica set size as a number.</param>
         /// <param name="minReplicaSetSize">The minimum replica set size as a number.</param>
         /// <param name="replicaRestartWaitDurationSeconds">The duration, in seconds, between when a replica goes down and when
@@ -59,6 +61,7 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<ServiceLoadMetricDescription> loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>),
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             MoveCost? defaultMoveCost = default(MoveCost?),
+            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
             int? targetReplicaSetSize = default(int?),
             int? minReplicaSetSize = default(int?),
             string replicaRestartWaitDurationSeconds = default(string),
@@ -71,7 +74,8 @@ namespace Microsoft.ServiceFabric.Common
                 correlationScheme,
                 loadMetrics,
                 servicePlacementPolicies,
-                defaultMoveCost)
+                defaultMoveCost,
+                scalingPolicies)
         {
             targetReplicaSetSize?.ThrowIfLessThan("targetReplicaSetSize", 1);
             minReplicaSetSize?.ThrowIfLessThan("minReplicaSetSize", 1);

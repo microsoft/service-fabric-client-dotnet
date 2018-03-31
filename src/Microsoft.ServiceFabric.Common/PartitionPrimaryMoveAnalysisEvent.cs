@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Partition Primary Move Analysis Event
+    /// Partition Primary Move Analysis event.
     /// </summary>
     public partial class PartitionPrimaryMoveAnalysisEvent : PartitionAnalysisEvent
     {
@@ -23,16 +23,18 @@ namespace Microsoft.ServiceFabric.Common
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
         /// <param name="metadata">Metadata about an Analysis Event.</param>
+        /// <param name="whenMoveCompleted">Time when the move was completed.</param>
         /// <param name="previousNode">The name of a Service Fabric node.</param>
         /// <param name="currentNode">The name of a Service Fabric node.</param>
-        /// <param name="moveReason">Move Reason</param>
-        /// <param name="relevantTraces">Relevant Traces</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="moveReason">Move reason.</param>
+        /// <param name="relevantTraces">Relevant traces.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionPrimaryMoveAnalysisEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             PartitionId partitionId,
             AnalysisEventMetadata metadata,
+            DateTime? whenMoveCompleted,
             NodeName previousNode,
             NodeName currentNode,
             string moveReason,
@@ -46,15 +48,22 @@ namespace Microsoft.ServiceFabric.Common
                 metadata,
                 hasCorrelatedEvents)
         {
+            whenMoveCompleted.ThrowIfNull(nameof(whenMoveCompleted));
             previousNode.ThrowIfNull(nameof(previousNode));
             currentNode.ThrowIfNull(nameof(currentNode));
             moveReason.ThrowIfNull(nameof(moveReason));
             relevantTraces.ThrowIfNull(nameof(relevantTraces));
+            this.WhenMoveCompleted = whenMoveCompleted;
             this.PreviousNode = previousNode;
             this.CurrentNode = currentNode;
             this.MoveReason = moveReason;
             this.RelevantTraces = relevantTraces;
         }
+
+        /// <summary>
+        /// Gets time when the move was completed.
+        /// </summary>
+        public DateTime? WhenMoveCompleted { get; }
 
         /// <summary>
         /// Gets the name of a Service Fabric node.
@@ -67,12 +76,12 @@ namespace Microsoft.ServiceFabric.Common
         public NodeName CurrentNode { get; }
 
         /// <summary>
-        /// Gets move Reason
+        /// Gets move reason.
         /// </summary>
         public string MoveReason { get; }
 
         /// <summary>
-        /// Gets relevant Traces
+        /// Gets relevant traces.
         /// </summary>
         public string RelevantTraces { get; }
     }

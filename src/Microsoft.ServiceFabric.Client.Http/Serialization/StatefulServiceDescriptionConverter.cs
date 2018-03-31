@@ -46,6 +46,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var isDefaultMoveCostSpecified = default(bool?);
             var servicePackageActivationMode = default(ServicePackageActivationMode?);
             var serviceDnsName = default(string);
+            var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var targetReplicaSetSize = default(int?);
             var minReplicaSetSize = default(int?);
             var hasPersistedState = default(bool?);
@@ -109,6 +110,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     serviceDnsName = reader.ReadValueAsString();
                 }
+                else if (string.Compare("ScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                {
+                    scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
+                }
                 else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.Ordinal) == 0)
                 {
                     targetReplicaSetSize = reader.ReadValueAsInt();
@@ -158,6 +163,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 isDefaultMoveCostSpecified: isDefaultMoveCostSpecified,
                 servicePackageActivationMode: servicePackageActivationMode,
                 serviceDnsName: serviceDnsName,
+                scalingPolicies: scalingPolicies,
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
                 hasPersistedState: hasPersistedState,
@@ -223,6 +229,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ServiceDnsName != null)
             {
                 writer.WriteProperty(obj.ServiceDnsName, "ServiceDnsName", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ScalingPolicies != null)
+            {
+                writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
             if (obj.Flags != null)

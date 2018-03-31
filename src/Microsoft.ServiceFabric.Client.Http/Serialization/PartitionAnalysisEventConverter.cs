@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <summary>
         /// Gets the object from Json properties.
         /// </summary>
-        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
         internal static PartitionAnalysisEvent GetFromJsonProperties(JsonReader reader)
         {
@@ -42,29 +42,49 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (propName.Equals("Kind", StringComparison.Ordinal))
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
-                }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
-                {
-                    timeStamp = reader.ReadValueAsDateTime();
-                }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
-                {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
-                }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
-                {
-                    partitionId = PartitionIdConverter.Deserialize(reader);
-                }
-                else if (string.Compare("Metadata", propName, StringComparison.Ordinal) == 0)
-                {
-                    metadata = AnalysisEventMetadataConverter.Deserialize(reader);
+                    var propValue = reader.ReadValueAsString();
+
+                    if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.Ordinal))
+                    {
+                        return PartitionPrimaryMoveAnalysisEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("PartitionAnalysisEvent", StringComparison.Ordinal))
+                    {
+                        // kind specified as same type, deserialize using properties.
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unknown Discriminator.");
+                    }
                 }
                 else
                 {
-                    reader.SkipPropertyValue();
+                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    {
+                        timeStamp = reader.ReadValueAsDateTime();
+                    }
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    {
+                        hasCorrelatedEvents = reader.ReadValueAsBool();
+                    }
+                    else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        partitionId = PartitionIdConverter.Deserialize(reader);
+                    }
+                    else if (string.Compare("Metadata", propName, StringComparison.Ordinal) == 0)
+                    {
+                        metadata = AnalysisEventMetadataConverter.Deserialize(reader);
+                    }
+                    else
+                    {
+                        reader.SkipPropertyValue();
+                    }
                 }
             }
             while (reader.TokenType != JsonToken.EndObject);

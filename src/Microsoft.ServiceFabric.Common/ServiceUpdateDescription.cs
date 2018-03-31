@@ -35,6 +35,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - Correlation - Indicates the CorrelationScheme property is set. The value is 128.
         /// - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
+        /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -45,6 +46,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">Specifies the move cost for the service. Possible values include: 'Zero', 'Low',
         /// 'Medium', 'High'</param>
+        /// <param name="scalingPolicies">Scaling policies for this service.</param>
         protected ServiceUpdateDescription(
             ServiceKind? serviceKind,
             string flags = default(string),
@@ -52,7 +54,8 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<ServiceCorrelationDescription> correlationScheme = default(IEnumerable<ServiceCorrelationDescription>),
             IEnumerable<ServiceLoadMetricDescription> loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>),
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
-            MoveCost? defaultMoveCost = default(MoveCost?))
+            MoveCost? defaultMoveCost = default(MoveCost?),
+            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>))
         {
             serviceKind.ThrowIfNull(nameof(serviceKind));
             this.ServiceKind = serviceKind;
@@ -62,6 +65,7 @@ namespace Microsoft.ServiceFabric.Common
             this.LoadMetrics = loadMetrics;
             this.ServicePlacementPolicies = servicePlacementPolicies;
             this.DefaultMoveCost = defaultMoveCost;
+            this.ScalingPolicies = scalingPolicies;
         }
 
         /// <summary>
@@ -83,6 +87,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - Correlation - Indicates the CorrelationScheme property is set. The value is 128.
         /// - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
+        /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
         /// </summary>
         public string Flags { get; }
 
@@ -112,6 +117,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets specifies the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
         /// </summary>
         public MoveCost? DefaultMoveCost { get; }
+
+        /// <summary>
+        /// Gets scaling policies for this service.
+        /// </summary>
+        public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; }
 
         /// <summary>
         /// Gets the kind of service (Stateless or Stateful).

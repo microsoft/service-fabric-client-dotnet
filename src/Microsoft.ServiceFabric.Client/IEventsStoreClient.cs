@@ -19,7 +19,7 @@ namespace Microsoft.ServiceFabric.Client
     public partial interface IEventsStoreClient
     {
         /// <summary>
-        /// Gets the Cluster Events.
+        /// Gets all Cluster-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of ClusterEvent objects.
@@ -29,13 +29,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -55,23 +55,23 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Containers Events.
+        /// Gets all Containers-related events.
         /// </summary>
         /// <remarks>
-        /// The response is list of ContainerEvent objects.
+        /// The response is list of ContainerInstanceEvent objects.
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<IEnumerable<ContainerEvent>> GetContainersEventListAsync(
+        Task<IEnumerable<ContainerInstanceEvent>> GetContainersEventListAsync(
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -91,7 +91,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Node Events.
+        /// Gets a Node-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of NodeEvent objects.
@@ -102,13 +102,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -129,7 +129,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Nodes Events.
+        /// Gets all Nodes-related Events.
         /// </summary>
         /// <remarks>
         /// The response is list of NodeEvent objects.
@@ -139,13 +139,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -165,45 +165,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Node Events.
-        /// </summary>
-        /// <remarks>
-        /// The response is list of FabricEvent objects.
-        /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
-        /// only be included in the response.</param>
-        /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
-        /// </param>
-        /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
-        /// </param>
-        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
-        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
-        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
-        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<IEnumerable<NodeEvent>> GetNodeEventList1Async(
-            NodeName nodeName,
-            string startTimeUtc,
-            string endTimeUtc,
-            long? serverTimeout = 60,
-            string eventsTypesFilter = default(string),
-            bool? excludeAnalysisEvents = default(bool?),
-            bool? skipCorrelationLookup = default(bool?),
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Gets the Application Events.
+        /// Gets an Application-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of ApplicationEvent objects.
@@ -214,13 +176,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -241,7 +203,43 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Service Events.
+        /// Gets all Applications-related events.
+        /// </summary>
+        /// <remarks>
+        /// The response is list of ApplicationEvent objects.
+        /// </remarks>
+        /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
+        /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
+        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
+        /// parameter is 60 seconds.</param>
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
+        /// only be included in the response.</param>
+        /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
+        /// </param>
+        /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
+        /// </param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<IEnumerable<ApplicationEvent>> GetApplicationsEventListAsync(
+            string startTimeUtc,
+            string endTimeUtc,
+            long? serverTimeout = 60,
+            string eventsTypesFilter = default(string),
+            bool? excludeAnalysisEvents = default(bool?),
+            bool? skipCorrelationLookup = default(bool?),
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets a Service-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of ServiceEvent objects.
@@ -252,13 +250,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -279,7 +277,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Services Events.
+        /// Gets all Services-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of ServiceEvent objects.
@@ -289,13 +287,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -315,7 +313,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Partition Events.
+        /// Gets a Partition-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of PartitionEvent objects.
@@ -326,13 +324,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -353,7 +351,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Partitions Events.
+        /// Gets all Partitions-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of PartitionEvent objects.
@@ -363,13 +361,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -389,7 +387,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Replica Events.
+        /// Gets a Partition Replica-related events.
         /// </summary>
         /// <remarks>
         /// The response is list of ReplicaEvent objects.
@@ -401,13 +399,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -429,7 +427,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the Replicas Events.
+        /// Gets all Replicas-related events for a Partition.
         /// </summary>
         /// <remarks>
         /// The response is list of ReplicaEvent objects.
@@ -440,13 +438,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
-        /// <param name ="eventsTypesFilter">This is a comma separated string specifiying the types of FabricEvents that should
+        /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
         /// </param>
         /// <param name ="skipCorrelationLookup">This param disables the search of CorrelatedEvents information if true is
-        /// passed
-        /// otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets populated.
+        /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
+        /// populated.
         /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -467,7 +465,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the correlated Events given an EventInstanceId.
+        /// Gets all correlated events for a given event.
         /// </summary>
         /// <remarks>
         /// The response is list of FabricEvents.

@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="ContainerEvent" />.
+    /// Converter for <see cref="PartitionInstanceCountScaleMechanism" />.
     /// </summary>
-    internal class ContainerEventConverter
+    internal class PartitionInstanceCountScaleMechanismConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static ContainerEvent Deserialize(JsonReader reader)
+        internal static PartitionInstanceCountScaleMechanism Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,26 +31,26 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static ContainerEvent GetFromJsonProperties(JsonReader reader)
+        internal static PartitionInstanceCountScaleMechanism GetFromJsonProperties(JsonReader reader)
         {
-            var eventInstanceId = default(Guid?);
-            var timeStamp = default(DateTime?);
-            var hasCorrelatedEvents = default(bool?);
+            var minInstanceCount = default(int?);
+            var maxInstanceCount = default(int?);
+            var scaleIncrement = default(int?);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("MinInstanceCount", propName, StringComparison.Ordinal) == 0)
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
+                    minInstanceCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxInstanceCount", propName, StringComparison.Ordinal) == 0)
                 {
-                    timeStamp = reader.ReadValueAsDateTime();
+                    maxInstanceCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ScaleIncrement", propName, StringComparison.Ordinal) == 0)
                 {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
+                    scaleIncrement = reader.ReadValueAsInt();
                 }
                 else
                 {
@@ -59,10 +59,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new ContainerEvent(
-                eventInstanceId: eventInstanceId,
-                timeStamp: timeStamp,
-                hasCorrelatedEvents: hasCorrelatedEvents);
+            return new PartitionInstanceCountScaleMechanism(
+                minInstanceCount: minInstanceCount,
+                maxInstanceCount: maxInstanceCount,
+                scaleIncrement: scaleIncrement);
         }
 
         /// <summary>
@@ -70,18 +70,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, ContainerEvent obj)
+        internal static void Serialize(JsonWriter writer, PartitionInstanceCountScaleMechanism obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
             writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
-            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
-            if (obj.HasCorrelatedEvents != null)
-            {
-                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
-            }
-
+            writer.WriteProperty(obj.MinInstanceCount, "MinInstanceCount", JsonWriterExtensions.WriteIntValue);
+            writer.WriteProperty(obj.MaxInstanceCount, "MaxInstanceCount", JsonWriterExtensions.WriteIntValue);
+            writer.WriteProperty(obj.ScaleIncrement, "ScaleIncrement", JsonWriterExtensions.WriteIntValue);
             writer.WriteEndObject();
         }
     }

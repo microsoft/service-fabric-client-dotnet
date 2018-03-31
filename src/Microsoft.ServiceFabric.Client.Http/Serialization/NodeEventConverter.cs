@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <summary>
         /// Gets the object from Json properties.
         /// </summary>
-        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
         internal static NodeEvent GetFromJsonProperties(JsonReader reader)
         {
@@ -41,25 +41,109 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (propName.Equals("Kind", StringComparison.Ordinal))
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
-                }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
-                {
-                    timeStamp = reader.ReadValueAsDateTime();
-                }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
-                {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
-                }
-                else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
-                {
-                    nodeName = NodeNameConverter.Deserialize(reader);
+                    var propValue = reader.ReadValueAsString();
+
+                    if (propValue.Equals("NodeAborted", StringComparison.Ordinal))
+                    {
+                        return NodeAbortedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeAborting", StringComparison.Ordinal))
+                    {
+                        return NodeAbortingEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeAdded", StringComparison.Ordinal))
+                    {
+                        return NodeAddedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeClose", StringComparison.Ordinal))
+                    {
+                        return NodeCloseEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeClosing", StringComparison.Ordinal))
+                    {
+                        return NodeClosingEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeDeactivateComplete", StringComparison.Ordinal))
+                    {
+                        return NodeDeactivateCompleteEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeDeactivateStart", StringComparison.Ordinal))
+                    {
+                        return NodeDeactivateStartEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeDown", StringComparison.Ordinal))
+                    {
+                        return NodeDownEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeHealthReportCreated", StringComparison.Ordinal))
+                    {
+                        return NodeHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeHealthReportExpired", StringComparison.Ordinal))
+                    {
+                        return NodeHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeOpenedSuccess", StringComparison.Ordinal))
+                    {
+                        return NodeOpenedSuccessEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeOpenFailed", StringComparison.Ordinal))
+                    {
+                        return NodeOpenFailedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeOpening", StringComparison.Ordinal))
+                    {
+                        return NodeOpeningEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeRemoved", StringComparison.Ordinal))
+                    {
+                        return NodeRemovedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeUp", StringComparison.Ordinal))
+                    {
+                        return NodeUpEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosRestartNodeFaultCompleted", StringComparison.Ordinal))
+                    {
+                        return ChaosRestartNodeFaultCompletedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosRestartNodeFaultScheduled", StringComparison.Ordinal))
+                    {
+                        return ChaosRestartNodeFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("NodeEvent", StringComparison.Ordinal))
+                    {
+                        // kind specified as same type, deserialize using properties.
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unknown Discriminator.");
+                    }
                 }
                 else
                 {
-                    reader.SkipPropertyValue();
+                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    {
+                        timeStamp = reader.ReadValueAsDateTime();
+                    }
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    {
+                        hasCorrelatedEvents = reader.ReadValueAsBool();
+                    }
+                    else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                    {
+                        nodeName = NodeNameConverter.Deserialize(reader);
+                    }
+                    else
+                    {
+                        reader.SkipPropertyValue();
+                    }
                 }
             }
             while (reader.TokenType != JsonToken.EndObject);

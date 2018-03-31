@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <summary>
         /// Gets the object from Json properties.
         /// </summary>
-        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
         internal static PartitionEvent GetFromJsonProperties(JsonReader reader)
         {
@@ -41,25 +41,65 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (propName.Equals("Kind", StringComparison.Ordinal))
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
-                }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
-                {
-                    timeStamp = reader.ReadValueAsDateTime();
-                }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
-                {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
-                }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
-                {
-                    partitionId = PartitionIdConverter.Deserialize(reader);
+                    var propValue = reader.ReadValueAsString();
+
+                    if (propValue.Equals("PartitionAnalysisEvent", StringComparison.Ordinal))
+                    {
+                        return PartitionAnalysisEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("PartitionHealthReportCreated", StringComparison.Ordinal))
+                    {
+                        return PartitionHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("PartitionHealthReportExpired", StringComparison.Ordinal))
+                    {
+                        return PartitionHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("PartitionReconfigurationCompleted", StringComparison.Ordinal))
+                    {
+                        return PartitionReconfigurationCompletedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosMoveSecondaryFaultScheduled", StringComparison.Ordinal))
+                    {
+                        return ChaosMoveSecondaryFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosMovePrimaryFaultScheduled", StringComparison.Ordinal))
+                    {
+                        return ChaosMovePrimaryFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("PartitionEvent", StringComparison.Ordinal))
+                    {
+                        // kind specified as same type, deserialize using properties.
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unknown Discriminator.");
+                    }
                 }
                 else
                 {
-                    reader.SkipPropertyValue();
+                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    {
+                        timeStamp = reader.ReadValueAsDateTime();
+                    }
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    {
+                        hasCorrelatedEvents = reader.ReadValueAsBool();
+                    }
+                    else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        partitionId = PartitionIdConverter.Deserialize(reader);
+                    }
+                    else
+                    {
+                        reader.SkipPropertyValue();
+                    }
                 }
             }
             while (reader.TokenType != JsonToken.EndObject);

@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <summary>
         /// Gets the object from Json properties.
         /// </summary>
-        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
         internal static ClusterEvent GetFromJsonProperties(JsonReader reader)
         {
@@ -40,26 +40,79 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (propName.Equals("Kind", StringComparison.Ordinal))
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
-                }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
-                {
-                    timeStamp = reader.ReadValueAsDateTime();
-                }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
-                {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
+                    var propValue = reader.ReadValueAsString();
+
+                    if (propValue.Equals("ClusterHealthReportCreated", StringComparison.Ordinal))
+                    {
+                        return ClusterHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterHealthReportExpired", StringComparison.Ordinal))
+                    {
+                        return ClusterHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterUpgradeComplete", StringComparison.Ordinal))
+                    {
+                        return ClusterUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterUpgradeDomainComplete", StringComparison.Ordinal))
+                    {
+                        return ClusterUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterUpgradeRollbackComplete", StringComparison.Ordinal))
+                    {
+                        return ClusterUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterUpgradeRollbackStart", StringComparison.Ordinal))
+                    {
+                        return ClusterUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterUpgradeStart", StringComparison.Ordinal))
+                    {
+                        return ClusterUpgradeStartEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosStopped", StringComparison.Ordinal))
+                    {
+                        return ChaosStoppedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosStarted", StringComparison.Ordinal))
+                    {
+                        return ChaosStartedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterEvent", StringComparison.Ordinal))
+                    {
+                        // kind specified as same type, deserialize using properties.
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unknown Discriminator.");
+                    }
                 }
                 else
                 {
-                    reader.SkipPropertyValue();
+                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    {
+                        timeStamp = reader.ReadValueAsDateTime();
+                    }
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    {
+                        hasCorrelatedEvents = reader.ReadValueAsBool();
+                    }
+                    else
+                    {
+                        reader.SkipPropertyValue();
+                    }
                 }
             }
             while (reader.TokenType != JsonToken.EndObject);
 
             return new ClusterEvent(
+                kind: Common.FabricEventKind.ClusterEvent,
                 eventInstanceId: eventInstanceId,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents);

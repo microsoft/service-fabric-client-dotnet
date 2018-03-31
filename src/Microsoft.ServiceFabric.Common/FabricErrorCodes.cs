@@ -346,6 +346,11 @@ namespace Microsoft.ServiceFabric.Common
         FABRIC_E_NODE_IS_UP,
 
         /// <summary>
+        /// E_FAIL.
+        /// </summary>
+        E_FAIL,
+
+        /// <summary>
         /// FABRIC_E_BACKUP_IS_ENABLED.
         /// </summary>
         FABRIC_E_BACKUP_IS_ENABLED,
@@ -389,6 +394,11 @@ namespace Microsoft.ServiceFabric.Common
         /// FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING.
         /// </summary>
         FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING,
+
+        /// <summary>
+        /// FABRIC_E_INVALID_SERVICE_SCALING_POLICY.
+        /// </summary>
+        FABRIC_E_INVALID_SERVICE_SCALING_POLICY,
 
         /// <summary>
         /// E_INVALIDARG.

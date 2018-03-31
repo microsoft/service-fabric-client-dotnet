@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Node Down Event
+    /// Node Down event.
     /// </summary>
     public partial class NodeDownEvent : NodeEvent
     {
@@ -19,9 +19,9 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
-        /// <param name="nodeInstance">Node Instance</param>
-        /// <param name="lastNodeUpAt">Last Node Up At</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="nodeInstance">Id of Node instance.</param>
+        /// <param name="lastNodeUpAt">Time when Node was last up.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeDownEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
@@ -43,12 +43,12 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets node Instance
+        /// Gets id of Node instance.
         /// </summary>
         public long? NodeInstance { get; }
 
         /// <summary>
-        /// Gets last Node Up At
+        /// Gets time when Node was last up.
         /// </summary>
         public DateTime? LastNodeUpAt { get; }
     }

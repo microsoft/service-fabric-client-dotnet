@@ -41,6 +41,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 'ExclusiveProcess'</param>
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
+        /// <param name="scalingPolicies">Scaling policies for this service.</param>
         /// <param name="flags">Flags indicating whether other properties are set. Each of the associated properties
         /// corresponds to a flag, specified below, which, if set, indicate that the property is specified.
         /// This property can be a combination of those flags obtained using bitwise 'OR' operator.
@@ -75,6 +76,7 @@ namespace Microsoft.ServiceFabric.Common
             bool? isDefaultMoveCostSpecified = default(bool?),
             ServicePackageActivationMode? servicePackageActivationMode = default(ServicePackageActivationMode?),
             string serviceDnsName = default(string),
+            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
             int? flags = default(int?),
             long? replicaRestartWaitDurationSeconds = default(long?),
             long? quorumLossWaitDurationSeconds = default(long?),
@@ -93,7 +95,8 @@ namespace Microsoft.ServiceFabric.Common
                 defaultMoveCost,
                 isDefaultMoveCostSpecified,
                 servicePackageActivationMode,
-                serviceDnsName)
+                serviceDnsName,
+                scalingPolicies)
         {
             targetReplicaSetSize.ThrowIfNull(nameof(targetReplicaSetSize));
             minReplicaSetSize.ThrowIfNull(nameof(minReplicaSetSize));

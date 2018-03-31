@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_BACKUP_IS_ENABLED"
         /// - "FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH"
         /// - "FABRIC_E_INVALID_FOR_STATELESS_SERVICES"
+        /// - "FABRIC_E_INVALID_SERVICE_SCALING_POLICY"
         /// - "E_INVALIDARG"
         /// 
         /// - Possible values of the error code for HTTP status code 404 (Not Found)
@@ -96,6 +97,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// - Possible values of the error code for HTTP status code 500 (Internal Server Error)
         /// - "FABRIC_E_NODE_IS_UP"
+        /// - "E_FAIL"
         /// 
         /// - Possible values of the error code for HTTP status code 503 (Service Unavailable)
         /// - "FABRIC_E_NO_WRITE_QUORUM"
@@ -133,11 +135,11 @@ namespace Microsoft.ServiceFabric.Common
         /// 'FABRIC_E_NODE_HAS_NOT_STOPPED_YET', 'FABRIC_E_INSTANCE_ID_MISMATCH', 'FABRIC_E_VALUE_TOO_LARGE',
         /// 'FABRIC_E_NO_WRITE_QUORUM', 'FABRIC_E_NOT_PRIMARY', 'FABRIC_E_NOT_READY', 'FABRIC_E_RECONFIGURATION_PENDING',
         /// 'FABRIC_E_SERVICE_OFFLINE', 'E_ABORT', 'FABRIC_E_COMMUNICATION_ERROR', 'FABRIC_E_OPERATION_NOT_COMPLETE',
-        /// 'FABRIC_E_TIMEOUT', 'FABRIC_E_NODE_IS_UP', 'FABRIC_E_BACKUP_IS_ENABLED',
+        /// 'FABRIC_E_TIMEOUT', 'FABRIC_E_NODE_IS_UP', 'E_FAIL', 'FABRIC_E_BACKUP_IS_ENABLED',
         /// 'FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH', 'FABRIC_E_INVALID_FOR_STATELESS_SERVICES',
         /// 'FABRIC_E_BACKUP_NOT_ENABLED', 'FABRIC_E_BACKUP_POLICY_NOT_EXISTING',
         /// 'FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING', 'FABRIC_E_BACKUP_IN_PROGRESS', 'FABRIC_E_RESTORE_IN_PROGRESS',
-        /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'E_INVALIDARG'</param>
+        /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'FABRIC_E_INVALID_SERVICE_SCALING_POLICY', 'E_INVALIDARG'</param>
         /// <param name="message">Error message.</param>
         public FabricErrorError(
             FabricErrorCodes? code,
@@ -171,6 +173,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_BACKUP_IS_ENABLED"
         /// - "FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH"
         /// - "FABRIC_E_INVALID_FOR_STATELESS_SERVICES"
+        /// - "FABRIC_E_INVALID_SERVICE_SCALING_POLICY"
         /// - "E_INVALIDARG"
         /// 
         /// - Possible values of the error code for HTTP status code 404 (Not Found)
@@ -229,6 +232,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// - Possible values of the error code for HTTP status code 500 (Internal Server Error)
         /// - "FABRIC_E_NODE_IS_UP"
+        /// - "E_FAIL"
         /// 
         /// - Possible values of the error code for HTTP status code 503 (Service Unavailable)
         /// - "FABRIC_E_NO_WRITE_QUORUM"
@@ -266,11 +270,11 @@ namespace Microsoft.ServiceFabric.Common
         /// 'FABRIC_E_NODE_HAS_NOT_STOPPED_YET', 'FABRIC_E_INSTANCE_ID_MISMATCH', 'FABRIC_E_VALUE_TOO_LARGE',
         /// 'FABRIC_E_NO_WRITE_QUORUM', 'FABRIC_E_NOT_PRIMARY', 'FABRIC_E_NOT_READY', 'FABRIC_E_RECONFIGURATION_PENDING',
         /// 'FABRIC_E_SERVICE_OFFLINE', 'E_ABORT', 'FABRIC_E_COMMUNICATION_ERROR', 'FABRIC_E_OPERATION_NOT_COMPLETE',
-        /// 'FABRIC_E_TIMEOUT', 'FABRIC_E_NODE_IS_UP', 'FABRIC_E_BACKUP_IS_ENABLED',
+        /// 'FABRIC_E_TIMEOUT', 'FABRIC_E_NODE_IS_UP', 'E_FAIL', 'FABRIC_E_BACKUP_IS_ENABLED',
         /// 'FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH', 'FABRIC_E_INVALID_FOR_STATELESS_SERVICES',
         /// 'FABRIC_E_BACKUP_NOT_ENABLED', 'FABRIC_E_BACKUP_POLICY_NOT_EXISTING',
         /// 'FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING', 'FABRIC_E_BACKUP_IN_PROGRESS', 'FABRIC_E_RESTORE_IN_PROGRESS',
-        /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'E_INVALIDARG'
+        /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'FABRIC_E_INVALID_SERVICE_SCALING_POLICY', 'E_INVALIDARG'
         /// </summary>
         public FabricErrorCodes? Code { get; }
 

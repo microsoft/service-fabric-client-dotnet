@@ -24,7 +24,7 @@ namespace Microsoft.ServiceFabric.Common
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
         /// <param name="metadata">Metadata about an Analysis Event.</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionAnalysisEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,

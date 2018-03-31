@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
-        /// <param name="hasCorrelatedEvents">Shows that there is existing related events available.</param>
+        /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,

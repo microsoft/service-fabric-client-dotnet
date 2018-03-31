@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <summary>
         /// Gets the object from Json properties.
         /// </summary>
-        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
+        /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
         internal static ReplicaEvent GetFromJsonProperties(JsonReader reader)
         {
@@ -42,34 +42,79 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (propName.Equals("Kind", StringComparison.Ordinal))
                 {
-                    eventInstanceId = reader.ReadValueAsGuid();
-                }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
-                {
-                    timeStamp = reader.ReadValueAsDateTime();
-                }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
-                {
-                    hasCorrelatedEvents = reader.ReadValueAsBool();
-                }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
-                {
-                    partitionId = PartitionIdConverter.Deserialize(reader);
-                }
-                else if (string.Compare("ReplicaId", propName, StringComparison.Ordinal) == 0)
-                {
-                    replicaId = ReplicaIdConverter.Deserialize(reader);
+                    var propValue = reader.ReadValueAsString();
+
+                    if (propValue.Equals("StatefulReplicaHealthReportCreated", StringComparison.Ordinal))
+                    {
+                        return StatefulReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("StatefulReplicaHealthReportExpired", StringComparison.Ordinal))
+                    {
+                        return StatefulReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("StatelessReplicaHealthReportCreated", StringComparison.Ordinal))
+                    {
+                        return StatelessReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("StatelessReplicaHealthReportExpired", StringComparison.Ordinal))
+                    {
+                        return StatelessReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosRemoveReplicaFaultScheduled", StringComparison.Ordinal))
+                    {
+                        return ChaosRemoveReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosRemoveReplicaFaultCompleted", StringComparison.Ordinal))
+                    {
+                        return ChaosRemoveReplicaFaultCompletedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ChaosRestartReplicaFaultScheduled", StringComparison.Ordinal))
+                    {
+                        return ChaosRestartReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ReplicaEvent", StringComparison.Ordinal))
+                    {
+                        // kind specified as same type, deserialize using properties.
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Unknown Discriminator.");
+                    }
                 }
                 else
                 {
-                    reader.SkipPropertyValue();
+                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    {
+                        timeStamp = reader.ReadValueAsDateTime();
+                    }
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    {
+                        hasCorrelatedEvents = reader.ReadValueAsBool();
+                    }
+                    else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        partitionId = PartitionIdConverter.Deserialize(reader);
+                    }
+                    else if (string.Compare("ReplicaId", propName, StringComparison.Ordinal) == 0)
+                    {
+                        replicaId = ReplicaIdConverter.Deserialize(reader);
+                    }
+                    else
+                    {
+                        reader.SkipPropertyValue();
+                    }
                 }
             }
             while (reader.TokenType != JsonToken.EndObject);
 
             return new ReplicaEvent(
+                kind: Common.FabricEventKind.ReplicaEvent,
                 eventInstanceId: eventInstanceId,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
