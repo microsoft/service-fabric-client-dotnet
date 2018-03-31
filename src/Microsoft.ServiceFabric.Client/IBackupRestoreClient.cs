@@ -360,7 +360,7 @@ namespace Microsoft.ServiceFabric.Client
         /// periodic backup for this service and its partitions (unless explicitly overridden at the partition level).
         /// Note only C# based Reliable Actor and Reliable Stateful services are currently supported for periodic backup.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="enableBackupDescription">Specifies the parameters for enabling backup.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -374,7 +374,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task EnableServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             EnableBackupDescription enableBackupDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -388,7 +388,7 @@ namespace Microsoft.ServiceFabric.Client
         /// In case the backup is enabled for the Service Fabric application, which this service is part of, this service would
         /// continue to be periodically backed up as per the policy mapped at the application level.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -401,7 +401,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DisableServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -411,7 +411,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the Service Fabric backup configuration information for the service and the partitions under this service.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
@@ -430,7 +430,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<BackupConfigurationInfo>> GetServiceBackupConfigurationInfoAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
@@ -444,7 +444,7 @@ namespace Microsoft.ServiceFabric.Client
         /// the backups available in the backup store configured in the backup policy. It also allows filtering of the result
         /// based on start and end datetime or just fetching the latest available backup for every partition.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -471,7 +471,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<BackupInfo>> GetServiceBackupListAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
@@ -488,7 +488,7 @@ namespace Microsoft.ServiceFabric.Client
         /// resumed again. This operation applies to the entire service's hierarchy. It means all the partitions under this
         /// service are now suspended for backup.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -501,7 +501,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task SuspendServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -512,7 +512,7 @@ namespace Microsoft.ServiceFabric.Client
         /// The previously suspended Service Fabric service resumes taking periodic backup as per the backup policy currently
         /// configured for the same.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -525,7 +525,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task ResumeServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 

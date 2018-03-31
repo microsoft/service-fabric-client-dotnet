@@ -448,17 +448,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task EnableServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             EnableBackupDescription enableBackupDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             enableBackupDescription.ThrowIfNull(nameof(enableBackupDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/EnableBackup";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -489,15 +489,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task DisableServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/DisableBackup";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -519,18 +519,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<BackupConfigurationInfo>> GetServiceBackupConfigurationInfoAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             maxResults?.ThrowIfLessThan("maxResults", 0);
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetBackupConfigurationInfo";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -554,7 +554,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<BackupInfo>> GetServiceBackupListAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
@@ -563,12 +563,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? maxResults = 0,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             maxResults?.ThrowIfLessThan("maxResults", 0);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetBackups";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -595,15 +595,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task SuspendServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/SuspendBackup";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -625,15 +625,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task ResumeServiceBackupAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/ResumeBackup";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

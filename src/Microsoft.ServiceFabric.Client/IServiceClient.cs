@@ -52,7 +52,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Returns the information about the specified service belonging to the specified Service Fabric application.
         /// </remarks>
         /// <param name ="applicationName">Name of Service Fabric Application.</param>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -66,7 +66,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ServiceInfo> GetServiceInfoAsync(
             ApplicationName applicationName,
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -77,7 +77,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the name of the application for the specified service. A 404 FABRIC_E_SERVICE_DOES_NOT_EXIST error is returned
         /// if a service with the provided service ID does not exist.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -90,7 +90,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ApplicationNameInfo> GetApplicationNameInfoAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -158,7 +158,7 @@ namespace Microsoft.ServiceFabric.Client
         /// is having issues closing the replica gracefully, the delete operation may take a long time or get stuck. Use the
         /// optional ForceRemove flag to skip the graceful close sequence and forcefully delete the service.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="forceRemove">Remove a Service Fabric application or service forcefully without going through the
         /// graceful shutdown sequence. This parameter can be used to forcefully delete an application or service for which
         /// delete is timing out due to issues in the service code that prevents graceful close of replicas.</param>
@@ -174,7 +174,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DeleteServiceAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             bool? forceRemove = default(bool?),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -190,7 +190,7 @@ namespace Microsoft.ServiceFabric.Client
         /// running background operation that involves moving the application from one version to another, one upgrade domain
         /// at a time, whereas update applies the new properties immediately to the service.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serviceUpdateDescription">The information necessary to update a service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -204,7 +204,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task UpdateServiceAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             ServiceUpdateDescription serviceUpdateDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -216,7 +216,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the description of an existing Service Fabric service. A service must be created before its description can be
         /// obtained.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -229,7 +229,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ServiceDescription> GetServiceDescriptionAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -243,7 +243,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Use PartitionsHealthStateFilter to filter the collection of partitions returned.
         /// If you specify a service that does not exist in the health store, this request returns an error.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="eventsHealthStateFilter">Allows filtering the collection of HealthEvent objects returned based on
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
@@ -294,7 +294,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ServiceHealth> GetServiceHealthAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             int? eventsHealthStateFilter = 0,
             int? partitionsHealthStateFilter = 0,
             bool? excludeHealthStatistics = false,
@@ -314,7 +314,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Use PartitionsHealthStateFilter to filter the collection of partitions returned.
         /// If you specify a service that does not exist in the health store, this request returns an error.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="eventsHealthStateFilter">Allows filtering the collection of HealthEvent objects returned based on
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
@@ -370,7 +370,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ServiceHealth> GetServiceHealthUsingPolicyAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             int? eventsHealthStateFilter = 0,
             int? partitionsHealthStateFilter = 0,
             ApplicationHealthPolicy applicationHealthPolicy = default(ApplicationHealthPolicy),
@@ -390,7 +390,7 @@ namespace Microsoft.ServiceFabric.Client
         /// To see whether the report was applied in the health store, run GetServiceHealth and check that the report appears
         /// in the HealthEvents section.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
         /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
@@ -418,7 +418,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task ReportServiceHealthAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             HealthInformation healthInformation,
             bool? immediate = false,
             long? serverTimeout = 60,
@@ -430,7 +430,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Resolve a Service Fabric service partition to get the endpoints of the service replicas.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionKeyType">Key type for the partition. This parameter is required if the partition scheme for
         /// the service is Int64Range or Named. The possible values are following.
         /// - None (1) - Indicates that the PartitionKeyValue parameter is not specified. This is valid for the partitions with
@@ -456,7 +456,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ResolvedServicePartition> ResolveServiceAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             int? partitionKeyType = default(int?),
             string partitionKeyValue = default(string),
             string previousRspVersion = default(string),

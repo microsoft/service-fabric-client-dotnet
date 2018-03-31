@@ -275,7 +275,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<IEnumerable<ServiceEvent>> GetServiceEventListAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -284,13 +284,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? skipCorrelationLookup = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             startTimeUtc.ThrowIfNull(nameof(startTimeUtc));
             endTimeUtc.ThrowIfNull(nameof(endTimeUtc));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "EventsStore/Services/{serviceId}/$/Events";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

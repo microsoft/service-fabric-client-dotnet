@@ -35,16 +35,16 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<ServicePartitionInfo>> GetPartitionInfoListAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetPartitions";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -342,15 +342,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task RecoverServicePartitionsAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/$/{serviceId}/$/GetPartitions/$/Recover";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

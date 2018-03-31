@@ -35,21 +35,21 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task StartDataLossAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             DataLossMode? dataLossMode,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             dataLossMode.ThrowIfNull(nameof(dataLossMode));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/StartDataLoss";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
@@ -74,19 +74,19 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PartitionDataLossProgress> GetDataLossProgressAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/GetDataLossProgress";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
@@ -110,7 +110,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task StartQuorumLossAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             QuorumLossMode? quorumLossMode,
@@ -118,7 +118,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             quorumLossMode.ThrowIfNull(nameof(quorumLossMode));
@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/StartQuorumLoss";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
@@ -152,19 +152,19 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PartitionQuorumLossProgress> GetQuorumLossProgressAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/GetQuorumLossProgress";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
@@ -188,21 +188,21 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task StartPartitionRestartAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             RestartPartitionMode? restartPartitionMode,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             restartPartitionMode.ThrowIfNull(nameof(restartPartitionMode));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/StartRestart";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
@@ -227,19 +227,19 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PartitionRestartProgress> GetPartitionRestartProgressAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceName.ThrowIfNull(nameof(serviceName));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/GetRestartProgress";
-            url = url.Replace("{serviceId}", serviceId.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             

@@ -244,7 +244,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// The response is list of ServiceEvent objects.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -267,7 +267,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<ServiceEvent>> GetServiceEventListAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,

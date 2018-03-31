@@ -12,7 +12,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converts fFabricName to NameDescription(as specified in swagger).
+    /// Converts FabricName to NameDescription(as specified in swagger).
     /// </summary>
     internal class NameDescriptionConverter
     {

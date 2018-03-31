@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Call the GetDataLossProgress API with the same OperationId to return information on the operation started with this
         /// API.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -59,7 +59,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task StartDataLossAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             DataLossMode? dataLossMode,
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a data loss operation started with StartDataLoss, using the OperationId.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -88,7 +88,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PartitionDataLossProgress> GetDataLossProgressAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
@@ -107,7 +107,7 @@ namespace Microsoft.ServiceFabric.Client
         /// This can only be called on stateful persisted (HasPersistedState==true) services.  Do not use this API on stateless
         /// services or stateful in-memory only services.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -127,7 +127,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task StartQuorumLossAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             QuorumLossMode? quorumLossMode,
@@ -141,7 +141,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a quorum loss operation started with StartQuorumLoss, using the provided OperationId.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -157,7 +157,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PartitionQuorumLossProgress> GetQuorumLossProgressAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
@@ -173,7 +173,7 @@ namespace Microsoft.ServiceFabric.Client
         /// 
         /// Call the GetPartitionRestartProgress API using the same OperationId to get the progress.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -191,7 +191,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task StartPartitionRestartAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             RestartPartitionMode? restartPartitionMode,
@@ -204,7 +204,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a PartitionRestart started with StartPartitionRestart using the provided OperationId.
         /// </remarks>
-        /// <param name ="serviceId">Name of Service Fabric Service.</param>
+        /// <param name ="serviceName">Name of Service Fabric Service.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -220,7 +220,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PartitionRestartProgress> GetPartitionRestartProgressAsync(
-            ServiceName serviceId,
+            ServiceName serviceName,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
