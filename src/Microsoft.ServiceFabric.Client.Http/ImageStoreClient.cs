@@ -43,7 +43,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath.ToString()));
+            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -73,7 +73,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath.ToString()));
+            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -171,7 +171,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
+            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -201,7 +201,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
+            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -231,7 +231,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
+            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -258,7 +258,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/{contentPath}/$/GetUploadSession";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath.ToString()));
+            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

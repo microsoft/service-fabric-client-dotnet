@@ -36,19 +36,19 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<IEnumerable<DeployedCodePackageInfo>> GetDeployedCodePackageInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceManifestName = default(string),
             string codePackageName = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetCodePackages";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -73,19 +73,19 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task RestartDeployedCodePackageAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             RestartDeployedCodePackageDescription restartDeployedCodePackageDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             restartDeployedCodePackageDescription.ThrowIfNull(nameof(restartDeployedCodePackageDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetCodePackages/$/Restart";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -117,7 +117,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<ContainerLogs> GetContainerLogsDeployedOnNodeAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceManifestName,
             string codePackageName,
             string tail = default(string),
@@ -125,14 +125,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serviceManifestName.ThrowIfNull(nameof(serviceManifestName));
             codePackageName.ThrowIfNull(nameof(codePackageName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetCodePackages/$/ContainerLogs";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

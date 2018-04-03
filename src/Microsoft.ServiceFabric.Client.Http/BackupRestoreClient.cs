@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}/$/Delete";
-            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName.ToString()));
+            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -143,7 +143,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}";
-            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName.ToString()));
+            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -176,7 +176,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}/$/GetBackupEnabledEntities";
-            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName.ToString()));
+            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -210,7 +210,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "BackupRestore/BackupPolicies/{backupPolicyName}/$/Update";
-            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName.ToString()));
+            url = url.Replace("{backupPolicyName}", Uri.EscapeDataString(backupPolicyName));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -241,17 +241,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task EnableApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             EnableBackupDescription enableBackupDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             enableBackupDescription.ThrowIfNull(nameof(enableBackupDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/EnableBackup";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -282,15 +282,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task DisableApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/DisableBackup";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -312,18 +312,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<BackupConfigurationInfo>> GetApplicationBackupConfigurationInfoAsync(
-            ApplicationName applicationName,
+            string applicationId,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             maxResults?.ThrowIfLessThan("maxResults", 0);
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetBackupConfigurationInfo";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -347,7 +347,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<BackupInfo>> GetApplicationBackupListAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
@@ -356,19 +356,19 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? maxResults = 0,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             maxResults?.ThrowIfLessThan("maxResults", 0);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetBackups";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
-            startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc)}");
-            endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc)}");
+            startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
+            endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             queryParams.Add("api-version=6.2-preview");
@@ -388,15 +388,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task SuspendApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/SuspendBackup";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -418,15 +418,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task ResumeApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/ResumeBackup";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -448,17 +448,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task EnableServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             EnableBackupDescription enableBackupDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             enableBackupDescription.ThrowIfNull(nameof(enableBackupDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/EnableBackup";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -489,15 +489,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task DisableServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/DisableBackup";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -519,18 +519,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<BackupConfigurationInfo>> GetServiceBackupConfigurationInfoAsync(
-            ServiceName serviceName,
+            string serviceId,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             maxResults?.ThrowIfLessThan("maxResults", 0);
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetBackupConfigurationInfo";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -554,7 +554,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<BackupInfo>> GetServiceBackupListAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
@@ -563,19 +563,19 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? maxResults = 0,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             maxResults?.ThrowIfLessThan("maxResults", 0);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetBackups";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
-            startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc)}");
-            endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc)}");
+            startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
+            endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             queryParams.Add("api-version=6.2-preview");
@@ -595,15 +595,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task SuspendServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/SuspendBackup";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -625,15 +625,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task ResumeServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/ResumeBackup";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -773,8 +773,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
-            startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc)}");
-            endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc)}");
+            startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
+            endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             queryParams.Add("api-version=6.2-preview");
             url += "?" + string.Join("&", queryParams);
             

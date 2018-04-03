@@ -41,7 +41,12 @@ namespace Microsoft.ServiceFabric.Client
         /// Call the GetDataLossProgress API with the same OperationId to return information on the operation started with this
         /// API.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -59,7 +64,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task StartDataLossAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             DataLossMode? dataLossMode,
@@ -72,7 +77,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a data loss operation started with StartDataLoss, using the OperationId.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -88,7 +98,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PartitionDataLossProgress> GetDataLossProgressAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
@@ -107,7 +117,12 @@ namespace Microsoft.ServiceFabric.Client
         /// This can only be called on stateful persisted (HasPersistedState==true) services.  Do not use this API on stateless
         /// services or stateful in-memory only services.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -127,7 +142,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task StartQuorumLossAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             QuorumLossMode? quorumLossMode,
@@ -141,7 +156,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a quorum loss operation started with StartQuorumLoss, using the provided OperationId.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -157,7 +177,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PartitionQuorumLossProgress> GetQuorumLossProgressAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
@@ -173,7 +193,12 @@ namespace Microsoft.ServiceFabric.Client
         /// 
         /// Call the GetPartitionRestartProgress API using the same OperationId to get the progress.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -191,7 +216,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task StartPartitionRestartAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             RestartPartitionMode? restartPartitionMode,
@@ -204,7 +229,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a PartitionRestart started with StartPartitionRestart using the provided OperationId.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
@@ -220,7 +250,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PartitionRestartProgress> GetPartitionRestartProgressAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
@@ -236,7 +266,7 @@ namespace Microsoft.ServiceFabric.Client
         /// returns the node may not have finished transitioning yet.
         /// Call GetNodeTransitionProgress with the same OperationId to get the progress of the operation.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
         /// <param name ="nodeTransitionType">Indicates the type of transition to perform.  NodeTransitionType.Start will start
@@ -272,7 +302,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of an operation started with StartNodeTransition using the provided OperationId.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time

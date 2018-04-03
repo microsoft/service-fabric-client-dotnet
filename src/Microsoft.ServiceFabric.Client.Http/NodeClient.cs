@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
-            nodeStatusFilter?.AddToQueryParameters(queryParams, $"NodeStatusFilter={nodeStatusFilter}");
+            nodeStatusFilter?.AddToQueryParameters(queryParams, $"NodeStatusFilter={nodeStatusFilter.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -74,7 +74,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -105,7 +105,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetHealth";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -138,7 +138,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetHealth";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -181,7 +181,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/ReportHealth";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -221,7 +221,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetLoadInformation";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -253,7 +253,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/Deactivate";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -292,7 +292,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/Activate";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -322,7 +322,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/RemoveNodeState";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -354,7 +354,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/Restart";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

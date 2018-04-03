@@ -96,7 +96,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// The response is list of NodeEvent objects.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -170,7 +170,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// The response is list of ApplicationEvent objects.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -193,7 +198,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<ApplicationEvent>> GetApplicationEventListAsync(
-            ApplicationName applicationName,
+            string applicationId,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -244,7 +249,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// The response is list of ServiceEvent objects.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -267,7 +277,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<ServiceEvent>> GetServiceEventListAsync(
-            ServiceName serviceName,
+            string serviceId,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,

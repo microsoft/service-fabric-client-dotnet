@@ -35,17 +35,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<ServiceInfo>> GetServiceInfoListAsync(
-            ApplicationName applicationName,
+            string applicationId,
             string serviceTypeName = default(string),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetServices";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -69,18 +69,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ServiceInfo> GetServiceInfoAsync(
-            ApplicationName applicationName,
-            ServiceName serviceName,
+            string applicationId,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
-            serviceName.ThrowIfNull(nameof(serviceName));
+            applicationId.ThrowIfNull(nameof(applicationId));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetServices/{serviceId}";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -102,15 +102,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ApplicationNameInfo> GetApplicationNameInfoAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetApplicationName";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -132,17 +132,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task CreateServiceAsync(
-            ApplicationName applicationName,
+            string applicationId,
             ServiceDescription serviceDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serviceDescription.ThrowIfNull(nameof(serviceDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetServices/$/Create";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -173,17 +173,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task CreateServiceFromTemplateAsync(
-            ApplicationName applicationName,
+            string applicationId,
             ServiceFromTemplateDescription serviceFromTemplateDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serviceFromTemplateDescription.ThrowIfNull(nameof(serviceFromTemplateDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetServices/$/CreateFromTemplate";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -214,16 +214,16 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task DeleteServiceAsync(
-            ServiceName serviceName,
+            string serviceId,
             bool? forceRemove = default(bool?),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/Delete";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -246,17 +246,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task UpdateServiceAsync(
-            ServiceName serviceName,
+            string serviceId,
             ServiceUpdateDescription serviceUpdateDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serviceUpdateDescription.ThrowIfNull(nameof(serviceUpdateDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/Update";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -287,15 +287,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ServiceDescription> GetServiceDescriptionAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetDescription";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -317,18 +317,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ServiceHealth> GetServiceHealthAsync(
-            ServiceName serviceName,
+            string serviceId,
             int? eventsHealthStateFilter = 0,
             int? partitionsHealthStateFilter = 0,
             bool? excludeHealthStatistics = false,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetHealth";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -353,7 +353,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ServiceHealth> GetServiceHealthUsingPolicyAsync(
-            ServiceName serviceName,
+            string serviceId,
             int? eventsHealthStateFilter = 0,
             int? partitionsHealthStateFilter = 0,
             ApplicationHealthPolicy applicationHealthPolicy = default(ApplicationHealthPolicy),
@@ -361,11 +361,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/GetHealth";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -399,18 +399,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task ReportServiceHealthAsync(
-            ServiceName serviceName,
+            string serviceId,
             HealthInformation healthInformation,
             bool? immediate = false,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             healthInformation.ThrowIfNull(nameof(healthInformation));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/ReportHealth";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -442,18 +442,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ResolvedServicePartition> ResolveServiceAsync(
-            ServiceName serviceName,
+            string serviceId,
             int? partitionKeyType = default(int?),
             string partitionKeyValue = default(string),
             string previousRspVersion = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Services/{serviceId}/$/ResolvePartition";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

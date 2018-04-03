@@ -24,8 +24,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Returns the information about the service packages deployed on a Service Fabric node for the given application.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -39,7 +44,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<DeployedServicePackageInfo>> GetDeployedServicePackageInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -50,8 +55,13 @@ namespace Microsoft.ServiceFabric.Client
         /// Returns the information about the service packages deployed on a Service Fabric node for the given application.
         /// These results are of service packages whose name match exactly the service package name specified as the parameter.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="servicePackageName">The name of the service package.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -66,7 +76,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<DeployedServicePackageInfo>> GetDeployedServicePackageInfoListByNameAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -80,8 +90,13 @@ namespace Microsoft.ServiceFabric.Client
         /// Use EventsHealthStateFilter to optionally filter for the collection of HealthEvent objects reported on the deployed
         /// service package based on health state.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="servicePackageName">The name of the service package.</param>
         /// <param name ="eventsHealthStateFilter">Allows filtering the collection of HealthEvent objects returned based on
         /// health state.
@@ -112,7 +127,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<DeployedServicePackageHealth> GetDeployedServicePackageHealthAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             int? eventsHealthStateFilter = 0,
             long? serverTimeout = 60,
@@ -130,8 +145,13 @@ namespace Microsoft.ServiceFabric.Client
         /// field of the ApplicationHealthPolicy. The rest of the fields are ignored while evaluating the health of the
         /// deployed service package.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="servicePackageName">The name of the service package.</param>
         /// <param name ="eventsHealthStateFilter">Allows filtering the collection of HealthEvent objects returned based on
         /// health state.
@@ -167,7 +187,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<DeployedServicePackageHealth> GetDeployedServicePackageHealthUsingPolicyAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             int? eventsHealthStateFilter = 0,
             ApplicationHealthPolicy applicationHealthPolicy = default(ApplicationHealthPolicy),
@@ -186,8 +206,13 @@ namespace Microsoft.ServiceFabric.Client
         /// To see whether the report was applied in the health store, get deployed service package health and check that the
         /// report appears in the HealthEvents section.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="servicePackageName">The name of the service package.</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
@@ -217,7 +242,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task ReportDeployedServicePackageHealthAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             HealthInformation healthInformation,
             bool? immediate = false,
@@ -233,7 +258,7 @@ namespace Microsoft.ServiceFabric.Client
         /// be present on the node before the actual application deployment and upgrade, thus significantly reducing the total
         /// time required for the deployment or upgrade.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="deployServicePackageToNodeDescription">Describes information for deploying a service package to a
         /// Service Fabric node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time

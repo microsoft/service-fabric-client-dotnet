@@ -128,7 +128,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "EventsStore/Nodes/{nodeName}/$/Events";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -194,7 +194,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<IEnumerable<ApplicationEvent>> GetApplicationEventListAsync(
-            ApplicationName applicationName,
+            string applicationId,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -203,13 +203,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? skipCorrelationLookup = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             startTimeUtc.ThrowIfNull(nameof(startTimeUtc));
             endTimeUtc.ThrowIfNull(nameof(endTimeUtc));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "EventsStore/Applications/{applicationId}/$/Events";
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -275,7 +275,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<IEnumerable<ServiceEvent>> GetServiceEventListAsync(
-            ServiceName serviceName,
+            string serviceId,
             string startTimeUtc,
             string endTimeUtc,
             long? serverTimeout = 60,
@@ -284,13 +284,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? skipCorrelationLookup = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             startTimeUtc.ThrowIfNull(nameof(startTimeUtc));
             endTimeUtc.ThrowIfNull(nameof(endTimeUtc));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "EventsStore/Services/{serviceId}/$/Events";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -455,7 +455,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "EventsStore/Partitions/{partitionId}/$/Replicas/{replicaId}/$/Events";
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -532,7 +532,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "EventsStore/CorrelatedEvents/{eventInstanceId}/$/Events";
-            url = url.Replace("{eventInstanceId}", Uri.EscapeDataString(eventInstanceId.ToString()));
+            url = url.Replace("{eventInstanceId}", Uri.EscapeDataString(eventInstanceId));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

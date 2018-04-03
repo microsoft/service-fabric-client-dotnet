@@ -45,7 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ApplicationTypes/{applicationTypeName}/$/GetServiceTypes";
-            url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName.ToString()));
+            url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -80,8 +80,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ApplicationTypes/{applicationTypeName}/$/GetServiceTypes/{serviceTypeName}";
-            url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName.ToString()));
-            url = url.Replace("{serviceTypeName}", serviceTypeName.ToString());
+            url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName));
+            url = url.Replace("{serviceTypeName}", serviceTypeName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -116,7 +116,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ApplicationTypes/{applicationTypeName}/$/GetServiceManifest";
-            url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName.ToString()));
+            url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -141,18 +141,18 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<IEnumerable<DeployedServiceTypeInfo>> GetDeployedServiceTypeInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceManifestName = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServiceTypes";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -176,21 +176,21 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<IEnumerable<DeployedServiceTypeInfo>> GetDeployedServiceTypeInfoByNameAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceTypeName,
             string serviceManifestName = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serviceTypeName.ThrowIfNull(nameof(serviceTypeName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServiceTypes/{serviceTypeName}";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
-            url = url.Replace("{serviceTypeName}", serviceTypeName.ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{serviceTypeName}", serviceTypeName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

@@ -73,15 +73,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task GetNameExistsInfoAsync(
-            FabricName fabricName,
+            string nameId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -103,15 +103,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task DeleteNameAsync(
-            FabricName fabricName,
+            string nameId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -133,17 +133,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<string>> GetSubNameInfoListAsync(
-            FabricName fabricName,
+            string nameId,
             bool? recursive = false,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}/$/GetSubNames";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -167,17 +167,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<PropertyInfo>> GetPropertyInfoListAsync(
-            FabricName fabricName,
+            string nameId,
             bool? includeValues = false,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}/$/GetProperties";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -201,17 +201,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task PutPropertyAsync(
-            FabricName fabricName,
+            string nameId,
             PropertyDescription propertyDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             propertyDescription.ThrowIfNull(nameof(propertyDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}/$/GetProperty";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -242,17 +242,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PropertyInfo> GetPropertyInfoAsync(
-            FabricName fabricName,
+            string nameId,
             string propertyName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             propertyName.ThrowIfNull(nameof(propertyName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}/$/GetProperty";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -275,17 +275,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task DeletePropertyAsync(
-            FabricName fabricName,
+            string nameId,
             string propertyName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             propertyName.ThrowIfNull(nameof(propertyName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}/$/GetProperty";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -308,17 +308,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PropertyBatchInfo> SubmitPropertyBatchAsync(
-            FabricName fabricName,
+            string nameId,
             PropertyBatchDescriptionList propertyBatchDescriptionList,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            fabricName.ThrowIfNull(nameof(fabricName));
+            nameId.ThrowIfNull(nameof(nameId));
             propertyBatchDescriptionList.ThrowIfNull(nameof(propertyBatchDescriptionList));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Names/{nameId}/$/GetProperties/$/SubmitBatch";
-            url = url.Replace("{nameId}", fabricName.GetId().ToString());
+            url = url.Replace("{nameId}", nameId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

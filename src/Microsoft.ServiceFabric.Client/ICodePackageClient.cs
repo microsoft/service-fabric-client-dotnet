@@ -24,8 +24,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the list of code packages deployed on a Service Fabric node for the given application.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serviceManifestName">The name of a service manifest registered as part of an application type in a
         /// Service Fabric cluster.</param>
         /// <param name ="codePackageName">The name of code package specified in service manifest registered as part of an
@@ -43,7 +48,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<DeployedCodePackageInfo>> GetDeployedCodePackageInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceManifestName = default(string),
             string codePackageName = default(string),
             long? serverTimeout = 60,
@@ -56,8 +61,13 @@ namespace Microsoft.ServiceFabric.Client
         /// Restarts a code package deployed on a Service Fabric node in a cluster. This aborts the code package process, which
         /// will restart all the user service replicas hosted in that process.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="restartDeployedCodePackageDescription">Describes the deployed code package on Service Fabric node to
         /// restart.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -73,7 +83,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task RestartDeployedCodePackageAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             RestartDeployedCodePackageDescription restartDeployedCodePackageDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -84,8 +94,13 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the container logs for container deployed on a Service Fabric node for the given code package.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serviceManifestName">The name of a service manifest registered as part of an application type in a
         /// Service Fabric cluster.</param>
         /// <param name ="codePackageName">The name of code package specified in service manifest registered as part of an
@@ -104,7 +119,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ContainerLogs> GetContainerLogsDeployedOnNodeAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceManifestName,
             string codePackageName,
             string tail = default(string),

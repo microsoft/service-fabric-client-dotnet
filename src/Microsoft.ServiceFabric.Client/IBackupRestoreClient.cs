@@ -183,7 +183,12 @@ namespace Microsoft.ServiceFabric.Client
         /// backed up individually as per the specified backup policy description.
         /// Note only C# based Reliable Actor and Reliable Stateful services are currently supported for periodic backup.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="enableBackupDescription">Specifies the parameters for enabling backup.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -197,7 +202,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task EnableApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             EnableBackupDescription enableBackupDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -208,7 +213,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Disables periodic backup of Service Fabric application which was previously enabled.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -221,7 +231,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DisableApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -232,7 +242,12 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the Service Fabric backup configuration information for the application and the services and partitions under
         /// this application.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
@@ -251,7 +266,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<BackupConfigurationInfo>> GetApplicationBackupConfigurationInfoAsync(
-            ApplicationName applicationName,
+            string applicationId,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
@@ -265,7 +280,12 @@ namespace Microsoft.ServiceFabric.Client
         /// all the backups available at the backup location configured in the backup policy. It also allows filtering of the
         /// result based on start and end datetime or just fetching the latest available backup for every partition.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -292,7 +312,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<BackupInfo>> GetApplicationBackupListAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
@@ -309,7 +329,12 @@ namespace Microsoft.ServiceFabric.Client
         /// resumed again. This operation applies to the entire application's hierarchy. It means all the services and
         /// partitions under this application are now suspended for backup.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -322,7 +347,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task SuspendApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -333,7 +358,12 @@ namespace Microsoft.ServiceFabric.Client
         /// The previously suspended Service Fabric application resumes taking periodic backup as per the backup policy
         /// currently configured for the same.
         /// </remarks>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -346,7 +376,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task ResumeApplicationBackupAsync(
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -360,7 +390,12 @@ namespace Microsoft.ServiceFabric.Client
         /// periodic backup for this service and its partitions (unless explicitly overridden at the partition level).
         /// Note only C# based Reliable Actor and Reliable Stateful services are currently supported for periodic backup.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="enableBackupDescription">Specifies the parameters for enabling backup.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -374,7 +409,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task EnableServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             EnableBackupDescription enableBackupDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -388,7 +423,12 @@ namespace Microsoft.ServiceFabric.Client
         /// In case the backup is enabled for the Service Fabric application, which this service is part of, this service would
         /// continue to be periodically backed up as per the policy mapped at the application level.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -401,7 +441,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DisableServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -411,7 +451,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the Service Fabric backup configuration information for the service and the partitions under this service.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
@@ -430,7 +475,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<BackupConfigurationInfo>> GetServiceBackupConfigurationInfoAsync(
-            ServiceName serviceName,
+            string serviceId,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
@@ -444,7 +489,12 @@ namespace Microsoft.ServiceFabric.Client
         /// the backups available in the backup store configured in the backup policy. It also allows filtering of the result
         /// based on start and end datetime or just fetching the latest available backup for every partition.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -471,7 +521,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<BackupInfo>> GetServiceBackupListAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
@@ -488,7 +538,12 @@ namespace Microsoft.ServiceFabric.Client
         /// resumed again. This operation applies to the entire service's hierarchy. It means all the partitions under this
         /// service are now suspended for backup.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -501,7 +556,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task SuspendServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -512,7 +567,12 @@ namespace Microsoft.ServiceFabric.Client
         /// The previously suspended Service Fabric service resumes taking periodic backup as per the backup policy currently
         /// configured for the same.
         /// </remarks>
-        /// <param name ="serviceName">Name of Service Fabric Service.</param>
+        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -525,7 +585,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task ResumeServiceBackupAsync(
-            ServiceName serviceName,
+            string serviceId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 

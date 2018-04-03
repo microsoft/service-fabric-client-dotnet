@@ -112,8 +112,13 @@ namespace Microsoft.ServiceFabric.Client
         /// Fabric cluster. The response includes the name of the service type, its registration status, the code package that
         /// registered it and activation ID of the service package.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serviceManifestName">The name of the service manifest to filter the list of deployed service type
         /// information. If specified, the response will only contain the information about service types that are defined in
         /// this service manifest.</param>
@@ -130,7 +135,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<DeployedServiceTypeInfo>> GetDeployedServiceTypeInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceManifestName = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -145,8 +150,13 @@ namespace Microsoft.ServiceFabric.Client
         /// package that registered it and activation ID of the service package. Each entry represents one activation of a
         /// service type, differentiated by the activation ID.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="serviceTypeName">Specifies the name of a Service Fabric service type.</param>
         /// <param name ="serviceManifestName">The name of the service manifest to filter the list of deployed service type
         /// information. If specified, the response will only contain the information about service types that are defined in
@@ -164,7 +174,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<DeployedServiceTypeInfo>> GetDeployedServiceTypeInfoByNameAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string serviceTypeName,
             string serviceManifestName = default(string),
             long? serverTimeout = 60,

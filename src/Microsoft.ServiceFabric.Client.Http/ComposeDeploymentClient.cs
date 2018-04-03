@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ComposeDeployments/{deploymentName}";
-            url = url.Replace("{deploymentName}", deploymentName.ToString());
+            url = url.Replace("{deploymentName}", deploymentName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -143,7 +143,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ComposeDeployments/{deploymentName}/$/GetUpgradeProgress";
-            url = url.Replace("{deploymentName}", deploymentName.ToString());
+            url = url.Replace("{deploymentName}", deploymentName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -173,7 +173,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ComposeDeployments/{deploymentName}/$/Delete";
-            url = url.Replace("{deploymentName}", deploymentName.ToString());
+            url = url.Replace("{deploymentName}", deploymentName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -205,7 +205,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ComposeDeployments/{deploymentName}/$/Upgrade";
-            url = url.Replace("{deploymentName}", deploymentName.ToString());
+            url = url.Replace("{deploymentName}", deploymentName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

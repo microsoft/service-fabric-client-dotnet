@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the information about a specific node in the Service Fabric Cluster. The response includes the name, status,
         /// id, health, uptime, and other details about the node.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -78,7 +78,7 @@ namespace Microsoft.ServiceFabric.Client
         /// reported on the node based on the health state. If the node that you specify by name does not exist in the health
         /// store, this returns an error.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="eventsHealthStateFilter">Allows filtering the collection of HealthEvent objects returned based on
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
@@ -121,7 +121,7 @@ namespace Microsoft.ServiceFabric.Client
         /// policies used to evaluate the health. If the node that you specify by name does not exist in the health store, this
         /// returns an error.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="eventsHealthStateFilter">Allows filtering the collection of HealthEvent objects returned based on
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
@@ -171,7 +171,7 @@ namespace Microsoft.ServiceFabric.Client
         /// To see whether the report was applied in the health store, run GetNodeHealth and check that the report appears in
         /// the HealthEvents section.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
         /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
@@ -211,7 +211,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Retrieves the load information of a Service Fabric node for all the metrics that have load or capacity defined.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -239,7 +239,7 @@ namespace Microsoft.ServiceFabric.Client
         /// complete this will cancel the deactivation. A node which goes down and comes back up while deactivated will still
         /// need to be reactivated before services will be placed on that node.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="deactivationIntentDescription">Describes the intent or reason for deactivating the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -265,7 +265,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Activates a Service Fabric cluster node which is currently deactivated. Once activated, the node will again become
         /// a viable target for placing new replicas, and any deactivated replicas remaining on the node will be reactivated.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -293,7 +293,7 @@ namespace Microsoft.ServiceFabric.Client
         /// waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not been removed
         /// and the node can comes back up with its state intact.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -316,7 +316,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Restarts a Service Fabric cluster node that is already started.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="restartNodeDescription">The instance of the node to be restarted and a flag indicating the need to
         /// take dump of the fabric process.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time

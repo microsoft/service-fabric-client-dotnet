@@ -78,7 +78,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "Partitions/{partitionId}/$/GetReplicas/{replicaId}";
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -112,7 +112,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "Partitions/{partitionId}/$/GetReplicas/{replicaId}/$/GetHealth";
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -148,7 +148,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "Partitions/{partitionId}/$/GetReplicas/{replicaId}/$/GetHealth";
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -196,11 +196,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "Partitions/{partitionId}/$/GetReplicas/{replicaId}/$/ReportHealth";
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            replicaHealthReportServiceKind?.AddToQueryParameters(queryParams, $"ReplicaHealthReportServiceKind={replicaHealthReportServiceKind}");
+            replicaHealthReportServiceKind?.AddToQueryParameters(queryParams, $"ReplicaHealthReportServiceKind={replicaHealthReportServiceKind.ToString()}");
             immediate?.AddToQueryParameters(queryParams, $"Immediate={immediate}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
@@ -230,19 +230,19 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<IEnumerable<DeployedServiceReplicaInfo>> GetDeployedServiceReplicaInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             PartitionId partitionId = default(PartitionId),
             string serviceManifestName = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetReplicas";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -278,9 +278,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetPartitions/{partitionId}/$/GetReplicas/{replicaId}/$/GetDetail";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -312,7 +312,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetPartitions/{partitionId}/$/GetReplicas";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
@@ -347,9 +347,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetPartitions/{partitionId}/$/GetReplicas/{replicaId}/$/Restart";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -384,9 +384,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetPartitions/{partitionId}/$/GetReplicas/{replicaId}/$/Delete";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString().ToString());
+            url = url.Replace("{replicaId}", replicaId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

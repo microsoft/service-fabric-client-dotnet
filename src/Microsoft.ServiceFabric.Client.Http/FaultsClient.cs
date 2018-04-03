@@ -35,27 +35,27 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task StartDataLossAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             DataLossMode? dataLossMode,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             dataLossMode.ThrowIfNull(nameof(dataLossMode));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/StartDataLoss";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
-            dataLossMode?.AddToQueryParameters(queryParams, $"DataLossMode={dataLossMode}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
+            dataLossMode?.AddToQueryParameters(queryParams, $"DataLossMode={dataLossMode.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -74,24 +74,24 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PartitionDataLossProgress> GetDataLossProgressAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/GetDataLossProgress";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -110,7 +110,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task StartQuorumLossAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             QuorumLossMode? quorumLossMode,
@@ -118,7 +118,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             quorumLossMode.ThrowIfNull(nameof(quorumLossMode));
@@ -126,13 +126,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/StartQuorumLoss";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
-            quorumLossMode?.AddToQueryParameters(queryParams, $"QuorumLossMode={quorumLossMode}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
+            quorumLossMode?.AddToQueryParameters(queryParams, $"QuorumLossMode={quorumLossMode.ToString()}");
             quorumLossDuration?.AddToQueryParameters(queryParams, $"QuorumLossDuration={quorumLossDuration}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
@@ -152,24 +152,24 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PartitionQuorumLossProgress> GetQuorumLossProgressAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/GetQuorumLossProgress";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -188,27 +188,27 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task StartPartitionRestartAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             RestartPartitionMode? restartPartitionMode,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             restartPartitionMode.ThrowIfNull(nameof(restartPartitionMode));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/StartRestart";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
-            restartPartitionMode?.AddToQueryParameters(queryParams, $"RestartPartitionMode={restartPartitionMode}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
+            restartPartitionMode?.AddToQueryParameters(queryParams, $"RestartPartitionMode={restartPartitionMode.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -227,24 +227,24 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PartitionRestartProgress> GetPartitionRestartProgressAsync(
-            ServiceName serviceName,
+            string serviceId,
             PartitionId partitionId,
             Guid? operationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serviceName.ThrowIfNull(nameof(serviceName));
+            serviceId.ThrowIfNull(nameof(serviceId));
             partitionId.ThrowIfNull(nameof(partitionId));
             operationId.ThrowIfNull(nameof(operationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Services/{serviceId}/$/GetPartitions/{partitionId}/$/GetRestartProgress";
-            url = url.Replace("{serviceId}", serviceName.GetId().ToString());
+            url = url.Replace("{serviceId}", serviceId);
             url = url.Replace("{partitionId}", partitionId.ToString());
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -279,12 +279,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Nodes/{nodeName}/$/StartTransition/";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
-            nodeTransitionType?.AddToQueryParameters(queryParams, $"NodeTransitionType={nodeTransitionType}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
+            nodeTransitionType?.AddToQueryParameters(queryParams, $"NodeTransitionType={nodeTransitionType.ToString()}");
             nodeInstanceId?.AddToQueryParameters(queryParams, $"NodeInstanceId={nodeInstanceId}");
             stopDurationInSeconds?.AddToQueryParameters(queryParams, $"StopDurationInSeconds={stopDurationInSeconds}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
@@ -315,11 +315,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Faults/Nodes/{nodeName}/$/GetTransitionProgress";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
@@ -384,7 +384,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId}");
+            operationId?.AddToQueryParameters(queryParams, $"OperationId={operationId.ToString()}");
             force?.AddToQueryParameters(queryParams, $"Force={force}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");

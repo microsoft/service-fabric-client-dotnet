@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Returns whether the specified Service Fabric name exists.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -60,7 +60,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task GetNameExistsInfoAsync(
-            FabricName fabricName,
+            string nameId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -71,7 +71,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Deletes the specified Service Fabric name. A name must be created before it can be deleted. Deleting a name with
         /// child properties will fail.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
         /// parameter is 60 seconds.</param>
@@ -84,7 +84,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DeleteNameAsync(
-            FabricName fabricName,
+            string nameId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -96,7 +96,7 @@ namespace Microsoft.ServiceFabric.Client
         /// results is returned as well as a continuation token which can be used to get the next page. Querying a name that
         /// doesn't exist will fail.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="recursive">Allows specifying that the search performed should be recursive.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -111,7 +111,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<string>> GetSubNameInfoListAsync(
-            FabricName fabricName,
+            string nameId,
             bool? recursive = false,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? serverTimeout = 60,
@@ -125,7 +125,7 @@ namespace Microsoft.ServiceFabric.Client
         /// information about these properties in a paged list. The information include name, value and metadata about each of
         /// the properties.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="includeValues">Allows specifying whether to include the values of the properties returned. True if
         /// values should be returned with the metadata; False to return only property metadata.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
@@ -141,7 +141,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<PropertyInfo>> GetPropertyInfoListAsync(
-            FabricName fabricName,
+            string nameId,
             bool? includeValues = false,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? serverTimeout = 60,
@@ -153,7 +153,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Creates or updates the specified Service Fabric property under a given name.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="propertyDescription">Describes the Service Fabric property to be created.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -167,7 +167,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task PutPropertyAsync(
-            FabricName fabricName,
+            string nameId,
             PropertyDescription propertyDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -178,7 +178,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the specified Service Fabric property under a given name. This will always return both value and metadata.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="propertyName">Specifies the name of the property to get.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -192,7 +192,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PropertyInfo> GetPropertyInfoAsync(
-            FabricName fabricName,
+            string nameId,
             string propertyName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -204,7 +204,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Deletes the specified Service Fabric property under a given name. A property must be created before it can be
         /// deleted.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="propertyName">Specifies the name of the property to get.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -218,7 +218,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DeletePropertyAsync(
-            FabricName fabricName,
+            string nameId,
             string propertyName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -229,7 +229,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Submits a batch of property operations. Either all or none of the operations will be committed.
         /// </remarks>
-        /// <param name ="fabricName">The Service Fabric name.</param>
+        /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="propertyBatchDescriptionList">Describes the property batch operations to be submitted.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -243,7 +243,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PropertyBatchInfo> SubmitPropertyBatchAsync(
-            FabricName fabricName,
+            string nameId,
             PropertyBatchDescriptionList propertyBatchDescriptionList,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));

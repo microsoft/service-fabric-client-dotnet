@@ -228,8 +228,13 @@ namespace Microsoft.ServiceFabric.Client
         /// information. Use PartitionId or ServiceManifestName query parameters to return information about the deployed
         /// replicas matching the specified values for those parameters.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
-        /// <param name ="applicationName">Name of Service Fabric Application.</param>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
+        /// without the 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
+        /// 6.0+ and "myapp/app1" in previous versions.
+        /// </param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="serviceManifestName">The name of a service manifest registered as part of an application type in a
         /// Service Fabric cluster.</param>
@@ -246,7 +251,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<IEnumerable<DeployedServiceReplicaInfo>> GetDeployedServiceReplicaInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             PartitionId partitionId = default(PartitionId),
             string serviceManifestName = default(string),
             long? serverTimeout = 60,
@@ -260,7 +265,7 @@ namespace Microsoft.ServiceFabric.Client
         /// name, current service operation, current service operation start date time, partition ID, replica/instance ID,
         /// reported load, and other information.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="replicaId">The identifier of the replica.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -289,7 +294,7 @@ namespace Microsoft.ServiceFabric.Client
         /// name, current service operation, current service operation start date time, partition ID, replica/instance ID,
         /// reported load, and other information.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
         /// duration that the client is willing to wait for the requested operation to complete. The default value for this
@@ -315,7 +320,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Restarts a service replica of a persisted service running on a node. Warning - There are no safety checks performed
         /// when this API is used. Incorrect use of this API can lead to availability loss for stateful services.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="replicaId">The identifier of the replica.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
@@ -347,7 +352,7 @@ namespace Microsoft.ServiceFabric.Client
         /// use of this API can lead to data loss for stateful services.In addition, the forceRemove flag impacts all other
         /// replicas hosted in the same process.
         /// </remarks>
-        /// <param name ="nodeName">Name of Service Fabric node.</param>
+        /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="replicaId">The identifier of the replica.</param>
         /// <param name ="forceRemove">Remove a Service Fabric application or service forcefully without going through the

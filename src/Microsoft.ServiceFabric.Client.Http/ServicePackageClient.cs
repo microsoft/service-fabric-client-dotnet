@@ -36,17 +36,17 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<IEnumerable<DeployedServicePackageInfo>> GetDeployedServicePackageInfoListAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServicePackages";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -69,20 +69,20 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<IEnumerable<DeployedServicePackageInfo>> GetDeployedServicePackageInfoListByNameAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             servicePackageName.ThrowIfNull(nameof(servicePackageName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServicePackages/{servicePackageName}";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
-            url = url.Replace("{servicePackageName}", servicePackageName.ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{servicePackageName}", servicePackageName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -105,21 +105,21 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<DeployedServicePackageHealth> GetDeployedServicePackageHealthAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             int? eventsHealthStateFilter = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             servicePackageName.ThrowIfNull(nameof(servicePackageName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServicePackages/{servicePackageName}/$/GetHealth";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
-            url = url.Replace("{servicePackageName}", servicePackageName.ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{servicePackageName}", servicePackageName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -143,7 +143,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<DeployedServicePackageHealth> GetDeployedServicePackageHealthUsingPolicyAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             int? eventsHealthStateFilter = 0,
             ApplicationHealthPolicy applicationHealthPolicy = default(ApplicationHealthPolicy),
@@ -151,14 +151,14 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             servicePackageName.ThrowIfNull(nameof(servicePackageName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServicePackages/{servicePackageName}/$/GetHealth";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
-            url = url.Replace("{servicePackageName}", servicePackageName.ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{servicePackageName}", servicePackageName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -191,7 +191,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task ReportDeployedServicePackageHealthAsync(
             NodeName nodeName,
-            ApplicationName applicationName,
+            string applicationId,
             string servicePackageName,
             HealthInformation healthInformation,
             bool? immediate = false,
@@ -199,15 +199,15 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken = default(CancellationToken))
         {
             nodeName.ThrowIfNull(nameof(nodeName));
-            applicationName.ThrowIfNull(nameof(applicationName));
+            applicationId.ThrowIfNull(nameof(applicationId));
             servicePackageName.ThrowIfNull(nameof(servicePackageName));
             healthInformation.ThrowIfNull(nameof(healthInformation));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServicePackages/{servicePackageName}/$/ReportHealth";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
-            url = url.Replace("{applicationId}", applicationName.GetId().ToString());
-            url = url.Replace("{servicePackageName}", servicePackageName.ToString());
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{servicePackageName}", servicePackageName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -249,7 +249,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/DeployServicePackage";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString().ToString()));
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
