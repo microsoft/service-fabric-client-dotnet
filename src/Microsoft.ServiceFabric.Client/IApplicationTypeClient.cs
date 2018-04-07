@@ -45,11 +45,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -89,11 +89,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -112,20 +112,20 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Provisions or registers a Service Fabric application type with the cluster using the .sfpkg package in the external
-        /// store or using the application package in the image store.
+        /// Provisions or registers a Service Fabric application type with the cluster using the '.sfpkg' package in the
+        /// external store or using the application package in the image store.
         /// </summary>
         /// <remarks>
-        /// Provisions a Service Fabric application type with the cluster. This is required before any new applications can be
-        /// instantiated.
+        /// Provisions a Service Fabric application type with the cluster. The provision is required before any new
+        /// applications can be instantiated.
         /// The provision operation can be performed either on the application package specified by the
-        /// relativePathInImageStore, or by using the URI of the external .sfpkg.
+        /// relativePathInImageStore, or by using the URI of the external '.sfpkg'.
         /// </remarks>
         /// <param name ="provisionApplicationTypeDescription">The base type of provision application type description which
-        /// supports either image store based provision or external store based provision.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// supports either image store-based provision or external store-based provision.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -150,9 +150,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="unprovisionApplicationTypeDescriptionInfo">The relative path for the application package in the image
         /// store specified during the prior copy operation.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -175,9 +175,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

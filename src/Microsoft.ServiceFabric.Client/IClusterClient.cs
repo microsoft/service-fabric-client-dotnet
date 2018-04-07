@@ -34,9 +34,9 @@ namespace Microsoft.ServiceFabric.Client
         /// The contents of the cluster manifest are for informational purposes only and users are not expected to take a
         /// dependency on the format of the file contents or its interpretation.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -124,9 +124,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Otherwise, the query result includes health statistics only for user applications.
         /// The health statistics must be included in the query result for this parameter to be applied.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -229,9 +229,9 @@ namespace Microsoft.ServiceFabric.Client
         /// application health policy
         /// is used to evaluate the application health.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -259,9 +259,9 @@ namespace Microsoft.ServiceFabric.Client
         /// To expand the cluster health and get the health state of all or some of the entities, use the POST URI and specify
         /// the cluster health chunk query description.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -303,9 +303,9 @@ namespace Microsoft.ServiceFabric.Client
         /// return one application with a specified name, and for this application, return
         /// only services that are in Error or Warning, and all partitions and replicas for one of these services.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -346,9 +346,9 @@ namespace Microsoft.ServiceFabric.Client
         /// store as well as health report processing.
         /// By default, reports are not sent immediately.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -371,9 +371,9 @@ namespace Microsoft.ServiceFabric.Client
         /// CodeVersion can be used to optionally filter the output to only that particular version.
         /// </remarks>
         /// <param name ="codeVersion">The product version of Service Fabric.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -395,9 +395,9 @@ namespace Microsoft.ServiceFabric.Client
         /// ConfigVersion can be used to optionally filter the output to only that particular version.
         /// </remarks>
         /// <param name ="configVersion">The config version of Service Fabric.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -418,9 +418,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the current progress of the ongoing cluster upgrade. If no upgrade is currently in progress, gets the last
         /// state of the previous cluster upgrade.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -442,9 +442,9 @@ namespace Microsoft.ServiceFabric.Client
         /// security configurations, fault and upgrade domain topologies, etc.
         /// </remarks>
         /// <param name ="configurationApiVersion">The API version of the Standalone cluster json configuration.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -464,9 +464,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Get the cluster configuration upgrade status details of a Service Fabric standalone cluster.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -486,9 +486,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Get the service state of Service Fabric Upgrade Orchestration Service. This API is internally used for support
         /// purposes.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -510,9 +510,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="upgradeOrchestrationServiceState">Service state of Service Fabric Upgrade Orchestration
         /// Service.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -533,9 +533,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Validate and provision the code or configuration packages of a Service Fabric cluster.
         /// </remarks>
         /// <param name ="provisionFabricDescription">Describes the parameters for provisioning a cluster.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -557,9 +557,9 @@ namespace Microsoft.ServiceFabric.Client
         /// configuration separately.
         /// </remarks>
         /// <param name ="unprovisionFabricDescription">Describes the parameters for unprovisioning a cluster.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -579,9 +579,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Rollback the code or configuration upgrade of a Service Fabric cluster.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -601,9 +601,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Make the cluster code or configuration upgrade move on to the next upgrade domain if appropriate.
         /// </remarks>
         /// <param name ="resumeClusterUpgradeDescription">Describes the parameters for resuming a cluster upgrade.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -625,9 +625,9 @@ namespace Microsoft.ServiceFabric.Client
         /// cluster if the parameters are valid.
         /// </remarks>
         /// <param name ="startClusterUpgradeDescription">Describes the parameters for starting a cluster upgrade.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -650,9 +650,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="clusterConfigurationUpgradeDescription">Parameters for a standalone cluster configuration
         /// upgrade.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -673,9 +673,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Update the upgrade parameters used during a Service Fabric cluster upgrade.
         /// </remarks>
         /// <param name ="updateClusterUpgradeDescription">Parameters for updating a cluster upgrade.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -697,9 +697,9 @@ namespace Microsoft.ServiceFabric.Client
         /// This API is not supposed to be called separately. It provides information needed to set up an Azure Active
         /// Directory secured connection with a Service Fabric cluster.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

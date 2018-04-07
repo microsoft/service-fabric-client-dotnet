@@ -26,9 +26,9 @@ namespace Microsoft.ServiceFabric.Client
         /// periodic backup.
         /// </remarks>
         /// <param name ="backupPolicyDescription">Describes the backup policy.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -51,9 +51,9 @@ namespace Microsoft.ServiceFabric.Client
         /// first deleting the mapping.
         /// </remarks>
         /// <param name ="backupPolicyName">The name of the backup policy.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -77,11 +77,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -103,9 +103,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets a particular backup policy identified by {backupPolicyName}
         /// </remarks>
         /// <param name ="backupPolicyName">The name of the backup policy.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -120,7 +120,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the list of backup entities which are associated with this policy.
+        /// Gets the list of backup entities that are associated with this policy.
         /// </summary>
         /// <remarks>
         /// Returns a list of Service Fabric application, service or partition which are associated with this backup policy.
@@ -130,11 +130,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -158,9 +158,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="backupPolicyDescription">Describes the backup policy.</param>
         /// <param name ="backupPolicyName">The name of the backup policy.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -190,9 +190,9 @@ namespace Microsoft.ServiceFabric.Client
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
         /// <param name ="enableBackupDescription">Specifies the parameters for enabling backup.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -219,9 +219,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -252,11 +252,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -286,9 +286,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="latest">Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.</param>
         /// <param name ="startDateTimeFilter">Specify the start date time from which to enumerate backups, in datetime format.
@@ -301,7 +301,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -335,9 +335,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -364,9 +364,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -397,9 +397,9 @@ namespace Microsoft.ServiceFabric.Client
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
         /// <param name ="enableBackupDescription">Specifies the parameters for enabling backup.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -429,9 +429,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -461,11 +461,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -495,9 +495,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="latest">Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.</param>
         /// <param name ="startDateTimeFilter">Specify the start date time from which to enumerate backups, in datetime format.
@@ -510,7 +510,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -544,9 +544,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -573,9 +573,9 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -600,9 +600,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="enableBackupDescription">Specifies the parameters for enabling backup.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -627,9 +627,9 @@ namespace Microsoft.ServiceFabric.Client
         /// partition would continue to be periodically backed up as per the policy mapped at the higher level entity.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -650,9 +650,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the Service Fabric Backup configuration information for the specified partition.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -675,9 +675,9 @@ namespace Microsoft.ServiceFabric.Client
         /// datetime or just fetching the latest available backup for the partition.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="latest">Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.</param>
         /// <param name ="startDateTimeFilter">Specify the start date time from which to enumerate backups, in datetime format.
@@ -710,9 +710,9 @@ namespace Microsoft.ServiceFabric.Client
         /// resumed again.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -734,9 +734,9 @@ namespace Microsoft.ServiceFabric.Client
         /// the same.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -768,9 +768,9 @@ namespace Microsoft.ServiceFabric.Client
         /// though the operation returns back timeout, the backup actually goes through. In case of timeout error, its
         /// recommended to invoke this operation again with a greater timeout value. The default value for the same is 10
         /// minutes.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -794,9 +794,9 @@ namespace Microsoft.ServiceFabric.Client
         /// completion.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -828,9 +828,9 @@ namespace Microsoft.ServiceFabric.Client
         /// that the restore operation goes through even though it completes with timeout. In case of timeout error, its
         /// recommended to invoke this operation again with a greater timeout value. the default value for the same is 10
         /// minutes.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -854,9 +854,9 @@ namespace Microsoft.ServiceFabric.Client
         /// completion.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -879,14 +879,14 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="getBackupByStorageQueryDescription">Describes the filters and backup storage details to be used for
         /// enumerating backups.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>

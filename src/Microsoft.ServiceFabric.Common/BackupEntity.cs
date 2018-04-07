@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Describes the Service Fabric entity which is configured for backup.
+    /// Describes the Service Fabric entity that is configured for backup.
     /// </summary>
     public abstract partial class BackupEntity
     {

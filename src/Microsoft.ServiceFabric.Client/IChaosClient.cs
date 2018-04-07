@@ -25,9 +25,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Get the status of Chaos indicating whether or not Chaos is running, the Chaos parameters used for running Chaos and
         /// the status of the Chaos Schedule.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -51,9 +51,9 @@ namespace Microsoft.ServiceFabric.Client
         /// clusters](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos) for more details.
         /// </remarks>
         /// <param name ="chaosParameters">Describes all the parameters to configure a Chaos run.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -76,9 +76,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Once a schedule is stopped it will stay in the stopped state and not be used to Chaos Schedule new runs of Chaos. A
         /// new Chaos Schedule must be set in order to resume scheduling.
         /// </remarks>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -113,11 +113,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as much results as possible
+        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
         /// that fit in the return message.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

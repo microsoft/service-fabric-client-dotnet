@@ -36,9 +36,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serviceId">The identity of the infrastructure service. This is  the full name of the infrastructure
         /// service without the 'fabric:' URI scheme. This parameter required only for the cluster that have more than one
         /// instance of infrastructure service running.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -71,9 +71,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serviceId">The identity of the infrastructure service. This is  the full name of the infrastructure
         /// service without the 'fabric:' URI scheme. This parameter required only for the cluster that have more than one
         /// instance of infrastructure service running.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

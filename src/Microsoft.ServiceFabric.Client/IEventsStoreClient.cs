@@ -26,9 +26,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -62,9 +62,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -99,9 +99,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -136,9 +136,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -178,9 +178,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -215,9 +215,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -257,9 +257,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -294,9 +294,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -331,9 +331,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -368,9 +368,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -406,9 +406,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="replicaId">The identifier of the replica.</param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -445,9 +445,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="startTimeUtc">The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
         /// <param name ="endTimeUtc">The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="eventsTypesFilter">This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.</param>
         /// <param name ="excludeAnalysisEvents">This param disables the retrieval of AnalysisEvents if true is passed.
@@ -481,9 +481,9 @@ namespace Microsoft.ServiceFabric.Client
         /// The response is list of FabricEvents.
         /// </remarks>
         /// <param name ="eventInstanceId">The EventInstanceId.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

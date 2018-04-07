@@ -28,9 +28,9 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -57,9 +57,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>
         /// <param name ="serviceTypeName">Specifies the name of a Service Fabric service type.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -85,9 +85,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="applicationTypeVersion">The version of the application type.</param>
         /// <param name ="serviceManifestName">The name of a service manifest registered as part of an application type in a
         /// Service Fabric cluster.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -122,9 +122,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serviceManifestName">The name of the service manifest to filter the list of deployed service type
         /// information. If specified, the response will only contain the information about service types that are defined in
         /// this service manifest.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -161,9 +161,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serviceManifestName">The name of the service manifest to filter the list of deployed service type
         /// information. If specified, the response will only contain the information about service types that are defined in
         /// this service manifest.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

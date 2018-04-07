@@ -121,6 +121,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             string serviceManifestName,
             string codePackageName,
             string tail = default(string),
+            bool? previous = false,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -139,8 +140,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             serviceManifestName?.AddToQueryParameters(queryParams, $"ServiceManifestName={serviceManifestName}");
             codePackageName?.AddToQueryParameters(queryParams, $"CodePackageName={codePackageName}");
             tail?.AddToQueryParameters(queryParams, $"Tail={tail}");
+            previous?.AddToQueryParameters(queryParams, $"Previous={previous}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.1");
+            queryParams.Add("api-version=6.2");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -153,6 +155,59 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ContainerLogsConverter.Deserialize, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<ContainerApiResponse> InvokeContainerApiAsync(
+            NodeName nodeName,
+            string applicationId,
+            string serviceManifestName,
+            string codePackageName,
+            string codePackageInstanceId,
+            ContainerApiRequestBody containerApiRequestBody,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            nodeName.ThrowIfNull(nameof(nodeName));
+            applicationId.ThrowIfNull(nameof(applicationId));
+            serviceManifestName.ThrowIfNull(nameof(serviceManifestName));
+            codePackageName.ThrowIfNull(nameof(codePackageName));
+            codePackageInstanceId.ThrowIfNull(nameof(codePackageInstanceId));
+            containerApiRequestBody.ThrowIfNull(nameof(containerApiRequestBody));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetCodePackages/$/ContainerApi";
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            url = url.Replace("{applicationId}", applicationId);
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serviceManifestName?.AddToQueryParameters(queryParams, $"ServiceManifestName={serviceManifestName}");
+            codePackageName?.AddToQueryParameters(queryParams, $"CodePackageName={codePackageName}");
+            codePackageInstanceId?.AddToQueryParameters(queryParams, $"CodePackageInstanceId={codePackageInstanceId}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.2");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ContainerApiRequestBodyConverter.Serialize(new JsonTextWriter(sw), containerApiRequestBody);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8)
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ContainerApiResponseConverter.Deserialize, requestId, cancellationToken);
         }
     }
 }

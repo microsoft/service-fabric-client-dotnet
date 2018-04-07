@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="ProvisionApplicationTypeDescription" />.
+    /// Converter for <see cref="ContainerApiRequestBody" />.
     /// </summary>
-    internal class ProvisionApplicationTypeDescriptionConverter
+    internal class ContainerApiRequestBodyConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static ProvisionApplicationTypeDescription Deserialize(JsonReader reader)
+        internal static ContainerApiRequestBody Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,26 +31,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static ProvisionApplicationTypeDescription GetFromJsonProperties(JsonReader reader)
+        internal static ContainerApiRequestBody GetFromJsonProperties(JsonReader reader)
         {
-            var async = default(bool?);
-            var applicationTypeBuildPath = default(string);
-            var applicationPackageCleanupPolicy = default(ApplicationPackageCleanupPolicy?);
+            var httpVerb = default(string);
+            var uriPath = default(string);
+            var contentType = default(string);
+            var body = default(string);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Async", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("HttpVerb", propName, StringComparison.Ordinal) == 0)
                 {
-                    async = reader.ReadValueAsBool();
+                    httpVerb = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeBuildPath", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UriPath", propName, StringComparison.Ordinal) == 0)
                 {
-                    applicationTypeBuildPath = reader.ReadValueAsString();
+                    uriPath = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationPackageCleanupPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Content-Type", propName, StringComparison.Ordinal) == 0)
                 {
-                    applicationPackageCleanupPolicy = ApplicationPackageCleanupPolicyConverter.Deserialize(reader);
+                    contentType = reader.ReadValueAsString();
+                }
+                else if (string.Compare("Body", propName, StringComparison.Ordinal) == 0)
+                {
+                    body = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -59,10 +64,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new ProvisionApplicationTypeDescription(
-                async: async,
-                applicationTypeBuildPath: applicationTypeBuildPath,
-                applicationPackageCleanupPolicy: applicationPackageCleanupPolicy);
+            return new ContainerApiRequestBody(
+                httpVerb: httpVerb,
+                uriPath: uriPath,
+                contentType: contentType,
+                body: body);
         }
 
         /// <summary>
@@ -70,16 +76,24 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, ProvisionApplicationTypeDescription obj)
+        internal static void Serialize(JsonWriter writer, ContainerApiRequestBody obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.ApplicationTypeBuildPath, "ApplicationTypeBuildPath", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.ApplicationPackageCleanupPolicy, "ApplicationPackageCleanupPolicy", ApplicationPackageCleanupPolicyConverter.Serialize);
-            if (obj.Async != null)
+            writer.WriteProperty(obj.UriPath, "UriPath", JsonWriterExtensions.WriteStringValue);
+            if (obj.HttpVerb != null)
             {
-                writer.WriteProperty(obj.Async, "Async", JsonWriterExtensions.WriteBoolValue);
+                writer.WriteProperty(obj.HttpVerb, "HttpVerb", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ContentType != null)
+            {
+                writer.WriteProperty(obj.ContentType, "Content-Type", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.Body != null)
+            {
+                writer.WriteProperty(obj.Body, "Body", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

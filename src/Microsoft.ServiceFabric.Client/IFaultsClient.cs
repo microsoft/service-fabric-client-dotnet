@@ -52,9 +52,9 @@ namespace Microsoft.ServiceFabric.Client
         /// GetProgress API</param>
         /// <param name ="dataLossMode">This enum is passed to the StartDataLoss API to indicate what type of data loss to
         /// induce. Possible values include: 'Invalid', 'PartialDataLoss', 'FullDataLoss'</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -86,9 +86,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -130,9 +130,9 @@ namespace Microsoft.ServiceFabric.Client
         /// to induce. Possible values include: 'Invalid', 'QuorumReplicas', 'AllReplicas'</param>
         /// <param name ="quorumLossDuration">The amount of time for which the partition will be kept in quorum loss.  This
         /// must be specified in seconds.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -165,9 +165,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -204,9 +204,9 @@ namespace Microsoft.ServiceFabric.Client
         /// GetProgress API</param>
         /// <param name ="restartPartitionMode">Describe which partitions to restart. Possible values include: 'Invalid',
         /// 'AllReplicasOrInstances', 'OnlyActiveSecondaries'</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -238,9 +238,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -276,9 +276,9 @@ namespace Microsoft.ServiceFabric.Client
         /// API.</param>
         /// <param name ="stopDurationInSeconds">The duration, in seconds, to keep the node stopped.  The minimum value is 600,
         /// the maximum is 14400.  After this time expires, the node will automatically come back up.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -305,9 +305,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -344,9 +344,9 @@ namespace Microsoft.ServiceFabric.Client
         /// 32    - select Cancelled
         /// 64    - select ForceCancelled
         /// </param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -389,9 +389,9 @@ namespace Microsoft.ServiceFabric.Client
         /// GetProgress API</param>
         /// <param name ="force">Indicates whether to gracefully rollback and clean up internal system state modified by
         /// executing the user-induced operation.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
-        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
-        /// parameter is 60 seconds.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.

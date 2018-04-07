@@ -16,12 +16,12 @@ namespace Microsoft.ServiceFabric.Common
         Invalid,
 
         /// <summary>
-        /// Indicates a time based backup schedule..
+        /// Indicates a time-based backup schedule..
         /// </summary>
         TimeBased,
 
         /// <summary>
-        /// Indicates a frequency based backup schedule..
+        /// Indicates a frequency-based backup schedule..
         /// </summary>
         FrequencyBased
     }

@@ -23,20 +23,31 @@ namespace Microsoft.ServiceFabric.Common
         /// provision operation returns when the request is accepted by the system, and the provision operation continues
         /// without any timeout limit. The default value is false. For large application packages, we recommend setting the
         /// value to true.</param>
+        /// <param name="applicationPackageCleanupPolicy">The kind of action that needs to be taken for cleaning up the
+        /// application package after successful provision. Possible values include: 'Invalid', 'Default', 'Automatic',
+        /// 'Manual'</param>
         public ProvisionApplicationTypeDescription(
             string applicationTypeBuildPath,
-            bool? async = false)
+            bool? async = false,
+            ApplicationPackageCleanupPolicy? applicationPackageCleanupPolicy = default(ApplicationPackageCleanupPolicy?))
             : base(
                 Common.ProvisionApplicationTypeKind.ImageStorePath,
                 async)
         {
             applicationTypeBuildPath.ThrowIfNull(nameof(applicationTypeBuildPath));
             this.ApplicationTypeBuildPath = applicationTypeBuildPath;
+            this.ApplicationPackageCleanupPolicy = applicationPackageCleanupPolicy;
         }
 
         /// <summary>
         /// Gets the relative path for the application package in the image store specified during the prior upload operation.
         /// </summary>
         public string ApplicationTypeBuildPath { get; }
+
+        /// <summary>
+        /// Gets the kind of action that needs to be taken for cleaning up the application package after successful provision.
+        /// Possible values include: 'Invalid', 'Default', 'Automatic', 'Manual'
+        /// </summary>
+        public ApplicationPackageCleanupPolicy? ApplicationPackageCleanupPolicy { get; }
     }
 }

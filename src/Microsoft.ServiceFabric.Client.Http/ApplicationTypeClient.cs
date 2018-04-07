@@ -122,7 +122,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.1");
+            queryParams.Add("api-version=6.2");
             url += "?" + string.Join("&", queryParams);
             
             string content;
