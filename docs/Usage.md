@@ -1,23 +1,67 @@
-## Contributing code and content
-We welcome all forms of contributions from the community. Please read the following guidelines to maximize the chances of your PR being merged.
+## Using the Client Library
+### Connecting to unsecured cluster
+```
+// create client
+var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
+var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
+```
 
-### Reporting security issues and bugs
-Security issues and bugs should be reported privately, via email, to the Microsoft Security Response Center (MSRC)  secure@microsoft.com. You should receive a response within 24 hours. If for some reason you do not, please follow up via email to ensure we received your original message. Further information, including the MSRC PGP key, can be found in the [Security TechCenter](https://technet.microsoft.com/en-us/security/ff852094.aspx).
+### Connecting to cluster secured with X509 certificate
+```
+// create client using security settings
+var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
+var settings = new ClientSettings(GetSecurityCredentials);
+var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
 
-### Other discussions
-For general "how-to" and guidance questions about using Service Fabric to build and run applications, please use [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-service-fabric) tagged with `azure-service-fabric`.
+public static X509SecuritySettings GetSecurityCredentials()
+{
+  var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate("<Path to .pfx file>", "password");
+  var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
+  return new X509SecuritySettings(clientCert, remoteSecuritySettings);
+}
 
-### Development process
-Please be sure to follow the usual process for submitting PRs:
+```
 
- - Fork the repo
- - Create a pull request
- - Make sure your PR title is descriptive
- - Include a link back to an open issue in the PR description
+APIs in this client library are categorized into following categories (available ```interface  IServiceFabricClient```) (can be accessed using the ```sfClient``` instance created with aboove code snippet):
+* Applications
+* ApplicationTypes
+* BackupRestore
+* ChaosClient
+* CodePackages
+* Cluster
+* ComposeDeployments
+* Faults
+* ImageStore
+* Infrastructure
+* Partitions
+* Nodes
+* Replicas
+* Properties
+* Repairs
+* Services
+* ServicePackages
+* ServiceTypes
+* EventsStore
 
-We reserve the right to close PRs that are not making progress. If no changes are made for 7 days, we'll close the PR. Closed PRs can be reopened again later and work can resume.
+### Performing operations
+Once you have connected to cluster as mentioned, you can perform various management operations as shown below:
 
-### Contributor License Agreement
-Before you submit a pull request, a bot will prompt you to sign the [Microsoft Contributor License Agreement](https://cla.microsoft.com/). This needs to be done only once for any Microsoft-sponsored open source project - if you've signed the Microsoft CLA for any project sponsored by Microsoft, then you are good to go for all the repos sponsored by Microsoft.
+```
+// get cluster manifest and health
+var manifest = await sfClient.Cluster.GetClusterManifestAsync();
+var health = await sfClient.Cluster.GetClusterHealthAsync();
 
- > **Important**: Note that there are **two** different CLAs commonly used by Microsoft projects: [Microsoft CLA](https://cla.microsoft.com/) and [.NET Foundation CLA](https://cla2.dotnetfoundation.org/). Service Fabric open source projects use the [Microsoft](https://cla.microsoft.com/) CLA. The .NET Foundation is treated as a separate entity, so if you've signed the .NET Foundation CLA in the past, you will still need to sign the Microsoft CLA to contribute to Service Fabric open source projects.
+// upload, provision and create application
+await sfClient.Applications.UploadApplicationPackageAsync("Path_To_Application_Package", applicationPackagePathInImageStore:"TestApp");
+
+await sfClient.ApplicationTypes.ProvisionApplicationTypeAsync(new ProvisionApplicationTypeDescription("TestApp"));
+
+var appParams = new Dictionary<string, string>();
+appParams.Add("Parameter1", "1");
+var appDesc = new ApplicationDescription(new ApplicationName("fabric:/ApplicationFromLib"), "ApplicationType", "1.0.0", appParams);
+await sfClient.Applications.CreateApplicationAsync(appDesc);
+
+// get partition information
+var partition = await sfClient.Partitions.GetPartitionInfoAsync(new Guid("8b8c58e6-f18a-477c-8b8d-87123f754b72"));
+
+```
