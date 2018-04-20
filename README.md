@@ -2,7 +2,7 @@
 Client library for managing Service Fabric clusters and applications.
 
 This repo builds the following packages:
- - Microsoft.ServiceFabric.Client.http
+ - Microsoft.ServiceFabric.Client.Http ([nuget.org link](https://www.nuget.org/packages/Microsoft.ServiceFabric.Client.Http/))
 
 For more Service Fabric open source projects, visit the Service Fabric [home repo](https://github.com/Microsoft/service-fabric).
 
