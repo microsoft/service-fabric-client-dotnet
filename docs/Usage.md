@@ -15,12 +15,40 @@ var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
 
 public static X509SecuritySettings GetSecurityCredentials()
 {
-  var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate("<Path to .pfx file>", "password");
-  var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
-  return new X509SecuritySettings(clientCert, remoteSecuritySettings);
+    // get the X509Certificate either from Certificate store or from file.
+    var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate("<Path to .pfx file>", "password");
+    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
+    return new X509SecuritySettings(clientCert, remoteSecuritySettings);
 }
 
 ```
+
+### Connecting to cluster secured with Azure Active Directory
+```
+// create client using security settings
+var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
+var settings = new ClientSettings(GetSecurityCredentials);
+var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
+
+static ClaimsSecuritySettings GetSecurityCredentials()
+{
+    var token = GetAccessToken();
+    var remoteCertSettings = new RemoteX509SecuritySettings(new List<string>() { "server_cert_thumbprint" });
+    return new ClaimsSecuritySettings(token, remoteCertSettings);
+}
+
+static string GetAccessToken()
+{
+    // get token from azure active directory using Active Directory APIs
+    var authorityFormat = @"https://login.microsoftonline.com/{0}";
+    var authority = string.Format(authorityFormat, "your_tenant_id");
+    var authContext = new AuthenticationContext(authority);
+    var authResult = authContext.AcquireTokenAsync("resource_id", "client_Id", new UserCredential("userName")).GetAwaiter().GetResult();
+    return authResult.AccessToken;
+}
+
+```
+
 
 APIs in this client library are categorized into following categories (available ```interface  IServiceFabricClient```) (can be accessed using the ```sfClient``` instance created with aboove code snippet):
 * Applications
