@@ -23,7 +23,7 @@ Binaries in the build are delay signed, these are fully signed in the official b
 ## Releases and Support
 Official releases from Microsoft of the NuGet packages in this repo are released directly to NuGet.org.
 
-**Only officially released NuGet packages from Microsoft are supported for use in production.** If you have a feature or bug fix that you would like to use in your application, please issue a pull request so we can get t into an official release.
+**Only officially released NuGet packages from Microsoft are supported.** If you have a feature or bug fix that you would like to use in your application, please issue a pull request so we can get it into an official release.
 
 ## Documentation
 Service Fabric has conceptual and reference documentation available at [https://docs.microsoft.com/azure/service-fabric](https://docs.microsoft.com/azure/service-fabric).
