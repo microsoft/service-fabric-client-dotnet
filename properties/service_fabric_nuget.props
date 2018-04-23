@@ -15,6 +15,9 @@
     <PreviewTag>-preview001</PreviewTag>
     <ClientLibNuGetPackageVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)$(PreviewTag)</ClientLibNuGetPackageVersion>
     <GenerateSymbolPackage>False</GenerateSymbolPackage>
+
+    <!-- override version for nuget package-->
+    <Version>$(ClientLibNuGetPackageVersion)</Version>
   </PropertyGroup>
 
   <!-- Setting Paths -->
