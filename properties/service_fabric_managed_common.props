@@ -3,15 +3,12 @@
   <Import Project="service_fabric_common.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform>x64</Platform>
-    <PlatformTarget>x64</PlatformTarget>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningLevel>4</WarningLevel>
     <NoWarn></NoWarn>
     <!-- Don't append TargetFramework to output path. -->
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Platforms>x64</Platforms>
-    </PropertyGroup>
+   </PropertyGroup>
 
   <!-- Cls Compliant -->
   <PropertyGroup>

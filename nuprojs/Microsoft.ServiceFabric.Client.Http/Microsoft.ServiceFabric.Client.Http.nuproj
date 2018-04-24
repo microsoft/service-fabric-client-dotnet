@@ -31,14 +31,10 @@
       <TargetPath>lib\netstandard2.0</TargetPath>
     </File>
   </ItemGroup>
-  <Target Name="BeforeBuild">
-    <PropertyGroup>
-      <PackageVersion>$(ClientLibNuGetPackageVersion)</PackageVersion>
-    </PropertyGroup>
-    <ItemGroup>
-      <Dependency Include="Newtonsoft.Json">
-        <Version>10.0.3</Version>
-      </Dependency>
-    </ItemGroup>
-  </Target>
+
+  <ItemGroup>
+    <Dependency Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </Dependency>
+  </ItemGroup>
 </Project>
