@@ -30,6 +30,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public async Task UploadApplicationPackageAsync(
             string applicationPackagePath,
+            bool compressPackage,
             string applicationPackagePathInImageStore = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -54,9 +55,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                 throw new InvalidOperationException($"Application package path {applicationPackagePath} not found.");
             }
 
+            if (compressPackage)
+            {
+                await CompressApplicationPackage(absPkgPath);
+            }
+
             // List of dirs to determine where to upload _.dir fileInfo.
             var dirPathsInImageStore =
-                new List<string> {GetPathInImageStore(absPkgPath, pkgPathInImageStore, absPkgPath)};
+                new List<string> { GetPathInImageStore(absPkgPath, pkgPathInImageStore, absPkgPath) };
 
             dirPathsInImageStore.AddRange(
                 Directory.EnumerateDirectories(absPkgPath, "*", SearchOption.AllDirectories)
@@ -290,7 +296,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// Compresses Application Package. Code, Config and Data Pkg folders are compressed in each service package.
         /// </summary>
         /// <param name="appPkgPath">Absolute path to application package.</param>
-        private static void CompressApplicationPackage(string appPkgPath)
+        private static Task CompressApplicationPackage(string appPkgPath)
         {
             var dirsToCompress = new List<string>();
 
@@ -301,7 +307,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 dirsToCompress.AddRange(servicePackage.GetDirectories().Select(package => package.FullName));
             }
 
-            dirsToCompress.ForEach(dir => CompressDirectory(dir, $"{dir}.{ZipExtension}", true));
+            return Task.WhenAll(dirsToCompress.Select(dir => Task.Run(() => CompressDirectory(dir, $"{dir}.{ZipExtension}", true))).ToArray());
         }
 
         private static void CompressDirectory(string sourceDirToCompress, string destCompressedFile,
