@@ -1,13 +1,13 @@
 ## Using the Client Library
 ### Connecting to unsecured cluster
-```
+```csharp
 // create client
 var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
 var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
 ```
 
 ### Connecting to cluster secured with X509 certificate
-```
+```csharp
 // create client using security settings
 var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
 var settings = new ClientSettings(GetSecurityCredentials);
@@ -24,7 +24,7 @@ public static X509SecuritySettings GetSecurityCredentials()
 ```
 
 ### Connecting to cluster secured with Azure Active Directory
-```
+```csharp
 // create client using security settings
 var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
 var settings = new ClientSettings(GetSecurityCredentials);
@@ -74,7 +74,7 @@ APIs in this client library are categorized into following categories (available
 ### Performing operations
 Once you have connected to cluster as mentioned, you can perform various management operations as shown below:
 
-```
+```csharp
 // get cluster manifest and health
 var manifest = await sfClient.Cluster.GetClusterManifestAsync();
 var health = await sfClient.Cluster.GetClusterHealthAsync();
