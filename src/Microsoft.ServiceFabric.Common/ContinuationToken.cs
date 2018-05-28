@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <returns>true if other object is a <see cref="ContinuationToken"/> that has the same value as this instance; otherwise, false.</returns>
         public bool Equals(ContinuationToken other)
         {
-            return this.continuationToken.Equals(other.continuationToken);
+            return this.continuationToken.Equals(other?.continuationToken);
         }
 
         /// <summary>
