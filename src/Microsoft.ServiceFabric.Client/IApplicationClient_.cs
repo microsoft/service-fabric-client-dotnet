@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client
 		/// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
 		Task UploadApplicationPackageAsync(
             string applicationPackagePath,
-			bool compressPackage,
+			bool compressPackage = false,
 			string applicationPackagePathInImageStore = default(string),
             CancellationToken cancellationToken = default(CancellationToken));        
     }

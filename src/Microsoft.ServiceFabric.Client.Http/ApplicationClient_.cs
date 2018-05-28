@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public async Task UploadApplicationPackageAsync(
             string applicationPackagePath,
-            bool compressPackage,
+            bool compressPackage = false,
             string applicationPackagePathInImageStore = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
