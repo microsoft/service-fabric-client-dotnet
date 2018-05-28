@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Client.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ServiceClient operataions.
+    /// Interface containing methods for performing ServiceClient operations.
     /// </summary>
     public partial interface IServiceClient
     {
