@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common.Utilities
     using System.Text;
 
     /// <summary>
-    /// Utiltity and extension method for Directory Operations.
+    /// Utility and extension method for Directory Operations.
     /// </summary>
     internal static class DirectoryUtilities
     {

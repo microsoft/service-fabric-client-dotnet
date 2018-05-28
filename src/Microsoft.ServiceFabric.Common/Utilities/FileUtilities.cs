@@ -10,7 +10,7 @@ namespace Microsoft.ServiceFabric.Common.Utilities
     using System.Runtime.InteropServices;
 
     /// <summary>
-    /// Utiltity and extension methods for file operations.
+    /// Utility and extension methods for file operations.
     /// </summary>
     internal static class FileUtilities
     {

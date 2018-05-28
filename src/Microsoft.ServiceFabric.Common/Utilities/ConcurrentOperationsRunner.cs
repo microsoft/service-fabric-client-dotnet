@@ -3,9 +3,6 @@
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
-using System.Threading;
-
-
 namespace Microsoft.ServiceFabric.Common.Utilities
 {
     using System;
