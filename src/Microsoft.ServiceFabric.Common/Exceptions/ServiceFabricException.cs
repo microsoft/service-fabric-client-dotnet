@@ -106,9 +106,9 @@ namespace Microsoft.ServiceFabric.Common.Exceptions
         public FabricErrorCodes ErrorCode { get; } = FabricErrorCodes.UNKNOWN;
 
         /// <summary>
-        /// Gets if the excetion is Transient and operaiton can be retried.
+        /// Gets if the exception is Transient and operation can be retried.
         /// </summary>
-        /// <value>Value indictating wether the exception is transient or not.</value>
+        /// <value>Value indicating whether the exception is transient or not.</value>
         public bool IsTransient { get; } = false;
     }
 }
