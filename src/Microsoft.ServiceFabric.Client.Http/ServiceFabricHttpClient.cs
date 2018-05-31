@@ -134,7 +134,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// </summary>
         /// <param name="requestFunc">Func to create HttpRequest to send.</param>
         /// <param name="relativeUri">The relative URI.</param>
-        /// /// <param name="requestId">Request Id for corelation</param>
+        /// <param name="requestId">Request Id for corelation</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The payload of the GET response.</returns>
         /// <exception cref="ServiceFabricException">When the response is not a success.</exception>

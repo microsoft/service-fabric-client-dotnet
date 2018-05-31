@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing ServiceClient operataions.
+    /// Class containing methods for performing ServiceClient operations.
     /// </summary>
     internal partial class ServiceClient : IServiceClient
     {
