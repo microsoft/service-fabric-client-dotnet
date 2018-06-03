@@ -13,6 +13,9 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Xml;
+    using System.Xml.Linq;
+    using System.Xml.XPath;
     using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Client.Exceptions;
     using Microsoft.ServiceFabric.Common;
@@ -87,15 +90,31 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var pathInImageStore = GetPathInImageStore(absPkgPath, pkgPathInImageStore, file.FullName);
                 chunkInfos.AddRange(GetChunksInfoForFile(file, pathInImageStore));
             }
+            
+            var imageStore = await httpClient.ImageStore.GetImageStoreConnectionString();
 
-            // upload single files with up to MaxConcurrentUpload in parallel. 
-            await UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
+            if (imageStore != "fabric:ImageStore")
+            {
+                var imageStorePath = new Uri(imageStore).LocalPath;
+                foreach (var file in files.OrderByDescending(f => f.FullName.Length))
+                {
+                    var targetPath = Path.Combine(imageStorePath, GetPathInImageStore(absPkgPath, pkgPathInImageStore, file.FullName));
+                    if (!Directory.Exists(Path.GetDirectoryName(targetPath)))
+                        Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                    File.Copy(file.FullName, targetPath, true);
+                }
+            }
+            else
+            {
+                // upload single files with up to MaxConcurrentUpload in parallel. 
+                await UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
 
-            // upload chunks with up to MaxConcurrentUpload in parallel. 
-            await UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
+                // upload chunks with up to MaxConcurrentUpload in parallel. 
+                await UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
 
-            // upload _.dirs with up to MaxConcurrentUpload in parallel. 
-            await UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
+                // upload _.dirs with up to MaxConcurrentUpload in parallel. 
+                await UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
+            }
         }
 
         private static IEnumerable<ChunkInfo> GetChunksInfoForFile(

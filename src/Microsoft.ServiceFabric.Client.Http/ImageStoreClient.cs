@@ -12,6 +12,9 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Xml;
+    using System.Xml.Linq;
+    using System.Xml.XPath;
     using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Client.Http.Serialization;
     using Microsoft.ServiceFabric.Common;
@@ -34,6 +37,16 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
+        public async Task<string> GetImageStoreConnectionString()
+        {
+            var cluster = XDocument.Parse((await httpClient.Cluster.GetClusterManifestAsync()).Manifest);
+            XmlNamespaceManager r = new XmlNamespaceManager(new NameTable());
+            r.AddNamespace("ns", cluster.Root.Attribute("xmlns").Value);
+            var imageStore = cluster.XPathSelectElement("/ns:ClusterManifest/ns:FabricSettings/ns:Section[@Name='Management']/ns:Parameter[@Name='ImageStoreConnectionString']", r).Attribute("Value").Value;
+            return imageStore;
+        }
+
+        /// <inheritdoc />
         public Task<ImageStoreContent> GetImageStoreContentAsync(
             string contentPath,
             long? serverTimeout = 60,
@@ -45,12 +58,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "ImageStore/{contentPath}";
             url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.2");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -64,33 +77,49 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteImageStoreContentAsync(
+        public async Task DeleteImageStoreContentAsync(
             string contentPath,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             contentPath.ThrowIfNull(nameof(contentPath));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Delete,
-                };
-                return request;
-            }
+            var imageStore = await GetImageStoreConnectionString();
 
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            if (imageStore != "fabric:ImageStore")
+            {
+                var imageStorePath = new Uri(imageStore).LocalPath;
+                var path = Path.Combine(imageStorePath, contentPath);
+                FileAttributes attr = File.GetAttributes(path);
+
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                    Directory.Delete(path, true);
+                else
+                    File.Delete(path);                
+            }
+            else
+            {
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                var requestId = Guid.NewGuid().ToString();
+                var url = "ImageStore/{contentPath}";
+                url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
+                var queryParams = new List<string>();
+
+                // Append to queryParams if not null.
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.0");
+                url += "?" + string.Join("&", queryParams);
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Delete,
+                    };
+                    return request;
+                }
+
+                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            }
         }
 
         /// <inheritdoc />
@@ -102,12 +131,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -131,12 +160,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/$/Copy";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             string content;
             using (var sw = new StringWriter())
             {
@@ -169,13 +198,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/$/DeleteUploadSession";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -199,13 +228,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/$/CommitUploadSession";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -229,13 +258,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             var requestId = Guid.NewGuid().ToString();
             var url = "ImageStore/$/GetUploadSession";
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
@@ -260,12 +289,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var url = "ImageStore/{contentPath}/$/GetUploadSession";
             url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
             var queryParams = new List<string>();
-            
+
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");
             url += "?" + string.Join("&", queryParams);
-            
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()

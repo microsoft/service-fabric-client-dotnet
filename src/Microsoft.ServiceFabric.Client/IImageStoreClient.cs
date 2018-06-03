@@ -209,5 +209,11 @@ namespace Microsoft.ServiceFabric.Client
             string contentPath,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets the connection string for the image store on the current cluster
+        /// </summary>
+        /// <returns></returns>
+        Task<string> GetImageStoreConnectionString();
     }
 }
