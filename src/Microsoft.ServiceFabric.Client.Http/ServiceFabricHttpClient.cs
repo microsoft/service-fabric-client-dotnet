@@ -577,7 +577,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.ComposeDeployments = new ComposeDeploymentClient(this);
             this.Faults = new FaultsClient(this);
 
-            var connectionString = await Cluster.GetImageStoreConnectionString();
+            var connectionString = ClientSettings.ImageStoreConnectionString ?? await Cluster.GetImageStoreConnectionString();
 
             if (connectionString == "fabric:ImageStore")
                 this.ImageStore = new ServiceImageStoreClient(this);
