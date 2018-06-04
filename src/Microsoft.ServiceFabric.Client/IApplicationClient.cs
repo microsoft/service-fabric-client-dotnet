@@ -16,7 +16,7 @@ namespace Microsoft.ServiceFabric.Client
     /// <summary>
     /// Interface containing methods for performing ApplicationClient operataions.
     /// </summary>
-    public partial interface IApplicationClient
+    public interface IApplicationClient
     {
         /// <summary>
         /// Creates a Service Fabric application.
