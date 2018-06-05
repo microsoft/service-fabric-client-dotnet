@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// Represents a Service Fabric Client to the Http management endpoint (or HttpGatewayEndpoint) of Service Fabric cluster.
     /// </summary>
     public class ServiceFabricHttpClient : ServiceFabricClient, IDisposable
-    {
+    {   
         private const int MaxTryCount = 2;
         private readonly RandomizedList<Uri> randomizedEndpoints;
         private readonly Func<SecuritySettings> refreshSecuritySettingsFunc = null;
@@ -64,7 +64,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             Uri clusterEndpoint,
             ClientSettings clientSettings = null,
             HttpClientHandler innerHandler = null,
-            params DelegatingHandler[] delegateHandlers)
+            params DelegatingHandler[] delegateHandlers) 
             : this(new List<Uri>() { clusterEndpoint }, clientSettings, innerHandler, delegateHandlers)
         {
         }
@@ -83,7 +83,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             HttpClientHandler innerHandler = null,
             params DelegatingHandler[] delegateHandlers) : base(clusterEndpoints, clientSettings)
         {
-
+            this.CreateManagementClients();
             var scheme = Uri.UriSchemeHttp;
 
             // setup security settings
@@ -119,8 +119,6 @@ namespace Microsoft.ServiceFabric.Client.Http
             {
                 this.httpClient.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
             }
-
-            this.CreateManagementClients().Wait();
         }
 
         /// <summary>
@@ -162,7 +160,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
         internal async Task<T> SendAsyncGetResponse<T>(
             Func<HttpRequestMessage> requestFunc,
-            string relativeUri,
+            string relativeUri, 
             Func<JsonReader, T> deserializeFunc,
             string requestId,
             CancellationToken cancellationToken) where T : class
@@ -419,9 +417,9 @@ namespace Microsoft.ServiceFabric.Client.Http
                     // Get the request using the Func as same request cannot be resent.
                     var request = FinalRequestFunc();
                     ServiceFabricHttpClientEventSource.Current.Send($"{this.ClientId}:{requestId}", $"{request.Method.Method} Request Url: {requestUri}");
-                    response = await this.httpClient.SendAsync(request, cancellationToken);
+                    response = await this.httpClient.SendAsync(request, cancellationToken);                    
                 }
-                catch (AuthenticationException ex)
+                catch(AuthenticationException ex)
                 {
                     // Retry on Server cert validation Security error, this check is for dotnet core as AuthentocationException is thrown from
                     // ServerCertificateValidatorHttpWrapper.ValidateServerCertificate 
@@ -438,10 +436,10 @@ namespace Microsoft.ServiceFabric.Client.Http
                         SR.ErrorRemoteCertValidationFailureRetryMessage);
                 }
                 catch (HttpRequestException ex)
-                {
+                {        
                     // Retry on Server cert validation Security error, this check is for full dotnet framework as AuthentocationException thrown from
                     // ServerCertificateValidatorHttpWrapper.ValidateServerCertificate is wrapped inside a HttpRequestException
-                    if (ex.InnerException?.InnerException is AuthenticationException)
+                    if (ex.InnerException?.InnerException is AuthenticationException)                        
                     {
                         if (tryCount == MaxTryCount)
                         {
@@ -463,7 +461,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     }
                 }
 
-                if (serverCertValid)
+                if(serverCertValid)
                 {
                     // server cert was validated, check if client credentials were valid.
                     if (!response.IsSuccessStatusCode)
@@ -538,7 +536,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                         this.securitySettings = newSecuritySettings;
                         this.httpClientHandlerWrapper.RefreshSecuritySettings(newSecuritySettings);
                     }
-
+                    
                     this.syncObj = new object();
                 }
             }
@@ -547,7 +545,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 this.lockObj.Release();
             }
         }
-
+        
         private HttpClient CreateHttpClient(DelegatingHandler[] delegateHandlers)
         {
             if (this.securitySettings != null)
@@ -566,7 +564,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             return new HttpClient(pipeline, true);
         }
 
-        private async Task CreateManagementClients()
+        private void CreateManagementClients()
         {
             this.Applications = new ApplicationClient(this);
             this.ApplicationTypes = new ApplicationTypeClient(this);
@@ -576,14 +574,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.CodePackages = new CodePackageClient(this);
             this.ComposeDeployments = new ComposeDeploymentClient(this);
             this.Faults = new FaultsClient(this);
-
-            var connectionString = ClientSettings.ImageStoreConnectionString ?? await Cluster.GetImageStoreConnectionString();
-
-            if (connectionString == "fabric:ImageStore")
-                this.ImageStore = new ServiceImageStoreClient(this);
-            else
-                this.ImageStore = new LocalImageStoreClient(this, connectionString);
-
+            this.ImageStore = new ImageStoreClient(this);
             this.Infrastructure = new InfrastructureClient(this);
             this.Nodes = new NodeClient(this);
             this.Partitions = new PartitionClient(this);

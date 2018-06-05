@@ -29,273 +29,67 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// <summary>
     /// Class containing methods for performing ImageStoreClient operataions.
     /// </summary>
-    internal partial class ServiceImageStoreClient : IImageStoreClient
+    internal partial class ImageStoreClient : IImageStoreClient
     {
-        private readonly ServiceFabricHttpClient httpClient;
+        private string imageStorePath;
         private const int UploadLimitSizeInBytes = 25 * 1024 * 1024;
         private const int MaxConcurrentUpload = 10;
         private const int MaxUploadTry = 2;
         private const string ZipExtension = "zip";
         private const long ServerTimeOutInSecondsForUpload = 60;
 
-        /// <summary>
-        /// Initializes a new instance of the ImageStoreClient class.
-        /// </summary>
-        /// <param name="httpClient">ServiceFabricHttpClient instance.</param>
-        public ServiceImageStoreClient(ServiceFabricHttpClient httpClient)
+        private async Task<string> GetImageStoreConnectionString()
         {
-            this.httpClient = httpClient;
+            if (imageStorePath == null)
+            {
+                imageStorePath = await httpClient.Cluster.GetImageStoreConnectionString();
+                if (IsLocalStore(imageStorePath))
+                    imageStorePath = new Uri(imageStorePath).LocalPath;
+            }
+
+            return imageStorePath;
         }
 
+        private bool IsLocalStore(string imageStorePath) => imageStorePath != "fabric:ImageStore" && !imageStorePath.StartsWith("xstore");
+        
         /// <inheritdoc />
-        public async Task<ImageStoreContent> GetImageStoreContentAsync(
-            string contentPath,
+        public Task UploadFileAsync(
+            byte[] fileContentsToUpload,
+            string pathInImageStore,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            contentPath.ThrowIfNull(nameof(contentPath));
-            
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return await this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreContentConverter.Deserialize, requestId, cancellationToken);
-
+            return this.UploadFileAsync(
+                fileContentsToUpload,
+                pathInImageStore,
+                null,
+                serverTimeout,
+                cancellationToken);
         }
-
+       
         /// <inheritdoc />
-        public async Task DeleteImageStoreContentAsync(
-            string contentPath,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            contentPath.ThrowIfNull(nameof(contentPath));
-            
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Delete,
-                };
-                return request;
-            }
-
-            await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
-
-        }
-
-        /// <inheritdoc />
-        public Task<ImageStoreContent> GetImageStoreRootContentAsync(
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore";
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreContentConverter.Deserialize, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task CopyImageStoreContentAsync(
-            ImageStoreCopyDescription imageStoreCopyDescription,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/$/Copy";
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            string content;
-            using (var sw = new StringWriter())
-            {
-                ImageStoreCopyDescriptionConverter.Serialize(new JsonTextWriter(sw), imageStoreCopyDescription);
-                content = sw.ToString();
-            }
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
-                };
-                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
-                return request;
-            }
-
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task DeleteImageStoreUploadSessionAsync(
+        public Task UploadFileChunkAsync(
+            byte[] fileChunkToUpload,
+            string pathInImageStore,
             Guid? sessionId,
+            long startBytePosition,
+            long endBytePosition,
+            long length,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            sessionId.ThrowIfNull(nameof(sessionId));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/$/DeleteUploadSession";
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Delete,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            return this.UploadFileChunkAsync(
+                fileChunkToUpload,
+                pathInImageStore,
+                sessionId,
+                endBytePosition,
+                endBytePosition,
+                length,
+                null,
+                serverTimeout,
+                cancellationToken);
         }
-
-        /// <inheritdoc />
-        public Task CommitImageStoreUploadSessionAsync(
-            Guid? sessionId,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            sessionId.ThrowIfNull(nameof(sessionId));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/$/CommitUploadSession";
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Post,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<UploadSession> GetImageStoreUploadSessionByIdAsync(
-            Guid? sessionId,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            sessionId.ThrowIfNull(nameof(sessionId));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/$/GetUploadSession";
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId.ToString()}");
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, UploadSessionConverter.Deserialize, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<UploadSession> GetImageStoreUploadSessionByPathAsync(
-            string contentPath,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            contentPath.ThrowIfNull(nameof(contentPath));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/{contentPath}/$/GetUploadSession";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, UploadSessionConverter.Deserialize, requestId, cancellationToken);
-        }
-
+        
         /// <inheritdoc />
         public async Task UploadApplicationPackageAsync(
             string applicationPackagePath,
@@ -305,7 +99,43 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             applicationPackagePath.ThrowIfNull(nameof(applicationPackagePath));
 
-            var requestId = Guid.NewGuid();
+            var store = await GetImageStoreConnectionString();
+            if (IsLocalStore(store))
+            {
+                var requestId = Guid.NewGuid();
+                ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
+                    "Processing call for ApplicationClient.DeleteApplicationAsync");
+
+                var absPkgPath = FileUtilities.GetAbsolutePath(applicationPackagePath);
+
+                var pkgPathInImageStore = applicationPackagePathInImageStore;
+                if (string.IsNullOrEmpty(pkgPathInImageStore))
+                {
+                    pkgPathInImageStore = applicationPackagePath.Replace(Path.GetDirectoryName(applicationPackagePath), "");
+                }
+
+                pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
+
+                if (!Directory.Exists(applicationPackagePath))
+                {
+                    throw new InvalidOperationException($"Application package path {applicationPackagePath} not found.");
+                }
+
+                var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
+                    .Select(file => new System.IO.FileInfo(file));
+
+                foreach (var file in files)
+                {
+                    var targetPath = Path.Combine(imageStorePath, Path.Combine(pkgPathInImageStore, file.FullName.Substring(absPkgPath.Length + 1)));
+                    if (!Directory.Exists(Path.GetDirectoryName(targetPath)))
+                        Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                    File.Copy(file.FullName, targetPath, true);
+                }
+                
+            }
+            else
+            {
+                var requestId = Guid.NewGuid();
             ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
                 "Processing call for ApplicationClient.DeleteApplicationAsync");
 
@@ -366,23 +196,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             // upload _.dirs with up to MaxConcurrentUpload in parallel. 
             await UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
 
+            }     
         }
-
-        /// <inheritdoc />
-        public Task UploadFileAsync(
-            byte[] fileContentsToUpload,
-            string pathInImageStore,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return this.UploadFileAsync(
-                fileContentsToUpload,
-                pathInImageStore,
-                null,
-                serverTimeout,
-                cancellationToken);
-        }
-
+        
         /// <summary>
         /// Uploads contents of the file to the image store.
         /// Used by IApplicationClient.UploadApplicationPackageAsync to trace a request Id associated with original Uplaod call.
@@ -397,64 +213,49 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <returns>
         /// A task that represents the asynchronous operation.
         /// </returns>
-        internal Task UploadFileAsync(
+        internal async Task UploadFileAsync(
             byte[] fileContentsToUpload,
             string pathInImageStore,
             string requestId = null,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            pathInImageStore.ThrowIfNull(nameof(fileContentsToUpload));
-            pathInImageStore.ThrowIfNull(nameof(pathInImageStore));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var url = "ImageStore/{pathInImageStore}";
-            url = url.Replace("{pathInImageStore}", Uri.EscapeDataString(pathInImageStore.ToString()));
-            requestId = requestId ?? Guid.NewGuid().ToString();
-            var queryParams = new List<string>();
-
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-
-            HttpRequestMessage RequestFunc()
+            var store = await GetImageStoreConnectionString();
+            if (IsLocalStore(store))
             {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Put,
-                    Content = new ByteArrayContent(fileContentsToUpload)
-                };
-
-                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
-                return request;
+                File.WriteAllBytes(Path.Combine(imageStorePath, pathInImageStore), fileContentsToUpload);
             }
+            else
+            {
+                pathInImageStore.ThrowIfNull(nameof(fileContentsToUpload));
+                pathInImageStore.ThrowIfNull(nameof(pathInImageStore));
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                var url = "ImageStore/{pathInImageStore}";
+                url = url.Replace("{pathInImageStore}", Uri.EscapeDataString(pathInImageStore.ToString()));
+                requestId = requestId ?? Guid.NewGuid().ToString();
+                var queryParams = new List<string>();
 
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+                // Append to queryParams if not null.
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.0");
+                url += "?" + string.Join("&", queryParams);
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Put,
+                        Content = new ByteArrayContent(fileContentsToUpload)
+                    };
+
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
+                    return request;
+                }
+
+                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            }
         }
-
-        /// <inheritdoc />
-        public Task UploadFileChunkAsync(
-            byte[] fileChunkToUpload,
-            string pathInImageStore,
-            Guid? sessionId,
-            long startBytePosition,
-            long endBytePosition,
-            long length,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return this.UploadFileChunkAsync(
-                fileChunkToUpload,
-                pathInImageStore,
-                sessionId,
-                endBytePosition,
-                endBytePosition,
-                length,
-                null,
-                serverTimeout,
-                cancellationToken);
-        }
-
+        
         /// <summary>
         /// Uploads a file chunk to the image store relative path. Used by IApplicationClient.UploadApplicationPackageAsync to trace a request Id associated with original Uplaod call.
         /// </summary>
@@ -496,36 +297,50 @@ namespace Microsoft.ServiceFabric.Client.Http
             startBytePosition.ThrowIfNull(nameof(startBytePosition));
             endBytePosition.ThrowIfNull(nameof(endBytePosition));
             length.ThrowIfNull(nameof(length));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            requestId = requestId ?? Guid.NewGuid().ToString();
-            var url = "ImageStore/{pathInImageStore}/$/UploadChunk";
-            url = url.Replace("{pathInImageStore}", Uri.EscapeDataString(pathInImageStore.ToString()));
-            var queryParams = new List<string>();
 
-            // Append to queryParams if not null.
-            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
 
-            HttpRequestMessage RequestFunc()
+            var store = await GetImageStoreConnectionString();
+            if (IsLocalStore(store))
             {
-                var request = new HttpRequestMessage()
+                using (var fs = File.OpenWrite(Path.Combine(imageStorePath, pathInImageStore)))
                 {
-                    Method = HttpMethod.Put,
-                    Content = new ByteArrayContent(fileChunkToUpload)
-                };
-
-                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
-                request.Content.Headers.ContentRange =
-                    new ContentRangeHeaderValue(startBytePosition, endBytePosition, length);
-                return request;
+                    fs.Write(fileChunkToUpload, (int)startBytePosition, (int)length);
+                }
             }
+            else
+            {
 
-            await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                requestId = requestId ?? Guid.NewGuid().ToString();
+                var url = "ImageStore/{pathInImageStore}/$/UploadChunk";
+                url = url.Replace("{pathInImageStore}", Uri.EscapeDataString(pathInImageStore.ToString()));
+                var queryParams = new List<string>();
+
+                // Append to queryParams if not null.
+                sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.0");
+                url += "?" + string.Join("&", queryParams);
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Put,
+                        Content = new ByteArrayContent(fileChunkToUpload)
+                    };
+
+                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
+                    request.Content.Headers.ContentRange =
+                        new ContentRangeHeaderValue(startBytePosition, endBytePosition, length);
+                    return request;
+                }
+
+                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+
+            }
         }
-
-
+        
         private static IEnumerable<ChunkInfo> GetChunksInfoForFile(
             System.IO.FileInfo fileInfo,
             string filePathInImageStore)

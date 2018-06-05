@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// <summary>
     /// Class containing methods for performing ApplicationClient operataions.
     /// </summary>
-    internal class ApplicationClient : IApplicationClient
+    internal partial class ApplicationClient : IApplicationClient
     {
         private readonly ServiceFabricHttpClient httpClient;
 

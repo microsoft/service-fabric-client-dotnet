@@ -44,10 +44,5 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the Timespan to wait before the request times out for the client.
         /// </summary>
         public TimeSpan? ClientTimeout { get; }
-
-        /// <summary>
-        /// Sets the connection string to use for the image store. If not set, the connection string will be read from the cluster
-        /// </summary>
-        public string ImageStoreConnectionString { get; set; }
     }
 }

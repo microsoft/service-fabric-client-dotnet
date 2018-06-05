@@ -12,9 +12,6 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml;
-    using System.Xml.Linq;
-    using System.Xml.XPath;
     using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Client.Http.Serialization;
     using Microsoft.ServiceFabric.Common;
@@ -739,16 +736,5 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, AadMetadataObjectConverter.Deserialize, requestId, cancellationToken);
         }
-
-        /// <inheritdoc />
-        public async Task<string> GetImageStoreConnectionString()
-        {
-            var cluster = XDocument.Parse((await httpClient.Cluster.GetClusterManifestAsync()).Manifest);
-            XmlNamespaceManager r = new XmlNamespaceManager(new NameTable());
-            r.AddNamespace("ns", cluster.Root.Attribute("xmlns").Value);
-            var imageStore = cluster.XPathSelectElement("/ns:ClusterManifest/ns:FabricSettings/ns:Section[@Name='Management']/ns:Parameter[@Name='ImageStoreConnectionString']", r).Attribute("Value").Value;
-            return imageStore;
-        }
-
     }
 }
