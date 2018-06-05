@@ -13,18 +13,12 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Headers;
-    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml;
-    using System.Xml.Linq;
-    using System.Xml.XPath;
     using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Client.Exceptions;
-    using Microsoft.ServiceFabric.Client.Http.Serialization;
     using Microsoft.ServiceFabric.Common;
     using Microsoft.ServiceFabric.Common.Utilities;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Class containing methods for performing ImageStoreClient operataions.
