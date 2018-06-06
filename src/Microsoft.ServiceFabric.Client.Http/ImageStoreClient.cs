@@ -165,17 +165,33 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
+
             var store = await GetImageStoreConnectionString();
             if (IsLocalStore(store))
             {
-
-                imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
                 var source = Path.Combine(imageStorePath, imageStoreCopyDescription.RemoteSource);
                 var destination = Path.Combine(imageStorePath, imageStoreCopyDescription.RemoteDestination);
+
+                FileAttributes attr = File.GetAttributes(source);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    var files = Directory.EnumerateFiles(source, "*", SearchOption.AllDirectories)
+                    .Select(file => new System.IO.FileInfo(file));
+
+                    foreach (var file in files)
+                    {
+                        var targetPath = Path.Combine(imageStorePath, Path.Combine(destination, file.FullName.Substring(source.Length + 1)));
+                        if (!Directory.Exists(Path.GetDirectoryName(targetPath)))
+                            Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                        File.Copy(file.FullName, targetPath, true);
+                    }
+                }
+                else
+                    File.Copy(source, destination, true);
             }
             else
             {
-                imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
                 serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
                 var requestId = Guid.NewGuid().ToString();
                 var url = "ImageStore/$/Copy";
@@ -204,7 +220,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     return request;
                 }
 
-               await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
             }
         }
 

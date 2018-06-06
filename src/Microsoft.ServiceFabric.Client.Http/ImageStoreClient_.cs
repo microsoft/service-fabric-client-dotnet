@@ -34,18 +34,22 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         private async Task<string> GetImageStoreConnectionString()
         {
-            if (imageStorePath == null)
+            if (this.imageStorePath == null)
             {
-                imageStorePath = await httpClient.Cluster.GetImageStoreConnectionString();
-                if (IsLocalStore(imageStorePath))
-                    imageStorePath = new Uri(imageStorePath).LocalPath;
+                this.imageStorePath = await httpClient.Cluster.GetImageStoreConnectionString();
+                if (IsLocalStore(this.imageStorePath))
+                {
+                    imageStorePath = new Uri(this.imageStorePath).LocalPath;
+                }
             }
 
-            return imageStorePath;
+            return this.imageStorePath;
         }
 
         private bool IsLocalStore(string imageStorePath) => imageStorePath != "fabric:ImageStore" && !imageStorePath.StartsWith("xstore");
+
         
+
         /// <inheritdoc />
         public Task UploadFileAsync(
             byte[] fileContentsToUpload,
@@ -60,7 +64,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 serverTimeout,
                 cancellationToken);
         }
-       
+
         /// <inheritdoc />
         public Task UploadFileChunkAsync(
             byte[] fileChunkToUpload,
@@ -83,7 +87,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 serverTimeout,
                 cancellationToken);
         }
-        
+
         /// <inheritdoc />
         public async Task UploadApplicationPackageAsync(
             string applicationPackagePath,
@@ -91,30 +95,30 @@ namespace Microsoft.ServiceFabric.Client.Http
             string applicationPackagePathInImageStore = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (!Directory.Exists(applicationPackagePath))
+            {
+                throw new InvalidOperationException($"Application package path {applicationPackagePath} not found.");
+            }
+
+            var absPkgPath = FileUtilities.GetAbsolutePath(applicationPackagePath);
             applicationPackagePath.ThrowIfNull(nameof(applicationPackagePath));
+
+            if (compressPackage)
+            {
+                await CompressApplicationPackage(absPkgPath);
+            }
+
+            var pkgPathInImageStore = applicationPackagePathInImageStore;
+            if (string.IsNullOrEmpty(pkgPathInImageStore))
+            {
+                pkgPathInImageStore = applicationPackagePath.Replace(Path.GetDirectoryName(applicationPackagePath), "");
+            }
+
+            pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
 
             var store = await GetImageStoreConnectionString();
             if (IsLocalStore(store))
             {
-                var requestId = Guid.NewGuid();
-                ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
-                    "Processing call for ApplicationClient.DeleteApplicationAsync");
-
-                var absPkgPath = FileUtilities.GetAbsolutePath(applicationPackagePath);
-
-                var pkgPathInImageStore = applicationPackagePathInImageStore;
-                if (string.IsNullOrEmpty(pkgPathInImageStore))
-                {
-                    pkgPathInImageStore = applicationPackagePath.Replace(Path.GetDirectoryName(applicationPackagePath), "");
-                }
-
-                pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
-
-                if (!Directory.Exists(applicationPackagePath))
-                {
-                    throw new InvalidOperationException($"Application package path {applicationPackagePath} not found.");
-                }
-
                 var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
                     .Select(file => new System.IO.FileInfo(file));
 
@@ -125,74 +129,54 @@ namespace Microsoft.ServiceFabric.Client.Http
                         Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
                     File.Copy(file.FullName, targetPath, true);
                 }
-                
+
             }
             else
             {
                 var requestId = Guid.NewGuid();
-            ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
-                "Processing call for ApplicationClient.DeleteApplicationAsync");
+                ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
+                    "Processing call for ApplicationClient.DeleteApplicationAsync");
+                
+                // list of Files to upload.
+                var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
+                    .Select(file => new System.IO.FileInfo(file));
 
-            var absPkgPath = FileUtilities.GetAbsolutePath(applicationPackagePath);
 
-            var pkgPathInImageStore = applicationPackagePathInImageStore;
-            if (string.IsNullOrEmpty(pkgPathInImageStore))
-            {
-                pkgPathInImageStore = applicationPackagePath.Replace(Path.GetDirectoryName(applicationPackagePath), "");
+                // List of dirs to determine where to upload _.dir fileInfo.
+                var dirPathsInImageStore =
+                    new List<string> { GetPathInImageStore(absPkgPath, pkgPathInImageStore, absPkgPath) };
+
+                dirPathsInImageStore.AddRange(
+                    Directory.EnumerateDirectories(absPkgPath, "*", SearchOption.AllDirectories)
+                        .Select(dir => GetPathInImageStore(absPkgPath, pkgPathInImageStore, dir)));
+
+                // Upload small files in single upload. Upload bigger fileInfo using chunked upload.
+                // Get info to upload single files.
+                var singleFileUploadInfos = files.Where(file => file.Length <= UploadLimitSizeInBytes)
+                .Select(file => new FileUploadInfo(
+                    file,
+                    GetPathInImageStore(absPkgPath, pkgPathInImageStore, file.FullName)));
+
+                // Get info to upload chunks for files.
+                var chunkInfos = new List<ChunkInfo>();
+                foreach (var file in files.Where(file => file.Length > UploadLimitSizeInBytes))
+                {
+                    var pathInImageStore = GetPathInImageStore(absPkgPath, pkgPathInImageStore, file.FullName);
+                    chunkInfos.AddRange(GetChunksInfoForFile(file, pathInImageStore));
+                }
+
+                // upload single files with up to MaxConcurrentUpload in parallel. 
+                await UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
+
+                // upload chunks with up to MaxConcurrentUpload in parallel. 
+                await UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
+
+                // upload _.dirs with up to MaxConcurrentUpload in parallel. 
+                await UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
+
             }
-
-            pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
-
-            if (!Directory.Exists(applicationPackagePath))
-            {
-                throw new InvalidOperationException($"Application package path {applicationPackagePath} not found.");
-            }
-
-            if (compressPackage)
-            {
-                await CompressApplicationPackage(absPkgPath);
-            }
-
-            // list of Files to upload.
-            var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
-                .Select(file => new System.IO.FileInfo(file));
-
-
-            // List of dirs to determine where to upload _.dir fileInfo.
-            var dirPathsInImageStore =
-                new List<string> { GetPathInImageStore(absPkgPath, pkgPathInImageStore, absPkgPath) };
-
-            dirPathsInImageStore.AddRange(
-                Directory.EnumerateDirectories(absPkgPath, "*", SearchOption.AllDirectories)
-                    .Select(dir => GetPathInImageStore(absPkgPath, pkgPathInImageStore, dir)));
-
-            // Upload small files in single upload. Upload bigger fileInfo using chunked upload.
-            // Get info to upload single files.
-            var singleFileUploadInfos = files.Where(file => file.Length <= UploadLimitSizeInBytes)
-            .Select(file => new FileUploadInfo(
-                file,
-                GetPathInImageStore(absPkgPath, pkgPathInImageStore, file.FullName)));
-
-            // Get info to upload chunks for files.
-            var chunkInfos = new List<ChunkInfo>();
-            foreach (var file in files.Where(file => file.Length > UploadLimitSizeInBytes))
-            {
-                var pathInImageStore = GetPathInImageStore(absPkgPath, pkgPathInImageStore, file.FullName);
-                chunkInfos.AddRange(GetChunksInfoForFile(file, pathInImageStore));
-            }
-
-            // upload single files with up to MaxConcurrentUpload in parallel. 
-            await UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
-
-            // upload chunks with up to MaxConcurrentUpload in parallel. 
-            await UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
-
-            // upload _.dirs with up to MaxConcurrentUpload in parallel. 
-            await UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
-
-            }     
         }
-        
+
         /// <summary>
         /// Uploads contents of the file to the image store.
         /// Used by IApplicationClient.UploadApplicationPackageAsync to trace a request Id associated with original Uplaod call.
@@ -249,7 +233,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
             }
         }
-        
+
         /// <summary>
         /// Uploads a file chunk to the image store relative path. Used by IApplicationClient.UploadApplicationPackageAsync to trace a request Id associated with original Uplaod call.
         /// </summary>
@@ -292,7 +276,6 @@ namespace Microsoft.ServiceFabric.Client.Http
             endBytePosition.ThrowIfNull(nameof(endBytePosition));
             length.ThrowIfNull(nameof(length));
 
-
             var store = await GetImageStoreConnectionString();
             if (IsLocalStore(store))
             {
@@ -334,7 +317,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             }
         }
-        
+
         private static IEnumerable<ChunkInfo> GetChunksInfoForFile(
             System.IO.FileInfo fileInfo,
             string filePathInImageStore)

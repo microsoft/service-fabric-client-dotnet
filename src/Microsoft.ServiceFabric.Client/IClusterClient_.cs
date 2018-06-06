@@ -14,14 +14,14 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Client.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ClusterClient operataions.
+    /// Interface containing methods for performing ClusterClient operations.
     /// </summary>
     public partial interface IClusterClient
     {
         /// <summary>
         /// Gets the connection string for the image store on the current cluster
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The connection string used by the image store</returns>
         Task<string> GetImageStoreConnectionString();
     }
 }
