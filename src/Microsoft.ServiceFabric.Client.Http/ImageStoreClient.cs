@@ -42,8 +42,8 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             contentPath.ThrowIfNull(nameof(contentPath));
 
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 var path = Path.Combine(imageStorePath, contentPath);
                 var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
@@ -84,8 +84,8 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             contentPath.ThrowIfNull(nameof(contentPath));
 
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 var path = Path.Combine(imageStorePath, contentPath);
                 FileAttributes attr = File.GetAttributes(path);
@@ -127,8 +127,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken = default(CancellationToken))
         {
 
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 var directories = Directory.EnumerateDirectories(imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
                 var files = Directory.EnumerateFiles(imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(imageStorePath, ""))).ToList();
@@ -167,8 +167,8 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
 
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 var source = Path.Combine(imageStorePath, imageStoreCopyDescription.RemoteSource);
                 var destination = Path.Combine(imageStorePath, imageStoreCopyDescription.RemoteDestination);

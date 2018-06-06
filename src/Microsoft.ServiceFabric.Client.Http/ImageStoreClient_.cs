@@ -26,29 +26,25 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class ImageStoreClient : IImageStoreClient
     {
         private string imageStorePath;
+        private bool isLocalStore = false;
         private const int UploadLimitSizeInBytes = 25 * 1024 * 1024;
         private const int MaxConcurrentUpload = 10;
         private const int MaxUploadTry = 2;
         private const string ZipExtension = "zip";
         private const long ServerTimeOutInSecondsForUpload = 60;
 
-        private async Task<string> GetImageStoreConnectionString()
+        private async Task LoadImageStoreConnectionString()
         {
             if (this.imageStorePath == null)
             {
                 this.imageStorePath = await httpClient.Cluster.GetImageStoreConnectionString();
-                if (IsLocalStore(this.imageStorePath))
+                if (this.imageStorePath != "fabric:ImageStore" && !imageStorePath.StartsWith("xstore"))
                 {
-                    imageStorePath = new Uri(this.imageStorePath).LocalPath;
+                    this.imageStorePath = new Uri(this.imageStorePath).LocalPath;
+                    isLocalStore = true;
                 }
             }
-
-            return this.imageStorePath;
         }
-
-        private bool IsLocalStore(string imageStorePath) => imageStorePath != "fabric:ImageStore" && !imageStorePath.StartsWith("xstore");
-
-        
 
         /// <inheritdoc />
         public Task UploadFileAsync(
@@ -116,8 +112,8 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
 
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
                     .Select(file => new System.IO.FileInfo(file));
@@ -198,8 +194,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 File.WriteAllBytes(Path.Combine(imageStorePath, pathInImageStore), fileContentsToUpload);
             }
@@ -276,8 +272,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             endBytePosition.ThrowIfNull(nameof(endBytePosition));
             length.ThrowIfNull(nameof(length));
 
-            var store = await GetImageStoreConnectionString();
-            if (IsLocalStore(store))
+            await LoadImageStoreConnectionString();
+            if (isLocalStore)
             {
                 using (var fs = File.OpenWrite(Path.Combine(imageStorePath, pathInImageStore)))
                 {
