@@ -99,7 +99,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             var absPkgPath = FileUtilities.GetAbsolutePath(applicationPackagePath);
-            
+
             if (compressPackage)
             {
                 await CompressApplicationPackage(absPkgPath);
@@ -136,7 +136,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var requestId = Guid.NewGuid();
                 ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
                     "Processing call for ApplicationClient.DeleteApplicationAsync");
-                
+
                 // list of Files to upload.
                 var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
                     .Select(file => new System.IO.FileInfo(file));
@@ -258,7 +258,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// value of <paramref name="startBytePosition"/> would be 0, value of <paramref name="endBytePosition"/> would be 4999 and value of
         /// <paramref name="length"/> would be 5000.
         /// </remarks>
-        internal async Task UploadFileChunkAsync(
+        internal  Task UploadFileChunkAsync(
             byte[] fileChunkToUpload,
             string pathInImageStore,
             Guid? sessionId,
@@ -276,47 +276,35 @@ namespace Microsoft.ServiceFabric.Client.Http
             endBytePosition.ThrowIfNull(nameof(endBytePosition));
             length.ThrowIfNull(nameof(length));
 
-            await LoadImageStoreConnectionString();
-            if (this.isLocalStore)
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            requestId = requestId ?? Guid.NewGuid().ToString();
+            var url = "ImageStore/{pathInImageStore}/$/UploadChunk";
+            url = url.Replace("{pathInImageStore}", Uri.EscapeDataString(pathInImageStore.ToString()));
+            var queryParams = new List<string>();
+
+            // Append to queryParams if not null.
+            sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.0");
+            url += "?" + string.Join("&", queryParams);
+
+            HttpRequestMessage RequestFunc()
             {
-                using (var fs = File.OpenWrite(Path.Combine(this.imageStorePath, pathInImageStore)))
+                var request = new HttpRequestMessage()
                 {
-                    fs.Write(fileChunkToUpload, (int)startBytePosition, (int)length);
-                }
+                    Method = HttpMethod.Put,
+                    Content = new ByteArrayContent(fileChunkToUpload)
+                };
+
+                request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
+                request.Content.Headers.ContentRange =
+                    new ContentRangeHeaderValue(startBytePosition, endBytePosition, length);
+                return request;
             }
-            else
-            {
 
-                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-                requestId = requestId ?? Guid.NewGuid().ToString();
-                var url = "ImageStore/{pathInImageStore}/$/UploadChunk";
-                url = url.Replace("{pathInImageStore}", Uri.EscapeDataString(pathInImageStore.ToString()));
-                var queryParams = new List<string>();
-
-                // Append to queryParams if not null.
-                sessionId?.AddToQueryParameters(queryParams, $"session-id={sessionId}");
-                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-                queryParams.Add("api-version=6.0");
-                url += "?" + string.Join("&", queryParams);
-
-                HttpRequestMessage RequestFunc()
-                {
-                    var request = new HttpRequestMessage()
-                    {
-                        Method = HttpMethod.Put,
-                        Content = new ByteArrayContent(fileChunkToUpload)
-                    };
-
-                    request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
-                    request.Content.Headers.ContentRange =
-                        new ContentRangeHeaderValue(startBytePosition, endBytePosition, length);
-                    return request;
-                }
-
-                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
-
-            }
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
 
         private static IEnumerable<ChunkInfo> GetChunksInfoForFile(
             System.IO.FileInfo fileInfo,

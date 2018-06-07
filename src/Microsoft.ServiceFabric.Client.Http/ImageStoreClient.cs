@@ -46,7 +46,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             if (this.isLocalStore)
             {
                 var path = Path.Combine(this.imageStorePath, contentPath);
-                var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
+                var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d.Replace(this.imageStorePath, ""), (long)Directory.EnumerateFiles(d).Count())).ToList();
                 var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, ""))).ToList();
                 return new ImageStoreContent(files, directories);
             }
@@ -134,7 +134,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             await LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
-                var directories = Directory.EnumerateDirectories(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
+                var directories = Directory.EnumerateDirectories(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d.Replace(this.imageStorePath, ""), (long)Directory.EnumerateFiles(d).Count())).ToList();
                 var files = Directory.EnumerateFiles(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, ""))).ToList();
                 return new ImageStoreContent(files, directories);
             }
