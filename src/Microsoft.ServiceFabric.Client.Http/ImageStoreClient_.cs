@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             if (this.imageStorePath == null)
             {
-                this.imageStorePath = await this.httpClient.Cluster.GetImageStoreConnectionString();
+                this.imageStorePath = await this.httpClient.Cluster.GetImageStoreConnectionStringAsync();
                 if (this.imageStorePath != "fabric:ImageStore" && !this.imageStorePath.StartsWith("xstore"))
                 {
                     this.imageStorePath = new Uri(this.imageStorePath).LocalPath;

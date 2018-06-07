@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class ClusterClient : IClusterClient
     {        
         /// <inheritdoc />
-        public async Task<string> GetImageStoreConnectionString()
+        public async Task<string> GetImageStoreConnectionStringAsync()
         {
             var cluster = XDocument.Parse((await this.httpClient.Cluster.GetClusterManifestAsync()).Manifest);
             XmlNamespaceManager r = new XmlNamespaceManager(new NameTable());

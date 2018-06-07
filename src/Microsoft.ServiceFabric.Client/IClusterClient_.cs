@@ -22,6 +22,6 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the connection string for the image store on the current cluster
         /// </summary>
         /// <returns>The connection string used by the image store</returns>
-        Task<string> GetImageStoreConnectionString();
+        Task<string> GetImageStoreConnectionStringAsync();
     }
 }
