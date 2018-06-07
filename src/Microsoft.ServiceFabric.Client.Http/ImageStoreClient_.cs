@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 if (this.imageStorePath != "fabric:ImageStore" && !this.imageStorePath.StartsWith("xstore"))
                 {
                     this.imageStorePath = new Uri(this.imageStorePath).LocalPath;
-                    isLocalStore = true;
+                    this.isLocalStore = true;
                 }
             }
         }
