@@ -98,9 +98,11 @@ namespace Microsoft.ServiceFabric.Client.Http
                 scheme = Uri.UriSchemeHttps;
             }
 
-            if (this.ClusterEndpoints.Any(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase)))
+            var invalidClusterEndpoint = this.ClusterEndpoints.FirstOrDefault(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase));
+
+            if (invalidClusterEndpoint != null)
             {
-                throw new ArgumentException(SR.ErrorUrlScheme);
+                throw new ArgumentException(string.Format(SR.ErrorUrlScheme, invalidClusterEndpoint.Scheme.ToString(), scheme));
             }
 
             if (delegateHandlers.Any(handler => handler == null))
