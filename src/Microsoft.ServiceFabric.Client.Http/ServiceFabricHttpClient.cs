@@ -457,9 +457,8 @@ namespace Microsoft.ServiceFabric.Client.Http
                     }
                     else
                     {
-                        ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}",
-                            ex.ToString());
-                        throw new ServiceFabricRequestException(ex.Message);
+                        ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}", ex.ToString());
+                        throw new ServiceFabricRequestException(ex.Message, ex);
                     }
                 }
 
