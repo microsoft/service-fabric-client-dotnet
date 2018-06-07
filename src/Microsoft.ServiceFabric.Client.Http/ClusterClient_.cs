@@ -28,7 +28,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public async Task<string> GetImageStoreConnectionString()
         {
-            var cluster = XDocument.Parse((await httpClient.Cluster.GetClusterManifestAsync()).Manifest);
+            var cluster = XDocument.Parse((await this.httpClient.Cluster.GetClusterManifestAsync()).Manifest);
             XmlNamespaceManager r = new XmlNamespaceManager(new NameTable());
             r.AddNamespace("ns", cluster.Root.Attribute("xmlns").Value);
             var imageStore = cluster.XPathSelectElement("/ns:ClusterManifest/ns:FabricSettings/ns:Section[@Name='Management']/ns:Parameter[@Name='ImageStoreConnectionString']", r).Attribute("Value").Value;

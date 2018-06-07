@@ -43,11 +43,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             contentPath.ThrowIfNull(nameof(contentPath));
 
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
-                var path = Path.Combine(imageStorePath, contentPath);
+                var path = Path.Combine(this.imageStorePath, contentPath);
                 var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
-                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(imageStorePath, ""))).ToList();
+                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, ""))).ToList();
                 return new ImageStoreContent(files, directories);
             }
             else
@@ -85,15 +85,19 @@ namespace Microsoft.ServiceFabric.Client.Http
             contentPath.ThrowIfNull(nameof(contentPath));
 
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
-                var path = Path.Combine(imageStorePath, contentPath);
+                var path = Path.Combine(this.imageStorePath, contentPath);
                 FileAttributes attr = File.GetAttributes(path);
 
                 if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
                     Directory.Delete(path, true);
+                }
                 else
+                {
                     File.Delete(path);
+                }
             }
             else
             {
@@ -128,10 +132,10 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
 
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
-                var directories = Directory.EnumerateDirectories(imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
-                var files = Directory.EnumerateFiles(imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(imageStorePath, ""))).ToList();
+                var directories = Directory.EnumerateDirectories(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d, (long)Directory.EnumerateFiles(d).Count())).ToList();
+                var files = Directory.EnumerateFiles(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, ""))).ToList();
                 return new ImageStoreContent(files, directories);
             }
             else
@@ -168,10 +172,10 @@ namespace Microsoft.ServiceFabric.Client.Http
             imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
 
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
-                var source = Path.Combine(imageStorePath, imageStoreCopyDescription.RemoteSource);
-                var destination = Path.Combine(imageStorePath, imageStoreCopyDescription.RemoteDestination);
+                var source = Path.Combine(this.imageStorePath, imageStoreCopyDescription.RemoteSource);
+                var destination = Path.Combine(this.imageStorePath, imageStoreCopyDescription.RemoteDestination);
 
                 FileAttributes attr = File.GetAttributes(source);
                 if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
@@ -181,14 +185,19 @@ namespace Microsoft.ServiceFabric.Client.Http
 
                     foreach (var file in files)
                     {
-                        var targetPath = Path.Combine(imageStorePath, Path.Combine(destination, file.FullName.Substring(source.Length + 1)));
+                        var targetPath = Path.Combine(this.imageStorePath, Path.Combine(destination, file.FullName.Substring(source.Length + 1)));
                         if (!Directory.Exists(Path.GetDirectoryName(targetPath)))
+                        {
                             Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                        }
+
                         File.Copy(file.FullName, targetPath, true);
                     }
                 }
                 else
+                {
                     File.Copy(source, destination, true);
+                }
             }
             else
             {

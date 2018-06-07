@@ -37,8 +37,8 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             if (this.imageStorePath == null)
             {
-                this.imageStorePath = await httpClient.Cluster.GetImageStoreConnectionString();
-                if (this.imageStorePath != "fabric:ImageStore" && !imageStorePath.StartsWith("xstore"))
+                this.imageStorePath = await this.httpClient.Cluster.GetImageStoreConnectionString();
+                if (this.imageStorePath != "fabric:ImageStore" && !this.imageStorePath.StartsWith("xstore"))
                 {
                     this.imageStorePath = new Uri(this.imageStorePath).LocalPath;
                     isLocalStore = true;
@@ -91,14 +91,15 @@ namespace Microsoft.ServiceFabric.Client.Http
             string applicationPackagePathInImageStore = default(string),
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            applicationPackagePath.ThrowIfNull(nameof(applicationPackagePath));
+
             if (!Directory.Exists(applicationPackagePath))
             {
                 throw new InvalidOperationException($"Application package path {applicationPackagePath} not found.");
             }
 
             var absPkgPath = FileUtilities.GetAbsolutePath(applicationPackagePath);
-            applicationPackagePath.ThrowIfNull(nameof(applicationPackagePath));
-
+            
             if (compressPackage)
             {
                 await CompressApplicationPackage(absPkgPath);
@@ -113,16 +114,19 @@ namespace Microsoft.ServiceFabric.Client.Http
             pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
 
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
                 var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
                     .Select(file => new System.IO.FileInfo(file));
 
                 foreach (var file in files)
                 {
-                    var targetPath = Path.Combine(imageStorePath, Path.Combine(pkgPathInImageStore, file.FullName.Substring(absPkgPath.Length + 1)));
+                    var targetPath = Path.Combine(this.imageStorePath, Path.Combine(pkgPathInImageStore, file.FullName.Substring(absPkgPath.Length + 1)));
                     if (!Directory.Exists(Path.GetDirectoryName(targetPath)))
+                    {
                         Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                    }
+
                     File.Copy(file.FullName, targetPath, true);
                 }
 
@@ -195,9 +199,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken = default(CancellationToken))
         {
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
-                File.WriteAllBytes(Path.Combine(imageStorePath, pathInImageStore), fileContentsToUpload);
+                File.WriteAllBytes(Path.Combine(this.imageStorePath, pathInImageStore), fileContentsToUpload);
             }
             else
             {
@@ -273,9 +277,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             length.ThrowIfNull(nameof(length));
 
             await LoadImageStoreConnectionString();
-            if (isLocalStore)
+            if (this.isLocalStore)
             {
-                using (var fs = File.OpenWrite(Path.Combine(imageStorePath, pathInImageStore)))
+                using (var fs = File.OpenWrite(Path.Combine(this.imageStorePath, pathInImageStore)))
                 {
                     fs.Write(fileChunkToUpload, (int)startBytePosition, (int)length);
                 }
