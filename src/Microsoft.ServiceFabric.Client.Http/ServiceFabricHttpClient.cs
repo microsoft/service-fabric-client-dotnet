@@ -102,7 +102,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             if (invalidClusterEndpoint != null)
             {
-                throw new ArgumentException(string.Format(SR.ErrorUrlScheme, invalidClusterEndpoint.Scheme.ToString(), scheme));
+                throw new ArgumentException(string.Format(SR.ErrorUrlScheme, invalidClusterEndpoint.Scheme, scheme));
             }
 
             if (delegateHandlers.Any(handler => handler == null))
