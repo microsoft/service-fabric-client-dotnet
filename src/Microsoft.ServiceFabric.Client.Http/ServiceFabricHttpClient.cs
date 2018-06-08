@@ -98,9 +98,11 @@ namespace Microsoft.ServiceFabric.Client.Http
                 scheme = Uri.UriSchemeHttps;
             }
 
-            if (this.ClusterEndpoints.Any(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase)))
+            var invalidClusterEndpoint = this.ClusterEndpoints.FirstOrDefault(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase));
+
+            if (invalidClusterEndpoint != null)
             {
-                throw new ArgumentException(SR.ErrorUrlScheme);
+                throw new ArgumentException(string.Format(SR.ErrorUrlScheme, invalidClusterEndpoint.Scheme, scheme));
             }
 
             if (delegateHandlers.Any(handler => handler == null))
@@ -455,9 +457,8 @@ namespace Microsoft.ServiceFabric.Client.Http
                     }
                     else
                     {
-                        ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}",
-                            ex.ToString());
-                        throw new ServiceFabricRequestException(ex.Message);
+                        ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}", ex.ToString());
+                        throw new ServiceFabricRequestException(ex.Message, ex);
                     }
                 }
 

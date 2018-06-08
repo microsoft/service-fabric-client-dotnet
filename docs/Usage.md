@@ -2,14 +2,14 @@
 ### Connecting to unsecured cluster
 ```csharp
 // create client
-var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
+var clusterUrl = new Uri(@"https://<cluster_fqdn>:19080");
 var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
 ```
 
 ### Connecting to cluster secured with X509 certificate
 ```csharp
 // create client using security settings
-var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
+var clusterUrl = new Uri(@"https://<cluster_fqdn>:19080");
 var settings = new ClientSettings(GetSecurityCredentials);
 var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
 
