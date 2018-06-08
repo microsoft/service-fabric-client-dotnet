@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Client.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ClusterClient operataions.
+    /// Interface containing methods for performing ClusterClient operations.
     /// </summary>
     public partial interface IClusterClient
     {

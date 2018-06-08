@@ -6,3 +6,5 @@ indent_style = space
 
 [*.cs]
 indent_style = space
+dotnet_style_qualification_for_field = true:error
+csharp_prefer_braces = true:error
