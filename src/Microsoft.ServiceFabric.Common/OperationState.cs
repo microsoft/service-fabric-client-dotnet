@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -48,6 +48,6 @@ namespace Microsoft.ServiceFabric.Common
         /// The operation was cancelled by the user using CancelOperation, with the force parameter set to true.  It is no
         /// longer running.  Refer to CancelOperation for more details..
         /// </summary>
-        ForceCancelled
+        ForceCancelled,
     }
 }

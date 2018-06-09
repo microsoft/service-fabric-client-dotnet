@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -41,6 +41,6 @@ namespace Microsoft.ServiceFabric.Common
         /// multiple active Secondary replicas in a replica set at a time. The number of active Secondary replicas is
         /// configurable that the reliability subsystem should maintain. The value is 4..
         /// </summary>
-        ActiveSecondary
+        ActiveSecondary,
     }
 }

@@ -1,6 +1,7 @@
-﻿// ------------------------------------------------------------------
-// Copyright (c) Microsoft.  All Rights Reserved.
-// ------------------------------------------------------------------
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Common
 {
@@ -24,7 +25,8 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the <see cref="FabricName"/> class by using the value represented by the specified string.
         /// </summary>
         /// <param name="name">A string for the Service Fabric name.</param>
-        public FabricName(string name) : this(new Uri(name.CheckNotNull(nameof(name))))
+        public FabricName(string name) 
+            : this(new Uri(name.CheckNotNull(nameof(name))))
         {
         }
 

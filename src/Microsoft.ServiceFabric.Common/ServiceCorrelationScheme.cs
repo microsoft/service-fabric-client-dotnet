@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -31,6 +31,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Non-Aligned affinity guarantees that all replicas of each service will be placed on the same nodes. Unlike Aligned
         /// Affinity, this does not guarantee that replicas of particular role will be collocated. The value is 3..
         /// </summary>
-        NonAlignedAffinity
+        NonAlignedAffinity,
     }
 }

@@ -1,5 +1,5 @@
-﻿// ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -36,22 +36,16 @@ namespace Microsoft.ServiceFabric.Client.Http
         private readonly Random rand = new Random();
         private readonly TimeSpan maxRetryInterval = TimeSpan.FromSeconds(2);
         private readonly HttpClientHandlerWrapper httpClientHandlerWrapper;
+        private readonly SecurityType securityType = SecurityType.None;
         private HttpClient httpClient = null;
         private bool disposed = false;
         private SecuritySettings securitySettings = null;
-        private SecurityType securityType = SecurityType.None;
-
 
         /// <summary>
         /// Used to synchronize refresh of security settings.
         /// </summary>
         private object syncObj = new object();
-
-        /// <summary>
-        /// ClientId used for tracing.
-        /// </summary>
-        internal string ClientId { get; }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceFabricHttpClient"/> class.
         /// </summary>
@@ -81,7 +75,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             IReadOnlyList<Uri> clusterEndpoints,
             ClientSettings clientSettings = null,
             HttpClientHandler innerHandler = null,
-            params DelegatingHandler[] delegateHandlers) : base(clusterEndpoints, clientSettings)
+            params DelegatingHandler[] delegateHandlers)
+            : base(clusterEndpoints, clientSettings)
         {
             this.CreateManagementClients();
             var scheme = Uri.UriSchemeHttp;
@@ -117,11 +112,16 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.httpClientHandlerWrapper = new HttpClientHandlerWrapper(this.innerHandler);
             this.httpClient = this.CreateHttpClient(delegateHandlers);
 
-            if (ClientSettings?.ClientTimeout != null)
+            if (this.ClientSettings?.ClientTimeout != null)
             {
                 this.httpClient.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
             }
         }
+
+        /// <summary>
+        /// Gets the clientId used for tracing.
+        /// </summary>
+        internal string ClientId { get; }
 
         /// <summary>
         /// Disposes resources.
@@ -165,7 +165,8 @@ namespace Microsoft.ServiceFabric.Client.Http
             string relativeUri, 
             Func<JsonReader, T> deserializeFunc,
             string requestId,
-            CancellationToken cancellationToken) where T : class
+            CancellationToken cancellationToken)
+            where T : class
         {
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, relativeUri, requestId, cancellationToken);
             var retValue = default(T);
@@ -402,13 +403,12 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             // Sends request, if Exception is thrown because Server Cert is not validated OR its Forbidden because of invalid client creds,
             // refreshes security settings by calling the func and retires request one more time. If it faisl again Excpetion is thrown.
-
             var tryCount = 1;
 
             while (tryCount <= MaxTryCount)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                bool serverCertValid = true; ;
+                var serverCertValid = true;
 
                 // wait if other thread is refreshing security settings.
                 var obj = await this.WaitToUseHttpClient(cancellationToken);
@@ -421,13 +421,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                     ServiceFabricHttpClientEventSource.Current.Send($"{this.ClientId}:{requestId}", $"{request.Method.Method} Request Url: {requestUri}");
                     response = await this.httpClient.SendAsync(request, cancellationToken);                    
                 }
-                catch(AuthenticationException ex)
+                catch (AuthenticationException ex)
                 {
                     // Retry on Server cert validation Security error, this check is for dotnet core as AuthentocationException is thrown from
                     // ServerCertificateValidatorHttpWrapper.ValidateServerCertificate 
                     if (tryCount == MaxTryCount)
                     {
-                        ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}",
+                        ServiceFabricHttpClientEventSource.Current.ErrorResponse(
+                            $"{this.ClientId}:{requestId}",
                             ex.ToString());
                         throw new InvalidCredentialsException(SR.ErrorRemoteServerCertValidation);
                     }
@@ -445,7 +446,8 @@ namespace Microsoft.ServiceFabric.Client.Http
                     {
                         if (tryCount == MaxTryCount)
                         {
-                            ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}",
+                            ServiceFabricHttpClientEventSource.Current.ErrorResponse(
+                                $"{this.ClientId}:{requestId}",
                                 ex.ToString());
                             throw new InvalidCredentialsException(SR.ErrorRemoteServerCertValidation);
                         }
@@ -462,7 +464,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     }
                 }
 
-                if(serverCertValid)
+                if (serverCertValid)
                 {
                     // server cert was validated, check if client credentials were valid.
                     if (!response.IsSuccessStatusCode)
@@ -472,12 +474,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                         {
                             if (tryCount == MaxTryCount)
                             {
-                                ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{this.ClientId}:{requestId}",
+                                ServiceFabricHttpClientEventSource.Current.ErrorResponse(
+                                    $"{this.ClientId}:{requestId}",
                                     SR.ErrorClientCredentialsInvalid);
                                 throw new InvalidCredentialsException(SR.ErrorClientCredentialsInvalid);
                             }
 
-                            ServiceFabricHttpClientEventSource.Current.ClientCertInvalid($"{this.ClientId}:{requestId}",
+                            ServiceFabricHttpClientEventSource.Current.ClientCertInvalid(
+                                $"{this.ClientId}:{requestId}",
                                 SR.ErrorInvalidClientCredentialsRetryMessage);
                         }
                         else

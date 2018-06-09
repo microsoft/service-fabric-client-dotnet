@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -49,6 +49,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates a Chaos event that gets generated when Chaos stops because either the user issued a stop or the time to
         /// run was up..
         /// </summary>
-        Stopped
+        Stopped,
     }
 }

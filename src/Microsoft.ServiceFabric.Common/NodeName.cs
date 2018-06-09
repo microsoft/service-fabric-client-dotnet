@@ -1,6 +1,7 @@
-﻿// ------------------------------------------------------------------
-// Copyright (c) Microsoft.  All Rights Reserved.
-// ------------------------------------------------------------------
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Common
 {
@@ -33,7 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets if this instance of NodeName represents an empty string.
+        /// Gets a value indicating whether this instance of NodeName represents an empty string.
         /// </summary>
         /// <value>true if this instance represents an empty string else false.</value>
         public bool IsEmpty => string.IsNullOrEmpty(this.nodeName);
@@ -51,7 +52,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="name1">uri1 first object to compare.</param>
         /// <param name="name2">The second object to compare</param>
         /// <returns>true if name1 and name2 are equal; otherwise, false.</returns>
-        public static Boolean operator ==(NodeName name1, NodeName name2)
+        public static bool operator ==(NodeName name1, NodeName name2)
             => name1.Equals(name2);
 
         /// <summary>
@@ -60,7 +61,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="name1">The first object to compare.</param>
         /// <param name="name2">The second object to compare</param>
         /// <returns>true if name1 and name2 are not equal; otherwise, false.</returns>
-        public static Boolean operator !=(NodeName name1, NodeName name2)
+        public static bool operator !=(NodeName name1, NodeName name2)
             => !name1.Equals(name2);
         
         /// <summary>

@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -49,6 +49,6 @@ namespace Microsoft.ServiceFabric.Common
         /// ServicePlacementNonPartiallyPlaceServicePolicyDescription, which indicates that if possible all replicas of a
         /// particular partition of the service should be placed atomically. The value is 5..
         /// </summary>
-        NonPartiallyPlaceService
+        NonPartiallyPlaceService,
     }
 }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ServiceFabric.Cli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.ServiceFabric.Client.Http", "src\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj", "{AAF18C3D-605B-491A-9900-E90807DEC9CE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C7189B91-6CC4-43B6-8DF4-C0439A0DF23B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EAF3918C-DD4A-4868-A3CF-7D7EAE488489}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection

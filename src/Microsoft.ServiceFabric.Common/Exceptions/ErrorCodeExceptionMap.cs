@@ -1,7 +1,7 @@
-﻿//------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
-//------------------------------------------------------------
-
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Common.Exceptions
 {
@@ -14,20 +14,17 @@ namespace Microsoft.ServiceFabric.Common.Exceptions
     /// </summary>
     internal class ErrorCodeExceptionMap
     {
-        /// <summary>
-        /// Contains error codes, for which Transient Exception can be thrown.
-        /// </summary>
-        public static HashSet<FabricErrorCodes> ErrorCodesForTransientException;
-
         static ErrorCodeExceptionMap()
         {
             ErrorCodesForTransientException = new HashSet<FabricErrorCodes>
             {
-                {FabricErrorCodes.FABRIC_E_RECONFIGURATION_PENDING},
-                {FabricErrorCodes.FABRIC_E_NO_WRITE_QUORUM},
-                {FabricErrorCodes.FABRIC_E_SERVICE_OFFLINE},
-                {FabricErrorCodes.E_ABORT}
+                { FabricErrorCodes.FABRIC_E_RECONFIGURATION_PENDING },
+                { FabricErrorCodes.FABRIC_E_NO_WRITE_QUORUM },
+                { FabricErrorCodes.FABRIC_E_SERVICE_OFFLINE },
+                { FabricErrorCodes.E_ABORT },
             };
         }
+
+        public static HashSet<FabricErrorCodes> ErrorCodesForTransientException { get; }
     }
 }

@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -44,6 +44,6 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// The upgrade has failed and is unable to execute FailureAction. The value is 6.
         /// </summary>
-        Failed
+        Failed,
     }
 }

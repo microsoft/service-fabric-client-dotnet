@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -25,26 +25,13 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// </summary>
     internal partial class ImageStoreClient : IImageStoreClient
     {
-        private string imageStorePath;
-        private bool isLocalStore = false;
-        private const int UploadLimitSizeInBytes = 25 * 1024 * 1024;
+        private const int UploadLimitSizeInBytes = 25 * 1024 * 1024;        
         private const int MaxConcurrentUpload = 10;
         private const int MaxUploadTry = 2;
         private const string ZipExtension = "zip";
         private const long ServerTimeOutInSecondsForUpload = 60;
-
-        private async Task LoadImageStoreConnectionString()
-        {
-            if (this.imageStorePath == null)
-            {
-                this.imageStorePath = await this.httpClient.Cluster.GetImageStoreConnectionStringAsync();
-                if (this.imageStorePath != "fabric:ImageStore" && !this.imageStorePath.StartsWith("xstore"))
-                {
-                    this.imageStorePath = new Uri(this.imageStorePath).LocalPath;
-                    this.isLocalStore = true;
-                }
-            }
-        }
+        private string imageStorePath;
+        private bool isLocalStore = false;
 
         /// <inheritdoc />
         public Task UploadFileAsync(
@@ -108,12 +95,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             var pkgPathInImageStore = applicationPackagePathInImageStore;
             if (string.IsNullOrEmpty(pkgPathInImageStore))
             {
-                pkgPathInImageStore = applicationPackagePath.Replace(Path.GetDirectoryName(applicationPackagePath), "");
+                pkgPathInImageStore = applicationPackagePath.Replace(Path.GetDirectoryName(applicationPackagePath), string.Empty);
             }
 
             pkgPathInImageStore = pkgPathInImageStore.Trim('\\', '/');
 
-            await LoadImageStoreConnectionString();
+            await this.LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
                 var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
@@ -129,18 +116,17 @@ namespace Microsoft.ServiceFabric.Client.Http
 
                     File.Copy(file.FullName, targetPath, true);
                 }
-
             }
             else
             {
                 var requestId = Guid.NewGuid();
-                ServiceFabricHttpClientEventSource.Current.InfoMessage($"{this.httpClient.ClientId}:{requestId}",
+                ServiceFabricHttpClientEventSource.Current.InfoMessage(
+                    $"{this.httpClient.ClientId}:{requestId}",
                     "Processing call for ApplicationClient.DeleteApplicationAsync");
 
                 // list of Files to upload.
                 var files = Directory.EnumerateFiles(absPkgPath, "*", SearchOption.AllDirectories)
                     .Select(file => new System.IO.FileInfo(file));
-
 
                 // List of dirs to determine where to upload _.dir fileInfo.
                 var dirPathsInImageStore =
@@ -166,14 +152,13 @@ namespace Microsoft.ServiceFabric.Client.Http
                 }
 
                 // upload single files with up to MaxConcurrentUpload in parallel. 
-                await UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
+                await this.UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
 
                 // upload chunks with up to MaxConcurrentUpload in parallel. 
-                await UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
+                await this.UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
 
                 // upload _.dirs with up to MaxConcurrentUpload in parallel. 
-                await UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
-
+                await this.UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
             }
         }
 
@@ -198,7 +183,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            await LoadImageStoreConnectionString();
+            await this.LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
                 File.WriteAllBytes(Path.Combine(this.imageStorePath, pathInImageStore), fileContentsToUpload);
@@ -223,7 +208,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     var request = new HttpRequestMessage()
                     {
                         Method = HttpMethod.Put,
-                        Content = new ByteArrayContent(fileContentsToUpload)
+                        Content = new ByteArrayContent(fileContentsToUpload),
                     };
 
                     request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
@@ -258,7 +243,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// value of <paramref name="startBytePosition"/> would be 0, value of <paramref name="endBytePosition"/> would be 4999 and value of
         /// <paramref name="length"/> would be 5000.
         /// </remarks>
-        internal  Task UploadFileChunkAsync(
+        internal Task UploadFileChunkAsync(
             byte[] fileChunkToUpload,
             string pathInImageStore,
             Guid? sessionId,
@@ -293,7 +278,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Put,
-                    Content = new ByteArrayContent(fileChunkToUpload)
+                    Content = new ByteArrayContent(fileChunkToUpload),
                 };
 
                 request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
@@ -304,7 +289,6 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
-
 
         private static IEnumerable<ChunkInfo> GetChunksInfoForFile(
             System.IO.FileInfo fileInfo,
@@ -324,7 +308,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             long startPosition = 0;
             for (var chunk = 1; chunk <= chunks; chunk++)
             {
-                long endPosition = UploadLimitSizeInBytes * (chunk) - 1;
+                long endPosition = (UploadLimitSizeInBytes * chunk) - 1;
 
                 if (endPosition >= fileSize)
                 {
@@ -337,13 +321,68 @@ namespace Microsoft.ServiceFabric.Client.Http
                         StartPosition = startPosition,
                         EndPosition = endPosition,
                         SessionId = uploadSessionId,
-                        FileUploadInfo = fileUploadInfo
+                        FileUploadInfo = fileUploadInfo,
                     });
 
                 startPosition = endPosition + 1;
             }
 
             return chunkInfos;
+        }
+
+        /// <summary>
+        /// Compresses Application Package. Code, Config and Data Pkg folders are compressed in each service package.
+        /// </summary>
+        /// <param name="appPkgPath">Absolute path to application package.</param>
+        private static Task CompressApplicationPackage(string appPkgPath)
+        {
+            var dirsToCompress = new List<string>();
+
+            // Get the service packages in application package
+            foreach (var servicePackage in new DirectoryInfo(appPkgPath).GetDirectories())
+            {
+                // Get Code/Config/Data packages for each service package.
+                dirsToCompress.AddRange(servicePackage.GetDirectories().Select(package => package.FullName));
+            }
+
+            return Task.WhenAll(dirsToCompress.Select(dir => Task.Run(() => CompressDirectory(dir, $"{dir}.{ZipExtension}", true))).ToArray());
+        }
+
+        private static void CompressDirectory(
+            string sourceDirToCompress,
+            string destCompressedFile,
+            bool deleteSourceDirAfterCompression)
+        {
+            if (File.Exists(destCompressedFile))
+            {
+                File.Delete(destCompressedFile);
+            }
+
+            ZipFile.CreateFromDirectory(sourceDirToCompress, destCompressedFile);
+
+            if (deleteSourceDirAfterCompression)
+            {
+                Directory.Delete(sourceDirToCompress, true);
+            }
+        }
+
+        /// <summary>
+        /// Gets the path to upload to in image store.
+        /// </summary>
+        /// <param name="compressedPkgPath">Path to local compressed package</param>
+        /// <param name="pkgPathInImageStore">Package Path in image store.</param>
+        /// <param name="pathInCompressedPackage">Path to fileInfo/dir in compressed package.</param>
+        /// <returns>Relative PAth in image store.</returns>
+        private static string GetPathInImageStore(
+            string compressedPkgPath,
+            string pkgPathInImageStore,
+            string pathInCompressedPackage)
+        {
+            var relativePath = pathInCompressedPackage.Replace(compressedPkgPath, string.Empty).Trim('\\', '/');
+
+            return relativePath.Equals(string.Empty)
+                ? pkgPathInImageStore
+                : $"{pkgPathInImageStore}{Path.DirectorySeparatorChar}{relativePath}";
         }
 
         private async Task UploadAllChunksAsync(
@@ -397,7 +436,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             var length = chunkInfo.StartPosition - chunkInfo.EndPosition + 1;
             var chunk = new byte[length];
 
-            using (var streamSource = new FileStream(chunkInfo.FileUploadInfo.FileInfo.FullName, FileMode.Open,
+            using (var streamSource = new FileStream(
+                chunkInfo.FileUploadInfo.FileInfo.FullName,
+                FileMode.Open,
                 FileAccess.Read,
                 FileShare.Read))
             {
@@ -410,7 +451,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             try
             {
-                await UploadFileChunkAsync(
+                await this.UploadFileChunkAsync(
                     chunk,
                     chunkInfo.FileUploadInfo.FilePathInImageStore,
                     chunkInfo.SessionId,
@@ -482,7 +523,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             try
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                await UploadFileAsync(
+                await this.UploadFileAsync(
                     fileContent,
                     filePathInImageStore,
                     $"{parentRequestId}:{Guid.NewGuid()}",
@@ -500,57 +541,17 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
         }
 
-        /// <summary>
-        /// Compresses Application Package. Code, Config and Data Pkg folders are compressed in each service package.
-        /// </summary>
-        /// <param name="appPkgPath">Absolute path to application package.</param>
-        private static Task CompressApplicationPackage(string appPkgPath)
+        private async Task LoadImageStoreConnectionString()
         {
-            var dirsToCompress = new List<string>();
-
-            // Get the service packages in application package
-            foreach (var servicePackage in new DirectoryInfo(appPkgPath).GetDirectories())
+            if (this.imageStorePath == null)
             {
-                // Get Code/Config/Data packages for each service package.
-                dirsToCompress.AddRange(servicePackage.GetDirectories().Select(package => package.FullName));
+                this.imageStorePath = await this.httpClient.Cluster.GetImageStoreConnectionStringAsync();
+                if (this.imageStorePath != "fabric:ImageStore" && !this.imageStorePath.StartsWith("xstore"))
+                {
+                    this.imageStorePath = new Uri(this.imageStorePath).LocalPath;
+                    this.isLocalStore = true;
+                }
             }
-
-            return Task.WhenAll(dirsToCompress.Select(dir => Task.Run(() => CompressDirectory(dir, $"{dir}.{ZipExtension}", true))).ToArray());
-        }
-
-        private static void CompressDirectory(string sourceDirToCompress, string destCompressedFile,
-            bool deleteSourceDirAfterCompression)
-        {
-            if (File.Exists(destCompressedFile))
-            {
-                File.Delete(destCompressedFile);
-            }
-
-            ZipFile.CreateFromDirectory(sourceDirToCompress, destCompressedFile);
-
-            if (deleteSourceDirAfterCompression)
-            {
-                Directory.Delete(sourceDirToCompress, true);
-            }
-        }
-
-        /// <summary>
-        /// Gets the path to upload to in image store.
-        /// </summary>
-        /// <param name="compressedPkgPath">Path to local compressed package</param>
-        /// <param name="pkgPathInImageStore">Package Path in image store.</param>
-        /// <param name="pathInCompressedPackage">Path to fileInfo/dir in compressed package.</param>
-        /// <returns>Relative PAth in image store.</returns>
-        private static string GetPathInImageStore(
-            string compressedPkgPath,
-            string pkgPathInImageStore,
-            string pathInCompressedPackage)
-        {
-            var relativePath = pathInCompressedPackage.Replace(compressedPkgPath, "").Trim('\\', '/');
-
-            return relativePath.Equals(string.Empty)
-                ? pkgPathInImageStore
-                : $"{pkgPathInImageStore}{Path.DirectorySeparatorChar}{relativePath}";
         }
 
         /// <summary>
