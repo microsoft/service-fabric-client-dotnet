@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -24,6 +24,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates that the provision is for an application package that was previously uploaded to an external store. The
         /// application package ends with the extension *.sfpkg. The value is 2..
         /// </summary>
-        ExternalStore
+        ExternalStore,
     }
 }

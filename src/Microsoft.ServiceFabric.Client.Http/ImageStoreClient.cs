@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -42,12 +42,12 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             contentPath.ThrowIfNull(nameof(contentPath));
 
-            await LoadImageStoreConnectionString();
+            await this.LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
                 var path = Path.Combine(this.imageStorePath, contentPath);
-                var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d.Replace(this.imageStorePath, ""), (long)Directory.EnumerateFiles(d).Count())).ToList();
-                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, ""))).ToList();
+                var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d.Replace(this.imageStorePath, string.Empty), (long)Directory.EnumerateFiles(d).Count())).ToList();
+                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, string.Empty))).ToList();
                 return new ImageStoreContent(files, directories);
             }
             else
@@ -84,11 +84,11 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             contentPath.ThrowIfNull(nameof(contentPath));
 
-            await LoadImageStoreConnectionString();
+            await this.LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
                 var path = Path.Combine(this.imageStorePath, contentPath);
-                FileAttributes attr = File.GetAttributes(path);
+                var attr = File.GetAttributes(path);
 
                 if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                 {
@@ -130,12 +130,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-
-            await LoadImageStoreConnectionString();
+            await this.LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
-                var directories = Directory.EnumerateDirectories(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d.Replace(this.imageStorePath, ""), (long)Directory.EnumerateFiles(d).Count())).ToList();
-                var files = Directory.EnumerateFiles(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, ""))).ToList();
+                var directories = Directory.EnumerateDirectories(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d.Replace(this.imageStorePath, string.Empty), (long)Directory.EnumerateFiles(d).Count())).ToList();
+                var files = Directory.EnumerateFiles(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, string.Empty))).ToList();
                 return new ImageStoreContent(files, directories);
             }
             else
@@ -171,13 +170,13 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
 
-            await LoadImageStoreConnectionString();
+            await this.LoadImageStoreConnectionString();
             if (this.isLocalStore)
             {
                 var source = Path.Combine(this.imageStorePath, imageStoreCopyDescription.RemoteSource);
                 var destination = Path.Combine(this.imageStorePath, imageStoreCopyDescription.RemoteDestination);
 
-                FileAttributes attr = File.GetAttributes(source);
+                var attr = File.GetAttributes(source);
                 if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                 {
                     var files = Directory.EnumerateFiles(source, "*", SearchOption.AllDirectories)
@@ -223,7 +222,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     var request = new HttpRequestMessage()
                     {
                         Method = HttpMethod.Post,
-                        Content = new StringContent(content, Encoding.UTF8)
+                        Content = new StringContent(content, Encoding.UTF8),
                     };
                     request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                     return request;

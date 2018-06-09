@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -51,6 +51,6 @@ namespace Microsoft.ServiceFabric.Common
         /// node. In other words, Service Fabric has been informed that the persisted state on the node has been permanently
         /// lost. The value is 7..
         /// </summary>
-        Removed
+        Removed,
     }
 }

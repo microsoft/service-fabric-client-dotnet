@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -39,6 +39,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Replica is dropped. This means that the replica has been removed from the replica set. If it is persisted, its
         /// state has been deleted. The value is 5..
         /// </summary>
-        Dropped
+        Dropped,
     }
 }

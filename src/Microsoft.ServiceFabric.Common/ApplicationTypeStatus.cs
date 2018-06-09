@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -37,6 +37,6 @@ namespace Microsoft.ServiceFabric.Common
         /// obtained from the application type information query. The failed application type information remains in the
         /// cluster until it is unprovisioned or reprovisioned successfully. The value is 4..
         /// </summary>
-        Failed
+        Failed,
     }
 }

@@ -1,6 +1,7 @@
-﻿//------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
-//------------------------------------------------------------
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Client.Exceptions
 {
@@ -24,7 +25,8 @@ namespace Microsoft.ServiceFabric.Client.Exceptions
         /// Initializes a new instance of the <see cref="ServiceFabricRequestException"/> class with a specified error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public ServiceFabricRequestException(string message) : base(message)
+        public ServiceFabricRequestException(string message)
+            : base(message)
         {
         }
 
@@ -34,7 +36,8 @@ namespace Microsoft.ServiceFabric.Client.Exceptions
         /// </summary>
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        public ServiceFabricRequestException(string message, Exception innerException) : base(message, innerException)
+        public ServiceFabricRequestException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 
@@ -53,7 +56,8 @@ namespace Microsoft.ServiceFabric.Client.Exceptions
         /// <exception cref="SerializationException">
         /// The class name is null or <see cref="Exception.HResult"/> is zero (0)
         /// </exception>
-        protected ServiceFabricRequestException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ServiceFabricRequestException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

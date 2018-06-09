@@ -1,6 +1,7 @@
-﻿// ------------------------------------------------------------------
-// Copyright (c) Microsoft.  All Rights Reserved.
-// ------------------------------------------------------------------
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Client
 {
@@ -82,7 +83,7 @@ namespace Microsoft.ServiceFabric.Client
         IPartitionClient Partitions { get; }
 
         /// <summary>
-        /// Get Property Client to manage properties.
+        /// Gets Property Client to manage properties.
         /// </summary>
         /// <returns>The <see cref="IPropertyManagementClient"/></returns>
         IPropertyManagementClient Properties { get; }

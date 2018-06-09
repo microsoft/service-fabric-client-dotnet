@@ -1,5 +1,6 @@
-﻿// ------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Client
@@ -17,12 +18,12 @@ namespace Microsoft.ServiceFabric.Client
     /// </summary>
     internal class ServerCertificateValidator
     {
-        private RemoteX509SecuritySettings remoteX509SecuritySettings;
-
         /// <summary>
         /// Protects upgrading the remoteX509SecuritySettings while Cert Validation callback is in progress.
         /// </summary>
         private readonly ReaderWriterLockSlim slimRWLock = new ReaderWriterLockSlim();
+
+        private RemoteX509SecuritySettings remoteX509SecuritySettings;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerCertificateValidator"/> class to perform remote certificate validation using <paramref name="remoteX509SecuritySettings"/>

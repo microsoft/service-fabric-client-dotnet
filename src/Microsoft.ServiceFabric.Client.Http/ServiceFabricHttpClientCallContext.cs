@@ -1,5 +1,6 @@
-﻿// ------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Client.Http
@@ -13,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// </summary>
     public static class ServiceFabricHttpClientCallContext
     {
-        internal static AsyncLocal<string> callContextAsyncLocal = new AsyncLocal<string>();
+        private static AsyncLocal<string> callContextAsyncLocal = new AsyncLocal<string>();
 
         /// <summary>
         /// Gets CorrelationId from <see cref="System.Threading.AsyncLocal{T}"/>

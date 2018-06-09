@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -24,6 +24,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates an incremental backup. A backup chain is comprised of a full backup followed by 0 or more incremental
         /// backups..
         /// </summary>
-        Incremental
+        Incremental,
     }
 }

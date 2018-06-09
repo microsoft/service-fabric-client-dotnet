@@ -1,5 +1,6 @@
-﻿// ------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Client
@@ -112,10 +113,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <inheritdoc/>
         public IServiceTypeClient ServiceTypes { get; protected set; }
 
-        /// <summary>
-        /// Gets EventStore Client to query events related to applications, services replicas and containers.
-        /// </summary>
-        /// <returns>The <see cref="IEventsStoreClient"/></returns>
+        /// <inheritdoc/>
         public IEventsStoreClient EventsStore { get; protected set; }
 
         /// <summary>

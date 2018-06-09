@@ -1,5 +1,5 @@
-﻿// ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -10,8 +10,6 @@ namespace Microsoft.ServiceFabric.Common.Utilities
 
     internal class ConcurrentOperationsRunner<T>
     {
-        public delegate bool TryGetNextOperationParameters(out T parameters);
-
         private readonly Func<T, Task> runOperation;
         private readonly TryGetNextOperationParameters tryGetNextOperationParameters;
         private readonly int concurrencyCount;
@@ -25,6 +23,8 @@ namespace Microsoft.ServiceFabric.Common.Utilities
             this.tryGetNextOperationParameters = tryGetNextOperationParameters;
             this.concurrencyCount = concurrencyCount;
         }
+
+        public delegate bool TryGetNextOperationParameters(out T parameters);
 
         public async Task RunAll()
         {

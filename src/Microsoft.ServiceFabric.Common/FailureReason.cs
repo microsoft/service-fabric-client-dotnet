@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -34,6 +34,6 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// The overall upgrade took longer than the allowed upgrade timeout to process. The value is 4.
         /// </summary>
-        OverallUpgradeTimeout
+        OverallUpgradeTimeout,
     }
 }
