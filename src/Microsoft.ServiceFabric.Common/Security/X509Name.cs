@@ -1,6 +1,7 @@
-﻿//-----------------------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
-//-----------------------------------------------------------------------------
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Common.Security
 {
@@ -33,7 +34,7 @@ namespace Microsoft.ServiceFabric.Common.Security
         }
 
         /// <summary>
-        ///   <para>Gets the subject common name or DNS name of X509 certificate</para>
+        /// Gets the subject common name or DNS name of X509 certificate.
         /// </summary>
         /// <value>
         ///   <para>Subject common name or DNS name of X509 certificate</para>
@@ -41,7 +42,7 @@ namespace Microsoft.ServiceFabric.Common.Security
         public string Name { get; }
 
         /// <summary>
-        ///   <para>Gets the certificate thumbprint to identify issuer</para>
+        /// Gets the certificate thumbprint to identify issuer.
         /// </summary>
         /// <value>
         ///   <para>Certificate thumbprint to identify issuer</para>
@@ -66,7 +67,7 @@ namespace Microsoft.ServiceFabric.Common.Security
         ///   <para>Compute hash code</para>
         /// </summary>
         /// <returns>
-        ///   <para>Returns <see cref="System.Int32" /> representing the hash code.</para>
+        ///   <para>Returns <see cref="int" /> representing the hash code.</para>
         /// </returns>
         public override int GetHashCode()
         {

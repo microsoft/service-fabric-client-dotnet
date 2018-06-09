@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -31,6 +31,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates the backup policy is applied at application level. All services and partitions of the application inherit
         /// this policy unless explicitly overridden at service or partition level..
         /// </summary>
-        Application
+        Application,
     }
 }

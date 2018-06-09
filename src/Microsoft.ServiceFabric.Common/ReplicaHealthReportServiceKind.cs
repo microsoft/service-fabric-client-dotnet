@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -18,6 +18,6 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Uses Service Fabric to make its state or part of its state highly available and reliable. The value is 2..
         /// </summary>
-        Stateful
+        Stateful,
     }
 }

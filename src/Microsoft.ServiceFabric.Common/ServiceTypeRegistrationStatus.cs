@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -34,6 +34,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates that the service type is enabled and registered on the node by a code package. Replicas of this service
         /// type can now be placed on this node. The value is 3..
         /// </summary>
-        Registered
+        Registered,
     }
 }

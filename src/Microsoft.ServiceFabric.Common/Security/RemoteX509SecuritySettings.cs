@@ -1,5 +1,6 @@
-﻿// ------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Common.Security
@@ -78,7 +79,7 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// Gets a value indicating whether to ignore Crl offline error when verifying remote certificate. 
         /// </summary>
         /// <value>
-        /// <see cref="System.Boolean"/> indicating whether to ignore Crl offline error when verifying remote certificate. 
+        /// <see cref="bool"/> indicating whether to ignore Crl offline error when verifying remote certificate. 
         /// </value>
         public bool IgnoreCrlOfflineError { get; }
     }

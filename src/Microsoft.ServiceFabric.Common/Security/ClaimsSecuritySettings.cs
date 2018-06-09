@@ -1,5 +1,6 @@
-﻿// ------------------------------------------------------------
-//  Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
 namespace Microsoft.ServiceFabric.Common.Security
@@ -17,7 +18,8 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// </summary>
         /// <param name="claimsToken">string representation of claims token acquired from STS (security token service).</param>
         /// <param name="remoteX509SecuritySettings">Security settings to verify remote X509 certificate.</param>
-        public ClaimsSecuritySettings(string claimsToken, RemoteX509SecuritySettings remoteX509SecuritySettings) : base(SecurityType.Claims)
+        public ClaimsSecuritySettings(string claimsToken, RemoteX509SecuritySettings remoteX509SecuritySettings) 
+            : base(SecurityType.Claims)
         {
             if (string.IsNullOrWhiteSpace(claimsToken))
             {

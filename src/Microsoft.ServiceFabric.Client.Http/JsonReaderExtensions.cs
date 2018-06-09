@@ -1,5 +1,5 @@
-﻿// ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -492,10 +492,10 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// </summary>
         /// <typeparam name="T">Type to deserialize into.</typeparam>
         /// <param name="reader">Json Reader.</param>
-        /// <param name="GetFromJsonPropertiesFunc">Delegate to parse json properties for type T.</param>
+        /// <param name="getFromJsonPropertiesFunc">Delegate to parse json properties for type T.</param>
         /// <returns>Deserialized object of type T. returns default(T) if Json Token represented by reader is null
         /// OR its an empty Json.</returns>
-        public static T Deserialize<T>(this JsonReader reader, Func<JsonReader, T> GetFromJsonPropertiesFunc)
+        public static T Deserialize<T>(this JsonReader reader, Func<JsonReader, T> getFromJsonPropertiesFunc)
         {
             var obj = default(T);
 
@@ -515,7 +515,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             // not empty json, get value by reading properties.
-            obj = GetFromJsonPropertiesFunc.Invoke(reader);
+            obj = getFromJsonPropertiesFunc.Invoke(reader);
             reader.ReadEndObject();
             return obj;
         }

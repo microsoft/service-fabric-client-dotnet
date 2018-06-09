@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -230,7 +230,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -271,7 +271,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -478,7 +478,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -685,7 +685,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -883,7 +883,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -956,7 +956,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
@@ -1029,7 +1029,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8)
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;

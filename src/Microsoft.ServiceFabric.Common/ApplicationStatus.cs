@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
@@ -40,6 +40,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates the creation or deletion of application was terminated due to persistent failures. Another create/delete
         /// request can be accepted to resume a failed application. The value is 5..
         /// </summary>
-        Failed
+        Failed,
     }
 }
