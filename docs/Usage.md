@@ -2,7 +2,7 @@
 ### Connecting to unsecured cluster
 ```csharp
 // create client
-var clusterUrl = new Uri(@"https://<cluster_fqdn>:19080");
+var clusterUrl = new Uri(@"http://<cluster_fqdn>:19080");
 var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
 ```
 
