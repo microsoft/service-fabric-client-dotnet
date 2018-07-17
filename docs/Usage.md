@@ -11,7 +11,7 @@ var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
 // create client using security settings
 var clusterUrl = new Uri(@"https://<cluster_fqdn>:19080");
 var settings = new ClientSettings(GetSecurityCredentials);
-var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
+var sfClient = new ServiceFabricHttpClient(clusterUrl, settings);
 
 public static X509SecuritySettings GetSecurityCredentials()
 {
@@ -28,7 +28,7 @@ public static X509SecuritySettings GetSecurityCredentials()
 // create client using security settings
 var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
 var settings = new ClientSettings(GetSecurityCredentials);
-var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
+var sfClient = new ServiceFabricHttpClient(clusterUrl, settings);
 
 static ClaimsSecuritySettings GetSecurityCredentials()
 {
