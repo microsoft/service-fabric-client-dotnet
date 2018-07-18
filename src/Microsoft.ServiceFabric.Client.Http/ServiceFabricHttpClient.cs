@@ -351,7 +351,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
                 if (error != null)
                 {
-                    throw new ServiceFabricException($"{error.Error.Code.ToString()}. {error.Error.Message}");
+                    throw new ServiceFabricException(error.Message, error.ErrorCode ?? FabricErrorCodes.UNKNOWN, false);
                 }
             }
             else
