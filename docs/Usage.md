@@ -15,8 +15,8 @@ var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
 
 public static X509SecuritySettings GetSecurityCredentials()
 {
-    // get the X509Certificate either from Certificate store or from file.
-    var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate("<Path to .pfx file>", "password");
+    // get the X509Certificate2 either from Certificate store or from file.
+    var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate2("<Path to .pfx file>", "password");
     var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
     return new X509SecuritySettings(clientCert, remoteSecuritySettings);
 }
