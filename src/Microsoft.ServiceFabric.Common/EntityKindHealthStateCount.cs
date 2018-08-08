@@ -16,9 +16,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the EntityKindHealthStateCount class.
         /// </summary>
-        /// <param name="entityKind">The entity type of a Service Fabric entity such as Cluster, Node, Application, Service,
-        /// Partition, Replica etc. Possible values include: 'Invalid', 'Node', 'Partition', 'Service', 'Application',
-        /// 'Replica', 'DeployedApplication', 'DeployedServicePackage', 'Cluster'</param>
+        /// <param name="entityKind">The entity kind for which health states are evaluated. Possible values include: 'Invalid',
+        /// 'Node', 'Partition', 'Service', 'Application', 'Replica', 'DeployedApplication', 'DeployedServicePackage',
+        /// 'Cluster'
+        /// 
+        /// The entity type of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
+        /// </param>
         /// <param name="healthStateCount">The health state count for the entities of the specified kind.</param>
         public EntityKindHealthStateCount(
             EntityKind? entityKind = default(EntityKind?),
@@ -29,9 +32,10 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the entity type of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica
-        /// etc. Possible values include: 'Invalid', 'Node', 'Partition', 'Service', 'Application', 'Replica',
-        /// 'DeployedApplication', 'DeployedServicePackage', 'Cluster'
+        /// Gets the entity kind for which health states are evaluated. Possible values include: 'Invalid', 'Node',
+        /// 'Partition', 'Service', 'Application', 'Replica', 'DeployedApplication', 'DeployedServicePackage', 'Cluster'
+        /// 
+        /// The entity type of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
         /// </summary>
         public EntityKind? EntityKind { get; }
 

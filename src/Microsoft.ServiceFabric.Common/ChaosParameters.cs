@@ -28,8 +28,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="maxConcurrentFaults">MaxConcurrentFaults is the maximum number of concurrent faults induced per
         /// iteration.
         /// Chaos executes in iterations and two consecutive iterations are separated by a validation phase.
-        /// The higher the concurrency, the more aggressive the injection of faults -- inducing more complex series of states
-        /// to uncover bugs.
+        /// The higher the concurrency, the more aggressive the injection of faults, leading to inducing more complex series of
+        /// states to uncover bugs.
         /// The recommendation is to start with a value of 2 or 3 and to exercise caution while moving up.
         /// </param>
         /// <param name="enableMoveReplicaFaults">Enables or disables the move primary and move secondary faults.
@@ -103,8 +103,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets maxConcurrentFaults is the maximum number of concurrent faults induced per iteration.
         /// Chaos executes in iterations and two consecutive iterations are separated by a validation phase.
-        /// The higher the concurrency, the more aggressive the injection of faults -- inducing more complex series of states
-        /// to uncover bugs.
+        /// The higher the concurrency, the more aggressive the injection of faults, leading to inducing more complex series of
+        /// states to uncover bugs.
         /// The recommendation is to start with a value of 2 or 3 and to exercise caution while moving up.
         /// </summary>
         public long? MaxConcurrentFaults { get; }

@@ -23,6 +23,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceTypeName">Name of the service type as specified in the service manifest.</param>
         /// <param name="placementConstraints">The placement constraint to be used when instantiating this service in a Service
         /// Fabric cluster.</param>
+        /// <param name="loadMetrics">The service load metrics is given as an array of ServiceLoadMetricDescription
+        /// objects.</param>
         /// <param name="servicePlacementPolicies">List of service placement policy descriptions.</param>
         /// <param name="extensions">List of service type extensions.</param>
         protected ServiceTypeDescription(
@@ -30,6 +32,7 @@ namespace Microsoft.ServiceFabric.Common
             bool? isStateful = default(bool?),
             string serviceTypeName = default(string),
             string placementConstraints = default(string),
+            IEnumerable<ServiceLoadMetricDescription> loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>),
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             IEnumerable<ServiceTypeExtensionDescription> extensions = default(IEnumerable<ServiceTypeExtensionDescription>))
         {
@@ -38,6 +41,7 @@ namespace Microsoft.ServiceFabric.Common
             this.IsStateful = isStateful;
             this.ServiceTypeName = serviceTypeName;
             this.PlacementConstraints = placementConstraints;
+            this.LoadMetrics = loadMetrics;
             this.ServicePlacementPolicies = servicePlacementPolicies;
             this.Extensions = extensions;
         }
@@ -57,6 +61,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the placement constraint to be used when instantiating this service in a Service Fabric cluster.
         /// </summary>
         public string PlacementConstraints { get; }
+
+        /// <summary>
+        /// Gets the service load metrics is given as an array of ServiceLoadMetricDescription objects.
+        /// </summary>
+        public IEnumerable<ServiceLoadMetricDescription> LoadMetrics { get; }
 
         /// <summary>
         /// Gets list of service placement policy descriptions.

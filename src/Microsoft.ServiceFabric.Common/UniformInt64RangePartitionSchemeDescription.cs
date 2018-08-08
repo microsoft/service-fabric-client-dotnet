@@ -18,10 +18,10 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="count">The number of partitions.</param>
         /// <param name="lowKey">String indicating the lower bound of the partition key range that
-        /// should be split between the partition ‘Count’
+        /// should be split between the partitions.
         /// </param>
         /// <param name="highKey">String indicating the upper bound of the partition key range that
-        /// should be split between the partition ‘Count’
+        /// should be split between the partitions.
         /// </param>
         public UniformInt64RangePartitionSchemeDescription(
             int? count,
@@ -45,13 +45,13 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets string indicating the lower bound of the partition key range that
-        /// should be split between the partition ‘Count’
+        /// should be split between the partitions.
         /// </summary>
         public string LowKey { get; }
 
         /// <summary>
         /// Gets string indicating the upper bound of the partition key range that
-        /// should be split between the partition ‘Count’
+        /// should be split between the partitions.
         /// </summary>
         public string HighKey { get; }
     }

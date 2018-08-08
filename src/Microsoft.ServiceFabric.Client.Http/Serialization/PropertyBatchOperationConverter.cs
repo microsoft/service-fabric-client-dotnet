@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PropertyBatchOperation GetFromJsonProperties(JsonReader reader)
         {
-            PropertyBatchOperation obj;
+            PropertyBatchOperation obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -81,7 +81,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, PropertyBatchOperation obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(PropertyBatchOperationKind.CheckExists))
             {
                 CheckExistsPropertyBatchOperationConverter.Serialize(writer, (CheckExistsPropertyBatchOperation)obj);

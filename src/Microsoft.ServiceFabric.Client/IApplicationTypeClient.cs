@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ApplicationTypeClient operataions.
+    /// Interface containing methods for performing ApplicationTypeClient operations.
     /// </summary>
     public partial interface IApplicationTypeClient
     {
@@ -24,10 +24,10 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Returns the information about the application types that are provisioned or in the process of being provisioned in
         /// the Service Fabric cluster. Each version of an application type is returned as one application type. The response
-        /// includes the name, version, status and other details about the application type. This is a paged query, meaning
+        /// includes the name, version, status, and other details about the application type. This is a paged query, meaning
         /// that if not all of the application types fit in a page, one page of results is returned as well as a continuation
-        /// token which can be used to get the next page. For example, if there are 10 application types but a page only fits
-        /// the first 3 application types, or if max results is set to 3, then 3 is returned. To access the rest of the
+        /// token, which can be used to get the next page. For example, if there are 10 application types but a page only fits
+        /// the first three application types, or if max results is set to 3, then three is returned. To access the rest of the
         /// results, retrieve subsequent pages by using the returned continuation token in the next query. An empty
         /// continuation token is returned if there are no subsequent pages.
         /// </remarks>
@@ -45,7 +45,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -74,12 +74,12 @@ namespace Microsoft.ServiceFabric.Client
         /// the Service Fabric cluster. These results are of application types whose name match exactly the one specified as
         /// the parameter, and which comply with the given query parameters. All versions of the application type matching the
         /// application type name are returned, with each version returned as one application type. The response includes the
-        /// name, version, status and other details about the application type. This is a paged query, meaning that if not all
-        /// of the application types fit in a page, one page of results is returned as well as a continuation token which can
-        /// be used to get the next page. For example, if there are 10 application types but a page only fits the first 3
-        /// application types, or if max results is set to 3, then 3 is returned. To access the rest of the results, retrieve
-        /// subsequent pages by using the returned continuation token in the next query. An empty continuation token is
-        /// returned if there are no subsequent pages.
+        /// name, version, status, and other details about the application type. This is a paged query, meaning that if not all
+        /// of the application types fit in a page, one page of results is returned as well as a continuation token, which can
+        /// be used to get the next page. For example, if there are 10 application types but a page only fits the first three
+        /// application types, or if max results is set to 3, then three is returned. To access the rest of the results,
+        /// retrieve subsequent pages by using the returned continuation token in the next query. An empty continuation token
+        /// is returned if there are no subsequent pages.
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>
@@ -89,7 +89,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -143,9 +143,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Removes or unregisters a Service Fabric application type from the cluster.
         /// </summary>
         /// <remarks>
-        /// Removes or unregisters a Service Fabric application type from the cluster. This operation can only be performed if
-        /// all application instances of the application type has been deleted. Once the application type is unregistered, no
-        /// new application instances can be created for this particular application type.
+        /// This operation can only be performed if all application instances of the application type have been deleted. Once
+        /// the application type is unregistered, no new application instances can be created for this particular application
+        /// type.
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="unprovisionApplicationTypeDescriptionInfo">The relative path for the application package in the image
@@ -171,7 +171,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the manifest describing an application type.
         /// </summary>
         /// <remarks>
-        /// Gets the manifest describing an application type. The response contains the application manifest XML as a string.
+        /// The response contains the application manifest XML as a string.
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>

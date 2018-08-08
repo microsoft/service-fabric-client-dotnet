@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static FabricEvent GetFromJsonProperties(JsonReader reader)
         {
-            FabricEvent obj;
+            FabricEvent obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -329,7 +329,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, FabricEvent obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(FabricEventKind.ApplicationEvent))
             {
                 ApplicationEventConverter.Serialize(writer, (ApplicationEvent)obj);

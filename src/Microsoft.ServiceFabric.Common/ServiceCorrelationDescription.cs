@@ -16,8 +16,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ServiceCorrelationDescription class.
         /// </summary>
-        /// <param name="scheme">The service correlation scheme. Possible values include: 'Invalid', 'Affinity',
-        /// 'AlignedAffinity', 'NonAlignedAffinity'</param>
+        /// <param name="scheme">The ServiceCorrelationScheme which describes the relationship between this service and the
+        /// service specified via ServiceName. Possible values include: 'Invalid', 'Affinity', 'AlignedAffinity',
+        /// 'NonAlignedAffinity'
+        /// 
+        /// The service correlation scheme.
+        /// </param>
         /// <param name="serviceName">The name of the service that the correlation relationship is established with.</param>
         public ServiceCorrelationDescription(
             ServiceCorrelationScheme? scheme,
@@ -30,8 +34,10 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the service correlation scheme. Possible values include: 'Invalid', 'Affinity', 'AlignedAffinity',
-        /// 'NonAlignedAffinity'
+        /// Gets the ServiceCorrelationScheme which describes the relationship between this service and the service specified
+        /// via ServiceName. Possible values include: 'Invalid', 'Affinity', 'AlignedAffinity', 'NonAlignedAffinity'
+        /// 
+        /// The service correlation scheme.
         /// </summary>
         public ServiceCorrelationScheme? Scheme { get; }
 

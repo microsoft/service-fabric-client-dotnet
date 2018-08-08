@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing ComposeDeploymentClient operataions.
+    /// Class containing methods for performing ComposeDeploymentClient operations.
     /// </summary>
     internal partial class ComposeDeploymentClient : IComposeDeploymentClient
     {

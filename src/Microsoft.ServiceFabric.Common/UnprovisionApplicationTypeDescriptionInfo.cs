@@ -21,7 +21,7 @@ namespace Microsoft.ServiceFabric.Common
         /// manifest.</param>
         /// <param name="async">The flag indicating whether or not unprovision should occur asynchronously. When set to true,
         /// the unprovision operation returns when the request is accepted by the system, and the unprovision operation
-        /// continues without any timeout limit. The default value is false. However, we recommend to set it to true for large
+        /// continues without any timeout limit. The default value is false. However, we recommend setting it to true for large
         /// application packages that were provisioned.</param>
         public UnprovisionApplicationTypeDescriptionInfo(
             string applicationTypeVersion,
@@ -40,7 +40,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the flag indicating whether or not unprovision should occur asynchronously. When set to true, the unprovision
         /// operation returns when the request is accepted by the system, and the unprovision operation continues without any
-        /// timeout limit. The default value is false. However, we recommend to set it to true for large application packages
+        /// timeout limit. The default value is false. However, we recommend setting it to true for large application packages
         /// that were provisioned.
         /// </summary>
         public bool? Async { get; }

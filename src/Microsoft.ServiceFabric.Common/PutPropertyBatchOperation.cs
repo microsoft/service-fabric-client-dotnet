@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="propertyName">The name of the Service Fabric property.</param>
         /// <param name="value">Describes a Service Fabric property value.</param>
-        /// <param name="customTypeId">The property's custom type id. Using this property, the user is able to tag the type of
+        /// <param name="customTypeId">The property's custom type ID. Using this property, the user is able to tag the type of
         /// the value of the property.</param>
         public PutPropertyBatchOperation(
             string propertyName,
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Common
         public PropertyValue Value { get; }
 
         /// <summary>
-        /// Gets the property's custom type id. Using this property, the user is able to tag the type of the value of the
+        /// Gets the property's custom type ID. Using this property, the user is able to tag the type of the value of the
         /// property.
         /// </summary>
         public string CustomTypeId { get; }

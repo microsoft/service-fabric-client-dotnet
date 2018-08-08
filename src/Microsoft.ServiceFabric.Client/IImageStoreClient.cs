@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ImageStoreClient operataions.
+    /// Interface containing methods for performing ImageStoreClient operations.
     /// </summary>
     public partial interface IImageStoreClient
     {
@@ -22,8 +22,8 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the image store content information.
         /// </summary>
         /// <remarks>
-        /// Returns the information about the image store content at the specified contentPath relative to the root of the
-        /// image store.
+        /// Returns the information about the image store content at the specified contentPath. The contentPath is relative to
+        /// the root of the image store.
         /// </remarks>
         /// <param name ="contentPath">Relative path to file or folder in the image store from its root.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the

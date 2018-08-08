@@ -24,12 +24,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Get the Service Fabric cluster manifest. The cluster manifest contains properties of the cluster that include
         /// different node types on the cluster,
-        /// security configurations, fault and upgrade domain topologies, etc.
+        /// security configurations, fault, and upgrade domain topologies, etc.
         /// 
-        /// These properties are specified as part of the ClusterConfig.JSON file while deploying a stand alone cluster.
+        /// These properties are specified as part of the ClusterConfig.JSON file while deploying a stand-alone cluster.
         /// However, most of the information in the cluster manifest
         /// is generated internally by service fabric during cluster deployment in other deployment scenarios (e.g. when using
-        /// azure portal).
+        /// Azure portal).
         /// 
         /// The contents of the cluster manifest are for informational purposes only and users are not expected to take a
         /// dependency on the format of the file contents or its interpretation.
@@ -53,7 +53,6 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the health of a Service Fabric cluster.
         /// </summary>
         /// <remarks>
-        /// Gets the health of a Service Fabric cluster.
         /// Use EventsHealthStateFilter to filter the collection of health events reported on the cluster based on the health
         /// state.
         /// Similarly, use NodesHealthStateFilter and ApplicationsHealthStateFilter to filter the collection of nodes and
@@ -65,7 +64,7 @@ namespace Microsoft.ServiceFabric.Client
         /// following health states. Only nodes that match the filter are returned. All nodes are used to evaluate the
         /// aggregated health state.
         /// If not specified, all entries are returned.
-        /// The state values are flag based enumeration, so the value could be a combination of these values obtained using
+        /// The state values are flag-based enumeration, so the value could be a combination of these values obtained using
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of nodes with HealthState value of OK (2) and Warning (4)
         /// are returned.
@@ -84,7 +83,7 @@ namespace Microsoft.ServiceFabric.Client
         /// The possible values for this parameter include integer value obtained from members or bitwise operations
         /// on members of HealthStateFilter enumeration. Only applications that match the filter are returned.
         /// All applications are used to evaluate the aggregated health state. If not specified, all entries are returned.
-        /// The state values are flag based enumeration, so the value could be a combination of these values obtained using
+        /// The state values are flag-based enumeration, so the value could be a combination of these values obtained using
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of applications with HealthState value of OK (2) and
         /// Warning (4) are returned.
@@ -101,9 +100,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -148,7 +147,6 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the health of a Service Fabric cluster using the specified policy.
         /// </summary>
         /// <remarks>
-        /// Gets the health of a Service Fabric cluster.
         /// Use EventsHealthStateFilter to filter the collection of health events reported on the cluster based on the health
         /// state.
         /// Similarly, use NodesHealthStateFilter and ApplicationsHealthStateFilter to filter the collection of nodes and
@@ -161,7 +159,7 @@ namespace Microsoft.ServiceFabric.Client
         /// following health states. Only nodes that match the filter are returned. All nodes are used to evaluate the
         /// aggregated health state.
         /// If not specified, all entries are returned.
-        /// The state values are flag based enumeration, so the value could be a combination of these values obtained using
+        /// The state values are flag-based enumeration, so the value could be a combination of these values obtained using
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of nodes with HealthState value of OK (2) and Warning (4)
         /// are returned.
@@ -180,7 +178,7 @@ namespace Microsoft.ServiceFabric.Client
         /// The possible values for this parameter include integer value obtained from members or bitwise operations
         /// on members of HealthStateFilter enumeration. Only applications that match the filter are returned.
         /// All applications are used to evaluate the aggregated health state. If not specified, all entries are returned.
-        /// The state values are flag based enumeration, so the value could be a combination of these values obtained using
+        /// The state values are flag-based enumeration, so the value could be a combination of these values obtained using
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6 then health state of applications with HealthState value of OK (2) and
         /// Warning (4) are returned.
@@ -197,9 +195,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -333,7 +331,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
-        /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
+        /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
         /// the fabric client settings that the HTTP Gateway Application is using.
@@ -415,7 +413,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the progress of the current cluster upgrade.
         /// </summary>
         /// <remarks>
-        /// Gets the current progress of the ongoing cluster upgrade. If no upgrade is currently in progress, gets the last
+        /// Gets the current progress of the ongoing cluster upgrade. If no upgrade is currently in progress, get the last
         /// state of the previous cluster upgrade.
         /// </remarks>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
@@ -437,9 +435,8 @@ namespace Microsoft.ServiceFabric.Client
         /// Get the Service Fabric standalone cluster configuration.
         /// </summary>
         /// <remarks>
-        /// Get the Service Fabric standalone cluster configuration. The cluster configuration contains properties of the
-        /// cluster that include different node types on the cluster,
-        /// security configurations, fault and upgrade domain topologies, etc.
+        /// The cluster configuration contains properties of the cluster that include different node types on the cluster,
+        /// security configurations, fault, and upgrade domain topologies, etc.
         /// </remarks>
         /// <param name ="configurationApiVersion">The API version of the Standalone cluster json configuration.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
@@ -553,8 +550,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Unprovision the code or configuration packages of a Service Fabric cluster.
         /// </summary>
         /// <remarks>
-        /// Unprovision the code or configuration packages of a Service Fabric cluster. It is supported to unprovision code and
-        /// configuration separately.
+        /// It is supported to unprovision code and configuration separately.
         /// </remarks>
         /// <param name ="unprovisionFabricDescription">Describes the parameters for unprovisioning a cluster.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the

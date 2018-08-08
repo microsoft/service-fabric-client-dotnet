@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing PartitionClient operataions.
+    /// Class containing methods for performing PartitionClient operations.
     /// </summary>
     internal partial class PartitionClient : IPartitionClient
     {

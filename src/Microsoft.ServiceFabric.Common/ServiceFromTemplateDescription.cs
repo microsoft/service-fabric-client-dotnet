@@ -20,9 +20,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceName">The full name of the service with 'fabric:' URI scheme.</param>
         /// <param name="serviceTypeName">Name of the service type as specified in the service manifest.</param>
         /// <param name="initializationData">The initialization data for the newly created service instance.</param>
-        /// <param name="servicePackageActivationMode">The activation mode of service package to be used for a Service Fabric
-        /// service. This is specified at the time of creating the Service. Possible values include: 'SharedProcess',
-        /// 'ExclusiveProcess'</param>
+        /// <param name="servicePackageActivationMode">The activation mode of service package to be used for a service.
+        /// Possible values include: 'SharedProcess', 'ExclusiveProcess'
+        /// 
+        /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
+        /// creating the Service.
+        /// </param>
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
         public ServiceFromTemplateDescription(
@@ -65,8 +68,11 @@ namespace Microsoft.ServiceFabric.Common
         public byte[] InitializationData { get; }
 
         /// <summary>
-        /// Gets the activation mode of service package to be used for a Service Fabric service. This is specified at the time
-        /// of creating the Service. Possible values include: 'SharedProcess', 'ExclusiveProcess'
+        /// Gets the activation mode of service package to be used for a service. Possible values include: 'SharedProcess',
+        /// 'ExclusiveProcess'
+        /// 
+        /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
+        /// creating the Service.
         /// </summary>
         public ServicePackageActivationMode? ServicePackageActivationMode { get; }
 

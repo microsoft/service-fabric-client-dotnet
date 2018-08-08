@@ -20,8 +20,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="healthState">The health state of a Service Fabric entity such as Cluster, Node, Application, Service,
         /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="partitionId">The Id of the partition.</param>
-        /// <param name="replicaHealthStateChunks">The list of replica health state chunks belonging to the partition that
-        /// respect the filters in the cluster health chunk query description.
+        /// <param name="replicaHealthStateChunks">The list of replica health state chunks that respect the input filters in
+        /// the chunk query. Returned by get cluster health state chunks query.
         /// </param>
         public PartitionHealthStateChunk(
             HealthState? healthState = default(HealthState?),
@@ -40,8 +40,8 @@ namespace Microsoft.ServiceFabric.Common
         public PartitionId PartitionId { get; }
 
         /// <summary>
-        /// Gets the list of replica health state chunks belonging to the partition that respect the filters in the cluster
-        /// health chunk query description.
+        /// Gets the list of replica health state chunks that respect the input filters in the chunk query. Returned by get
+        /// cluster health state chunks query.
         /// </summary>
         public ReplicaHealthStateChunkList ReplicaHealthStateChunks { get; }
     }

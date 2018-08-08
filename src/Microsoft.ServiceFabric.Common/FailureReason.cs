@@ -17,7 +17,7 @@ namespace Microsoft.ServiceFabric.Common
         None,
 
         /// <summary>
-        /// There was an external request to rollback the upgrade. The value is 1.
+        /// There was an external request to roll back the upgrade. The value is 1.
         /// </summary>
         Interrupted,
 

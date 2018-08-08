@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing FaultsClient operataions.
+    /// Interface containing methods for performing FaultsClient operations.
     /// </summary>
     public partial interface IFaultsClient
     {
@@ -25,10 +25,11 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// This API will induce data loss for the specified partition. It will trigger a call to the OnDataLoss API of the
         /// partition.
-        /// Actual data loss will depend on the specified DataLossMode
-        /// PartialDataLoss - Only a quorum of replicas are removed and OnDataLoss is triggered for the partition but actual
+        /// Actual data loss will depend on the specified DataLossMode.
+        /// 
+        /// - PartialDataLoss - Only a quorum of replicas are removed and OnDataLoss is triggered for the partition but actual
         /// data loss depends on the presence of in-flight replication.
-        /// FullDataLoss - All replicas are removed hence all data is lost and OnDataLoss is triggered.
+        /// - FullDataLoss - All replicas are removed hence all data is lost and OnDataLoss is triggered.
         /// 
         /// This API should only be called with a stateful service as the target.
         /// 
@@ -41,7 +42,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Call the GetDataLossProgress API with the same OperationId to return information on the operation started with this
         /// API.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -77,7 +78,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a data loss operation started with StartDataLoss, using the OperationId.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -108,8 +109,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Induces quorum loss for a given stateful service partition.
         /// </summary>
         /// <remarks>
-        /// Induces quorum loss for a given stateful service partition.  This API is useful for a temporary quorum loss
-        /// situation on your service.
+        /// This API is useful for a temporary quorum loss situation on your service.
         /// 
         /// Call the GetQuorumLossProgress API with the same OperationId to return information on the operation started with
         /// this API.
@@ -117,7 +117,7 @@ namespace Microsoft.ServiceFabric.Client
         /// This can only be called on stateful persisted (HasPersistedState==true) services.  Do not use this API on stateless
         /// services or stateful in-memory only services.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -156,7 +156,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a quorum loss operation started with StartQuorumLoss, using the provided OperationId.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -193,7 +193,7 @@ namespace Microsoft.ServiceFabric.Client
         /// 
         /// Call the GetPartitionRestartProgress API using the same OperationId to get the progress.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -229,7 +229,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the progress of a PartitionRestart started with StartPartitionRestart using the provided OperationId.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -329,20 +329,22 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the a list of user-induced fault operations filtered by provided input.
         /// </remarks>
         /// <param name ="typeFilter">Used to filter on OperationType for user-induced operations.
-        /// 65535 - select all
-        /// 1     - select PartitionDataLoss.
-        /// 2     - select PartitionQuorumLoss.
-        /// 4     - select PartitionRestart.
-        /// 8     - select NodeTransition.
+        /// 
+        /// - 65535 - select all
+        /// - 1 - select PartitionDataLoss.
+        /// - 2 - select PartitionQuorumLoss.
+        /// - 4 - select PartitionRestart.
+        /// - 8 - select NodeTransition.
         /// </param>
         /// <param name ="stateFilter">Used to filter on OperationState's for user-induced operations.
-        /// 65535 - select All
-        /// 1     - select Running
-        /// 2     - select RollingBack
-        /// 8     - select Completed
-        /// 16    - select Faulted
-        /// 32    - select Cancelled
-        /// 64    - select ForceCancelled
+        /// 
+        /// - 65535 - select All
+        /// - 1 - select Running
+        /// - 2 - select RollingBack
+        /// - 8 - select Completed
+        /// - 16 - select Faulted
+        /// - 32 - select Cancelled
+        /// - 64 - select ForceCancelled
         /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -365,11 +367,8 @@ namespace Microsoft.ServiceFabric.Client
         /// Cancels a user-induced fault operation.
         /// </summary>
         /// <remarks>
-        /// The following is a list of APIs that start fault operations that may be cancelled using CancelOperation -
-        /// - StartDataLoss
-        /// - StartQuorumLoss
-        /// - StartPartitionRestart
-        /// - StartNodeTransition
+        /// The following APIs start fault operations that may be cancelled by using CancelOperation: StartDataLoss,
+        /// StartQuorumLoss, StartPartitionRestart, StartNodeTransition.
         /// 
         /// If force is false, then the specified user-induced operation will be gracefully stopped and cleaned up.  If force
         /// is true, the command will be aborted, and some internal state
@@ -377,7 +376,7 @@ namespace Microsoft.ServiceFabric.Client
         /// not allowed until this API has already
         /// been called on the same test command with force set to false first, or unless the test command already has an
         /// OperationState of OperationState.RollingBack.
-        /// Clarification: OperationState.RollingBack means that the system will/is be cleaning up internal system state caused
+        /// Clarification: OperationState.RollingBack means that the system will be/is cleaning up internal system state caused
         /// by executing the command.  It will not restore data if the
         /// test command was to cause data loss.  For example, if you call StartDataLoss then call this API, the system will
         /// only clean up internal state from running the command.

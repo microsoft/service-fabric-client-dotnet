@@ -36,6 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var isStateful = default(bool?);
             var serviceTypeName = default(string);
             var placementConstraints = default(string);
+            var loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>);
             var servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>);
             var extensions = default(IEnumerable<ServiceTypeExtensionDescription>);
             var useImplicitHost = default(bool?);
@@ -54,6 +55,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("PlacementConstraints", propName, StringComparison.Ordinal) == 0)
                 {
                     placementConstraints = reader.ReadValueAsString();
+                }
+                else if (string.Compare("LoadMetrics", propName, StringComparison.Ordinal) == 0)
+                {
+                    loadMetrics = reader.ReadList(ServiceLoadMetricDescriptionConverter.Deserialize);
                 }
                 else if (string.Compare("ServicePlacementPolicies", propName, StringComparison.Ordinal) == 0)
                 {
@@ -78,6 +83,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 isStateful: isStateful,
                 serviceTypeName: serviceTypeName,
                 placementConstraints: placementConstraints,
+                loadMetrics: loadMetrics,
                 servicePlacementPolicies: servicePlacementPolicies,
                 extensions: extensions,
                 useImplicitHost: useImplicitHost);
@@ -106,6 +112,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.PlacementConstraints != null)
             {
                 writer.WriteProperty(obj.PlacementConstraints, "PlacementConstraints", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.LoadMetrics != null)
+            {
+                writer.WriteEnumerableProperty(obj.LoadMetrics, "LoadMetrics", ServiceLoadMetricDescriptionConverter.Serialize);
             }
 
             if (obj.ServicePlacementPolicies != null)

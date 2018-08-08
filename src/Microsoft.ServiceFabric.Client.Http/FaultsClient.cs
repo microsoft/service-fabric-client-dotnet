@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing FaultsClient operataions.
+    /// Class containing methods for performing FaultsClient operations.
     /// </summary>
     internal partial class FaultsClient : IFaultsClient
     {

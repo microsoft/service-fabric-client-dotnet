@@ -17,8 +17,14 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ClusterHealthChunk class.
         /// </summary>
-        /// <param name="healthState">The health state of a Service Fabric entity such as Cluster, Node, Application, Service,
-        /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
+        /// <param name="healthState">The HealthState representing the aggregated health state of the cluster computed by
+        /// Health Manager.
+        /// The health evaluation of the entity reflects all events reported on the entity and its children (if any).
+        /// The aggregation is done by applying the desired cluster health policy and the application health policies.
+        /// . Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'
+        /// 
+        /// The health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
+        /// </param>
         /// <param name="nodeHealthStateChunks">The list of node health state chunks in the cluster that respect the filters in
         /// the cluster health chunk query description.
         /// </param>
@@ -36,8 +42,12 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica
-        /// etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'
+        /// Gets the HealthState representing the aggregated health state of the cluster computed by Health Manager.
+        /// The health evaluation of the entity reflects all events reported on the entity and its children (if any).
+        /// The aggregation is done by applying the desired cluster health policy and the application health policies.
+        /// . Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'
+        /// 
+        /// The health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
         /// </summary>
         public HealthState? HealthState { get; }
 

@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static DeployedServiceReplicaInfo GetFromJsonProperties(JsonReader reader)
         {
-            DeployedServiceReplicaInfo obj;
+            DeployedServiceReplicaInfo obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("ServiceKind", StringComparison.Ordinal))
             {
@@ -65,7 +65,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, DeployedServiceReplicaInfo obj)
         {
             var kind = obj.ServiceKind;
-
             if (kind.Equals(ServiceKind.Stateful))
             {
                 DeployedStatefulServiceReplicaInfoConverter.Serialize(writer, (DeployedStatefulServiceReplicaInfo)obj);

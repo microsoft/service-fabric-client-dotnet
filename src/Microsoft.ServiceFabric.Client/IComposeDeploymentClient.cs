@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ComposeDeploymentClient operataions.
+    /// Interface containing methods for performing ComposeDeploymentClient operations.
     /// </summary>
     public partial interface IComposeDeploymentClient
     {
@@ -23,8 +23,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// Compose is a file format that describes multi-container applications. This API allows deploying container based
-        /// applications defined in compose format in a Service Fabric cluster. Once the deployment is created it's status can
-        /// be tracked via `GetComposeDeploymentStatus` API.
+        /// applications defined in compose format in a Service Fabric cluster. Once the deployment is created, its status can
+        /// be tracked via the `GetComposeDeploymentStatus` API.
         /// </remarks>
         /// <param name ="createComposeDeploymentDescription">Describes the compose deployment that needs to be
         /// created.</param>
@@ -49,7 +49,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// Returns the status of the compose deployment that was created or in the process of being created in the Service
-        /// Fabric cluster and whose name matches the one specified as the parameter. The response includes the name, status
+        /// Fabric cluster and whose name matches the one specified as the parameter. The response includes the name, status,
         /// and other details about the deployment.
         /// </remarks>
         /// <param name ="deploymentName">The identity of the deployment.</param>
@@ -74,15 +74,15 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// Gets the status about the compose deployments that were created or in the process of being created in the Service
-        /// Fabric cluster. The response includes the name, status and other details about the compose deployments. If the list
-        /// of deployments do not fit in a page, one page of results is returned as well as a continuation token which can be
-        /// used to get the next page.
+        /// Fabric cluster. The response includes the name, status, and other details about the compose deployments. If the
+        /// list of deployments do not fit in a page, one page of results is returned as well as a continuation token, which
+        /// can be used to get the next page.
         /// </remarks>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for

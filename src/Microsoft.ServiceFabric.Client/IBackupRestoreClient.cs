@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing BackupRestoreClient operataions.
+    /// Interface containing methods for performing BackupRestoreClient operations.
     /// </summary>
     public partial interface IBackupRestoreClient
     {
@@ -77,7 +77,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -130,7 +130,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -252,7 +252,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -301,7 +301,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -390,7 +390,7 @@ namespace Microsoft.ServiceFabric.Client
         /// periodic backup for this service and its partitions (unless explicitly overridden at the partition level).
         /// Note only C# based Reliable Actor and Reliable Stateful services are currently supported for periodic backup.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -423,7 +423,7 @@ namespace Microsoft.ServiceFabric.Client
         /// In case the backup is enabled for the Service Fabric application, which this service is part of, this service would
         /// continue to be periodically backed up as per the policy mapped at the application level.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -451,7 +451,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the Service Fabric backup configuration information for the service and the partitions under this service.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -461,7 +461,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -489,7 +489,7 @@ namespace Microsoft.ServiceFabric.Client
         /// the backups available in the backup store configured in the backup policy. It also allows filtering of the result
         /// based on start and end datetime or just fetching the latest available backup for every partition.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -510,7 +510,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
@@ -538,7 +538,7 @@ namespace Microsoft.ServiceFabric.Client
         /// resumed again. This operation applies to the entire service's hierarchy. It means all the partitions under this
         /// service are now suspended for backup.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -567,7 +567,7 @@ namespace Microsoft.ServiceFabric.Client
         /// The previously suspended Service Fabric service resumes taking periodic backup as per the backup policy currently
         /// configured for the same.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -886,7 +886,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>

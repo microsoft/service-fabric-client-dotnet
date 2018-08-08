@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static SafetyCheck GetFromJsonProperties(JsonReader reader)
         {
-            SafetyCheck obj;
+            SafetyCheck obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -85,7 +85,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, SafetyCheck obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(SafetyCheckKind.EnsureAvailability))
             {
                 EnsureAvailabilitySafetyCheckConverter.Serialize(writer, (EnsureAvailabilitySafetyCheck)obj);

@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing PartitionClient operataions.
+    /// Interface containing methods for performing PartitionClient operations.
     /// </summary>
     public partial interface IPartitionClient
     {
@@ -22,10 +22,10 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the list of partitions of a Service Fabric service.
         /// </summary>
         /// <remarks>
-        /// Gets the list of partitions of a Service Fabric service. The response includes the partition ID, partitioning
-        /// scheme information, keys supported by the partition, status, health, and other details about the partition.
+        /// The response includes the partition ID, partitioning scheme information, keys supported by the partition, status,
+        /// health, and other details about the partition.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -101,7 +101,6 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the health of the specified Service Fabric partition.
         /// </summary>
         /// <remarks>
-        /// Gets the health information of the specified partition.
         /// Use EventsHealthStateFilter to filter the collection of health events reported on the service based on the health
         /// state.
         /// Use ReplicasHealthStateFilter to filter the collection of ReplicaHealthState objects on the partition.
@@ -112,9 +111,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -127,8 +126,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="replicasHealthStateFilter">Allows filtering the collection of ReplicaHealthState objects on the
         /// partition. The value can be obtained from members or bitwise operations on members of HealthStateFilter. Only
         /// replicas that match the filter will be returned. All replicas will be used to evaluate the aggregated health state.
-        /// If not specified, all entries will be returned.The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
+        /// If not specified, all entries will be returned.The state values are flag-based enumeration, so the value could be a
+        /// combination of these values obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
         /// of the events with HealthState value of OK (2) and Warning (4) will be returned. The possible values for this
         /// parameter include integer value of one of the following health states.
         /// 
@@ -182,9 +181,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -197,8 +196,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="replicasHealthStateFilter">Allows filtering the collection of ReplicaHealthState objects on the
         /// partition. The value can be obtained from members or bitwise operations on members of HealthStateFilter. Only
         /// replicas that match the filter will be returned. All replicas will be used to evaluate the aggregated health state.
-        /// If not specified, all entries will be returned.The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
+        /// If not specified, all entries will be returned.The state values are flag-based enumeration, so the value could be a
+        /// combination of these values obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
         /// of the events with HealthState value of OK (2) and Warning (4) will be returned. The possible values for this
         /// parameter include integer value of one of the following health states.
         /// 
@@ -254,7 +253,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
-        /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
+        /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
         /// the fabric client settings that the HTTP Gateway Application is using.
@@ -334,13 +333,12 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover a specific partition which is currently
+        /// Indicates to the Service Fabric cluster that it should attempt to recover a specific partition that is currently
         /// stuck in quorum loss.
         /// </summary>
         /// <remarks>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover a specific partition which is currently
-        /// stuck in quorum loss. This operation should only be performed if it is known that the replicas that are down cannot
-        /// be recovered. Incorrect use of this API can cause potential data loss.
+        /// This operation should only be performed if it is known that the replicas that are down cannot be recovered.
+        /// Incorrect use of this API can cause potential data loss.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
@@ -360,15 +358,15 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover the specified service which is currently
+        /// Indicates to the Service Fabric cluster that it should attempt to recover the specified service that is currently
         /// stuck in quorum loss.
         /// </summary>
         /// <remarks>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover the specified service which is currently
+        /// Indicates to the Service Fabric cluster that it should attempt to recover the specified service that is currently
         /// stuck in quorum loss. This operation should only be performed if it is known that the replicas that are down cannot
         /// be recovered. Incorrect use of this API can cause potential data loss.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -391,11 +389,11 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover the system services which are currently
+        /// Indicates to the Service Fabric cluster that it should attempt to recover the system services that are currently
         /// stuck in quorum loss.
         /// </summary>
         /// <remarks>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover the system services which are currently
+        /// Indicates to the Service Fabric cluster that it should attempt to recover the system services that are currently
         /// stuck in quorum loss. This operation should only be performed if it is known that the replicas that are down cannot
         /// be recovered. Incorrect use of this API can cause potential data loss.
         /// </remarks>
@@ -419,9 +417,8 @@ namespace Microsoft.ServiceFabric.Client
         /// which are currently stuck in quorum loss.
         /// </summary>
         /// <remarks>
-        /// Indicates to the Service Fabric cluster that it should attempt to recover any services (including system services)
-        /// which are currently stuck in quorum loss. This operation should only be performed if it is known that the replicas
-        /// that are down cannot be recovered. Incorrect use of this API can cause potential data loss.
+        /// This operation should only be performed if it is known that the replicas that are down cannot be recovered.
+        /// Incorrect use of this API can cause potential data loss.
         /// </remarks>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for

@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing PropertyManagementClient operataions.
+    /// Class containing methods for performing PropertyManagementClient operations.
     /// </summary>
     internal partial class PropertyManagementClient : IPropertyManagementClient
     {

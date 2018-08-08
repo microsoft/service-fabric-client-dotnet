@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing BackupRestoreClient operataions.
+    /// Class containing methods for performing BackupRestoreClient operations.
     /// </summary>
     internal partial class BackupRestoreClient : IBackupRestoreClient
     {

@@ -66,12 +66,18 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="history">An object that contains timestamps of the repair task's state transitions.
         /// These timestamps are updated by the system, and cannot be directly modified.
         /// </param>
-        /// <param name="preparingHealthCheckState">Specifies the workflow state of a repair task's health check. This type
-        /// supports the Service Fabric platform; it is not meant to be used directly from your code. Possible values include:
-        /// 'NotStarted', 'InProgress', 'Succeeded', 'Skipped', 'TimedOut'</param>
-        /// <param name="restoringHealthCheckState">Specifies the workflow state of a repair task's health check. This type
-        /// supports the Service Fabric platform; it is not meant to be used directly from your code. Possible values include:
-        /// 'NotStarted', 'InProgress', 'Succeeded', 'Skipped', 'TimedOut'</param>
+        /// <param name="preparingHealthCheckState">The workflow state of the health check when the repair task is in the
+        /// Preparing state. Possible values include: 'NotStarted', 'InProgress', 'Succeeded', 'Skipped', 'TimedOut'
+        /// 
+        /// Specifies the workflow state of a repair task's health check. This type supports the Service Fabric platform; it is
+        /// not meant to be used directly from your code.
+        /// </param>
+        /// <param name="restoringHealthCheckState">The workflow state of the health check when the repair task is in the
+        /// Restoring state. Possible values include: 'NotStarted', 'InProgress', 'Succeeded', 'Skipped', 'TimedOut'
+        /// 
+        /// Specifies the workflow state of a repair task's health check. This type supports the Service Fabric platform; it is
+        /// not meant to be used directly from your code.
+        /// </param>
         /// <param name="performPreparingHealthCheck">A value to determine if health checks will be performed when the repair
         /// task enters the Preparing state.</param>
         /// <param name="performRestoringHealthCheck">A value to determine if health checks will be performed when the repair
@@ -209,16 +215,20 @@ namespace Microsoft.ServiceFabric.Common
         public RepairTaskHistory History { get; }
 
         /// <summary>
-        /// Gets specifies the workflow state of a repair task's health check. This type supports the Service Fabric platform;
-        /// it is not meant to be used directly from your code. Possible values include: 'NotStarted', 'InProgress',
-        /// 'Succeeded', 'Skipped', 'TimedOut'
+        /// Gets the workflow state of the health check when the repair task is in the Preparing state. Possible values
+        /// include: 'NotStarted', 'InProgress', 'Succeeded', 'Skipped', 'TimedOut'
+        /// 
+        /// Specifies the workflow state of a repair task's health check. This type supports the Service Fabric platform; it is
+        /// not meant to be used directly from your code.
         /// </summary>
         public RepairTaskHealthCheckState? PreparingHealthCheckState { get; }
 
         /// <summary>
-        /// Gets specifies the workflow state of a repair task's health check. This type supports the Service Fabric platform;
-        /// it is not meant to be used directly from your code. Possible values include: 'NotStarted', 'InProgress',
-        /// 'Succeeded', 'Skipped', 'TimedOut'
+        /// Gets the workflow state of the health check when the repair task is in the Restoring state. Possible values
+        /// include: 'NotStarted', 'InProgress', 'Succeeded', 'Skipped', 'TimedOut'
+        /// 
+        /// Specifies the workflow state of a repair task's health check. This type supports the Service Fabric platform; it is
+        /// not meant to be used directly from your code.
         /// </summary>
         public RepairTaskHealthCheckState? RestoringHealthCheckState { get; }
 

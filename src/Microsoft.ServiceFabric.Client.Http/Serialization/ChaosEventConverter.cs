@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ChaosEvent GetFromJsonProperties(JsonReader reader)
         {
-            ChaosEvent obj;
+            ChaosEvent obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -81,7 +81,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, ChaosEvent obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(ChaosEventKind.ExecutingFaults))
             {
                 ExecutingFaultsChaosEventConverter.Serialize(writer, (ExecutingFaultsChaosEvent)obj);

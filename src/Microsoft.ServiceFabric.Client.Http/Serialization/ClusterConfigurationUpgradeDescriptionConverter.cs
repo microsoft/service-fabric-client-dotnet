@@ -43,6 +43,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var maxPercentUnhealthyNodes = default(int?);
             var maxPercentDeltaUnhealthyNodes = default(int?);
             var maxPercentUpgradeDomainDeltaUnhealthyNodes = default(int?);
+            var applicationHealthPolicies = default(ApplicationHealthPolicies);
 
             do
             {
@@ -87,6 +88,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     maxPercentUpgradeDomainDeltaUnhealthyNodes = reader.ReadValueAsInt();
                 }
+                else if (string.Compare("ApplicationHealthPolicies", propName, StringComparison.Ordinal) == 0)
+                {
+                    applicationHealthPolicies = ApplicationHealthPoliciesConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -104,7 +109,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 maxPercentUnhealthyApplications: maxPercentUnhealthyApplications,
                 maxPercentUnhealthyNodes: maxPercentUnhealthyNodes,
                 maxPercentDeltaUnhealthyNodes: maxPercentDeltaUnhealthyNodes,
-                maxPercentUpgradeDomainDeltaUnhealthyNodes: maxPercentUpgradeDomainDeltaUnhealthyNodes);
+                maxPercentUpgradeDomainDeltaUnhealthyNodes: maxPercentUpgradeDomainDeltaUnhealthyNodes,
+                applicationHealthPolicies: applicationHealthPolicies);
         }
 
         /// <summary>
@@ -160,6 +166,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.MaxPercentUpgradeDomainDeltaUnhealthyNodes != null)
             {
                 writer.WriteProperty(obj.MaxPercentUpgradeDomainDeltaUnhealthyNodes, "MaxPercentUpgradeDomainDeltaUnhealthyNodes", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.ApplicationHealthPolicies != null)
+            {
+                writer.WriteProperty(obj.ApplicationHealthPolicies, "ApplicationHealthPolicies", ApplicationHealthPoliciesConverter.Serialize);
             }
 
             writer.WriteEndObject();

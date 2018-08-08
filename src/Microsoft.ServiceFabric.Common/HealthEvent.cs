@@ -17,7 +17,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the HealthEvent class.
         /// </summary>
-        /// <param name="sourceId">The source name which identifies the client/watchdog/system component which generated the
+        /// <param name="sourceId">The source name that identifies the client/watchdog/system component that generated the
         /// health information.
         /// </param>
         /// <param name="property">The property of the health information. An entity can have health reports for different

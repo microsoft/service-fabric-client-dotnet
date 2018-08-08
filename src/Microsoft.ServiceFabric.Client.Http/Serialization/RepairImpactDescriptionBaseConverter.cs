@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static RepairImpactDescriptionBase GetFromJsonProperties(JsonReader reader)
         {
-            RepairImpactDescriptionBase obj;
+            RepairImpactDescriptionBase obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -61,7 +61,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, RepairImpactDescriptionBase obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(RepairImpactKind.Node))
             {
                 NodeRepairImpactDescriptionConverter.Serialize(writer, (NodeRepairImpactDescription)obj);

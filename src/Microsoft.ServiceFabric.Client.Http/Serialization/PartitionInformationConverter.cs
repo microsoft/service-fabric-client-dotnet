@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PartitionInformation GetFromJsonProperties(JsonReader reader)
         {
-            PartitionInformation obj;
+            PartitionInformation obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("ServicePartitionKind", StringComparison.Ordinal))
             {
@@ -69,7 +69,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, PartitionInformation obj)
         {
             var kind = obj.ServicePartitionKind;
-
             if (kind.Equals(ServicePartitionKind.Int64Range))
             {
                 Int64RangePartitionInformationConverter.Serialize(writer, (Int64RangePartitionInformation)obj);

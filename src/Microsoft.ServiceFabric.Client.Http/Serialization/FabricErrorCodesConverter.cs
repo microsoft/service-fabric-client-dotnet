@@ -338,6 +338,26 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricErrorCodes.E_INVALIDARG;
             }
+            else if (string.Compare(value, "FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS;
+            }
+            else if (string.Compare(value, "FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND;
+            }
+            else if (string.Compare(value, "FABRIC_E_VOLUME_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.FABRIC_E_VOLUME_ALREADY_EXISTS;
+            }
+            else if (string.Compare(value, "FABRIC_E_VOLUME_NOT_FOUND", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.FABRIC_E_VOLUME_NOT_FOUND;
+            }
+            else if (string.Compare(value, "SerializationError", StringComparison.Ordinal) == 0)
+            {
+                obj = FabricErrorCodes.SerializationError;
+            }
 
             return obj;
         }
@@ -584,6 +604,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case FabricErrorCodes.E_INVALIDARG:
                     writer.WriteStringValue("E_INVALIDARG");
+                    break;
+                case FabricErrorCodes.FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS:
+                    writer.WriteStringValue("FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS");
+                    break;
+                case FabricErrorCodes.FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND:
+                    writer.WriteStringValue("FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND");
+                    break;
+                case FabricErrorCodes.FABRIC_E_VOLUME_ALREADY_EXISTS:
+                    writer.WriteStringValue("FABRIC_E_VOLUME_ALREADY_EXISTS");
+                    break;
+                case FabricErrorCodes.FABRIC_E_VOLUME_NOT_FOUND:
+                    writer.WriteStringValue("FABRIC_E_VOLUME_NOT_FOUND");
+                    break;
+                case FabricErrorCodes.SerializationError:
+                    writer.WriteStringValue("SerializationError");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type FabricErrorCodes");

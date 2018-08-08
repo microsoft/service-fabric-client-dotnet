@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PropertyBatchInfo GetFromJsonProperties(JsonReader reader)
         {
-            PropertyBatchInfo obj;
+            PropertyBatchInfo obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -65,7 +65,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, PropertyBatchInfo obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(PropertyBatchInfoKind.Successful))
             {
                 SuccessfulPropertyBatchInfoConverter.Serialize(writer, (SuccessfulPropertyBatchInfo)obj);

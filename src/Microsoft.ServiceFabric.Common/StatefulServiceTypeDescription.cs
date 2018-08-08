@@ -21,6 +21,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceTypeName">Name of the service type as specified in the service manifest.</param>
         /// <param name="placementConstraints">The placement constraint to be used when instantiating this service in a Service
         /// Fabric cluster.</param>
+        /// <param name="loadMetrics">The service load metrics is given as an array of ServiceLoadMetricDescription
+        /// objects.</param>
         /// <param name="servicePlacementPolicies">List of service placement policy descriptions.</param>
         /// <param name="extensions">List of service type extensions.</param>
         /// <param name="hasPersistedState">A flag indicating whether this is a persistent service which stores states on the
@@ -29,6 +31,7 @@ namespace Microsoft.ServiceFabric.Common
             bool? isStateful = default(bool?),
             string serviceTypeName = default(string),
             string placementConstraints = default(string),
+            IEnumerable<ServiceLoadMetricDescription> loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>),
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             IEnumerable<ServiceTypeExtensionDescription> extensions = default(IEnumerable<ServiceTypeExtensionDescription>),
             bool? hasPersistedState = default(bool?))
@@ -37,6 +40,7 @@ namespace Microsoft.ServiceFabric.Common
                 isStateful,
                 serviceTypeName,
                 placementConstraints,
+                loadMetrics,
                 servicePlacementPolicies,
                 extensions)
         {

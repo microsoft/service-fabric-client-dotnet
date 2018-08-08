@@ -21,8 +21,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="healthState">The health state of a Service Fabric entity such as Cluster, Node, Application, Service,
         /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="nodeName">The name of node where the application is deployed.</param>
-        /// <param name="deployedServicePackageHealthStateChunks">The list of deployed service package health state chunks
-        /// belonging to the deployed application that respect the filters in the cluster health chunk query description.
+        /// <param name="deployedServicePackageHealthStateChunks">The list of deployed service package health state chunks that
+        /// respect the input filters in the chunk query. Returned by get cluster health state chunks query.
         /// </param>
         public DeployedApplicationHealthStateChunk(
             HealthState? healthState = default(HealthState?),
@@ -41,8 +41,8 @@ namespace Microsoft.ServiceFabric.Common
         public string NodeName { get; }
 
         /// <summary>
-        /// Gets the list of deployed service package health state chunks belonging to the deployed application that respect
-        /// the filters in the cluster health chunk query description.
+        /// Gets the list of deployed service package health state chunks that respect the input filters in the chunk query.
+        /// Returned by get cluster health state chunks query.
         /// </summary>
         public DeployedServicePackageHealthStateChunkList DeployedServicePackageHealthStateChunks { get; }
     }

@@ -22,11 +22,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="applicationName">The name of the application, including the 'fabric:' URI scheme.</param>
         /// <param name="applicationTypeName">The application type name as defined in the application manifest.</param>
-        /// <param name="serviceHealthStateChunks">The list of service health state chunks in the cluster that respect the
-        /// filters in the cluster health chunk query description.
+        /// <param name="serviceHealthStateChunks">The list of service health state chunks that respect the input filters in
+        /// the chunk query. Returned by get cluster health state chunks query.
         /// </param>
-        /// <param name="deployedApplicationHealthStateChunks">The list of deployed application health state chunks in the
-        /// cluster that respect the filters in the cluster health chunk query description.
+        /// <param name="deployedApplicationHealthStateChunks">The list of deployed application health state chunks that
+        /// respect the input filters in the chunk query. Returned by get cluster health state chunks query.
         /// </param>
         public ApplicationHealthStateChunk(
             HealthState? healthState = default(HealthState?),
@@ -54,14 +54,14 @@ namespace Microsoft.ServiceFabric.Common
         public string ApplicationTypeName { get; }
 
         /// <summary>
-        /// Gets the list of service health state chunks in the cluster that respect the filters in the cluster health chunk
-        /// query description.
+        /// Gets the list of service health state chunks that respect the input filters in the chunk query. Returned by get
+        /// cluster health state chunks query.
         /// </summary>
         public ServiceHealthStateChunkList ServiceHealthStateChunks { get; }
 
         /// <summary>
-        /// Gets the list of deployed application health state chunks in the cluster that respect the filters in the cluster
-        /// health chunk query description.
+        /// Gets the list of deployed application health state chunks that respect the input filters in the chunk query.
+        /// Returned by get cluster health state chunks query.
         /// </summary>
         public DeployedApplicationHealthStateChunkList DeployedApplicationHealthStateChunks { get; }
     }

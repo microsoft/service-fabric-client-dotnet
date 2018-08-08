@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));
             applicationTypeVersion.ThrowIfNull(nameof(applicationTypeVersion));
-            serverTimeout?.ThrowIfOutOfInclusiveRange(nameof(serverTimeout), 1, 4294967295);
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ApplicationTypes/{applicationTypeName}/$/GetServiceTypes";
             url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName));
@@ -77,7 +77,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));
             applicationTypeVersion.ThrowIfNull(nameof(applicationTypeVersion));
             serviceTypeName.ThrowIfNull(nameof(serviceTypeName));
-            serverTimeout?.ThrowIfOutOfInclusiveRange(nameof(serverTimeout), 1, 4294967295);
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ApplicationTypes/{applicationTypeName}/$/GetServiceTypes/{serviceTypeName}";
             url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName));
@@ -113,7 +113,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));
             applicationTypeVersion.ThrowIfNull(nameof(applicationTypeVersion));
             serviceManifestName.ThrowIfNull(nameof(serviceManifestName));
-            serverTimeout?.ThrowIfOutOfInclusiveRange(nameof(serverTimeout), 1, 4294967295);
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "ApplicationTypes/{applicationTypeName}/$/GetServiceManifest";
             url = url.Replace("{applicationTypeName}", Uri.EscapeDataString(applicationTypeName));
@@ -148,7 +148,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             nodeName.ThrowIfNull(nameof(nodeName));
             applicationId.ThrowIfNull(nameof(applicationId));
-            serverTimeout?.ThrowIfOutOfInclusiveRange(nameof(serverTimeout), 1, 4294967295);
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServiceTypes";
             url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
@@ -185,7 +185,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             nodeName.ThrowIfNull(nameof(nodeName));
             applicationId.ThrowIfNull(nameof(applicationId));
             serviceTypeName.ThrowIfNull(nameof(serviceTypeName));
-            serverTimeout?.ThrowIfOutOfInclusiveRange(nameof(serverTimeout), 1, 4294967295);
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes/{nodeName}/$/GetApplications/{applicationId}/$/GetServiceTypes/{serviceTypeName}";
             url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));

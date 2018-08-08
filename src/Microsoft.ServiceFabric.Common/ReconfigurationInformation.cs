@@ -17,12 +17,22 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ReconfigurationInformation class.
         /// </summary>
-        /// <param name="previousConfigurationRole">The role of a replica of a stateful service. Possible values include:
-        /// 'Unknown', 'None', 'Primary', 'IdleSecondary', 'ActiveSecondary'</param>
-        /// <param name="reconfigurationPhase">The reconfiguration phase of a replica of a stateful service. Possible values
-        /// include: 'Unknown', 'None', 'Phase0', 'Phase1', 'Phase2', 'Phase3', 'Phase4', 'AbortPhaseZero'</param>
-        /// <param name="reconfigurationType">The type of reconfiguration for replica of a stateful service. Possible values
-        /// include: 'Unknown', 'SwapPrimary', 'Failover', 'Other'</param>
+        /// <param name="previousConfigurationRole">Replica role before reconfiguration started. Possible values include:
+        /// 'Unknown', 'None', 'Primary', 'IdleSecondary', 'ActiveSecondary'
+        /// 
+        /// The role of a replica of a stateful service.
+        /// </param>
+        /// <param name="reconfigurationPhase">Current phase of ongoing reconfiguration. If no reconfiguration is taking place
+        /// then this value will be "None". Possible values include: 'Unknown', 'None', 'Phase0', 'Phase1', 'Phase2', 'Phase3',
+        /// 'Phase4', 'AbortPhaseZero'
+        /// 
+        /// The reconfiguration phase of a replica of a stateful service.
+        /// </param>
+        /// <param name="reconfigurationType">Type of current ongoing reconfiguration. If no reconfiguration is taking place
+        /// then this value will be "None". Possible values include: 'Unknown', 'SwapPrimary', 'Failover', 'Other'
+        /// 
+        /// The type of reconfiguration for replica of a stateful service.
+        /// </param>
         /// <param name="reconfigurationStartTimeUtc">Start time (in UTC) of the ongoing reconfiguration. If no reconfiguration
         /// is taking place then this value will be zero date-time.</param>
         public ReconfigurationInformation(
@@ -38,20 +48,27 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the role of a replica of a stateful service. Possible values include: 'Unknown', 'None', 'Primary',
+        /// Gets replica role before reconfiguration started. Possible values include: 'Unknown', 'None', 'Primary',
         /// 'IdleSecondary', 'ActiveSecondary'
+        /// 
+        /// The role of a replica of a stateful service.
         /// </summary>
         public ReplicaRole? PreviousConfigurationRole { get; }
 
         /// <summary>
-        /// Gets the reconfiguration phase of a replica of a stateful service. Possible values include: 'Unknown', 'None',
-        /// 'Phase0', 'Phase1', 'Phase2', 'Phase3', 'Phase4', 'AbortPhaseZero'
+        /// Gets current phase of ongoing reconfiguration. If no reconfiguration is taking place then this value will be
+        /// "None". Possible values include: 'Unknown', 'None', 'Phase0', 'Phase1', 'Phase2', 'Phase3', 'Phase4',
+        /// 'AbortPhaseZero'
+        /// 
+        /// The reconfiguration phase of a replica of a stateful service.
         /// </summary>
         public ReconfigurationPhase? ReconfigurationPhase { get; }
 
         /// <summary>
-        /// Gets the type of reconfiguration for replica of a stateful service. Possible values include: 'Unknown',
-        /// 'SwapPrimary', 'Failover', 'Other'
+        /// Gets type of current ongoing reconfiguration. If no reconfiguration is taking place then this value will be "None".
+        /// Possible values include: 'Unknown', 'SwapPrimary', 'Failover', 'Other'
+        /// 
+        /// The type of reconfiguration for replica of a stateful service.
         /// </summary>
         public ReconfigurationType? ReconfigurationType { get; }
 
