@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing RepairManagementClient operataions.
+    /// Class containing methods for performing RepairManagementClient operations.
     /// </summary>
     internal partial class RepairManagementClient : IRepairManagementClient
     {

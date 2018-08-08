@@ -16,8 +16,14 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the DeployedApplicationHealth class.
         /// </summary>
-        /// <param name="aggregatedHealthState">The health state of a Service Fabric entity such as Cluster, Node, Application,
-        /// Service, Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
+        /// <param name="aggregatedHealthState">The HealthState representing the aggregated health state of the entity computed
+        /// by Health Manager.
+        /// The health evaluation of the entity reflects all events reported on the entity and its children (if any).
+        /// The aggregation is done by applying the desired health policy.
+        /// . Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'
+        /// 
+        /// The health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
+        /// </param>
         /// <param name="healthEvents">The list of health events reported on the entity.</param>
         /// <param name="unhealthyEvaluations">The unhealthy evaluations that show why the current aggregated health state was
         /// returned by Health Manager.</param>

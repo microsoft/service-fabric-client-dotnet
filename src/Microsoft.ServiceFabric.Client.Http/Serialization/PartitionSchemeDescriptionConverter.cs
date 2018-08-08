@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PartitionSchemeDescription GetFromJsonProperties(JsonReader reader)
         {
-            PartitionSchemeDescription obj;
+            PartitionSchemeDescription obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("PartitionScheme", StringComparison.Ordinal))
             {
@@ -69,7 +69,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, PartitionSchemeDescription obj)
         {
             var kind = obj.PartitionScheme;
-
             if (kind.Equals(PartitionScheme.Named))
             {
                 NamedPartitionSchemeDescriptionConverter.Serialize(writer, (NamedPartitionSchemeDescription)obj);

@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing NodeClient operataions.
+    /// Interface containing methods for performing NodeClient operations.
     /// </summary>
     public partial interface INodeClient
     {
@@ -22,13 +22,17 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the list of nodes in the Service Fabric cluster.
         /// </summary>
         /// <remarks>
-        /// Gets the list of nodes in the Service Fabric cluster. The response includes the name, status, id, health, uptime,
-        /// and other details about the node.
+        /// The response includes the name, status, ID, health, uptime, and other details about the nodes.
         /// </remarks>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="nodeStatusFilter">Allows filtering the nodes based on the NodeStatus. Only the nodes that are
         /// matching the specified filter value will be returned. The filter value can be one of the following. Possible values
         /// include: 'default', 'all', 'up', 'down', 'enabling', 'disabling', 'disabled', 'unknown', 'removed'</param>
+        /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
+        /// defines the upper bound on the number of results returned. The results returned can be less than the specified
+        /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
+        /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
@@ -43,6 +47,7 @@ namespace Microsoft.ServiceFabric.Client
         Task<PagedData<NodeInfo>> GetNodeInfoListAsync(
             ContinuationToken continuationToken = default(ContinuationToken),
             NodeStatusFilter? nodeStatusFilter = NodeStatusFilter.Default,
+            long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -50,8 +55,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the information about a specific node in the Service Fabric cluster.
         /// </summary>
         /// <remarks>
-        /// Gets the information about a specific node in the Service Fabric Cluster. The response includes the name, status,
-        /// id, health, uptime, and other details about the node.
+        /// The response includes the name, status, ID, health, uptime, and other details about the node.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
@@ -83,9 +87,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -126,9 +130,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -174,7 +178,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
-        /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
+        /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
         /// the fabric client settings that the HTTP Gateway Application is using.
@@ -233,11 +237,11 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// Deactivate a Service Fabric cluster node with the specified deactivation intent. Once the deactivation is in
-        /// progress, the deactivation intent can be increased, but not decreased (for example, a node which is was deactivated
-        /// with the Pause intent can be deactivated further with Restart, but not the other way around. Nodes may be
-        /// reactivated using the Activate a node operation any time after they are deactivated. If the deactivation is not
-        /// complete this will cancel the deactivation. A node which goes down and comes back up while deactivated will still
-        /// need to be reactivated before services will be placed on that node.
+        /// progress, the deactivation intent can be increased, but not decreased (for example, a node that is deactivated with
+        /// the Pause intent can be deactivated further with Restart, but not the other way around. Nodes may be reactivated
+        /// using the Activate a node operation any time after they are deactivated. If the deactivation is not complete, this
+        /// will cancel the deactivation. A node that goes down and comes back up while deactivated will still need to be
+        /// reactivated before services will be placed on that node.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="deactivationIntentDescription">Describes the intent or reason for deactivating the node.</param>
@@ -259,11 +263,11 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Activate a Service Fabric cluster node which is currently deactivated.
+        /// Activate a Service Fabric cluster node that is currently deactivated.
         /// </summary>
         /// <remarks>
-        /// Activates a Service Fabric cluster node which is currently deactivated. Once activated, the node will again become
-        /// a viable target for placing new replicas, and any deactivated replicas remaining on the node will be reactivated.
+        /// Activates a Service Fabric cluster node that is currently deactivated. Once activated, the node will again become a
+        /// viable target for placing new replicas, and any deactivated replicas remaining on the node will be reactivated.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
@@ -286,12 +290,11 @@ namespace Microsoft.ServiceFabric.Client
         /// Notifies Service Fabric that the persisted state on a node has been permanently removed or lost.
         /// </summary>
         /// <remarks>
-        /// Notifies Service Fabric that the persisted state on a node has been permanently removed or lost.  This implies that
-        /// it is not possible to recover the persisted state of that node. This generally happens if a hard disk has been
-        /// wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful. This operation
-        /// lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric should stop
-        /// waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not been removed
-        /// and the node can comes back up with its state intact.
+        /// This implies that it is not possible to recover the persisted state of that node. This generally happens if a hard
+        /// disk has been wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful.
+        /// This operation lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric
+        /// should stop waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not
+        /// been removed and the node can come back up with its state intact.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the

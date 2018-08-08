@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing CodePackageClient operataions.
+    /// Class containing methods for performing CodePackageClient operations.
     /// </summary>
     internal partial class CodePackageClient : ICodePackageClient
     {

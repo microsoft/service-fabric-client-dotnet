@@ -30,12 +30,18 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="correlationScheme">The correlation scheme.</param>
         /// <param name="serviceLoadMetrics">The service load metrics.</param>
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
-        /// <param name="defaultMoveCost">Specifies the move cost for the service. Possible values include: 'Zero', 'Low',
-        /// 'Medium', 'High'</param>
+        /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
+        /// 'High'
+        /// 
+        /// Specifies the move cost for the service.
+        /// </param>
         /// <param name="isDefaultMoveCostSpecified">Indicates if the DefaultMoveCost property is specified.</param>
-        /// <param name="servicePackageActivationMode">The activation mode of service package to be used for a Service Fabric
-        /// service. This is specified at the time of creating the Service. Possible values include: 'SharedProcess',
-        /// 'ExclusiveProcess'</param>
+        /// <param name="servicePackageActivationMode">The activation mode of service package to be used for a service.
+        /// Possible values include: 'SharedProcess', 'ExclusiveProcess'
+        /// 
+        /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
+        /// creating the Service.
+        /// </param>
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
@@ -126,7 +132,9 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies { get; }
 
         /// <summary>
-        /// Gets specifies the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+        /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+        /// 
+        /// Specifies the move cost for the service.
         /// </summary>
         public MoveCost? DefaultMoveCost { get; }
 
@@ -136,8 +144,11 @@ namespace Microsoft.ServiceFabric.Common
         public bool? IsDefaultMoveCostSpecified { get; }
 
         /// <summary>
-        /// Gets the activation mode of service package to be used for a Service Fabric service. This is specified at the time
-        /// of creating the Service. Possible values include: 'SharedProcess', 'ExclusiveProcess'
+        /// Gets the activation mode of service package to be used for a service. Possible values include: 'SharedProcess',
+        /// 'ExclusiveProcess'
+        /// 
+        /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
+        /// creating the Service.
         /// </summary>
         public ServicePackageActivationMode? ServicePackageActivationMode { get; }
 

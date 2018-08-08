@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing InfrastructureClient operataions.
+    /// Interface containing methods for performing InfrastructureClient operations.
     /// </summary>
     public partial interface IInfrastructureClient
     {
@@ -33,8 +33,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="command">The text of the command to be invoked. The content of the command is
         /// infrastructure-specific.</param>
-        /// <param name ="serviceId">The identity of the infrastructure service. This is  the full name of the infrastructure
-        /// service without the 'fabric:' URI scheme. This parameter required only for the cluster that have more than one
+        /// <param name ="serviceId">The identity of the infrastructure service. This is the full name of the infrastructure
+        /// service without the 'fabric:' URI scheme. This parameter required only for the cluster that has more than one
         /// instance of infrastructure service running.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -68,8 +68,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="command">The text of the command to be invoked. The content of the command is
         /// infrastructure-specific.</param>
-        /// <param name ="serviceId">The identity of the infrastructure service. This is  the full name of the infrastructure
-        /// service without the 'fabric:' URI scheme. This parameter required only for the cluster that have more than one
+        /// <param name ="serviceId">The identity of the infrastructure service. This is the full name of the infrastructure
+        /// service without the 'fabric:' URI scheme. This parameter required only for the cluster that has more than one
         /// instance of infrastructure service running.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for

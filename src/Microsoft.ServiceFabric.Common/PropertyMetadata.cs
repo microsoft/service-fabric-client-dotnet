@@ -18,9 +18,9 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="typeId">The kind of property, determined by the type of data. Following are the possible values.
         /// Possible values include: 'Invalid', 'Binary', 'Int64', 'Double', 'String', 'Guid'</param>
-        /// <param name="customTypeId">The property's custom type id.</param>
+        /// <param name="customTypeId">The property's custom type ID.</param>
         /// <param name="parent">The name of the parent Service Fabric Name for the property. It could be thought of as the
-        /// namespace/table under which the property exists.</param>
+        /// name-space/table under which the property exists.</param>
         /// <param name="sizeInBytes">The length of the serialized property value.</param>
         /// <param name="lastModifiedUtcTimestamp">Represents when the Property was last modified. Only write operations will
         /// cause this field to be updated.</param>
@@ -49,12 +49,12 @@ namespace Microsoft.ServiceFabric.Common
         public PropertyValueKind? TypeId { get; }
 
         /// <summary>
-        /// Gets the property's custom type id.
+        /// Gets the property's custom type ID.
         /// </summary>
         public string CustomTypeId { get; }
 
         /// <summary>
-        /// Gets the name of the parent Service Fabric Name for the property. It could be thought of as the namespace/table
+        /// Gets the name of the parent Service Fabric Name for the property. It could be thought of as the name-space/table
         /// under which the property exists.
         /// </summary>
         public FabricName Parent { get; }

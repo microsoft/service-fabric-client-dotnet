@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static RepairTargetDescriptionBase GetFromJsonProperties(JsonReader reader)
         {
-            RepairTargetDescriptionBase obj;
+            RepairTargetDescriptionBase obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -61,7 +61,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, RepairTargetDescriptionBase obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(RepairTargetKind.Node))
             {
                 NodeRepairTargetDescriptionConverter.Serialize(writer, (NodeRepairTargetDescription)obj);

@@ -9,9 +9,8 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Information about a stateless instance running in a code package. Please note that
-    /// DeployedServiceReplicaQueryResult will contain duplicate data like ServiceKind, ServiceName, PartitionId and
-    /// InstanceId.
+    /// Information about a stateless instance running in a code package. Note that DeployedServiceReplicaQueryResult will
+    /// contain duplicate data like ServiceKind, ServiceName, PartitionId and InstanceId.
     /// </summary>
     public partial class DeployedStatelessServiceInstanceDetailInfo : DeployedServiceReplicaDetailInfo
     {

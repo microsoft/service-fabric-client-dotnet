@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Common
             DateTime? timeStampUtc = default(DateTime?),
             Guid? backupId = default(Guid?),
             string backupLocation = default(string),
-            Epoch epochOfLastBackupRecord = default(Epoch),
+            BackupEpoch epochOfLastBackupRecord = default(BackupEpoch),
             string lsnOfLastBackupRecord = default(string),
             FabricErrorError failureError = default(FabricErrorError))
         {
@@ -66,7 +66,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets specifies the epoch of the last record included in backup.
         /// </summary>
-        public Epoch EpochOfLastBackupRecord { get; }
+        public BackupEpoch EpochOfLastBackupRecord { get; }
 
         /// <summary>
         /// Gets the LSN of last record included in backup.

@@ -17,10 +17,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the PartitionBackupEntity class.
         /// </summary>
         /// <param name="serviceName">The full name of the service with 'fabric:' URI scheme.</param>
-        /// <param name="partitionId">An internal ID used by Service Fabric to uniquely identify a partition. This is a
-        /// randomly generated GUID when the service was created. The partition ID is unique and does not change for the
-        /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
-        /// different.</param>
+        /// <param name="partitionId">The partition ID indentifying the partition.</param>
         public PartitionBackupEntity(
             ServiceName serviceName = default(ServiceName),
             PartitionId partitionId = default(PartitionId))
@@ -37,9 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         public ServiceName ServiceName { get; }
 
         /// <summary>
-        /// Gets an internal ID used by Service Fabric to uniquely identify a partition. This is a randomly generated GUID when
-        /// the service was created. The partition ID is unique and does not change for the lifetime of the service. If the
-        /// same service was deleted and recreated the IDs of its partitions would be different.
+        /// Gets the partition ID indentifying the partition.
         /// </summary>
         public PartitionId PartitionId { get; }
     }

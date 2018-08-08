@@ -17,10 +17,13 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the ServiceLoadMetricDescription class.
         /// </summary>
         /// <param name="name">The name of the metric. If the service chooses to report load during runtime, the load metric
-        /// name should match the name that is specified in Name exactly. Note that metric names are case sensitive.</param>
-        /// <param name="weight">Determines the metric weight relative to the other metrics that are configured for this
-        /// service. During runtime, if two metrics end up in conflict, the Cluster Resource Manager prefers the metric with
-        /// the higher weight. Possible values include: 'Zero', 'Low', 'Medium', 'High'</param>
+        /// name should match the name that is specified in Name exactly. Note that metric names are case-sensitive.</param>
+        /// <param name="weight">The service load metric relative weight, compared to other metrics configured for this
+        /// service, as a number. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+        /// 
+        /// Determines the metric weight relative to the other metrics that are configured for this service. During runtime, if
+        /// two metrics end up in conflict, the Cluster Resource Manager prefers the metric with the higher weight.
+        /// </param>
         /// <param name="primaryDefaultLoad">Used only for Stateful services. The default amount of load, as a number, that
         /// this service creates for this metric when it is a Primary replica.</param>
         /// <param name="secondaryDefaultLoad">Used only for Stateful services. The default amount of load, as a number, that
@@ -44,14 +47,16 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the name of the metric. If the service chooses to report load during runtime, the load metric name should
-        /// match the name that is specified in Name exactly. Note that metric names are case sensitive.
+        /// match the name that is specified in Name exactly. Note that metric names are case-sensitive.
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// Gets determines the metric weight relative to the other metrics that are configured for this service. During
-        /// runtime, if two metrics end up in conflict, the Cluster Resource Manager prefers the metric with the higher weight.
+        /// Gets the service load metric relative weight, compared to other metrics configured for this service, as a number.
         /// Possible values include: 'Zero', 'Low', 'Medium', 'High'
+        /// 
+        /// Determines the metric weight relative to the other metrics that are configured for this service. During runtime, if
+        /// two metrics end up in conflict, the Cluster Resource Manager prefers the metric with the higher weight.
         /// </summary>
         public ServiceLoadMetricWeight? Weight { get; }
 

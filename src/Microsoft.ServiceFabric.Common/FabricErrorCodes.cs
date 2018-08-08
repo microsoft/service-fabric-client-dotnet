@@ -404,5 +404,30 @@ namespace Microsoft.ServiceFabric.Common
         /// E_INVALIDARG.
         /// </summary>
         E_INVALIDARG,
+
+        /// <summary>
+        /// FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS.
+        /// </summary>
+        FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS,
+
+        /// <summary>
+        /// FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND.
+        /// </summary>
+        FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND,
+
+        /// <summary>
+        /// FABRIC_E_VOLUME_ALREADY_EXISTS.
+        /// </summary>
+        FABRIC_E_VOLUME_ALREADY_EXISTS,
+
+        /// <summary>
+        /// FABRIC_E_VOLUME_NOT_FOUND.
+        /// </summary>
+        FABRIC_E_VOLUME_NOT_FOUND,
+
+        /// <summary>
+        /// SerializationError.
+        /// </summary>
+        SerializationError,
     }
 }

@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing InfrastructureClient operataions.
+    /// Class containing methods for performing InfrastructureClient operations.
     /// </summary>
     internal partial class InfrastructureClient : IInfrastructureClient
     {

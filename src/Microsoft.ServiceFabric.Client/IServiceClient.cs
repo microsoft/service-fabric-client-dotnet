@@ -19,10 +19,10 @@ namespace Microsoft.ServiceFabric.Client
     public partial interface IServiceClient
     {
         /// <summary>
-        /// Gets the information about all services belonging to the application specified by the application id.
+        /// Gets the information about all services belonging to the application specified by the application ID.
         /// </summary>
         /// <remarks>
-        /// Returns the information about all services belonging to the application specified by the application id.
+        /// Returns the information about all services belonging to the application specified by the application ID.
         /// </remarks>
         /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
         /// without the 'fabric:' URI scheme.
@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </param>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -92,7 +92,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the name of the application for the specified service. A 404 FABRIC_E_SERVICE_DOES_NOT_EXIST error is returned
         /// if a service with the provided service ID does not exist.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -183,12 +183,12 @@ namespace Microsoft.ServiceFabric.Client
         /// Deletes an existing Service Fabric service.
         /// </summary>
         /// <remarks>
-        /// Deletes an existing Service Fabric service. A service must be created before it can be deleted. By default, Service
-        /// Fabric will try to close service replicas in a graceful manner and then delete the service. However, if the service
-        /// is having issues closing the replica gracefully, the delete operation may take a long time or get stuck. Use the
-        /// optional ForceRemove flag to skip the graceful close sequence and forcefully delete the service.
+        /// A service must be created before it can be deleted. By default, Service Fabric will try to close service replicas
+        /// in a graceful manner and then delete the service. However, if the service is having issues closing the replica
+        /// gracefully, the delete operation may take a long time or get stuck. Use the optional ForceRemove flag to skip the
+        /// graceful close sequence and forcefully delete the service.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -220,12 +220,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// This API allows updating properties of a running Service Fabric service. The set of properties that can be updated
         /// are a subset of the properties that were specified at the time of creating the service. The current set of
-        /// properties can be obtained using `GetServiceDescription` API. Please note that updating the properties of a running
+        /// properties can be obtained using `GetServiceDescription` API. Note that updating the properties of a running
         /// service is different than upgrading your application using `StartApplicationUpgrade` API. The upgrade is a long
         /// running background operation that involves moving the application from one version to another, one upgrade domain
         /// at a time, whereas update applies the new properties immediately to the service.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -256,7 +256,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the description of an existing Service Fabric service. A service must be created before its description can be
         /// obtained.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -288,7 +288,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Use PartitionsHealthStateFilter to filter the collection of partitions returned.
         /// If you specify a service that does not exist in the health store, this request returns an error.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -298,9 +298,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -315,7 +315,7 @@ namespace Microsoft.ServiceFabric.Client
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only partitions that match the filter are returned. All partitions are used to evaluate the aggregated health
         /// state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these value
         /// obtained using bitwise 'OR' operator. For example, if the provided value is 6 then health state of partitions with
         /// HealthState value of OK (2) and Warning (4) will be returned.
@@ -364,7 +364,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Use PartitionsHealthStateFilter to filter the collection of partitions returned.
         /// If you specify a service that does not exist in the health store, this request returns an error.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -374,9 +374,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -391,7 +391,7 @@ namespace Microsoft.ServiceFabric.Client
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only partitions that match the filter are returned. All partitions are used to evaluate the aggregated health
         /// state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
         /// combination of these value
         /// obtained using bitwise 'OR' operator. For example, if the provided value is 6 then health state of partitions with
         /// HealthState value of OK (2) and Warning (4) will be returned.
@@ -445,7 +445,7 @@ namespace Microsoft.ServiceFabric.Client
         /// To see whether the report was applied in the health store, run GetServiceHealth and check that the report appears
         /// in the HealthEvents section.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -453,7 +453,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
-        /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
+        /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
         /// the fabric client settings that the HTTP Gateway Application is using.
@@ -490,7 +490,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Resolve a Service Fabric service partition to get the endpoints of the service replicas.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
@@ -508,7 +508,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="partitionKeyValue">Partition key. This is required if the partition scheme for the service is
         /// Int64Range or Named.</param>
         /// <param name ="previousRspVersion">The value in the Version field of the response that was received previously. This
-        /// is required if the user knows that the result that was got previously is stale.</param>
+        /// is required if the user knows that the result that was gotten previously is stale.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>

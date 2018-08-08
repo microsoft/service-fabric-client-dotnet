@@ -19,8 +19,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="kind">The kind of FabricEvent.</param>
-        /// <param name="serviceId">The identity of the service. This is an encoded representation of the service name. This is
-        /// used in the REST APIs to identify the service resource.
+        /// <param name="serviceId">The identity of the service. This ID is an encoded representation of the service name. This
+        /// is used in the REST APIs to identify the service resource.
         /// Starting in version 6.0, hierarchical names are delimited with the "\~" character. For example, if the service name
         /// is "fabric:/myapp/app1/svc1",
         /// the service identity would be "myapp~app1\~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.
@@ -43,8 +43,8 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the identity of the service. This is an encoded representation of the service name. This is used in the REST
-        /// APIs to identify the service resource.
+        /// Gets the identity of the service. This ID is an encoded representation of the service name. This is used in the
+        /// REST APIs to identify the service resource.
         /// Starting in version 6.0, hierarchical names are delimited with the "\~" character. For example, if the service name
         /// is "fabric:/myapp/app1/svc1",
         /// the service identity would be "myapp~app1\~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.

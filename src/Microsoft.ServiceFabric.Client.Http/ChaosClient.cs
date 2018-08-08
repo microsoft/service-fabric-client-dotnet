@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing ChaosClient operataions.
+    /// Class containing methods for performing ChaosClient operations.
     /// </summary>
     internal partial class ChaosClient : IChaosClient
     {
@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<ChaosEventsSegment> GetChaosEventsAsync(
+        public Task<PagedData<ChaosEventWrapper>> GetChaosEventsAsync(
             ContinuationToken continuationToken = default(ContinuationToken),
             string startTimeUtc = default(string),
             string endTimeUtc = default(string),
@@ -158,7 +158,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ChaosEventsSegmentConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ChaosEventWrapperConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -188,14 +188,17 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task PostChaosScheduleAsync(
             ChaosScheduleDescription chaosSchedule,
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             chaosSchedule.ThrowIfNull(nameof(chaosSchedule));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Tools/Chaos/Schedule";
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.2");
             url += "?" + string.Join("&", queryParams);
             

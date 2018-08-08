@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing EventsStoreClient operataions.
+    /// Interface containing methods for performing EventsStoreClient operations.
     /// </summary>
     public partial interface IEventsStoreClient
     {
@@ -249,7 +249,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// The response is list of ServiceEvent objects.
         /// </remarks>
-        /// <param name ="serviceId">The identity of the service. This is typically the full name of the service without the
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
         /// 'fabric:' URI scheme.
         /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in

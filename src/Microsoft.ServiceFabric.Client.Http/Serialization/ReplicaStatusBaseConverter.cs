@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ReplicaStatusBase GetFromJsonProperties(JsonReader reader)
         {
-            ReplicaStatusBase obj;
+            ReplicaStatusBase obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -61,7 +61,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, ReplicaStatusBase obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(ReplicaKind.KeyValueStore))
             {
                 KeyValueStoreReplicaStatusConverter.Serialize(writer, (KeyValueStoreReplicaStatus)obj);

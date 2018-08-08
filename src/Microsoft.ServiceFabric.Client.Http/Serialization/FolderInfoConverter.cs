@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static FolderInfo GetFromJsonProperties(JsonReader reader)
         {
             var storeRelativePath = default(string);
-            var fileCount = default(long?);
+            var fileCount = default(string);
 
             do
             {
@@ -45,7 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("FileCount", propName, StringComparison.Ordinal) == 0)
                 {
-                    fileCount = reader.ReadValueAsLong();
+                    fileCount = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.FileCount != null)
             {
-                writer.WriteProperty(obj.FileCount, "FileCount", JsonWriterExtensions.WriteLongValue);
+                writer.WriteProperty(obj.FileCount, "FileCount", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

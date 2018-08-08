@@ -12,7 +12,7 @@
     <Tags>ServiceFabric Microsoft Azure Fabric</Tags>
     <Language>en-US</Language>
     <NupkgOutputDir>$(OutputRoot)\packages</NupkgOutputDir>
-    <PreviewTag>-preview001</PreviewTag>
+    <PreviewTag>-preview60</PreviewTag>
     <ClientLibNuGetPackageVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion)$(PreviewTag)</ClientLibNuGetPackageVersion>
     <GenerateSymbolPackage>False</GenerateSymbolPackage>
 

@@ -33,6 +33,9 @@ namespace Microsoft.ServiceFabric.Common
         /// upgrade. Allowed values are integer values from zero to 100.</param>
         /// <param name="maxPercentUpgradeDomainDeltaUnhealthyNodes">The maximum allowed percentage of upgrade domain delta
         /// health degradation during the upgrade. Allowed values are integer values from zero to 100.</param>
+        /// <param name="applicationHealthPolicies">Defines the application health policy map used to evaluate the health of an
+        /// application or one of its children entities.
+        /// </param>
         public ClusterConfigurationUpgradeDescription(
             string clusterConfig,
             TimeSpan? healthCheckRetryTimeout = default(TimeSpan?),
@@ -43,7 +46,8 @@ namespace Microsoft.ServiceFabric.Common
             int? maxPercentUnhealthyApplications = 0,
             int? maxPercentUnhealthyNodes = 0,
             int? maxPercentDeltaUnhealthyNodes = 0,
-            int? maxPercentUpgradeDomainDeltaUnhealthyNodes = 0)
+            int? maxPercentUpgradeDomainDeltaUnhealthyNodes = 0,
+            ApplicationHealthPolicies applicationHealthPolicies = default(ApplicationHealthPolicies))
         {
             clusterConfig.ThrowIfNull(nameof(clusterConfig));
             this.ClusterConfig = clusterConfig;
@@ -56,6 +60,7 @@ namespace Microsoft.ServiceFabric.Common
             this.MaxPercentUnhealthyNodes = maxPercentUnhealthyNodes;
             this.MaxPercentDeltaUnhealthyNodes = maxPercentDeltaUnhealthyNodes;
             this.MaxPercentUpgradeDomainDeltaUnhealthyNodes = maxPercentUpgradeDomainDeltaUnhealthyNodes;
+            this.ApplicationHealthPolicies = applicationHealthPolicies;
         }
 
         /// <summary>
@@ -111,5 +116,11 @@ namespace Microsoft.ServiceFabric.Common
         /// are integer values from zero to 100.
         /// </summary>
         public int? MaxPercentUpgradeDomainDeltaUnhealthyNodes { get; }
+
+        /// <summary>
+        /// Gets defines the application health policy map used to evaluate the health of an application or one of its children
+        /// entities.
+        /// </summary>
+        public ApplicationHealthPolicies ApplicationHealthPolicies { get; }
     }
 }

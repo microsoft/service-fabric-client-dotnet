@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing NodeClient operataions.
+    /// Class containing methods for performing NodeClient operations.
     /// </summary>
     internal partial class NodeClient : INodeClient
     {
@@ -37,9 +37,11 @@ namespace Microsoft.ServiceFabric.Client.Http
         public Task<PagedData<NodeInfo>> GetNodeInfoListAsync(
             ContinuationToken continuationToken = default(ContinuationToken),
             NodeStatusFilter? nodeStatusFilter = NodeStatusFilter.Default,
+            long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            maxResults?.ThrowIfLessThan("maxResults", 0);
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Nodes";
@@ -48,8 +50,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             nodeStatusFilter?.AddToQueryParameters(queryParams, $"NodeStatusFilter={nodeStatusFilter.ToString()}");
+            maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
+            queryParams.Add("api-version=6.3");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()

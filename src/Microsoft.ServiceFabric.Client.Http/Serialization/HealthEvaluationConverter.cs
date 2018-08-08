@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static HealthEvaluation GetFromJsonProperties(JsonReader reader)
         {
-            HealthEvaluation obj;
+            HealthEvaluation obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -137,7 +137,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, HealthEvaluation obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(HealthEvaluationKind.Application))
             {
                 ApplicationHealthEvaluationConverter.Serialize(writer, (ApplicationHealthEvaluation)obj);

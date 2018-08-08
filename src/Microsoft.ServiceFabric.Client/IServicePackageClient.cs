@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ServicePackageClient operataions.
+    /// Interface containing methods for performing ServicePackageClient operations.
     /// </summary>
     public partial interface IServicePackageClient
     {
@@ -82,13 +82,13 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the information about health of an service package for a specific application deployed for a Service Fabric
+        /// Gets the information about health of a service package for a specific application deployed for a Service Fabric
         /// node and application.
         /// </summary>
         /// <remarks>
-        /// Gets the information about health of service package for a specific application deployed on a Service Fabric node.
-        /// Use EventsHealthStateFilter to optionally filter for the collection of HealthEvent objects reported on the deployed
-        /// service package based on health state.
+        /// Gets the information about health of a service package for a specific application deployed on a Service Fabric
+        /// node. Use EventsHealthStateFilter to optionally filter for the collection of HealthEvent objects reported on the
+        /// deployed service package based on health state.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
@@ -102,9 +102,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -138,7 +138,7 @@ namespace Microsoft.ServiceFabric.Client
         /// using the specified policy.
         /// </summary>
         /// <remarks>
-        /// Gets the information about health of an service package for a specific application deployed on a Service Fabric
+        /// Gets the information about health of a service package for a specific application deployed on a Service Fabric
         /// node. using the specified policy. Use EventsHealthStateFilter to optionally filter for the collection of
         /// HealthEvent objects reported on the deployed service package based on health state. Use ApplicationHealthPolicy to
         /// optionally override the health policies used to evaluate the health. This API only uses 'ConsiderWarningAsError'
@@ -157,9 +157,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -216,7 +216,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="servicePackageName">The name of the service package.</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
-        /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
+        /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
         /// the fabric client settings that the HTTP Gateway Application is using.

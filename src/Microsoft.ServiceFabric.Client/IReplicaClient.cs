@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ReplicaClient operataions.
+    /// Interface containing methods for performing ReplicaClient operations.
     /// </summary>
     public partial interface IReplicaClient
     {
@@ -23,7 +23,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// The GetReplicas endpoint returns information about the replicas of the specified partition. The response includes
-        /// the id, role, status, health, node name, uptime, and other details about the replica.
+        /// the ID, role, status, health, node name, uptime, and other details about the replica.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
@@ -48,7 +48,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the information about a replica of a Service Fabric partition.
         /// </summary>
         /// <remarks>
-        /// The response includes the id, role, status, health, node name, uptime, and other details about the replica.
+        /// The response includes the ID, role, status, health, node name, uptime, and other details about the replica.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="replicaId">The identifier of the replica.</param>
@@ -83,9 +83,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -131,9 +131,9 @@ namespace Microsoft.ServiceFabric.Client
         /// health state.
         /// The possible values for this parameter include integer value of one of the following health states.
         /// Only events that match the filter are returned. All events are used to evaluate the aggregated health state.
-        /// If not specified, all entries are returned. The state values are flag based enumeration, so the value could be a
-        /// combination of these value obtained using bitwise 'OR' operator. For example, If the provided value is 6 then all
-        /// of the events with HealthState value of OK (2) and Warning (4) are returned.
+        /// If not specified, all entries are returned. The state values are flag-based enumeration, so the value could be a
+        /// combination of these values, obtained using the bitwise 'OR' operator. For example, If the provided value is 6 then
+        /// all of the events with HealthState value of OK (2) and Warning (4) are returned.
         /// 
         /// - Default - Default value. Matches any HealthState. The value is zero.
         /// - None - Filter that doesn't match any HealthState value. Used in order to return no results on a given collection
@@ -186,7 +186,7 @@ namespace Microsoft.ServiceFabric.Client
         /// 'Stateful'</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
-        /// <param name ="immediate">A flag which indicates whether the report should be sent immediately.
+        /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
         /// the fabric client settings that the HTTP Gateway Application is using.
@@ -261,7 +261,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the details of replica deployed on a Service Fabric node.
         /// </summary>
         /// <remarks>
-        /// Gets the details of the replica deployed on a Service Fabric node. The information include service kind, service
+        /// Gets the details of the replica deployed on a Service Fabric node. The information includes service kind, service
         /// name, current service operation, current service operation start date time, partition ID, replica/instance ID,
         /// reported load, and other information.
         /// </remarks>
@@ -290,7 +290,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the details of replica deployed on a Service Fabric node.
         /// </summary>
         /// <remarks>
-        /// Gets the details of the replica deployed on a Service Fabric node. The information include service kind, service
+        /// Gets the details of the replica deployed on a Service Fabric node. The information includes service kind, service
         /// name, current service operation, current service operation start date time, partition ID, replica/instance ID,
         /// reported load, and other information.
         /// </remarks>
@@ -349,7 +349,7 @@ namespace Microsoft.ServiceFabric.Client
         /// removal closes the replica, transitions the replica to the role None, and then removes all of the state information
         /// of the replica from the cluster. This API tests the replica state removal path, and simulates the report fault
         /// permanent path through client APIs. Warning - There are no safety checks performed when this API is used. Incorrect
-        /// use of this API can lead to data loss for stateful services.In addition, the forceRemove flag impacts all other
+        /// use of this API can lead to data loss for stateful services. In addition, the forceRemove flag impacts all other
         /// replicas hosted in the same process.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>

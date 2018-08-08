@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static BackupStorageDescription GetFromJsonProperties(JsonReader reader)
         {
-            BackupStorageDescription obj;
+            BackupStorageDescription obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("StorageKind", StringComparison.Ordinal))
             {
@@ -65,7 +65,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, BackupStorageDescription obj)
         {
             var kind = obj.StorageKind;
-
             if (kind.Equals(BackupStorageKind.AzureBlobStore))
             {
                 AzureBlobBackupStorageDescriptionConverter.Serialize(writer, (AzureBlobBackupStorageDescription)obj);

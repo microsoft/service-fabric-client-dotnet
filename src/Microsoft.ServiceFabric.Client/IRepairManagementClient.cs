@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing RepairManagementClient operataions.
+    /// Interface containing methods for performing RepairManagementClient operations.
     /// </summary>
     public partial interface IRepairManagementClient
     {
@@ -94,6 +94,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="taskIdFilter">The repair task ID prefix to be matched.</param>
         /// <param name ="stateFilter">A bitwise-OR of the following values, specifying which task states should be included in
         /// the result list.
+        /// 
         /// - 1 - Created
         /// - 2 - Claimed
         /// - 4 - Preparing

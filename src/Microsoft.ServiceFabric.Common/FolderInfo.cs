@@ -22,7 +22,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="fileCount">The number of files from within the image store folder.</param>
         public FolderInfo(
             string storeRelativePath = default(string),
-            long? fileCount = default(long?))
+            string fileCount = default(string))
         {
             this.StoreRelativePath = storeRelativePath;
             this.FileCount = fileCount;
@@ -36,6 +36,6 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the number of files from within the image store folder.
         /// </summary>
-        public long? FileCount { get; }
+        public string FileCount { get; }
     }
 }

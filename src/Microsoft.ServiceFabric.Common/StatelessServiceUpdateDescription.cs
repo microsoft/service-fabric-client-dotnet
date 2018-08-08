@@ -43,8 +43,11 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="correlationScheme">The correlation scheme.</param>
         /// <param name="loadMetrics">The service load metrics.</param>
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
-        /// <param name="defaultMoveCost">Specifies the move cost for the service. Possible values include: 'Zero', 'Low',
-        /// 'Medium', 'High'</param>
+        /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
+        /// 'High'
+        /// 
+        /// Specifies the move cost for the service.
+        /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
         /// <param name="instanceCount">The instance count.</param>
         public StatelessServiceUpdateDescription(

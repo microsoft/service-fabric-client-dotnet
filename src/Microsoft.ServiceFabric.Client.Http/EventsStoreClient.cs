@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing EventsStoreClient operataions.
+    /// Class containing methods for performing EventsStoreClient operations.
     /// </summary>
     internal partial class EventsStoreClient : IEventsStoreClient
     {

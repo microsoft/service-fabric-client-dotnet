@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PropertyValue GetFromJsonProperties(JsonReader reader)
         {
-            PropertyValue obj;
+            PropertyValue obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -77,7 +77,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, PropertyValue obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(PropertyValueKind.Binary))
             {
                 BinaryPropertyValueConverter.Serialize(writer, (BinaryPropertyValue)obj);

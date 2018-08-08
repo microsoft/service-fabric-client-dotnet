@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ChaosClient operataions.
+    /// Interface containing methods for performing ChaosClient operations.
     /// </summary>
     public partial interface IChaosClient
     {
@@ -47,8 +47,8 @@ namespace Microsoft.ServiceFabric.Client
         /// If Chaos is not already running in the cluster, it starts Chaos with the passed in Chaos parameters.
         /// If Chaos is already running when this call is made, the call fails with the error code
         /// FABRIC_E_CHAOS_ALREADY_RUNNING.
-        /// Please refer to the article [Induce controlled Chaos in Service Fabric
-        /// clusters](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-controlled-chaos) for more details.
+        /// Refer to the article [Induce controlled Chaos in Service Fabric
+        /// clusters](https://docs.microsoft.com/azure/service-fabric/service-fabric-controlled-chaos) for more details.
         /// </remarks>
         /// <param name ="chaosParameters">Describes all the parameters to configure a Chaos run.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
@@ -73,8 +73,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Stops Chaos from executing new faults. In-flight faults will continue to execute until they are complete. The
         /// current Chaos Schedule is put into a stopped state.
-        /// Once a schedule is stopped it will stay in the stopped state and not be used to Chaos Schedule new runs of Chaos. A
-        /// new Chaos Schedule must be set in order to resume scheduling.
+        /// Once a schedule is stopped, it will stay in the stopped state and not be used to Chaos Schedule new runs of Chaos.
+        /// A new Chaos Schedule must be set in order to resume scheduling.
         /// </remarks>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -105,15 +105,15 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="startTimeUtc">The Windows file time representing the start time of the time range for which a Chaos
-        /// report is to be generated. Please consult [DateTime.ToFileTimeUtc
-        /// Method](https://msdn.microsoft.com/en-us/library/system.datetime.tofiletimeutc(v=vs.110).aspx) for details.</param>
+        /// report is to be generated. Consult [DateTime.ToFileTimeUtc
+        /// Method](https://msdn.microsoft.com/library/system.datetime.tofiletimeutc(v=vs.110).aspx) for details.</param>
         /// <param name ="endTimeUtc">The Windows file time representing the end time of the time range for which a Chaos
-        /// report is to be generated. Please consult [DateTime.ToFileTimeUtc
-        /// Method](https://msdn.microsoft.com/en-us/library/system.datetime.tofiletimeutc(v=vs.110).aspx) for details.</param>
+        /// report is to be generated. Consult [DateTime.ToFileTimeUtc
+        /// Method](https://msdn.microsoft.com/library/system.datetime.tofiletimeutc(v=vs.110).aspx) for details.</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
         /// defines the upper bound on the number of results returned. The results returned can be less than the specified
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
-        /// configuration. If this parameter is zero or not specified, the paged queries includes as many results as possible
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ChaosEventsSegment> GetChaosEventsAsync(
+        Task<PagedData<ChaosEventWrapper>> GetChaosEventsAsync(
             ContinuationToken continuationToken = default(ContinuationToken),
             string startTimeUtc = default(string),
             string endTimeUtc = default(string),
@@ -155,15 +155,16 @@ namespace Microsoft.ServiceFabric.Client
         /// Set the schedule used by Chaos.
         /// </summary>
         /// <remarks>
-        /// Set the Chaos Schedule currently in use by Chaos. Chaos will automatically schedule runs based on the Chaos
-        /// Schedule.
-        /// The version in the provided input schedule must match the version of the Chaos Schedule on the server.
-        /// If the version provided does not match the version on the server, the Chaos Schedule is not updated.
-        /// If the version provided matches the version on the server, then the Chaos Schedule is updated and the version of
-        /// the Chaos Schedule on the server is incremented up by one and wraps back to 0 after 2,147,483,647.
+        /// Chaos will automatically schedule runs based on the Chaos Schedule.
+        /// The Chaos Schedule will be updated if the provided version matches the version on the server.
+        /// When updating the Chaos Schedule, the version on the server is incremented by 1.
+        /// The version on the server will wrap back to 0 after reaching a large number.
         /// If Chaos is running when this call is made, the call will fail.
         /// </remarks>
         /// <param name ="chaosSchedule">Describes the schedule used by Chaos.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -174,6 +175,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task PostChaosScheduleAsync(
             ChaosScheduleDescription chaosSchedule,
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

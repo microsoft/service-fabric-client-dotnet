@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static BackupEntity GetFromJsonProperties(JsonReader reader)
         {
-            BackupEntity obj;
+            BackupEntity obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("EntityKind", StringComparison.Ordinal))
             {
@@ -69,7 +69,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, BackupEntity obj)
         {
             var kind = obj.EntityKind;
-
             if (kind.Equals(BackupEntityKind.Application))
             {
                 ApplicationBackupEntityConverter.Serialize(writer, (ApplicationBackupEntity)obj);

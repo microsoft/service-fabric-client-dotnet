@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static BackupScheduleDescription GetFromJsonProperties(JsonReader reader)
         {
-            BackupScheduleDescription obj;
+            BackupScheduleDescription obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("ScheduleKind", StringComparison.Ordinal))
             {
@@ -65,7 +65,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, BackupScheduleDescription obj)
         {
             var kind = obj.ScheduleKind;
-
             if (kind.Equals(BackupScheduleKind.FrequencyBased))
             {
                 FrequencyBasedBackupScheduleDescriptionConverter.Serialize(writer, (FrequencyBasedBackupScheduleDescription)obj);

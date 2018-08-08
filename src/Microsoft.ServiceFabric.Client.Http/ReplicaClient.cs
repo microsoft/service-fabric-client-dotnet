@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing ReplicaClient operataions.
+    /// Class containing methods for performing ReplicaClient operations.
     /// </summary>
     internal partial class ReplicaClient : IReplicaClient
     {

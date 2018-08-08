@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Common
         /// are returned. All partitions are used to evaluate the cluster aggregated health state.
         /// If not specified, default value is None, unless the partition ID is specified. If the filter has default value and
         /// partition ID is specified, the matching partition is returned.
-        /// The state values are flag based enumeration, so the value could be a combination of these values obtained using
+        /// The state values are flag-based enumeration, so the value could be a combination of these values obtained using
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6, it matches partitions with HealthState value of OK (2) and Warning (4).
         /// 
@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Common
         /// are returned. All partitions are used to evaluate the cluster aggregated health state.
         /// If not specified, default value is None, unless the partition ID is specified. If the filter has default value and
         /// partition ID is specified, the matching partition is returned.
-        /// The state values are flag based enumeration, so the value could be a combination of these values obtained using
+        /// The state values are flag-based enumeration, so the value could be a combination of these values obtained using
         /// bitwise 'OR' operator.
         /// For example, if the provided value is 6, it matches partitions with HealthState value of OK (2) and Warning (4).
         /// 

@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Common
             PartitionInformation partitionInformation = default(PartitionInformation),
             string backupLocation = default(string),
             BackupType? backupType = default(BackupType?),
-            Epoch epochOfLastBackupRecord = default(Epoch),
+            BackupEpoch epochOfLastBackupRecord = default(BackupEpoch),
             string lsnOfLastBackupRecord = default(string),
             DateTime? creationTimeUtc = default(DateTime?),
             FabricErrorError failureError = default(FabricErrorError))
@@ -95,7 +95,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets epoch of the last record in this backup.
         /// </summary>
-        public Epoch EpochOfLastBackupRecord { get; }
+        public BackupEpoch EpochOfLastBackupRecord { get; }
 
         /// <summary>
         /// Gets LSN of the last record in this backup.

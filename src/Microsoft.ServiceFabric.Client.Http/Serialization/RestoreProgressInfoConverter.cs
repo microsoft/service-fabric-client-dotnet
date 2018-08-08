@@ -35,7 +35,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             var restoreState = default(RestoreState?);
             var timeStampUtc = default(DateTime?);
-            var restoredEpoch = default(Epoch);
+            var restoredEpoch = default(BackupEpoch);
             var restoredLsn = default(string);
             var failureError = default(FabricErrorError);
 
@@ -52,7 +52,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("RestoredEpoch", propName, StringComparison.Ordinal) == 0)
                 {
-                    restoredEpoch = EpochConverter.Deserialize(reader);
+                    restoredEpoch = BackupEpochConverter.Deserialize(reader);
                 }
                 else if (string.Compare("RestoredLsn", propName, StringComparison.Ordinal) == 0)
                 {
@@ -94,7 +94,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.RestoredEpoch != null)
             {
-                writer.WriteProperty(obj.RestoredEpoch, "RestoredEpoch", EpochConverter.Serialize);
+                writer.WriteProperty(obj.RestoredEpoch, "RestoredEpoch", BackupEpochConverter.Serialize);
             }
 
             if (obj.RestoredLsn != null)

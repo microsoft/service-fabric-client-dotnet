@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing CodePackageClient operataions.
+    /// Interface containing methods for performing CodePackageClient operations.
     /// </summary>
     public partial interface ICodePackageClient
     {

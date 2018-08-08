@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing PropertyManagementClient operataions.
+    /// Interface containing methods for performing PropertyManagementClient operations.
     /// </summary>
     public partial interface IPropertyManagementClient
     {
@@ -93,7 +93,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// Enumerates all the Service Fabric names under a given name. If the subnames do not fit in a page, one page of
-        /// results is returned as well as a continuation token which can be used to get the next page. Querying a name that
+        /// results is returned as well as a continuation token, which can be used to get the next page. Querying a name that
         /// doesn't exist will fail.
         /// </remarks>
         /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
@@ -121,9 +121,9 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets information on all Service Fabric properties under a given name.
         /// </summary>
         /// <remarks>
-        /// A Service Fabric name can have one or more named properties that stores custom information. This operation gets the
-        /// information about these properties in a paged list. The information include name, value and metadata about each of
-        /// the properties.
+        /// A Service Fabric name can have one or more named properties that store custom information. This operation gets the
+        /// information about these properties in a paged list. The information includes name, value, and metadata about each
+        /// of the properties.
         /// </remarks>
         /// <param name ="nameId">The Service Fabric name, without the 'fabric:' URI scheme.</param>
         /// <param name ="includeValues">Allows specifying whether to include the values of the properties returned. True if

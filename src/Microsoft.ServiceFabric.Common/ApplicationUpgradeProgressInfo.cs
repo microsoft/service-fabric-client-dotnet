@@ -28,9 +28,9 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="rollingUpgradeMode">The mode used to monitor health during a rolling upgrade. The values are
         /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
         /// 'UnmonitoredManual', 'Monitored'</param>
-        /// <param name="upgradeDescription">Describes the parameters for an application upgrade. Please note that upgrade
-        /// description replaces the existing application description. This means that if the parameters are not specified, the
-        /// existing parameters on the applications will be overwritten with the empty parameters list. This would results in
+        /// <param name="upgradeDescription">Describes the parameters for an application upgrade. Note that upgrade description
+        /// replaces the existing application description. This means that if the parameters are not specified, the existing
+        /// parameters on the applications will be overwritten with the empty parameters list. This would result in the
         /// application using the default value of the parameters from the application manifest. If you do not want to change
         /// any existing parameter values, please get the application parameters first using the GetApplicationInfo query and
         /// then supply those values as Parameters in this ApplicationUpgradeDescription.</param>
@@ -125,9 +125,9 @@ namespace Microsoft.ServiceFabric.Common
         public UpgradeMode? RollingUpgradeMode { get; }
 
         /// <summary>
-        /// Gets describes the parameters for an application upgrade. Please note that upgrade description replaces the
-        /// existing application description. This means that if the parameters are not specified, the existing parameters on
-        /// the applications will be overwritten with the empty parameters list. This would results in application using the
+        /// Gets describes the parameters for an application upgrade. Note that upgrade description replaces the existing
+        /// application description. This means that if the parameters are not specified, the existing parameters on the
+        /// applications will be overwritten with the empty parameters list. This would result in the application using the
         /// default value of the parameters from the application manifest. If you do not want to change any existing parameter
         /// values, please get the application parameters first using the GetApplicationInfo query and then supply those values
         /// as Parameters in this ApplicationUpgradeDescription.

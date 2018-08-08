@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ScalingMechanismDescription GetFromJsonProperties(JsonReader reader)
         {
-            ScalingMechanismDescription obj;
+            ScalingMechanismDescription obj = null;
             var propName = reader.ReadPropertyName();
             if (!propName.Equals("Kind", StringComparison.Ordinal))
             {
@@ -65,7 +65,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, ScalingMechanismDescription obj)
         {
             var kind = obj.Kind;
-
             if (kind.Equals(ScalingMechanismKind.PartitionInstanceCount))
             {
                 PartitionInstanceCountScaleMechanismConverter.Serialize(writer, (PartitionInstanceCountScaleMechanism)obj);
