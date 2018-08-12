@@ -14,6 +14,15 @@
     <NugetPackageDropFolder>$(DropFolder)packages</NugetPackageDropFolder>
     
     <!-- Set Nuget exe path -->
-    <NuGetExePath Condition="'$(NuGetExePath)' == ''">$(RepoRoot)external\nuget.exe</NuGetExePath>
+    <NuGetExePath Condition="'$(NuGetExePath)' == ''">$(RepoRoot)nuget\nuget.exe</NuGetExePath>
+
+    <!-- Version for binaries, nuget packages generated from this repo. -->
+    <!-- TODO: Versions numbers are changed here manually for now, Integrate this with GitVersion. -->
+    <MajorVersion>1</MajorVersion>
+    <MinorVersion>0</MinorVersion>
+    <BuildVersion>0</BuildVersion>
+    <Revision>0</Revision>
+    <PreviewTag>-preview60</PreviewTag>
+
   </PropertyGroup>
 </Project>

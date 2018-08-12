@@ -39,14 +39,10 @@
   
   <!-- Set Version numbers. These are used for generating Assemblies and Nuget packages. -->
   <PropertyGroup>
-    <MajorVersion>1</MajorVersion>
-    <MinorVersion>0</MinorVersion>
-    <BuildVersion>0</BuildVersion>
-    <Revision>0</Revision>
-
     <Version>$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <AssemblyFileVersion>$(Version)</AssemblyFileVersion>
+    <FileVersion>$(MajorVersion).$(MinorVersion).$(BuildVersion).$(Revision)</FileVersion>
   </PropertyGroup>
   
   <PropertyGroup>
@@ -56,8 +52,4 @@
     <Authors>Microsoft</Authors>
   </PropertyGroup>
 
-  <!-- Setting Paths -->
-  <PropertyGroup>
-    <SrcRoot>$(MSBuildThisFileDirectory)..\</SrcRoot>
-  </PropertyGroup>
 </Project>
