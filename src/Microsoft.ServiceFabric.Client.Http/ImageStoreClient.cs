@@ -8,6 +8,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net.Http;
     using System.Text;
     using System.Threading;
@@ -34,128 +35,201 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<ImageStoreContent> GetImageStoreContentAsync(
+        public async Task<ImageStoreContent> GetImageStoreContentAsync(
             string contentPath,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             contentPath.ThrowIfNull(nameof(contentPath));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreContentConverter.Deserialize, requestId, cancellationToken);
+            await this.LoadImageStoreConnectionString();
+            if (this.isLocalStore)
+            {
+                var path = Path.Combine(this.imageStorePath, contentPath);
+                var directories = Directory.EnumerateDirectories(path, "*", SearchOption.AllDirectories).Select(d => new FolderInfo(d.Replace(this.imageStorePath, string.Empty), Directory.EnumerateFiles(d).Count().ToString())).ToList();
+                var files = Directory.EnumerateFiles(path, "*", SearchOption.AllDirectories).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, string.Empty))).ToList();
+                return new ImageStoreContent(files, directories);
+            }
+            else
+            {
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                var requestId = Guid.NewGuid().ToString();
+                var url = "ImageStore/{contentPath}";
+                url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
+                var queryParams = new List<string>();
+
+                // Append to queryParams if not null.
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.2");
+                url += "?" + string.Join("&", queryParams);
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                    };
+                    return request;
+                }
+
+                return await this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreContentConverter.Deserialize, requestId, cancellationToken);
+            }
         }
 
         /// <inheritdoc />
-        public Task DeleteImageStoreContentAsync(
+        public async Task DeleteImageStoreContentAsync(
             string contentPath,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             contentPath.ThrowIfNull(nameof(contentPath));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/{contentPath}";
-            url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Delete,
-                };
-                return request;
-            }
 
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            await this.LoadImageStoreConnectionString();
+            if (this.isLocalStore)
+            {
+                var path = Path.Combine(this.imageStorePath, contentPath);
+                FileAttributes attr = File.GetAttributes(path);
+
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    Directory.Delete(path, true);
+                }
+                else
+                {
+                    File.Delete(path);
+                }
+            }
+            else
+            {
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                var requestId = Guid.NewGuid().ToString();
+                var url = "ImageStore/{contentPath}";
+                url = url.Replace("{contentPath}", Uri.EscapeDataString(contentPath));
+                var queryParams = new List<string>();
+
+                // Append to queryParams if not null.
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.0");
+                url += "?" + string.Join("&", queryParams);
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Delete,
+                    };
+                    return request;
+                }
+
+                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            }
         }
 
         /// <inheritdoc />
-        public Task<ImageStoreContent> GetImageStoreRootContentAsync(
+        public async Task<ImageStoreContent> GetImageStoreRootContentAsync(
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore";
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
+            await this.LoadImageStoreConnectionString();
+            if (this.isLocalStore)
             {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
+                var directories = Directory.EnumerateDirectories(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(d => new FolderInfo(d.Replace(this.imageStorePath, string.Empty), Directory.EnumerateFiles(d).ToString())).ToList();
+                var files = Directory.EnumerateFiles(this.imageStorePath, "*", SearchOption.TopDirectoryOnly).Select(f => new System.IO.FileInfo(f)).Select(f => new Common.FileInfo(f.Length.ToString(), new FileVersion(), f.LastWriteTimeUtc, f.FullName.Replace(this.imageStorePath, string.Empty))).ToList();
+                return new ImageStoreContent(files, directories);
             }
+            else
+            {
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                var requestId = Guid.NewGuid().ToString();
+                var url = "ImageStore";
+                var queryParams = new List<string>();
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreContentConverter.Deserialize, requestId, cancellationToken);
+                // Append to queryParams if not null.
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.0");
+                url += "?" + string.Join("&", queryParams);
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Get,
+                    };
+                    return request;
+                }
+
+                return await this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreContentConverter.Deserialize, requestId, cancellationToken);
+            }
         }
 
         /// <inheritdoc />
-        public Task CopyImageStoreContentAsync(
+        public async Task CopyImageStoreContentAsync(
             ImageStoreCopyDescription imageStoreCopyDescription,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             imageStoreCopyDescription.ThrowIfNull(nameof(imageStoreCopyDescription));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "ImageStore/$/Copy";
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
-            url += "?" + string.Join("&", queryParams);
-            
-            string content;
-            using (var sw = new StringWriter())
-            {
-                ImageStoreCopyDescriptionConverter.Serialize(new JsonTextWriter(sw), imageStoreCopyDescription);
-                content = sw.ToString();
-            }
 
-            HttpRequestMessage RequestFunc()
+            await this.LoadImageStoreConnectionString();
+            if (this.isLocalStore)
             {
-                var request = new HttpRequestMessage()
+                var source = Path.Combine(this.imageStorePath, imageStoreCopyDescription.RemoteSource);
+                var destination = Path.Combine(this.imageStorePath, imageStoreCopyDescription.RemoteDestination);
+
+                FileAttributes attr = File.GetAttributes(source);
+                if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                 {
-                    Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8),
-                };
-                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
-                return request;
-            }
+                    var files = Directory.EnumerateFiles(source, "*", SearchOption.AllDirectories)
+                    .Select(file => new System.IO.FileInfo(file));
 
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+                    foreach (var file in files)
+                    {
+                        var targetPath = Path.Combine(this.imageStorePath, Path.Combine(destination, file.FullName.Substring(source.Length + 1)));
+                        if (!Directory.Exists(Path.GetDirectoryName(targetPath)))
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(targetPath));
+                        }
+
+                        File.Copy(file.FullName, targetPath, true);
+                    }
+                }
+                else
+                {
+                    File.Copy(source, destination, true);
+                }
+            }
+            else
+            {
+                serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+                var requestId = Guid.NewGuid().ToString();
+                var url = "ImageStore/$/Copy";
+                var queryParams = new List<string>();
+
+                // Append to queryParams if not null.
+                serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+                queryParams.Add("api-version=6.0");
+                url += "?" + string.Join("&", queryParams);
+
+                string content;
+                using (var sw = new StringWriter())
+                {
+                    ImageStoreCopyDescriptionConverter.Serialize(new JsonTextWriter(sw), imageStoreCopyDescription);
+                    content = sw.ToString();
+                }
+
+                HttpRequestMessage RequestFunc()
+                {
+                    var request = new HttpRequestMessage()
+                    {
+                        Method = HttpMethod.Post,
+                        Content = new StringContent(content, Encoding.UTF8),
+                    };
+                    request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                    return request;
+                }
+
+                await this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            }
         }
 
         /// <inheritdoc />

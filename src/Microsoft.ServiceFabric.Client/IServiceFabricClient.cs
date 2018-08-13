@@ -123,5 +123,17 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <returns>The <see cref="IEventsStoreClient"/></returns>
         IEventsStoreClient EventsStore { get; }
+
+        /// <summary>
+        /// Gets ApplicationResource Client to perform management operations on application resources.
+        /// </summary>
+        /// <returns>The <see cref="IApplicationResourceClient"/></returns>
+        IApplicationResourceClient ApplicationResources { get; }
+
+        /// <summary>
+        /// Gets VolumeResource Client to perform management operations on volume resources.
+        /// </summary>
+        /// <returns>The <see cref="IVolumeResourceClient"/></returns>
+        IVolumeResourceClient VolumeResources { get; }
     }
 }

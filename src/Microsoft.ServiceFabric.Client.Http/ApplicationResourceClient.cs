@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedServiceResourceDescriptionList> GetServicesAsync(
+        public Task<PagedData<ServiceResourceDescription>> GetServicesAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -149,7 +149,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, PagedServiceResourceDescriptionListConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ServiceResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -183,7 +183,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedServiceResourceReplicaDescriptionList> GetReplicasAsync(
+        public Task<PagedData<ServiceResourceReplicaDescription>> GetReplicasAsync(
             string applicationResourceName,
             string serviceResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -209,7 +209,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, PagedServiceResourceReplicaDescriptionListConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ServiceResourceReplicaDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />

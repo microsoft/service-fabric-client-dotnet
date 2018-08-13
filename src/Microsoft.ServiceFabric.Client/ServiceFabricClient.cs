@@ -116,6 +116,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <inheritdoc/>
         public IEventsStoreClient EventsStore { get; protected set; }
 
+        /// <inheritdoc/>
+        public IApplicationResourceClient ApplicationResources { get; protected set; }
+
+        /// <inheritdoc/>
+        public IVolumeResourceClient VolumeResources { get; protected set; }
+
         /// <summary>
         /// Gets the client settings for connecting to cluster.
         /// </summary>
