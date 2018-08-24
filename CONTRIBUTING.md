@@ -17,6 +17,11 @@ Please be sure to follow the usual process for submitting PRs:
 
 We reserve the right to close PRs that are not making progress. If no changes are made for 7 days, we'll close the PR. Closed PRs can be reopened again later and work can resume.
 
+### <a name="BranchingInformation"></a>Branching Information
+All development for future releases happen in the develop branch.
+A new branch is forked off of develop branch for each release to stabilize it before final release. (eg. release_6.4 branch represents the api changes corresponding to Service Fabric 6.4 release.).
+A bug fix in an already released version is made both to its release branch and to develop branch so that its available in refresh of the release and for future new releases.
+
 ### Contributor License Agreement
 Before you submit a pull request, a bot will prompt you to sign the [Microsoft Contributor License Agreement](https://cla.microsoft.com/). This needs to be done only once for any Microsoft-sponsored open source project - if you've signed the Microsoft CLA for any project sponsored by Microsoft, then you are good to go for all the repos sponsored by Microsoft.
 
