@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <Import Project="..\..\properties\service_fabric_managed_netstandard.props" />
+  <Import Project="..\..\properties\service_fabric_managed_stylecop.props" />
+  <PropertyGroup>
+    <AssemblyName>Microsoft.ServiceFabric.Powershell.Http</AssemblyName>
+    <RootNamespace>Microsoft.ServiceFabric.Powershell.Http</RootNamespace>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Microsoft.ServiceFabric.Powershell.Http-Help.xml" />
+    <None Remove="Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" />
+    <None Remove="Microsoft.ServiceFabric.Powershell.Http.psd1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Microsoft.ServiceFabric.Powershell.Http-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Microsoft.ServiceFabric.Powershell.Http.psd1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06" />
+  </ItemGroup>  
+  <ItemGroup>
+    <ProjectReference Include="..\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj" />
+  </ItemGroup>  
+  <ItemGroup>
+    <Compile Update="Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>  
+  <ItemGroup>
+    <EmbeddedResource Update="Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>  
+</Project>

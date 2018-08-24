@@ -14,9 +14,9 @@ namespace Microsoft.ServiceFabric.Client
     using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
-    /// Interface containing methods for performing ApplicationResourceClient operations.
+    /// Interface containing methods for performing MeshApplicationClient operations.
     /// </summary>
-    public partial interface IApplicationResourceClient
+    public partial interface IMeshApplicationClient
     {
         /// <summary>
         /// Creates or updates an application resource.
@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task CreateApplicationResourceAsync(
+        Task CreateMeshApplicationAsync(
             string applicationResourceName,
             ApplicationResourceDescription applicationResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -58,7 +58,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ApplicationResourceDescription> GetApplicationResourceAsync(
+        Task<ApplicationResourceDescription> GetMeshApplicationAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -78,7 +78,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task DeleteApplicationResourceAsync(
+        Task DeleteMeshApplicationAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -98,7 +98,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<PagedData<ServiceResourceDescription>> GetServicesAsync(
+        Task<PagedData<ServiceResourceDescription>> GetMeshServicesAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -120,7 +120,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ServiceResourceDescription> GetServiceAsync(
+        Task<ServiceResourceDescription> GetMeshServiceAsync(
             string applicationResourceName,
             string serviceResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -144,7 +144,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<PagedData<ServiceResourceReplicaDescription>> GetReplicasAsync(
+        Task<PagedData<ServiceResourceReplicaDescription>> GetMeshReplicasAsync(
             string applicationResourceName,
             string serviceResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -170,7 +170,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ServiceResourceReplicaDescription> GetReplicaAsync(
+        Task<ServiceResourceReplicaDescription> GetMeshReplicaAsync(
             string applicationResourceName,
             string serviceResourceName,
             string replicaName,

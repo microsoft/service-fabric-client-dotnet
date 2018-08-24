@@ -31,6 +31,15 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="FabricName"/> class by using the value represented by the specified string.
+        /// </summary>
+        /// <param name="name">Service Fabric name to create this isntance from..</param>
+        public FabricName(FabricName name)
+            : this(name.CheckNotNull(nameof(name)).ToString())
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="FabricName"/> class by using the value represented by the specified uri.
         /// </summary>
         /// <param name="name">A uri for the Service Fabric name.</param>

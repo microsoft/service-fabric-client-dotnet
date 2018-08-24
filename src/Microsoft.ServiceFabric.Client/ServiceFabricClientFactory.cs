@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client
 
             if (clusterEndpoints == null)
             {
-                // TODO: Create Tcp FabricClient by default in this case when Tcp Fabric CLient implementation is available.
+                // TODO: Create Tcp FabricClient by default in this case when Tcp Fabric Client implementation is available.
                 throw new ArgumentNullException(nameof(clusterEndpoints));
             }
 

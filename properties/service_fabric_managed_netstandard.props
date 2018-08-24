@@ -3,6 +3,6 @@
   <Import Project="service_fabric_managed_common.props" />
   <PropertyGroup>
     <!-- Define Constants used in code for netstandard 2.0. -->
-    <DefineConstants>$(DefineConstants)</DefineConstants>
+    <DefineConstants>$(DefineConstants);DotNetCoreClr</DefineConstants>
   </PropertyGroup>
 </Project>

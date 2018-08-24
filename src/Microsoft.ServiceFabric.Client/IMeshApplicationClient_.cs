@@ -12,7 +12,7 @@ namespace Microsoft.ServiceFabric.Client
     /// <summary>
     /// Interface containing methods for performing ApplicationResourceClient operations.
     /// </summary>
-    public partial interface IApplicationResourceClient
+    public partial interface IMeshApplicationClient
     {
         /// <summary>
         /// Creates or updates an application with the given name and description.
@@ -29,6 +29,6 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="T:ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="T:ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="P:Microsoft.ServiceFabric.Common.FabricError.ErrorCode" />, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="T:System.OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ApplicationResourceDescription> CreateApplicationResourceAsync(string resourceFile, string applicationResourceName, CancellationToken cancellationToken = default(CancellationToken));
+        Task<ApplicationResourceDescription> CreateMeshApplicationAsync(string resourceFile, string applicationResourceName, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

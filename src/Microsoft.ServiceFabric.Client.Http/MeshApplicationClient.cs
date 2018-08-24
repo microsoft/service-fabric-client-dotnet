@@ -18,23 +18,23 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing ApplicationResourceClient operations.
+    /// Class containing methods for performing MeshApplicationClient operations.
     /// </summary>
-    internal partial class ApplicationResourceClient : IApplicationResourceClient
+    internal partial class MeshApplicationClient : IMeshApplicationClient
     {
         private readonly ServiceFabricHttpClient httpClient;
 
         /// <summary>
-        /// Initializes a new instance of the ApplicationResourceClient class.
+        /// Initializes a new instance of the MeshApplicationClient class.
         /// </summary>
         /// <param name="httpClient">ServiceFabricHttpClient instance.</param>
-        public ApplicationResourceClient(ServiceFabricHttpClient httpClient)
+        public MeshApplicationClient(ServiceFabricHttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
 
         /// <inheritdoc />
-        public Task CreateApplicationResourceAsync(
+        public Task CreateMeshApplicationAsync(
             string applicationResourceName,
             ApplicationResourceDescription applicationResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<ApplicationResourceDescription> GetApplicationResourceAsync(
+        public Task<ApplicationResourceDescription> GetMeshApplicationAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -99,7 +99,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteApplicationResourceAsync(
+        public Task DeleteMeshApplicationAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedData<ServiceResourceDescription>> GetServicesAsync(
+        public Task<PagedData<ServiceResourceDescription>> GetMeshServicesAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -153,7 +153,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<ServiceResourceDescription> GetServiceAsync(
+        public Task<ServiceResourceDescription> GetMeshServiceAsync(
             string applicationResourceName,
             string serviceResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -183,7 +183,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedData<ServiceResourceReplicaDescription>> GetReplicasAsync(
+        public Task<PagedData<ServiceResourceReplicaDescription>> GetMeshReplicasAsync(
             string applicationResourceName,
             string serviceResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -213,7 +213,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<ServiceResourceReplicaDescription> GetReplicaAsync(
+        public Task<ServiceResourceReplicaDescription> GetMeshReplicaAsync(
             string applicationResourceName,
             string serviceResourceName,
             string replicaName,

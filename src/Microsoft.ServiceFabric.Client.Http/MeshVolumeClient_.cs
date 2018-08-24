@@ -15,17 +15,20 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Microsoft.ServiceFabric.Common;
     using Newtonsoft.Json;
 
-    internal partial class ApplicationResourceClient : IApplicationResourceClient
+    internal partial class MeshVolumeClient : IMeshVolumeClient
     {
         /// <inheritdoc />
-        public Task<ApplicationResourceDescription> CreateApplicationResourceAsync(string resourceFile, string applicationResourceName, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<VolumeResourceDescription> CreateMeshVolumeAsync(
+            string resourceFile,
+            string volumeResourceName,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             resourceFile.ThrowIfNull(nameof(resourceFile));
-            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
+            volumeResourceName.ThrowIfNull(nameof(volumeResourceName));
             string content = File.ReadAllText(resourceFile);
 
             string requestId = Guid.NewGuid().ToString();
-            var url = $"Resources/Applications/{applicationResourceName}?api-version={Constants.DefaultApiVersionForResources}";
+            var url = $"Resources/Volumes/{volumeResourceName}?api-version={Constants.DefaultApiVersionForResources}";
 
             HttpRequestMessage RequestFunc()
             {
@@ -38,7 +41,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ApplicationResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, VolumeResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
     }
 }

@@ -10,7 +10,10 @@
     
     <!-- Set Drop folders -->
     <DropFolder>$(RepoRoot)drop\$(Configuration)\</DropFolder>
+    <DropFolderNetFramework>$(DropFolder)netframework\</DropFolderNetFramework>
     <DropFolderNetStandard>$(DropFolder)netstandard\</DropFolderNetStandard>
+    <PSModuleDropFolderNetFramework>$(DropFolder)netframework\PSModule\</PSModuleDropFolderNetFramework>
+    <PSModuleDropFolderNetStandard>$(DropFolder)netstandard\PSModule\</PSModuleDropFolderNetStandard>
     <NugetPackageDropFolder>$(DropFolder)packages</NugetPackageDropFolder>
     
     <!-- Set Nuget exe path -->

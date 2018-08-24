@@ -18,23 +18,23 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Newtonsoft.Json;
 
     /// <summary>
-    /// Class containing methods for performing VolumeResourceClient operations.
+    /// Class containing methods for performing MeshVolumeClient operations.
     /// </summary>
-    internal partial class VolumeResourceClient : IVolumeResourceClient
+    internal partial class MeshVolumeClient : IMeshVolumeClient
     {
         private readonly ServiceFabricHttpClient httpClient;
 
         /// <summary>
-        /// Initializes a new instance of the VolumeResourceClient class.
+        /// Initializes a new instance of the MeshVolumeClient class.
         /// </summary>
         /// <param name="httpClient">ServiceFabricHttpClient instance.</param>
-        public VolumeResourceClient(ServiceFabricHttpClient httpClient)
+        public MeshVolumeClient(ServiceFabricHttpClient httpClient)
         {
             this.httpClient = httpClient;
         }
 
         /// <inheritdoc />
-        public Task CreateVolumeResourceAsync(
+        public Task CreateMeshVolumeAsync(
             string volumeResourceName,
             VolumeResourceDescription volumeResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> GetVolumeResourceAsync(
+        public Task<VolumeResourceDescription> GetMeshVolumeAsync(
             string volumeResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -99,7 +99,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteVolumeResourceAsync(
+        public Task DeleteMeshVolumeAsync(
             string volumeResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {

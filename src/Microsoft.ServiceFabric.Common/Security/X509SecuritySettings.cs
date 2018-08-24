@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------
+// ------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
@@ -7,6 +7,7 @@ namespace Microsoft.ServiceFabric.Common.Security
 {
     using System;
     using System.Security.Cryptography.X509Certificates;
+    using Microsoft.ServiceFabric.Common.Resources;
 
     /// <summary>
     /// Specifies the security settings that are based upon X509 certificates.
@@ -18,11 +19,17 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// </summary>
         /// <param name="clientCertificate">The client certificate for the communication with server.</param>
         /// <param name="remoteX509SecuritySettings">Security settings to verify remote X509 certificate.</param>
-        public X509SecuritySettings(X509Certificate clientCertificate, RemoteX509SecuritySettings remoteX509SecuritySettings)
+        public X509SecuritySettings(X509Certificate2 clientCertificate, RemoteX509SecuritySettings remoteX509SecuritySettings)
             : base(SecurityType.X509)
         {
             clientCertificate.ThrowIfNull(nameof(clientCertificate));
             remoteX509SecuritySettings.ThrowIfNull(nameof(remoteX509SecuritySettings));
+
+            if (clientCertificate.HasPrivateKey)
+            {
+                throw new InvalidOperationException(SR.ClientCertDoesntContainPrivateKey);
+            }
+
             this.ClientCertificate = clientCertificate;
             this.RemoteX509SecuritySettings = remoteX509SecuritySettings;
         }
@@ -30,8 +37,8 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// <summary>
         /// Gets the client certificate for communication with server.
         /// </summary>
-        /// <value><see cref="System.Security.Cryptography.X509Certificates.X509Certificate"/> to communicate with server.</value>
-        public X509Certificate ClientCertificate { get; }
+        /// <value><see cref="System.Security.Cryptography.X509Certificates.X509Certificate2"/> to communicate with server.</value>
+        public X509Certificate2 ClientCertificate { get; }
 
         /// <summary>
         /// Gets the settings to validate remote certificate.

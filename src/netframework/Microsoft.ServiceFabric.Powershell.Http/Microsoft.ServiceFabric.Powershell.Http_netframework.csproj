@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <Import Project="..\..\..\properties\service_fabric_managed_netframework.props" />
+  <Import Project="..\..\..\properties\service_fabric_managed_stylecop.props" />
+  <PropertyGroup>
+    <AssemblyName>Microsoft.ServiceFabric.Powershell.Http</AssemblyName>
+    <RootNamespace>Microsoft.ServiceFabric.Powershell.Http</RootNamespace>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <SourceCodeDir>$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\</SourceCodeDir>
+    <TargetFramework>net461</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--Add required .cs files to build for netframework-->
+    <Compile Include="$(SourceCodeDir)*.cs" Exclude="$(SourceCodeDir)Resource.Designer.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
+    <Compile Include="$(SourceCodeDir)generated\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(SourceCodeDir)Resource.Designer.cs">
+      <Link>Resource.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http-Help.xml" Link="Microsoft.ServiceFabric.Powershell.Http-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" Link="Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http.psd1" Link="Microsoft.ServiceFabric.Powershell.Http.psd1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>    
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
+    <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(SourceCodeDir)Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj" />
+  </ItemGroup>   
+</Project>

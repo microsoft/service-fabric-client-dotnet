@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------
+// ------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
@@ -7,9 +7,15 @@ namespace Microsoft.ServiceFabric.Client.Http
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
+    using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
+    using Microsoft.ServiceFabric.Client.Http.Serialization;
+    using Microsoft.ServiceFabric.Common;
+    using Microsoft.ServiceFabric.Common.Exceptions;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Class containing helper extension methods.

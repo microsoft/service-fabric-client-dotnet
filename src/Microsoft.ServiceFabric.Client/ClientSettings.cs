@@ -6,6 +6,8 @@
 namespace Microsoft.ServiceFabric.Client
 {
     using System;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Common.Security;
 
     /// <summary>
@@ -26,7 +28,7 @@ namespace Microsoft.ServiceFabric.Client
         /// security settings, the exception is thrown to the user. This allows applications to refresh Claims an X509 security credentials without restarting.
         /// </remarks>
         public ClientSettings(
-            Func<SecuritySettings> securitySettings = null,
+            Func<CancellationToken, Task<SecuritySettings>> securitySettings = null,
             TimeSpan? clientTimeout = null)
         {
             this.SecuritySettings = securitySettings;
@@ -37,7 +39,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets the delegate to create security settings for connecting to cluster.
         /// </summary>
         /// <value><see cref="SecuritySettings"/> for connecting to cluster.</value>
-        public Func<SecuritySettings> SecuritySettings { get; }
+        public Func<CancellationToken, Task<SecuritySettings>> SecuritySettings { get; }
 
         /// <summary>
         /// Gets the Timespan to wait before the request times out for the client.
