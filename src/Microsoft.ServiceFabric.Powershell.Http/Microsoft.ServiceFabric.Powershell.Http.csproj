@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06" />
   </ItemGroup>  
   <ItemGroup>

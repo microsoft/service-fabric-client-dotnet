@@ -16,12 +16,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the PrimaryReplicatorStatus class.
         /// </summary>
-        /// <param name="replicationQueueStatus">Provides various statistics of the queue used in the service fabric
-        /// replicator.
-        /// Contains information about the service fabric replicator like the replication/copy queue utilization, last
-        /// acknowledgement received timestamp, etc.
-        /// Depending on the role of the replicator, the properties in this type imply different meanings.
-        /// </param>
+        /// <param name="replicationQueueStatus">Details about the replication queue on the primary replicator.</param>
         /// <param name="remoteReplicators">The status of all the active and idle secondary replicators that the primary is
         /// aware of.</param>
         public PrimaryReplicatorStatus(
@@ -35,10 +30,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets provides various statistics of the queue used in the service fabric replicator.
-        /// Contains information about the service fabric replicator like the replication/copy queue utilization, last
-        /// acknowledgement received timestamp, etc.
-        /// Depending on the role of the replicator, the properties in this type imply different meanings.
+        /// Gets details about the replication queue on the primary replicator.
         /// </summary>
         public ReplicatorQueueStatus ReplicationQueueStatus { get; }
 

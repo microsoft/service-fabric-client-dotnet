@@ -17,6 +17,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ReplicaHealth class.
         /// </summary>
+        /// <param name="serviceKind">The kind of service (Stateless or Stateful).</param>
         /// <param name="aggregatedHealthState">The HealthState representing the aggregated health state of the entity computed
         /// by Health Manager.
         /// The health evaluation of the entity reflects all events reported on the entity and its children (if any).
@@ -31,6 +32,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="healthStatistics">Shows the health statistics for all children types of the queried entity.</param>
         /// <param name="partitionId">Id of the partition to which this replica belongs.</param>
         public ReplicaHealth(
+            ServiceKind? serviceKind,
             HealthState? aggregatedHealthState = default(HealthState?),
             IEnumerable<HealthEvent> healthEvents = default(IEnumerable<HealthEvent>),
             IEnumerable<HealthEvaluationWrapper> unhealthyEvaluations = default(IEnumerable<HealthEvaluationWrapper>),
@@ -42,6 +44,8 @@ namespace Microsoft.ServiceFabric.Common
                 unhealthyEvaluations,
                 healthStatistics)
         {
+            serviceKind.ThrowIfNull(nameof(serviceKind));
+            this.ServiceKind = serviceKind;
             this.PartitionId = partitionId;
         }
 
@@ -49,5 +53,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets id of the partition to which this replica belongs.
         /// </summary>
         public PartitionId PartitionId { get; }
+
+        /// <summary>
+        /// Gets the kind of service (Stateless or Stateful).
+        /// </summary>
+        public ServiceKind? ServiceKind { get; }
     }
 }

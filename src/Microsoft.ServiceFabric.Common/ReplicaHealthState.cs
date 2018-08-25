@@ -16,15 +16,19 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ReplicaHealthState class.
         /// </summary>
+        /// <param name="serviceKind">The kind of service (Stateless or Stateful).</param>
         /// <param name="aggregatedHealthState">The health state of a Service Fabric entity such as Cluster, Node, Application,
         /// Service, Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="partitionId">The ID of the partition to which this replica belongs.</param>
         public ReplicaHealthState(
+            ServiceKind? serviceKind,
             HealthState? aggregatedHealthState = default(HealthState?),
             PartitionId partitionId = default(PartitionId))
             : base(
                 aggregatedHealthState)
         {
+            serviceKind.ThrowIfNull(nameof(serviceKind));
+            this.ServiceKind = serviceKind;
             this.PartitionId = partitionId;
         }
 
@@ -32,5 +36,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the ID of the partition to which this replica belongs.
         /// </summary>
         public PartitionId PartitionId { get; }
+
+        /// <summary>
+        /// Gets the kind of service (Stateless or Stateful).
+        /// </summary>
+        public ServiceKind? ServiceKind { get; }
     }
 }

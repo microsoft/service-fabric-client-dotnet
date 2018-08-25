@@ -140,6 +140,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the version of the Chaos Schedule in use and the Chaos Schedule that defines when and how to run Chaos.
         /// </remarks>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -149,6 +152,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<ChaosScheduleDescription> GetChaosScheduleAsync(
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>

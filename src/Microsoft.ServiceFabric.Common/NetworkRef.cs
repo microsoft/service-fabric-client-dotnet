@@ -17,15 +17,23 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the NetworkRef class.
         /// </summary>
         /// <param name="name">Name of the network.</param>
+        /// <param name="endpoint">The endpoint associated with the network</param>
         public NetworkRef(
-            string name = default(string))
+            string name = default(string),
+            string endpoint = default(string))
         {
             this.Name = name;
+            this.Endpoint = endpoint;
         }
 
         /// <summary>
         /// Gets name of the network.
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets the endpoint associated with the network
+        /// </summary>
+        public string Endpoint { get; }
     }
 }

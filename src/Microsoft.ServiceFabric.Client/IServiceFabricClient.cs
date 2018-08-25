@@ -127,13 +127,25 @@ namespace Microsoft.ServiceFabric.Client
         /// <summary>
         /// Gets ApplicationResource Client to perform management operations on application resources.
         /// </summary>
-        /// <returns>The <see cref="IMeshApplicationClient"/></returns>
-        IMeshApplicationClient MeshApplications { get; }
+        /// <returns>The <see cref="IMeshApplicationsClient"/></returns>
+        IMeshApplicationsClient MeshApplications { get; }
 
         /// <summary>
         /// Gets VolumeResource Client to perform management operations on volume resources.
         /// </summary>
-        /// <returns>The <see cref="IMeshVolumeClient"/></returns>
-        IMeshVolumeClient MeshVolumes { get; }
+        /// <returns>The <see cref="IMeshVolumesClient"/></returns>
+        IMeshVolumesClient MeshVolumes { get; }
+
+        /// <summary>
+        /// Gets ApplicationResource Client to perform management operations on network resources.
+        /// </summary>
+        /// <returns>The <see cref="IMeshNetworksClient"/></returns>
+        IMeshNetworksClient MeshNetworks { get; }
+
+        /// <summary>
+        /// Gets VolumeResource Client to perform management operations on gateway resources.
+        /// </summary>
+        /// <returns>The <see cref="IMeshGatewaysClient"/></returns>
+        IMeshGatewaysClient MeshGateways { get; }
     }
 }

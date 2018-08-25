@@ -43,7 +43,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var labels = default(IEnumerable<ContainerLabel>);
             var endpoints = default(IEnumerable<EndpointProperties>);
             var resources = default(ResourceRequirements);
-            var volumeRefs = default(IEnumerable<ContainerVolume>);
+            var volumeRefs = default(IEnumerable<VolumeReference>);
+            var volumes = default(IEnumerable<ApplicationScopedVolume>);
             var instanceView = default(ContainerInstanceView);
             var diagnostics = default(DiagnosticsRef);
 
@@ -92,7 +93,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("volumeRefs", propName, StringComparison.Ordinal) == 0)
                 {
-                    volumeRefs = reader.ReadList(ContainerVolumeConverter.Deserialize);
+                    volumeRefs = reader.ReadList(VolumeReferenceConverter.Deserialize);
+                }
+                else if (string.Compare("volumes", propName, StringComparison.Ordinal) == 0)
+                {
+                    volumes = reader.ReadList(ApplicationScopedVolumeConverter.Deserialize);
                 }
                 else if (string.Compare("instanceView", propName, StringComparison.Ordinal) == 0)
                 {
@@ -121,6 +126,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 endpoints: endpoints,
                 resources: resources,
                 volumeRefs: volumeRefs,
+                volumes: volumes,
                 instanceView: instanceView,
                 diagnostics: diagnostics);
         }
@@ -174,7 +180,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.VolumeRefs != null)
             {
-                writer.WriteEnumerableProperty(obj.VolumeRefs, "volumeRefs", ContainerVolumeConverter.Serialize);
+                writer.WriteEnumerableProperty(obj.VolumeRefs, "volumeRefs", VolumeReferenceConverter.Serialize);
+            }
+
+            if (obj.Volumes != null)
+            {
+                writer.WriteEnumerableProperty(obj.Volumes, "volumes", ApplicationScopedVolumeConverter.Serialize);
             }
 
             if (obj.InstanceView != null)

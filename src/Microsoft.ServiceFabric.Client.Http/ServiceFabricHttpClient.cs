@@ -693,8 +693,10 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.ServicePackages = new ServicePackageClient(this);
             this.ServiceTypes = new ServiceTypeClient(this);
             this.EventsStore = new EventsStoreClient(this);
-            this.MeshApplications = new MeshApplicationClient(this);
-            this.MeshVolumes = new MeshVolumeClient(this);
+            this.MeshApplications = new MeshApplicationsClient(this);
+            this.MeshVolumes = new MeshVolumesClient(this);
+            this.MeshNetworks = new MeshNetworksClient(this);
+            this.MeshGateways = new MeshGatewaysClient(this);
         }
     }
 }

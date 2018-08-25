@@ -163,13 +163,16 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<ChaosScheduleDescription> GetChaosScheduleAsync(
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Tools/Chaos/Schedule";
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.2");
             url += "?" + string.Join("&", queryParams);
             

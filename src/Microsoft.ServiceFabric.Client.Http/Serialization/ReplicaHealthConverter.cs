@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var unhealthyEvaluations = default(IEnumerable<HealthEvaluationWrapper>);
             var healthStatistics = default(HealthStatistics);
             var partitionId = default(PartitionId);
+            var serviceKind = default(ServiceKind?);
 
             do
             {
@@ -62,6 +63,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
+                else if (string.Compare("ServiceKind", propName, StringComparison.Ordinal) == 0)
+                {
+                    serviceKind = ServiceKindConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -74,7 +79,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 healthEvents: healthEvents,
                 unhealthyEvaluations: unhealthyEvaluations,
                 healthStatistics: healthStatistics,
-                partitionId: partitionId);
+                partitionId: partitionId,
+                serviceKind: serviceKind);
         }
 
         /// <summary>
@@ -86,6 +92,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
+            writer.WriteProperty(obj.ServiceKind, "ServiceKind", ServiceKindConverter.Serialize);
             writer.WriteProperty(obj.AggregatedHealthState, "AggregatedHealthState", HealthStateConverter.Serialize);
             if (obj.HealthEvents != null)
             {

@@ -18,6 +18,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <summary>
         /// Constant string for request id in header.
         /// </summary>
-        public const string DefaultApiVersionForResources = "6.3-preview";
+        public const string DefaultApiVersionForResources = "6.4-preview";
     }
 }

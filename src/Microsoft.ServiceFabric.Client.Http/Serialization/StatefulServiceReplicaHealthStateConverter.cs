@@ -74,6 +74,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
+            writer.WriteProperty(obj.ServiceKind.ToString(), "ServiceKind", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.AggregatedHealthState, "AggregatedHealthState", HealthStateConverter.Serialize);
             if (obj.PartitionId != null)
             {

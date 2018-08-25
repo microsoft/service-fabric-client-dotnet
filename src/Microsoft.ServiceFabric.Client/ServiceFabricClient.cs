@@ -117,10 +117,16 @@ namespace Microsoft.ServiceFabric.Client
         public IEventsStoreClient EventsStore { get; protected set; }
 
         /// <inheritdoc/>
-        public IMeshApplicationClient MeshApplications { get; protected set; }
+        public IMeshApplicationsClient MeshApplications { get; protected set; }
 
         /// <inheritdoc/>
-        public IMeshVolumeClient MeshVolumes { get; protected set; }
+        public IMeshVolumesClient MeshVolumes { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshNetworksClient MeshNetworks { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshGatewaysClient MeshGateways { get; protected set; }
 
         /// <summary>
         /// Gets the client settings for connecting to cluster.

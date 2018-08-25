@@ -42,6 +42,7 @@ namespace Microsoft.ServiceFabric.Common
             PartitionId partitionId = default(PartitionId),
             ReplicaId instanceId = default(ReplicaId))
             : base(
+                Common.ServiceKind.Stateless,
                 aggregatedHealthState,
                 healthEvents,
                 unhealthyEvaluations,

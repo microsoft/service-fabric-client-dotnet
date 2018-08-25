@@ -28,7 +28,10 @@ namespace Microsoft.ServiceFabric.Common
         /// "/var/secrets".</param>
         /// <param name="labels">The labels to set in this container.</param>
         /// <param name="endpoints">The endpoints exposed by this container.</param>
-        /// <param name="volumeRefs">The volumes to be attached to the container.</param>
+        /// <param name="volumeRefs">Volumes to be attached to the container.
+        /// The lifetime of these volumes is independent of the application's lifetime.</param>
+        /// <param name="volumes">Volumes to be attached to the container.
+        /// The lifetime of these volumes is scoped to the application's lifetime.</param>
         /// <param name="instanceView">Runtime information of a container instance.</param>
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
         public ContainerCodePackageProperties(
@@ -42,7 +45,8 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<Setting> settings = default(IEnumerable<Setting>),
             IEnumerable<ContainerLabel> labels = default(IEnumerable<ContainerLabel>),
             IEnumerable<EndpointProperties> endpoints = default(IEnumerable<EndpointProperties>),
-            IEnumerable<ContainerVolume> volumeRefs = default(IEnumerable<ContainerVolume>),
+            IEnumerable<VolumeReference> volumeRefs = default(IEnumerable<VolumeReference>),
+            IEnumerable<ApplicationScopedVolume> volumes = default(IEnumerable<ApplicationScopedVolume>),
             ContainerInstanceView instanceView = default(ContainerInstanceView),
             DiagnosticsRef diagnostics = default(DiagnosticsRef))
         {
@@ -60,6 +64,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Labels = labels;
             this.Endpoints = endpoints;
             this.VolumeRefs = volumeRefs;
+            this.Volumes = volumes;
             this.InstanceView = instanceView;
             this.Diagnostics = diagnostics;
         }
@@ -117,9 +122,16 @@ namespace Microsoft.ServiceFabric.Common
         public ResourceRequirements Resources { get; }
 
         /// <summary>
-        /// Gets the volumes to be attached to the container.
+        /// Gets volumes to be attached to the container.
+        /// The lifetime of these volumes is independent of the application's lifetime.
         /// </summary>
-        public IEnumerable<ContainerVolume> VolumeRefs { get; }
+        public IEnumerable<VolumeReference> VolumeRefs { get; }
+
+        /// <summary>
+        /// Gets volumes to be attached to the container.
+        /// The lifetime of these volumes is scoped to the application's lifetime.
+        /// </summary>
+        public IEnumerable<ApplicationScopedVolume> Volumes { get; }
 
         /// <summary>
         /// Gets runtime information of a container instance.

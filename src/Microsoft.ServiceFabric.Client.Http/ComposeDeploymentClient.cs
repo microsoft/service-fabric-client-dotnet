@@ -233,5 +233,35 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task StartRollbackComposeDeploymentUpgradeAsync(
+            string deploymentName,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            deploymentName.ThrowIfNull(nameof(deploymentName));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "ComposeDeployments/{deploymentName}/$/RollbackUpgrade";
+            url = url.Replace("{deploymentName}", deploymentName);
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.4-preview");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

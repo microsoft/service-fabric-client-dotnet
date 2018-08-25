@@ -16,22 +16,13 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the SecondaryActiveReplicatorStatus class.
         /// </summary>
-        /// <param name="replicationQueueStatus">Provides various statistics of the queue used in the service fabric
-        /// replicator.
-        /// Contains information about the service fabric replicator like the replication/copy queue utilization, last
-        /// acknowledgement received timestamp, etc.
-        /// Depending on the role of the replicator, the properties in this type imply different meanings.
-        /// </param>
+        /// <param name="replicationQueueStatus">Details about the replication queue on the secondary replicator.</param>
         /// <param name="lastReplicationOperationReceivedTimeUtc">The last time-stamp (UTC) at which a replication operation
         /// was received from the primary.
         /// UTC 0 represents an invalid value, indicating that a replication operation message was never received.
         /// </param>
         /// <param name="isInBuild">Value that indicates whether the replica is currently being built.</param>
-        /// <param name="copyQueueStatus">Provides various statistics of the queue used in the service fabric replicator.
-        /// Contains information about the service fabric replicator like the replication/copy queue utilization, last
-        /// acknowledgement received timestamp, etc.
-        /// Depending on the role of the replicator, the properties in this type imply different meanings.
-        /// </param>
+        /// <param name="copyQueueStatus">Details about the copy queue on the secondary replicator.</param>
         /// <param name="lastCopyOperationReceivedTimeUtc">The last time-stamp (UTC) at which a copy operation was received
         /// from the primary.
         /// UTC 0 represents an invalid value, indicating that a copy operation message was never received.
