@@ -97,7 +97,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             }
             catch (Exception ex)
             {
-                var errorId = $"{this.GetType().Name.Replace("Cmdlet", string.Empty)}{"ErrorId"}";
+                var className = this.GetType().Name;
+                if (className.EndsWith("Cmdlet", StringComparison.OrdinalIgnoreCase))
+                {
+                    var index = className.LastIndexOf("Cmdlet", StringComparison.OrdinalIgnoreCase);
+                    className = className.Remove(index);
+                }
+
+                var errorId = $"{className}{"ErrorId"}";
 
                 if (ex is TargetInvocationException && ex.InnerException != null)
                 {

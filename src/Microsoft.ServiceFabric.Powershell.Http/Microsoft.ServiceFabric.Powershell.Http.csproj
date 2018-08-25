@@ -9,22 +9,6 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Microsoft.ServiceFabric.Powershell.Http-Help.xml" />
-    <None Remove="Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" />
-    <None Remove="Microsoft.ServiceFabric.Powershell.Http.psd1" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Microsoft.ServiceFabric.Powershell.Http-Help.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Microsoft.ServiceFabric.Powershell.Http.psd1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06" />
@@ -44,5 +28,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>  
+  <ItemGroup>
+    <None Update="Generated\psxml\Microsoft.ServiceFabric.Powershell.Http-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Generated\psxml\Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Microsoft.ServiceFabric.Powershell.Http.psd1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>  
 </Project>

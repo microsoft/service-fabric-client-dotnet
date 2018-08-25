@@ -32,12 +32,14 @@
       <BinairesNetStandard Include="src\Microsoft.ServiceFabric.Common\$(OutputPath)Microsoft.ServiceFabric.Common.*"/>
       <BinairesNetStandard Include="src\Microsoft.ServiceFabric.Client\$(OutputPath)Microsoft.ServiceFabric.Client.*"/>
       <BinairesNetStandard Include="src\Microsoft.ServiceFabric.Client.Http\$(OutputPath)Microsoft.ServiceFabric.Client.Http.*"/>
+      <BinairesNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Newtonsoft.Json.dll"/>
       
       <!-- PS Module -->
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.ServiceFabric.Common.*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.ServiceFabric.Client.*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.ServiceFabric.Client.Http*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.ServiceFabric.Powershell.Http*"/>
+      <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Generated\psxml\Microsoft.ServiceFabric.Powershell.Http*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Newtonsoft.Json.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.IdentityModel.Clients.ActiveDirectory.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"/>

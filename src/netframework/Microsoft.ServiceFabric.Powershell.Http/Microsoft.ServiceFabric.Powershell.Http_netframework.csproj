@@ -13,8 +13,21 @@
   <ItemGroup>
     <!--Add required .cs files to build for netframework-->
     <Compile Include="$(SourceCodeDir)*.cs" Exclude="$(SourceCodeDir)Resource.Designer.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
-    <Compile Include="$(SourceCodeDir)generated\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
+    <Compile Include="$(SourceCodeDir)Generated\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
   </ItemGroup>
+
+    <ItemGroup>
+    <None Include="$(SourceCodeDir)Generated\psxml\Microsoft.ServiceFabric.Powershell.Http-Help.xml" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(SourceCodeDir)Generated\psxml\Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http.psd1" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ItemGroup>
     <Compile Include="$(SourceCodeDir)Resource.Designer.cs">
       <Link>Resource.Designer.cs</Link>
@@ -23,17 +36,6 @@
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http-Help.xml" Link="Microsoft.ServiceFabric.Powershell.Http-Help.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" Link="Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http.psd1" Link="Microsoft.ServiceFabric.Powershell.Http.psd1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>    
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
     <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" />

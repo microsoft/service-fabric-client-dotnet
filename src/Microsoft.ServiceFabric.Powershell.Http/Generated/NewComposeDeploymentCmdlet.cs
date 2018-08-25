@@ -1,0 +1,84 @@
+// ------------------------------------------------------------
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
+// ------------------------------------------------------------
+
+namespace Microsoft.ServiceFabric.Powershell.Http
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using Microsoft.ServiceFabric.Common;
+
+    /// <summary>
+    /// Creates a Service Fabric compose deployment.
+    /// </summary>
+    [Cmdlet(VerbsCommon.New, "SFComposeDeployment", DefaultParameterSetName = "CreateComposeDeployment")]
+    public partial class NewComposeDeploymentCmdlet : CommonCmdletBase
+    {
+        /// <summary>
+        /// Gets or sets DeploymentName. The name of the deployment.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CreateComposeDeployment")]
+        public string DeploymentName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ComposeFileContent. The content of the compose file that describes the deployment to create.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CreateComposeDeployment")]
+        public string ComposeFileContent
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets RegistryCredential. Credential information to connect to container registry.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CreateComposeDeployment")]
+        public RegistryCredential RegistryCredential
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateComposeDeployment")]
+        public long? ServerTimeout
+        {
+            get;
+            set;
+        }
+
+        /// <inheritdoc/>
+        protected override void ProcessRecordInternal()
+        {
+            try
+            {
+                var createComposeDeploymentDescription = new CreateComposeDeploymentDescription(
+                deploymentName: this.DeploymentName,
+                composeFileContent: this.ComposeFileContent,
+                registryCredential: this.RegistryCredential);
+
+                this.ServiceFabricClient.ComposeDeployments.CreateComposeDeploymentAsync(
+                    createComposeDeploymentDescription: createComposeDeploymentDescription,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                Console.WriteLine("Success!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+}
