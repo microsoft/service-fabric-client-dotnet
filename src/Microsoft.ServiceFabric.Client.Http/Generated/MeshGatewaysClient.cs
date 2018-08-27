@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<GatewayResourceDescription> CreateMeshGatewayAsync(
+        public Task<GatewayResourceDescription> CreateOrUpdateMeshGatewayAsync(
             string gatewayResourceName,
             GatewayResourceDescription gatewayResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))

@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshGatewaysClient : IMeshGatewaysClient
     {
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> CreateMeshGatewayAsync(            
+        public Task<VolumeResourceDescription> CreateOrUpdateMeshGatewayAsync(
             string gatewayResourceName,
             string descriptionFile,
             CancellationToken cancellationToken = default(CancellationToken))

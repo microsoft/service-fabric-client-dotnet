@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as volume connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<VolumeResourceDescription> CreateMeshVolumeAsync(            
+        Task<VolumeResourceDescription> CreateOrUpdateMeshVolumeAsync(
             string volumeResourceName,
             string descriptionFile,
             CancellationToken cancellationToken = default(CancellationToken));

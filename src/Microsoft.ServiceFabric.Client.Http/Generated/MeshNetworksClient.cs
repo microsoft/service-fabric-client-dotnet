@@ -178,7 +178,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task CreateMeshNetworkAsync(
+        public Task CreateOrUpdateMeshNetworkAsync(
             string networkName,
             NetworkDescription networkDescription,
             long? serverTimeout = 60,

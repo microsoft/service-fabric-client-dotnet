@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task CreateMeshApplicationAsync(
+        public Task CreateOrUpdateMeshApplicationAsync(
             string applicationResourceName,
             ApplicationResourceDescription applicationResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))

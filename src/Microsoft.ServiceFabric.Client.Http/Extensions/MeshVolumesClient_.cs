@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshVolumesClient : IMeshVolumesClient
     {
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> CreateMeshVolumeAsync(            
+        public Task<VolumeResourceDescription> CreateOrUpdateMeshVolumeAsync(
             string volumeResourceName,
             string descriptionFile,
             CancellationToken cancellationToken = default(CancellationToken))

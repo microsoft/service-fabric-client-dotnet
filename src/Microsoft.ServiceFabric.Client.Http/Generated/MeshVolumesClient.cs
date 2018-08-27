@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task CreateMeshVolumeAsync(
+        public Task CreateOrUpdateMeshVolumeAsync(
             string volumeResourceName,
             VolumeResourceDescription volumeResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))
