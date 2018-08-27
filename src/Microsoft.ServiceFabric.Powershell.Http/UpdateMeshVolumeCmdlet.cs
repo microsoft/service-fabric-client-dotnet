@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified volume resource doesn't exists in cluster.");
             }
 
-            client.MeshVolumes.CreateMeshVolumeAsync(
+            client.MeshVolumes.CreateOrUpdateMeshVolumeAsync(
                 volumeResourceName: this.VolumeResourceName,
                 descriptionFile: this.DescriptionFile,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

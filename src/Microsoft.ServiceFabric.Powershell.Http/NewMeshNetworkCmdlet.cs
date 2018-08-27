@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified mesh network already exists in cluster. If you want to update it use Update-SFMeshNetwork");
             }
 
-            client.MeshNetworks.CreateMeshNetworkAsync(
+            client.MeshNetworks.CreateOrUpdateMeshNetworkAsync(
                 networkResourceName: this.NetworkResourceName,
                 descriptionFile: this.DescriptionFile,                
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

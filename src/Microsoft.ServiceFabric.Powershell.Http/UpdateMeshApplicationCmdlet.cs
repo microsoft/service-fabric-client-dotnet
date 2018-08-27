@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified mesh application doesn't exist in cluster.");
             }
 
-            client.MeshApplications.CreateMeshApplicationAsync(
+            client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
                 applicationResourceName: this.ApplicationResourceName,
                 descriptionFile: this.DescriptionFile,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

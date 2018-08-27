@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshNetworksClient : IMeshNetworksClient
     {
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> CreateMeshNetworkAsync(            
+        public Task<VolumeResourceDescription> CreateOrUpdateMeshNetworkAsync(
             string networkResourceName,
             string descriptionFile,
             CancellationToken cancellationToken = default(CancellationToken))

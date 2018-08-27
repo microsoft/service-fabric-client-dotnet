@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified mesh gateway already exists in cluster. If you want to update it use Update-SFMeshNetwork");
             }
 
-            client.MeshGateways.CreateMeshGatewayAsync(
+            client.MeshGateways.CreateOrUpdateMeshGatewayAsync(
                 gatewayResourceName: this.GatewayResourceName,
                 descriptionFile: this.DescriptionFile,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

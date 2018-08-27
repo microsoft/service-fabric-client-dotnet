@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshApplicationsClient : IMeshApplicationsClient
     {
         /// <inheritdoc />
-        public Task<ApplicationResourceDescription> CreateMeshApplicationAsync(string resourceFile, string applicationResourceName, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ApplicationResourceDescription> CreateOrUpdateMeshApplicationAsync(string resourceFile, string applicationResourceName, CancellationToken cancellationToken = default(CancellationToken))
         {
             resourceFile.ThrowIfNull(nameof(resourceFile));
             applicationResourceName.ThrowIfNull(nameof(applicationResourceName));

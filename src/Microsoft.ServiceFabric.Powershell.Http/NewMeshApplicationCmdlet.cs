@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified mesh application already exists in cluster. If you want to update it use Update-SFMeshApplication");
             }
 
-            client.MeshApplications.CreateMeshApplicationAsync(
+            client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
                 applicationResourceName: this.ApplicationResourceName,
                 descriptionFile: this.DescriptionFile,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

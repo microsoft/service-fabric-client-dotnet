@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified mesh gateway doesn't exists in cluster.");
             }
 
-            client.MeshGateways.CreateMeshGatewayAsync(
+            client.MeshGateways.CreateOrUpdateMeshGatewayAsync(
                 gatewayResourceName: this.GatewayResourceName,
                 descriptionFile: this.DescriptionFile,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

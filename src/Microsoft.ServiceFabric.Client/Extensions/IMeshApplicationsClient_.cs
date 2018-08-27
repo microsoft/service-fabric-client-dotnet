@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="T:ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="T:ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="P:Microsoft.ServiceFabric.Common.FabricError.ErrorCode" />, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="T:System.OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ApplicationResourceDescription> CreateMeshApplicationAsync(
+        Task<ApplicationResourceDescription> CreateOrUpdateMeshApplicationAsync(
             string applicationResourceName,
             string descriptionFile,            
             CancellationToken cancellationToken = default(CancellationToken));
