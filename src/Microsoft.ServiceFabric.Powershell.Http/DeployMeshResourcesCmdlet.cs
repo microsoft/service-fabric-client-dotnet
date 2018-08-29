@@ -15,7 +15,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deploys mesh resources in a Service Fabric Mesh cluster.
     /// </summary>
-    [Cmdlet("Deploy", "SFMeshResource")]
+    [Cmdlet("Deploy", "SFMeshResources")]
     public class DeployMeshResourcesCmdlet : CommonCmdletBase
     {
         /// <summary>

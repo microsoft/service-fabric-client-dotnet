@@ -15,7 +15,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Removes mesh resources in a Service Fabric Mesh cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshResource")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshResources")]
     public class RemoveMeshResourcesCmdlet : CommonCmdletBase
     {
         /// <summary>
