@@ -17,9 +17,29 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public partial class RestorePartitionCmdlet : CommonCmdletBase
     {
         /// <summary>
+        /// Gets or sets AzureBlobStore flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "RestorePartition")]
+        public SwitchParameter AzureBlobStore
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets FileShare flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "RestorePartition")]
+        public SwitchParameter FileShare
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "RestorePartition")]
         public PartitionId PartitionId
         {
             get;
@@ -29,7 +49,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets BackupId. Unique backup ID.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "RestorePartition")]
         public Guid? BackupId
         {
             get;
@@ -39,7 +59,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets BackupLocation. Location of the backup relative to the backup storage specified/ configured.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "RestorePartition")]
         public string BackupLocation
         {
             get;
@@ -47,10 +67,80 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets BackupStorage. Location of the backup from where the partition will be restored.
+        /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "RestorePartition")]
-        public BackupStorageDescription BackupStorage
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "RestorePartition")]
+        public string ConnectionString
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "RestorePartition")]
+        public string ContainerName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "RestorePartition")]
+        public string Path
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets FriendlyName. Friendly name for this backup storage.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "RestorePartition")]
+        public string FriendlyName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets PrimaryUserName. Primary user name to access the file share.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "RestorePartition")]
+        public string PrimaryUserName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets PrimaryPassword. Primary password to access the share location.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "RestorePartition")]
+        public string PrimaryPassword
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "RestorePartition")]
+        public string SecondaryUserName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets SecondaryPassword. Secondary password to access the share location
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "RestorePartition")]
+        public string SecondaryPassword
         {
             get;
             set;
@@ -63,7 +153,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// recommended to invoke this operation again with a greater timeout value. the default value for the same is 10
         /// minutes.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "RestorePartition")]
         public int? RestoreTimeout
         {
             get;
@@ -75,7 +165,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "RestorePartition")]
         public long? ServerTimeout
         {
             get;
@@ -87,10 +177,29 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                BackupStorageDescription backupStorageDescription = null;
+                if (this.AzureBlobStore.IsPresent)
+                {
+                    backupStorageDescription = new AzureBlobBackupStorageDescription(
+                        connectionString: this.ConnectionString,
+                        containerName: this.ContainerName,
+                        friendlyName: this.FriendlyName);
+                }
+                else if (this.FileShare.IsPresent)
+                {
+                    backupStorageDescription = new FileShareBackupStorageDescription(
+                        path: this.Path,
+                        friendlyName: this.FriendlyName,
+                        primaryUserName: this.PrimaryUserName,
+                        primaryPassword: this.PrimaryPassword,
+                        secondaryUserName: this.SecondaryUserName,
+                        secondaryPassword: this.SecondaryPassword);
+                }
+
                 var restorePartitionDescription = new RestorePartitionDescription(
                 backupId: this.BackupId,
                 backupLocation: this.BackupLocation,
-                backupStorage: this.BackupStorage);
+                backupStorage: backupStorageDescription);
 
                 this.ServiceFabricClient.BackupRestore.RestorePartitionAsync(
                     partitionId: this.PartitionId,

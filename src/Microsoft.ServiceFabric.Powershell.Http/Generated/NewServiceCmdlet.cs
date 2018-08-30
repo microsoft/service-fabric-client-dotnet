@@ -17,9 +17,39 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public partial class NewServiceCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets Stateful flag
+        /// Gets or sets Named flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "CreateService")]
+        public SwitchParameter Named
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets Singleton flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "CreateService")]
+        public SwitchParameter Singleton
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets UniformInt64Range flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "CreateService")]
+        public SwitchParameter UniformInt64Range
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets Stateful flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "CreateService")]
         public SwitchParameter Stateful
         {
             get;
@@ -29,7 +59,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Stateless flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "CreateService")]
         public SwitchParameter Stateless
         {
             get;
@@ -43,7 +73,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "CreateService")]
         public string ApplicationId
         {
             get;
@@ -53,7 +83,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "CreateService")]
         public ServiceName ServiceName
         {
             get;
@@ -63,7 +93,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ServiceTypeName. Name of the service type as specified in the service manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "CreateService")]
         public string ServiceTypeName
         {
             get;
@@ -71,10 +101,43 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets PartitionDescription. The partition description as an object.
+        /// Gets or sets Count. The number of partitions.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "CreateService")]
-        public PartitionSchemeDescription PartitionDescription
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "CreateService")]
+        public int? Count
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets Names. Array of size specified by the ‘Count’ parameter, for the names of the partitions.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "CreateService")]
+        public IEnumerable<string> Names
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets LowKey. String indicating the lower bound of the partition key range that
+        /// should be split between the partitions.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "CreateService")]
+        public string LowKey
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets HighKey. String indicating the upper bound of the partition key range that
+        /// should be split between the partitions.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 8, ParameterSetName = "CreateService")]
+        public string HighKey
         {
             get;
             set;
@@ -83,7 +146,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets TargetReplicaSetSize. The target replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 9, ParameterSetName = "CreateService")]
         public int? TargetReplicaSetSize
         {
             get;
@@ -93,7 +156,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets MinReplicaSetSize. The minimum replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "CreateService")]
         public int? MinReplicaSetSize
         {
             get;
@@ -104,7 +167,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets HasPersistedState. A flag indicating whether this is a persistent service which stores states on the
         /// local disk. If it is then the value of this property is true, if not it is false.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 11, ParameterSetName = "CreateService")]
         public bool? HasPersistedState
         {
             get;
@@ -114,7 +177,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 8, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = true, Position = 12, ParameterSetName = "CreateService")]
         public int? InstanceCount
         {
             get;
@@ -124,7 +187,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "CreateService")]
         public ApplicationName ApplicationName
         {
             get;
@@ -135,7 +198,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets InitializationData. The initialization data as an array of bytes. Initialization data is passed to
         /// service instances or replicas when they are created.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "CreateService")]
         public byte[] InitializationData
         {
             get;
@@ -148,7 +211,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor ==
         /// blue)".
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "CreateService")]
         public string PlacementConstraints
         {
             get;
@@ -158,7 +221,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets CorrelationScheme. The correlation scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "CreateService")]
         public IEnumerable<ServiceCorrelationDescription> CorrelationScheme
         {
             get;
@@ -168,7 +231,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ServiceLoadMetrics. The service load metrics.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "CreateService")]
         public IEnumerable<ServiceLoadMetricDescription> ServiceLoadMetrics
         {
             get;
@@ -178,7 +241,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ServicePlacementPolicies. The service placement policies.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "CreateService")]
         public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies
         {
             get;
@@ -191,7 +254,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 
         /// Specifies the move cost for the service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "CreateService")]
         public MoveCost? DefaultMoveCost
         {
             get;
@@ -201,7 +264,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets IsDefaultMoveCostSpecified. Indicates if the DefaultMoveCost property is specified.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "CreateService")]
         public bool? IsDefaultMoveCostSpecified
         {
             get;
@@ -215,7 +278,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
         /// creating the Service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "CreateService")]
         public ServicePackageActivationMode? ServicePackageActivationMode
         {
             get;
@@ -226,7 +289,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ServiceDnsName. The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "CreateService")]
         public string ServiceDnsName
         {
             get;
@@ -236,7 +299,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ScalingPolicies. Scaling policies for this service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "CreateService")]
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies
         {
             get;
@@ -255,7 +318,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "CreateService")]
         public int? Flags
         {
             get;
@@ -266,7 +329,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ReplicaRestartWaitDurationSeconds. The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "CreateService")]
         public long? ReplicaRestartWaitDurationSeconds
         {
             get;
@@ -277,7 +340,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets QuorumLossWaitDurationSeconds. The maximum duration, in seconds, for which a partition is allowed to
         /// be in a state of quorum loss.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 26, ParameterSetName = "CreateService")]
         public long? QuorumLossWaitDurationSeconds
         {
             get;
@@ -288,7 +351,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets StandByReplicaKeepDurationSeconds. The definition on how long StandBy replicas should be maintained
         /// before being removed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 27, ParameterSetName = "CreateService")]
         public long? StandByReplicaKeepDurationSeconds
         {
             get;
@@ -300,7 +363,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "CreateService")]
+        [Parameter(Mandatory = false, Position = 28, ParameterSetName = "CreateService")]
         public long? ServerTimeout
         {
             get;
@@ -312,13 +375,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                PartitionSchemeDescription partitionSchemeDescription = null;
+                if (this.Named.IsPresent)
+                {
+                    partitionSchemeDescription = new NamedPartitionSchemeDescription(
+                        count: this.Count,
+                        names: this.Names);
+                }
+                else if (this.Singleton.IsPresent)
+                {
+                    partitionSchemeDescription = new SingletonPartitionSchemeDescription();
+                }
+                else if (this.UniformInt64Range.IsPresent)
+                {
+                    partitionSchemeDescription = new UniformInt64RangePartitionSchemeDescription(
+                        count: this.Count,
+                        lowKey: this.LowKey,
+                        highKey: this.HighKey);
+                }
+
                 ServiceDescription serviceDescription = null;
                 if (this.Stateful.IsPresent)
                 {
                     serviceDescription = new StatefulServiceDescription(
                         serviceName: this.ServiceName,
                         serviceTypeName: this.ServiceTypeName,
-                        partitionDescription: this.PartitionDescription,
+                        partitionDescription: partitionSchemeDescription,
                         targetReplicaSetSize: this.TargetReplicaSetSize,
                         minReplicaSetSize: this.MinReplicaSetSize,
                         hasPersistedState: this.HasPersistedState,
@@ -343,7 +425,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     serviceDescription = new StatelessServiceDescription(
                         serviceName: this.ServiceName,
                         serviceTypeName: this.ServiceTypeName,
-                        partitionDescription: this.PartitionDescription,
+                        partitionDescription: partitionSchemeDescription,
                         instanceCount: this.InstanceCount,
                         applicationName: this.ApplicationName,
                         initializationData: this.InitializationData,

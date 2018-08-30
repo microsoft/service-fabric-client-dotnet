@@ -101,11 +101,54 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets DefaultServiceTypeHealthPolicy. The health policy used by default to evaluate the health of a service
-        /// type.
+        /// Gets or sets MaxPercentUnhealthyPartitionsPerService. The maximum allowed percentage of unhealthy partitions per
+        /// service. Allowed values are Byte values from zero to 100
+        /// 
+        /// The percentage represents the maximum tolerated percentage of partitions that can be unhealthy before the service
+        /// is considered in error.
+        /// If the percentage is respected but there is at least one unhealthy partition, the health is evaluated as Warning.
+        /// The percentage is calculated by dividing the number of unhealthy partitions over the total number of partitions in
+        /// the service.
+        /// The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetPartitionHealthUsingPolicy")]
-        public ServiceTypeHealthPolicy DefaultServiceTypeHealthPolicy
+        public int? MaxPercentUnhealthyPartitionsPerService
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets MaxPercentUnhealthyReplicasPerPartition. The maximum allowed percentage of unhealthy replicas per
+        /// partition. Allowed values are Byte values from zero to 100.
+        /// 
+        /// The percentage represents the maximum tolerated percentage of replicas that can be unhealthy before the partition
+        /// is considered in error.
+        /// If the percentage is respected but there is at least one unhealthy replica, the health is evaluated as Warning.
+        /// The percentage is calculated by dividing the number of unhealthy replicas over the total number of replicas in the
+        /// partition.
+        /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetPartitionHealthUsingPolicy")]
+        public int? MaxPercentUnhealthyReplicasPerPartition
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets MaxPercentUnhealthyServices. The maximum maximum allowed percentage of unhealthy services. Allowed
+        /// values are Byte values from zero to 100.
+        /// 
+        /// The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application
+        /// is considered in error.
+        /// If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
+        /// This is calculated by dividing the number of unhealthy services of the specific service type over the total number
+        /// of services of the specific service type.
+        /// The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetPartitionHealthUsingPolicy")]
+        public int? MaxPercentUnhealthyServices
         {
             get;
             set;
@@ -115,7 +158,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ServiceTypeHealthPolicyMap. The map with service type health policy per service type name. The map is
         /// empty by default.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetPartitionHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetPartitionHealthUsingPolicy")]
         public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap
         {
             get;
@@ -127,7 +170,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// query result. False by default.
         /// The statistics show the number of children entities in health state Ok, Warning, and Error.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetPartitionHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetPartitionHealthUsingPolicy")]
         public bool? ExcludeHealthStatistics
         {
             get;
@@ -139,7 +182,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetPartitionHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "GetPartitionHealthUsingPolicy")]
         public long? ServerTimeout
         {
             get;
@@ -151,10 +194,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
+                maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
+                maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
+                maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
+
                 var applicationHealthPolicy = new ApplicationHealthPolicy(
                 considerWarningAsError: this.ConsiderWarningAsError,
                 maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
-                defaultServiceTypeHealthPolicy: this.DefaultServiceTypeHealthPolicy,
+                defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
                 serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
 
                 var result = this.ServiceFabricClient.Partitions.GetPartitionHealthUsingPolicyAsync(

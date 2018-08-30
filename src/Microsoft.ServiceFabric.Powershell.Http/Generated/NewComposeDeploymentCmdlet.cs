@@ -37,10 +37,30 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets RegistryCredential. Credential information to connect to container registry.
+        /// Gets or sets RegistryUserName. The user name to connect to container registry.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CreateComposeDeployment")]
-        public RegistryCredential RegistryCredential
+        public string RegistryUserName
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets RegistryPassword. The password for supplied username to connect to container registry.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateComposeDeployment")]
+        public string RegistryPassword
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets PasswordEncrypted. Indicates that supplied container registry password is encrypted.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateComposeDeployment")]
+        public bool? PasswordEncrypted
         {
             get;
             set;
@@ -51,7 +71,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateComposeDeployment")]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateComposeDeployment")]
         public long? ServerTimeout
         {
             get;
@@ -63,10 +83,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var registryCredential = new RegistryCredential(
+                registryUserName: this.RegistryUserName,
+                registryPassword: this.RegistryPassword,
+                passwordEncrypted: this.PasswordEncrypted);
+
                 var createComposeDeploymentDescription = new CreateComposeDeploymentDescription(
                 deploymentName: this.DeploymentName,
                 composeFileContent: this.ComposeFileContent,
-                registryCredential: this.RegistryCredential);
+                registryCredential: registryCredential);
 
                 this.ServiceFabricClient.ComposeDeployments.CreateComposeDeploymentAsync(
                     createComposeDeploymentDescription: createComposeDeploymentDescription,

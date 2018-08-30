@@ -27,10 +27,41 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets Schedule. Defines the schedule used by Chaos.
+        /// Gets or sets StartDate. The date and time Chaos will start using this schedule.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "PostChaosSchedule")]
-        public ChaosSchedule Schedule
+        public DateTime? StartDate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ExpiryDate. The date and time Chaos will continue to use this schedule until.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "PostChaosSchedule")]
+        public DateTime? ExpiryDate
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ChaosParametersDictionary. A mapping of string names to Chaos Parameters to be referenced by Chaos
+        /// Schedule Jobs.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "PostChaosSchedule")]
+        public IEnumerable<ChaosParametersDictionaryItem> ChaosParametersDictionary
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets Jobs. A list of all Chaos Schedule Jobs that will be automated by the schedule.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "PostChaosSchedule")]
+        public IEnumerable<ChaosScheduleJob> Jobs
         {
             get;
             set;
@@ -41,7 +72,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "PostChaosSchedule")]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "PostChaosSchedule")]
         public long? ServerTimeout
         {
             get;
@@ -53,9 +84,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var chaosSchedule = new ChaosSchedule(
+                startDate: this.StartDate,
+                expiryDate: this.ExpiryDate,
+                chaosParametersDictionary: this.ChaosParametersDictionary,
+                jobs: this.Jobs);
+
                 var chaosScheduleDescription = new ChaosScheduleDescription(
                 version: this.Version,
-                schedule: this.Schedule);
+                schedule: chaosSchedule);
 
                 this.ServiceFabricClient.ChaosClient.PostChaosScheduleAsync(
                     chaosSchedule: chaosScheduleDescription,

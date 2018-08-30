@@ -93,40 +93,125 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets ClusterHealthPolicy. Passed-in cluster health policy is used to validate health of the cluster in
-        /// between Chaos iterations. If the cluster health is in error or if an unexpected exception happens during fault
-        /// execution--to provide the cluster with some time to recuperate--Chaos will wait for 30 minutes before the next
-        /// health-check.
+        /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "StartChaos")]
-        public ClusterHealthPolicy ClusterHealthPolicy
+        public bool? ConsiderWarningAsError
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets Context. Describes a map, which is a collection of (string, string) type key-value pairs. The map can
-        /// be used to record information about
-        /// the Chaos run. There cannot be more than 100 such pairs and each string (key or value) can be at most 4095
-        /// characters long.
-        /// This map is set by the starter of the Chaos run to optionally store the context about the specific run.
+        /// Gets or sets MaxPercentUnhealthyNodes. The maximum allowed percentage of unhealthy nodes before reporting an error.
+        /// For example, to allow 10% of nodes to be unhealthy, this value would be 10.
+        /// 
+        /// The percentage represents the maximum tolerated percentage of nodes that can be unhealthy before the cluster is
+        /// considered in error.
+        /// If the percentage is respected but there is at least one unhealthy node, the health is evaluated as Warning.
+        /// The percentage is calculated by dividing the number of unhealthy nodes over the total number of nodes in the
+        /// cluster.
+        /// The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
+        /// 
+        /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
+        /// tolerate that.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "StartChaos")]
-        public ChaosContext Context
+        public int? MaxPercentUnhealthyNodes
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets ChaosTargetFilter. List of cluster entities to target for Chaos faults.
-        /// This filter can be used to target Chaos faults only to certain node types or only to certain application instances.
-        /// If ChaosTargetFilter is not used, Chaos faults all cluster entities.
-        /// If ChaosTargetFilter is used, Chaos faults only the entities that meet the ChaosTargetFilter specification.
+        /// Gets or sets MaxPercentUnhealthyApplications. The maximum allowed percentage of unhealthy applications before
+        /// reporting an error. For example, to allow 10% of applications to be unhealthy, this value would be 10.
+        /// 
+        /// The percentage represents the maximum tolerated percentage of applications that can be unhealthy before the cluster
+        /// is considered in error.
+        /// If the percentage is respected but there is at least one unhealthy application, the health is evaluated as Warning.
+        /// This is calculated by dividing the number of unhealthy applications over the total number of application instances
+        /// in the cluster, excluding applications of application types that are included in the
+        /// ApplicationTypeHealthPolicyMap.
+        /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "StartChaos")]
-        public ChaosTargetFilter ChaosTargetFilter
+        public int? MaxPercentUnhealthyApplications
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ApplicationTypeHealthPolicyMap. Defines a map with max percentage unhealthy applications for specific
+        /// application types.
+        /// Each entry specifies as key the application type name and as value an integer that represents the
+        /// MaxPercentUnhealthyApplications percentage used to evaluate the applications of the specified application type.
+        /// 
+        /// The application type health policy map can be used during cluster health evaluation to describe special application
+        /// types.
+        /// The application types included in the map are evaluated against the percentage specified in the map, and not with
+        /// the global MaxPercentUnhealthyApplications defined in the cluster health policy.
+        /// The applications of application types specified in the map are not counted against the global pool of applications.
+        /// For example, if some applications of a type are critical, the cluster administrator can add an entry to the map for
+        /// that application type
+        /// and assign it a value of 0% (that is, do not tolerate any failures).
+        /// All other applications can be evaluated with MaxPercentUnhealthyApplications set to 20% to tolerate some failures
+        /// out of the thousands of application instances.
+        /// The application type health policy map is used only if the cluster manifest enables application type health
+        /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartChaos")]
+        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartChaos")]
+        public IReadOnlyDictionary<string, string> Map
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets NodeTypeInclusionList. A list of node types to include in Chaos faults.
+        /// All types of faults (restart node, restart code package, remove replica, restart replica, move primary, and move
+        /// secondary) are enabled for the nodes of these node types.
+        /// If a nodetype (say NodeTypeX) does not appear in the NodeTypeInclusionList, then node level faults (like
+        /// NodeRestart) will never be enabled for the nodes of
+        /// NodeTypeX, but code package and replica faults can still be enabled for NodeTypeX if an application in the
+        /// ApplicationInclusionList.
+        /// happens to reside on a node of NodeTypeX.
+        /// At most 100 node type names can be included in this list, to increase this number, a config upgrade is required for
+        /// MaxNumberOfNodeTypesInChaosEntityFilter configuration.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "StartChaos")]
+        public IEnumerable<string> NodeTypeInclusionList
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ApplicationInclusionList. A list of application URI's to include in Chaos faults.
+        /// All replicas belonging to services of these applications are amenable to replica faults (restart replica, remove
+        /// replica, move primary, and move secondary) by Chaos.
+        /// Chaos may restart a code package only if the code package hosts replicas of these applications only.
+        /// If an application does not appear in this list, it can still be faulted in some Chaos iteration if the application
+        /// ends up on a node of a node type that is included in NodeTypeInclusionList.
+        /// However, if applicationX is tied to nodeTypeY through placement constraints and applicationX is absent from
+        /// ApplicationInclusionList and nodeTypeY is absent from NodeTypeInclusionList, then applicationX will never be
+        /// faulted.
+        /// At most 1000 application names can be included in this list, to increase this number, a config upgrade is required
+        /// for MaxNumberOfApplicationsInChaosEntityFilter configuration.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "StartChaos")]
+        public IEnumerable<string> ApplicationInclusionList
         {
             get;
             set;
@@ -137,7 +222,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "StartChaos")]
         public long? ServerTimeout
         {
             get;
@@ -149,6 +234,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var clusterHealthPolicy = new ClusterHealthPolicy(
+                considerWarningAsError: this.ConsiderWarningAsError,
+                maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
+                maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
+                applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
+
+                var chaosContext = new ChaosContext(
+                map: this.Map);
+
+                var chaosTargetFilter = new ChaosTargetFilter(
+                nodeTypeInclusionList: this.NodeTypeInclusionList,
+                applicationInclusionList: this.ApplicationInclusionList);
+
                 var chaosParameters = new ChaosParameters(
                 timeToRunInSeconds: this.TimeToRunInSeconds,
                 maxClusterStabilizationTimeoutInSeconds: this.MaxClusterStabilizationTimeoutInSeconds,
@@ -156,9 +254,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 enableMoveReplicaFaults: this.EnableMoveReplicaFaults,
                 waitTimeBetweenFaultsInSeconds: this.WaitTimeBetweenFaultsInSeconds,
                 waitTimeBetweenIterationsInSeconds: this.WaitTimeBetweenIterationsInSeconds,
-                clusterHealthPolicy: this.ClusterHealthPolicy,
-                context: this.Context,
-                chaosTargetFilter: this.ChaosTargetFilter);
+                clusterHealthPolicy: clusterHealthPolicy,
+                context: chaosContext,
+                chaosTargetFilter: chaosTargetFilter);
 
                 this.ServiceFabricClient.ChaosClient.StartChaosAsync(
                     chaosParameters: chaosParameters,

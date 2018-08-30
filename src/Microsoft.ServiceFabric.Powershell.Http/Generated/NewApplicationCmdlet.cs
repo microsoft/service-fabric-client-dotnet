@@ -58,15 +58,35 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets ApplicationCapacity. Describes capacity information for services of this application. This description
-        /// can be used for describing the following.
-        /// - Reserving the capacity for the services on the nodes
-        /// - Limiting the total number of nodes that services of this application can run on
-        /// - Limiting the custom capacity metrics to limit the total consumption of this metric by the services of this
-        /// application
+        /// Gets or sets MinimumNodes. The minimum number of nodes where Service Fabric will reserve capacity for this
+        /// application. Note that this does not mean that the services of this application will be placed on all of those
+        /// nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more
+        /// than the value of the MaximumNodes property.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateApplication")]
-        public ApplicationCapacityDescription ApplicationCapacity
+        public long? MinimumNodes
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets MaximumNodes. The maximum number of nodes where Service Fabric will reserve capacity for this
+        /// application. Note that this does not mean that the services of this application will be placed on all of those
+        /// nodes. By default, the value of this property is zero and it means that the services can be placed on any node.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateApplication")]
+        public long? MaximumNodes
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets ApplicationMetrics. List of application capacity metric description.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "CreateApplication")]
+        public IEnumerable<ApplicationMetricDescription> ApplicationMetrics
         {
             get;
             set;
@@ -77,7 +97,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "CreateApplication")]
         public long? ServerTimeout
         {
             get;
@@ -89,12 +109,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var applicationCapacityDescription = new ApplicationCapacityDescription(
+                minimumNodes: this.MinimumNodes,
+                maximumNodes: this.MaximumNodes,
+                applicationMetrics: this.ApplicationMetrics);
+
                 var applicationDescription = new ApplicationDescription(
                 name: this.Name,
                 typeName: this.TypeName,
                 typeVersion: this.TypeVersion,
                 parameters: this.Parameters,
-                applicationCapacity: this.ApplicationCapacity);
+                applicationCapacity: applicationCapacityDescription);
 
                 this.ServiceFabricClient.Applications.CreateApplicationAsync(
                     applicationDescription: applicationDescription,

@@ -124,11 +124,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets ApplicationHealthPolicies. Defines the application health policy map used to evaluate the health of an
-        /// application or one of its children entities.
+        /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
+        /// evaluate specific applications in the cluster.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public ApplicationHealthPolicies ApplicationHealthPolicies
+        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap
         {
             get;
             set;
@@ -151,6 +151,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var applicationHealthPolicies = new ApplicationHealthPolicies(
+                applicationHealthPolicyMap: this.ApplicationHealthPolicyMap);
+
                 var clusterConfigurationUpgradeDescription = new ClusterConfigurationUpgradeDescription(
                 clusterConfig: this.ClusterConfig,
                 healthCheckRetryTimeout: this.HealthCheckRetryTimeout,
@@ -162,7 +165,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
                 maxPercentDeltaUnhealthyNodes: this.MaxPercentDeltaUnhealthyNodes,
                 maxPercentUpgradeDomainDeltaUnhealthyNodes: this.MaxPercentUpgradeDomainDeltaUnhealthyNodes,
-                applicationHealthPolicies: this.ApplicationHealthPolicies);
+                applicationHealthPolicies: applicationHealthPolicies);
 
                 this.ServiceFabricClient.Cluster.StartClusterConfigurationUpgradeAsync(
                     clusterConfigurationUpgradeDescription: clusterConfigurationUpgradeDescription,

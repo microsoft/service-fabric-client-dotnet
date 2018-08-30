@@ -17,14 +17,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public partial class GetApplicationNetworkInfoListCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets ApplicationId. The identity of the application. This is typically the full name of the application
-        /// without the 'fabric:' URI scheme.
-        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
-        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
-        /// 6.0+ and "myapp/app1" in previous versions.
+        /// Gets or sets ApplicationResourceName. Service Fabric application resource name.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetApplicationNetworkInfoList")]
-        public string ApplicationId
+        public string ApplicationResourceName
         {
             get;
             set;
@@ -65,7 +61,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 do
                 {
                     var result = this.ServiceFabricClient.MeshNetworks.GetApplicationNetworkInfoListAsync(
-                        applicationResourceName: this.ApplicationId,
+                        applicationResourceName: this.ApplicationResourceName,
                         continuationToken: continuationToken,
                         maxResults: this.MaxResults,
                         serverTimeout: this.ServerTimeout,
