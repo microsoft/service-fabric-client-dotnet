@@ -20,12 +20,13 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<VolumeResourceDescription> CreateOrUpdateMeshGatewayAsync(
             string gatewayResourceName,
-            string descriptionFile,
+            string jsonDescription,
+            string apiVersion = Constants.DefaultApiVersionForResources,
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            descriptionFile.ThrowIfNull(nameof(descriptionFile));
             gatewayResourceName.ThrowIfNull(nameof(gatewayResourceName));
-            string content = File.ReadAllText(descriptionFile);
+            jsonDescription.ThrowIfNull(nameof(jsonDescription));
 
             string requestId = Guid.NewGuid().ToString();
             var url = $"Resources/Gateways/{gatewayResourceName}?api-version={Constants.DefaultApiVersionForResources}";
@@ -35,7 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Put,
-                    Content = new StringContent(content, Encoding.UTF8),
+                    Content = new StringContent(jsonDescription, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;

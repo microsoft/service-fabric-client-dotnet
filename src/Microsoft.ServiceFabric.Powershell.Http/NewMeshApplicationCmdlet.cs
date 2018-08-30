@@ -16,16 +16,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public class NewMeshApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets the json file containing the description of the application to be created.
-        /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "json")]
-        public string DescriptionFile { get; set; }
-
-        /// <summary>
-        /// Gets or sets Application name to create.
+        /// Gets or sets Application resource name to create.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
         public string ApplicationResourceName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the json containing the description of the application to be created.
+        /// </summary>
+        [Parameter(Mandatory = true, ParameterSetName = "json")]
+        public string JsonDescription { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
                 applicationResourceName: this.ApplicationResourceName,
-                descriptionFile: this.DescriptionFile,
+                jsonDescription: this.JsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
         }
     }

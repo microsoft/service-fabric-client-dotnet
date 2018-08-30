@@ -18,11 +18,15 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshApplicationsClient : IMeshApplicationsClient
     {
         /// <inheritdoc />
-        public Task<ApplicationResourceDescription> CreateOrUpdateMeshApplicationAsync(string resourceFile, string applicationResourceName, CancellationToken cancellationToken = default(CancellationToken))
+        public Task<ApplicationResourceDescription> CreateOrUpdateMeshApplicationAsync(
+            string applicationResourceName,
+            string jsonDescription,
+            string apiVersion = Constants.DefaultApiVersionForResources,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
         {
-            resourceFile.ThrowIfNull(nameof(resourceFile));
             applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
-            string content = File.ReadAllText(resourceFile);
+            jsonDescription.ThrowIfNull(nameof(jsonDescription));            
 
             string requestId = Guid.NewGuid().ToString();
             var url = $"Resources/Applications/{applicationResourceName}?api-version={Constants.DefaultApiVersionForResources}";
@@ -32,7 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Put,
-                    Content = new StringContent(content, Encoding.UTF8),
+                    Content = new StringContent(jsonDescription, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;

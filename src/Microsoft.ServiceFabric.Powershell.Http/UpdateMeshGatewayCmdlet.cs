@@ -16,16 +16,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public class UpdateMeshGatewayCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets the json file containing the description of the gateway to be updated.
-        /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "json")]
-        public string DescriptionFile { get; set; }
-
-        /// <summary>
         /// Gets or sets Gateway name to update.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
         public string GatewayResourceName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the json containing the description of the gateway to be updated.
+        /// </summary>
+        [Parameter(Mandatory = true, ParameterSetName = "json")]
+        public string JsonDescription { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             client.MeshGateways.CreateOrUpdateMeshGatewayAsync(
                 gatewayResourceName: this.GatewayResourceName,
-                descriptionFile: this.DescriptionFile,
+                jsonDescription: this.JsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
         }
     }

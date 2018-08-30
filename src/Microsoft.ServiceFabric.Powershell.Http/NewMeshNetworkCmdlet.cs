@@ -16,16 +16,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public class NewMeshNetworkCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets the json file containing the description of the network to be created.
-        /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "json")]
-        public string DescriptionFile { get; set; }
-
-        /// <summary>
         /// Gets or sets Network name to create.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
         public string NetworkResourceName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the json containing the description of the network to be created.
+        /// </summary>
+        [Parameter(Mandatory = true, ParameterSetName = "json")]
+        public string JsonDescription { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             client.MeshNetworks.CreateOrUpdateMeshNetworkAsync(
                 networkResourceName: this.NetworkResourceName,
-                descriptionFile: this.DescriptionFile,                
+                jsonDescription: this.JsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
         }
     }

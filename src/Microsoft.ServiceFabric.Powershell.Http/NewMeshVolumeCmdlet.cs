@@ -22,10 +22,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string VolumeResourceName { get; set; }
 
         /// <summary>
-        /// Gets or sets the json file containing the description of the volume to be created.
+        /// Gets or sets the json containing the description of the network to be created.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
-        public string DescriptionFile { get; set; }
+        public string JsonDescription { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             client.MeshVolumes.CreateOrUpdateMeshVolumeAsync(
                 volumeResourceName: this.VolumeResourceName,
-                descriptionFile: this.DescriptionFile,
+                jsonDescription: this.JsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
         }
     }

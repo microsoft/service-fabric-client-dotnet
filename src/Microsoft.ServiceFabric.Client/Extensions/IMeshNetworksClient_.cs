@@ -25,7 +25,11 @@ namespace Microsoft.ServiceFabric.Client
         /// then its description is updated to the one indicated in this request.
         /// </remarks>
         /// <param name ="networkResourceName">Service Fabric network resource name.</param>        
-        /// <param name="descriptionFile">Json resource file containing the description of the network resource to be created or updated.</param>
+        /// <param name="jsonDescription">String representing the JSON description of the network resource to be created or updated.</param>
+        /// <param name="apiVersion">Api version for the server.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
+        /// duration that the client is willing to wait for the requested operation to complete. The default value for this
+        /// parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -36,7 +40,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<VolumeResourceDescription> CreateOrUpdateMeshNetworkAsync(
             string networkResourceName,
-            string descriptionFile,
+            string jsonDescription,
+            string apiVersion = Constants.DefaultApiVersionForResources,
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }
