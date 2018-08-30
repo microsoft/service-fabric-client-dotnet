@@ -150,11 +150,7 @@ namespace Microsoft.ServiceFabric.Client
         /// If the container networks do not fit in a page, one page of results is returned as well as a continuation token,
         /// which can be used to get the next page.
         /// </remarks>
-        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
-        /// without the 'fabric:' URI scheme.
-        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
-        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
-        /// 6.0+ and "myapp/app1" in previous versions.
+        /// <param name ="applicationResourceName">Service Fabric application resource name.
         /// </param>
         /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
         /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
@@ -174,7 +170,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<ApplicationNetworkInfo>> GetApplicationNetworkInfoListAsync(
-            string applicationId,
+            string applicationResourceName,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
@@ -277,7 +273,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// Gets the information about an application
-        /// 1) whose name matches the one specified as application id parameter
+        /// 1) whose name matches the one specified as application name parameter
         /// 2) is a member of the container network whose network name matches the one specified as the network name parameter.
         /// 
         /// The response includes the name of the application.
@@ -285,11 +281,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="networkName">The name of a Service Fabric container network. A network name serves as the identity of
         /// a container network and is case-sensitive.
         /// </param>
-        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
-        /// without the 'fabric:' URI scheme.
-        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
-        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
-        /// 6.0+ and "myapp/app1" in previous versions.
+        /// <param name ="applicationResourceName">Service Fabric application resource name.
         /// </param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -304,7 +296,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<NetworkApplicationInfo> GetMeshNetworkApplicationRefAsync(
             string networkName,
-            string applicationId,
+            string applicationResourceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 

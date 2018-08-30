@@ -65,7 +65,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 do
                 {
                     var result = this.ServiceFabricClient.MeshNetworks.GetApplicationNetworkInfoListAsync(
-                        applicationId: this.ApplicationId,
+                        applicationResourceName: this.ApplicationId,
                         continuationToken: continuationToken,
                         maxResults: this.MaxResults,
                         serverTimeout: this.ServerTimeout,

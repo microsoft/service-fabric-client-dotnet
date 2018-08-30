@@ -144,18 +144,18 @@ namespace Microsoft.ServiceFabric.Client.Http
 
         /// <inheritdoc />
         public Task<PagedData<ApplicationNetworkInfo>> GetApplicationNetworkInfoListAsync(
-            string applicationId,
+            string applicationResourceName,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationId.ThrowIfNull(nameof(applicationId));
+            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
             maxResults?.ThrowIfLessThan("maxResults", 0);
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
-            var url = "Applications/{applicationId}/$/GetNetworks";
-            url = url.Replace("{applicationId}", applicationId);
+            var url = "Applications/{applicationResourceName}/$/GetNetworks";
+            url = url.Replace("{applicationResourceName}", applicationResourceName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
@@ -281,17 +281,17 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task<NetworkApplicationInfo> GetMeshNetworkApplicationRefAsync(
             string networkName,
-            string applicationId,
+            string applicationResourceName,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             networkName.ThrowIfNull(nameof(networkName));
-            applicationId.ThrowIfNull(nameof(applicationId));
+            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
-            var url = "Resources/Networks/{networkName}/ApplicationRefs/{applicationId}";
+            var url = "Resources/Networks/{networkName}/ApplicationRefs/{applicationResourceName}";
             url = url.Replace("{networkName}", networkName);
-            url = url.Replace("{applicationId}", applicationId);
+            url = url.Replace("{applicationResourceName}", applicationResourceName);
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.

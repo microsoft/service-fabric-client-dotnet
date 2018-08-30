@@ -35,7 +35,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             var status = default(NetworkStatus?);
             var statusDetails = default(string);
-            var addressPrefix = default(string);
+            var networkAddressPrefix = default(string);
 
             do
             {
@@ -48,9 +48,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     statusDetails = reader.ReadValueAsString();
                 }
-                else if (string.Compare("addressPrefix", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("networkAddressPrefix", propName, StringComparison.Ordinal) == 0)
                 {
-                    addressPrefix = reader.ReadValueAsString();
+                    networkAddressPrefix = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new LocalNetworkProperties(
                 status: status,
                 statusDetails: statusDetails,
-                addressPrefix: addressPrefix);
+                networkAddressPrefix: networkAddressPrefix);
         }
 
         /// <summary>
@@ -81,9 +81,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.StatusDetails, "statusDetails", JsonWriterExtensions.WriteStringValue);
             }
 
-            if (obj.AddressPrefix != null)
+            if (obj.NetworkAddressPrefix != null)
             {
-                writer.WriteProperty(obj.AddressPrefix, "addressPrefix", JsonWriterExtensions.WriteStringValue);
+                writer.WriteProperty(obj.NetworkAddressPrefix, "networkAddressPrefix", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

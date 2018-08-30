@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static NetworkRef GetFromJsonProperties(JsonReader reader)
         {
             var name = default(string);
-            var endpoint = default(string);
+            var endpointRefs = default(IEnumerable<EndpointRef>);
 
             do
             {
@@ -43,9 +43,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("endpoint", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("endpointRefs", propName, StringComparison.Ordinal) == 0)
                 {
-                    endpoint = reader.ReadValueAsString();
+                    endpointRefs = reader.ReadList(EndpointRefConverter.Deserialize);
                 }
                 else
                 {
@@ -56,7 +56,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             return new NetworkRef(
                 name: name,
-                endpoint: endpoint);
+                endpointRefs: endpointRefs);
         }
 
         /// <summary>
@@ -73,9 +73,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
             }
 
-            if (obj.Endpoint != null)
+            if (obj.EndpointRefs != null)
             {
-                writer.WriteProperty(obj.Endpoint, "endpoint", JsonWriterExtensions.WriteStringValue);
+                writer.WriteEnumerableProperty(obj.EndpointRefs, "endpointRefs", EndpointRefConverter.Serialize);
             }
 
             writer.WriteEndObject();

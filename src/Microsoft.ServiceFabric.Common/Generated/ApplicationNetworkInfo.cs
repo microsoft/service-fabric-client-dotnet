@@ -9,22 +9,23 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Information about a Service Fabric container network that a Service Fabric application is a member of.
+    /// Information about a Service Fabric container network that a Service Fabric application is associated with.
     /// </summary>
-    public partial class ApplicationNetworkInfo : NetworkRef
+    public partial class ApplicationNetworkInfo
     {
         /// <summary>
         /// Initializes a new instance of the ApplicationNetworkInfo class.
         /// </summary>
-        /// <param name="name">Name of the network.</param>
-        /// <param name="endpoint">The endpoint associated with the network</param>
+        /// <param name="networkName">The name of a Service Fabric container network.</param>
         public ApplicationNetworkInfo(
-            string name = default(string),
-            string endpoint = default(string))
-            : base(
-                name,
-                endpoint)
+            string networkName = default(string))
         {
+            this.NetworkName = networkName;
         }
+
+        /// <summary>
+        /// Gets the name of a Service Fabric container network.
+        /// </summary>
+        public string NetworkName { get; }
     }
 }

@@ -60,7 +60,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             {
                 var result = this.ServiceFabricClient.MeshNetworks.GetMeshNetworkApplicationRefAsync(
                     networkName: this.NetworkName,
-                    applicationId: this.ApplicationId,
+                    applicationResourceName: this.ApplicationId,
                     serverTimeout: this.ServerTimeout,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

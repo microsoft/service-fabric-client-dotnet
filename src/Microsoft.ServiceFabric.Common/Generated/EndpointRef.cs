@@ -9,23 +9,23 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Information about a Service Fabric container network deployed to a Service Fabric node.
+    /// Describes a endpoint reference for a network resource.
     /// </summary>
-    public partial class DeployedNetworkInfo
+    public partial class EndpointRef
     {
         /// <summary>
-        /// Initializes a new instance of the DeployedNetworkInfo class.
+        /// Initializes a new instance of the EndpointRef class.
         /// </summary>
-        /// <param name="networkName">The name of a Service Fabric container network.</param>
-        public DeployedNetworkInfo(
-            string networkName = default(string))
+        /// <param name="name">Name of the endpoint.</param>
+        public EndpointRef(
+            string name = default(string))
         {
-            this.NetworkName = networkName;
+            this.Name = name;
         }
 
         /// <summary>
-        /// Gets the name of a Service Fabric container network.
+        /// Gets name of the endpoint.
         /// </summary>
-        public string NetworkName { get; }
+        public string Name { get; }
     }
 }

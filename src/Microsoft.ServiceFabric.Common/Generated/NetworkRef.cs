@@ -17,13 +17,13 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the NetworkRef class.
         /// </summary>
         /// <param name="name">Name of the network.</param>
-        /// <param name="endpoint">The endpoint associated with the network</param>
+        /// <param name="endpointRefs">A list of EndpointRef objects.</param>
         public NetworkRef(
             string name = default(string),
-            string endpoint = default(string))
+            IEnumerable<EndpointRef> endpointRefs = default(IEnumerable<EndpointRef>))
         {
             this.Name = name;
-            this.Endpoint = endpoint;
+            this.EndpointRefs = endpointRefs;
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Microsoft.ServiceFabric.Common
         public string Name { get; }
 
         /// <summary>
-        /// Gets the endpoint associated with the network
+        /// Gets a list of EndpointRef objects.
         /// </summary>
-        public string Endpoint { get; }
+        public IEnumerable<EndpointRef> EndpointRefs { get; }
     }
 }

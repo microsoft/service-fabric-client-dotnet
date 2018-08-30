@@ -19,22 +19,22 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="status">The status of a container network. Possible values include: 'Ready', 'Creating', 'Deleting',
         /// 'Failed'</param>
         /// <param name="statusDetails">Additional detailed information about the status of the network</param>
-        /// <param name="addressPrefix">Address space for the local container network.</param>
+        /// <param name="networkAddressPrefix">Address space for the local container network.</param>
         public LocalNetworkProperties(
             NetworkStatus? status = default(NetworkStatus?),
             string statusDetails = default(string),
-            string addressPrefix = default(string))
+            string networkAddressPrefix = default(string))
             : base(
                 Common.NetworkType.Local,
                 status,
                 statusDetails)
         {
-            this.AddressPrefix = addressPrefix;
+            this.NetworkAddressPrefix = networkAddressPrefix;
         }
 
         /// <summary>
         /// Gets address space for the local container network.
         /// </summary>
-        public string AddressPrefix { get; }
+        public string NetworkAddressPrefix { get; }
     }
 }

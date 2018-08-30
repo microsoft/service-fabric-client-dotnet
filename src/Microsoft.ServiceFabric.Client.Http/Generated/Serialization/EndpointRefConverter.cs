@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="DeployedNetworkInfo" />.
+    /// Converter for <see cref="EndpointRef" />.
     /// </summary>
-    internal class DeployedNetworkInfoConverter
+    internal class EndpointRefConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static DeployedNetworkInfo Deserialize(JsonReader reader)
+        internal static EndpointRef Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,16 +31,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static DeployedNetworkInfo GetFromJsonProperties(JsonReader reader)
+        internal static EndpointRef GetFromJsonProperties(JsonReader reader)
         {
-            var networkName = default(string);
+            var name = default(string);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("NetworkName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
                 {
-                    networkName = reader.ReadValueAsString();
+                    name = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -49,8 +49,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new DeployedNetworkInfo(
-                networkName: networkName);
+            return new EndpointRef(
+                name: name);
         }
 
         /// <summary>
@@ -58,13 +58,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, DeployedNetworkInfo obj)
+        internal static void Serialize(JsonWriter writer, EndpointRef obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            if (obj.NetworkName != null)
+            if (obj.Name != null)
             {
-                writer.WriteProperty(obj.NetworkName, "NetworkName", JsonWriterExtensions.WriteStringValue);
+                writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

@@ -33,19 +33,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ApplicationNetworkInfo GetFromJsonProperties(JsonReader reader)
         {
-            var name = default(string);
-            var endpoint = default(string);
+            var networkName = default(string);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("NetworkName", propName, StringComparison.Ordinal) == 0)
                 {
-                    name = reader.ReadValueAsString();
-                }
-                else if (string.Compare("endpoint", propName, StringComparison.Ordinal) == 0)
-                {
-                    endpoint = reader.ReadValueAsString();
+                    networkName = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -55,8 +50,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             while (reader.TokenType != JsonToken.EndObject);
 
             return new ApplicationNetworkInfo(
-                name: name,
-                endpoint: endpoint);
+                networkName: networkName);
         }
 
         /// <summary>
@@ -68,14 +62,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            if (obj.Name != null)
+            if (obj.NetworkName != null)
             {
-                writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
-            }
-
-            if (obj.Endpoint != null)
-            {
-                writer.WriteProperty(obj.Endpoint, "endpoint", JsonWriterExtensions.WriteStringValue);
+                writer.WriteProperty(obj.NetworkName, "NetworkName", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();
