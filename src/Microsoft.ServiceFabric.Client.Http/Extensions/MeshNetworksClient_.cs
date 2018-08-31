@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             jsonDescription.ThrowIfNull(nameof(jsonDescription));
 
             string requestId = Guid.NewGuid().ToString();
-            var url = $"Resources/Networks/{networkResourceName}?api-version={Constants.DefaultApiVersionForResources}";
+            var url = $"Resources/Networks/{networkResourceName}?api-version={apiVersion}";
 
             HttpRequestMessage RequestFunc()
             {
