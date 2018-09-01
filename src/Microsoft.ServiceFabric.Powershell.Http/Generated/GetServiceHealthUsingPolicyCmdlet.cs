@@ -84,11 +84,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public bool? ConsiderWarningAsError
-        {
-            get;
-            set;
-        }
+        public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyDeployedApplications. The maximum allowed percentage of unhealthy deployed
@@ -100,11 +96,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public int? MaxPercentUnhealthyDeployedApplications
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyDeployedApplications { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyPartitionsPerService. The maximum allowed percentage of unhealthy partitions per
@@ -118,11 +110,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public int? MaxPercentUnhealthyPartitionsPerService
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyPartitionsPerService { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyReplicasPerPartition. The maximum allowed percentage of unhealthy replicas per
@@ -136,11 +124,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public int? MaxPercentUnhealthyReplicasPerPartition
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyReplicasPerPartition { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyServices. The maximum maximum allowed percentage of unhealthy services. Allowed
@@ -154,22 +138,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public int? MaxPercentUnhealthyServices
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyServices { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ServiceTypeHealthPolicyMap. The map with service type health policy per service type name. The map is
         /// empty by default.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeHealthStatistics. Indicates whether the health statistics should be returned as part of the

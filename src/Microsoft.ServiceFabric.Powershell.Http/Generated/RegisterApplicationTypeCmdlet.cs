@@ -42,11 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// during the prior upload operation.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ProvisionApplicationType")]
-        public string ApplicationTypeBuildPath
-        {
-            get;
-            set;
-        }
+        public string ApplicationTypeBuildPath { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationPackageDownloadUri. The path to the '.sfpkg' application package from where the application
@@ -55,33 +51,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// READ access.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ProvisionApplicationType")]
-        public string ApplicationPackageDownloadUri
-        {
-            get;
-            set;
-        }
+        public string ApplicationPackageDownloadUri { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeName. The application type name represents the name of the application type found in
         /// the application manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "ProvisionApplicationType")]
-        public string ApplicationTypeName
-        {
-            get;
-            set;
-        }
+        public string ApplicationTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeVersion. The application type version represents the version of the application type
         /// found in the application manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 4, ParameterSetName = "ProvisionApplicationType")]
-        public string ApplicationTypeVersion
-        {
-            get;
-            set;
-        }
+        public string ApplicationTypeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets Async. Indicates whether or not provisioning should occur asynchronously. When set to true, the
@@ -90,11 +74,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// value to true.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "ProvisionApplicationType")]
-        public bool? Async
-        {
-            get;
-            set;
-        }
+        public bool? Async { get; set; } = false;
 
         /// <summary>
         /// Gets or sets ApplicationPackageCleanupPolicy. The kind of action that needs to be taken for cleaning up the
@@ -102,11 +82,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 'Manual'
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "ProvisionApplicationType")]
-        public ApplicationPackageCleanupPolicy? ApplicationPackageCleanupPolicy
-        {
-            get;
-            set;
-        }
+        public ApplicationPackageCleanupPolicy? ApplicationPackageCleanupPolicy { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

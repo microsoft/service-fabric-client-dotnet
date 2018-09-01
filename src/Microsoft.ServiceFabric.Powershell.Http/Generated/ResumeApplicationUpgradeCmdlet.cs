@@ -34,11 +34,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets UpgradeDomainName. The name of the upgrade domain in which to resume the upgrade.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ResumeApplicationUpgrade")]
-        public string UpgradeDomainName
-        {
-            get;
-            set;
-        }
+        public string UpgradeDomainName { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

@@ -20,31 +20,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets RemoteSource. The relative path of source image store content to be copied from.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CopyImageStoreContent")]
-        public string RemoteSource
-        {
-            get;
-            set;
-        }
+        public string RemoteSource { get; set; }
 
         /// <summary>
         /// Gets or sets RemoteDestination. The relative path of destination image store content to be copied to.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CopyImageStoreContent")]
-        public string RemoteDestination
-        {
-            get;
-            set;
-        }
+        public string RemoteDestination { get; set; }
 
         /// <summary>
         /// Gets or sets SkipFiles. The list of the file names to be skipped for copying.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CopyImageStoreContent")]
-        public IEnumerable<string> SkipFiles
-        {
-            get;
-            set;
-        }
+        public IEnumerable<string> SkipFiles { get; set; }
 
         /// <summary>
         /// Gets or sets CheckMarkFile. Indicates whether to check mark file during copying. The property is true if checking
@@ -52,11 +40,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the property is true and mark file does not exist, the copy is skipped.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CopyImageStoreContent")]
-        public bool? CheckMarkFile
-        {
-            get;
-            set;
-        }
+        public bool? CheckMarkFile { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

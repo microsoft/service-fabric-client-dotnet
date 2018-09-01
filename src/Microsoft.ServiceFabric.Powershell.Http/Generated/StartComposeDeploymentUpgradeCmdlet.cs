@@ -30,52 +30,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ComposeFileContent. The content of the compose file that describes the deployment to create.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string ComposeFileContent
-        {
-            get;
-            set;
-        }
+        public string ComposeFileContent { get; set; }
 
         /// <summary>
         /// Gets or sets UpgradeKind. The kind of upgrade out of the following possible values. Possible values include:
         /// 'Invalid', 'Rolling'
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public UpgradeKind? UpgradeKind
-        {
-            get;
-            set;
-        }
+        public UpgradeKind? UpgradeKind { get; set; } = Common.UpgradeKind.Rolling;
 
         /// <summary>
         /// Gets or sets RegistryUserName. The user name to connect to container registry.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string RegistryUserName
-        {
-            get;
-            set;
-        }
+        public string RegistryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets RegistryPassword. The password for supplied username to connect to container registry.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string RegistryPassword
-        {
-            get;
-            set;
-        }
+        public string RegistryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets PasswordEncrypted. Indicates that supplied container registry password is encrypted.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public bool? PasswordEncrypted
-        {
-            get;
-            set;
-        }
+        public bool? PasswordEncrypted { get; set; }
 
         /// <summary>
         /// Gets or sets RollingUpgradeMode. The mode used to monitor health during a rolling upgrade. The values are
@@ -83,11 +63,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 'UnmonitoredManual', 'Monitored'
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public UpgradeMode? RollingUpgradeMode
-        {
-            get;
-            set;
-        }
+        public UpgradeMode? RollingUpgradeMode { get; set; } = Common.UpgradeMode.UnmonitoredAuto;
 
         /// <summary>
         /// Gets or sets UpgradeReplicaSetCheckTimeoutInSeconds. The maximum amount of time to block processing of an upgrade
@@ -96,22 +72,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public long? UpgradeReplicaSetCheckTimeoutInSeconds
-        {
-            get;
-            set;
-        }
+        public long? UpgradeReplicaSetCheckTimeoutInSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets ForceRestart. If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public bool? ForceRestart
-        {
-            get;
-            set;
-        }
+        public bool? ForceRestart { get; set; }
 
         /// <summary>
         /// Gets or sets FailureAction. The compensating action to perform when a Monitored upgrade encounters monitoring
@@ -122,11 +90,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// . Possible values include: 'Invalid', 'Rollback', 'Manual'
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public FailureAction? FailureAction
-        {
-            get;
-            set;
-        }
+        public FailureAction? FailureAction { get; set; }
 
         /// <summary>
         /// Gets or sets HealthCheckWaitDurationInMilliseconds. The amount of time to wait after completing an upgrade domain
@@ -134,11 +98,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// fails, then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string HealthCheckWaitDurationInMilliseconds
-        {
-            get;
-            set;
-        }
+        public string HealthCheckWaitDurationInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets HealthCheckStableDurationInMilliseconds. The amount of time that the application or cluster must
@@ -147,11 +107,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// of milliseconds.
         /// </summary>
         [Parameter(Mandatory = false, Position = 11, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string HealthCheckStableDurationInMilliseconds
-        {
-            get;
-            set;
-        }
+        public string HealthCheckStableDurationInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets HealthCheckRetryTimeoutInMilliseconds. The amount of time to retry health evaluation when the
@@ -160,11 +116,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// of milliseconds.
         /// </summary>
         [Parameter(Mandatory = false, Position = 12, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string HealthCheckRetryTimeoutInMilliseconds
-        {
-            get;
-            set;
-        }
+        public string HealthCheckRetryTimeoutInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets UpgradeTimeoutInMilliseconds. The amount of time the overall upgrade has to complete before
@@ -172,11 +124,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
         [Parameter(Mandatory = false, Position = 13, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string UpgradeTimeoutInMilliseconds
-        {
-            get;
-            set;
-        }
+        public string UpgradeTimeoutInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets UpgradeDomainTimeoutInMilliseconds. The amount of time each upgrade domain has to complete before
@@ -184,21 +132,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
         [Parameter(Mandatory = false, Position = 14, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public string UpgradeDomainTimeoutInMilliseconds
-        {
-            get;
-            set;
-        }
+        public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
         [Parameter(Mandatory = false, Position = 15, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public bool? ConsiderWarningAsError
-        {
-            get;
-            set;
-        }
+        public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyDeployedApplications. The maximum allowed percentage of unhealthy deployed
@@ -210,11 +150,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 16, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public int? MaxPercentUnhealthyDeployedApplications
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyDeployedApplications { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyPartitionsPerService. The maximum allowed percentage of unhealthy partitions per
@@ -228,11 +164,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 17, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public int? MaxPercentUnhealthyPartitionsPerService
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyPartitionsPerService { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyReplicasPerPartition. The maximum allowed percentage of unhealthy replicas per
@@ -246,11 +178,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 18, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public int? MaxPercentUnhealthyReplicasPerPartition
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyReplicasPerPartition { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyServices. The maximum maximum allowed percentage of unhealthy services. Allowed
@@ -264,22 +192,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 19, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public int? MaxPercentUnhealthyServices
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyServices { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ServiceTypeHealthPolicyMap. The map with service type health policy per service type name. The map is
         /// empty by default.
         /// </summary>
         [Parameter(Mandatory = false, Position = 20, ParameterSetName = "StartComposeDeploymentUpgrade")]
-        public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

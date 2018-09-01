@@ -20,21 +20,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets CodeVersion. The cluster code package version.
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "UnprovisionCluster")]
-        public string CodeVersion
-        {
-            get;
-            set;
-        }
+        public string CodeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets ConfigVersion. The cluster manifest version.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "UnprovisionCluster")]
-        public string ConfigVersion
-        {
-            get;
-            set;
-        }
+        public string ConfigVersion { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

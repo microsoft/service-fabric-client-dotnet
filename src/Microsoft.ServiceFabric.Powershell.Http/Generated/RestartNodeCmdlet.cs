@@ -32,22 +32,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// instance ID can be obtained using get node query.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "RestartNode")]
-        public string NodeInstanceId
-        {
-            get;
-            set;
-        }
+        public string NodeInstanceId { get; set; } = "0";
 
         /// <summary>
         /// Gets or sets CreateFabricDump. Specify True to create a dump of the fabric node process. This is case-sensitive.
         /// Possible values include: 'False', 'True'
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "RestartNode")]
-        public CreateFabricDump? CreateFabricDump
-        {
-            get;
-            set;
-        }
+        public CreateFabricDump? CreateFabricDump { get; set; } = Common.CreateFabricDump.False;
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

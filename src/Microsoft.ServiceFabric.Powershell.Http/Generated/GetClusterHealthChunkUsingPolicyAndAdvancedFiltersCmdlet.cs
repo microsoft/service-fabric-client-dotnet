@@ -26,11 +26,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// include a node identified by its NodeName.
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public IEnumerable<NodeHealthStateFilter> NodeFilters
-        {
-            get;
-            set;
-        }
+        public IEnumerable<NodeHealthStateFilter> NodeFilters { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationFilters. Defines a list of filters that specify which applications to be included in the
@@ -42,21 +38,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// always include applications of a specified application type.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public IEnumerable<ApplicationHealthStateFilter> ApplicationFilters
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationHealthStateFilter> ApplicationFilters { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public bool? ConsiderWarningAsError
-        {
-            get;
-            set;
-        }
+        public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyNodes. The maximum allowed percentage of unhealthy nodes before reporting an error.
@@ -73,11 +61,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// tolerate that.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public int? MaxPercentUnhealthyNodes
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyApplications. The maximum allowed percentage of unhealthy applications before
@@ -92,11 +76,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public int? MaxPercentUnhealthyApplications
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ApplicationTypeHealthPolicyMap. Defines a map with max percentage unhealthy applications for specific
@@ -118,22 +98,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
         /// evaluate specific applications in the cluster.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
-        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

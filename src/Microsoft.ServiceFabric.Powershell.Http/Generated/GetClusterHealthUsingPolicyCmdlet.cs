@@ -132,21 +132,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The map is empty by default.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetClusterHealthUsingPolicy")]
-        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetClusterHealthUsingPolicy")]
-        public bool? ConsiderWarningAsError
-        {
-            get;
-            set;
-        }
+        public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyNodes. The maximum allowed percentage of unhealthy nodes before reporting an error.
@@ -163,11 +155,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// tolerate that.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetClusterHealthUsingPolicy")]
-        public int? MaxPercentUnhealthyNodes
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyApplications. The maximum allowed percentage of unhealthy applications before
@@ -182,11 +170,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetClusterHealthUsingPolicy")]
-        public int? MaxPercentUnhealthyApplications
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ApplicationTypeHealthPolicyMap. Defines a map with max percentage unhealthy applications for specific
@@ -208,11 +192,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetClusterHealthUsingPolicy")]
-        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets TaskId. The ID of the repair task.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ForceApproveRepairTask")]
-        public string TaskId
-        {
-            get;
-            set;
-        }
+        public string TaskId { get; set; }
 
         /// <summary>
         /// Gets or sets Version. The current version number of the repair task. If non-zero, then the request will only
@@ -32,11 +28,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// performed.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ForceApproveRepairTask")]
-        public string Version
-        {
-            get;
-            set;
-        }
+        public string Version { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

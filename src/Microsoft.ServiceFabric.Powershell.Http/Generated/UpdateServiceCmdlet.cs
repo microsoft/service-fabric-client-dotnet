@@ -72,11 +72,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "UpdateService")]
-        public string Flags
-        {
-            get;
-            set;
-        }
+        public string Flags { get; set; }
 
         /// <summary>
         /// Gets or sets PlacementConstraints. The placement constraints as a string. Placement constraints are boolean
@@ -85,41 +81,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// blue)".
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "UpdateService")]
-        public string PlacementConstraints
-        {
-            get;
-            set;
-        }
+        public string PlacementConstraints { get; set; }
 
         /// <summary>
         /// Gets or sets CorrelationScheme. The correlation scheme.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "UpdateService")]
-        public IEnumerable<ServiceCorrelationDescription> CorrelationScheme
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ServiceCorrelationDescription> CorrelationScheme { get; set; }
 
         /// <summary>
         /// Gets or sets LoadMetrics. The service load metrics.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "UpdateService")]
-        public IEnumerable<ServiceLoadMetricDescription> LoadMetrics
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ServiceLoadMetricDescription> LoadMetrics { get; set; }
 
         /// <summary>
         /// Gets or sets ServicePlacementPolicies. The service placement policies.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "UpdateService")]
-        public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies { get; set; }
 
         /// <summary>
         /// Gets or sets DefaultMoveCost. The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
@@ -128,84 +108,52 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Specifies the move cost for the service.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "UpdateService")]
-        public MoveCost? DefaultMoveCost
-        {
-            get;
-            set;
-        }
+        public MoveCost? DefaultMoveCost { get; set; }
 
         /// <summary>
         /// Gets or sets ScalingPolicies. Scaling policies for this service.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "UpdateService")]
-        public IEnumerable<ScalingPolicyDescription> ScalingPolicies
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; set; }
 
         /// <summary>
         /// Gets or sets TargetReplicaSetSize. The target replica set size as a number.
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "UpdateService")]
-        public int? TargetReplicaSetSize
-        {
-            get;
-            set;
-        }
+        public int? TargetReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets MinReplicaSetSize. The minimum replica set size as a number.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "UpdateService")]
-        public int? MinReplicaSetSize
-        {
-            get;
-            set;
-        }
+        public int? MinReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaRestartWaitDurationSeconds. The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.
         /// </summary>
         [Parameter(Mandatory = false, Position = 11, ParameterSetName = "UpdateService")]
-        public string ReplicaRestartWaitDurationSeconds
-        {
-            get;
-            set;
-        }
+        public string ReplicaRestartWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets QuorumLossWaitDurationSeconds. The maximum duration, in seconds, for which a partition is allowed to
         /// be in a state of quorum loss.
         /// </summary>
         [Parameter(Mandatory = false, Position = 12, ParameterSetName = "UpdateService")]
-        public string QuorumLossWaitDurationSeconds
-        {
-            get;
-            set;
-        }
+        public string QuorumLossWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets StandByReplicaKeepDurationSeconds. The definition on how long StandBy replicas should be maintained
         /// before being removed.
         /// </summary>
         [Parameter(Mandatory = false, Position = 13, ParameterSetName = "UpdateService")]
-        public string StandByReplicaKeepDurationSeconds
-        {
-            get;
-            set;
-        }
+        public string StandByReplicaKeepDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
         [Parameter(Mandatory = false, Position = 14, ParameterSetName = "UpdateService")]
-        public int? InstanceCount
-        {
-            get;
-            set;
-        }
+        public int? InstanceCount { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

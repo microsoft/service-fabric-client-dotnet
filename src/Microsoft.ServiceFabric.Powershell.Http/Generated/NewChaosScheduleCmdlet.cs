@@ -20,52 +20,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Version. The version number of the Schedule.
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "PostChaosSchedule")]
-        public int? Version
-        {
-            get;
-            set;
-        }
+        public int? Version { get; set; }
 
         /// <summary>
         /// Gets or sets StartDate. The date and time Chaos will start using this schedule.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "PostChaosSchedule")]
-        public DateTime? StartDate
-        {
-            get;
-            set;
-        }
+        public DateTime? StartDate { get; set; } = System.Xml.XmlConvert.ToDateTime("1601-01-01T00:00:00.000Z", System.Xml.XmlDateTimeSerializationMode.Utc);
 
         /// <summary>
         /// Gets or sets ExpiryDate. The date and time Chaos will continue to use this schedule until.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "PostChaosSchedule")]
-        public DateTime? ExpiryDate
-        {
-            get;
-            set;
-        }
+        public DateTime? ExpiryDate { get; set; } = System.Xml.XmlConvert.ToDateTime("9999-12-31T23:59:59.999Z", System.Xml.XmlDateTimeSerializationMode.Utc);
 
         /// <summary>
         /// Gets or sets ChaosParametersDictionary. A mapping of string names to Chaos Parameters to be referenced by Chaos
         /// Schedule Jobs.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "PostChaosSchedule")]
-        public IEnumerable<ChaosParametersDictionaryItem> ChaosParametersDictionary
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ChaosParametersDictionaryItem> ChaosParametersDictionary { get; set; }
 
         /// <summary>
         /// Gets or sets Jobs. A list of all Chaos Schedule Jobs that will be automated by the schedule.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "PostChaosSchedule")]
-        public IEnumerable<ChaosScheduleJob> Jobs
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ChaosScheduleJob> Jobs { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

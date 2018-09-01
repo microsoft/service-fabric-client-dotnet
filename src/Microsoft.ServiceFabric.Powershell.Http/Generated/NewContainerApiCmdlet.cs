@@ -77,41 +77,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets UriPath. URI path of container REST API
         /// </summary>
         [Parameter(Mandatory = true, Position = 5, ParameterSetName = "InvokeContainerApi")]
-        public string UriPath
-        {
-            get;
-            set;
-        }
+        public string UriPath { get; set; }
 
         /// <summary>
         /// Gets or sets HttpVerb. HTTP verb of container REST API, defaults to "GET"
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "InvokeContainerApi")]
-        public string HttpVerb
-        {
-            get;
-            set;
-        }
+        public string HttpVerb { get; set; }
 
         /// <summary>
         /// Gets or sets ContentType. Content type of container REST API request, defaults to "application/json"
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "InvokeContainerApi")]
-        public string ContentType
-        {
-            get;
-            set;
-        }
+        public string ContentType { get; set; }
 
         /// <summary>
         /// Gets or sets Body. HTTP request body of container REST API
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "InvokeContainerApi")]
-        public string Body
-        {
-            get;
-            set;
-        }
+        public string Body { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

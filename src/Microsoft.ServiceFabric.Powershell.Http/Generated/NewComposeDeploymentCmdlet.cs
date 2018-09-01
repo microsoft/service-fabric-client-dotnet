@@ -20,51 +20,31 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets DeploymentName. The name of the deployment.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CreateComposeDeployment")]
-        public string DeploymentName
-        {
-            get;
-            set;
-        }
+        public string DeploymentName { get; set; }
 
         /// <summary>
         /// Gets or sets ComposeFileContent. The content of the compose file that describes the deployment to create.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CreateComposeDeployment")]
-        public string ComposeFileContent
-        {
-            get;
-            set;
-        }
+        public string ComposeFileContent { get; set; }
 
         /// <summary>
         /// Gets or sets RegistryUserName. The user name to connect to container registry.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CreateComposeDeployment")]
-        public string RegistryUserName
-        {
-            get;
-            set;
-        }
+        public string RegistryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets RegistryPassword. The password for supplied username to connect to container registry.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateComposeDeployment")]
-        public string RegistryPassword
-        {
-            get;
-            set;
-        }
+        public string RegistryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets PasswordEncrypted. Indicates that supplied container registry password is encrypted.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateComposeDeployment")]
-        public bool? PasswordEncrypted
-        {
-            get;
-            set;
-        }
+        public bool? PasswordEncrypted { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

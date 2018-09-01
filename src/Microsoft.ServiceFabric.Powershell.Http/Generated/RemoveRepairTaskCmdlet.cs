@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets TaskId. The ID of the completed repair task to be deleted.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "DeleteRepairTask")]
-        public string TaskId
-        {
-            get;
-            set;
-        }
+        public string TaskId { get; set; }
 
         /// <summary>
         /// Gets or sets Version. The current version number of the repair task. If non-zero, then the request will only
@@ -32,11 +28,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// performed.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DeleteRepairTask")]
-        public string Version
-        {
-            get;
-            set;
-        }
+        public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for

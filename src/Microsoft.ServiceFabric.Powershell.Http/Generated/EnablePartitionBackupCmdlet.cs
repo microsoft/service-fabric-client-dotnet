@@ -30,11 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets BackupPolicyName. Name of the backup policy to be used for enabling periodic backups.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "EnablePartitionBackup")]
-        public string BackupPolicyName
-        {
-            get;
-            set;
-        }
+        public string BackupPolicyName { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

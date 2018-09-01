@@ -30,11 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets TaskId. The ID of the repair task.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "CreateRepairTask")]
-        public string TaskId
-        {
-            get;
-            set;
-        }
+        public string TaskId { get; set; }
 
         /// <summary>
         /// Gets or sets State. The workflow state of the repair task. Valid initial states are Created, Claimed, and
@@ -42,22 +38,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 'Restoring', 'Completed'
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "CreateRepairTask")]
-        public State? State
-        {
-            get;
-            set;
-        }
+        public State? State { get; set; }
 
         /// <summary>
         /// Gets or sets Action. The requested repair action. Must be specified when the repair task is created, and is
         /// immutable once set.
         /// </summary>
         [Parameter(Mandatory = true, Position = 4, ParameterSetName = "CreateRepairTask")]
-        public string Action
-        {
-            get;
-            set;
-        }
+        public string Action { get; set; }
 
         /// <summary>
         /// Gets or sets Version. The version of the repair task.
@@ -67,22 +55,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// update will only succeed if the actual current version of the repair task matches this value.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateRepairTask")]
-        public string Version
-        {
-            get;
-            set;
-        }
+        public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets Description. A description of the purpose of the repair task, or other informational details.
         /// May be set when the repair task is created, and is immutable once set.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "CreateRepairTask")]
-        public string Description
-        {
-            get;
-            set;
-        }
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets Flags. A bitwise-OR of the following values, which gives additional details about the status of the
@@ -92,52 +72,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - 4 - Approval of the repair was forced via client request
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "CreateRepairTask")]
-        public int? Flags
-        {
-            get;
-            set;
-        }
+        public int? Flags { get; set; }
 
         /// <summary>
         /// Gets or sets NodeNames. The list of nodes targeted by a repair action.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "CreateRepairTask")]
-        public IEnumerable<string> NodeNames
-        {
-            get;
-            set;
-        }
+        public IEnumerable<string> NodeNames { get; set; }
 
         /// <summary>
         /// Gets or sets Executor. The name of the repair executor. Must be specified in Claimed and later states, and is
         /// immutable once set.
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "CreateRepairTask")]
-        public string Executor
-        {
-            get;
-            set;
-        }
+        public string Executor { get; set; }
 
         /// <summary>
         /// Gets or sets ExecutorData. A data string that the repair executor can use to store its internal state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "CreateRepairTask")]
-        public string ExecutorData
-        {
-            get;
-            set;
-        }
+        public string ExecutorData { get; set; }
 
         /// <summary>
         /// Gets or sets NodeImpactList. The list of nodes impacted by a repair action and their respective expected impact.
         /// </summary>
         [Parameter(Mandatory = false, Position = 11, ParameterSetName = "CreateRepairTask")]
-        public IEnumerable<NodeImpact> NodeImpactList
-        {
-            get;
-            set;
-        }
+        public IEnumerable<NodeImpact> NodeImpactList { get; set; }
 
         /// <summary>
         /// Gets or sets ResultStatus. A value describing the overall result of the repair task execution. Must be specified in
@@ -145,11 +105,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 'Cancelled', 'Interrupted', 'Failed', 'Pending'
         /// </summary>
         [Parameter(Mandatory = false, Position = 12, ParameterSetName = "CreateRepairTask")]
-        public ResultStatus? ResultStatus
-        {
-            get;
-            set;
-        }
+        public ResultStatus? ResultStatus { get; set; }
 
         /// <summary>
         /// Gets or sets ResultCode. A numeric value providing additional details about the result of the repair task
@@ -157,136 +113,84 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// May be specified in the Restoring and later states, and is immutable once set.
         /// </summary>
         [Parameter(Mandatory = false, Position = 13, ParameterSetName = "CreateRepairTask")]
-        public int? ResultCode
-        {
-            get;
-            set;
-        }
+        public int? ResultCode { get; set; }
 
         /// <summary>
         /// Gets or sets ResultDetails. A string providing additional details about the result of the repair task execution.
         /// May be specified in the Restoring and later states, and is immutable once set.
         /// </summary>
         [Parameter(Mandatory = false, Position = 14, ParameterSetName = "CreateRepairTask")]
-        public string ResultDetails
-        {
-            get;
-            set;
-        }
+        public string ResultDetails { get; set; }
 
         /// <summary>
         /// Gets or sets CreatedUtcTimestamp. The time when the repair task entered the Created state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 15, ParameterSetName = "CreateRepairTask")]
-        public DateTime? CreatedUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? CreatedUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets ClaimedUtcTimestamp. The time when the repair task entered the Claimed state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 16, ParameterSetName = "CreateRepairTask")]
-        public DateTime? ClaimedUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? ClaimedUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets PreparingUtcTimestamp. The time when the repair task entered the Preparing state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 17, ParameterSetName = "CreateRepairTask")]
-        public DateTime? PreparingUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? PreparingUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets ApprovedUtcTimestamp. The time when the repair task entered the Approved state
         /// </summary>
         [Parameter(Mandatory = false, Position = 18, ParameterSetName = "CreateRepairTask")]
-        public DateTime? ApprovedUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? ApprovedUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets ExecutingUtcTimestamp. The time when the repair task entered the Executing state
         /// </summary>
         [Parameter(Mandatory = false, Position = 19, ParameterSetName = "CreateRepairTask")]
-        public DateTime? ExecutingUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? ExecutingUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets RestoringUtcTimestamp. The time when the repair task entered the Restoring state
         /// </summary>
         [Parameter(Mandatory = false, Position = 20, ParameterSetName = "CreateRepairTask")]
-        public DateTime? RestoringUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? RestoringUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets CompletedUtcTimestamp. The time when the repair task entered the Completed state
         /// </summary>
         [Parameter(Mandatory = false, Position = 21, ParameterSetName = "CreateRepairTask")]
-        public DateTime? CompletedUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? CompletedUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets PreparingHealthCheckStartUtcTimestamp. The time when the repair task started the health check in the
         /// Preparing state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 22, ParameterSetName = "CreateRepairTask")]
-        public DateTime? PreparingHealthCheckStartUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? PreparingHealthCheckStartUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets PreparingHealthCheckEndUtcTimestamp. The time when the repair task completed the health check in the
         /// Preparing state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 23, ParameterSetName = "CreateRepairTask")]
-        public DateTime? PreparingHealthCheckEndUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? PreparingHealthCheckEndUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets RestoringHealthCheckStartUtcTimestamp. The time when the repair task started the health check in the
         /// Restoring state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 24, ParameterSetName = "CreateRepairTask")]
-        public DateTime? RestoringHealthCheckStartUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? RestoringHealthCheckStartUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets RestoringHealthCheckEndUtcTimestamp. The time when the repair task completed the health check in the
         /// Restoring state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 25, ParameterSetName = "CreateRepairTask")]
-        public DateTime? RestoringHealthCheckEndUtcTimestamp
-        {
-            get;
-            set;
-        }
+        public DateTime? RestoringHealthCheckEndUtcTimestamp { get; set; }
 
         /// <summary>
         /// Gets or sets PreparingHealthCheckState. The workflow state of the health check when the repair task is in the
@@ -296,11 +200,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// not meant to be used directly from your code.
         /// </summary>
         [Parameter(Mandatory = false, Position = 26, ParameterSetName = "CreateRepairTask")]
-        public RepairTaskHealthCheckState? PreparingHealthCheckState
-        {
-            get;
-            set;
-        }
+        public RepairTaskHealthCheckState? PreparingHealthCheckState { get; set; }
 
         /// <summary>
         /// Gets or sets RestoringHealthCheckState. The workflow state of the health check when the repair task is in the
@@ -310,33 +210,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// not meant to be used directly from your code.
         /// </summary>
         [Parameter(Mandatory = false, Position = 27, ParameterSetName = "CreateRepairTask")]
-        public RepairTaskHealthCheckState? RestoringHealthCheckState
-        {
-            get;
-            set;
-        }
+        public RepairTaskHealthCheckState? RestoringHealthCheckState { get; set; }
 
         /// <summary>
         /// Gets or sets PerformPreparingHealthCheck. A value to determine if health checks will be performed when the repair
         /// task enters the Preparing state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 28, ParameterSetName = "CreateRepairTask")]
-        public bool? PerformPreparingHealthCheck
-        {
-            get;
-            set;
-        }
+        public bool? PerformPreparingHealthCheck { get; set; }
 
         /// <summary>
         /// Gets or sets PerformRestoringHealthCheck. A value to determine if health checks will be performed when the repair
         /// task enters the Restoring state.
         /// </summary>
         [Parameter(Mandatory = false, Position = 29, ParameterSetName = "CreateRepairTask")]
-        public bool? PerformRestoringHealthCheck
-        {
-            get;
-            set;
-        }
+        public bool? PerformRestoringHealthCheck { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

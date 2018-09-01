@@ -30,11 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ApplicationTypeVersion. The version of the application type as defined in the application manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "UnprovisionApplicationType")]
-        public string ApplicationTypeVersion
-        {
-            get;
-            set;
-        }
+        public string ApplicationTypeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets Async. The flag indicating whether or not unprovision should occur asynchronously. When set to true,
@@ -43,11 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// application packages that were provisioned.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "UnprovisionApplicationType")]
-        public bool? Async
-        {
-            get;
-            set;
-        }
+        public bool? Async { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

@@ -620,9 +620,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             return methodInfo != null;
         }
 
-#pragma warning disable SA1201 // Elements should appear in the correct order
         private static readonly Dictionary<Type, Delegate> TypeToMethod = new Dictionary<Type, Delegate>()
-#pragma warning restore SA1201 // Elements should appear in the correct order
         {
             { typeof(List<ServiceHealthState>), new Func<IList<ServiceHealthState>, string>(ToString) },
             { typeof(ServiceHealthState), new Func<ServiceHealthState, string>(ToString) },

@@ -34,41 +34,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CreateServiceFromTemplate")]
-        public ApplicationName ApplicationName
-        {
-            get;
-            set;
-        }
+        public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "CreateServiceFromTemplate")]
-        public ServiceName ServiceName
-        {
-            get;
-            set;
-        }
+        public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceTypeName. Name of the service type as specified in the service manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "CreateServiceFromTemplate")]
-        public string ServiceTypeName
-        {
-            get;
-            set;
-        }
+        public string ServiceTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets InitializationData. The initialization data for the newly created service instance.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateServiceFromTemplate")]
-        public byte[] InitializationData
-        {
-            get;
-            set;
-        }
+        public byte[] InitializationData { get; set; }
 
         /// <summary>
         /// Gets or sets ServicePackageActivationMode. The activation mode of service package to be used for a service.
@@ -78,22 +62,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// creating the Service.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateServiceFromTemplate")]
-        public ServicePackageActivationMode? ServicePackageActivationMode
-        {
-            get;
-            set;
-        }
+        public ServicePackageActivationMode? ServicePackageActivationMode { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceDnsName. The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "CreateServiceFromTemplate")]
-        public string ServiceDnsName
-        {
-            get;
-            set;
-        }
+        public string ServiceDnsName { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

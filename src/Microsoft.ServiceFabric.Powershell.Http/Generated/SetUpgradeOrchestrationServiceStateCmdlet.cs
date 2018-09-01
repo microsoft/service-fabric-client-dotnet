@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ServiceState. The state of Service Fabric Upgrade Orchestration Service.
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "SetUpgradeOrchestrationServiceState")]
-        public string ServiceState
-        {
-            get;
-            set;
-        }
+        public string ServiceState { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

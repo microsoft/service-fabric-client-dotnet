@@ -30,11 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Operations. A list of the property batch operations to be executed.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "SubmitPropertyBatch")]
-        public IEnumerable<PropertyBatchOperation> Operations
-        {
-            get;
-            set;
-        }
+        public IEnumerable<PropertyBatchOperation> Operations { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

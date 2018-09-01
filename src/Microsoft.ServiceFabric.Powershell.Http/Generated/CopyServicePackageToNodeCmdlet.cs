@@ -30,41 +30,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ServiceManifestName. The name of service manifest whose packages need to be downloaded.
         /// </summary>
         [Parameter(Mandatory = true, Position = 1, ParameterSetName = "DeployServicePackageToNode")]
-        public string ServiceManifestName
-        {
-            get;
-            set;
-        }
+        public string ServiceManifestName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeName. The application type name as defined in the application manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "DeployServicePackageToNode")]
-        public string ApplicationTypeName
-        {
-            get;
-            set;
-        }
+        public string ApplicationTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeVersion. The version of the application type as defined in the application manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "DeployServicePackageToNode")]
-        public string ApplicationTypeVersion
-        {
-            get;
-            set;
-        }
+        public string ApplicationTypeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets PackageSharingPolicy. List of package sharing policy information.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "DeployServicePackageToNode")]
-        public IEnumerable<PackageSharingPolicyInfo> PackageSharingPolicy
-        {
-            get;
-            set;
-        }
+        public IEnumerable<PackageSharingPolicyInfo> PackageSharingPolicy { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

@@ -80,11 +80,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets PropertyName. The name of the Service Fabric property.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "PutProperty")]
-        public string PropertyName
-        {
-            get;
-            set;
-        }
+        public string PropertyName { get; set; }
 
         /// <summary>
         /// Gets or sets Data. Array of bytes to be sent as an integer array. Each element of array is a number between 0 and
@@ -95,22 +91,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "PutProperty")]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "PutProperty")]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "PutProperty")]
-        public byte[] Data
-        {
-            get;
-            set;
-        }
+        public byte[] Data { get; set; }
 
         /// <summary>
         /// Gets or sets CustomTypeId. The property's custom type ID. Using this property, the user is able to tag the type of
         /// the value of the property.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "PutProperty")]
-        public string CustomTypeId
-        {
-            get;
-            set;
-        }
+        public string CustomTypeId { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

@@ -20,119 +20,75 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ClusterConfig. The cluster configuration.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public string ClusterConfig
-        {
-            get;
-            set;
-        }
+        public string ClusterConfig { get; set; }
 
         /// <summary>
         /// Gets or sets HealthCheckRetryTimeout. The length of time between attempts to perform a health checks if the
         /// application or cluster is not healthy.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public TimeSpan? HealthCheckRetryTimeout
-        {
-            get;
-            set;
-        }
+        public TimeSpan? HealthCheckRetryTimeout { get; set; } = System.Xml.XmlConvert.ToTimeSpan("PT0H0M0S");
 
         /// <summary>
         /// Gets or sets HealthCheckWaitDurationInSeconds. The length of time to wait after completing an upgrade domain before
         /// starting the health checks process.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public TimeSpan? HealthCheckWaitDurationInSeconds
-        {
-            get;
-            set;
-        }
+        public TimeSpan? HealthCheckWaitDurationInSeconds { get; set; } = System.Xml.XmlConvert.ToTimeSpan("PT0H0M0S");
 
         /// <summary>
         /// Gets or sets HealthCheckStableDurationInSeconds. The length of time that the application or cluster must remain
         /// healthy.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public TimeSpan? HealthCheckStableDurationInSeconds
-        {
-            get;
-            set;
-        }
+        public TimeSpan? HealthCheckStableDurationInSeconds { get; set; } = System.Xml.XmlConvert.ToTimeSpan("PT0H0M0S");
 
         /// <summary>
         /// Gets or sets UpgradeDomainTimeoutInSeconds. The timeout for the upgrade domain.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public TimeSpan? UpgradeDomainTimeoutInSeconds
-        {
-            get;
-            set;
-        }
+        public TimeSpan? UpgradeDomainTimeoutInSeconds { get; set; } = System.Xml.XmlConvert.ToTimeSpan("PT0H0M0S");
 
         /// <summary>
         /// Gets or sets UpgradeTimeoutInSeconds. The upgrade timeout.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public TimeSpan? UpgradeTimeoutInSeconds
-        {
-            get;
-            set;
-        }
+        public TimeSpan? UpgradeTimeoutInSeconds { get; set; } = System.Xml.XmlConvert.ToTimeSpan("PT0H0M0S");
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyApplications. The maximum allowed percentage of unhealthy applications during the
         /// upgrade. Allowed values are integer values from zero to 100.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public int? MaxPercentUnhealthyApplications
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyNodes. The maximum allowed percentage of unhealthy nodes during the upgrade.
         /// Allowed values are integer values from zero to 100.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public int? MaxPercentUnhealthyNodes
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentDeltaUnhealthyNodes. The maximum allowed percentage of delta health degradation during the
         /// upgrade. Allowed values are integer values from zero to 100.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public int? MaxPercentDeltaUnhealthyNodes
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentDeltaUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUpgradeDomainDeltaUnhealthyNodes. The maximum allowed percentage of upgrade domain delta
         /// health degradation during the upgrade. Allowed values are integer values from zero to 100.
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public int? MaxPercentUpgradeDomainDeltaUnhealthyNodes
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUpgradeDomainDeltaUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
         /// evaluate specific applications in the cluster.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartClusterConfigurationUpgrade")]
-        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

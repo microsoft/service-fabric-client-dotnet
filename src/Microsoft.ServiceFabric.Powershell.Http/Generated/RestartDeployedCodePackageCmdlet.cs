@@ -44,21 +44,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ServiceManifestName. The name of service manifest that specified this code package.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "RestartDeployedCodePackage")]
-        public string ServiceManifestName
-        {
-            get;
-            set;
-        }
+        public string ServiceManifestName { get; set; }
 
         /// <summary>
         /// Gets or sets CodePackageName. The name of the code package defined in the service manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "RestartDeployedCodePackage")]
-        public string CodePackageName
-        {
-            get;
-            set;
-        }
+        public string CodePackageName { get; set; }
 
         /// <summary>
         /// Gets or sets CodePackageInstanceId. The instance ID for currently running entry point. For a code package setup
@@ -71,11 +63,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// code package.
         /// </summary>
         [Parameter(Mandatory = true, Position = 4, ParameterSetName = "RestartDeployedCodePackage")]
-        public string CodePackageInstanceId
-        {
-            get;
-            set;
-        }
+        public string CodePackageInstanceId { get; set; }
 
         /// <summary>
         /// Gets or sets ServicePackageActivationId. The ActivationId of a deployed service package. If
@@ -85,11 +73,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// is always an empty string.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "RestartDeployedCodePackage")]
-        public string ServicePackageActivationId
-        {
-            get;
-            set;
-        }
+        public string ServicePackageActivationId { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

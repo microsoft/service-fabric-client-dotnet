@@ -20,21 +20,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets CodeFilePath. The cluster code package file path.
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "ProvisionCluster")]
-        public string CodeFilePath
-        {
-            get;
-            set;
-        }
+        public string CodeFilePath { get; set; }
 
         /// <summary>
         /// Gets or sets ClusterManifestFilePath. The cluster manifest file path.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ProvisionCluster")]
-        public string ClusterManifestFilePath
-        {
-            get;
-            set;
-        }
+        public string ClusterManifestFilePath { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

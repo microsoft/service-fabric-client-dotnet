@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets TaskId. The ID of the repair task to be updated.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
-        public string TaskId
-        {
-            get;
-            set;
-        }
+        public string TaskId { get; set; }
 
         /// <summary>
         /// Gets or sets Version. The current version number of the repair task. If non-zero, then the request will only
@@ -32,11 +28,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// performed.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
-        public string Version
-        {
-            get;
-            set;
-        }
+        public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets PerformPreparingHealthCheck. A boolean indicating if health check is to be performed in the Preparing
@@ -44,11 +36,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// new value.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
-        public bool? PerformPreparingHealthCheck
-        {
-            get;
-            set;
-        }
+        public bool? PerformPreparingHealthCheck { get; set; }
 
         /// <summary>
         /// Gets or sets PerformRestoringHealthCheck. A boolean indicating if health check is to be performed in the Restoring
@@ -56,11 +44,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// new value.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
-        public bool? PerformRestoringHealthCheck
-        {
-            get;
-            set;
-        }
+        public bool? PerformRestoringHealthCheck { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

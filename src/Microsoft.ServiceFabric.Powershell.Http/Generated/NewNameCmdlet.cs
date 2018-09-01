@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Name. The Service Fabric name, including the 'fabric:' URI scheme.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CreateName")]
-        public FabricName Name
-        {
-            get;
-            set;
-        }
+        public FabricName Name { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

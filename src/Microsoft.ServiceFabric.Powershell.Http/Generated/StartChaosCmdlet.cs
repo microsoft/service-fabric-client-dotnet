@@ -21,11 +21,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The maximum allowed value is 4,294,967,295 (System.UInt32.MaxValue).
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "StartChaos")]
-        public string TimeToRunInSeconds
-        {
-            get;
-            set;
-        }
+        public string TimeToRunInSeconds { get; set; } = "4294967295";
 
         /// <summary>
         /// Gets or sets MaxClusterStabilizationTimeoutInSeconds. The maximum amount of time to wait for all cluster entities
@@ -35,11 +31,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Chaos generates a validation failed event.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "StartChaos")]
-        public long? MaxClusterStabilizationTimeoutInSeconds
-        {
-            get;
-            set;
-        }
+        public long? MaxClusterStabilizationTimeoutInSeconds { get; set; } = 60;
 
         /// <summary>
         /// Gets or sets MaxConcurrentFaults. MaxConcurrentFaults is the maximum number of concurrent faults induced per
@@ -50,21 +42,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The recommendation is to start with a value of 2 or 3 and to exercise caution while moving up.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "StartChaos")]
-        public long? MaxConcurrentFaults
-        {
-            get;
-            set;
-        }
+        public long? MaxConcurrentFaults { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets EnableMoveReplicaFaults. Enables or disables the move primary and move secondary faults.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "StartChaos")]
-        public bool? EnableMoveReplicaFaults
-        {
-            get;
-            set;
-        }
+        public bool? EnableMoveReplicaFaults { get; set; } = true;
 
         /// <summary>
         /// Gets or sets WaitTimeBetweenFaultsInSeconds. Wait time (in seconds) between consecutive faults within a single
@@ -74,11 +58,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The recommendation is to start with a value between 1 and 5 and exercise caution while moving up.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4, ParameterSetName = "StartChaos")]
-        public long? WaitTimeBetweenFaultsInSeconds
-        {
-            get;
-            set;
-        }
+        public long? WaitTimeBetweenFaultsInSeconds { get; set; } = 20;
 
         /// <summary>
         /// Gets or sets WaitTimeBetweenIterationsInSeconds. Time-separation (in seconds) between two consecutive iterations of
@@ -86,21 +66,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The larger the value, the lower the fault injection rate.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartChaos")]
-        public long? WaitTimeBetweenIterationsInSeconds
-        {
-            get;
-            set;
-        }
+        public long? WaitTimeBetweenIterationsInSeconds { get; set; } = 30;
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "StartChaos")]
-        public bool? ConsiderWarningAsError
-        {
-            get;
-            set;
-        }
+        public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyNodes. The maximum allowed percentage of unhealthy nodes before reporting an error.
@@ -117,11 +89,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// tolerate that.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "StartChaos")]
-        public int? MaxPercentUnhealthyNodes
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets MaxPercentUnhealthyApplications. The maximum allowed percentage of unhealthy applications before
@@ -136,11 +104,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "StartChaos")]
-        public int? MaxPercentUnhealthyApplications
-        {
-            get;
-            set;
-        }
+        public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ApplicationTypeHealthPolicyMap. Defines a map with max percentage unhealthy applications for specific
@@ -162,21 +126,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartChaos")]
-        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap
-        {
-            get;
-            set;
-        }
+        public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartChaos")]
-        public IReadOnlyDictionary<string, string> Map
-        {
-            get;
-            set;
-        }
+        public IReadOnlyDictionary<string, string> Map { get; set; }
 
         /// <summary>
         /// Gets or sets NodeTypeInclusionList. A list of node types to include in Chaos faults.
@@ -191,11 +147,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// MaxNumberOfNodeTypesInChaosEntityFilter configuration.
         /// </summary>
         [Parameter(Mandatory = false, Position = 11, ParameterSetName = "StartChaos")]
-        public IEnumerable<string> NodeTypeInclusionList
-        {
-            get;
-            set;
-        }
+        public IEnumerable<string> NodeTypeInclusionList { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationInclusionList. A list of application URI's to include in Chaos faults.
@@ -211,11 +163,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// for MaxNumberOfApplicationsInChaosEntityFilter configuration.
         /// </summary>
         [Parameter(Mandatory = false, Position = 12, ParameterSetName = "StartChaos")]
-        public IEnumerable<string> ApplicationInclusionList
-        {
-            get;
-            set;
-        }
+        public IEnumerable<string> ApplicationInclusionList { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

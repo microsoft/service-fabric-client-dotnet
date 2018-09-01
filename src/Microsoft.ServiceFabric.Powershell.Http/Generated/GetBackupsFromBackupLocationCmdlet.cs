@@ -70,145 +70,89 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string ConnectionString
-        {
-            get;
-            set;
-        }
+        public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string ContainerName
-        {
-            get;
-            set;
-        }
+        public string ContainerName { get; set; }
 
         /// <summary>
         /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
         /// </summary>
         [Parameter(Mandatory = true, Position = 4, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string Path
-        {
-            get;
-            set;
-        }
+        public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets StartDateTimeFilter. Specifies the start date time in ISO8601 from which to enumerate backups. If not
         /// specified, backups are enumerated from the beginning.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public DateTime? StartDateTimeFilter
-        {
-            get;
-            set;
-        }
+        public DateTime? StartDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets EndDateTimeFilter. Specifies the end date time in ISO8601 till which to enumerate backups. If not
         /// specified, backups are enumerated till the end.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public DateTime? EndDateTimeFilter
-        {
-            get;
-            set;
-        }
+        public DateTime? EndDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets Latest. If specified as true, gets the most recent backup (within the specified time range) for every
         /// partition under the specified backup entity.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public bool? Latest
-        {
-            get;
-            set;
-        }
+        public bool? Latest { get; set; } = false;
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string FriendlyName
-        {
-            get;
-            set;
-        }
+        public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string PrimaryUserName
-        {
-            get;
-            set;
-        }
+        public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string PrimaryPassword
-        {
-            get;
-            set;
-        }
+        public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
         [Parameter(Mandatory = false, Position = 11, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string SecondaryUserName
-        {
-            get;
-            set;
-        }
+        public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
         [Parameter(Mandatory = false, Position = 12, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public string SecondaryPassword
-        {
-            get;
-            set;
-        }
+        public string SecondaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
         [Parameter(Mandatory = false, Position = 13, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public ApplicationName ApplicationName
-        {
-            get;
-            set;
-        }
+        public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
         [Parameter(Mandatory = false, Position = 14, ParameterSetName = "GetBackupsFromBackupLocation")]
         [Parameter(Mandatory = false, Position = 14, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public ServiceName ServiceName
-        {
-            get;
-            set;
-        }
+        public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The partition ID indentifying the partition.
         /// </summary>
         [Parameter(Mandatory = false, Position = 15, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public PartitionId PartitionId
-        {
-            get;
-            set;
-        }
+        public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

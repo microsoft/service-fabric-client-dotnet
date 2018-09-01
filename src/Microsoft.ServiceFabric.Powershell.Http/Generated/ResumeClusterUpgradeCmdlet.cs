@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets UpgradeDomain. The next upgrade domain for this cluster upgrade.
         /// </summary>
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ResumeClusterUpgrade")]
-        public string UpgradeDomain
-        {
-            get;
-            set;
-        }
+        public string UpgradeDomain { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

@@ -32,11 +32,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// . Possible values include: 'Pause', 'Restart', 'RemoveData'
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DisableNode")]
-        public DeactivationIntent? DeactivationIntent
-        {
-            get;
-            set;
-        }
+        public DeactivationIntent? DeactivationIntent { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the

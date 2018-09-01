@@ -50,81 +50,49 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
         [Parameter(Mandatory = true, Position = 2, ParameterSetName = "BackupPartition")]
-        public string ConnectionString
-        {
-            get;
-            set;
-        }
+        public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "BackupPartition")]
-        public string ContainerName
-        {
-            get;
-            set;
-        }
+        public string ContainerName { get; set; }
 
         /// <summary>
         /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
         /// </summary>
         [Parameter(Mandatory = true, Position = 4, ParameterSetName = "BackupPartition")]
-        public string Path
-        {
-            get;
-            set;
-        }
+        public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
         [Parameter(Mandatory = false, Position = 5, ParameterSetName = "BackupPartition")]
-        public string FriendlyName
-        {
-            get;
-            set;
-        }
+        public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
         [Parameter(Mandatory = false, Position = 6, ParameterSetName = "BackupPartition")]
-        public string PrimaryUserName
-        {
-            get;
-            set;
-        }
+        public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
         [Parameter(Mandatory = false, Position = 7, ParameterSetName = "BackupPartition")]
-        public string PrimaryPassword
-        {
-            get;
-            set;
-        }
+        public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
         [Parameter(Mandatory = false, Position = 8, ParameterSetName = "BackupPartition")]
-        public string SecondaryUserName
-        {
-            get;
-            set;
-        }
+        public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
         [Parameter(Mandatory = false, Position = 9, ParameterSetName = "BackupPartition")]
-        public string SecondaryPassword
-        {
-            get;
-            set;
-        }
+        public string SecondaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets BackupTimeout. Specifies the maximum amount of time, in minutes, to wait for the backup operation to
