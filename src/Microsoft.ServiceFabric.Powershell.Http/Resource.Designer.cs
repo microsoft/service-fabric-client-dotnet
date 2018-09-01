@@ -115,6 +115,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cluster connection with the same name already existed, the old connection will be deleted.
+        /// </summary>
+        internal static string Info_ClusterConnectionAlreadyExisted {
+            get {
+                return ResourceManager.GetString("Info_ClusterConnectionAlreadyExisted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Azure Active Directory sign in is required to get access token required to connect to cluster..
         /// </summary>
         internal static string MsgAADSignin {

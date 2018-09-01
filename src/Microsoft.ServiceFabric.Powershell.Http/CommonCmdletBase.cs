@@ -17,24 +17,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// </summary>
     public abstract class CommonCmdletBase : PSCmdlet
     {
-        private IServiceFabricClient client;
         private CancellationTokenSource cancellationTokenSource;
 
         /// <summary>
         /// Gets the service fabric client object
         /// </summary>
-        protected IServiceFabricClient ServiceFabricClient
-        {
-            get
-            {
-                if (this.client == null)
-                {
-                    this.client = (IServiceFabricClient)this.SessionState.PSVariable.GetValue(Constants.ClusterConnectionVariableName);
-                }
-
-                return this.client;
-            }
-        }
+        protected IServiceFabricClient ServiceFabricClient =>
+        (IServiceFabricClient)this.SessionState.PSVariable.GetValue(Constants.ClusterConnectionVariableName);
 
         /// <summary>
         /// Gets the cancellation Token object
@@ -113,7 +102,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 else
                 {
                     this.ThrowTerminatingError(ex, errorId, null);
-                }                
+                }
             }
         }
 
@@ -143,7 +132,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             else if (exception is InvalidOperationException)
             {
                 errorCategory = ErrorCategory.InvalidOperation;
-            }            
+            }
             else if (exception is TimeoutException)
             {
                 errorCategory = ErrorCategory.OperationTimeout;

@@ -135,6 +135,9 @@
   <data name="Error_MissingImageStoreConnectionStringArgument" xml:space="preserve">
     <value>Error_MissingImageStoreConnectionStringArgument</value>
   </data>
+  <data name="Info_ClusterConnectionAlreadyExisted" xml:space="preserve">
+    <value>Cluster connection with the same name already existed, the old connection will be deleted</value>
+  </data>
   <data name="MsgAADSignin" xml:space="preserve">
     <value>Azure Active Directory sign in is required to get access token required to connect to cluster.</value>
   </data>

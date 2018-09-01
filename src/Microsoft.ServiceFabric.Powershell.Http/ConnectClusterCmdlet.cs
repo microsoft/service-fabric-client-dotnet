@@ -10,18 +10,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using System.IO;
     using System.Linq;
     using System.Management.Automation;
+    using System.Runtime.InteropServices;
     using System.Security.Cryptography.X509Certificates;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Common.Security;
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// Cmdlet to connect to Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommunications.Connect, "SFCluster")]
+    [Cmdlet(VerbsCommunications.Connect, "SFCluster", DefaultParameterSetName = "Default")]
     public class ConnectClusterCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -31,7 +31,6 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Windows")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "X509")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Aad")]
-        [ValidateNotNullOrEmpty]
         public string[] ConnectionEndpoint
         {
             get;
@@ -66,7 +65,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             get;
             set;
-        }        
+        }
 
         /// <summary>
         /// Gets or sets Subject common names or DNS names of X509 certificate of the server.
@@ -117,7 +116,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets the client certificate.
         /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "X509")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509")]
         public X509Certificate2 ClientCertificate
         {
             get;
@@ -174,30 +173,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             set;
         }
 
-        /// <summary>
-        /// Gets the Security Token from a Azure Active Directory or DSTS.
-        /// </summary>
-        /// <returns>Security Access token.</returns>
-        internal string GetSecurityToken()
-        {
-            if (this.AzureActiveDirectory.IsPresent && string.IsNullOrEmpty(this.SecurityToken))
-            {
-                // Get AAD metadata from cluster and Token from AAD.
-                return string.Empty;
-            }            
-
-            return string.Empty;
-        }
-
         /// <inheritdoc />
         protected override void BeginProcessing()
         {
-            foreach (var endPoint in this.ConnectionEndpoint)
+            if (this.ConnectionEndpoint != null)
             {
-                if (!endPoint.StartsWith("http", StringComparison.OrdinalIgnoreCase)
-                    && !Uri.TryCreate(endPoint, UriKind.Absolute, out var uri))
+                foreach (var endPoint in this.ConnectionEndpoint)
                 {
-                    throw new PSArgumentException(Resource.ErrorIncorrectEndpointFormat);
+                    if (!endPoint.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+                        && !Uri.TryCreate(endPoint, UriKind.Absolute, out var uri))
+                    {
+                        throw new PSArgumentException(Resource.ErrorIncorrectEndpointFormat);
+                    }
                 }
             }
         }
@@ -205,7 +192,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
         {
-            this.ConfigureDefaultConnect();
+            if (this.ConnectionEndpoint == null)
+            {
+                this.ConfigureDefaultConnect();
+            }
 
             Func<CancellationToken, Task<SecuritySettings>> securitySettings = null;
             if (this.WindowsCredential.IsPresent)
@@ -273,7 +263,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         }
                         else
                         {
-                            securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(CredentialsUtil.GetAccessTokenAsync, remoteX509SecuritySettings));   
+                            securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(CredentialsUtil.GetAccessTokenAsync, remoteX509SecuritySettings));
                         }
                     }
                 }
@@ -283,7 +273,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     {
                         var clientCert = CredentialsUtil.GetCertificate(this.StoreLocation, this.StoreName, this.FindValue, this.FindType);
 
-                        if (clientCert != null)
+                        if (clientCert == null)
                         {
                             throw new PSInvalidOperationException(Resource.ErrorLoadingClientCertificate);
                         }
@@ -293,12 +283,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     else
                     {
                         securitySettings = (ct) => Task.FromResult<SecuritySettings>(new X509SecuritySettings(this.ClientCertificate, remoteX509SecuritySettings));
-                    }                    
+                    }
                 }
             }
 
             var client = ServiceFabricClientFactory.Create(this.ConnectionEndpoint.Select(e => new Uri(e)).ToList(), new ClientSettings(securitySettings));
-            
+
             if (this.GetMetadata.IsPresent)
             {
                 var aadMetadata = client.Cluster.GetAadMetadataAsync(cancellationToken: this.CancellationToken).GetAwaiter().GetResult().Metadata;
@@ -313,14 +303,39 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
                 this.WriteObject(result);
             }
+            else
+            {
+                client.Cluster.GetClusterManifestAsync(cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                Console.WriteLine(Resource.MsgConnectSuccess);
+                this.SetClusterConnection(client);
+            }
+        }
 
-            this.SessionState.PSVariable.Set(Constants.ClusterConnectionVariableName, client);
-            client.Cluster.GetClusterManifestAsync(cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-            Console.WriteLine(Resource.MsgConnectSuccess);
+        private void SetClusterConnection(IServiceFabricClient clusterConnection)
+        {
+            var oldClusterConnection = this.SessionState.PSVariable.GetValue(Constants.ClusterConnectionVariableName, null) as IServiceFabricClient;
+
+            if (oldClusterConnection != null)
+            {
+                this.WriteWarning(Resource.Info_ClusterConnectionAlreadyExisted);
+            }
+
+            this.SessionState.PSVariable.Set(Constants.ClusterConnectionVariableName, clusterConnection);
         }
 
         private void ConfigureDefaultConnect()
         {
+#if DotNetCoreClr
+            if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
+            {
+                // continue with loading connection parameters for default connect on Windows.
+            }
+            else
+            {
+                return;
+            }
+#endif
+            
             // Try Default Connect, if running from a node on cluster.
             // Currently supports reading connection settings created Local Dev cluster setup.
             var connectionParamFile = Environment.ExpandEnvironmentVariables(Constants.LocalDevClusterConnectionParamFile);
@@ -344,24 +359,31 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
                 if (connParams.X509Credential)
                 {
-                    this.X509Credential = SwitchParameter.Present; 
+                    this.X509Credential = SwitchParameter.Present;
                 }
 
                 if (connParams.StoreLocation != null)
-                {                    
+                {
                     Enum.TryParse<StoreLocation>(connParams.StoreLocation, out var storeLocation);
                     this.StoreLocation = storeLocation;
                 }
 
-                if (connParams.FindType != null)
+                if (connParams.FindType != null && connParams.FindValue != null)
                 {
-                    Enum.TryParse<X509FindType>(connParams.StoreLocation, out var findType);
+                    Enum.TryParse<X509FindType>(connParams.FindType, out var findType);
                     this.FindType = findType;
-                }
+                    var findValue = connParams.FindValue;
 
-                if (connParams.FindValue != null)
-                {
-                    this.FindValue = connParams.FindValue;
+                    if (findType.Equals(X509FindType.FindBySubjectName))
+                    {
+                        var subjectNamePrefix = "CN=";
+                        if (connParams.FindValue.StartsWith("CN="))
+                        {
+                            findValue = connParams.FindValue.Substring(subjectNamePrefix.Length);
+                        }
+                    }
+
+                    this.FindValue = findValue;
                 }
 
                 if (connParams.ServerCommonName != null)

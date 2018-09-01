@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common.Security
             clientCertificate.ThrowIfNull(nameof(clientCertificate));
             remoteX509SecuritySettings.ThrowIfNull(nameof(remoteX509SecuritySettings));
 
-            if (clientCertificate.HasPrivateKey)
+            if (!clientCertificate.HasPrivateKey)
             {
                 throw new InvalidOperationException(SR.ClientCertDoesntContainPrivateKey);
             }
