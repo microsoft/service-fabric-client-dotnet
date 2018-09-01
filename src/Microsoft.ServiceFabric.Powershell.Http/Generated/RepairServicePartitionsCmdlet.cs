@@ -11,17 +11,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Indicates to the Service Fabric cluster that it should attempt to recover a specific partition that is currently
+    /// Indicates to the Service Fabric cluster that it should attempt to recover the specified service that is currently
     /// stuck in quorum loss.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFPartition", DefaultParameterSetName = "RecoverPartition")]
-    public partial class NewPartitionCmdlet : CommonCmdletBase
+    [Cmdlet(VerbsDiagnostic.Repair, "SFServicePartitions", DefaultParameterSetName = "RecoverServicePartitions")]
+    public partial class RepairServicePartitionsCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets PartitionId. The identity of the partition.
+        /// Gets or sets ServiceId. The identity of the service. This ID is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "RecoverPartition")]
-        public PartitionId PartitionId
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "RecoverServicePartitions")]
+        public string ServiceId
         {
             get;
             set;
@@ -32,7 +36,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "RecoverPartition")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "RecoverServicePartitions")]
         public long? ServerTimeout
         {
             get;
@@ -44,8 +48,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
-                this.ServiceFabricClient.Partitions.RecoverPartitionAsync(
-                    partitionId: this.PartitionId,
+                this.ServiceFabricClient.Partitions.RecoverServicePartitionsAsync(
+                    serviceId: this.ServiceId,
                     serverTimeout: this.ServerTimeout,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

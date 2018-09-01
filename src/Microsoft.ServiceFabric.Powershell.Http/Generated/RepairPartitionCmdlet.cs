@@ -11,18 +11,28 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Indicates to the Service Fabric cluster that it should attempt to recover the system services that are currently
+    /// Indicates to the Service Fabric cluster that it should attempt to recover a specific partition that is currently
     /// stuck in quorum loss.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFSystemPartitions", DefaultParameterSetName = "RecoverSystemPartitions")]
-    public partial class NewSystemPartitionsCmdlet : CommonCmdletBase
+    [Cmdlet(VerbsDiagnostic.Repair, "SFPartition", DefaultParameterSetName = "RecoverPartition")]
+    public partial class RepairPartitionCmdlet : CommonCmdletBase
     {
+        /// <summary>
+        /// Gets or sets PartitionId. The identity of the partition.
+        /// </summary>
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "RecoverPartition")]
+        public PartitionId PartitionId
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "RecoverSystemPartitions")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "RecoverPartition")]
         public long? ServerTimeout
         {
             get;
@@ -34,7 +44,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
-                this.ServiceFabricClient.Partitions.RecoverSystemPartitionsAsync(
+                this.ServiceFabricClient.Partitions.RecoverPartitionAsync(
+                    partitionId: this.PartitionId,
                     serverTimeout: this.ServerTimeout,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

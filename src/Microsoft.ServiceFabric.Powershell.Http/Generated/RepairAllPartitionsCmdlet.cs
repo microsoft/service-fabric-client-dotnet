@@ -14,8 +14,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// Indicates to the Service Fabric cluster that it should attempt to recover any services (including system services)
     /// which are currently stuck in quorum loss.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFAllPartitions", DefaultParameterSetName = "RecoverAllPartitions")]
-    public partial class NewAllPartitionsCmdlet : CommonCmdletBase
+    [Cmdlet(VerbsDiagnostic.Repair, "SFAllPartitions", DefaultParameterSetName = "RecoverAllPartitions")]
+    public partial class RepairAllPartitionsCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
