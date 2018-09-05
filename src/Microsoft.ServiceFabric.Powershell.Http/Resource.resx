@@ -126,6 +126,9 @@
   <data name="ErrorIncorrectEndpointFormat" xml:space="preserve">
     <value>Format of connection endpoint is incorrect.</value>
   </data>
+  <data name="ErrorInvalidResourceType" xml:space="preserve">
+    <value>Invalid resource type: {0} found in the yaml description</value>
+  </data>
   <data name="ErrorLoadingClientCertificate" xml:space="preserve">
     <value>Unable to load client certificate based on provided inforamtion.</value>
   </data>

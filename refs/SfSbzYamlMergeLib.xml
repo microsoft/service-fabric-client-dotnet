@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SfSbzYamlMergeLib</name>
+    </assembly>
+    <members>
+        <member name="P:SfSbzYamlMergeUtils.ResourceInformation.Kind">
+            <summary>
+            Gets or sets Resource Kind.
+            </summary>
+        </member>
+        <member name="P:SfSbzYamlMergeUtils.ResourceInformation.Name">
+            <summary>
+            Gets or sets Name of Resource to create.
+            </summary>
+        </member>
+        <member name="P:SfSbzYamlMergeUtils.ResourceInformation.ApiVersion">
+            <summary>
+            Gets or sets Api version to use for making REST cal to local cluster.
+            </summary>
+        </member>
+        <member name="T:SfSbzYamlMergeUtils.SfSbzYamlMergeLib">
+            <summary>
+            Generates documentation in markdown format from the swagger specification using AutoRest based swagger parser and YAML parser.
+            </summary>
+        </member>
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.GenerateMergedDescriptions(System.String[],System.String,SfSbzYamlMergeUtils.OutputType,System.String,System.String)">
+            <summary>
+            Utility function to take in yaml input files and generate the output description files based on the output format
+            </summary>
+            <param name="inputFileNames">Yaml file list</param>
+            <param name="outputPath">Dir output path</param>
+            <param name="outputFormat">Output format SF_SBZ_YAML/SF_SBZ_JSON/SF_SBZ_RP_JSON</param>
+            <param name="fileNamePrefix">Prefix of the generated file</param>
+            <param name="region">Region</param>
+            <returns>Success/Failure</returns>
+        </member>
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadInputDocuments2(System.String[],System.String)">
+            <summary>
+            Loads input documents, groups them by resourceKind and name..
+            </summary>
+            <returns>Returns loaded input documents, grouped by resourceKind and name.</returns>
+        </member>
+        <member name="T:SfSbzYamlMergeUtils.OutputType">
+            <summary>
+            The type of the merged document to output.
+            </summary>
+        </member>
+        <member name="F:SfSbzYamlMergeUtils.OutputType.SF_SBZ_YAML">
+            <summary>
+            This value indicates a merged YAML document as per Service Fabric Application Model v2 schema.
+            </summary>
+        </member>
+        <member name="F:SfSbzYamlMergeUtils.OutputType.SF_SBZ_JSON">
+            <summary>
+            This value indicates a merged JSON document as per Service Fabric Application Model v2 schema.
+            </summary>
+        </member>
+        <member name="F:SfSbzYamlMergeUtils.OutputType.SF_SBZ_RP_JSON">
+            <summary>
+            This value indicates a merged JSON document as per SeaBreeze Resource Manager schema.
+            </summary>
+        </member>
+        <member name="T:SfSbzYamlMergeUtils.ToolSettings">
+            <summary>
+            Represents settings for this tool.
+            </summary>
+        </member>
+        <member name="P:SfSbzYamlMergeUtils.ToolSettings.PrimitiveProperties">
+            <summary>
+            Gets or sets Primitive proeprties info.
+            </summary>
+        </member>
+        <member name="M:SfSbzYamlMergeUtils.ToolSettings.Load">
+            <summary>
+            Loads settings for the tool.
+            </summary>
+            <returns>Tools Settings.</returns>
+        </member>
+        <member name="T:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator">
+            <summary>
+            Creates the ARM document describing service fabric resources based on the provided service fabric resource document.
+            </summary>
+        </member>
+        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.BeginWriteArmDocument(Newtonsoft.Json.JsonTextWriter)">
+            <summary>
+            Writes the begining data
+            {
+               "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json",
+               "contentVersion": "1.0.0.0",
+            </summary>
+        </member>
+        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.ProcessResourceRefs(Newtonsoft.Json.Linq.JObject,System.String)">
+            <summary>
+            Fixes ResourceRefs in provided JObject.
+            </summary>
+            <param name="jObject">JObject</param>
+            <param name="schemaVersion">Schema Version</param>
+        </member>
+        <member name="T:Microsoft.ServiceFabric.Swagger.Tools.ArmParameter">
+            <summary>
+            Class representing parameter to be added in arm json.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ServiceFabric.Swagger.Tools.Metadata">
+            <summary>
+            Class representing metadata to be added about an arm parameter.
+            </summary>
+        </member>
+    </members>
+</doc>

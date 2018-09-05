@@ -11,9 +11,18 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06" />
     <PackageReference Include="YamlDotNet.Signed" Version="4.2.2" />
   </ItemGroup>  
+  <ItemGroup>
+    <Reference Include="SfSbzYamlMergeLib">
+      <HintPath>..\..\refs\SfSbzYamlMergeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.YamlUtils">
+      <HintPath>..\..\refs\Microsoft.ServiceFabric.YamlUtils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj" />
   </ItemGroup>  

@@ -1,0 +1,20 @@
+﻿{
+  "primitiveProperties": [
+    {
+      "path": "application/properties/services/properties/replicaCount",
+      "type": "Integer"
+    },
+    {
+      "path": "application/properties/services/properties/codePackages/resources/requests/cpu",
+      "type": "Double"
+    },
+    {
+      "path": "application/properties/services/properties/codePackages/resources/requests/memoryInGB",
+      "type": "Double"
+    },
+    {
+      "path": "application/properties/services/properties/codePackages/endpoints/port",
+      "type": "Integer"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Updates mesh volume resource in service fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsData.Update, "SFVolumeResource")]
+    [Cmdlet(VerbsData.Update, "SFMeshVolumeResource")]
     public class UpdateMeshVolumeCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -97,6 +97,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid resource type: {0} found in the yaml description.
+        /// </summary>
+        internal static string ErrorInvalidResourceType {
+            get {
+                return ResourceManager.GetString("ErrorInvalidResourceType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to load client certificate based on provided inforamtion..
         /// </summary>
         internal static string ErrorLoadingClientCertificate {
