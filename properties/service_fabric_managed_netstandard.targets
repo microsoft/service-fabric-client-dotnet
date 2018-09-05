@@ -42,7 +42,6 @@
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Generated\psxml\Microsoft.ServiceFabric.Powershell.Http*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Newtonsoft.Json.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\YamlDotNet.dll"/>
-      <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.CSharp.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.IdentityModel.Clients.ActiveDirectory.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.*"/>

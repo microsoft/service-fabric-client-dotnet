@@ -8,25 +8,40 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Client;
+    using Newtonsoft;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using SfSbzYamlMergeUtils;
 
     /// <summary>
     /// Deploys mesh resources in a Service Fabric Mesh cluster.
     /// </summary>
-    [Cmdlet("Deploy", "SFMeshResources")]
+    [Cmdlet(VerbsCommon.New, "SFMeshResourceDeployment")]
     public class DeployMeshResourcesCmdlet : CommonCmdletBase
     {
+        private enum ResourseType
+        {
+            Application,
+            Volume,
+            Secret,
+            Network,
+            Gateway,
+            Unknown,
+        }
+
         /// <summary>
         /// Gets or sets Resource Description Files, which is a list of yaml definitions for the resources
         /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "json")]
-        public List<string> ResourceDescriptionList { get; set; }
+        [Parameter(Mandatory = true, ParameterSetName = "Default")]
+        public string[] ResourceDescriptionList { get; set; }
 
         /// <summary>
         /// Gets or sets the output directory for the generated resource descriptions.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "json")]
+        [Parameter(Mandatory = false, ParameterSetName = "Default")]
         public string OutputResourceDescription { get; set; }
 
         /// <inheritdoc />
@@ -41,52 +56,79 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             }
 
             // Send the yaml list and the out dir to the util
-            var resources = YamlUtils.GetFinalResourceDescriptionFromYamls(this.ResourceDescriptionList, outputDir);
-            foreach (var resourceIter in resources)
+            var resources = this.GetResourceInfoFromYamls(outputDir);
+            foreach (var resource in resources)
             {
-                switch (resourceIter.Item1)
+                switch (resource.Type)
                 {
-                    case YamlUtils.ResourseType.NETWORK:
+                    case ResourseType.Network:
                         client.MeshNetworks.CreateOrUpdateMeshNetworkAsync(
-                            networkResourceName: resourceIter.Item2,
-                            jsonDescription: resourceIter.Item3,
-                            apiVersion: resourceIter.Item4,
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
-                    case YamlUtils.ResourseType.VOLUME:
+                    case ResourseType.Volume:
                         client.MeshVolumes.CreateOrUpdateMeshVolumeAsync(
-                            volumeResourceName: resourceIter.Item2,
-                            jsonDescription: resourceIter.Item3,
-                            apiVersion: resourceIter.Item4,
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
-                    case YamlUtils.ResourseType.APPLICATION:
+                    case ResourseType.Application:
                         client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
-                            applicationResourceName: resourceIter.Item2,
-                            jsonDescription: resourceIter.Item3,
-                            apiVersion: resourceIter.Item4,
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
-                    case YamlUtils.ResourseType.GATEWAY:
+                    case ResourseType.Gateway:
                         client.MeshGateways.CreateOrUpdateMeshGatewayAsync(
-                            gatewayResourceName: resourceIter.Item2,
-                            jsonDescription: resourceIter.Item3,
-                            apiVersion: resourceIter.Item4,
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
                     default:
-                        throw new PSArgumentException(Resource.ErrorInvalidResourceType, resourceIter.Item1.ToString());
+                        this.WriteWarning(string.Format(Resource.WarningInvalidResourceType, resource.Type.ToString()));
+                        break;
                 }
             }
 
+            // Clear output dir if it wasnt specified on commandline.
             if (string.IsNullOrEmpty(this.OutputResourceDescription))
             {
                 Directory.Delete(outputDir, true);
             }
+        }
+
+        private IEnumerable<ResourceInformation> GetResourceInfoFromYamls(string outputRootDirectory)
+        {
+            // Give input to merge tool all the yamlfile list and output folder and of type:SF_SBZ_JSON
+            SfSbzYamlMergeLib.GenerateMergedDescriptions(this.ResourceDescriptionList, outputRootDirectory, OutputType.SF_SBZ_JSON);
+
+            // Read ResourceInformation from all files sorted by name.
+            var files = Directory.GetFiles(outputRootDirectory, "resource_*.json", SearchOption.AllDirectories).Select(file => new FileInfo(file)).OrderBy(f => f.Name);
+            return files.Select((file) => JsonConvert.DeserializeObject<ResourceInformation>(File.ReadAllText(file.FullName)));
+        }
+
+        private class ResourceInformation
+        {
+            [JsonProperty("type")]
+            public ResourseType Type { get; set; }
+
+            [JsonProperty("name")]
+            public string Name { get; set; }
+
+            [JsonProperty("api-version")]
+            public string ApiVersion { get; set; }
+
+            [JsonProperty("description")]
+            public JObject Description { get; set; }
         }
     }
 }
