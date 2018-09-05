@@ -185,5 +185,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http {
                 return ResourceManager.GetString("MsgReplicaInfo", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid resource type: {0} found in the yaml description, skipping it..
+        /// </summary>
+        internal static string WarningInvalidResourceType {
+            get {
+                return ResourceManager.GetString("WarningInvalidResourceType", resourceCulture);
+            }
+        }
     }
 }

@@ -35,8 +35,13 @@
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Powershell.Http*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Generated\psxml\Microsoft.ServiceFabric.Powershell.Http*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Newtonsoft.Json.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\YamlDotNet.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.CSharp.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.IdentityModel.Clients.ActiveDirectory.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\settings.json"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\SfSbzYamlMergeLib.*"/>
     </ItemGroup>
     <Copy SourceFiles="@(BinairesNetFramework)" DestinationFiles="@(BinairesNetFramework->'$(DropFolderNetFramework)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(BinairesPSModuleNetFramework)" DestinationFiles="@(BinairesPSModuleNetFramework->'$(PSModuleDropFolderNetFramework)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />

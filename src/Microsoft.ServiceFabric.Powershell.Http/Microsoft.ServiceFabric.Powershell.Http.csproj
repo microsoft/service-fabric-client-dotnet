@@ -15,6 +15,14 @@
     <PackageReference Include="YamlDotNet.Signed" Version="4.2.2" />
   </ItemGroup>  
   <ItemGroup>
+    <Reference Include="SfSbzYamlMergeLib">
+      <HintPath>$(RepoRoot)refs\SfSbzYamlMergeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.YamlUtils">
+      <HintPath>$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj" />
   </ItemGroup>  
   <ItemGroup>

@@ -15,8 +15,15 @@
     <Compile Include="$(SourceCodeDir)*.cs" Exclude="$(SourceCodeDir)Resource.Designer.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
     <Compile Include="$(SourceCodeDir)Generated\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
   </ItemGroup>
-
-    <ItemGroup>
+  <ItemGroup>
+    <Reference Include="SfSbzYamlMergeLib">
+      <HintPath>$(RepoRoot)refs\SfSbzYamlMergeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.YamlUtils">
+      <HintPath>$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="$(SourceCodeDir)Generated\psxml\Microsoft.ServiceFabric.Powershell.Http-Help.xml" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -39,7 +46,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
     <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" />
-    <PackageReference Include="YamlDotNet.Signed" Version="4.2.2" />
+    <PackageReference Include="YamlDotNet.Signed" Version="4.2.2" />   
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(SourceCodeDir)Resource.resx">
