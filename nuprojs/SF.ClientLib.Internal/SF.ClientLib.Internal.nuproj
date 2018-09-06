@@ -17,9 +17,14 @@
       <File Include="$(DropFolderNetFramework)*.*">
         <TargetPath>lib\netframework</TargetPath>
       </File>
+      <File Include="$(DropFolderNetFramework)\PSModule\*.*">
+        <TargetPath>lib\netframework\PSModule</TargetPath>
+      </File>
       <File Include="$(DropFolderNetStandard)*.*">
         <TargetPath>lib\netstandard</TargetPath>
       </File>
-      
+      <File Include="$(DropFolderNetStandard)\PSModule\*.*">
+        <TargetPath>lib\netstandard\PSModule</TargetPath>
+      </File>
     </ItemGroup>    
   </Project>
