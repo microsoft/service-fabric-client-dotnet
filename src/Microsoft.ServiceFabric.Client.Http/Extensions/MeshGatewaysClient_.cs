@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshGatewaysClient : IMeshGatewaysClient
     {
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> CreateOrUpdateMeshGatewayAsync(
+        public Task<GatewayResourceDescription> CreateOrUpdateMeshGatewayAsync(
             string gatewayResourceName,
             string jsonDescription,
             string apiVersion = Constants.DefaultApiVersionForResources,
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, VolumeResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, GatewayResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
     }
 }

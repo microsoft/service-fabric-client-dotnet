@@ -24,18 +24,19 @@
             Generates documentation in markdown format from the swagger specification using AutoRest based swagger parser and YAML parser.
             </summary>
         </member>
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.GenerateMergedDescriptions(System.String[],System.String,SfSbzYamlMergeUtils.OutputType,System.String,System.String)">
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.GenerateMergedDescriptions(System.String[],System.String,System.String,SfSbzYamlMergeUtils.OutputType,System.String,System.String)">
             <summary>
             Utility function to take in yaml input files and generate the output description files based on the output format
             </summary>
-            <param name="inputFileNames">Yaml file list</param>
+            <param name="inputFileNames">Yaml file list</param>        
             <param name="outputPath">Dir output path</param>
+            <param name="parameterFileName">File containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
             <param name="outputFormat">Output format SF_SBZ_YAML/SF_SBZ_JSON/SF_SBZ_RP_JSON</param>
             <param name="fileNamePrefix">Prefix of the generated file</param>
             <param name="region">Region</param>
             <returns>Success/Failure</returns>
         </member>
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadInputDocuments2(System.String[],System.String)">
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadInputDocuments(System.String[],System.String)">
             <summary>
             Loads input documents, groups them by resourceKind and name..
             </summary>

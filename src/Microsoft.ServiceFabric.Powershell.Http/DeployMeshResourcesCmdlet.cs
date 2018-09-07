@@ -39,6 +39,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string[] ResourceDescriptionList { get; set; }
 
         /// <summary>
+        /// Gets or sets path to parameter file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"
+        /// </summary>
+        [Parameter(Mandatory = false, ParameterSetName = "Default")]
+        public string ParameterFileName { get; set; }
+
+        /// <summary>
         /// Gets or sets the output directory for the generated resource descriptions.
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Default")]
@@ -109,10 +115,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         private IEnumerable<ResourceInformation> GetResourceInfoFromYamls(string outputRootDirectory)
         {
             // Give input to merge tool all the yamlfile list and output folder and of type:SF_SBZ_JSON
-            SfSbzYamlMergeLib.GenerateMergedDescriptions(this.ResourceDescriptionList, outputRootDirectory, OutputType.SF_SBZ_JSON);
+            var filePrefix = "resource_";
+            SfSbzYamlMergeLib.GenerateMergedDescriptions(this.ResourceDescriptionList, outputRootDirectory, this.ParameterFileName, OutputType.SF_SBZ_JSON, filePrefix);
 
             // Read ResourceInformation from all files sorted by name.
-            var files = Directory.GetFiles(outputRootDirectory, "resource_*.json", SearchOption.AllDirectories).Select(file => new FileInfo(file)).OrderBy(f => f.Name);
+            var files = Directory.GetFiles(outputRootDirectory, $"{filePrefix}*.json", SearchOption.AllDirectories).Select(file => new FileInfo(file)).OrderBy(f => f.Name);
             return files.Select((file) => JsonConvert.DeserializeObject<ResourceInformation>(File.ReadAllText(file.FullName)));
         }
 

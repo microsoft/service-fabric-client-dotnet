@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshNetworksClient : IMeshNetworksClient
     {
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> CreateOrUpdateMeshNetworkAsync(
+        public Task<NetworkDescription> CreateOrUpdateMeshNetworkAsync(
             string networkResourceName,
             string jsonDescription,
             string apiVersion = Constants.DefaultApiVersionForResources,
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, VolumeResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, NetworkDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
     }
 }
