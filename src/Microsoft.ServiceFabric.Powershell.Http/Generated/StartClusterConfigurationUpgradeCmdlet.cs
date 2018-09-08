@@ -23,7 +23,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string ClusterConfig { get; set; }
 
         /// <summary>
-        /// Gets or sets HealthCheckRetryTimeout. The length of time between attempts to perform a health checks if the
+        /// Gets or sets HealthCheckRetryTimeout. The length of time between attempts to perform health checks if the
         /// application or cluster is not healthy.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "StartClusterConfigurationUpgrade")]
@@ -38,7 +38,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
         /// <summary>
         /// Gets or sets HealthCheckStableDurationInSeconds. The length of time that the application or cluster must remain
-        /// healthy.
+        /// healthy before the upgrade proceeds to the next upgrade domain.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3, ParameterSetName = "StartClusterConfigurationUpgrade")]
         public TimeSpan? HealthCheckStableDurationInSeconds { get; set; } = System.Xml.XmlConvert.ToTimeSpan("PT0H0M0S");

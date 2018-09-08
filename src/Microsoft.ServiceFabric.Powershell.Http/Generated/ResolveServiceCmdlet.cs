@@ -50,6 +50,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PartitionKeyValue. Partition key. This is required if the partition scheme for the service is
         /// Int64Range or Named.
+        /// This is not the partition ID, but rather, either the integer key value, or the name of the partition ID.
+        /// For example, if your service is using ranged partitions from 0 to 10, then they PartitionKeyValue would be an
+        /// integer in that range. Query service description to see the range or name.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "ResolveService")]
         public string PartitionKeyValue

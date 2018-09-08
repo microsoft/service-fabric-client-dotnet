@@ -68,7 +68,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "kind", ApplicationScopedVolumeKindConverter.Serialize);
             writer.WriteProperty(obj.SizeDisk, "sizeDisk", SizeTypesConverter.Serialize);
             if (obj.Description != null)
             {

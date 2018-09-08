@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static DeployedServiceHealthReportExpiredEvent GetFromJsonProperties(JsonReader reader)
         {
             var eventInstanceId = default(Guid?);
+            var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
             var applicationId = default(string);
@@ -44,7 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var sourceId = default(string);
             var property = default(string);
             var healthState = default(string);
-            var tTLTimespan = default(long?);
+            var timeToLiveMs = default(long?);
             var sequenceNumber = default(long?);
             var description = default(string);
             var removeWhenExpired = default(bool?);
@@ -56,6 +57,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
+                }
+                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                {
+                    category = reader.ReadValueAsString();
                 }
                 else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                 {
@@ -97,9 +102,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     healthState = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TTLTimespan", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeToLiveMs", propName, StringComparison.Ordinal) == 0)
                 {
-                    tTLTimespan = reader.ReadValueAsLong();
+                    timeToLiveMs = reader.ReadValueAsLong();
                 }
                 else if (string.Compare("SequenceNumber", propName, StringComparison.Ordinal) == 0)
                 {
@@ -126,6 +131,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             return new DeployedServiceHealthReportExpiredEvent(
                 eventInstanceId: eventInstanceId,
+                category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
                 applicationId: applicationId,
@@ -136,7 +142,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 sourceId: sourceId,
                 property: property,
                 healthState: healthState,
-                tTLTimespan: tTLTimespan,
+                timeToLiveMs: timeToLiveMs,
                 sequenceNumber: sequenceNumber,
                 description: description,
                 removeWhenExpired: removeWhenExpired,
@@ -152,7 +158,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.ApplicationId, "ApplicationId", JsonWriterExtensions.WriteStringValue);
@@ -163,11 +169,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.SourceId, "SourceId", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.Property, "Property", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.HealthState, "HealthState", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.TTLTimespan, "TTLTimespan", JsonWriterExtensions.WriteLongValue);
+            writer.WriteProperty(obj.TimeToLiveMs, "TimeToLiveMs", JsonWriterExtensions.WriteLongValue);
             writer.WriteProperty(obj.SequenceNumber, "SequenceNumber", JsonWriterExtensions.WriteLongValue);
             writer.WriteProperty(obj.Description, "Description", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.RemoveWhenExpired, "RemoveWhenExpired", JsonWriterExtensions.WriteBoolValue);
             writer.WriteProperty(obj.SourceUtcTimestamp, "SourceUtcTimestamp", JsonWriterExtensions.WriteDateTimeValue);
+            if (obj.Category != null)
+            {
+                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);

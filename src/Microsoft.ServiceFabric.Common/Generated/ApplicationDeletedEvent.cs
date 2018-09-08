@@ -26,6 +26,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </param>
         /// <param name="applicationTypeName">Application type name.</param>
         /// <param name="applicationTypeVersion">Application type version.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationDeletedEvent(
             Guid? eventInstanceId,
@@ -33,12 +34,14 @@ namespace Microsoft.ServiceFabric.Common
             string applicationId,
             string applicationTypeName,
             string applicationTypeVersion,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ApplicationDeleted,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));

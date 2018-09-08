@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static ContainerDeactivatedEvent GetFromJsonProperties(JsonReader reader)
         {
             var eventInstanceId = default(Guid?);
+            var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
             var applicationId = default(string);
@@ -56,6 +57,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
+                }
+                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                {
+                    category = reader.ReadValueAsString();
                 }
                 else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                 {
@@ -126,6 +131,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             return new ContainerDeactivatedEvent(
                 eventInstanceId: eventInstanceId,
+                category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
                 applicationId: applicationId,
@@ -152,7 +158,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.ApplicationId, "ApplicationId", JsonWriterExtensions.WriteStringValue);
@@ -168,6 +174,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.ExitCode, "ExitCode", JsonWriterExtensions.WriteLongValue);
             writer.WriteProperty(obj.UnexpectedTermination, "UnexpectedTermination", JsonWriterExtensions.WriteBoolValue);
             writer.WriteProperty(obj.StartTime, "StartTime", JsonWriterExtensions.WriteDateTimeValue);
+            if (obj.Category != null)
+            {
+                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);

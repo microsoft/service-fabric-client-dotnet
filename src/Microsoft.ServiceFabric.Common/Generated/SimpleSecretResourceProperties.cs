@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
             string description = default(string),
             string contentType = default(string))
             : base(
-                Common.SecretKind.Simple,
+                Common.SecretKind.InlinedValue,
                 description,
                 contentType)
         {

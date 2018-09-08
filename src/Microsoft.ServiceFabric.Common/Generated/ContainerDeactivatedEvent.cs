@@ -36,6 +36,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="exitCode">Exit code of process.</param>
         /// <param name="unexpectedTermination">Indicates if termination is unexpected.</param>
         /// <param name="startTime">Start time of process.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ContainerDeactivatedEvent(
             Guid? eventInstanceId,
@@ -53,12 +54,14 @@ namespace Microsoft.ServiceFabric.Common
             long? exitCode,
             bool? unexpectedTermination,
             DateTime? startTime,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ContainerDeactivated,
+                Common.FabricEventKind.ApplicationContainerInstanceExited,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             serviceName.ThrowIfNull(nameof(serviceName));

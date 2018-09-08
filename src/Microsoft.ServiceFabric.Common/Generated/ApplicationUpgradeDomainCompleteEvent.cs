@@ -30,6 +30,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="upgradeState">State of upgrade.</param>
         /// <param name="upgradeDomains">Upgrade domains.</param>
         /// <param name="upgradeDomainElapsedTimeInMs">Upgrade time of domain in milli-seconds.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationUpgradeDomainCompleteEvent(
             Guid? eventInstanceId,
@@ -41,12 +42,14 @@ namespace Microsoft.ServiceFabric.Common
             string upgradeState,
             string upgradeDomains,
             double? upgradeDomainElapsedTimeInMs,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationUpgradeDomainComplete,
+                Common.FabricEventKind.ApplicationUpgradeDomainCompleted,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));

@@ -28,6 +28,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="sourceNode">The name of a Service Fabric node.</param>
         /// <param name="destinationNode">The name of a Service Fabric node.</param>
         /// <param name="forcedMove">Indicates a forced move.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ChaosMoveSecondaryFaultScheduledEvent(
             Guid? eventInstanceId,
@@ -39,12 +40,14 @@ namespace Microsoft.ServiceFabric.Common
             NodeName sourceNode,
             NodeName destinationNode,
             bool? forcedMove,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosMoveSecondaryFaultScheduled,
+                Common.FabricEventKind.ChaosPartitionSecondaryMoveScheduled,
                 partitionId,
+                category,
                 hasCorrelatedEvents)
         {
             faultGroupId.ThrowIfNull(nameof(faultGroupId));

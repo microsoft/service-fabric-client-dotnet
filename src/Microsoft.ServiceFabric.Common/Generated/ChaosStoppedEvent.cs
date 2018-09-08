@@ -19,16 +19,19 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="reason">Describes reason.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ChaosStoppedEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             string reason,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ChaosStopped,
+                category,
                 hasCorrelatedEvents)
         {
             reason.ThrowIfNull(nameof(reason));

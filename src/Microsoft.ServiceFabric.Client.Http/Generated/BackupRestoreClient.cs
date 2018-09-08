@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -86,7 +86,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -118,7 +118,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -148,7 +148,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -183,7 +183,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -215,7 +215,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -256,7 +256,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -284,6 +284,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         public Task DisableApplicationBackupAsync(
             string applicationId,
             long? serverTimeout = 60,
+            DisableBackupDescription disableBackupDescription = default(DisableBackupDescription),
             CancellationToken cancellationToken = default(CancellationToken))
         {
             applicationId.ThrowIfNull(nameof(applicationId));
@@ -295,15 +296,24 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
+            string content;
+            using (var sw = new StringWriter())
+            {
+                DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                content = sw.ToString();
+            }
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
             }
 
@@ -330,7 +340,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -371,7 +381,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -401,7 +411,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -431,7 +441,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -463,7 +473,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -490,6 +500,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task DisableServiceBackupAsync(
             string serviceId,
+            DisableBackupDescription disableBackupDescription = default(DisableBackupDescription),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -502,15 +513,24 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
+            string content;
+            using (var sw = new StringWriter())
+            {
+                DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                content = sw.ToString();
+            }
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
             }
 
@@ -537,7 +557,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -578,7 +598,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -608,7 +628,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -638,7 +658,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -670,7 +690,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -697,6 +717,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task DisablePartitionBackupAsync(
             PartitionId partitionId,
+            DisableBackupDescription disableBackupDescription = default(DisableBackupDescription),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -709,15 +730,24 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
+            string content;
+            using (var sw = new StringWriter())
+            {
+                DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                content = sw.ToString();
+            }
+
             HttpRequestMessage RequestFunc()
             {
                 var request = new HttpRequestMessage()
                 {
                     Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
                 };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
                 return request;
             }
 
@@ -739,7 +769,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -775,7 +805,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
             startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -805,7 +835,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -835,7 +865,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -868,7 +898,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             // Append to queryParams if not null.
             backupTimeout?.AddToQueryParameters(queryParams, $"BackupTimeout={backupTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -907,7 +937,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -941,7 +971,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             // Append to queryParams if not null.
             restoreTimeout?.AddToQueryParameters(queryParams, $"RestoreTimeout={restoreTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -980,7 +1010,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -1014,7 +1044,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
-            queryParams.Add("api-version=6.2-preview");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             string content;

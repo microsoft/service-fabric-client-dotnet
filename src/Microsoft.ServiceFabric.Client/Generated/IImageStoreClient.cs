@@ -46,8 +46,8 @@ namespace Microsoft.ServiceFabric.Client
         /// Deletes existing image store content.
         /// </summary>
         /// <remarks>
-        /// Deletes existing image store content being found within the given image store relative path. This can be used to
-        /// delete uploaded application packages once they are provisioned.
+        /// Deletes existing image store content being found within the given image store relative path. This command can be
+        /// used to delete uploaded application packages once they are provisioned.
         /// </remarks>
         /// <param name ="contentPath">Relative path to file or folder in the image store from its root.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the

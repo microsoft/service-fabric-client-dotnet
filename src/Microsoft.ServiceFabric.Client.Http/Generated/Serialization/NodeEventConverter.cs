@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static NodeEvent GetFromJsonProperties(JsonReader reader)
         {
             var eventInstanceId = default(Guid?);
+            var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
             var nodeName = default(NodeName);
@@ -49,27 +50,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return NodeAbortedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeAborting", StringComparison.Ordinal))
-                    {
-                        return NodeAbortingEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeAdded", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeAddedToCluster", StringComparison.Ordinal))
                     {
                         return NodeAddedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeClose", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeClosed", StringComparison.Ordinal))
                     {
                         return NodeCloseEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeClosing", StringComparison.Ordinal))
-                    {
-                        return NodeClosingEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeDeactivateComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.Ordinal))
                     {
                         return NodeDeactivateCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeDeactivateStart", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeDeactivateStarted", StringComparison.Ordinal))
                     {
                         return NodeDeactivateStartEventConverter.GetFromJsonProperties(reader);
                     }
@@ -77,7 +70,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return NodeDownEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeHealthReportCreated", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeNewHealthReport", StringComparison.Ordinal))
                     {
                         return NodeHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -85,7 +78,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return NodeHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeOpenedSuccess", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeOpenSucceeded", StringComparison.Ordinal))
                     {
                         return NodeOpenedSuccessEventConverter.GetFromJsonProperties(reader);
                     }
@@ -93,11 +86,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return NodeOpenFailedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("NodeOpening", StringComparison.Ordinal))
-                    {
-                        return NodeOpeningEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeRemoved", StringComparison.Ordinal))
+                    else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.Ordinal))
                     {
                         return NodeRemovedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -105,11 +94,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return NodeUpEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosRestartNodeFaultCompleted", StringComparison.Ordinal))
-                    {
-                        return ChaosRestartNodeFaultCompletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosRestartNodeFaultScheduled", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.Ordinal))
                     {
                         return ChaosRestartNodeFaultScheduledEventConverter.GetFromJsonProperties(reader);
                     }
@@ -127,6 +112,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    {
+                        category = reader.ReadValueAsString();
                     }
                     else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                     {
@@ -151,6 +140,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new NodeEvent(
                 kind: Common.FabricEventKind.NodeEvent,
                 eventInstanceId: eventInstanceId,
+                category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
                 nodeName: nodeName);
@@ -165,10 +155,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.NodeName, "NodeName", NodeNameConverter.Serialize);
+            if (obj.Category != null)
+            {
+                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);

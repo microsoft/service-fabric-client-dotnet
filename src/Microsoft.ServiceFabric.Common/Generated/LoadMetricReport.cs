@@ -18,15 +18,19 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="lastReportedUtc">Gets the UTC time when the load was reported.</param>
         /// <param name="name">The name of the load metric.</param>
-        /// <param name="value">The value of the load metric.</param>
+        /// <param name="value">The value of the load metric. In future releases of Service Fabric this parameter will be
+        /// deprecated in favor of CurrentValue.</param>
+        /// <param name="currentValue">The value of the load metric.</param>
         public LoadMetricReport(
             DateTime? lastReportedUtc = default(DateTime?),
             string name = default(string),
-            string value = default(string))
+            string value = default(string),
+            string currentValue = default(string))
         {
             this.LastReportedUtc = lastReportedUtc;
             this.Name = name;
             this.Value = value;
+            this.CurrentValue = currentValue;
         }
 
         /// <summary>
@@ -40,8 +44,14 @@ namespace Microsoft.ServiceFabric.Common
         public string Name { get; }
 
         /// <summary>
-        /// Gets the value of the load metric.
+        /// Gets the value of the load metric. In future releases of Service Fabric this parameter will be deprecated in favor
+        /// of CurrentValue.
         /// </summary>
         public string Value { get; }
+
+        /// <summary>
+        /// Gets the value of the load metric.
+        /// </summary>
+        public string CurrentValue { get; }
     }
 }

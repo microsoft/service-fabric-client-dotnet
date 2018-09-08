@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var targetReplicaSetSize = default(long?);
             var minReplicaSetSize = default(long?);
             var lastQuorumLossDuration = default(TimeSpan?);
-            var currentConfigurationEpoch = default(Epoch);
+            var primaryEpoch = default(Epoch);
 
             do
             {
@@ -68,9 +68,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     lastQuorumLossDuration = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("CurrentConfigurationEpoch", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PrimaryEpoch", propName, StringComparison.Ordinal) == 0)
                 {
-                    currentConfigurationEpoch = EpochConverter.Deserialize(reader);
+                    primaryEpoch = EpochConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -86,7 +86,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
                 lastQuorumLossDuration: lastQuorumLossDuration,
-                currentConfigurationEpoch: currentConfigurationEpoch);
+                primaryEpoch: primaryEpoch);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.ServiceKind.ToString(), "ServiceKind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.ServiceKind, "ServiceKind", ServiceKindConverter.Serialize);
             writer.WriteProperty(obj.HealthState, "HealthState", HealthStateConverter.Serialize);
             writer.WriteProperty(obj.PartitionStatus, "PartitionStatus", ServicePartitionStatusConverter.Serialize);
             if (obj.PartitionInformation != null)
@@ -121,9 +121,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.LastQuorumLossDuration, "LastQuorumLossDuration", JsonWriterExtensions.WriteTimeSpanValue);
             }
 
-            if (obj.CurrentConfigurationEpoch != null)
+            if (obj.PrimaryEpoch != null)
             {
-                writer.WriteProperty(obj.CurrentConfigurationEpoch, "CurrentConfigurationEpoch", EpochConverter.Serialize);
+                writer.WriteProperty(obj.PrimaryEpoch, "PrimaryEpoch", EpochConverter.Serialize);
             }
 
             writer.WriteEndObject();

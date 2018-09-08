@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         public RestoreProgressInfo(
             RestoreState? restoreState = default(RestoreState?),
             DateTime? timeStampUtc = default(DateTime?),
-            BackupEpoch restoredEpoch = default(BackupEpoch),
+            Epoch restoredEpoch = default(Epoch),
             string restoredLsn = default(string),
             FabricErrorError failureError = default(FabricErrorError))
         {
@@ -50,7 +50,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets describes the epoch at which the partition is restored.
         /// </summary>
-        public BackupEpoch RestoredEpoch { get; }
+        public Epoch RestoredEpoch { get; }
 
         /// <summary>
         /// Gets restored LSN.

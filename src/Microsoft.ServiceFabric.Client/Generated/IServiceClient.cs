@@ -506,7 +506,11 @@ namespace Microsoft.ServiceFabric.Client
         /// partitions with partitioning scheme as Named. The value is 3.
         /// </param>
         /// <param name ="partitionKeyValue">Partition key. This is required if the partition scheme for the service is
-        /// Int64Range or Named.</param>
+        /// Int64Range or Named.
+        /// This is not the partition ID, but rather, either the integer key value, or the name of the partition ID.
+        /// For example, if your service is using ranged partitions from 0 to 10, then they PartitionKeyValue would be an
+        /// integer in that range. Query service description to see the range or name.
+        /// </param>
         /// <param name ="previousRspVersion">The value in the Version field of the response that was received previously. This
         /// is required if the user knows that the result that was gotten previously is stale.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the

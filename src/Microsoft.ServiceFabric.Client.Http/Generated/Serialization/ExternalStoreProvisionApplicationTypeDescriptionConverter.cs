@@ -80,7 +80,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", ProvisionApplicationTypeKindConverter.Serialize);
             writer.WriteProperty(obj.ApplicationPackageDownloadUri, "ApplicationPackageDownloadUri", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.ApplicationTypeName, "ApplicationTypeName", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.ApplicationTypeVersion, "ApplicationTypeVersion", JsonWriterExtensions.WriteStringValue);

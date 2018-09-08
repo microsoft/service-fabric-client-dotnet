@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Rollback the upgrade of a Service Fabric cluster.
+    /// Roll back the upgrade of a Service Fabric cluster.
     /// </summary>
     [Cmdlet(VerbsCommon.New, "SFClusterUpgrade", DefaultParameterSetName = "RollbackClusterUpgrade")]
     public partial class NewClusterUpgradeCmdlet : CommonCmdletBase

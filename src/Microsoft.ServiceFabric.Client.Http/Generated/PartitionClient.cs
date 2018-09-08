@@ -50,7 +50,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             // Append to queryParams if not null.
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()

@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         /// The lifetime of these volumes is scoped to the application's lifetime.</param>
         /// <param name="instanceView">Runtime information of a container instance.</param>
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
+        /// <param name="reliableCollectionsRefs">nothing</param>
         public ContainerCodePackageProperties(
             string name,
             string image,
@@ -48,7 +49,8 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<VolumeReference> volumeRefs = default(IEnumerable<VolumeReference>),
             IEnumerable<ApplicationScopedVolume> volumes = default(IEnumerable<ApplicationScopedVolume>),
             ContainerInstanceView instanceView = default(ContainerInstanceView),
-            DiagnosticsRef diagnostics = default(DiagnosticsRef))
+            DiagnosticsRef diagnostics = default(DiagnosticsRef),
+            IEnumerable<ReliableCollectionsRef> reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>))
         {
             name.ThrowIfNull(nameof(name));
             image.ThrowIfNull(nameof(image));
@@ -67,6 +69,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Volumes = volumes;
             this.InstanceView = instanceView;
             this.Diagnostics = diagnostics;
+            this.ReliableCollectionsRefs = reliableCollectionsRefs;
         }
 
         /// <summary>
@@ -142,5 +145,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets reference to sinks in DiagnosticsDescription.
         /// </summary>
         public DiagnosticsRef Diagnostics { get; }
+
+        /// <summary>
+        /// Gets collecation refs.
+        /// </summary>
+        public IEnumerable<ReliableCollectionsRef> ReliableCollectionsRefs { get; }
     }
 }

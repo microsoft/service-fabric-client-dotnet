@@ -61,9 +61,9 @@ namespace Microsoft.ServiceFabric.Common
         ApplicationDeleted,
 
         /// <summary>
-        /// ApplicationHealthReportCreated.
+        /// ApplicationNewHealthReport.
         /// </summary>
-        ApplicationHealthReportCreated,
+        ApplicationNewHealthReport,
 
         /// <summary>
         /// ApplicationHealthReportExpired.
@@ -71,34 +71,34 @@ namespace Microsoft.ServiceFabric.Common
         ApplicationHealthReportExpired,
 
         /// <summary>
-        /// ApplicationUpgradeComplete.
+        /// ApplicationUpgradeCompleted.
         /// </summary>
-        ApplicationUpgradeComplete,
+        ApplicationUpgradeCompleted,
 
         /// <summary>
-        /// ApplicationUpgradeDomainComplete.
+        /// ApplicationUpgradeDomainCompleted.
         /// </summary>
-        ApplicationUpgradeDomainComplete,
+        ApplicationUpgradeDomainCompleted,
 
         /// <summary>
-        /// ApplicationUpgradeRollbackComplete.
+        /// ApplicationUpgradeRollbackCompleted.
         /// </summary>
-        ApplicationUpgradeRollbackComplete,
+        ApplicationUpgradeRollbackCompleted,
 
         /// <summary>
-        /// ApplicationUpgradeRollbackStart.
+        /// ApplicationUpgradeRollbackStarted.
         /// </summary>
-        ApplicationUpgradeRollbackStart,
+        ApplicationUpgradeRollbackStarted,
 
         /// <summary>
-        /// ApplicationUpgradeStart.
+        /// ApplicationUpgradeStarted.
         /// </summary>
-        ApplicationUpgradeStart,
+        ApplicationUpgradeStarted,
 
         /// <summary>
-        /// DeployedApplicationHealthReportCreated.
+        /// DeployedApplicationNewHealthReport.
         /// </summary>
-        DeployedApplicationHealthReportCreated,
+        DeployedApplicationNewHealthReport,
 
         /// <summary>
         /// DeployedApplicationHealthReportExpired.
@@ -106,14 +106,14 @@ namespace Microsoft.ServiceFabric.Common
         DeployedApplicationHealthReportExpired,
 
         /// <summary>
-        /// ProcessDeactivated.
+        /// ApplicationProcessExited.
         /// </summary>
-        ProcessDeactivated,
+        ApplicationProcessExited,
 
         /// <summary>
-        /// ContainerDeactivated.
+        /// ApplicationContainerInstanceExited.
         /// </summary>
-        ContainerDeactivated,
+        ApplicationContainerInstanceExited,
 
         /// <summary>
         /// NodeAborted.
@@ -121,34 +121,24 @@ namespace Microsoft.ServiceFabric.Common
         NodeAborted,
 
         /// <summary>
-        /// NodeAborting.
+        /// NodeAddedToCluster.
         /// </summary>
-        NodeAborting,
+        NodeAddedToCluster,
 
         /// <summary>
-        /// NodeAdded.
+        /// NodeClosed.
         /// </summary>
-        NodeAdded,
+        NodeClosed,
 
         /// <summary>
-        /// NodeClose.
+        /// NodeDeactivateCompleted.
         /// </summary>
-        NodeClose,
+        NodeDeactivateCompleted,
 
         /// <summary>
-        /// NodeClosing.
+        /// NodeDeactivateStarted.
         /// </summary>
-        NodeClosing,
-
-        /// <summary>
-        /// NodeDeactivateComplete.
-        /// </summary>
-        NodeDeactivateComplete,
-
-        /// <summary>
-        /// NodeDeactivateStart.
-        /// </summary>
-        NodeDeactivateStart,
+        NodeDeactivateStarted,
 
         /// <summary>
         /// NodeDown.
@@ -156,9 +146,9 @@ namespace Microsoft.ServiceFabric.Common
         NodeDown,
 
         /// <summary>
-        /// NodeHealthReportCreated.
+        /// NodeNewHealthReport.
         /// </summary>
-        NodeHealthReportCreated,
+        NodeNewHealthReport,
 
         /// <summary>
         /// NodeHealthReportExpired.
@@ -166,9 +156,9 @@ namespace Microsoft.ServiceFabric.Common
         NodeHealthReportExpired,
 
         /// <summary>
-        /// NodeOpenedSuccess.
+        /// NodeOpenSucceeded.
         /// </summary>
-        NodeOpenedSuccess,
+        NodeOpenSucceeded,
 
         /// <summary>
         /// NodeOpenFailed.
@@ -176,14 +166,9 @@ namespace Microsoft.ServiceFabric.Common
         NodeOpenFailed,
 
         /// <summary>
-        /// NodeOpening.
+        /// NodeRemovedFromCluster.
         /// </summary>
-        NodeOpening,
-
-        /// <summary>
-        /// NodeRemoved.
-        /// </summary>
-        NodeRemoved,
+        NodeRemovedFromCluster,
 
         /// <summary>
         /// NodeUp.
@@ -191,9 +176,9 @@ namespace Microsoft.ServiceFabric.Common
         NodeUp,
 
         /// <summary>
-        /// PartitionHealthReportCreated.
+        /// PartitionNewHealthReport.
         /// </summary>
-        PartitionHealthReportCreated,
+        PartitionNewHealthReport,
 
         /// <summary>
         /// PartitionHealthReportExpired.
@@ -201,9 +186,9 @@ namespace Microsoft.ServiceFabric.Common
         PartitionHealthReportExpired,
 
         /// <summary>
-        /// PartitionReconfigurationCompleted.
+        /// PartitionReconfigured.
         /// </summary>
-        PartitionReconfigurationCompleted,
+        PartitionReconfigured,
 
         /// <summary>
         /// PartitionPrimaryMoveAnalysis.
@@ -221,9 +206,9 @@ namespace Microsoft.ServiceFabric.Common
         ServiceDeleted,
 
         /// <summary>
-        /// ServiceHealthReportCreated.
+        /// ServiceNewHealthReport.
         /// </summary>
-        ServiceHealthReportCreated,
+        ServiceNewHealthReport,
 
         /// <summary>
         /// ServiceHealthReportExpired.
@@ -231,19 +216,19 @@ namespace Microsoft.ServiceFabric.Common
         ServiceHealthReportExpired,
 
         /// <summary>
-        /// DeployedServiceHealthReportCreated.
+        /// DeployedServicePackageNewHealthReport.
         /// </summary>
-        DeployedServiceHealthReportCreated,
+        DeployedServicePackageNewHealthReport,
 
         /// <summary>
-        /// DeployedServiceHealthReportExpired.
+        /// DeployedServicePackageHealthReportExpired.
         /// </summary>
-        DeployedServiceHealthReportExpired,
+        DeployedServicePackageHealthReportExpired,
 
         /// <summary>
-        /// StatefulReplicaHealthReportCreated.
+        /// StatefulReplicaNewHealthReport.
         /// </summary>
-        StatefulReplicaHealthReportCreated,
+        StatefulReplicaNewHealthReport,
 
         /// <summary>
         /// StatefulReplicaHealthReportExpired.
@@ -251,9 +236,9 @@ namespace Microsoft.ServiceFabric.Common
         StatefulReplicaHealthReportExpired,
 
         /// <summary>
-        /// StatelessReplicaHealthReportCreated.
+        /// StatelessReplicaNewHealthReport.
         /// </summary>
-        StatelessReplicaHealthReportCreated,
+        StatelessReplicaNewHealthReport,
 
         /// <summary>
         /// StatelessReplicaHealthReportExpired.
@@ -261,9 +246,9 @@ namespace Microsoft.ServiceFabric.Common
         StatelessReplicaHealthReportExpired,
 
         /// <summary>
-        /// ClusterHealthReportCreated.
+        /// ClusterNewHealthReport.
         /// </summary>
-        ClusterHealthReportCreated,
+        ClusterNewHealthReport,
 
         /// <summary>
         /// ClusterHealthReportExpired.
@@ -271,29 +256,29 @@ namespace Microsoft.ServiceFabric.Common
         ClusterHealthReportExpired,
 
         /// <summary>
-        /// ClusterUpgradeComplete.
+        /// ClusterUpgradeCompleted.
         /// </summary>
-        ClusterUpgradeComplete,
+        ClusterUpgradeCompleted,
 
         /// <summary>
-        /// ClusterUpgradeDomainComplete.
+        /// ClusterUpgradeDomainCompleted.
         /// </summary>
-        ClusterUpgradeDomainComplete,
+        ClusterUpgradeDomainCompleted,
 
         /// <summary>
-        /// ClusterUpgradeRollbackComplete.
+        /// ClusterUpgradeRollbackCompleted.
         /// </summary>
-        ClusterUpgradeRollbackComplete,
+        ClusterUpgradeRollbackCompleted,
 
         /// <summary>
-        /// ClusterUpgradeRollbackStart.
+        /// ClusterUpgradeRollbackStarted.
         /// </summary>
-        ClusterUpgradeRollbackStart,
+        ClusterUpgradeRollbackStarted,
 
         /// <summary>
-        /// ClusterUpgradeStart.
+        /// ClusterUpgradeStarted.
         /// </summary>
-        ClusterUpgradeStart,
+        ClusterUpgradeStarted,
 
         /// <summary>
         /// ChaosStopped.
@@ -306,48 +291,33 @@ namespace Microsoft.ServiceFabric.Common
         ChaosStarted,
 
         /// <summary>
-        /// ChaosRestartNodeFaultCompleted.
+        /// ChaosCodePackageRestartScheduled.
         /// </summary>
-        ChaosRestartNodeFaultCompleted,
+        ChaosCodePackageRestartScheduled,
 
         /// <summary>
-        /// ChaosRestartCodePackageFaultScheduled.
+        /// ChaosReplicaRemovalScheduled.
         /// </summary>
-        ChaosRestartCodePackageFaultScheduled,
+        ChaosReplicaRemovalScheduled,
 
         /// <summary>
-        /// ChaosRestartCodePackageFaultCompleted.
+        /// ChaosPartitionSecondaryMoveScheduled.
         /// </summary>
-        ChaosRestartCodePackageFaultCompleted,
+        ChaosPartitionSecondaryMoveScheduled,
 
         /// <summary>
-        /// ChaosRemoveReplicaFaultScheduled.
+        /// ChaosPartitionPrimaryMoveScheduled.
         /// </summary>
-        ChaosRemoveReplicaFaultScheduled,
+        ChaosPartitionPrimaryMoveScheduled,
 
         /// <summary>
-        /// ChaosRemoveReplicaFaultCompleted.
+        /// ChaosReplicaRestartScheduled.
         /// </summary>
-        ChaosRemoveReplicaFaultCompleted,
+        ChaosReplicaRestartScheduled,
 
         /// <summary>
-        /// ChaosMoveSecondaryFaultScheduled.
+        /// ChaosNodeRestartScheduled.
         /// </summary>
-        ChaosMoveSecondaryFaultScheduled,
-
-        /// <summary>
-        /// ChaosMovePrimaryFaultScheduled.
-        /// </summary>
-        ChaosMovePrimaryFaultScheduled,
-
-        /// <summary>
-        /// ChaosRestartReplicaFaultScheduled.
-        /// </summary>
-        ChaosRestartReplicaFaultScheduled,
-
-        /// <summary>
-        /// ChaosRestartNodeFaultScheduled.
-        /// </summary>
-        ChaosRestartNodeFaultScheduled,
+        ChaosNodeRestartScheduled,
     }
 }

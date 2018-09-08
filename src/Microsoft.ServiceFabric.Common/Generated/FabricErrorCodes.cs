@@ -429,5 +429,10 @@ namespace Microsoft.ServiceFabric.Common
         /// SerializationError.
         /// </summary>
         SerializationError,
+
+        /// <summary>
+        /// FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR.
+        /// </summary>
+        FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR,
     }
 }

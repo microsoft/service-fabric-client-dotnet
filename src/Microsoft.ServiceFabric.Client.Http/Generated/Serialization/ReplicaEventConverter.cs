@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static ReplicaEvent GetFromJsonProperties(JsonReader reader)
         {
             var eventInstanceId = default(Guid?);
+            var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
             var partitionId = default(PartitionId);
@@ -46,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     var propValue = reader.ReadValueAsString();
 
-                    if (propValue.Equals("StatefulReplicaHealthReportCreated", StringComparison.Ordinal))
+                    if (propValue.Equals("StatefulReplicaNewHealthReport", StringComparison.Ordinal))
                     {
                         return StatefulReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -54,7 +55,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return StatefulReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("StatelessReplicaHealthReportCreated", StringComparison.Ordinal))
+                    else if (propValue.Equals("StatelessReplicaNewHealthReport", StringComparison.Ordinal))
                     {
                         return StatelessReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -62,15 +63,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return StatelessReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosRemoveReplicaFaultScheduled", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosReplicaRemovalScheduled", StringComparison.Ordinal))
                     {
                         return ChaosRemoveReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosRemoveReplicaFaultCompleted", StringComparison.Ordinal))
-                    {
-                        return ChaosRemoveReplicaFaultCompletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosRestartReplicaFaultScheduled", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosReplicaRestartScheduled", StringComparison.Ordinal))
                     {
                         return ChaosRestartReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
                     }
@@ -88,6 +85,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    {
+                        category = reader.ReadValueAsString();
                     }
                     else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                     {
@@ -116,6 +117,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new ReplicaEvent(
                 kind: Common.FabricEventKind.ReplicaEvent,
                 eventInstanceId: eventInstanceId,
+                category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
                 partitionId: partitionId,
@@ -131,11 +133,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.PartitionId, "PartitionId", PartitionIdConverter.Serialize);
             writer.WriteProperty(obj.ReplicaId, "ReplicaId", ReplicaIdConverter.Serialize);
+            if (obj.Category != null)
+            {
+                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);

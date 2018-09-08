@@ -28,6 +28,7 @@ namespace Microsoft.ServiceFabric.Common
         /// replica gets dropped and another replica gets created on the same node for the same partition, it will get a
         /// different value for the id. Sometimes the id of a stateless service instance is also referred as a replica
         /// id.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ReplicaEvent(
             Guid? eventInstanceId,
@@ -35,11 +36,13 @@ namespace Microsoft.ServiceFabric.Common
             FabricEventKind? kind,
             PartitionId partitionId,
             ReplicaId replicaId,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ReplicaEvent,
+                category,
                 hasCorrelatedEvents)
         {
             partitionId.ThrowIfNull(nameof(partitionId));

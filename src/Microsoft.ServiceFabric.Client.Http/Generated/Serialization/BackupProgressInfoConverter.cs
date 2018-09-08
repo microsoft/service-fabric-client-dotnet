@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var timeStampUtc = default(DateTime?);
             var backupId = default(Guid?);
             var backupLocation = default(string);
-            var epochOfLastBackupRecord = default(BackupEpoch);
+            var epochOfLastBackupRecord = default(Epoch);
             var lsnOfLastBackupRecord = default(string);
             var failureError = default(FabricErrorError);
 
@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("EpochOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
                 {
-                    epochOfLastBackupRecord = BackupEpochConverter.Deserialize(reader);
+                    epochOfLastBackupRecord = EpochConverter.Deserialize(reader);
                 }
                 else if (string.Compare("LsnOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
                 {
@@ -116,7 +116,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.EpochOfLastBackupRecord != null)
             {
-                writer.WriteProperty(obj.EpochOfLastBackupRecord, "EpochOfLastBackupRecord", BackupEpochConverter.Serialize);
+                writer.WriteProperty(obj.EpochOfLastBackupRecord, "EpochOfLastBackupRecord", EpochConverter.Serialize);
             }
 
             if (obj.LsnOfLastBackupRecord != null)

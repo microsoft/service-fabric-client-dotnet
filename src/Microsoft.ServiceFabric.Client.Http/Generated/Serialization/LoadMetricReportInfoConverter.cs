@@ -35,6 +35,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             var name = default(string);
             var value = default(int?);
+            var currentValue = default(string);
             var lastReportedUtc = default(DateTime?);
 
             do
@@ -47,6 +48,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("Value", propName, StringComparison.Ordinal) == 0)
                 {
                     value = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("CurrentValue", propName, StringComparison.Ordinal) == 0)
+                {
+                    currentValue = reader.ReadValueAsString();
                 }
                 else if (string.Compare("LastReportedUtc", propName, StringComparison.Ordinal) == 0)
                 {
@@ -62,6 +67,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new LoadMetricReportInfo(
                 name: name,
                 value: value,
+                currentValue: currentValue,
                 lastReportedUtc: lastReportedUtc);
         }
 
@@ -82,6 +88,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.Value != null)
             {
                 writer.WriteProperty(obj.Value, "Value", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.CurrentValue != null)
+            {
+                writer.WriteProperty(obj.CurrentValue, "CurrentValue", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.LastReportedUtc != null)

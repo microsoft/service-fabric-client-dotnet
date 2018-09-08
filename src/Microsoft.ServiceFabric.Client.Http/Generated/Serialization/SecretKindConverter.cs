@@ -26,9 +26,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(SecretKind);
 
-            if (string.Compare(value, "simple", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "inlinedValue", StringComparison.Ordinal) == 0)
             {
-                obj = SecretKind.Simple;
+                obj = SecretKind.InlinedValue;
             }
 
             return obj;
@@ -43,8 +43,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             switch (value)
             {
-                case SecretKind.Simple:
-                    writer.WriteStringValue("simple");
+                case SecretKind.InlinedValue:
+                    writer.WriteStringValue("inlinedValue");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type SecretKind");

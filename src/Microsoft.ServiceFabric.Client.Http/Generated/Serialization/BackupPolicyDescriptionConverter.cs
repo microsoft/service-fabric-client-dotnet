@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var maxIncrementalBackups = default(int?);
             var schedule = default(BackupScheduleDescription);
             var storage = default(BackupStorageDescription);
+            var retentionPolicy = default(RetentionPolicyDescription);
 
             do
             {
@@ -62,6 +63,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     storage = BackupStorageDescriptionConverter.Deserialize(reader);
                 }
+                else if (string.Compare("RetentionPolicy", propName, StringComparison.Ordinal) == 0)
+                {
+                    retentionPolicy = RetentionPolicyDescriptionConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -74,7 +79,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 autoRestoreOnDataLoss: autoRestoreOnDataLoss,
                 maxIncrementalBackups: maxIncrementalBackups,
                 schedule: schedule,
-                storage: storage);
+                storage: storage,
+                retentionPolicy: retentionPolicy);
         }
 
         /// <summary>
@@ -91,6 +97,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.MaxIncrementalBackups, "MaxIncrementalBackups", JsonWriterExtensions.WriteIntValue);
             writer.WriteProperty(obj.Schedule, "Schedule", BackupScheduleDescriptionConverter.Serialize);
             writer.WriteProperty(obj.Storage, "Storage", BackupStorageDescriptionConverter.Serialize);
+            if (obj.RetentionPolicy != null)
+            {
+                writer.WriteProperty(obj.RetentionPolicy, "RetentionPolicy", RetentionPolicyDescriptionConverter.Serialize);
+            }
+
             writer.WriteEndObject();
         }
     }

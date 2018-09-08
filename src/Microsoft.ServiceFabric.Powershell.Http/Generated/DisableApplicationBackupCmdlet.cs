@@ -31,11 +31,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
+        /// Gets or sets CleanBackup. Boolean flag to delete backups. It can be set to true for deleting all the backups which
+        /// were created for the backup entity that is getting disabled for backup.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "DisableApplicationBackup")]
+        public bool? CleanBackup { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DisableApplicationBackup")]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DisableApplicationBackup")]
         public long? ServerTimeout
         {
             get;
@@ -46,7 +53,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DisableApplicationBackup")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "DisableApplicationBackup")]
         public SwitchParameter Force
         {
             get;
@@ -58,11 +65,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             try
             {
+                var disableBackupDescription = new DisableBackupDescription(
+                cleanBackup: this.CleanBackup);
+
                 if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
                 {
                     this.ServiceFabricClient.BackupRestore.DisableApplicationBackupAsync(
                         applicationId: this.ApplicationId,
                         serverTimeout: this.ServerTimeout,
+                        disableBackupDescription: disableBackupDescription,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
                     Console.WriteLine("Success!");

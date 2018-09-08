@@ -27,6 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="hostname">Name of Host.</param>
         /// <param name="isSeedNode">Indicates if it is seed node.</param>
         /// <param name="nodeVersion">Version of Node.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeAbortedEvent(
             Guid? eventInstanceId,
@@ -40,12 +41,14 @@ namespace Microsoft.ServiceFabric.Common
             string hostname,
             bool? isSeedNode,
             string nodeVersion,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.NodeAborted,
                 nodeName,
+                category,
                 hasCorrelatedEvents)
         {
             nodeInstance.ThrowIfNull(nameof(nodeInstance));

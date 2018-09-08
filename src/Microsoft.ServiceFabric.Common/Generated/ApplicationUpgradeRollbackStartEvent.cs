@@ -29,6 +29,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="applicationTypeVersion">Target Application type version.</param>
         /// <param name="failureReason">Describes reason of failure.</param>
         /// <param name="overallUpgradeElapsedTimeInMs">Overall upgrade time in milli-seconds.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationUpgradeRollbackStartEvent(
             Guid? eventInstanceId,
@@ -39,12 +40,14 @@ namespace Microsoft.ServiceFabric.Common
             string applicationTypeVersion,
             string failureReason,
             double? overallUpgradeElapsedTimeInMs,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationUpgradeRollbackStart,
+                Common.FabricEventKind.ApplicationUpgradeRollbackStarted,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));

@@ -20,17 +20,20 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="targetClusterVersion">Target Cluster version.</param>
         /// <param name="overallUpgradeElapsedTimeInMs">Overall duration of upgrade in milli-seconds.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ClusterUpgradeCompleteEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             string targetClusterVersion,
             double? overallUpgradeElapsedTimeInMs,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ClusterUpgradeComplete,
+                Common.FabricEventKind.ClusterUpgradeCompleted,
+                category,
                 hasCorrelatedEvents)
         {
             targetClusterVersion.ThrowIfNull(nameof(targetClusterVersion));

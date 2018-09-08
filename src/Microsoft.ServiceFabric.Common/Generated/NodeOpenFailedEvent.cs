@@ -28,6 +28,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="isSeedNode">Indicates if it is seed node.</param>
         /// <param name="nodeVersion">Version of Node.</param>
         /// <param name="error">Describes the error.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeOpenFailedEvent(
             Guid? eventInstanceId,
@@ -42,12 +43,14 @@ namespace Microsoft.ServiceFabric.Common
             bool? isSeedNode,
             string nodeVersion,
             string error,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.NodeOpenFailed,
                 nodeName,
+                category,
                 hasCorrelatedEvents)
         {
             nodeInstance.ThrowIfNull(nameof(nodeInstance));

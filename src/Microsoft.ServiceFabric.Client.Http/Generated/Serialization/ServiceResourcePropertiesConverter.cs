@@ -39,6 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var diagnostics = default(DiagnosticsRef);
             var description = default(string);
             var replicaCount = default(int?);
+            var autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>);
             var healthState = default(HealthState?);
             var status = default(ServiceResourceStatus?);
 
@@ -69,6 +70,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     replicaCount = reader.ReadValueAsInt();
                 }
+                else if (string.Compare("autoScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                {
+                    autoScalingPolicies = reader.ReadList(AutoScalingPolicyConverter.Deserialize);
+                }
                 else if (string.Compare("healthState", propName, StringComparison.Ordinal) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
@@ -91,6 +96,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 diagnostics: diagnostics,
                 description: description,
                 replicaCount: replicaCount,
+                autoScalingPolicies: autoScalingPolicies,
                 healthState: healthState,
                 status: status);
         }
@@ -126,6 +132,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ReplicaCount != null)
             {
                 writer.WriteProperty(obj.ReplicaCount, "replicaCount", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.AutoScalingPolicies != null)
+            {
+                writer.WriteEnumerableProperty(obj.AutoScalingPolicies, "autoScalingPolicies", AutoScalingPolicyConverter.Serialize);
             }
 
             writer.WriteEndObject();

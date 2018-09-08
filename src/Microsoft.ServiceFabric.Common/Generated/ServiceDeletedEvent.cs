@@ -33,6 +33,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="targetReplicaSetSize">Size of target replicas set.</param>
         /// <param name="minReplicaSetSize">Minimum size of replicas set.</param>
         /// <param name="servicePackageVersion">Version of Service package.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ServiceDeletedEvent(
             Guid? eventInstanceId,
@@ -47,12 +48,14 @@ namespace Microsoft.ServiceFabric.Common
             int? targetReplicaSetSize,
             int? minReplicaSetSize,
             string servicePackageVersion,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ServiceDeleted,
                 serviceId,
+                category,
                 hasCorrelatedEvents)
         {
             serviceTypeName.ThrowIfNull(nameof(serviceTypeName));

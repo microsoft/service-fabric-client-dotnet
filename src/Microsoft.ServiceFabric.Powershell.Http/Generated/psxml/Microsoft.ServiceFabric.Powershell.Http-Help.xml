@@ -827,7 +827,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -1315,7 +1315,7 @@
                 <command:verb>New</command:verb>
                 <command:noun>ClusterUpgrade</command:noun>
                 <maml:description>
-                    <maml:para>Rollback the upgrade of a Service Fabric cluster.</maml:para>
+                    <maml:para>Roll back the upgrade of a Service Fabric cluster.</maml:para>
                 </maml:description>
             </command:details>
             <command:syntax>
@@ -1327,7 +1327,7 @@
                 </command:syntaxItem>
             </command:syntax>
             <maml:description>
-                <maml:para>Rollback the code or configuration upgrade of a Service Fabric cluster.</maml:para>
+                <maml:para>Roll back the code or configuration upgrade of a Service Fabric cluster.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="false" position="0">
@@ -1826,7 +1826,7 @@
                 <maml:name>HealthCheckRetryTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The length of time between attempts to perform a health checks if the application or cluster is not healthy.
+                    The length of time between attempts to perform health checks if the application or cluster is not healthy.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">TimeSpan?</command:parameterValue>
@@ -1850,7 +1850,7 @@
                 <maml:name>HealthCheckStableDurationInSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The length of time that the application or cluster must remain healthy.
+                    The length of time that the application or cluster must remain healthy before the upgrade proceeds to the next upgrade domain.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">TimeSpan?</command:parameterValue>
@@ -2312,799 +2312,6 @@
             </maml:description>
             <command:parameters>
             <command:parameter required="false" position="0">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFDeployedNetworkCodePackageInfo</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>DeployedNetworkCodePackageInfo</command:noun>
-                <maml:description>
-                    <maml:para>Gets information about a Service Fabric code package deployed to a Service Fabric node associated with a Service Fabric container network.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFDeployedNetworkCodePackageInfo</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NodeName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>CodePackageName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about a code package
-                1) whose name matches the one specified as the code package name parameter
-                2) that is deployed to a node whose name matches the one specified as the node name parameter
-                3) that is a member of a container network whose name matches the one specified as the network name parameter
-                
-                The response includes the application name, network name, code package name, code package version, service manifest name,
-                service package activation id, container address and container id of the code package.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NodeName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the node.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">NodeName</command:parameterValue>
-                <dev:type>
-                    <maml:name>NodeName</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>CodePackageName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric code package defined in the service manifest.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="3">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFDeployedNetworkCodePackageInfoList</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>DeployedNetworkCodePackageInfoList</command:noun>
-                <maml:description>
-                    <maml:para>Gets the list of Service Fabric code packages deployed to a Service Fabric node associated with a Service Fabric container network.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFDeployedNetworkCodePackageInfoList</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NodeName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>MaxResults</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the code packages that are
-                1) deployed to a node whose name matches the one specified as the node name parameter
-                2) are members of a container network whose name matches the one specified as the network name parameter
-                
-                The response includes the application name, network name, code package name, code package version, service manifest name,
-                service package activation id, container address and container id of the code packages.
-                
-                If the code packages do not fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NodeName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the node.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">NodeName</command:parameterValue>
-                <dev:type>
-                    <maml:name>NodeName</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>MaxResults</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="3">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFDeployedNetworkInfoList</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>DeployedNetworkInfoList</command:noun>
-                <maml:description>
-                    <maml:para>Gets the list of Service Fabric container networks deployed to a Service Fabric node.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFDeployedNetworkInfoList</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NodeName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>MaxResults</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the container networks deployed to a node whose name matches the one specified as the node name parameter.
-                
-                The response includes the names of the container networks.
-                
-                If the container networks do not fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NodeName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the node.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">NodeName</command:parameterValue>
-                <dev:type>
-                    <maml:name>NodeName</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>MaxResults</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFApplicationNetworkInfoList</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>ApplicationNetworkInfoList</command:noun>
-                <maml:description>
-                    <maml:para>Gets the list of Service Fabric container networks that a Service Fabric application is associated with.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFApplicationNetworkInfoList</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>MaxResults</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the container networks a Service Fabric application whose name matches the one specified as the application id parameter is a member of.
-                
-                The response includes the names of the container networks.
-                
-                If the container networks do not fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>MaxResults</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Remove-SFMeshNetwork</command:name>
-                <command:verb>Remove</command:verb>
-                <command:noun>MeshNetwork</command:noun>
-                <maml:description>
-                    <maml:para>Deletes an existing Service Fabric container network.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Remove-SFMeshNetwork</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>A container network must be created before it can be deleted.
-                
-                A container network with any application member cannot be deleted. Remove all member applications from a container network before deleting it.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshNetwork</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshNetwork</command:noun>
-                <maml:description>
-                    <maml:para>Gets information about a Service Fabric container network.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshNetwork</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Returns the information about the container network that was created in the Service Fabric cluster whose network name matches the one specified as the network name parameter. 
-                
-                The response includes the name, type, status of the container network as well as type-specific information.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshNetworkApplicationRef</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshNetworkApplicationRef</command:noun>
-                <maml:description>
-                    <maml:para>Gets information about a Service Fabric application that is associated with a Service Fabric container network.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshNetworkApplicationRef</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about an application
-                  1) whose name matches the one specified as application name parameter
-                  2) is a member of the container network whose network name matches the one specified as the network name parameter.
-                
-                The response includes the name of the application.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshNetworkApplicationRefList</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshNetworkApplicationRefList</command:noun>
-                <maml:description>
-                    <maml:para>Gets the list of Service Fabric applications that are associated wtih a Service Fabric container network.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshNetworkApplicationRefList</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>MaxResults</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the applications that are members of the container network whose network name matches the one specified as the parameter.
-                
-                The response includes the names of the applications.
-                
-                If the applications do not fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>MaxResults</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshNetworks</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshNetworks</command:noun>
-                <maml:description>
-                    <maml:para>Gets the list of Service Fabric container networks created in the Service Fabric cluster that match the specified filters.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshNetworks</maml:name>
-                <command:parameter required="false">
-                        <maml:name>NetworkStatusFilter</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>MaxResults</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the container networks that were created in the Service Fabric cluster that match the specified filters.
-                
-                The response includes the name, type, status of the container networks as well as network type specific information like network address prefix of local container networks.
-                
-                If the container networks do not fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="false" position="0">
-                <maml:name>NetworkStatusFilter</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Allow filtering of container network state objects returned by GetNetworkInfoList query based on the container networks' status.
-                    - Default - Default value, which performs the same function as selecting "all". The value is 0.
-                    - All - Filter that matches input with any NetworkStatus value. The value is 65535.
-                    - Ready - Filter that matches input with NetworkStatus value ready. The value is 1.
-                    - Creating - Filter that matches input with NetworkStatus value creating. The value is 2.
-                    - Deleting - Filter that matches input with NetworkStatus value deleting. The value is 4.
-                    - Updating - Filter that matches input with NetworkStatus value updating. The value is 8.
-                    - Stopping - Filter that matches input with NetworkStatus value stopping. The value is 16.
-                    - Stopped - Filter that matches input with NetworkStatus value stopped. The value is 32.
-                    - Starting - Filter that matches input with NetworkStatus value starting. The value is 64.
-                    - Failed - Filter that matches input with NetworkStatus value failed. The value is 128.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">int?</command:parameterValue>
-                <dev:type>
-                    <maml:name>int?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>MaxResults</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshNetworkNodeInfo</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshNetworkNodeInfo</command:noun>
-                <maml:description>
-                    <maml:para>Gets the information about a Service Fabric node that a Service Fabric container network is deployed to.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshNetworkNodeInfo</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>NodeName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about a node
-                  1) Whose name matches the one specified as the node name parameter
-                  2) That a container network whose network name matches the one specified as the network name parameter is deployed to.
-                
-                The response includes the name of the node.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>NodeName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the node.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">NodeName</command:parameterValue>
-                <dev:type>
-                    <maml:name>NodeName</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshNetworkNodeInfoList</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshNetworkNodeInfoList</command:noun>
-                <maml:description>
-                    <maml:para>Gets the list of Service Fabric nodes a Service Fabric container network is deployed to.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshNetworkNodeInfoList</maml:name>
-                <command:parameter required="true">
-                        <maml:name>NetworkName</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>MaxResults</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>ServerTimeout</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the nodes a container network whose network name matches the one specified as the network name parameter is deployed to.
-                
-                The response includes the names of the nodes.
-                
-                If the nodes do not fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>NetworkName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of a Service Fabric container network. A network name serves as the identity of a container network and is case-sensitive.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>MaxResults</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -3610,7 +2817,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -5622,7 +4829,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -7230,7 +6437,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -8946,7 +8153,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -9058,7 +8265,11 @@
                 <maml:name>PartitionKeyValue</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Partition key. This is required if the partition scheme for the service is Int64Range or Named.
+                    Partition key. This is required if the partition scheme for the service is Int64Range or Named. 
+                    This is not the partition ID, but rather, either the integer key value, or the name of the partition ID.
+                    For example, if your service is using ranged partitions from 0 to 10, then they PartitionKeyValue would be an
+                    integer in that range. Query service description to see the range or name.
+                    
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">string</command:parameterValue>
@@ -9739,7 +8950,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -11892,7 +11103,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -12930,7 +12141,7 @@
                     If set to true, the report is removed from the health store after it expires.
                     If set to false, the report is treated as an error when expired. The value of this property is false by default.
                     When clients report periodically, they should set RemoveWhenExpired false (default).
-                    This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires.
+                    This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the health report expires.
                     This flags the entity as being in Error health state.
                     
                     </maml:para>
@@ -15049,7 +14260,7 @@
                 </command:syntaxItem>
             </command:syntax>
             <maml:description>
-                <maml:para>Deletes existing image store content being found within the given image store relative path. This can be used to delete uploaded application packages once they are provisioned.</maml:para>
+                <maml:para>Deletes existing image store content being found within the given image store relative path. This command can be used to delete uploaded application packages once they are provisioned.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" position="0">
@@ -16346,7 +15557,7 @@
                 </command:syntaxItem>
             </command:syntax>
             <maml:description>
-                <maml:para>Gets the a list of user-induced fault operations filtered by provided input.</maml:para>
+                <maml:para>Gets the list of user-induced fault operations filtered by provided input.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
@@ -16456,7 +15667,7 @@
                 <maml:name>Force</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Indicates whether to gracefully rollback and clean up internal system state modified by executing the user-induced operation.
+                    Indicates whether to gracefully roll back and clean up internal system state modified by executing the user-induced operation.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="true">bool?</command:parameterValue>
@@ -16517,6 +15728,9 @@
                 <command:parameter required="true">
                         <maml:name>Path</maml:name>
                 </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
                 <command:parameter required="false">
                         <maml:name>RunDays</maml:name>
                 </command:parameter>
@@ -16534,6 +15748,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
@@ -16658,7 +15875,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="true" position="9">
+                <maml:name>RetentionDuration</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    It is the minimum duration for which a backup created, will remain stored in the storage and might get deleted after that span of time. It should be specified in ISO8601 format.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">TimeSpan?</command:parameterValue>
+                <dev:type>
+                    <maml:name>TimeSpan?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="10">
                 <maml:name>RunDays</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16670,7 +15899,7 @@
                     <maml:name>IEnumerable&lt;DayOfWeek?&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16682,7 +15911,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16694,7 +15923,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16706,7 +15935,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16718,7 +15947,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16730,7 +15959,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
+                <maml:name>MinimumNumberOfBackups</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    It is the minimum number of backups to be retained at any point of time. If specified with a non zero value, backups will not be deleted even if the backups have gone past retention duration and have number of backups less than or equal to it.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="17">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16973,6 +16214,9 @@
                         <maml:name>Path</maml:name>
                 </command:parameter>
                 <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
                         <maml:name>BackupPolicyName</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
@@ -16992,6 +16236,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
@@ -17116,7 +16363,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="9">
+            <command:parameter required="true" position="9">
+                <maml:name>RetentionDuration</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    It is the minimum duration for which a backup created, will remain stored in the storage and might get deleted after that span of time. It should be specified in ISO8601 format.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">TimeSpan?</command:parameterValue>
+                <dev:type>
+                    <maml:name>TimeSpan?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="10">
                 <maml:name>BackupPolicyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17128,7 +16387,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>RunDays</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17140,7 +16399,7 @@
                     <maml:name>IEnumerable&lt;DayOfWeek?&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17152,7 +16411,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17164,7 +16423,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17176,7 +16435,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17188,7 +16447,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17200,7 +16459,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
+                <maml:name>MinimumNumberOfBackups</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    It is the minimum number of backups to be retained at any point of time. If specified with a non zero value, backups will not be deleted even if the backups have gone past retention duration and have number of backups less than or equal to it.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="18">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17299,6 +16570,9 @@
                 <command:parameter required="true">
                         <maml:name>ApplicationId</maml:name>
                 </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>CleanBackup</maml:name>
+                </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
                 </command:parameter>
@@ -17324,7 +16598,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="1">
+            <command:parameter required="true" position="1">
+                <maml:name>CleanBackup</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Boolean flag to delete backups. It can be set to true for deleting all the backups which were created for the backup entity that is getting disabled for backup.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17712,6 +16998,9 @@
                 <command:parameter required="true">
                         <maml:name>ServiceId</maml:name>
                 </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>CleanBackup</maml:name>
+                </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
                 </command:parameter>
@@ -17738,7 +17027,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="1">
+            <command:parameter required="true" position="1">
+                <maml:name>CleanBackup</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Boolean flag to delete backups. It can be set to true for deleting all the backups which were created for the backup entity that is getting disabled for backup.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18123,6 +17424,9 @@
                 <command:parameter required="true">
                         <maml:name>PartitionId</maml:name>
                 </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>CleanBackup</maml:name>
+                </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
                 </command:parameter>
@@ -18146,7 +17450,19 @@
                     <maml:name>PartitionId</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="1">
+            <command:parameter required="true" position="1">
+                <maml:name>CleanBackup</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Boolean flag to delete backups. It can be set to true for deleting all the backups which were created for the backup entity that is getting disabled for backup.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -20799,6 +20115,148 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>New-SFMeshApplication</command:name>
+                <command:verb>New</command:verb>
+                <command:noun>MeshApplication</command:noun>
+                <maml:description>
+                    <maml:para>Creates or updates an application resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFMeshApplication</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ApplicationResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Name</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Description</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>DebugParams</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Services</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Sinks</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Enabled</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>DefaultSinkRefs</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Creates an application with the specified name and description. If an application with the same name already exists, then its description are updated to the one indicated in this request.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Service Fabric application resource name.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>Name</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Application resource name.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>Description</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    User readable description of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>DebugParams</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Internal use.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
+                <maml:name>Services</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    describes the services in the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">IEnumerable&lt;ServiceResourceDescription&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;ServiceResourceDescription&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="5">
+                <maml:name>Sinks</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    List of supported sinks that can be referenced.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">IEnumerable&lt;DiagnosticsSinkProperties&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;DiagnosticsSinkProperties&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="6">
+                <maml:name>Enabled</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Status of whether or not sinks are enabled.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="7">
+                <maml:name>DefaultSinkRefs</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The sinks to be used if diagnostics is enabled. Sink choices can be overridden at the service and code package level.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">IEnumerable&lt;string&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;string&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Get-SFMeshApplication</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>MeshApplication</command:noun>
@@ -21006,6 +20464,133 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>New-SFMeshVolume</command:name>
+                <command:verb>New</command:verb>
+                <command:noun>MeshVolume</command:noun>
+                <maml:description>
+                    <maml:para>Creates or updates a volume resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFMeshVolume</maml:name>
+                <command:parameter required="true">
+                        <maml:name>VolumeResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Provider</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>AccountName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ShareName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Name</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Description</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>AccountKey</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Creates a volume resource with the specified name and description. If a volume with the same name already exists, then its description is updated to the one indicated in this request.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>VolumeResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Service Fabric volume resource name.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>Provider</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Provider of the volume.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="2">
+                <maml:name>AccountName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Name of the Azure storage account for the File Share.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="3">
+                <maml:name>ShareName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Name of the Azure Files file share that provides storage for the volume.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="4">
+                <maml:name>Name</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Volume resource name.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="5">
+                <maml:name>Description</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    User readable description of the volume.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="6">
+                <maml:name>AccountKey</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Access key of the Azure storage account for the File Share.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Get-SFMeshVolume</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>MeshVolume</command:noun>
@@ -21068,6 +20653,378 @@
                     <maml:para>
                     Service Fabric volume resource name.
                     
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>New-SFMeshSecret</command:name>
+                <command:verb>New</command:verb>
+                <command:noun>MeshSecret</command:noun>
+                <maml:description>
+                    <maml:para>Creates or updates a secret resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFMeshSecret</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Name</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Creates a secret resource with the specified name, description and metadata describing its value(s). If a secret resource with the same name does not exist, a new resource is created with specified properties.
+                If a secret resource with the same name exists, its description is updated. Updating an existing secret resource may not change its kind, name or content type. 
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>Kind</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Describes the kind of secret.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">SecretKind?</command:parameterValue>
+                <dev:type>
+                    <maml:name>SecretKind?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="2">
+                <maml:name>Name</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Secret resource name.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshSecret</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshSecret</command:noun>
+                <maml:description>
+                    <maml:para>Gets the secret resource with the specified name.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFMeshSecret</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Returns the information associated with the secret resource specified by name. The information includes the secret's kind, description and metadata describing its value. The secret's value is not included.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFMeshSecret</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>MeshSecret</command:noun>
+                <maml:description>
+                    <maml:para>Deletes the specified secret, including all of its versions.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Remove-SFMeshSecret</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Deletes the secret resource identified by the name; all of the versioned values of this secret, if any exist, are also deleted.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshSecrets</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshSecrets</command:noun>
+                <maml:description>
+                    <maml:para>Lists all secret resources.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all of the secret resources. The information includes each secret's kind, description and metadata describing its value. The secret values are not included.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Add-SFMeshSecretValue</command:name>
+                <command:verb>Add</command:verb>
+                <command:noun>MeshSecretValue</command:noun>
+                <maml:description>
+                    <maml:para>Adds the specified value as a new version of the specified secret resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Add-SFMeshSecretValue</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>SecretValueResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Name</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Creates a new value of the specified secret resource. The name of the value is typically the version identifier. Once created the value cannot be changed.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>SecretValueResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource value which is typically the version identifier for the value.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="2">
+                <maml:name>Name</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Version identifier of the secret value.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshSecretValue</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshSecretValue</command:noun>
+                <maml:description>
+                    <maml:para>Gets the specified secret value resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFMeshSecretValue</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>SecretValueResourceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Get the information about the specified named secret value resources. The information does not include the actual value of the secret.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>SecretValueResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource value which is typically the version identifier for the value.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFMeshSecretValue</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>MeshSecretValue</command:noun>
+                <maml:description>
+                    <maml:para>Deletes the specified  value of the named secret resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Remove-SFMeshSecretValue</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>SecretValueResourceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Deletes the secret value resource identified by the name. The name of the resource is typically the version associated with that value. Deletion will fail if the specified value is in use.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>SecretValueResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource value which is typically the version identifier for the value.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshSecretValue</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshSecretValue</command:noun>
+                <maml:description>
+                    <maml:para>Lists the specified value of the secret resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFMeshSecretValue</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>SecretValueResourceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFMeshSecretValue</maml:name>
+                <command:parameter required="true">
+                        <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Lists the decrypted value of the specified named value of the secret resource. This is a privileged operation.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>SecretValueResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource value which is typically the version identifier for the value.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="true">string</command:parameterValue>

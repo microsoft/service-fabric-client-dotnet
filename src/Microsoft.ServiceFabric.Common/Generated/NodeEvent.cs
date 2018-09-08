@@ -20,17 +20,20 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             FabricEventKind? kind,
             NodeName nodeName,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.NodeEvent,
+                category,
                 hasCorrelatedEvents)
         {
             nodeName.ThrowIfNull(nameof(nodeName));

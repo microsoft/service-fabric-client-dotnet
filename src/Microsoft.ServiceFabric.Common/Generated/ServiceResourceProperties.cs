@@ -26,6 +26,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
         /// <param name="description">User readable description of the service.</param>
         /// <param name="replicaCount">The number of replicas of the service to create. Defaults to 1 if not specified.</param>
+        /// <param name="autoScalingPolicies">Auto scaling policies</param>
         /// <param name="healthState">Describes the health state of an services resource. Possible values include: 'Invalid',
         /// 'Ok', 'Warning', 'Error', 'Unknown'
         /// 
@@ -40,6 +41,7 @@ namespace Microsoft.ServiceFabric.Common
             DiagnosticsRef diagnostics = default(DiagnosticsRef),
             string description = default(string),
             int? replicaCount = default(int?),
+            IEnumerable<AutoScalingPolicy> autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>),
             HealthState? healthState = default(HealthState?),
             ServiceResourceStatus? status = default(ServiceResourceStatus?))
             : base(
@@ -50,6 +52,7 @@ namespace Microsoft.ServiceFabric.Common
         {
             this.Description = description;
             this.ReplicaCount = replicaCount;
+            this.AutoScalingPolicies = autoScalingPolicies;
             this.HealthState = healthState;
             this.Status = status;
         }
@@ -63,6 +66,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the number of replicas of the service to create. Defaults to 1 if not specified.
         /// </summary>
         public int? ReplicaCount { get; }
+
+        /// <summary>
+        /// Gets auto scaling policies
+        /// </summary>
+        public IEnumerable<AutoScalingPolicy> AutoScalingPolicies { get; }
 
         /// <summary>
         /// Gets describes the health state of an services resource. Possible values include: 'Invalid', 'Ok', 'Warning',

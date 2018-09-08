@@ -30,6 +30,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="upgradeType">Type of upgrade.</param>
         /// <param name="rollingUpgradeMode">Mode of upgrade.</param>
         /// <param name="failureAction">Action if failed.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationUpgradeStartEvent(
             Guid? eventInstanceId,
@@ -41,12 +42,14 @@ namespace Microsoft.ServiceFabric.Common
             string upgradeType,
             string rollingUpgradeMode,
             string failureAction,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationUpgradeStart,
+                Common.FabricEventKind.ApplicationUpgradeStarted,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));

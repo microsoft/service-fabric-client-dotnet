@@ -19,11 +19,13 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="kind">The kind of FabricEvent.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         protected FabricEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             FabricEventKind? kind,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
         {
             eventInstanceId.ThrowIfNull(nameof(eventInstanceId));
@@ -32,6 +34,7 @@ namespace Microsoft.ServiceFabric.Common
             this.EventInstanceId = eventInstanceId;
             this.TimeStamp = timeStamp;
             this.Kind = kind;
+            this.Category = category;
             this.HasCorrelatedEvents = hasCorrelatedEvents;
         }
 
@@ -39,6 +42,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the identifier for the FabricEvent instance.
         /// </summary>
         public Guid? EventInstanceId { get; }
+
+        /// <summary>
+        /// Gets the category of event.
+        /// </summary>
+        public string Category { get; }
 
         /// <summary>
         /// Gets the time event was logged.

@@ -23,17 +23,20 @@ namespace Microsoft.ServiceFabric.Common
         /// randomly generated GUID when the service was created. The partition ID is unique and does not change for the
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             FabricEventKind? kind,
             PartitionId partitionId,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.PartitionEvent,
+                category,
                 hasCorrelatedEvents)
         {
             partitionId.ThrowIfNull(nameof(partitionId));

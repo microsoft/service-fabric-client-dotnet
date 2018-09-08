@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static ApplicationEvent GetFromJsonProperties(JsonReader reader)
         {
             var eventInstanceId = default(Guid?);
+            var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
             var applicationId = default(string);
@@ -53,7 +54,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return ApplicationDeletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationHealthReportCreated", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.Ordinal))
                     {
                         return ApplicationHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -61,27 +62,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return ApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.Ordinal))
                     {
                         return ApplicationUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeDomainComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.Ordinal))
                     {
                         return ApplicationUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeRollbackComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal))
                     {
                         return ApplicationUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeRollbackStart", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.Ordinal))
                     {
                         return ApplicationUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeStart", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.Ordinal))
                     {
                         return ApplicationUpgradeStartEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedApplicationHealthReportCreated", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.Ordinal))
                     {
                         return DeployedApplicationHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -89,29 +90,25 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return DeployedApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ProcessDeactivated", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationProcessExited", StringComparison.Ordinal))
                     {
                         return ProcessDeactivatedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ContainerDeactivated", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.Ordinal))
                     {
                         return ContainerDeactivatedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedServiceHealthReportCreated", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.Ordinal))
                     {
                         return DeployedServiceHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedServiceHealthReportExpired", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.Ordinal))
                     {
                         return DeployedServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosRestartCodePackageFaultScheduled", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.Ordinal))
                     {
                         return ChaosRestartCodePackageFaultScheduledEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosRestartCodePackageFaultCompleted", StringComparison.Ordinal))
-                    {
-                        return ChaosRestartCodePackageFaultCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationEvent", StringComparison.Ordinal))
                     {
@@ -127,6 +124,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
+                    }
+                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    {
+                        category = reader.ReadValueAsString();
                     }
                     else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                     {
@@ -151,6 +152,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new ApplicationEvent(
                 kind: Common.FabricEventKind.ApplicationEvent,
                 eventInstanceId: eventInstanceId,
+                category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
                 applicationId: applicationId);
@@ -165,10 +167,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.ApplicationId, "ApplicationId", JsonWriterExtensions.WriteStringValue);
+            if (obj.Category != null)
+            {
+                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);

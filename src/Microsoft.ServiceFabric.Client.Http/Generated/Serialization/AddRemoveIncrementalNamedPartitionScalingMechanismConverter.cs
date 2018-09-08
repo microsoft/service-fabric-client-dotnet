@@ -74,7 +74,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", ScalingMechanismKindConverter.Serialize);
             writer.WriteProperty(obj.MinPartitionCount, "MinPartitionCount", JsonWriterExtensions.WriteIntValue);
             writer.WriteProperty(obj.MaxPartitionCount, "MaxPartitionCount", JsonWriterExtensions.WriteIntValue);
             writer.WriteProperty(obj.ScaleIncrement, "ScaleIncrement", JsonWriterExtensions.WriteIntValue);

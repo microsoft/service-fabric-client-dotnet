@@ -22,20 +22,23 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="nodeId">Id of Node.</param>
         /// <param name="nodeInstance">Id of Node instance.</param>
         /// <param name="error">Describes error.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeCloseEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             NodeName nodeName,
             string nodeId,
-            string nodeInstance,
+            long? nodeInstance,
             string error,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.NodeClose,
+                Common.FabricEventKind.NodeClosed,
                 nodeName,
+                category,
                 hasCorrelatedEvents)
         {
             nodeId.ThrowIfNull(nameof(nodeId));
@@ -54,7 +57,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets id of Node instance.
         /// </summary>
-        public string NodeInstance { get; }
+        public long? NodeInstance { get; }
 
         /// <summary>
         /// Gets describes error.

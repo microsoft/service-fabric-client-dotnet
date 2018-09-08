@@ -28,7 +28,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets Force. Indicates whether to gracefully rollback and clean up internal system state modified by
+        /// Gets or sets Force. Indicates whether to gracefully roll back and clean up internal system state modified by
         /// executing the user-induced operation.
         /// </summary>
         [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "CancelOperation")]

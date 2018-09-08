@@ -17,12 +17,12 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the ClusterConfigurationUpgradeDescription class.
         /// </summary>
         /// <param name="clusterConfig">The cluster configuration.</param>
-        /// <param name="healthCheckRetryTimeout">The length of time between attempts to perform a health checks if the
+        /// <param name="healthCheckRetryTimeout">The length of time between attempts to perform health checks if the
         /// application or cluster is not healthy.</param>
         /// <param name="healthCheckWaitDurationInSeconds">The length of time to wait after completing an upgrade domain before
         /// starting the health checks process.</param>
         /// <param name="healthCheckStableDurationInSeconds">The length of time that the application or cluster must remain
-        /// healthy.</param>
+        /// healthy before the upgrade proceeds to the next upgrade domain.</param>
         /// <param name="upgradeDomainTimeoutInSeconds">The timeout for the upgrade domain.</param>
         /// <param name="upgradeTimeoutInSeconds">The upgrade timeout.</param>
         /// <param name="maxPercentUnhealthyApplications">The maximum allowed percentage of unhealthy applications during the
@@ -69,7 +69,7 @@ namespace Microsoft.ServiceFabric.Common
         public string ClusterConfig { get; }
 
         /// <summary>
-        /// Gets the length of time between attempts to perform a health checks if the application or cluster is not healthy.
+        /// Gets the length of time between attempts to perform health checks if the application or cluster is not healthy.
         /// </summary>
         public TimeSpan? HealthCheckRetryTimeout { get; }
 
@@ -79,7 +79,8 @@ namespace Microsoft.ServiceFabric.Common
         public TimeSpan? HealthCheckWaitDurationInSeconds { get; }
 
         /// <summary>
-        /// Gets the length of time that the application or cluster must remain healthy.
+        /// Gets the length of time that the application or cluster must remain healthy before the upgrade proceeds to the next
+        /// upgrade domain.
         /// </summary>
         public TimeSpan? HealthCheckStableDurationInSeconds { get; }
 

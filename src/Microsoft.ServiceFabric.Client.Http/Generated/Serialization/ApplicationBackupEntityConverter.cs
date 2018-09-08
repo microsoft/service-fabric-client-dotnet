@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.EntityKind.ToString(), "EntityKind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.EntityKind, "EntityKind", BackupEntityKindConverter.Serialize);
             if (obj.ApplicationName != null)
             {
                 writer.WriteProperty(obj.ApplicationName, "ApplicationName", ApplicationNameConverter.Serialize);

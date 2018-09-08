@@ -120,8 +120,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             if (output is StatefulServicePartitionInfo statefulServicePartitionInfo)
             {
-                result.Properties.Add(new PSNoteProperty("DataLossNumber", statefulServicePartitionInfo.CurrentConfigurationEpoch.DataLossVersion));
-                result.Properties.Add(new PSNoteProperty("ConfigurationNumber", statefulServicePartitionInfo.CurrentConfigurationEpoch.ConfigurationVersion));
+                result.Properties.Add(new PSNoteProperty("DataLossNumber", statefulServicePartitionInfo.PrimaryEpoch.DataLossVersion));
+                result.Properties.Add(new PSNoteProperty("ConfigurationNumber", statefulServicePartitionInfo.PrimaryEpoch.ConfigurationVersion));
             }
 
             return result;

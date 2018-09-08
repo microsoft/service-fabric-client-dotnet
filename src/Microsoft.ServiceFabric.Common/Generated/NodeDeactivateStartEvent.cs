@@ -22,6 +22,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="nodeInstance">Id of Node instance.</param>
         /// <param name="batchId">Batch Id.</param>
         /// <param name="deactivateIntent">Describes deactivate intent.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeDeactivateStartEvent(
             Guid? eventInstanceId,
@@ -30,12 +31,14 @@ namespace Microsoft.ServiceFabric.Common
             long? nodeInstance,
             string batchId,
             string deactivateIntent,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.NodeDeactivateStart,
+                Common.FabricEventKind.NodeDeactivateStarted,
                 nodeName,
+                category,
                 hasCorrelatedEvents)
         {
             nodeInstance.ThrowIfNull(nameof(nodeInstance));

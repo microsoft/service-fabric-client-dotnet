@@ -18,15 +18,18 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ContainerInstanceEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ContainerInstanceEvent,
+                category,
                 hasCorrelatedEvents)
         {
         }

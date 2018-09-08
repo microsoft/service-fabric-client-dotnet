@@ -137,15 +137,15 @@ namespace Microsoft.ServiceFabric.Client
         IMeshVolumesClient MeshVolumes { get; }
 
         /// <summary>
-        /// Gets ApplicationResource Client to perform management operations on network resources.
+        /// Gets MeshSecrets Client to perform management operations on Secret resources.
         /// </summary>
-        /// <returns>The <see cref="IMeshNetworksClient"/></returns>
-        IMeshNetworksClient MeshNetworks { get; }
+        /// <returns>The <see cref="IMeshSecretsClient"/></returns>
+        IMeshSecretsClient MeshSecrets { get; }
 
         /// <summary>
-        /// Gets VolumeResource Client to perform management operations on gateway resources.
+        /// Gets MeshSecretValues Client to perform management operations for Secret Values.
         /// </summary>
-        /// <returns>The <see cref="IMeshGatewaysClient"/></returns>
-        IMeshGatewaysClient MeshGateways { get; }
+        /// <returns>The <see cref="IMeshSecretsClient"/></returns>
+        IMeshSecretValuesClient MeshSecretValues { get; }
     }
 }

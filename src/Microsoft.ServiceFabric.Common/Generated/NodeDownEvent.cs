@@ -21,6 +21,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="nodeName">The name of a Service Fabric node.</param>
         /// <param name="nodeInstance">Id of Node instance.</param>
         /// <param name="lastNodeUpAt">Time when Node was last up.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeDownEvent(
             Guid? eventInstanceId,
@@ -28,12 +29,14 @@ namespace Microsoft.ServiceFabric.Common
             NodeName nodeName,
             long? nodeInstance,
             DateTime? lastNodeUpAt,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.NodeDown,
                 nodeName,
+                category,
                 hasCorrelatedEvents)
         {
             nodeInstance.ThrowIfNull(nameof(nodeInstance));

@@ -25,6 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="fabricVersion">Fabric version.</param>
         /// <param name="ipAddressOrFQDN">IP address or FQDN.</param>
         /// <param name="nodeCapacities">Capacities.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public NodeAddedEvent(
             Guid? eventInstanceId,
@@ -36,12 +37,14 @@ namespace Microsoft.ServiceFabric.Common
             string fabricVersion,
             string ipAddressOrFQDN,
             string nodeCapacities,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.NodeAdded,
+                Common.FabricEventKind.NodeAddedToCluster,
                 nodeName,
+                category,
                 hasCorrelatedEvents)
         {
             nodeId.ThrowIfNull(nameof(nodeId));

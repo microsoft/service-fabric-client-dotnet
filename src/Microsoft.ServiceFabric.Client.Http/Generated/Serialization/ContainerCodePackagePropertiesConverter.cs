@@ -47,6 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var volumes = default(IEnumerable<ApplicationScopedVolume>);
             var instanceView = default(ContainerInstanceView);
             var diagnostics = default(DiagnosticsRef);
+            var reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>);
 
             do
             {
@@ -107,6 +108,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     diagnostics = DiagnosticsRefConverter.Deserialize(reader);
                 }
+                else if (string.Compare("reliableCollectionsRefs", propName, StringComparison.Ordinal) == 0)
+                {
+                    reliableCollectionsRefs = reader.ReadList(ReliableCollectionsRefConverter.Deserialize);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -128,7 +133,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 volumeRefs: volumeRefs,
                 volumes: volumes,
                 instanceView: instanceView,
-                diagnostics: diagnostics);
+                diagnostics: diagnostics,
+                reliableCollectionsRefs: reliableCollectionsRefs);
         }
 
         /// <summary>
@@ -196,6 +202,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.Diagnostics != null)
             {
                 writer.WriteProperty(obj.Diagnostics, "diagnostics", DiagnosticsRefConverter.Serialize);
+            }
+
+            if (obj.ReliableCollectionsRefs != null)
+            {
+                writer.WriteEnumerableProperty(obj.ReliableCollectionsRefs, "reliableCollectionsRefs", ReliableCollectionsRefConverter.Serialize);
             }
 
             writer.WriteEndObject();

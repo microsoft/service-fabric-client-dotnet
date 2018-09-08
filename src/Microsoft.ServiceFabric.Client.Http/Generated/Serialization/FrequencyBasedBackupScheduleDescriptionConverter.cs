@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.ScheduleKind.ToString(), "ScheduleKind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.ScheduleKind, "ScheduleKind", BackupScheduleKindConverter.Serialize);
             writer.WriteProperty(obj.Interval, "Interval", JsonWriterExtensions.WriteTimeSpanValue);
             writer.WriteEndObject();
         }

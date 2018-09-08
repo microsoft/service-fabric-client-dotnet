@@ -36,6 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var lastReportedUtc = default(DateTime?);
             var name = default(string);
             var value = default(string);
+            var currentValue = default(string);
 
             do
             {
@@ -52,6 +53,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     value = reader.ReadValueAsString();
                 }
+                else if (string.Compare("CurrentValue", propName, StringComparison.Ordinal) == 0)
+                {
+                    currentValue = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -62,7 +67,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new LoadMetricReport(
                 lastReportedUtc: lastReportedUtc,
                 name: name,
-                value: value);
+                value: value,
+                currentValue: currentValue);
         }
 
         /// <summary>
@@ -87,6 +93,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.Value != null)
             {
                 writer.WriteProperty(obj.Value, "Value", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.CurrentValue != null)
+            {
+                writer.WriteProperty(obj.CurrentValue, "CurrentValue", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

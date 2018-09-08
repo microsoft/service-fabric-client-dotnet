@@ -28,6 +28,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="epochOfLastBackupRecord">Epoch of the last record in this backup.</param>
         /// <param name="lsnOfLastBackupRecord">LSN of the last record in this backup.</param>
         /// <param name="creationTimeUtc">The date time when this backup was taken.</param>
+        /// <param name="serviceManifestVersion">Manifest Version of the service this partition backup belongs to.</param>
         /// <param name="failureError">Denotes the failure encountered in getting backup point information.</param>
         public BackupInfo(
             Guid? backupId = default(Guid?),
@@ -37,9 +38,10 @@ namespace Microsoft.ServiceFabric.Common
             PartitionInformation partitionInformation = default(PartitionInformation),
             string backupLocation = default(string),
             BackupType? backupType = default(BackupType?),
-            BackupEpoch epochOfLastBackupRecord = default(BackupEpoch),
+            Epoch epochOfLastBackupRecord = default(Epoch),
             string lsnOfLastBackupRecord = default(string),
             DateTime? creationTimeUtc = default(DateTime?),
+            string serviceManifestVersion = default(string),
             FabricErrorError failureError = default(FabricErrorError))
         {
             this.BackupId = backupId;
@@ -52,6 +54,7 @@ namespace Microsoft.ServiceFabric.Common
             this.EpochOfLastBackupRecord = epochOfLastBackupRecord;
             this.LsnOfLastBackupRecord = lsnOfLastBackupRecord;
             this.CreationTimeUtc = creationTimeUtc;
+            this.ServiceManifestVersion = serviceManifestVersion;
             this.FailureError = failureError;
         }
 
@@ -95,7 +98,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets epoch of the last record in this backup.
         /// </summary>
-        public BackupEpoch EpochOfLastBackupRecord { get; }
+        public Epoch EpochOfLastBackupRecord { get; }
 
         /// <summary>
         /// Gets LSN of the last record in this backup.
@@ -106,6 +109,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the date time when this backup was taken.
         /// </summary>
         public DateTime? CreationTimeUtc { get; }
+
+        /// <summary>
+        /// Gets manifest Version of the service this partition backup belongs to.
+        /// </summary>
+        public string ServiceManifestVersion { get; }
 
         /// <summary>
         /// Gets denotes the failure encountered in getting backup point information.

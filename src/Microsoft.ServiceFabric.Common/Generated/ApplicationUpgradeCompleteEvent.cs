@@ -27,6 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="applicationTypeName">Application type name.</param>
         /// <param name="applicationTypeVersion">Application type version.</param>
         /// <param name="overallUpgradeElapsedTimeInMs">Overall upgrade time in milli-seconds.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationUpgradeCompleteEvent(
             Guid? eventInstanceId,
@@ -35,12 +36,14 @@ namespace Microsoft.ServiceFabric.Common
             string applicationTypeName,
             string applicationTypeVersion,
             double? overallUpgradeElapsedTimeInMs,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationUpgradeComplete,
+                Common.FabricEventKind.ApplicationUpgradeCompleted,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));

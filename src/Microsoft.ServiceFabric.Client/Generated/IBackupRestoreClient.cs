@@ -222,6 +222,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
+        /// <param name ="disableBackupDescription">Specifies the parameters to disable backup for any backup entity.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -233,6 +234,7 @@ namespace Microsoft.ServiceFabric.Client
         Task DisableApplicationBackupAsync(
             string applicationId,
             long? serverTimeout = 60,
+            DisableBackupDescription disableBackupDescription = default(DisableBackupDescription),
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -429,6 +431,7 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
+        /// <param name ="disableBackupDescription">Specifies the parameters to disable backup for any backup entity.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
@@ -442,6 +445,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DisableServiceBackupAsync(
             string serviceId,
+            DisableBackupDescription disableBackupDescription = default(DisableBackupDescription),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -627,6 +631,7 @@ namespace Microsoft.ServiceFabric.Client
         /// partition would continue to be periodically backed up as per the policy mapped at the higher level entity.
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
+        /// <param name ="disableBackupDescription">Specifies the parameters to disable backup for any backup entity.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
@@ -640,6 +645,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task DisablePartitionBackupAsync(
             PartitionId partitionId,
+            DisableBackupDescription disableBackupDescription = default(DisableBackupDescription),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
 

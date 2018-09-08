@@ -28,6 +28,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="currentNode">The name of a Service Fabric node.</param>
         /// <param name="moveReason">Move reason.</param>
         /// <param name="relevantTraces">Relevant traces.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionPrimaryMoveAnalysisEvent(
             Guid? eventInstanceId,
@@ -39,6 +40,7 @@ namespace Microsoft.ServiceFabric.Common
             NodeName currentNode,
             string moveReason,
             string relevantTraces,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
@@ -46,6 +48,7 @@ namespace Microsoft.ServiceFabric.Common
                 Common.FabricEventKind.PartitionPrimaryMoveAnalysis,
                 partitionId,
                 metadata,
+                category,
                 hasCorrelatedEvents)
         {
             whenMoveCompleted.ThrowIfNull(nameof(whenMoveCompleted));

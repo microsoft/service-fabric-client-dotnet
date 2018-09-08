@@ -13,6 +13,6 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// A simple secret resource whose plaintext value is provided by the user..
         /// </summary>
-        Simple,
+        InlinedValue,
     }
 }

@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ApplicationDeletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.Ordinal))
             {
                 obj = ApplicationHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -89,27 +89,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.Ordinal))
             {
                 obj = ApplicationUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeDomainComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.Ordinal))
             {
                 obj = ApplicationUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeRollbackComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal))
             {
                 obj = ApplicationUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeRollbackStart", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.Ordinal))
             {
                 obj = ApplicationUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeStart", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.Ordinal))
             {
                 obj = ApplicationUpgradeStartEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedApplicationHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.Ordinal))
             {
                 obj = DeployedApplicationHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -117,11 +117,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = DeployedApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ProcessDeactivated", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationProcessExited", StringComparison.Ordinal))
             {
                 obj = ProcessDeactivatedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ContainerDeactivated", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.Ordinal))
             {
                 obj = ContainerDeactivatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -129,27 +129,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = NodeAbortedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeAborting", StringComparison.Ordinal))
-            {
-                obj = NodeAbortingEventConverter.GetFromJsonProperties(reader);
-            }
-            else if (propValue.Equals("NodeAdded", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeAddedToCluster", StringComparison.Ordinal))
             {
                 obj = NodeAddedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeClose", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeClosed", StringComparison.Ordinal))
             {
                 obj = NodeCloseEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeClosing", StringComparison.Ordinal))
-            {
-                obj = NodeClosingEventConverter.GetFromJsonProperties(reader);
-            }
-            else if (propValue.Equals("NodeDeactivateComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.Ordinal))
             {
                 obj = NodeDeactivateCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeDeactivateStart", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeDeactivateStarted", StringComparison.Ordinal))
             {
                 obj = NodeDeactivateStartEventConverter.GetFromJsonProperties(reader);
             }
@@ -157,7 +149,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = NodeDownEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeNewHealthReport", StringComparison.Ordinal))
             {
                 obj = NodeHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -165,7 +157,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = NodeHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeOpenedSuccess", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeOpenSucceeded", StringComparison.Ordinal))
             {
                 obj = NodeOpenedSuccessEventConverter.GetFromJsonProperties(reader);
             }
@@ -173,11 +165,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = NodeOpenFailedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeOpening", StringComparison.Ordinal))
-            {
-                obj = NodeOpeningEventConverter.GetFromJsonProperties(reader);
-            }
-            else if (propValue.Equals("NodeRemoved", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.Ordinal))
             {
                 obj = NodeRemovedEventConverter.GetFromJsonProperties(reader);
             }
@@ -185,7 +173,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = NodeUpEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionNewHealthReport", StringComparison.Ordinal))
             {
                 obj = PartitionHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -193,7 +181,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = PartitionHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionReconfigurationCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionReconfigured", StringComparison.Ordinal))
             {
                 obj = PartitionReconfigurationCompletedEventConverter.GetFromJsonProperties(reader);
             }
@@ -209,7 +197,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ServiceDeletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ServiceHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("ServiceNewHealthReport", StringComparison.Ordinal))
             {
                 obj = ServiceHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -217,15 +205,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedServiceHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.Ordinal))
             {
                 obj = DeployedServiceHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedServiceHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.Ordinal))
             {
                 obj = DeployedServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("StatefulReplicaHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("StatefulReplicaNewHealthReport", StringComparison.Ordinal))
             {
                 obj = StatefulReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -233,7 +221,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = StatefulReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("StatelessReplicaHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("StatelessReplicaNewHealthReport", StringComparison.Ordinal))
             {
                 obj = StatelessReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -241,7 +229,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = StatelessReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterHealthReportCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterNewHealthReport", StringComparison.Ordinal))
             {
                 obj = ClusterHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
             }
@@ -249,23 +237,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ClusterHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.Ordinal))
             {
                 obj = ClusterUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeDomainComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.Ordinal))
             {
                 obj = ClusterUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeRollbackComplete", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.Ordinal))
             {
                 obj = ClusterUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeRollbackStart", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.Ordinal))
             {
                 obj = ClusterUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeStart", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.Ordinal))
             {
                 obj = ClusterUpgradeStartEventConverter.GetFromJsonProperties(reader);
             }
@@ -277,39 +265,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ChaosStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosRestartNodeFaultCompleted", StringComparison.Ordinal))
-            {
-                obj = ChaosRestartNodeFaultCompletedEventConverter.GetFromJsonProperties(reader);
-            }
-            else if (propValue.Equals("ChaosRestartCodePackageFaultScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.Ordinal))
             {
                 obj = ChaosRestartCodePackageFaultScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosRestartCodePackageFaultCompleted", StringComparison.Ordinal))
-            {
-                obj = ChaosRestartCodePackageFaultCompletedEventConverter.GetFromJsonProperties(reader);
-            }
-            else if (propValue.Equals("ChaosRemoveReplicaFaultScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosReplicaRemovalScheduled", StringComparison.Ordinal))
             {
                 obj = ChaosRemoveReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosRemoveReplicaFaultCompleted", StringComparison.Ordinal))
-            {
-                obj = ChaosRemoveReplicaFaultCompletedEventConverter.GetFromJsonProperties(reader);
-            }
-            else if (propValue.Equals("ChaosMoveSecondaryFaultScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosPartitionSecondaryMoveScheduled", StringComparison.Ordinal))
             {
                 obj = ChaosMoveSecondaryFaultScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosMovePrimaryFaultScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosPartitionPrimaryMoveScheduled", StringComparison.Ordinal))
             {
                 obj = ChaosMovePrimaryFaultScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosRestartReplicaFaultScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosReplicaRestartScheduled", StringComparison.Ordinal))
             {
                 obj = ChaosRestartReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosRestartNodeFaultScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.Ordinal))
             {
                 obj = ChaosRestartNodeFaultScheduledEventConverter.GetFromJsonProperties(reader);
             }
@@ -369,7 +345,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ApplicationDeletedEventConverter.Serialize(writer, (ApplicationDeletedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ApplicationHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.ApplicationNewHealthReport))
             {
                 ApplicationHealthReportCreatedEventConverter.Serialize(writer, (ApplicationHealthReportCreatedEvent)obj);
             }
@@ -377,27 +353,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ApplicationHealthReportExpiredEventConverter.Serialize(writer, (ApplicationHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ApplicationUpgradeComplete))
+            else if (kind.Equals(FabricEventKind.ApplicationUpgradeCompleted))
             {
                 ApplicationUpgradeCompleteEventConverter.Serialize(writer, (ApplicationUpgradeCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ApplicationUpgradeDomainComplete))
+            else if (kind.Equals(FabricEventKind.ApplicationUpgradeDomainCompleted))
             {
                 ApplicationUpgradeDomainCompleteEventConverter.Serialize(writer, (ApplicationUpgradeDomainCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ApplicationUpgradeRollbackComplete))
+            else if (kind.Equals(FabricEventKind.ApplicationUpgradeRollbackCompleted))
             {
                 ApplicationUpgradeRollbackCompleteEventConverter.Serialize(writer, (ApplicationUpgradeRollbackCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ApplicationUpgradeRollbackStart))
+            else if (kind.Equals(FabricEventKind.ApplicationUpgradeRollbackStarted))
             {
                 ApplicationUpgradeRollbackStartEventConverter.Serialize(writer, (ApplicationUpgradeRollbackStartEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ApplicationUpgradeStart))
+            else if (kind.Equals(FabricEventKind.ApplicationUpgradeStarted))
             {
                 ApplicationUpgradeStartEventConverter.Serialize(writer, (ApplicationUpgradeStartEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.DeployedApplicationHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.DeployedApplicationNewHealthReport))
             {
                 DeployedApplicationHealthReportCreatedEventConverter.Serialize(writer, (DeployedApplicationHealthReportCreatedEvent)obj);
             }
@@ -405,11 +381,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 DeployedApplicationHealthReportExpiredEventConverter.Serialize(writer, (DeployedApplicationHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ProcessDeactivated))
+            else if (kind.Equals(FabricEventKind.ApplicationProcessExited))
             {
                 ProcessDeactivatedEventConverter.Serialize(writer, (ProcessDeactivatedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ContainerDeactivated))
+            else if (kind.Equals(FabricEventKind.ApplicationContainerInstanceExited))
             {
                 ContainerDeactivatedEventConverter.Serialize(writer, (ContainerDeactivatedEvent)obj);
             }
@@ -417,27 +393,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 NodeAbortedEventConverter.Serialize(writer, (NodeAbortedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeAborting))
-            {
-                NodeAbortingEventConverter.Serialize(writer, (NodeAbortingEvent)obj);
-            }
-            else if (kind.Equals(FabricEventKind.NodeAdded))
+            else if (kind.Equals(FabricEventKind.NodeAddedToCluster))
             {
                 NodeAddedEventConverter.Serialize(writer, (NodeAddedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeClose))
+            else if (kind.Equals(FabricEventKind.NodeClosed))
             {
                 NodeCloseEventConverter.Serialize(writer, (NodeCloseEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeClosing))
-            {
-                NodeClosingEventConverter.Serialize(writer, (NodeClosingEvent)obj);
-            }
-            else if (kind.Equals(FabricEventKind.NodeDeactivateComplete))
+            else if (kind.Equals(FabricEventKind.NodeDeactivateCompleted))
             {
                 NodeDeactivateCompleteEventConverter.Serialize(writer, (NodeDeactivateCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeDeactivateStart))
+            else if (kind.Equals(FabricEventKind.NodeDeactivateStarted))
             {
                 NodeDeactivateStartEventConverter.Serialize(writer, (NodeDeactivateStartEvent)obj);
             }
@@ -445,7 +413,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 NodeDownEventConverter.Serialize(writer, (NodeDownEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.NodeNewHealthReport))
             {
                 NodeHealthReportCreatedEventConverter.Serialize(writer, (NodeHealthReportCreatedEvent)obj);
             }
@@ -453,7 +421,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 NodeHealthReportExpiredEventConverter.Serialize(writer, (NodeHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeOpenedSuccess))
+            else if (kind.Equals(FabricEventKind.NodeOpenSucceeded))
             {
                 NodeOpenedSuccessEventConverter.Serialize(writer, (NodeOpenedSuccessEvent)obj);
             }
@@ -461,11 +429,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 NodeOpenFailedEventConverter.Serialize(writer, (NodeOpenFailedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.NodeOpening))
-            {
-                NodeOpeningEventConverter.Serialize(writer, (NodeOpeningEvent)obj);
-            }
-            else if (kind.Equals(FabricEventKind.NodeRemoved))
+            else if (kind.Equals(FabricEventKind.NodeRemovedFromCluster))
             {
                 NodeRemovedEventConverter.Serialize(writer, (NodeRemovedEvent)obj);
             }
@@ -473,7 +437,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 NodeUpEventConverter.Serialize(writer, (NodeUpEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.PartitionHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.PartitionNewHealthReport))
             {
                 PartitionHealthReportCreatedEventConverter.Serialize(writer, (PartitionHealthReportCreatedEvent)obj);
             }
@@ -481,7 +445,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 PartitionHealthReportExpiredEventConverter.Serialize(writer, (PartitionHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.PartitionReconfigurationCompleted))
+            else if (kind.Equals(FabricEventKind.PartitionReconfigured))
             {
                 PartitionReconfigurationCompletedEventConverter.Serialize(writer, (PartitionReconfigurationCompletedEvent)obj);
             }
@@ -497,7 +461,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ServiceDeletedEventConverter.Serialize(writer, (ServiceDeletedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ServiceHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.ServiceNewHealthReport))
             {
                 ServiceHealthReportCreatedEventConverter.Serialize(writer, (ServiceHealthReportCreatedEvent)obj);
             }
@@ -505,15 +469,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ServiceHealthReportExpiredEventConverter.Serialize(writer, (ServiceHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.DeployedServiceHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.DeployedServicePackageNewHealthReport))
             {
                 DeployedServiceHealthReportCreatedEventConverter.Serialize(writer, (DeployedServiceHealthReportCreatedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.DeployedServiceHealthReportExpired))
+            else if (kind.Equals(FabricEventKind.DeployedServicePackageHealthReportExpired))
             {
                 DeployedServiceHealthReportExpiredEventConverter.Serialize(writer, (DeployedServiceHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.StatefulReplicaHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.StatefulReplicaNewHealthReport))
             {
                 StatefulReplicaHealthReportCreatedEventConverter.Serialize(writer, (StatefulReplicaHealthReportCreatedEvent)obj);
             }
@@ -521,7 +485,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 StatefulReplicaHealthReportExpiredEventConverter.Serialize(writer, (StatefulReplicaHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.StatelessReplicaHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.StatelessReplicaNewHealthReport))
             {
                 StatelessReplicaHealthReportCreatedEventConverter.Serialize(writer, (StatelessReplicaHealthReportCreatedEvent)obj);
             }
@@ -529,7 +493,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 StatelessReplicaHealthReportExpiredEventConverter.Serialize(writer, (StatelessReplicaHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ClusterHealthReportCreated))
+            else if (kind.Equals(FabricEventKind.ClusterNewHealthReport))
             {
                 ClusterHealthReportCreatedEventConverter.Serialize(writer, (ClusterHealthReportCreatedEvent)obj);
             }
@@ -537,23 +501,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ClusterHealthReportExpiredEventConverter.Serialize(writer, (ClusterHealthReportExpiredEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ClusterUpgradeComplete))
+            else if (kind.Equals(FabricEventKind.ClusterUpgradeCompleted))
             {
                 ClusterUpgradeCompleteEventConverter.Serialize(writer, (ClusterUpgradeCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ClusterUpgradeDomainComplete))
+            else if (kind.Equals(FabricEventKind.ClusterUpgradeDomainCompleted))
             {
                 ClusterUpgradeDomainCompleteEventConverter.Serialize(writer, (ClusterUpgradeDomainCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ClusterUpgradeRollbackComplete))
+            else if (kind.Equals(FabricEventKind.ClusterUpgradeRollbackCompleted))
             {
                 ClusterUpgradeRollbackCompleteEventConverter.Serialize(writer, (ClusterUpgradeRollbackCompleteEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ClusterUpgradeRollbackStart))
+            else if (kind.Equals(FabricEventKind.ClusterUpgradeRollbackStarted))
             {
                 ClusterUpgradeRollbackStartEventConverter.Serialize(writer, (ClusterUpgradeRollbackStartEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ClusterUpgradeStart))
+            else if (kind.Equals(FabricEventKind.ClusterUpgradeStarted))
             {
                 ClusterUpgradeStartEventConverter.Serialize(writer, (ClusterUpgradeStartEvent)obj);
             }
@@ -565,39 +529,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ChaosStartedEventConverter.Serialize(writer, (ChaosStartedEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ChaosRestartNodeFaultCompleted))
-            {
-                ChaosRestartNodeFaultCompletedEventConverter.Serialize(writer, (ChaosRestartNodeFaultCompletedEvent)obj);
-            }
-            else if (kind.Equals(FabricEventKind.ChaosRestartCodePackageFaultScheduled))
+            else if (kind.Equals(FabricEventKind.ChaosCodePackageRestartScheduled))
             {
                 ChaosRestartCodePackageFaultScheduledEventConverter.Serialize(writer, (ChaosRestartCodePackageFaultScheduledEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ChaosRestartCodePackageFaultCompleted))
-            {
-                ChaosRestartCodePackageFaultCompletedEventConverter.Serialize(writer, (ChaosRestartCodePackageFaultCompletedEvent)obj);
-            }
-            else if (kind.Equals(FabricEventKind.ChaosRemoveReplicaFaultScheduled))
+            else if (kind.Equals(FabricEventKind.ChaosReplicaRemovalScheduled))
             {
                 ChaosRemoveReplicaFaultScheduledEventConverter.Serialize(writer, (ChaosRemoveReplicaFaultScheduledEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ChaosRemoveReplicaFaultCompleted))
-            {
-                ChaosRemoveReplicaFaultCompletedEventConverter.Serialize(writer, (ChaosRemoveReplicaFaultCompletedEvent)obj);
-            }
-            else if (kind.Equals(FabricEventKind.ChaosMoveSecondaryFaultScheduled))
+            else if (kind.Equals(FabricEventKind.ChaosPartitionSecondaryMoveScheduled))
             {
                 ChaosMoveSecondaryFaultScheduledEventConverter.Serialize(writer, (ChaosMoveSecondaryFaultScheduledEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ChaosMovePrimaryFaultScheduled))
+            else if (kind.Equals(FabricEventKind.ChaosPartitionPrimaryMoveScheduled))
             {
                 ChaosMovePrimaryFaultScheduledEventConverter.Serialize(writer, (ChaosMovePrimaryFaultScheduledEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ChaosRestartReplicaFaultScheduled))
+            else if (kind.Equals(FabricEventKind.ChaosReplicaRestartScheduled))
             {
                 ChaosRestartReplicaFaultScheduledEventConverter.Serialize(writer, (ChaosRestartReplicaFaultScheduledEvent)obj);
             }
-            else if (kind.Equals(FabricEventKind.ChaosRestartNodeFaultScheduled))
+            else if (kind.Equals(FabricEventKind.ChaosNodeRestartScheduled))
             {
                 ChaosRestartNodeFaultScheduledEventConverter.Serialize(writer, (ChaosRestartNodeFaultScheduledEvent)obj);
             }

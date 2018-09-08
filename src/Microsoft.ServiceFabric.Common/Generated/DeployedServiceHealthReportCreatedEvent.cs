@@ -31,11 +31,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="sourceId">Id of report source.</param>
         /// <param name="property">Describes the property.</param>
         /// <param name="healthState">Describes the property health state.</param>
-        /// <param name="tTLTimespan">Time to live in milli-seconds.</param>
+        /// <param name="timeToLiveMs">Time to live in milli-seconds.</param>
         /// <param name="sequenceNumber">Sequence number of report.</param>
         /// <param name="description">Description of report.</param>
         /// <param name="removeWhenExpired">Indicates the removal when it expires.</param>
         /// <param name="sourceUtcTimestamp">Source time.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public DeployedServiceHealthReportCreatedEvent(
             Guid? eventInstanceId,
@@ -48,17 +49,19 @@ namespace Microsoft.ServiceFabric.Common
             string sourceId,
             string property,
             string healthState,
-            long? tTLTimespan,
+            long? timeToLiveMs,
             long? sequenceNumber,
             string description,
             bool? removeWhenExpired,
             DateTime? sourceUtcTimestamp,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.DeployedServiceHealthReportCreated,
+                Common.FabricEventKind.DeployedServicePackageNewHealthReport,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             serviceManifestName.ThrowIfNull(nameof(serviceManifestName));
@@ -68,7 +71,7 @@ namespace Microsoft.ServiceFabric.Common
             sourceId.ThrowIfNull(nameof(sourceId));
             property.ThrowIfNull(nameof(property));
             healthState.ThrowIfNull(nameof(healthState));
-            tTLTimespan.ThrowIfNull(nameof(tTLTimespan));
+            timeToLiveMs.ThrowIfNull(nameof(timeToLiveMs));
             sequenceNumber.ThrowIfNull(nameof(sequenceNumber));
             description.ThrowIfNull(nameof(description));
             removeWhenExpired.ThrowIfNull(nameof(removeWhenExpired));
@@ -80,7 +83,7 @@ namespace Microsoft.ServiceFabric.Common
             this.SourceId = sourceId;
             this.Property = property;
             this.HealthState = healthState;
-            this.TTLTimespan = tTLTimespan;
+            this.TimeToLiveMs = timeToLiveMs;
             this.SequenceNumber = sequenceNumber;
             this.Description = description;
             this.RemoveWhenExpired = removeWhenExpired;
@@ -125,7 +128,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets time to live in milli-seconds.
         /// </summary>
-        public long? TTLTimespan { get; }
+        public long? TimeToLiveMs { get; }
 
         /// <summary>
         /// Gets sequence number of report.

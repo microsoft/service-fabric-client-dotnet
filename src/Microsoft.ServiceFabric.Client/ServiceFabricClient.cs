@@ -123,10 +123,16 @@ namespace Microsoft.ServiceFabric.Client
         public IMeshVolumesClient MeshVolumes { get; protected set; }
 
         /// <inheritdoc/>
-        public IMeshNetworksClient MeshNetworks { get; protected set; }
+        /// public IMeshNetworksClient MeshNetworks { get; protected set; }
 
         /// <inheritdoc/>
-        public IMeshGatewaysClient MeshGateways { get; protected set; }
+        /// public IMeshGatewaysClient MeshGateways { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshSecretsClient MeshSecrets { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshSecretValuesClient MeshSecretValues { get; protected set; }
 
         /// <summary>
         /// Gets the client settings for connecting to cluster.

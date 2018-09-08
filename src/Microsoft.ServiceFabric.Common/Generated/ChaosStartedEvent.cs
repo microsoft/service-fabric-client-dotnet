@@ -28,6 +28,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="includedApplicationList">List of included Applications.</param>
         /// <param name="clusterHealthPolicy">Health policy.</param>
         /// <param name="chaosContext">Chaos Context.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ChaosStartedEvent(
             Guid? eventInstanceId,
@@ -42,11 +43,13 @@ namespace Microsoft.ServiceFabric.Common
             string includedApplicationList,
             string clusterHealthPolicy,
             string chaosContext,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ChaosStarted,
+                category,
                 hasCorrelatedEvents)
         {
             maxConcurrentFaults.ThrowIfNull(nameof(maxConcurrentFaults));

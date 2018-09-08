@@ -27,10 +27,9 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="lastQuorumLossDuration">The duration for which this partition was in quorum loss. If the partition is
         /// currently in quorum loss, it returns the duration since it has been in that state. This field is using ISO8601
         /// format for specifying the duration.</param>
-        /// <param name="currentConfigurationEpoch">An Epoch is a configuration number for the partition as a whole. When the
-        /// configuration of the replica set changes, for example when the Primary replica changes, the operations that are
-        /// replicated from the new Primary replica are said to be a new Epoch from the ones which were sent by the old Primary
-        /// replica.
+        /// <param name="primaryEpoch">An Epoch is a configuration number for the partition as a whole. When the configuration
+        /// of the replica set changes, for example when the Primary replica changes, the operations that are replicated from
+        /// the new Primary replica are said to be a new Epoch from the ones which were sent by the old Primary replica.
         /// </param>
         public StatefulServicePartitionInfo(
             HealthState? healthState = default(HealthState?),
@@ -39,7 +38,7 @@ namespace Microsoft.ServiceFabric.Common
             long? targetReplicaSetSize = default(long?),
             long? minReplicaSetSize = default(long?),
             TimeSpan? lastQuorumLossDuration = default(TimeSpan?),
-            Epoch currentConfigurationEpoch = default(Epoch))
+            Epoch primaryEpoch = default(Epoch))
             : base(
                 Common.ServiceKind.Stateful,
                 healthState,
@@ -49,7 +48,7 @@ namespace Microsoft.ServiceFabric.Common
             this.TargetReplicaSetSize = targetReplicaSetSize;
             this.MinReplicaSetSize = minReplicaSetSize;
             this.LastQuorumLossDuration = lastQuorumLossDuration;
-            this.CurrentConfigurationEpoch = currentConfigurationEpoch;
+            this.PrimaryEpoch = primaryEpoch;
         }
 
         /// <summary>
@@ -74,6 +73,6 @@ namespace Microsoft.ServiceFabric.Common
         /// changes, for example when the Primary replica changes, the operations that are replicated from the new Primary
         /// replica are said to be a new Epoch from the ones which were sent by the old Primary replica.
         /// </summary>
-        public Epoch CurrentConfigurationEpoch { get; }
+        public Epoch PrimaryEpoch { get; }
     }
 }

@@ -28,12 +28,14 @@ namespace Microsoft.ServiceFabric.Common
         /// </param>
         /// <param name="schedule">Describes the backup schedule parameters.</param>
         /// <param name="storage">Describes the details of backup storage where to store the periodic backups.</param>
+        /// <param name="retentionPolicy">Describes the policy to retain backups in storage.</param>
         public BackupPolicyDescription(
             string name,
             bool? autoRestoreOnDataLoss,
             int? maxIncrementalBackups,
             BackupScheduleDescription schedule,
-            BackupStorageDescription storage)
+            BackupStorageDescription storage,
+            RetentionPolicyDescription retentionPolicy = default(RetentionPolicyDescription))
         {
             name.ThrowIfNull(nameof(name));
             autoRestoreOnDataLoss.ThrowIfNull(nameof(autoRestoreOnDataLoss));
@@ -46,6 +48,7 @@ namespace Microsoft.ServiceFabric.Common
             this.MaxIncrementalBackups = maxIncrementalBackups;
             this.Schedule = schedule;
             this.Storage = storage;
+            this.RetentionPolicy = retentionPolicy;
         }
 
         /// <summary>
@@ -78,5 +81,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets describes the details of backup storage where to store the periodic backups.
         /// </summary>
         public BackupStorageDescription Storage { get; }
+
+        /// <summary>
+        /// Gets describes the policy to retain backups in storage.
+        /// </summary>
+        public RetentionPolicyDescription RetentionPolicy { get; }
     }
 }

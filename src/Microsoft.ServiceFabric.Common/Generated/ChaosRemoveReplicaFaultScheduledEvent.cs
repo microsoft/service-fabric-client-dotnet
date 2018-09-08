@@ -30,6 +30,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="faultGroupId">Id of fault group.</param>
         /// <param name="faultId">Id of fault.</param>
         /// <param name="serviceUri">Service name.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ChaosRemoveReplicaFaultScheduledEvent(
             Guid? eventInstanceId,
@@ -39,13 +40,15 @@ namespace Microsoft.ServiceFabric.Common
             Guid? faultGroupId,
             Guid? faultId,
             string serviceUri,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosRemoveReplicaFaultScheduled,
+                Common.FabricEventKind.ChaosReplicaRemovalScheduled,
                 partitionId,
                 replicaId,
+                category,
                 hasCorrelatedEvents)
         {
             faultGroupId.ThrowIfNull(nameof(faultGroupId));

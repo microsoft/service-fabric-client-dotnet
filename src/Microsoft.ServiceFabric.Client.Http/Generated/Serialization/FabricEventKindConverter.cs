@@ -66,121 +66,109 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricEventKind.ApplicationDeleted;
             }
-            else if (string.Compare(value, "ApplicationHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ApplicationHealthReportCreated;
+                obj = FabricEventKind.ApplicationNewHealthReport;
             }
             else if (string.Compare(value, "ApplicationHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.ApplicationHealthReportExpired;
             }
-            else if (string.Compare(value, "ApplicationUpgradeComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ApplicationUpgradeComplete;
+                obj = FabricEventKind.ApplicationUpgradeCompleted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeDomainComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeDomainCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ApplicationUpgradeDomainComplete;
+                obj = FabricEventKind.ApplicationUpgradeDomainCompleted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeRollbackComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ApplicationUpgradeRollbackComplete;
+                obj = FabricEventKind.ApplicationUpgradeRollbackCompleted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeRollbackStart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeRollbackStarted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ApplicationUpgradeRollbackStart;
+                obj = FabricEventKind.ApplicationUpgradeRollbackStarted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeStart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeStarted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ApplicationUpgradeStart;
+                obj = FabricEventKind.ApplicationUpgradeStarted;
             }
-            else if (string.Compare(value, "DeployedApplicationHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedApplicationNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.DeployedApplicationHealthReportCreated;
+                obj = FabricEventKind.DeployedApplicationNewHealthReport;
             }
             else if (string.Compare(value, "DeployedApplicationHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.DeployedApplicationHealthReportExpired;
             }
-            else if (string.Compare(value, "ProcessDeactivated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationProcessExited", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ProcessDeactivated;
+                obj = FabricEventKind.ApplicationProcessExited;
             }
-            else if (string.Compare(value, "ContainerDeactivated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationContainerInstanceExited", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ContainerDeactivated;
+                obj = FabricEventKind.ApplicationContainerInstanceExited;
             }
             else if (string.Compare(value, "NodeAborted", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.NodeAborted;
             }
-            else if (string.Compare(value, "NodeAborting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeAddedToCluster", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeAborting;
+                obj = FabricEventKind.NodeAddedToCluster;
             }
-            else if (string.Compare(value, "NodeAdded", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeClosed", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeAdded;
+                obj = FabricEventKind.NodeClosed;
             }
-            else if (string.Compare(value, "NodeClose", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeDeactivateCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeClose;
+                obj = FabricEventKind.NodeDeactivateCompleted;
             }
-            else if (string.Compare(value, "NodeClosing", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeDeactivateStarted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeClosing;
-            }
-            else if (string.Compare(value, "NodeDeactivateComplete", StringComparison.Ordinal) == 0)
-            {
-                obj = FabricEventKind.NodeDeactivateComplete;
-            }
-            else if (string.Compare(value, "NodeDeactivateStart", StringComparison.Ordinal) == 0)
-            {
-                obj = FabricEventKind.NodeDeactivateStart;
+                obj = FabricEventKind.NodeDeactivateStarted;
             }
             else if (string.Compare(value, "NodeDown", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.NodeDown;
             }
-            else if (string.Compare(value, "NodeHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeHealthReportCreated;
+                obj = FabricEventKind.NodeNewHealthReport;
             }
             else if (string.Compare(value, "NodeHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.NodeHealthReportExpired;
             }
-            else if (string.Compare(value, "NodeOpenedSuccess", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeOpenSucceeded", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeOpenedSuccess;
+                obj = FabricEventKind.NodeOpenSucceeded;
             }
             else if (string.Compare(value, "NodeOpenFailed", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.NodeOpenFailed;
             }
-            else if (string.Compare(value, "NodeOpening", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeRemovedFromCluster", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.NodeOpening;
-            }
-            else if (string.Compare(value, "NodeRemoved", StringComparison.Ordinal) == 0)
-            {
-                obj = FabricEventKind.NodeRemoved;
+                obj = FabricEventKind.NodeRemovedFromCluster;
             }
             else if (string.Compare(value, "NodeUp", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.NodeUp;
             }
-            else if (string.Compare(value, "PartitionHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.PartitionHealthReportCreated;
+                obj = FabricEventKind.PartitionNewHealthReport;
             }
             else if (string.Compare(value, "PartitionHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.PartitionHealthReportExpired;
             }
-            else if (string.Compare(value, "PartitionReconfigurationCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionReconfigured", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.PartitionReconfigurationCompleted;
+                obj = FabricEventKind.PartitionReconfigured;
             }
             else if (string.Compare(value, "PartitionPrimaryMoveAnalysis", StringComparison.Ordinal) == 0)
             {
@@ -194,65 +182,65 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricEventKind.ServiceDeleted;
             }
-            else if (string.Compare(value, "ServiceHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ServiceNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ServiceHealthReportCreated;
+                obj = FabricEventKind.ServiceNewHealthReport;
             }
             else if (string.Compare(value, "ServiceHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.ServiceHealthReportExpired;
             }
-            else if (string.Compare(value, "DeployedServiceHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackageNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.DeployedServiceHealthReportCreated;
+                obj = FabricEventKind.DeployedServicePackageNewHealthReport;
             }
-            else if (string.Compare(value, "DeployedServiceHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackageHealthReportExpired", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.DeployedServiceHealthReportExpired;
+                obj = FabricEventKind.DeployedServicePackageHealthReportExpired;
             }
-            else if (string.Compare(value, "StatefulReplicaHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatefulReplicaNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.StatefulReplicaHealthReportCreated;
+                obj = FabricEventKind.StatefulReplicaNewHealthReport;
             }
             else if (string.Compare(value, "StatefulReplicaHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.StatefulReplicaHealthReportExpired;
             }
-            else if (string.Compare(value, "StatelessReplicaHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatelessReplicaNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.StatelessReplicaHealthReportCreated;
+                obj = FabricEventKind.StatelessReplicaNewHealthReport;
             }
             else if (string.Compare(value, "StatelessReplicaHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.StatelessReplicaHealthReportExpired;
             }
-            else if (string.Compare(value, "ClusterHealthReportCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterNewHealthReport", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ClusterHealthReportCreated;
+                obj = FabricEventKind.ClusterNewHealthReport;
             }
             else if (string.Compare(value, "ClusterHealthReportExpired", StringComparison.Ordinal) == 0)
             {
                 obj = FabricEventKind.ClusterHealthReportExpired;
             }
-            else if (string.Compare(value, "ClusterUpgradeComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ClusterUpgradeComplete;
+                obj = FabricEventKind.ClusterUpgradeCompleted;
             }
-            else if (string.Compare(value, "ClusterUpgradeDomainComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeDomainCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ClusterUpgradeDomainComplete;
+                obj = FabricEventKind.ClusterUpgradeDomainCompleted;
             }
-            else if (string.Compare(value, "ClusterUpgradeRollbackComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeRollbackCompleted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ClusterUpgradeRollbackComplete;
+                obj = FabricEventKind.ClusterUpgradeRollbackCompleted;
             }
-            else if (string.Compare(value, "ClusterUpgradeRollbackStart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeRollbackStarted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ClusterUpgradeRollbackStart;
+                obj = FabricEventKind.ClusterUpgradeRollbackStarted;
             }
-            else if (string.Compare(value, "ClusterUpgradeStart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeStarted", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ClusterUpgradeStart;
+                obj = FabricEventKind.ClusterUpgradeStarted;
             }
             else if (string.Compare(value, "ChaosStopped", StringComparison.Ordinal) == 0)
             {
@@ -262,41 +250,29 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricEventKind.ChaosStarted;
             }
-            else if (string.Compare(value, "ChaosRestartNodeFaultCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosCodePackageRestartScheduled", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ChaosRestartNodeFaultCompleted;
+                obj = FabricEventKind.ChaosCodePackageRestartScheduled;
             }
-            else if (string.Compare(value, "ChaosRestartCodePackageFaultScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosReplicaRemovalScheduled", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ChaosRestartCodePackageFaultScheduled;
+                obj = FabricEventKind.ChaosReplicaRemovalScheduled;
             }
-            else if (string.Compare(value, "ChaosRestartCodePackageFaultCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosPartitionSecondaryMoveScheduled", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ChaosRestartCodePackageFaultCompleted;
+                obj = FabricEventKind.ChaosPartitionSecondaryMoveScheduled;
             }
-            else if (string.Compare(value, "ChaosRemoveReplicaFaultScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosPartitionPrimaryMoveScheduled", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ChaosRemoveReplicaFaultScheduled;
+                obj = FabricEventKind.ChaosPartitionPrimaryMoveScheduled;
             }
-            else if (string.Compare(value, "ChaosRemoveReplicaFaultCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosReplicaRestartScheduled", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ChaosRemoveReplicaFaultCompleted;
+                obj = FabricEventKind.ChaosReplicaRestartScheduled;
             }
-            else if (string.Compare(value, "ChaosMoveSecondaryFaultScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosNodeRestartScheduled", StringComparison.Ordinal) == 0)
             {
-                obj = FabricEventKind.ChaosMoveSecondaryFaultScheduled;
-            }
-            else if (string.Compare(value, "ChaosMovePrimaryFaultScheduled", StringComparison.Ordinal) == 0)
-            {
-                obj = FabricEventKind.ChaosMovePrimaryFaultScheduled;
-            }
-            else if (string.Compare(value, "ChaosRestartReplicaFaultScheduled", StringComparison.Ordinal) == 0)
-            {
-                obj = FabricEventKind.ChaosRestartReplicaFaultScheduled;
-            }
-            else if (string.Compare(value, "ChaosRestartNodeFaultScheduled", StringComparison.Ordinal) == 0)
-            {
-                obj = FabricEventKind.ChaosRestartNodeFaultScheduled;
+                obj = FabricEventKind.ChaosNodeRestartScheduled;
             }
 
             return obj;
@@ -341,92 +317,83 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case FabricEventKind.ApplicationDeleted:
                     writer.WriteStringValue("ApplicationDeleted");
                     break;
-                case FabricEventKind.ApplicationHealthReportCreated:
-                    writer.WriteStringValue("ApplicationHealthReportCreated");
+                case FabricEventKind.ApplicationNewHealthReport:
+                    writer.WriteStringValue("ApplicationNewHealthReport");
                     break;
                 case FabricEventKind.ApplicationHealthReportExpired:
                     writer.WriteStringValue("ApplicationHealthReportExpired");
                     break;
-                case FabricEventKind.ApplicationUpgradeComplete:
-                    writer.WriteStringValue("ApplicationUpgradeComplete");
+                case FabricEventKind.ApplicationUpgradeCompleted:
+                    writer.WriteStringValue("ApplicationUpgradeCompleted");
                     break;
-                case FabricEventKind.ApplicationUpgradeDomainComplete:
-                    writer.WriteStringValue("ApplicationUpgradeDomainComplete");
+                case FabricEventKind.ApplicationUpgradeDomainCompleted:
+                    writer.WriteStringValue("ApplicationUpgradeDomainCompleted");
                     break;
-                case FabricEventKind.ApplicationUpgradeRollbackComplete:
-                    writer.WriteStringValue("ApplicationUpgradeRollbackComplete");
+                case FabricEventKind.ApplicationUpgradeRollbackCompleted:
+                    writer.WriteStringValue("ApplicationUpgradeRollbackCompleted");
                     break;
-                case FabricEventKind.ApplicationUpgradeRollbackStart:
-                    writer.WriteStringValue("ApplicationUpgradeRollbackStart");
+                case FabricEventKind.ApplicationUpgradeRollbackStarted:
+                    writer.WriteStringValue("ApplicationUpgradeRollbackStarted");
                     break;
-                case FabricEventKind.ApplicationUpgradeStart:
-                    writer.WriteStringValue("ApplicationUpgradeStart");
+                case FabricEventKind.ApplicationUpgradeStarted:
+                    writer.WriteStringValue("ApplicationUpgradeStarted");
                     break;
-                case FabricEventKind.DeployedApplicationHealthReportCreated:
-                    writer.WriteStringValue("DeployedApplicationHealthReportCreated");
+                case FabricEventKind.DeployedApplicationNewHealthReport:
+                    writer.WriteStringValue("DeployedApplicationNewHealthReport");
                     break;
                 case FabricEventKind.DeployedApplicationHealthReportExpired:
                     writer.WriteStringValue("DeployedApplicationHealthReportExpired");
                     break;
-                case FabricEventKind.ProcessDeactivated:
-                    writer.WriteStringValue("ProcessDeactivated");
+                case FabricEventKind.ApplicationProcessExited:
+                    writer.WriteStringValue("ApplicationProcessExited");
                     break;
-                case FabricEventKind.ContainerDeactivated:
-                    writer.WriteStringValue("ContainerDeactivated");
+                case FabricEventKind.ApplicationContainerInstanceExited:
+                    writer.WriteStringValue("ApplicationContainerInstanceExited");
                     break;
                 case FabricEventKind.NodeAborted:
                     writer.WriteStringValue("NodeAborted");
                     break;
-                case FabricEventKind.NodeAborting:
-                    writer.WriteStringValue("NodeAborting");
+                case FabricEventKind.NodeAddedToCluster:
+                    writer.WriteStringValue("NodeAddedToCluster");
                     break;
-                case FabricEventKind.NodeAdded:
-                    writer.WriteStringValue("NodeAdded");
+                case FabricEventKind.NodeClosed:
+                    writer.WriteStringValue("NodeClosed");
                     break;
-                case FabricEventKind.NodeClose:
-                    writer.WriteStringValue("NodeClose");
+                case FabricEventKind.NodeDeactivateCompleted:
+                    writer.WriteStringValue("NodeDeactivateCompleted");
                     break;
-                case FabricEventKind.NodeClosing:
-                    writer.WriteStringValue("NodeClosing");
-                    break;
-                case FabricEventKind.NodeDeactivateComplete:
-                    writer.WriteStringValue("NodeDeactivateComplete");
-                    break;
-                case FabricEventKind.NodeDeactivateStart:
-                    writer.WriteStringValue("NodeDeactivateStart");
+                case FabricEventKind.NodeDeactivateStarted:
+                    writer.WriteStringValue("NodeDeactivateStarted");
                     break;
                 case FabricEventKind.NodeDown:
                     writer.WriteStringValue("NodeDown");
                     break;
-                case FabricEventKind.NodeHealthReportCreated:
-                    writer.WriteStringValue("NodeHealthReportCreated");
+                case FabricEventKind.NodeNewHealthReport:
+                    writer.WriteStringValue("NodeNewHealthReport");
                     break;
                 case FabricEventKind.NodeHealthReportExpired:
                     writer.WriteStringValue("NodeHealthReportExpired");
                     break;
-                case FabricEventKind.NodeOpenedSuccess:
-                    writer.WriteStringValue("NodeOpenedSuccess");
+                case FabricEventKind.NodeOpenSucceeded:
+                    writer.WriteStringValue("NodeOpenSucceeded");
                     break;
                 case FabricEventKind.NodeOpenFailed:
                     writer.WriteStringValue("NodeOpenFailed");
                     break;
-                case FabricEventKind.NodeOpening:
-                    writer.WriteStringValue("NodeOpening");
-                    break;
-                case FabricEventKind.NodeRemoved:
-                    writer.WriteStringValue("NodeRemoved");
+                case FabricEventKind.NodeRemovedFromCluster:
+                    writer.WriteStringValue("NodeRemovedFromCluster");
                     break;
                 case FabricEventKind.NodeUp:
                     writer.WriteStringValue("NodeUp");
                     break;
-                case FabricEventKind.PartitionHealthReportCreated:
-                    writer.WriteStringValue("PartitionHealthReportCreated");
+                case FabricEventKind.PartitionNewHealthReport:
+                    writer.WriteStringValue("PartitionNewHealthReport");
                     break;
                 case FabricEventKind.PartitionHealthReportExpired:
                     writer.WriteStringValue("PartitionHealthReportExpired");
                     break;
-                case FabricEventKind.PartitionReconfigurationCompleted:
-                    writer.WriteStringValue("PartitionReconfigurationCompleted");
+                case FabricEventKind.PartitionReconfigured:
+                    writer.WriteStringValue("PartitionReconfigured");
                     break;
                 case FabricEventKind.PartitionPrimaryMoveAnalysis:
                     writer.WriteStringValue("PartitionPrimaryMoveAnalysis");
@@ -437,50 +404,50 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case FabricEventKind.ServiceDeleted:
                     writer.WriteStringValue("ServiceDeleted");
                     break;
-                case FabricEventKind.ServiceHealthReportCreated:
-                    writer.WriteStringValue("ServiceHealthReportCreated");
+                case FabricEventKind.ServiceNewHealthReport:
+                    writer.WriteStringValue("ServiceNewHealthReport");
                     break;
                 case FabricEventKind.ServiceHealthReportExpired:
                     writer.WriteStringValue("ServiceHealthReportExpired");
                     break;
-                case FabricEventKind.DeployedServiceHealthReportCreated:
-                    writer.WriteStringValue("DeployedServiceHealthReportCreated");
+                case FabricEventKind.DeployedServicePackageNewHealthReport:
+                    writer.WriteStringValue("DeployedServicePackageNewHealthReport");
                     break;
-                case FabricEventKind.DeployedServiceHealthReportExpired:
-                    writer.WriteStringValue("DeployedServiceHealthReportExpired");
+                case FabricEventKind.DeployedServicePackageHealthReportExpired:
+                    writer.WriteStringValue("DeployedServicePackageHealthReportExpired");
                     break;
-                case FabricEventKind.StatefulReplicaHealthReportCreated:
-                    writer.WriteStringValue("StatefulReplicaHealthReportCreated");
+                case FabricEventKind.StatefulReplicaNewHealthReport:
+                    writer.WriteStringValue("StatefulReplicaNewHealthReport");
                     break;
                 case FabricEventKind.StatefulReplicaHealthReportExpired:
                     writer.WriteStringValue("StatefulReplicaHealthReportExpired");
                     break;
-                case FabricEventKind.StatelessReplicaHealthReportCreated:
-                    writer.WriteStringValue("StatelessReplicaHealthReportCreated");
+                case FabricEventKind.StatelessReplicaNewHealthReport:
+                    writer.WriteStringValue("StatelessReplicaNewHealthReport");
                     break;
                 case FabricEventKind.StatelessReplicaHealthReportExpired:
                     writer.WriteStringValue("StatelessReplicaHealthReportExpired");
                     break;
-                case FabricEventKind.ClusterHealthReportCreated:
-                    writer.WriteStringValue("ClusterHealthReportCreated");
+                case FabricEventKind.ClusterNewHealthReport:
+                    writer.WriteStringValue("ClusterNewHealthReport");
                     break;
                 case FabricEventKind.ClusterHealthReportExpired:
                     writer.WriteStringValue("ClusterHealthReportExpired");
                     break;
-                case FabricEventKind.ClusterUpgradeComplete:
-                    writer.WriteStringValue("ClusterUpgradeComplete");
+                case FabricEventKind.ClusterUpgradeCompleted:
+                    writer.WriteStringValue("ClusterUpgradeCompleted");
                     break;
-                case FabricEventKind.ClusterUpgradeDomainComplete:
-                    writer.WriteStringValue("ClusterUpgradeDomainComplete");
+                case FabricEventKind.ClusterUpgradeDomainCompleted:
+                    writer.WriteStringValue("ClusterUpgradeDomainCompleted");
                     break;
-                case FabricEventKind.ClusterUpgradeRollbackComplete:
-                    writer.WriteStringValue("ClusterUpgradeRollbackComplete");
+                case FabricEventKind.ClusterUpgradeRollbackCompleted:
+                    writer.WriteStringValue("ClusterUpgradeRollbackCompleted");
                     break;
-                case FabricEventKind.ClusterUpgradeRollbackStart:
-                    writer.WriteStringValue("ClusterUpgradeRollbackStart");
+                case FabricEventKind.ClusterUpgradeRollbackStarted:
+                    writer.WriteStringValue("ClusterUpgradeRollbackStarted");
                     break;
-                case FabricEventKind.ClusterUpgradeStart:
-                    writer.WriteStringValue("ClusterUpgradeStart");
+                case FabricEventKind.ClusterUpgradeStarted:
+                    writer.WriteStringValue("ClusterUpgradeStarted");
                     break;
                 case FabricEventKind.ChaosStopped:
                     writer.WriteStringValue("ChaosStopped");
@@ -488,32 +455,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case FabricEventKind.ChaosStarted:
                     writer.WriteStringValue("ChaosStarted");
                     break;
-                case FabricEventKind.ChaosRestartNodeFaultCompleted:
-                    writer.WriteStringValue("ChaosRestartNodeFaultCompleted");
+                case FabricEventKind.ChaosCodePackageRestartScheduled:
+                    writer.WriteStringValue("ChaosCodePackageRestartScheduled");
                     break;
-                case FabricEventKind.ChaosRestartCodePackageFaultScheduled:
-                    writer.WriteStringValue("ChaosRestartCodePackageFaultScheduled");
+                case FabricEventKind.ChaosReplicaRemovalScheduled:
+                    writer.WriteStringValue("ChaosReplicaRemovalScheduled");
                     break;
-                case FabricEventKind.ChaosRestartCodePackageFaultCompleted:
-                    writer.WriteStringValue("ChaosRestartCodePackageFaultCompleted");
+                case FabricEventKind.ChaosPartitionSecondaryMoveScheduled:
+                    writer.WriteStringValue("ChaosPartitionSecondaryMoveScheduled");
                     break;
-                case FabricEventKind.ChaosRemoveReplicaFaultScheduled:
-                    writer.WriteStringValue("ChaosRemoveReplicaFaultScheduled");
+                case FabricEventKind.ChaosPartitionPrimaryMoveScheduled:
+                    writer.WriteStringValue("ChaosPartitionPrimaryMoveScheduled");
                     break;
-                case FabricEventKind.ChaosRemoveReplicaFaultCompleted:
-                    writer.WriteStringValue("ChaosRemoveReplicaFaultCompleted");
+                case FabricEventKind.ChaosReplicaRestartScheduled:
+                    writer.WriteStringValue("ChaosReplicaRestartScheduled");
                     break;
-                case FabricEventKind.ChaosMoveSecondaryFaultScheduled:
-                    writer.WriteStringValue("ChaosMoveSecondaryFaultScheduled");
-                    break;
-                case FabricEventKind.ChaosMovePrimaryFaultScheduled:
-                    writer.WriteStringValue("ChaosMovePrimaryFaultScheduled");
-                    break;
-                case FabricEventKind.ChaosRestartReplicaFaultScheduled:
-                    writer.WriteStringValue("ChaosRestartReplicaFaultScheduled");
-                    break;
-                case FabricEventKind.ChaosRestartNodeFaultScheduled:
-                    writer.WriteStringValue("ChaosRestartNodeFaultScheduled");
+                case FabricEventKind.ChaosNodeRestartScheduled:
+                    writer.WriteStringValue("ChaosNodeRestartScheduled");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type FabricEventKind");

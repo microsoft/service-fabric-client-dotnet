@@ -25,17 +25,20 @@ namespace Microsoft.ServiceFabric.Common
         /// name is "fabric:/myapp/app1",
         /// the application identity would be "myapp\~app1" in 6.0+ and "myapp/app1" in previous versions.
         /// </param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             FabricEventKind? kind,
             string applicationId,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ApplicationEvent,
+                category,
                 hasCorrelatedEvents)
         {
             applicationId.ThrowIfNull(nameof(applicationId));

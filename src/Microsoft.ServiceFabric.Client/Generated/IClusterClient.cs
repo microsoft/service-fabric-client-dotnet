@@ -570,10 +570,10 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Rollback the upgrade of a Service Fabric cluster.
+        /// Roll back the upgrade of a Service Fabric cluster.
         /// </summary>
         /// <remarks>
-        /// Rollback the code or configuration upgrade of a Service Fabric cluster.
+        /// Roll back the code or configuration upgrade of a Service Fabric cluster.
         /// </remarks>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for

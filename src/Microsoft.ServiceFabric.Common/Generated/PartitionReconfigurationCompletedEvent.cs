@@ -35,6 +35,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="phase3DurationMs">Duration of Phase3 in milli-seconds.</param>
         /// <param name="phase4DurationMs">Duration of Phase4 in milli-seconds.</param>
         /// <param name="totalDurationMs">Total duration in milli-seconds.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionReconfigurationCompletedEvent(
             Guid? eventInstanceId,
@@ -53,12 +54,14 @@ namespace Microsoft.ServiceFabric.Common
             double? phase3DurationMs,
             double? phase4DurationMs,
             double? totalDurationMs,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.PartitionReconfigurationCompleted,
+                Common.FabricEventKind.PartitionReconfigured,
                 partitionId,
+                category,
                 hasCorrelatedEvents)
         {
             nodeName.ThrowIfNull(nameof(nodeName));

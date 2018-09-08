@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static ClusterEvent GetFromJsonProperties(JsonReader reader)
         {
             var eventInstanceId = default(Guid?);
+            var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
 
@@ -44,7 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     var propValue = reader.ReadValueAsString();
 
-                    if (propValue.Equals("ClusterHealthReportCreated", StringComparison.Ordinal))
+                    if (propValue.Equals("ClusterNewHealthReport", StringComparison.Ordinal))
                     {
                         return ClusterHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
                     }
@@ -52,23 +53,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return ClusterHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.Ordinal))
                     {
                         return ClusterUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeDomainComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.Ordinal))
                     {
                         return ClusterUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeRollbackComplete", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.Ordinal))
                     {
                         return ClusterUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeRollbackStart", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.Ordinal))
                     {
                         return ClusterUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeStart", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.Ordinal))
                     {
                         return ClusterUpgradeStartEventConverter.GetFromJsonProperties(reader);
                     }
@@ -95,6 +96,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
                     }
+                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    {
+                        category = reader.ReadValueAsString();
+                    }
                     else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
                     {
                         timeStamp = reader.ReadValueAsDateTime();
@@ -114,6 +119,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new ClusterEvent(
                 kind: Common.FabricEventKind.ClusterEvent,
                 eventInstanceId: eventInstanceId,
+                category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents);
         }
@@ -127,9 +133,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind.ToString(), "Kind", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
+            if (obj.Category != null)
+            {
+                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);

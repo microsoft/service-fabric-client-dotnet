@@ -120,7 +120,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// If set to true, the report is removed from the health store after it expires.
         /// If set to false, the report is treated as an error when expired. The value of this property is false by default.
         /// When clients report periodically, they should set RemoveWhenExpired false (default).
-        /// This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the
+        /// This way, if the reporter has issues (e.g. deadlock) and can't report, the entity is evaluated at error when the
         /// health report expires.
         /// This flags the entity as being in Error health state.
         /// </summary>

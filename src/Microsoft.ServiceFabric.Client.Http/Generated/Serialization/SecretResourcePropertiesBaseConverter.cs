@@ -41,6 +41,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
 
             var propValue = reader.ReadValueAsString();
+            if (propValue.Equals("inlinedValue", StringComparison.Ordinal))
+            {
+                obj = SimpleSecretResourcePropertiesConverter.GetFromJsonProperties(reader);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown kind.");
+            }
 
             return obj;
         }
@@ -53,6 +61,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, SecretResourcePropertiesBase obj)
         {
             var kind = obj.Kind;
+            if (kind.Equals(SecretKind.InlinedValue))
+            {
+                SimpleSecretResourcePropertiesConverter.Serialize(writer, (SimpleSecretResourceProperties)obj);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown kind.");
+            }
         }
     }
 }

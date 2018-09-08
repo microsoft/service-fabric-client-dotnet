@@ -66,15 +66,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             foreach (var resource in resources)
             {
                 switch (resource.Type)
-                {
-                    case ResourseType.Network:
-                        client.MeshNetworks.CreateOrUpdateMeshNetworkAsync(
-                            resource.Name,
-                            resource.Description.ToString(),
-                            resource.ApiVersion,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-                        break;
-
+                {                    
                     case ResourseType.Volume:
                         client.MeshVolumes.CreateOrUpdateMeshVolumeAsync(
                             resource.Name,
@@ -85,14 +77,6 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
                     case ResourseType.Application:
                         client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
-                            resource.Name,
-                            resource.Description.ToString(),
-                            resource.ApiVersion,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-                        break;
-
-                    case ResourseType.Gateway:
-                        client.MeshGateways.CreateOrUpdateMeshGatewayAsync(
                             resource.Name,
                             resource.Description.ToString(),
                             resource.ApiVersion,

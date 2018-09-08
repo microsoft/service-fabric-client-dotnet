@@ -30,6 +30,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceManifestName">Service manifest name.</param>
         /// <param name="codePackageName">Code package name.</param>
         /// <param name="servicePackageActivationId">Id of Service package activation.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ChaosRestartCodePackageFaultScheduledEvent(
             Guid? eventInstanceId,
@@ -41,12 +42,14 @@ namespace Microsoft.ServiceFabric.Common
             string serviceManifestName,
             string codePackageName,
             string servicePackageActivationId,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosRestartCodePackageFaultScheduled,
+                Common.FabricEventKind.ChaosCodePackageRestartScheduled,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             faultGroupId.ThrowIfNull(nameof(faultGroupId));

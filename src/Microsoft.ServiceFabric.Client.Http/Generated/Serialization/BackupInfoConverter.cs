@@ -40,9 +40,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var partitionInformation = default(PartitionInformation);
             var backupLocation = default(string);
             var backupType = default(BackupType?);
-            var epochOfLastBackupRecord = default(BackupEpoch);
+            var epochOfLastBackupRecord = default(Epoch);
             var lsnOfLastBackupRecord = default(string);
             var creationTimeUtc = default(DateTime?);
+            var serviceManifestVersion = default(string);
             var failureError = default(FabricErrorError);
 
             do
@@ -78,7 +79,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("EpochOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
                 {
-                    epochOfLastBackupRecord = BackupEpochConverter.Deserialize(reader);
+                    epochOfLastBackupRecord = EpochConverter.Deserialize(reader);
                 }
                 else if (string.Compare("LsnOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
                 {
@@ -87,6 +88,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("CreationTimeUtc", propName, StringComparison.Ordinal) == 0)
                 {
                     creationTimeUtc = reader.ReadValueAsDateTime();
+                }
+                else if (string.Compare("ServiceManifestVersion", propName, StringComparison.Ordinal) == 0)
+                {
+                    serviceManifestVersion = reader.ReadValueAsString();
                 }
                 else if (string.Compare("FailureError", propName, StringComparison.Ordinal) == 0)
                 {
@@ -110,6 +115,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 epochOfLastBackupRecord: epochOfLastBackupRecord,
                 lsnOfLastBackupRecord: lsnOfLastBackupRecord,
                 creationTimeUtc: creationTimeUtc,
+                serviceManifestVersion: serviceManifestVersion,
                 failureError: failureError);
         }
 
@@ -155,7 +161,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.EpochOfLastBackupRecord != null)
             {
-                writer.WriteProperty(obj.EpochOfLastBackupRecord, "EpochOfLastBackupRecord", BackupEpochConverter.Serialize);
+                writer.WriteProperty(obj.EpochOfLastBackupRecord, "EpochOfLastBackupRecord", EpochConverter.Serialize);
             }
 
             if (obj.LsnOfLastBackupRecord != null)
@@ -166,6 +172,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.CreationTimeUtc != null)
             {
                 writer.WriteProperty(obj.CreationTimeUtc, "CreationTimeUtc", JsonWriterExtensions.WriteDateTimeValue);
+            }
+
+            if (obj.ServiceManifestVersion != null)
+            {
+                writer.WriteProperty(obj.ServiceManifestVersion, "ServiceManifestVersion", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.FailureError != null)

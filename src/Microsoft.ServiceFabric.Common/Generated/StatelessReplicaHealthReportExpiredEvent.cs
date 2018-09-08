@@ -35,6 +35,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="description">Description of report.</param>
         /// <param name="removeWhenExpired">Indicates the removal when it expires.</param>
         /// <param name="sourceUtcTimestamp">Source time.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public StatelessReplicaHealthReportExpiredEvent(
             Guid? eventInstanceId,
@@ -49,6 +50,7 @@ namespace Microsoft.ServiceFabric.Common
             string description,
             bool? removeWhenExpired,
             DateTime? sourceUtcTimestamp,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
@@ -56,6 +58,7 @@ namespace Microsoft.ServiceFabric.Common
                 Common.FabricEventKind.StatelessReplicaHealthReportExpired,
                 partitionId,
                 replicaId,
+                category,
                 hasCorrelatedEvents)
         {
             sourceId.ThrowIfNull(nameof(sourceId));

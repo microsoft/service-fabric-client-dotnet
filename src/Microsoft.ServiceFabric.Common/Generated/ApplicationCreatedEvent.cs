@@ -27,6 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="applicationTypeName">Application type name.</param>
         /// <param name="applicationTypeVersion">Application type version.</param>
         /// <param name="applicationDefinitionKind">Application definition kind.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ApplicationCreatedEvent(
             Guid? eventInstanceId,
@@ -35,12 +36,14 @@ namespace Microsoft.ServiceFabric.Common
             string applicationTypeName,
             string applicationTypeVersion,
             string applicationDefinitionKind,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.ApplicationCreated,
                 applicationId,
+                category,
                 hasCorrelatedEvents)
         {
             applicationTypeName.ThrowIfNull(nameof(applicationTypeName));

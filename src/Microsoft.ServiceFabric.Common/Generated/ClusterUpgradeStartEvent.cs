@@ -23,6 +23,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="upgradeType">Type of upgrade.</param>
         /// <param name="rollingUpgradeMode">Mode of upgrade.</param>
         /// <param name="failureAction">Action if failed.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public ClusterUpgradeStartEvent(
             Guid? eventInstanceId,
@@ -32,11 +33,13 @@ namespace Microsoft.ServiceFabric.Common
             string upgradeType,
             string rollingUpgradeMode,
             string failureAction,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ClusterUpgradeStart,
+                Common.FabricEventKind.ClusterUpgradeStarted,
+                category,
                 hasCorrelatedEvents)
         {
             currentClusterVersion.ThrowIfNull(nameof(currentClusterVersion));

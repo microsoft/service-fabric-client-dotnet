@@ -24,6 +24,7 @@ namespace Microsoft.ServiceFabric.Common
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
         /// <param name="metadata">Metadata about an Analysis Event.</param>
+        /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionAnalysisEvent(
             Guid? eventInstanceId,
@@ -31,12 +32,14 @@ namespace Microsoft.ServiceFabric.Common
             FabricEventKind? kind,
             PartitionId partitionId,
             AnalysisEventMetadata metadata,
+            string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
                 Common.FabricEventKind.PartitionAnalysisEvent,
                 partitionId,
+                category,
                 hasCorrelatedEvents)
         {
             metadata.ThrowIfNull(nameof(metadata));

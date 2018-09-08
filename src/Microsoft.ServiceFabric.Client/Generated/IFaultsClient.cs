@@ -326,7 +326,7 @@ namespace Microsoft.ServiceFabric.Client
         /// Gets a list of user-induced fault operations filtered by provided input.
         /// </summary>
         /// <remarks>
-        /// Gets the a list of user-induced fault operations filtered by provided input.
+        /// Gets the list of user-induced fault operations filtered by provided input.
         /// </remarks>
         /// <param name ="typeFilter">Used to filter on OperationType for user-induced operations.
         /// 
@@ -386,7 +386,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="operationId">A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API</param>
-        /// <param name ="force">Indicates whether to gracefully rollback and clean up internal system state modified by
+        /// <param name ="force">Indicates whether to gracefully roll back and clean up internal system state modified by
         /// executing the user-induced operation.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
