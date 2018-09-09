@@ -47,23 +47,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var propertyBatchDescriptionList = new PropertyBatchDescriptionList(
-                operations: this.Operations);
+            var propertyBatchDescriptionList = new PropertyBatchDescriptionList(
+            operations: this.Operations);
 
-                var result = this.ServiceFabricClient.Properties.SubmitPropertyBatchAsync(
-                    nameId: this.NameId,
-                    propertyBatchDescriptionList: propertyBatchDescriptionList,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Properties.SubmitPropertyBatchAsync(
+                nameId: this.NameId,
+                propertyBatchDescriptionList: propertyBatchDescriptionList,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

@@ -229,65 +229,58 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            RepairTargetDescriptionBase repairTargetDescriptionBase = null;
+            if (this.Node.IsPresent)
             {
-                RepairTargetDescriptionBase repairTargetDescriptionBase = null;
-                if (this.Node.IsPresent)
-                {
-                    repairTargetDescriptionBase = new NodeRepairTargetDescription(
-                        nodeNames: this.NodeNames);
-                }
-
-                RepairImpactDescriptionBase repairImpactDescriptionBase = null;
-                if (this.Node.IsPresent)
-                {
-                    repairImpactDescriptionBase = new NodeRepairImpactDescription(
-                        nodeImpactList: this.NodeImpactList);
-                }
-
-                var repairTaskHistory = new RepairTaskHistory(
-                createdUtcTimestamp: this.CreatedUtcTimestamp,
-                claimedUtcTimestamp: this.ClaimedUtcTimestamp,
-                preparingUtcTimestamp: this.PreparingUtcTimestamp,
-                approvedUtcTimestamp: this.ApprovedUtcTimestamp,
-                executingUtcTimestamp: this.ExecutingUtcTimestamp,
-                restoringUtcTimestamp: this.RestoringUtcTimestamp,
-                completedUtcTimestamp: this.CompletedUtcTimestamp,
-                preparingHealthCheckStartUtcTimestamp: this.PreparingHealthCheckStartUtcTimestamp,
-                preparingHealthCheckEndUtcTimestamp: this.PreparingHealthCheckEndUtcTimestamp,
-                restoringHealthCheckStartUtcTimestamp: this.RestoringHealthCheckStartUtcTimestamp,
-                restoringHealthCheckEndUtcTimestamp: this.RestoringHealthCheckEndUtcTimestamp);
-
-                var repairTask = new RepairTask(
-                taskId: this.TaskId,
-                state: this.State,
-                action: this.Action,
-                version: this.Version,
-                description: this.Description,
-                flags: this.Flags,
-                target: repairTargetDescriptionBase,
-                executor: this.Executor,
-                executorData: this.ExecutorData,
-                impact: repairImpactDescriptionBase,
-                resultStatus: this.ResultStatus,
-                resultCode: this.ResultCode,
-                resultDetails: this.ResultDetails,
-                history: repairTaskHistory,
-                preparingHealthCheckState: this.PreparingHealthCheckState,
-                restoringHealthCheckState: this.RestoringHealthCheckState,
-                performPreparingHealthCheck: this.PerformPreparingHealthCheck,
-                performRestoringHealthCheck: this.PerformRestoringHealthCheck);
-
-                var result = this.ServiceFabricClient.Repairs.CreateRepairTaskAsync(
-                    repairTask: repairTask,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                this.WriteObject(this.FormatOutput(result));
+                repairTargetDescriptionBase = new NodeRepairTargetDescription(
+                    nodeNames: this.NodeNames);
             }
-            catch (Exception ex)
+
+            RepairImpactDescriptionBase repairImpactDescriptionBase = null;
+            if (this.Node.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                repairImpactDescriptionBase = new NodeRepairImpactDescription(
+                    nodeImpactList: this.NodeImpactList);
             }
+
+            var repairTaskHistory = new RepairTaskHistory(
+            createdUtcTimestamp: this.CreatedUtcTimestamp,
+            claimedUtcTimestamp: this.ClaimedUtcTimestamp,
+            preparingUtcTimestamp: this.PreparingUtcTimestamp,
+            approvedUtcTimestamp: this.ApprovedUtcTimestamp,
+            executingUtcTimestamp: this.ExecutingUtcTimestamp,
+            restoringUtcTimestamp: this.RestoringUtcTimestamp,
+            completedUtcTimestamp: this.CompletedUtcTimestamp,
+            preparingHealthCheckStartUtcTimestamp: this.PreparingHealthCheckStartUtcTimestamp,
+            preparingHealthCheckEndUtcTimestamp: this.PreparingHealthCheckEndUtcTimestamp,
+            restoringHealthCheckStartUtcTimestamp: this.RestoringHealthCheckStartUtcTimestamp,
+            restoringHealthCheckEndUtcTimestamp: this.RestoringHealthCheckEndUtcTimestamp);
+
+            var repairTask = new RepairTask(
+            taskId: this.TaskId,
+            state: this.State,
+            action: this.Action,
+            version: this.Version,
+            description: this.Description,
+            flags: this.Flags,
+            target: repairTargetDescriptionBase,
+            executor: this.Executor,
+            executorData: this.ExecutorData,
+            impact: repairImpactDescriptionBase,
+            resultStatus: this.ResultStatus,
+            resultCode: this.ResultCode,
+            resultDetails: this.ResultDetails,
+            history: repairTaskHistory,
+            preparingHealthCheckState: this.PreparingHealthCheckState,
+            restoringHealthCheckState: this.RestoringHealthCheckState,
+            performPreparingHealthCheck: this.PerformPreparingHealthCheck,
+            performRestoringHealthCheck: this.PerformRestoringHealthCheck);
+
+            var result = this.ServiceFabricClient.Repairs.CreateRepairTaskAsync(
+                repairTask: repairTask,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

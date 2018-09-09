@@ -196,68 +196,61 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            BackupScheduleDescription backupScheduleDescription = null;
+            if (this.FrequencyBased.IsPresent)
             {
-                BackupScheduleDescription backupScheduleDescription = null;
-                if (this.FrequencyBased.IsPresent)
-                {
-                    backupScheduleDescription = new FrequencyBasedBackupScheduleDescription(
-                        interval: this.Interval);
-                }
-                else if (this.TimeBased.IsPresent)
-                {
-                    backupScheduleDescription = new TimeBasedBackupScheduleDescription(
-                        scheduleFrequencyType: this.ScheduleFrequencyType,
-                        runTimes: this.RunTimes,
-                        runDays: this.RunDays);
-                }
-
-                BackupStorageDescription backupStorageDescription = null;
-                if (this.AzureBlobStore.IsPresent)
-                {
-                    backupStorageDescription = new AzureBlobBackupStorageDescription(
-                        connectionString: this.ConnectionString,
-                        containerName: this.ContainerName,
-                        friendlyName: this.FriendlyName);
-                }
-                else if (this.FileShare.IsPresent)
-                {
-                    backupStorageDescription = new FileShareBackupStorageDescription(
-                        path: this.Path,
-                        friendlyName: this.FriendlyName,
-                        primaryUserName: this.PrimaryUserName,
-                        primaryPassword: this.PrimaryPassword,
-                        secondaryUserName: this.SecondaryUserName,
-                        secondaryPassword: this.SecondaryPassword);
-                }
-
-                RetentionPolicyDescription retentionPolicyDescription = null;
-                if (this.Basic.IsPresent)
-                {
-                    retentionPolicyDescription = new BasicRetentionPolicyDescription(
-                        retentionDuration: this.RetentionDuration,
-                        minimumNumberOfBackups: this.MinimumNumberOfBackups);
-                }
-
-                var backupPolicyDescription = new BackupPolicyDescription(
-                name: this.Name,
-                autoRestoreOnDataLoss: this.AutoRestoreOnDataLoss,
-                maxIncrementalBackups: this.MaxIncrementalBackups,
-                schedule: backupScheduleDescription,
-                storage: backupStorageDescription,
-                retentionPolicy: retentionPolicyDescription);
-
-                this.ServiceFabricClient.BackupRestore.CreateBackupPolicyAsync(
-                    backupPolicyDescription: backupPolicyDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
+                backupScheduleDescription = new FrequencyBasedBackupScheduleDescription(
+                    interval: this.Interval);
             }
-            catch (Exception ex)
+            else if (this.TimeBased.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                backupScheduleDescription = new TimeBasedBackupScheduleDescription(
+                    scheduleFrequencyType: this.ScheduleFrequencyType,
+                    runTimes: this.RunTimes,
+                    runDays: this.RunDays);
             }
+
+            BackupStorageDescription backupStorageDescription = null;
+            if (this.AzureBlobStore.IsPresent)
+            {
+                backupStorageDescription = new AzureBlobBackupStorageDescription(
+                    connectionString: this.ConnectionString,
+                    containerName: this.ContainerName,
+                    friendlyName: this.FriendlyName);
+            }
+            else if (this.FileShare.IsPresent)
+            {
+                backupStorageDescription = new FileShareBackupStorageDescription(
+                    path: this.Path,
+                    friendlyName: this.FriendlyName,
+                    primaryUserName: this.PrimaryUserName,
+                    primaryPassword: this.PrimaryPassword,
+                    secondaryUserName: this.SecondaryUserName,
+                    secondaryPassword: this.SecondaryPassword);
+            }
+
+            RetentionPolicyDescription retentionPolicyDescription = null;
+            if (this.Basic.IsPresent)
+            {
+                retentionPolicyDescription = new BasicRetentionPolicyDescription(
+                    retentionDuration: this.RetentionDuration,
+                    minimumNumberOfBackups: this.MinimumNumberOfBackups);
+            }
+
+            var backupPolicyDescription = new BackupPolicyDescription(
+            name: this.Name,
+            autoRestoreOnDataLoss: this.AutoRestoreOnDataLoss,
+            maxIncrementalBackups: this.MaxIncrementalBackups,
+            schedule: backupScheduleDescription,
+            storage: backupStorageDescription,
+            retentionPolicy: retentionPolicyDescription);
+
+            this.ServiceFabricClient.BackupRestore.CreateBackupPolicyAsync(
+                backupPolicyDescription: backupPolicyDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            Console.WriteLine("Success!");
         }
     }
 }

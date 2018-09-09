@@ -56,44 +56,37 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetBackupPolicyList"))
             {
-                if (this.ParameterSetName.Equals("GetBackupPolicyList"))
+                var continuationToken = ContinuationToken.Empty;
+                do
                 {
-                    var continuationToken = ContinuationToken.Empty;
-                    do
-                    {
-                        var result = this.ServiceFabricClient.BackupRestore.GetBackupPolicyListAsync(
-                            continuationToken: continuationToken,
-                            maxResults: this.MaxResults,
-                            serverTimeout: this.ServerTimeout,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                        var count = 0;
-                        foreach (var item in result.Data)
-                        {
-                            count++;
-                            this.WriteObject(this.FormatOutput(item));
-                        }
-
-                        continuationToken = result.ContinuationToken;
-                        this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
-                    }
-                    while (continuationToken.Next);
-                }
-                else if (this.ParameterSetName.Equals("GetBackupPolicyByName"))
-                {
-                    var result = this.ServiceFabricClient.BackupRestore.GetBackupPolicyByNameAsync(
-                        backupPolicyName: this.BackupPolicyName,
+                    var result = this.ServiceFabricClient.BackupRestore.GetBackupPolicyListAsync(
+                        continuationToken: continuationToken,
+                        maxResults: this.MaxResults,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
                 }
+                while (continuationToken.Next);
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetBackupPolicyByName"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.BackupRestore.GetBackupPolicyByNameAsync(
+                    backupPolicyName: this.BackupPolicyName,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
 

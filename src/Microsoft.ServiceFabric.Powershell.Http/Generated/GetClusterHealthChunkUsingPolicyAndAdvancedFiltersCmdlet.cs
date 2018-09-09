@@ -122,34 +122,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var clusterHealthPolicy = new ClusterHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
-                maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
-                applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
+            var clusterHealthPolicy = new ClusterHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
+            maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
+            applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
 
-                var applicationHealthPolicies = new ApplicationHealthPolicies(
-                applicationHealthPolicyMap: this.ApplicationHealthPolicyMap);
+            var applicationHealthPolicies = new ApplicationHealthPolicies(
+            applicationHealthPolicyMap: this.ApplicationHealthPolicyMap);
 
-                var clusterHealthChunkQueryDescription = new ClusterHealthChunkQueryDescription(
-                nodeFilters: this.NodeFilters,
-                applicationFilters: this.ApplicationFilters,
-                clusterHealthPolicy: clusterHealthPolicy,
-                applicationHealthPolicies: applicationHealthPolicies);
+            var clusterHealthChunkQueryDescription = new ClusterHealthChunkQueryDescription(
+            nodeFilters: this.NodeFilters,
+            applicationFilters: this.ApplicationFilters,
+            clusterHealthPolicy: clusterHealthPolicy,
+            applicationHealthPolicies: applicationHealthPolicies);
 
-                var result = this.ServiceFabricClient.Cluster.GetClusterHealthChunkUsingPolicyAndAdvancedFiltersAsync(
-                    clusterHealthChunkQueryDescription: clusterHealthChunkQueryDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Cluster.GetClusterHealthChunkUsingPolicyAndAdvancedFiltersAsync(
+                clusterHealthChunkQueryDescription: clusterHealthChunkQueryDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

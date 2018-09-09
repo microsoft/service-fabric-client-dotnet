@@ -37,22 +37,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var fabricName = new FabricName(
-                name: this.Name);
+            var fabricName = new FabricName(
+            name: this.Name);
 
-                this.ServiceFabricClient.Properties.CreateNameAsync(
-                    fabricName: fabricName,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Properties.CreateNameAsync(
+                fabricName: fabricName,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

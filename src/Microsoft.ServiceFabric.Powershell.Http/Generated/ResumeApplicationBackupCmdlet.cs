@@ -45,19 +45,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                this.ServiceFabricClient.BackupRestore.ResumeApplicationBackupAsync(
-                    applicationId: this.ApplicationId,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.BackupRestore.ResumeApplicationBackupAsync(
+                applicationId: this.ApplicationId,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

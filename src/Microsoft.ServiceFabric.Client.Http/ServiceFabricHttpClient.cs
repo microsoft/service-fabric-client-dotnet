@@ -142,7 +142,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             string requestId,
             CancellationToken cancellationToken)
         {
-            await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, relativeUri, requestId, cancellationToken);
+            var requestUri = this.GetRequestUri(relativeUri);
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+            await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
         }
 
         /// <summary>
@@ -164,7 +166,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken)
             where T : class
         {
-            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, relativeUri, requestId, cancellationToken);
+            var requestUri = this.GetRequestUri(relativeUri);
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(T);
 
             if (response.Content != null)
@@ -180,9 +184,10 @@ namespace Microsoft.ServiceFabric.Client.Http
                         }
                     }
                 }
-                catch (JsonReaderException)
+                catch (JsonReaderException ex)
                 {
-                    ServiceFabricHttpClientEventSource.Current.WarningMessage($"{this.ClientId}:{requestId}", SR.ErrorInvalidJsonInResponse);
+                    ServiceFabricHttpClientEventSource.Current.WarningMessage($"{clientRequestId}", $"{SR.ErrorCanNotDeserializeResponseFromServer} JsonReaderException: {ex.ToString()}");
+                    throw new ServiceFabricException(string.Format(SR.ErrorCanNotDeserializeResponseFromServer, response.StatusCode), ex);
                 }
             }
 
@@ -207,7 +212,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             string requestId,
             CancellationToken cancellationToken)
         {
-            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, relativeUri, requestId, cancellationToken);
+            var requestUri = this.GetRequestUri(relativeUri);
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(IEnumerable<T>);
 
             if (response.Content != null)
@@ -223,9 +230,10 @@ namespace Microsoft.ServiceFabric.Client.Http
                         }
                     }
                 }
-                catch (JsonReaderException)
+                catch (JsonReaderException ex)
                 {
-                    ServiceFabricHttpClientEventSource.Current.WarningMessage($"{this.ClientId}:{requestId}", SR.ErrorInvalidJsonInResponse);
+                    ServiceFabricHttpClientEventSource.Current.WarningMessage($"{clientRequestId}", $"{SR.ErrorCanNotDeserializeResponseFromServer} JsonReaderException: {ex.ToString()}");
+                    throw new ServiceFabricException(string.Format(SR.ErrorCanNotDeserializeResponseFromServer, response.StatusCode), ex);
                 }
             }
 
@@ -250,7 +258,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             string requestId,
             CancellationToken cancellationToken)
         {
-            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, relativeUri, requestId, cancellationToken);
+            var requestUri = this.GetRequestUri(relativeUri);
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(PagedData<T>);
 
             if (response.Content != null)
@@ -266,9 +276,10 @@ namespace Microsoft.ServiceFabric.Client.Http
                         }
                     }
                 }
-                catch (JsonReaderException)
+                catch (JsonReaderException ex)
                 {
-                    ServiceFabricHttpClientEventSource.Current.WarningMessage($"{this.ClientId}:{requestId}", SR.ErrorInvalidJsonInResponse);
+                    ServiceFabricHttpClientEventSource.Current.WarningMessage($"{clientRequestId}", $"{SR.ErrorCanNotDeserializeResponseFromServer} JsonReaderException: {ex.ToString()}");
+                    throw new ServiceFabricException(string.Format(SR.ErrorCanNotDeserializeResponseFromServer, response.StatusCode), ex);
                 }
             }
 
@@ -297,22 +308,17 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// Sends an HTTP get request to cluster http gateway.
         /// </summary>
         /// <param name="requestFunc">Func to create HttpRequest to send.</param>
-        /// <param name="relativeUri">The relative URI.</param>
-        /// <param name="requestId">Request Id for corelation</param>
+        /// <param name="requestUri">Request Uri.</param>
+        /// <param name="clientRequestId">Request Id for corelation</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The payload of the GET response.</returns>
         /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
         private async Task<HttpResponseMessage> SendAsyncHandleUnsuccessfulResponse(
             Func<HttpRequestMessage> requestFunc,
-            string relativeUri,
-            string requestId,
+            Uri requestUri,
+            string clientRequestId,
             CancellationToken cancellationToken)
         {
-            // pick a random Uri from endpoints(if more than 1) to send request to.
-            var endpoint = this.randomizedEndpoints.GetElement();
-            var requestUri = new Uri(endpoint, relativeUri);
-            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
-
             HttpRequestMessage FinalRequestFunc()
             {
                 var request = requestFunc.Invoke();
@@ -335,7 +341,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             var message = string.Format(
                 SR.ErrorHttpOperationUnsuccessfulFormatString,
-                relativeUri,
+                requestUri.ToString(),
                 response.StatusCode,
                 response.ReasonPhrase,
                 response.RequestMessage);
@@ -357,8 +363,9 @@ namespace Microsoft.ServiceFabric.Client.Http
                         }
                     }
                 }
-                catch (JsonReaderException)
+                catch (JsonReaderException ex)
                 {
+                    ServiceFabricHttpClientEventSource.Current.ErrorMessage($"{clientRequestId}", $"Request Url: {requestUri} JsonReaderException: {ex.ToString()}");
                     throw new ServiceFabricException(string.Format(SR.ServerErrorNoMeaningFulResponse, response.StatusCode));
                 }
 
@@ -503,6 +510,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return clientRequestId;
+        }
+
+        private Uri GetRequestUri(string relativeUri)
+        {
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            return new Uri(endpoint, relativeUri);
         }
 
         private async Task<object> WaitToUseHttpClient(CancellationToken cancellationToken)

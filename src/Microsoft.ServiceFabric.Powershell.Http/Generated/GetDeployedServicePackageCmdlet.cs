@@ -68,39 +68,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetDeployedServicePackageInfoList"))
             {
-                if (this.ParameterSetName.Equals("GetDeployedServicePackageInfoList"))
-                {
-                    var result = this.ServiceFabricClient.ServicePackages.GetDeployedServicePackageInfoListAsync(
-                        nodeName: this.NodeName,
-                        applicationId: this.ApplicationId,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.ServicePackages.GetDeployedServicePackageInfoListAsync(
+                    nodeName: this.NodeName,
+                    applicationId: this.ApplicationId,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-                }
-                else if (this.ParameterSetName.Equals("GetDeployedServicePackageInfoListByName"))
+                foreach (var item in result)
                 {
-                    var result = this.ServiceFabricClient.ServicePackages.GetDeployedServicePackageInfoListByNameAsync(
-                        nodeName: this.NodeName,
-                        applicationId: this.ApplicationId,
-                        servicePackageName: this.ServicePackageName,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
+                    this.WriteObject(this.FormatOutput(item));
                 }
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetDeployedServicePackageInfoListByName"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.ServicePackages.GetDeployedServicePackageInfoListByNameAsync(
+                    nodeName: this.NodeName,
+                    applicationId: this.ApplicationId,
+                    servicePackageName: this.ServicePackageName,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                foreach (var item in result)
+                {
+                    this.WriteObject(this.FormatOutput(item));
+                }
             }
         }
     }

@@ -82,41 +82,34 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetDeployedServiceTypeInfoList"))
             {
-                if (this.ParameterSetName.Equals("GetDeployedServiceTypeInfoList"))
-                {
-                    var result = this.ServiceFabricClient.ServiceTypes.GetDeployedServiceTypeInfoListAsync(
-                        nodeName: this.NodeName,
-                        applicationId: this.ApplicationId,
-                        serviceManifestName: this.ServiceManifestName,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.ServiceTypes.GetDeployedServiceTypeInfoListAsync(
+                    nodeName: this.NodeName,
+                    applicationId: this.ApplicationId,
+                    serviceManifestName: this.ServiceManifestName,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-                }
-                else if (this.ParameterSetName.Equals("GetDeployedServiceTypeInfoByName"))
+                foreach (var item in result)
                 {
-                    var result = this.ServiceFabricClient.ServiceTypes.GetDeployedServiceTypeInfoByNameAsync(
-                        nodeName: this.NodeName,
-                        applicationId: this.ApplicationId,
-                        serviceTypeName: this.ServiceTypeName,
-                        serviceManifestName: this.ServiceManifestName,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
+                    this.WriteObject(this.FormatOutput(item));
                 }
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetDeployedServiceTypeInfoByName"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.ServiceTypes.GetDeployedServiceTypeInfoByNameAsync(
+                    nodeName: this.NodeName,
+                    applicationId: this.ApplicationId,
+                    serviceTypeName: this.ServiceTypeName,
+                    serviceManifestName: this.ServiceManifestName,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                foreach (var item in result)
+                {
+                    this.WriteObject(this.FormatOutput(item));
+                }
             }
         }
     }

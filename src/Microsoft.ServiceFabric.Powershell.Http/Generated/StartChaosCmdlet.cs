@@ -180,43 +180,36 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var clusterHealthPolicy = new ClusterHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
-                maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
-                applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
+            var clusterHealthPolicy = new ClusterHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
+            maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
+            applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
 
-                var chaosContext = new ChaosContext(
-                map: this.Map);
+            var chaosContext = new ChaosContext(
+            map: this.Map);
 
-                var chaosTargetFilter = new ChaosTargetFilter(
-                nodeTypeInclusionList: this.NodeTypeInclusionList,
-                applicationInclusionList: this.ApplicationInclusionList);
+            var chaosTargetFilter = new ChaosTargetFilter(
+            nodeTypeInclusionList: this.NodeTypeInclusionList,
+            applicationInclusionList: this.ApplicationInclusionList);
 
-                var chaosParameters = new ChaosParameters(
-                timeToRunInSeconds: this.TimeToRunInSeconds,
-                maxClusterStabilizationTimeoutInSeconds: this.MaxClusterStabilizationTimeoutInSeconds,
-                maxConcurrentFaults: this.MaxConcurrentFaults,
-                enableMoveReplicaFaults: this.EnableMoveReplicaFaults,
-                waitTimeBetweenFaultsInSeconds: this.WaitTimeBetweenFaultsInSeconds,
-                waitTimeBetweenIterationsInSeconds: this.WaitTimeBetweenIterationsInSeconds,
-                clusterHealthPolicy: clusterHealthPolicy,
-                context: chaosContext,
-                chaosTargetFilter: chaosTargetFilter);
+            var chaosParameters = new ChaosParameters(
+            timeToRunInSeconds: this.TimeToRunInSeconds,
+            maxClusterStabilizationTimeoutInSeconds: this.MaxClusterStabilizationTimeoutInSeconds,
+            maxConcurrentFaults: this.MaxConcurrentFaults,
+            enableMoveReplicaFaults: this.EnableMoveReplicaFaults,
+            waitTimeBetweenFaultsInSeconds: this.WaitTimeBetweenFaultsInSeconds,
+            waitTimeBetweenIterationsInSeconds: this.WaitTimeBetweenIterationsInSeconds,
+            clusterHealthPolicy: clusterHealthPolicy,
+            context: chaosContext,
+            chaosTargetFilter: chaosTargetFilter);
 
-                this.ServiceFabricClient.ChaosClient.StartChaosAsync(
-                    chaosParameters: chaosParameters,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.ChaosClient.StartChaosAsync(
+                chaosParameters: chaosParameters,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

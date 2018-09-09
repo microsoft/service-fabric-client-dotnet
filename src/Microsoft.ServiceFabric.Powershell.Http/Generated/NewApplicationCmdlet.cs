@@ -79,31 +79,24 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var applicationCapacityDescription = new ApplicationCapacityDescription(
-                minimumNodes: this.MinimumNodes,
-                maximumNodes: this.MaximumNodes,
-                applicationMetrics: this.ApplicationMetrics);
+            var applicationCapacityDescription = new ApplicationCapacityDescription(
+            minimumNodes: this.MinimumNodes,
+            maximumNodes: this.MaximumNodes,
+            applicationMetrics: this.ApplicationMetrics);
 
-                var applicationDescription = new ApplicationDescription(
-                name: this.Name,
-                typeName: this.TypeName,
-                typeVersion: this.TypeVersion,
-                parameters: this.Parameters,
-                applicationCapacity: applicationCapacityDescription);
+            var applicationDescription = new ApplicationDescription(
+            name: this.Name,
+            typeName: this.TypeName,
+            typeVersion: this.TypeVersion,
+            parameters: this.Parameters,
+            applicationCapacity: applicationCapacityDescription);
 
-                this.ServiceFabricClient.Applications.CreateApplicationAsync(
-                    applicationDescription: applicationDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Applications.CreateApplicationAsync(
+                applicationDescription: applicationDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

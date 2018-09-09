@@ -86,23 +86,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                this.ServiceFabricClient.Faults.StartNodeTransitionAsync(
-                    nodeName: this.NodeName,
-                    operationId: this.OperationId,
-                    nodeTransitionType: this.NodeTransitionType,
-                    nodeInstanceId: this.NodeInstanceId,
-                    stopDurationInSeconds: this.StopDurationInSeconds,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Faults.StartNodeTransitionAsync(
+                nodeName: this.NodeName,
+                operationId: this.OperationId,
+                nodeTransitionType: this.NodeTransitionType,
+                nodeInstanceId: this.NodeInstanceId,
+                stopDurationInSeconds: this.StopDurationInSeconds,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

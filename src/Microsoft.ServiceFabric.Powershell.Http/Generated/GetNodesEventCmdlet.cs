@@ -100,45 +100,38 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetNodesEventList"))
             {
-                if (this.ParameterSetName.Equals("GetNodesEventList"))
-                {
-                    var result = this.ServiceFabricClient.EventsStore.GetNodesEventListAsync(
-                        startTimeUtc: this.StartTimeUtc,
-                        endTimeUtc: this.EndTimeUtc,
-                        serverTimeout: this.ServerTimeout,
-                        eventsTypesFilter: this.EventsTypesFilter,
-                        excludeAnalysisEvents: this.ExcludeAnalysisEvents,
-                        skipCorrelationLookup: this.SkipCorrelationLookup,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.EventsStore.GetNodesEventListAsync(
+                    startTimeUtc: this.StartTimeUtc,
+                    endTimeUtc: this.EndTimeUtc,
+                    serverTimeout: this.ServerTimeout,
+                    eventsTypesFilter: this.EventsTypesFilter,
+                    excludeAnalysisEvents: this.ExcludeAnalysisEvents,
+                    skipCorrelationLookup: this.SkipCorrelationLookup,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-                }
-                else if (this.ParameterSetName.Equals("GetNodeEventList"))
+                foreach (var item in result)
                 {
-                    var result = this.ServiceFabricClient.EventsStore.GetNodeEventListAsync(
-                        nodeName: this.NodeName,
-                        startTimeUtc: this.StartTimeUtc,
-                        endTimeUtc: this.EndTimeUtc,
-                        serverTimeout: this.ServerTimeout,
-                        eventsTypesFilter: this.EventsTypesFilter,
-                        excludeAnalysisEvents: this.ExcludeAnalysisEvents,
-                        skipCorrelationLookup: this.SkipCorrelationLookup,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
+                    this.WriteObject(this.FormatOutput(item));
                 }
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetNodeEventList"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.EventsStore.GetNodeEventListAsync(
+                    nodeName: this.NodeName,
+                    startTimeUtc: this.StartTimeUtc,
+                    endTimeUtc: this.EndTimeUtc,
+                    serverTimeout: this.ServerTimeout,
+                    eventsTypesFilter: this.EventsTypesFilter,
+                    excludeAnalysisEvents: this.ExcludeAnalysisEvents,
+                    skipCorrelationLookup: this.SkipCorrelationLookup,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                foreach (var item in result)
+                {
+                    this.WriteObject(this.FormatOutput(item));
+                }
             }
         }
     }

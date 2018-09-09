@@ -40,23 +40,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var repairTaskCancelDescription = new RepairTaskCancelDescription(
-                taskId: this.TaskId,
-                version: this.Version,
-                requestAbort: this.RequestAbort);
+            var repairTaskCancelDescription = new RepairTaskCancelDescription(
+            taskId: this.TaskId,
+            version: this.Version,
+            requestAbort: this.RequestAbort);
 
-                var result = this.ServiceFabricClient.Repairs.CancelRepairTaskAsync(
-                    repairTaskCancelDescription: repairTaskCancelDescription,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Repairs.CancelRepairTaskAsync(
+                repairTaskCancelDescription: repairTaskCancelDescription,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

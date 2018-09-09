@@ -76,24 +76,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var result = this.ServiceFabricClient.Replicas.GetDeployedServiceReplicaInfoListAsync(
-                    nodeName: this.NodeName,
-                    applicationId: this.ApplicationId,
-                    partitionId: this.PartitionId,
-                    serviceManifestName: this.ServiceManifestName,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Replicas.GetDeployedServiceReplicaInfoListAsync(
+                nodeName: this.NodeName,
+                applicationId: this.ApplicationId,
+                partitionId: this.PartitionId,
+                serviceManifestName: this.ServiceManifestName,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                foreach (var item in result)
-                {
-                    this.WriteObject(this.FormatOutput(item));
-                }
-            }
-            catch (Exception ex)
+            foreach (var item in result)
             {
-                Console.WriteLine(ex.Message);
+                this.WriteObject(this.FormatOutput(item));
             }
         }
     }

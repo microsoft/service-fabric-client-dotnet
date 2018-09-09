@@ -40,42 +40,35 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetMeshServices"))
             {
-                if (this.ParameterSetName.Equals("GetMeshServices"))
+                var continuationToken = ContinuationToken.Empty;
+                do
                 {
-                    var continuationToken = ContinuationToken.Empty;
-                    do
-                    {
-                        var result = this.ServiceFabricClient.MeshApplications.GetMeshServicesAsync(
-                            applicationResourceName: this.ApplicationResourceName,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                        var count = 0;
-                        foreach (var item in result.Data)
-                        {
-                            count++;
-                            this.WriteObject(this.FormatOutput(item));
-                        }
-
-                        continuationToken = result.ContinuationToken;
-                        this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
-                    }
-                    while (continuationToken.Next);
-                }
-                else if (this.ParameterSetName.Equals("GetMeshService"))
-                {
-                    var result = this.ServiceFabricClient.MeshApplications.GetMeshServiceAsync(
+                    var result = this.ServiceFabricClient.MeshApplications.GetMeshServicesAsync(
                         applicationResourceName: this.ApplicationResourceName,
-                        serviceResourceName: this.ServiceResourceName,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
                 }
+                while (continuationToken.Next);
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetMeshService"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.MeshApplications.GetMeshServiceAsync(
+                    applicationResourceName: this.ApplicationResourceName,
+                    serviceResourceName: this.ServiceResourceName,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
 

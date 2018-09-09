@@ -99,36 +99,29 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            ProvisionApplicationTypeDescriptionBase provisionApplicationTypeDescriptionBase = null;
+            if (this.ImageStorePath.IsPresent)
             {
-                ProvisionApplicationTypeDescriptionBase provisionApplicationTypeDescriptionBase = null;
-                if (this.ImageStorePath.IsPresent)
-                {
-                    provisionApplicationTypeDescriptionBase = new ProvisionApplicationTypeDescription(
-                        applicationTypeBuildPath: this.ApplicationTypeBuildPath,
-                        async: this.Async,
-                        applicationPackageCleanupPolicy: this.ApplicationPackageCleanupPolicy);
-                }
-                else if (this.ExternalStore.IsPresent)
-                {
-                    provisionApplicationTypeDescriptionBase = new ExternalStoreProvisionApplicationTypeDescription(
-                        applicationPackageDownloadUri: this.ApplicationPackageDownloadUri,
-                        applicationTypeName: this.ApplicationTypeName,
-                        applicationTypeVersion: this.ApplicationTypeVersion,
-                        async: this.Async);
-                }
-
-                this.ServiceFabricClient.ApplicationTypes.ProvisionApplicationTypeAsync(
-                    provisionApplicationTypeDescription: provisionApplicationTypeDescriptionBase,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
+                provisionApplicationTypeDescriptionBase = new ProvisionApplicationTypeDescription(
+                    applicationTypeBuildPath: this.ApplicationTypeBuildPath,
+                    async: this.Async,
+                    applicationPackageCleanupPolicy: this.ApplicationPackageCleanupPolicy);
             }
-            catch (Exception ex)
+            else if (this.ExternalStore.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                provisionApplicationTypeDescriptionBase = new ExternalStoreProvisionApplicationTypeDescription(
+                    applicationPackageDownloadUri: this.ApplicationPackageDownloadUri,
+                    applicationTypeName: this.ApplicationTypeName,
+                    applicationTypeVersion: this.ApplicationTypeVersion,
+                    async: this.Async);
             }
+
+            this.ServiceFabricClient.ApplicationTypes.ProvisionApplicationTypeAsync(
+                provisionApplicationTypeDescription: provisionApplicationTypeDescriptionBase,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            Console.WriteLine("Success!");
         }
     }
 }

@@ -40,20 +40,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
-                {
-                    this.ServiceFabricClient.MeshVolumes.DeleteMeshVolumeAsync(
-                        volumeResourceName: this.VolumeResourceName,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                this.ServiceFabricClient.MeshVolumes.DeleteMeshVolumeAsync(
+                    volumeResourceName: this.VolumeResourceName,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    Console.WriteLine("Success!");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Success!");
             }
         }
     }

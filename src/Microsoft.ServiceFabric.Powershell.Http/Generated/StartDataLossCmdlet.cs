@@ -78,22 +78,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                this.ServiceFabricClient.Faults.StartDataLossAsync(
-                    serviceId: this.ServiceId,
-                    partitionId: this.PartitionId,
-                    operationId: this.OperationId,
-                    dataLossMode: this.DataLossMode,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Faults.StartDataLossAsync(
+                serviceId: this.ServiceId,
+                partitionId: this.PartitionId,
+                operationId: this.OperationId,
+                dataLossMode: this.DataLossMode,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

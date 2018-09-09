@@ -216,55 +216,48 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var registryCredential = new RegistryCredential(
-                registryUserName: this.RegistryUserName,
-                registryPassword: this.RegistryPassword,
-                passwordEncrypted: this.PasswordEncrypted);
+            var registryCredential = new RegistryCredential(
+            registryUserName: this.RegistryUserName,
+            registryPassword: this.RegistryPassword,
+            passwordEncrypted: this.PasswordEncrypted);
 
-                var monitoringPolicyDescription = new MonitoringPolicyDescription(
-                failureAction: this.FailureAction,
-                healthCheckWaitDurationInMilliseconds: this.HealthCheckWaitDurationInMilliseconds,
-                healthCheckStableDurationInMilliseconds: this.HealthCheckStableDurationInMilliseconds,
-                healthCheckRetryTimeoutInMilliseconds: this.HealthCheckRetryTimeoutInMilliseconds,
-                upgradeTimeoutInMilliseconds: this.UpgradeTimeoutInMilliseconds,
-                upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds);
+            var monitoringPolicyDescription = new MonitoringPolicyDescription(
+            failureAction: this.FailureAction,
+            healthCheckWaitDurationInMilliseconds: this.HealthCheckWaitDurationInMilliseconds,
+            healthCheckStableDurationInMilliseconds: this.HealthCheckStableDurationInMilliseconds,
+            healthCheckRetryTimeoutInMilliseconds: this.HealthCheckRetryTimeoutInMilliseconds,
+            upgradeTimeoutInMilliseconds: this.UpgradeTimeoutInMilliseconds,
+            upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds);
 
-                var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
-                maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
-                maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
-                maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
+            var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
+            maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
+            maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
+            maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
 
-                var applicationHealthPolicy = new ApplicationHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
-                defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
-                serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
+            var applicationHealthPolicy = new ApplicationHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
+            defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
+            serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
 
-                var composeDeploymentUpgradeDescription = new ComposeDeploymentUpgradeDescription(
+            var composeDeploymentUpgradeDescription = new ComposeDeploymentUpgradeDescription(
+            deploymentName: this.DeploymentName,
+            composeFileContent: this.ComposeFileContent,
+            upgradeKind: this.UpgradeKind,
+            registryCredential: registryCredential,
+            rollingUpgradeMode: this.RollingUpgradeMode,
+            upgradeReplicaSetCheckTimeoutInSeconds: this.UpgradeReplicaSetCheckTimeoutInSeconds,
+            forceRestart: this.ForceRestart,
+            monitoringPolicy: monitoringPolicyDescription,
+            applicationHealthPolicy: applicationHealthPolicy);
+
+            this.ServiceFabricClient.ComposeDeployments.StartComposeDeploymentUpgradeAsync(
                 deploymentName: this.DeploymentName,
-                composeFileContent: this.ComposeFileContent,
-                upgradeKind: this.UpgradeKind,
-                registryCredential: registryCredential,
-                rollingUpgradeMode: this.RollingUpgradeMode,
-                upgradeReplicaSetCheckTimeoutInSeconds: this.UpgradeReplicaSetCheckTimeoutInSeconds,
-                forceRestart: this.ForceRestart,
-                monitoringPolicy: monitoringPolicyDescription,
-                applicationHealthPolicy: applicationHealthPolicy);
+                composeDeploymentUpgradeDescription: composeDeploymentUpgradeDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.ServiceFabricClient.ComposeDeployments.StartComposeDeploymentUpgradeAsync(
-                    deploymentName: this.DeploymentName,
-                    composeDeploymentUpgradeDescription: composeDeploymentUpgradeDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

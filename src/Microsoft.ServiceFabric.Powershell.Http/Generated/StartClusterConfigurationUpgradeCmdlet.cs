@@ -105,35 +105,28 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var applicationHealthPolicies = new ApplicationHealthPolicies(
-                applicationHealthPolicyMap: this.ApplicationHealthPolicyMap);
+            var applicationHealthPolicies = new ApplicationHealthPolicies(
+            applicationHealthPolicyMap: this.ApplicationHealthPolicyMap);
 
-                var clusterConfigurationUpgradeDescription = new ClusterConfigurationUpgradeDescription(
-                clusterConfig: this.ClusterConfig,
-                healthCheckRetryTimeout: this.HealthCheckRetryTimeout,
-                healthCheckWaitDurationInSeconds: this.HealthCheckWaitDurationInSeconds,
-                healthCheckStableDurationInSeconds: this.HealthCheckStableDurationInSeconds,
-                upgradeDomainTimeoutInSeconds: this.UpgradeDomainTimeoutInSeconds,
-                upgradeTimeoutInSeconds: this.UpgradeTimeoutInSeconds,
-                maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
-                maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
-                maxPercentDeltaUnhealthyNodes: this.MaxPercentDeltaUnhealthyNodes,
-                maxPercentUpgradeDomainDeltaUnhealthyNodes: this.MaxPercentUpgradeDomainDeltaUnhealthyNodes,
-                applicationHealthPolicies: applicationHealthPolicies);
+            var clusterConfigurationUpgradeDescription = new ClusterConfigurationUpgradeDescription(
+            clusterConfig: this.ClusterConfig,
+            healthCheckRetryTimeout: this.HealthCheckRetryTimeout,
+            healthCheckWaitDurationInSeconds: this.HealthCheckWaitDurationInSeconds,
+            healthCheckStableDurationInSeconds: this.HealthCheckStableDurationInSeconds,
+            upgradeDomainTimeoutInSeconds: this.UpgradeDomainTimeoutInSeconds,
+            upgradeTimeoutInSeconds: this.UpgradeTimeoutInSeconds,
+            maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
+            maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
+            maxPercentDeltaUnhealthyNodes: this.MaxPercentDeltaUnhealthyNodes,
+            maxPercentUpgradeDomainDeltaUnhealthyNodes: this.MaxPercentUpgradeDomainDeltaUnhealthyNodes,
+            applicationHealthPolicies: applicationHealthPolicies);
 
-                this.ServiceFabricClient.Cluster.StartClusterConfigurationUpgradeAsync(
-                    clusterConfigurationUpgradeDescription: clusterConfigurationUpgradeDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Cluster.StartClusterConfigurationUpgradeAsync(
+                clusterConfigurationUpgradeDescription: clusterConfigurationUpgradeDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

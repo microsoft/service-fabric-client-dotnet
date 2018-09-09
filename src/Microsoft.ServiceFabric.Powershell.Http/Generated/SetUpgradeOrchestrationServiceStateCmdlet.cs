@@ -37,22 +37,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var upgradeOrchestrationServiceState = new UpgradeOrchestrationServiceState(
-                serviceState: this.ServiceState);
+            var upgradeOrchestrationServiceState = new UpgradeOrchestrationServiceState(
+            serviceState: this.ServiceState);
 
-                var result = this.ServiceFabricClient.Cluster.SetUpgradeOrchestrationServiceStateAsync(
-                    upgradeOrchestrationServiceState: upgradeOrchestrationServiceState,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Cluster.SetUpgradeOrchestrationServiceStateAsync(
+                upgradeOrchestrationServiceState: upgradeOrchestrationServiceState,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

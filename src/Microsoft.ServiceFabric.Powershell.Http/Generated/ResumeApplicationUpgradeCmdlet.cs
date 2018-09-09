@@ -51,23 +51,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var resumeApplicationUpgradeDescription = new ResumeApplicationUpgradeDescription(
-                upgradeDomainName: this.UpgradeDomainName);
+            var resumeApplicationUpgradeDescription = new ResumeApplicationUpgradeDescription(
+            upgradeDomainName: this.UpgradeDomainName);
 
-                this.ServiceFabricClient.Applications.ResumeApplicationUpgradeAsync(
-                    applicationId: this.ApplicationId,
-                    resumeApplicationUpgradeDescription: resumeApplicationUpgradeDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Applications.ResumeApplicationUpgradeAsync(
+                applicationId: this.ApplicationId,
+                resumeApplicationUpgradeDescription: resumeApplicationUpgradeDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

@@ -168,34 +168,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
-                maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
-                maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
-                maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
+            var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
+            maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
+            maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
+            maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
 
-                var applicationHealthPolicy = new ApplicationHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
-                defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
-                serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
+            var applicationHealthPolicy = new ApplicationHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
+            defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
+            serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
 
-                var result = this.ServiceFabricClient.Partitions.GetPartitionHealthUsingPolicyAsync(
-                    partitionId: this.PartitionId,
-                    eventsHealthStateFilter: this.EventsHealthStateFilter,
-                    replicasHealthStateFilter: this.ReplicasHealthStateFilter,
-                    applicationHealthPolicy: applicationHealthPolicy,
-                    excludeHealthStatistics: this.ExcludeHealthStatistics,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Partitions.GetPartitionHealthUsingPolicyAsync(
+                partitionId: this.PartitionId,
+                eventsHealthStateFilter: this.EventsHealthStateFilter,
+                replicasHealthStateFilter: this.ReplicasHealthStateFilter,
+                applicationHealthPolicy: applicationHealthPolicy,
+                excludeHealthStatistics: this.ExcludeHealthStatistics,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

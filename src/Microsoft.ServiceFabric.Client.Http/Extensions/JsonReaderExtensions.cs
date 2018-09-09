@@ -299,7 +299,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <returns>A <see cref="System.DateTime" /></returns>
         public static DateTime? ReadValueAsDateTime(this JsonReader reader)
         {
-            // DateTime is a string in ISO8096 format
+            // DateTime is a string in ISO8601 format
             DateTime? value = null;
 
             switch (reader.TokenType)
@@ -313,11 +313,19 @@ namespace Microsoft.ServiceFabric.Client.Http
                     {
                         value = XmlConvert.ToDateTime(valueString, XmlDateTimeSerializationMode.Utc);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        throw new JsonReaderException(
-                            $"Error converting string to System.DateTime, string value to be converted is {valueString}",
-                            ex);
+                        // TODO: try parsing with DateTime.Parse, Remove it once all apis return in ISO8601 format.
+                        try
+                        {
+                            value = DateTime.Parse(valueString);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new JsonReaderException(
+                                $"Error converting string to System.DateTime, string value to be converted is {valueString}.  DateTime values must be specified in string as per ISO8601",
+                                ex);
+                        }
                     }
 
                     break;
@@ -341,7 +349,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <returns>A <see cref="System.TimeSpan" /></returns>
         public static TimeSpan? ReadValueAsTimeSpan(this JsonReader reader)
         {
-            // TimeSpan is a string in ISO8096 format
+            // TimeSpan is a string in ISO8601 format
             TimeSpan? value = null;
 
             switch (reader.TokenType)
@@ -352,11 +360,19 @@ namespace Microsoft.ServiceFabric.Client.Http
                     {
                         value = XmlConvert.ToTimeSpan(valueString);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        throw new JsonReaderException(
-                            $"Error converting string to System.TimeSpan, string value to be converted is {valueString}",
+                        // TODO: try parsing with DateTime.Parse, Remove it once all apis return in ISO8601 format.
+                        try
+                        {
+                            value = TimeSpan.Parse(valueString);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new JsonReaderException(
+                            $"Error converting string to System.TimeSpan, string value to be converted is {valueString}. Timespan values must be specified in string as per ISO8601.",
                             ex);
+                        }
                     }
 
                     break;

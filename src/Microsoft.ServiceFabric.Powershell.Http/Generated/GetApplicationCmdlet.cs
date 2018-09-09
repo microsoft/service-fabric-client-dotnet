@@ -99,48 +99,41 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetApplicationInfoList"))
             {
-                if (this.ParameterSetName.Equals("GetApplicationInfoList"))
+                var continuationToken = ContinuationToken.Empty;
+                do
                 {
-                    var continuationToken = ContinuationToken.Empty;
-                    do
-                    {
-                        var result = this.ServiceFabricClient.Applications.GetApplicationInfoListAsync(
-                            applicationDefinitionKindFilter: this.ApplicationDefinitionKindFilter,
-                            applicationTypeName: this.ApplicationTypeName,
-                            excludeApplicationParameters: this.ExcludeApplicationParameters,
-                            continuationToken: continuationToken,
-                            maxResults: this.MaxResults,
-                            serverTimeout: this.ServerTimeout,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                        var count = 0;
-                        foreach (var item in result.Data)
-                        {
-                            count++;
-                            this.WriteObject(this.FormatOutput(item));
-                        }
-
-                        continuationToken = result.ContinuationToken;
-                        this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
-                    }
-                    while (continuationToken.Next);
-                }
-                else if (this.ParameterSetName.Equals("GetApplicationInfo"))
-                {
-                    var result = this.ServiceFabricClient.Applications.GetApplicationInfoAsync(
-                        applicationId: this.ApplicationId,
+                    var result = this.ServiceFabricClient.Applications.GetApplicationInfoListAsync(
+                        applicationDefinitionKindFilter: this.ApplicationDefinitionKindFilter,
+                        applicationTypeName: this.ApplicationTypeName,
                         excludeApplicationParameters: this.ExcludeApplicationParameters,
+                        continuationToken: continuationToken,
+                        maxResults: this.MaxResults,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
                 }
+                while (continuationToken.Next);
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetApplicationInfo"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.Applications.GetApplicationInfoAsync(
+                    applicationId: this.ApplicationId,
+                    excludeApplicationParameters: this.ExcludeApplicationParameters,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
 

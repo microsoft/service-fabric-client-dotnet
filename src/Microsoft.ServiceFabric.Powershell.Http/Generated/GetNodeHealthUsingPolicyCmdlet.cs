@@ -125,27 +125,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var clusterHealthPolicy = new ClusterHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
-                maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
-                applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
+            var clusterHealthPolicy = new ClusterHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
+            maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
+            applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
 
-                var result = this.ServiceFabricClient.Nodes.GetNodeHealthUsingPolicyAsync(
-                    nodeName: this.NodeName,
-                    eventsHealthStateFilter: this.EventsHealthStateFilter,
-                    clusterHealthPolicy: clusterHealthPolicy,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Nodes.GetNodeHealthUsingPolicyAsync(
+                nodeName: this.NodeName,
+                eventsHealthStateFilter: this.EventsHealthStateFilter,
+                clusterHealthPolicy: clusterHealthPolicy,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

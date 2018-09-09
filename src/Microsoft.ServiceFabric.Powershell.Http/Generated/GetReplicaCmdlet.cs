@@ -53,45 +53,38 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetReplicaInfoList"))
             {
-                if (this.ParameterSetName.Equals("GetReplicaInfoList"))
+                var continuationToken = ContinuationToken.Empty;
+                do
                 {
-                    var continuationToken = ContinuationToken.Empty;
-                    do
-                    {
-                        var result = this.ServiceFabricClient.Replicas.GetReplicaInfoListAsync(
-                            partitionId: this.PartitionId,
-                            continuationToken: continuationToken,
-                            serverTimeout: this.ServerTimeout,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                        var count = 0;
-                        foreach (var item in result.Data)
-                        {
-                            count++;
-                            this.WriteObject(this.FormatOutput(item));
-                        }
-
-                        continuationToken = result.ContinuationToken;
-                        this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
-                    }
-                    while (continuationToken.Next);
-                }
-                else if (this.ParameterSetName.Equals("GetReplicaInfo"))
-                {
-                    var result = this.ServiceFabricClient.Replicas.GetReplicaInfoAsync(
+                    var result = this.ServiceFabricClient.Replicas.GetReplicaInfoListAsync(
                         partitionId: this.PartitionId,
-                        replicaId: this.ReplicaId,
+                        continuationToken: continuationToken,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
                 }
+                while (continuationToken.Next);
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetReplicaInfo"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.Replicas.GetReplicaInfoAsync(
+                    partitionId: this.PartitionId,
+                    replicaId: this.ReplicaId,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
 

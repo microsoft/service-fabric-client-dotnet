@@ -61,29 +61,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var registryCredential = new RegistryCredential(
-                registryUserName: this.RegistryUserName,
-                registryPassword: this.RegistryPassword,
-                passwordEncrypted: this.PasswordEncrypted);
+            var registryCredential = new RegistryCredential(
+            registryUserName: this.RegistryUserName,
+            registryPassword: this.RegistryPassword,
+            passwordEncrypted: this.PasswordEncrypted);
 
-                var createComposeDeploymentDescription = new CreateComposeDeploymentDescription(
-                deploymentName: this.DeploymentName,
-                composeFileContent: this.ComposeFileContent,
-                registryCredential: registryCredential);
+            var createComposeDeploymentDescription = new CreateComposeDeploymentDescription(
+            deploymentName: this.DeploymentName,
+            composeFileContent: this.ComposeFileContent,
+            registryCredential: registryCredential);
 
-                this.ServiceFabricClient.ComposeDeployments.CreateComposeDeploymentAsync(
-                    createComposeDeploymentDescription: createComposeDeploymentDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.ComposeDeployments.CreateComposeDeploymentAsync(
+                createComposeDeploymentDescription: createComposeDeploymentDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

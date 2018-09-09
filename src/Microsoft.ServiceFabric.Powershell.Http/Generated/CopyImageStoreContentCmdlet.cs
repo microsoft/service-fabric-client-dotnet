@@ -57,25 +57,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var imageStoreCopyDescription = new ImageStoreCopyDescription(
-                remoteSource: this.RemoteSource,
-                remoteDestination: this.RemoteDestination,
-                skipFiles: this.SkipFiles,
-                checkMarkFile: this.CheckMarkFile);
+            var imageStoreCopyDescription = new ImageStoreCopyDescription(
+            remoteSource: this.RemoteSource,
+            remoteDestination: this.RemoteDestination,
+            skipFiles: this.SkipFiles,
+            checkMarkFile: this.CheckMarkFile);
 
-                this.ServiceFabricClient.ImageStore.CopyImageStoreContentAsync(
-                    imageStoreCopyDescription: imageStoreCopyDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.ImageStore.CopyImageStoreContentAsync(
+                imageStoreCopyDescription: imageStoreCopyDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

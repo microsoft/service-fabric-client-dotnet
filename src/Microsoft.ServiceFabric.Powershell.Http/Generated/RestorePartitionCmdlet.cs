@@ -135,45 +135,38 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            BackupStorageDescription backupStorageDescription = null;
+            if (this.AzureBlobStore.IsPresent)
             {
-                BackupStorageDescription backupStorageDescription = null;
-                if (this.AzureBlobStore.IsPresent)
-                {
-                    backupStorageDescription = new AzureBlobBackupStorageDescription(
-                        connectionString: this.ConnectionString,
-                        containerName: this.ContainerName,
-                        friendlyName: this.FriendlyName);
-                }
-                else if (this.FileShare.IsPresent)
-                {
-                    backupStorageDescription = new FileShareBackupStorageDescription(
-                        path: this.Path,
-                        friendlyName: this.FriendlyName,
-                        primaryUserName: this.PrimaryUserName,
-                        primaryPassword: this.PrimaryPassword,
-                        secondaryUserName: this.SecondaryUserName,
-                        secondaryPassword: this.SecondaryPassword);
-                }
-
-                var restorePartitionDescription = new RestorePartitionDescription(
-                backupId: this.BackupId,
-                backupLocation: this.BackupLocation,
-                backupStorage: backupStorageDescription);
-
-                this.ServiceFabricClient.BackupRestore.RestorePartitionAsync(
-                    partitionId: this.PartitionId,
-                    restorePartitionDescription: restorePartitionDescription,
-                    restoreTimeout: this.RestoreTimeout,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
+                backupStorageDescription = new AzureBlobBackupStorageDescription(
+                    connectionString: this.ConnectionString,
+                    containerName: this.ContainerName,
+                    friendlyName: this.FriendlyName);
             }
-            catch (Exception ex)
+            else if (this.FileShare.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                backupStorageDescription = new FileShareBackupStorageDescription(
+                    path: this.Path,
+                    friendlyName: this.FriendlyName,
+                    primaryUserName: this.PrimaryUserName,
+                    primaryPassword: this.PrimaryPassword,
+                    secondaryUserName: this.SecondaryUserName,
+                    secondaryPassword: this.SecondaryPassword);
             }
+
+            var restorePartitionDescription = new RestorePartitionDescription(
+            backupId: this.BackupId,
+            backupLocation: this.BackupLocation,
+            backupStorage: backupStorageDescription);
+
+            this.ServiceFabricClient.BackupRestore.RestorePartitionAsync(
+                partitionId: this.PartitionId,
+                restorePartitionDescription: restorePartitionDescription,
+                restoreTimeout: this.RestoreTimeout,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            Console.WriteLine("Success!");
         }
     }
 }

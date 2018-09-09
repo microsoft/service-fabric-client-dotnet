@@ -273,85 +273,78 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            PartitionSchemeDescription partitionSchemeDescription = null;
+            if (this.Named.IsPresent)
             {
-                PartitionSchemeDescription partitionSchemeDescription = null;
-                if (this.Named.IsPresent)
-                {
-                    partitionSchemeDescription = new NamedPartitionSchemeDescription(
-                        count: this.Count,
-                        names: this.Names);
-                }
-                else if (this.Singleton.IsPresent)
-                {
-                    partitionSchemeDescription = new SingletonPartitionSchemeDescription();
-                }
-                else if (this.UniformInt64Range.IsPresent)
-                {
-                    partitionSchemeDescription = new UniformInt64RangePartitionSchemeDescription(
-                        count: this.Count,
-                        lowKey: this.LowKey,
-                        highKey: this.HighKey);
-                }
-
-                ServiceDescription serviceDescription = null;
-                if (this.Stateful.IsPresent)
-                {
-                    serviceDescription = new StatefulServiceDescription(
-                        serviceName: this.ServiceName,
-                        serviceTypeName: this.ServiceTypeName,
-                        partitionDescription: partitionSchemeDescription,
-                        targetReplicaSetSize: this.TargetReplicaSetSize,
-                        minReplicaSetSize: this.MinReplicaSetSize,
-                        hasPersistedState: this.HasPersistedState,
-                        applicationName: this.ApplicationName,
-                        initializationData: this.InitializationData,
-                        placementConstraints: this.PlacementConstraints,
-                        correlationScheme: this.CorrelationScheme,
-                        serviceLoadMetrics: this.ServiceLoadMetrics,
-                        servicePlacementPolicies: this.ServicePlacementPolicies,
-                        defaultMoveCost: this.DefaultMoveCost,
-                        isDefaultMoveCostSpecified: this.IsDefaultMoveCostSpecified,
-                        servicePackageActivationMode: this.ServicePackageActivationMode,
-                        serviceDnsName: this.ServiceDnsName,
-                        scalingPolicies: this.ScalingPolicies,
-                        flags: this.Flags,
-                        replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
-                        quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
-                        standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds);
-                }
-                else if (this.Stateless.IsPresent)
-                {
-                    serviceDescription = new StatelessServiceDescription(
-                        serviceName: this.ServiceName,
-                        serviceTypeName: this.ServiceTypeName,
-                        partitionDescription: partitionSchemeDescription,
-                        instanceCount: this.InstanceCount,
-                        applicationName: this.ApplicationName,
-                        initializationData: this.InitializationData,
-                        placementConstraints: this.PlacementConstraints,
-                        correlationScheme: this.CorrelationScheme,
-                        serviceLoadMetrics: this.ServiceLoadMetrics,
-                        servicePlacementPolicies: this.ServicePlacementPolicies,
-                        defaultMoveCost: this.DefaultMoveCost,
-                        isDefaultMoveCostSpecified: this.IsDefaultMoveCostSpecified,
-                        servicePackageActivationMode: this.ServicePackageActivationMode,
-                        serviceDnsName: this.ServiceDnsName,
-                        scalingPolicies: this.ScalingPolicies);
-                }
-
-                this.ServiceFabricClient.Services.CreateServiceAsync(
-                    applicationId: this.ApplicationId,
-                    serviceDescription: serviceDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
+                partitionSchemeDescription = new NamedPartitionSchemeDescription(
+                    count: this.Count,
+                    names: this.Names);
             }
-            catch (Exception ex)
+            else if (this.Singleton.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                partitionSchemeDescription = new SingletonPartitionSchemeDescription();
             }
+            else if (this.UniformInt64Range.IsPresent)
+            {
+                partitionSchemeDescription = new UniformInt64RangePartitionSchemeDescription(
+                    count: this.Count,
+                    lowKey: this.LowKey,
+                    highKey: this.HighKey);
+            }
+
+            ServiceDescription serviceDescription = null;
+            if (this.Stateful.IsPresent)
+            {
+                serviceDescription = new StatefulServiceDescription(
+                    serviceName: this.ServiceName,
+                    serviceTypeName: this.ServiceTypeName,
+                    partitionDescription: partitionSchemeDescription,
+                    targetReplicaSetSize: this.TargetReplicaSetSize,
+                    minReplicaSetSize: this.MinReplicaSetSize,
+                    hasPersistedState: this.HasPersistedState,
+                    applicationName: this.ApplicationName,
+                    initializationData: this.InitializationData,
+                    placementConstraints: this.PlacementConstraints,
+                    correlationScheme: this.CorrelationScheme,
+                    serviceLoadMetrics: this.ServiceLoadMetrics,
+                    servicePlacementPolicies: this.ServicePlacementPolicies,
+                    defaultMoveCost: this.DefaultMoveCost,
+                    isDefaultMoveCostSpecified: this.IsDefaultMoveCostSpecified,
+                    servicePackageActivationMode: this.ServicePackageActivationMode,
+                    serviceDnsName: this.ServiceDnsName,
+                    scalingPolicies: this.ScalingPolicies,
+                    flags: this.Flags,
+                    replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
+                    quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
+                    standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds);
+            }
+            else if (this.Stateless.IsPresent)
+            {
+                serviceDescription = new StatelessServiceDescription(
+                    serviceName: this.ServiceName,
+                    serviceTypeName: this.ServiceTypeName,
+                    partitionDescription: partitionSchemeDescription,
+                    instanceCount: this.InstanceCount,
+                    applicationName: this.ApplicationName,
+                    initializationData: this.InitializationData,
+                    placementConstraints: this.PlacementConstraints,
+                    correlationScheme: this.CorrelationScheme,
+                    serviceLoadMetrics: this.ServiceLoadMetrics,
+                    servicePlacementPolicies: this.ServicePlacementPolicies,
+                    defaultMoveCost: this.DefaultMoveCost,
+                    isDefaultMoveCostSpecified: this.IsDefaultMoveCostSpecified,
+                    servicePackageActivationMode: this.ServicePackageActivationMode,
+                    serviceDnsName: this.ServiceDnsName,
+                    scalingPolicies: this.ScalingPolicies);
+            }
+
+            this.ServiceFabricClient.Services.CreateServiceAsync(
+                applicationId: this.ApplicationId,
+                serviceDescription: serviceDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            Console.WriteLine("Success!");
         }
     }
 }

@@ -170,50 +170,43 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            ServiceUpdateDescription serviceUpdateDescription = null;
+            if (this.Stateful.IsPresent)
             {
-                ServiceUpdateDescription serviceUpdateDescription = null;
-                if (this.Stateful.IsPresent)
-                {
-                    serviceUpdateDescription = new StatefulServiceUpdateDescription(
-                        flags: this.Flags,
-                        placementConstraints: this.PlacementConstraints,
-                        correlationScheme: this.CorrelationScheme,
-                        loadMetrics: this.LoadMetrics,
-                        servicePlacementPolicies: this.ServicePlacementPolicies,
-                        defaultMoveCost: this.DefaultMoveCost,
-                        scalingPolicies: this.ScalingPolicies,
-                        targetReplicaSetSize: this.TargetReplicaSetSize,
-                        minReplicaSetSize: this.MinReplicaSetSize,
-                        replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
-                        quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
-                        standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds);
-                }
-                else if (this.Stateless.IsPresent)
-                {
-                    serviceUpdateDescription = new StatelessServiceUpdateDescription(
-                        flags: this.Flags,
-                        placementConstraints: this.PlacementConstraints,
-                        correlationScheme: this.CorrelationScheme,
-                        loadMetrics: this.LoadMetrics,
-                        servicePlacementPolicies: this.ServicePlacementPolicies,
-                        defaultMoveCost: this.DefaultMoveCost,
-                        scalingPolicies: this.ScalingPolicies,
-                        instanceCount: this.InstanceCount);
-                }
-
-                this.ServiceFabricClient.Services.UpdateServiceAsync(
-                    serviceId: this.ServiceId,
-                    serviceUpdateDescription: serviceUpdateDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
+                serviceUpdateDescription = new StatefulServiceUpdateDescription(
+                    flags: this.Flags,
+                    placementConstraints: this.PlacementConstraints,
+                    correlationScheme: this.CorrelationScheme,
+                    loadMetrics: this.LoadMetrics,
+                    servicePlacementPolicies: this.ServicePlacementPolicies,
+                    defaultMoveCost: this.DefaultMoveCost,
+                    scalingPolicies: this.ScalingPolicies,
+                    targetReplicaSetSize: this.TargetReplicaSetSize,
+                    minReplicaSetSize: this.MinReplicaSetSize,
+                    replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
+                    quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
+                    standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds);
             }
-            catch (Exception ex)
+            else if (this.Stateless.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                serviceUpdateDescription = new StatelessServiceUpdateDescription(
+                    flags: this.Flags,
+                    placementConstraints: this.PlacementConstraints,
+                    correlationScheme: this.CorrelationScheme,
+                    loadMetrics: this.LoadMetrics,
+                    servicePlacementPolicies: this.ServicePlacementPolicies,
+                    defaultMoveCost: this.DefaultMoveCost,
+                    scalingPolicies: this.ScalingPolicies,
+                    instanceCount: this.InstanceCount);
             }
+
+            this.ServiceFabricClient.Services.UpdateServiceAsync(
+                serviceId: this.ServiceId,
+                serviceUpdateDescription: serviceUpdateDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            Console.WriteLine("Success!");
         }
     }
 }

@@ -53,20 +53,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var result = this.ServiceFabricClient.Infrastructure.InvokeInfrastructureCommandAsync(
-                    command: this.Command,
-                    serviceId: this.ServiceId,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Infrastructure.InvokeInfrastructureCommandAsync(
+                command: this.Command,
+                serviceId: this.ServiceId,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(result, true);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(result, true);
         }
     }
 }

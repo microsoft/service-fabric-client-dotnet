@@ -62,29 +62,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var chaosSchedule = new ChaosSchedule(
-                startDate: this.StartDate,
-                expiryDate: this.ExpiryDate,
-                chaosParametersDictionary: this.ChaosParametersDictionary,
-                jobs: this.Jobs);
+            var chaosSchedule = new ChaosSchedule(
+            startDate: this.StartDate,
+            expiryDate: this.ExpiryDate,
+            chaosParametersDictionary: this.ChaosParametersDictionary,
+            jobs: this.Jobs);
 
-                var chaosScheduleDescription = new ChaosScheduleDescription(
-                version: this.Version,
-                schedule: chaosSchedule);
+            var chaosScheduleDescription = new ChaosScheduleDescription(
+            version: this.Version,
+            schedule: chaosSchedule);
 
-                this.ServiceFabricClient.ChaosClient.PostChaosScheduleAsync(
-                    chaosSchedule: chaosScheduleDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.ChaosClient.PostChaosScheduleAsync(
+                chaosSchedule: chaosScheduleDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

@@ -216,50 +216,43 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var monitoringPolicyDescription = new MonitoringPolicyDescription(
-                failureAction: this.FailureAction,
-                healthCheckWaitDurationInMilliseconds: this.HealthCheckWaitDurationInMilliseconds,
-                healthCheckStableDurationInMilliseconds: this.HealthCheckStableDurationInMilliseconds,
-                healthCheckRetryTimeoutInMilliseconds: this.HealthCheckRetryTimeoutInMilliseconds,
-                upgradeTimeoutInMilliseconds: this.UpgradeTimeoutInMilliseconds,
-                upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds);
+            var monitoringPolicyDescription = new MonitoringPolicyDescription(
+            failureAction: this.FailureAction,
+            healthCheckWaitDurationInMilliseconds: this.HealthCheckWaitDurationInMilliseconds,
+            healthCheckStableDurationInMilliseconds: this.HealthCheckStableDurationInMilliseconds,
+            healthCheckRetryTimeoutInMilliseconds: this.HealthCheckRetryTimeoutInMilliseconds,
+            upgradeTimeoutInMilliseconds: this.UpgradeTimeoutInMilliseconds,
+            upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds);
 
-                var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
-                maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
-                maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
-                maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
+            var serviceTypeHealthPolicy = new ServiceTypeHealthPolicy(
+            maxPercentUnhealthyPartitionsPerService: this.MaxPercentUnhealthyPartitionsPerService,
+            maxPercentUnhealthyReplicasPerPartition: this.MaxPercentUnhealthyReplicasPerPartition,
+            maxPercentUnhealthyServices: this.MaxPercentUnhealthyServices);
 
-                var applicationHealthPolicy = new ApplicationHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
-                defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
-                serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
+            var applicationHealthPolicy = new ApplicationHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyDeployedApplications: this.MaxPercentUnhealthyDeployedApplications,
+            defaultServiceTypeHealthPolicy: serviceTypeHealthPolicy,
+            serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
 
-                var applicationUpgradeDescription = new ApplicationUpgradeDescription(
-                name: this.Name,
-                targetApplicationTypeVersion: this.TargetApplicationTypeVersion,
-                parameters: this.Parameters,
-                upgradeKind: this.UpgradeKind,
-                rollingUpgradeMode: this.RollingUpgradeMode,
-                upgradeReplicaSetCheckTimeoutInSeconds: this.UpgradeReplicaSetCheckTimeoutInSeconds,
-                forceRestart: this.ForceRestart,
-                monitoringPolicy: monitoringPolicyDescription,
-                applicationHealthPolicy: applicationHealthPolicy);
+            var applicationUpgradeDescription = new ApplicationUpgradeDescription(
+            name: this.Name,
+            targetApplicationTypeVersion: this.TargetApplicationTypeVersion,
+            parameters: this.Parameters,
+            upgradeKind: this.UpgradeKind,
+            rollingUpgradeMode: this.RollingUpgradeMode,
+            upgradeReplicaSetCheckTimeoutInSeconds: this.UpgradeReplicaSetCheckTimeoutInSeconds,
+            forceRestart: this.ForceRestart,
+            monitoringPolicy: monitoringPolicyDescription,
+            applicationHealthPolicy: applicationHealthPolicy);
 
-                this.ServiceFabricClient.Applications.StartApplicationUpgradeAsync(
-                    applicationId: this.ApplicationId,
-                    applicationUpgradeDescription: applicationUpgradeDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Applications.StartApplicationUpgradeAsync(
+                applicationId: this.ApplicationId,
+                applicationUpgradeDescription: applicationUpgradeDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

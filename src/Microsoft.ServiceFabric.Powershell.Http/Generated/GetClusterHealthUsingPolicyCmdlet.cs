@@ -209,34 +209,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var clusterHealthPolicy = new ClusterHealthPolicy(
-                considerWarningAsError: this.ConsiderWarningAsError,
-                maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
-                maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
-                applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
+            var clusterHealthPolicy = new ClusterHealthPolicy(
+            considerWarningAsError: this.ConsiderWarningAsError,
+            maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
+            maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
+            applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
 
-                var clusterHealthPolicies = new ClusterHealthPolicies(
-                applicationHealthPolicyMap: this.ApplicationHealthPolicyMap,
-                clusterHealthPolicy: clusterHealthPolicy);
+            var clusterHealthPolicies = new ClusterHealthPolicies(
+            applicationHealthPolicyMap: this.ApplicationHealthPolicyMap,
+            clusterHealthPolicy: clusterHealthPolicy);
 
-                var result = this.ServiceFabricClient.Cluster.GetClusterHealthUsingPolicyAsync(
-                    nodesHealthStateFilter: this.NodesHealthStateFilter,
-                    applicationsHealthStateFilter: this.ApplicationsHealthStateFilter,
-                    eventsHealthStateFilter: this.EventsHealthStateFilter,
-                    excludeHealthStatistics: this.ExcludeHealthStatistics,
-                    includeSystemApplicationHealthStatistics: this.IncludeSystemApplicationHealthStatistics,
-                    clusterHealthPolicies: clusterHealthPolicies,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.Cluster.GetClusterHealthUsingPolicyAsync(
+                nodesHealthStateFilter: this.NodesHealthStateFilter,
+                applicationsHealthStateFilter: this.ApplicationsHealthStateFilter,
+                eventsHealthStateFilter: this.EventsHealthStateFilter,
+                excludeHealthStatistics: this.ExcludeHealthStatistics,
+                includeSystemApplicationHealthStatistics: this.IncludeSystemApplicationHealthStatistics,
+                clusterHealthPolicies: clusterHealthPolicies,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

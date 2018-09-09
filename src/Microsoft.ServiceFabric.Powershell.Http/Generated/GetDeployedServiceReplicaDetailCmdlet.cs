@@ -64,33 +64,26 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetDeployedServiceReplicaDetailInfo"))
             {
-                if (this.ParameterSetName.Equals("GetDeployedServiceReplicaDetailInfo"))
-                {
-                    var result = this.ServiceFabricClient.Replicas.GetDeployedServiceReplicaDetailInfoAsync(
-                        nodeName: this.NodeName,
-                        partitionId: this.PartitionId,
-                        replicaId: this.ReplicaId,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.Replicas.GetDeployedServiceReplicaDetailInfoAsync(
+                    nodeName: this.NodeName,
+                    partitionId: this.PartitionId,
+                    replicaId: this.ReplicaId,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    this.WriteObject(this.FormatOutput(result));
-                }
-                else if (this.ParameterSetName.Equals("GetDeployedServiceReplicaDetailInfoByPartitionId"))
-                {
-                    var result = this.ServiceFabricClient.Replicas.GetDeployedServiceReplicaDetailInfoByPartitionIdAsync(
-                        nodeName: this.NodeName,
-                        partitionId: this.PartitionId,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    this.WriteObject(this.FormatOutput(result));
-                }
+                this.WriteObject(this.FormatOutput(result));
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetDeployedServiceReplicaDetailInfoByPartitionId"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.Replicas.GetDeployedServiceReplicaDetailInfoByPartitionIdAsync(
+                    nodeName: this.NodeName,
+                    partitionId: this.PartitionId,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
 

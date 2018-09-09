@@ -90,27 +90,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var restartDeployedCodePackageDescription = new RestartDeployedCodePackageDescription(
-                serviceManifestName: this.ServiceManifestName,
-                codePackageName: this.CodePackageName,
-                codePackageInstanceId: this.CodePackageInstanceId,
-                servicePackageActivationId: this.ServicePackageActivationId);
+            var restartDeployedCodePackageDescription = new RestartDeployedCodePackageDescription(
+            serviceManifestName: this.ServiceManifestName,
+            codePackageName: this.CodePackageName,
+            codePackageInstanceId: this.CodePackageInstanceId,
+            servicePackageActivationId: this.ServicePackageActivationId);
 
-                this.ServiceFabricClient.CodePackages.RestartDeployedCodePackageAsync(
-                    nodeName: this.NodeName,
-                    applicationId: this.ApplicationId,
-                    restartDeployedCodePackageDescription: restartDeployedCodePackageDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.CodePackages.RestartDeployedCodePackageAsync(
+                nodeName: this.NodeName,
+                applicationId: this.ApplicationId,
+                restartDeployedCodePackageDescription: restartDeployedCodePackageDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

@@ -65,36 +65,29 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetServiceTypeInfoList"))
             {
-                if (this.ParameterSetName.Equals("GetServiceTypeInfoList"))
-                {
-                    var result = this.ServiceFabricClient.ServiceTypes.GetServiceTypeInfoListAsync(
-                        applicationTypeName: this.ApplicationTypeName,
-                        applicationTypeVersion: this.ApplicationTypeVersion,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.ServiceTypes.GetServiceTypeInfoListAsync(
+                    applicationTypeName: this.ApplicationTypeName,
+                    applicationTypeVersion: this.ApplicationTypeVersion,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-                }
-                else if (this.ParameterSetName.Equals("GetServiceTypeInfoByName"))
+                foreach (var item in result)
                 {
-                    var result = this.ServiceFabricClient.ServiceTypes.GetServiceTypeInfoByNameAsync(
-                        applicationTypeName: this.ApplicationTypeName,
-                        applicationTypeVersion: this.ApplicationTypeVersion,
-                        serviceTypeName: this.ServiceTypeName,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    this.WriteObject(this.FormatOutput(result));
+                    this.WriteObject(this.FormatOutput(item));
                 }
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetServiceTypeInfoByName"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.ServiceTypes.GetServiceTypeInfoByNameAsync(
+                    applicationTypeName: this.ApplicationTypeName,
+                    applicationTypeVersion: this.ApplicationTypeVersion,
+                    serviceTypeName: this.ServiceTypeName,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
     }

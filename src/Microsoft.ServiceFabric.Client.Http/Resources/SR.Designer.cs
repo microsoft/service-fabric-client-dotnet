@@ -97,6 +97,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to deserialize json response from server..
+        /// </summary>
+        internal static string ErrorCanNotDeserializeResponseFromServer {
+            get {
+                return ResourceManager.GetString("ErrorCanNotDeserializeResponseFromServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ClaimsTokenHandler cannot be created for SecuritySettings of type {0}.
         /// </summary>
         internal static string ErrorClaimsTokenHandlerIncorrectSecuritySettings {

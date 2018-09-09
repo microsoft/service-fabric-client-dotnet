@@ -183,78 +183,71 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            BackupStorageDescription backupStorageDescription = null;
+            if (this.AzureBlobStore.IsPresent)
             {
-                BackupStorageDescription backupStorageDescription = null;
-                if (this.AzureBlobStore.IsPresent)
-                {
-                    backupStorageDescription = new AzureBlobBackupStorageDescription(
-                        connectionString: this.ConnectionString,
-                        containerName: this.ContainerName,
-                        friendlyName: this.FriendlyName);
-                }
-                else if (this.FileShare.IsPresent)
-                {
-                    backupStorageDescription = new FileShareBackupStorageDescription(
-                        path: this.Path,
-                        friendlyName: this.FriendlyName,
-                        primaryUserName: this.PrimaryUserName,
-                        primaryPassword: this.PrimaryPassword,
-                        secondaryUserName: this.SecondaryUserName,
-                        secondaryPassword: this.SecondaryPassword);
-                }
-
-                BackupEntity backupEntity = null;
-                if (this.Application.IsPresent)
-                {
-                    backupEntity = new ApplicationBackupEntity(
-                        applicationName: this.ApplicationName);
-                }
-                else if (this.Service.IsPresent)
-                {
-                    backupEntity = new ServiceBackupEntity(
-                        serviceName: this.ServiceName);
-                }
-                else if (this.Partition.IsPresent)
-                {
-                    backupEntity = new PartitionBackupEntity(
-                        serviceName: this.ServiceName,
-                        partitionId: this.PartitionId);
-                }
-
-                var getBackupByStorageQueryDescription = new GetBackupByStorageQueryDescription(
-                storage: backupStorageDescription,
-                backupEntity: backupEntity,
-                startDateTimeFilter: this.StartDateTimeFilter,
-                endDateTimeFilter: this.EndDateTimeFilter,
-                latest: this.Latest);
-
-                var continuationToken = ContinuationToken.Empty;
-                do
-                {
-                    var result = this.ServiceFabricClient.BackupRestore.GetBackupsFromBackupLocationAsync(
-                        getBackupByStorageQueryDescription: getBackupByStorageQueryDescription,
-                        serverTimeout: this.ServerTimeout,
-                        continuationToken: continuationToken,
-                        maxResults: this.MaxResults,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    var count = 0;
-                    foreach (var item in result.Data)
-                    {
-                        count++;
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-
-                    continuationToken = result.ContinuationToken;
-                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
-                }
-                while (continuationToken.Next);
+                backupStorageDescription = new AzureBlobBackupStorageDescription(
+                    connectionString: this.ConnectionString,
+                    containerName: this.ContainerName,
+                    friendlyName: this.FriendlyName);
             }
-            catch (Exception ex)
+            else if (this.FileShare.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                backupStorageDescription = new FileShareBackupStorageDescription(
+                    path: this.Path,
+                    friendlyName: this.FriendlyName,
+                    primaryUserName: this.PrimaryUserName,
+                    primaryPassword: this.PrimaryPassword,
+                    secondaryUserName: this.SecondaryUserName,
+                    secondaryPassword: this.SecondaryPassword);
             }
+
+            BackupEntity backupEntity = null;
+            if (this.Application.IsPresent)
+            {
+                backupEntity = new ApplicationBackupEntity(
+                    applicationName: this.ApplicationName);
+            }
+            else if (this.Service.IsPresent)
+            {
+                backupEntity = new ServiceBackupEntity(
+                    serviceName: this.ServiceName);
+            }
+            else if (this.Partition.IsPresent)
+            {
+                backupEntity = new PartitionBackupEntity(
+                    serviceName: this.ServiceName,
+                    partitionId: this.PartitionId);
+            }
+
+            var getBackupByStorageQueryDescription = new GetBackupByStorageQueryDescription(
+            storage: backupStorageDescription,
+            backupEntity: backupEntity,
+            startDateTimeFilter: this.StartDateTimeFilter,
+            endDateTimeFilter: this.EndDateTimeFilter,
+            latest: this.Latest);
+
+            var continuationToken = ContinuationToken.Empty;
+            do
+            {
+                var result = this.ServiceFabricClient.BackupRestore.GetBackupsFromBackupLocationAsync(
+                    getBackupByStorageQueryDescription: getBackupByStorageQueryDescription,
+                    serverTimeout: this.ServerTimeout,
+                    continuationToken: continuationToken,
+                    maxResults: this.MaxResults,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                var count = 0;
+                foreach (var item in result.Data)
+                {
+                    count++;
+                    this.WriteObject(this.FormatOutput(item));
+                }
+
+                continuationToken = result.ContinuationToken;
+                this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
+            }
+            while (continuationToken.Next);
         }
 
         /// <inheritdoc/>

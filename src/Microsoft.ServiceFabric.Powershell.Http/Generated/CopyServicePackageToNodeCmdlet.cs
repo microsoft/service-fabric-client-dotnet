@@ -65,27 +65,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var deployServicePackageToNodeDescription = new DeployServicePackageToNodeDescription(
-                serviceManifestName: this.ServiceManifestName,
-                applicationTypeName: this.ApplicationTypeName,
-                applicationTypeVersion: this.ApplicationTypeVersion,
+            var deployServicePackageToNodeDescription = new DeployServicePackageToNodeDescription(
+            serviceManifestName: this.ServiceManifestName,
+            applicationTypeName: this.ApplicationTypeName,
+            applicationTypeVersion: this.ApplicationTypeVersion,
+            nodeName: this.NodeName,
+            packageSharingPolicy: this.PackageSharingPolicy);
+
+            this.ServiceFabricClient.ServicePackages.DeployServicePackageToNodeAsync(
                 nodeName: this.NodeName,
-                packageSharingPolicy: this.PackageSharingPolicy);
+                deployServicePackageToNodeDescription: deployServicePackageToNodeDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.ServiceFabricClient.ServicePackages.DeployServicePackageToNodeAsync(
-                    nodeName: this.NodeName,
-                    deployServicePackageToNodeDescription: deployServicePackageToNodeDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

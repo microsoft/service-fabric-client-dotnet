@@ -54,25 +54,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var unprovisionFabricDescription = new UnprovisionFabricDescription(
-                codeVersion: this.CodeVersion,
-                configVersion: this.ConfigVersion);
+            var unprovisionFabricDescription = new UnprovisionFabricDescription(
+            codeVersion: this.CodeVersion,
+            configVersion: this.ConfigVersion);
 
-                if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
-                {
-                    this.ServiceFabricClient.Cluster.UnprovisionClusterAsync(
-                        unprovisionFabricDescription: unprovisionFabricDescription,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    Console.WriteLine("Success!");
-                }
-            }
-            catch (Exception ex)
+            if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                Console.WriteLine(ex.Message);
+                this.ServiceFabricClient.Cluster.UnprovisionClusterAsync(
+                    unprovisionFabricDescription: unprovisionFabricDescription,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                Console.WriteLine("Success!");
             }
         }
     }

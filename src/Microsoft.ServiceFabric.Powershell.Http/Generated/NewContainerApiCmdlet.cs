@@ -112,30 +112,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var containerApiRequestBody = new ContainerApiRequestBody(
-                uriPath: this.UriPath,
-                httpVerb: this.HttpVerb,
-                contentType: this.ContentType,
-                body: this.Body);
+            var containerApiRequestBody = new ContainerApiRequestBody(
+            uriPath: this.UriPath,
+            httpVerb: this.HttpVerb,
+            contentType: this.ContentType,
+            body: this.Body);
 
-                var result = this.ServiceFabricClient.CodePackages.InvokeContainerApiAsync(
-                    nodeName: this.NodeName,
-                    applicationId: this.ApplicationId,
-                    serviceManifestName: this.ServiceManifestName,
-                    codePackageName: this.CodePackageName,
-                    codePackageInstanceId: this.CodePackageInstanceId,
-                    containerApiRequestBody: containerApiRequestBody,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.CodePackages.InvokeContainerApiAsync(
+                nodeName: this.NodeName,
+                applicationId: this.ApplicationId,
+                serviceManifestName: this.ServiceManifestName,
+                codePackageName: this.CodePackageName,
+                codePackageInstanceId: this.CodePackageInstanceId,
+                containerApiRequestBody: containerApiRequestBody,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

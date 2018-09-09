@@ -56,24 +56,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var restartNodeDescription = new RestartNodeDescription(
-                nodeInstanceId: this.NodeInstanceId,
-                createFabricDump: this.CreateFabricDump);
+            var restartNodeDescription = new RestartNodeDescription(
+            nodeInstanceId: this.NodeInstanceId,
+            createFabricDump: this.CreateFabricDump);
 
-                this.ServiceFabricClient.Nodes.RestartNodeAsync(
-                    nodeName: this.NodeName,
-                    restartNodeDescription: restartNodeDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            this.ServiceFabricClient.Nodes.RestartNodeAsync(
+                nodeName: this.NodeName,
+                restartNodeDescription: restartNodeDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                Console.WriteLine("Success!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            Console.WriteLine("Success!");
         }
     }
 }

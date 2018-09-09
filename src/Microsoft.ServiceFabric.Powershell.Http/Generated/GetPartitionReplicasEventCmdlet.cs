@@ -111,47 +111,40 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetPartitionReplicasEventList"))
             {
-                if (this.ParameterSetName.Equals("GetPartitionReplicasEventList"))
-                {
-                    var result = this.ServiceFabricClient.EventsStore.GetPartitionReplicasEventListAsync(
-                        partitionId: this.PartitionId,
-                        startTimeUtc: this.StartTimeUtc,
-                        endTimeUtc: this.EndTimeUtc,
-                        serverTimeout: this.ServerTimeout,
-                        eventsTypesFilter: this.EventsTypesFilter,
-                        excludeAnalysisEvents: this.ExcludeAnalysisEvents,
-                        skipCorrelationLookup: this.SkipCorrelationLookup,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.EventsStore.GetPartitionReplicasEventListAsync(
+                    partitionId: this.PartitionId,
+                    startTimeUtc: this.StartTimeUtc,
+                    endTimeUtc: this.EndTimeUtc,
+                    serverTimeout: this.ServerTimeout,
+                    eventsTypesFilter: this.EventsTypesFilter,
+                    excludeAnalysisEvents: this.ExcludeAnalysisEvents,
+                    skipCorrelationLookup: this.SkipCorrelationLookup,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-                }
-                else if (this.ParameterSetName.Equals("GetPartitionReplicaEventList"))
+                foreach (var item in result)
                 {
-                    var result = this.ServiceFabricClient.EventsStore.GetPartitionReplicaEventListAsync(
-                        partitionId: this.PartitionId,
-                        replicaId: this.ReplicaId,
-                        startTimeUtc: this.StartTimeUtc,
-                        endTimeUtc: this.EndTimeUtc,
-                        serverTimeout: this.ServerTimeout,
-                        eventsTypesFilter: this.EventsTypesFilter,
-                        excludeAnalysisEvents: this.ExcludeAnalysisEvents,
-                        skipCorrelationLookup: this.SkipCorrelationLookup,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
+                    this.WriteObject(this.FormatOutput(item));
                 }
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetPartitionReplicaEventList"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.EventsStore.GetPartitionReplicaEventListAsync(
+                    partitionId: this.PartitionId,
+                    replicaId: this.ReplicaId,
+                    startTimeUtc: this.StartTimeUtc,
+                    endTimeUtc: this.EndTimeUtc,
+                    serverTimeout: this.ServerTimeout,
+                    eventsTypesFilter: this.EventsTypesFilter,
+                    excludeAnalysisEvents: this.ExcludeAnalysisEvents,
+                    skipCorrelationLookup: this.SkipCorrelationLookup,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                foreach (var item in result)
+                {
+                    this.WriteObject(this.FormatOutput(item));
+                }
             }
         }
     }

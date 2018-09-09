@@ -99,24 +99,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var result = this.ServiceFabricClient.CodePackages.GetContainerLogsDeployedOnNodeAsync(
-                    nodeName: this.NodeName,
-                    applicationId: this.ApplicationId,
-                    serviceManifestName: this.ServiceManifestName,
-                    codePackageName: this.CodePackageName,
-                    tail: this.Tail,
-                    previous: this.Previous,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var result = this.ServiceFabricClient.CodePackages.GetContainerLogsDeployedOnNodeAsync(
+                nodeName: this.NodeName,
+                applicationId: this.ApplicationId,
+                serviceManifestName: this.ServiceManifestName,
+                codePackageName: this.CodePackageName,
+                tail: this.Tail,
+                previous: this.Previous,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            this.WriteObject(this.FormatOutput(result));
         }
 
         /// <inheritdoc/>

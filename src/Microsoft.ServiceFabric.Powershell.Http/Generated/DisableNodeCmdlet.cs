@@ -60,25 +60,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
-            {
-                var deactivationIntentDescription = new DeactivationIntentDescription(
-                deactivationIntent: this.DeactivationIntent);
+            var deactivationIntentDescription = new DeactivationIntentDescription(
+            deactivationIntent: this.DeactivationIntent);
 
-                if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
-                {
-                    this.ServiceFabricClient.Nodes.DisableNodeAsync(
-                        nodeName: this.NodeName,
-                        deactivationIntentDescription: deactivationIntentDescription,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    Console.WriteLine("Success!");
-                }
-            }
-            catch (Exception ex)
+            if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                Console.WriteLine(ex.Message);
+                this.ServiceFabricClient.Nodes.DisableNodeAsync(
+                    nodeName: this.NodeName,
+                    deactivationIntentDescription: deactivationIntentDescription,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                Console.WriteLine("Success!");
             }
         }
     }

@@ -59,34 +59,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            var continuationToken = ContinuationToken.Empty;
+            do
             {
-                var continuationToken = ContinuationToken.Empty;
-                do
+                var result = this.ServiceFabricClient.BackupRestore.GetApplicationBackupConfigurationInfoAsync(
+                    applicationId: this.ApplicationId,
+                    continuationToken: continuationToken,
+                    maxResults: this.MaxResults,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                var count = 0;
+                foreach (var item in result.Data)
                 {
-                    var result = this.ServiceFabricClient.BackupRestore.GetApplicationBackupConfigurationInfoAsync(
-                        applicationId: this.ApplicationId,
-                        continuationToken: continuationToken,
-                        maxResults: this.MaxResults,
-                        serverTimeout: this.ServerTimeout,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    var count = 0;
-                    foreach (var item in result.Data)
-                    {
-                        count++;
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-
-                    continuationToken = result.ContinuationToken;
-                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
+                    count++;
+                    this.WriteObject(this.FormatOutput(item));
                 }
-                while (continuationToken.Next);
+
+                continuationToken = result.ContinuationToken;
+                this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            while (continuationToken.Next);
         }
 
         /// <inheritdoc/>

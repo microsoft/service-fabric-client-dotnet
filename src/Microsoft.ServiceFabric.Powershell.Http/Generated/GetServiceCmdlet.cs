@@ -71,46 +71,39 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetServiceInfoList"))
             {
-                if (this.ParameterSetName.Equals("GetServiceInfoList"))
+                var continuationToken = ContinuationToken.Empty;
+                do
                 {
-                    var continuationToken = ContinuationToken.Empty;
-                    do
-                    {
-                        var result = this.ServiceFabricClient.Services.GetServiceInfoListAsync(
-                            applicationId: this.ApplicationId,
-                            serviceTypeName: this.ServiceTypeName,
-                            continuationToken: continuationToken,
-                            serverTimeout: this.ServerTimeout,
-                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                        var count = 0;
-                        foreach (var item in result.Data)
-                        {
-                            count++;
-                            this.WriteObject(this.FormatOutput(item));
-                        }
-
-                        continuationToken = result.ContinuationToken;
-                        this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
-                    }
-                    while (continuationToken.Next);
-                }
-                else if (this.ParameterSetName.Equals("GetServiceInfo"))
-                {
-                    var result = this.ServiceFabricClient.Services.GetServiceInfoAsync(
+                    var result = this.ServiceFabricClient.Services.GetServiceInfoListAsync(
                         applicationId: this.ApplicationId,
-                        serviceId: this.ServiceId,
+                        serviceTypeName: this.ServiceTypeName,
+                        continuationToken: continuationToken,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
                 }
+                while (continuationToken.Next);
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetServiceInfo"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.Services.GetServiceInfoAsync(
+                    applicationId: this.ApplicationId,
+                    serviceId: this.ServiceId,
+                    serverTimeout: this.ServerTimeout,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
             }
         }
 

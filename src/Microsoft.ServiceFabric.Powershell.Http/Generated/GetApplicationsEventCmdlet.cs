@@ -104,45 +104,38 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            if (this.ParameterSetName.Equals("GetApplicationsEventList"))
             {
-                if (this.ParameterSetName.Equals("GetApplicationsEventList"))
-                {
-                    var result = this.ServiceFabricClient.EventsStore.GetApplicationsEventListAsync(
-                        startTimeUtc: this.StartTimeUtc,
-                        endTimeUtc: this.EndTimeUtc,
-                        serverTimeout: this.ServerTimeout,
-                        eventsTypesFilter: this.EventsTypesFilter,
-                        excludeAnalysisEvents: this.ExcludeAnalysisEvents,
-                        skipCorrelationLookup: this.SkipCorrelationLookup,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                var result = this.ServiceFabricClient.EventsStore.GetApplicationsEventListAsync(
+                    startTimeUtc: this.StartTimeUtc,
+                    endTimeUtc: this.EndTimeUtc,
+                    serverTimeout: this.ServerTimeout,
+                    eventsTypesFilter: this.EventsTypesFilter,
+                    excludeAnalysisEvents: this.ExcludeAnalysisEvents,
+                    skipCorrelationLookup: this.SkipCorrelationLookup,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
-                }
-                else if (this.ParameterSetName.Equals("GetApplicationEventList"))
+                foreach (var item in result)
                 {
-                    var result = this.ServiceFabricClient.EventsStore.GetApplicationEventListAsync(
-                        applicationId: this.ApplicationId,
-                        startTimeUtc: this.StartTimeUtc,
-                        endTimeUtc: this.EndTimeUtc,
-                        serverTimeout: this.ServerTimeout,
-                        eventsTypesFilter: this.EventsTypesFilter,
-                        excludeAnalysisEvents: this.ExcludeAnalysisEvents,
-                        skipCorrelationLookup: this.SkipCorrelationLookup,
-                        cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                    foreach (var item in result)
-                    {
-                        this.WriteObject(this.FormatOutput(item));
-                    }
+                    this.WriteObject(this.FormatOutput(item));
                 }
             }
-            catch (Exception ex)
+            else if (this.ParameterSetName.Equals("GetApplicationEventList"))
             {
-                Console.WriteLine(ex.Message);
+                var result = this.ServiceFabricClient.EventsStore.GetApplicationEventListAsync(
+                    applicationId: this.ApplicationId,
+                    startTimeUtc: this.StartTimeUtc,
+                    endTimeUtc: this.EndTimeUtc,
+                    serverTimeout: this.ServerTimeout,
+                    eventsTypesFilter: this.EventsTypesFilter,
+                    excludeAnalysisEvents: this.ExcludeAnalysisEvents,
+                    skipCorrelationLookup: this.SkipCorrelationLookup,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                foreach (var item in result)
+                {
+                    this.WriteObject(this.FormatOutput(item));
+                }
             }
         }
     }
