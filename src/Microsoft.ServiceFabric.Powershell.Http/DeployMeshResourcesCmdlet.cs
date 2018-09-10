@@ -83,6 +83,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
+                    case ResourseType.Secret:
+                        client.MeshSecrets.CreateOrUpdateMeshSecretAsync(
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
+                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                        break;
+
                     default:
                         this.WriteWarning(string.Format(Resource.WarningInvalidResourceType, resource.Type.ToString()));
                         break;
