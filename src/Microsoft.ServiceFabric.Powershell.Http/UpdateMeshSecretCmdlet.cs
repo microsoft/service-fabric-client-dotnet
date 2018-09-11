@@ -6,6 +6,7 @@
 namespace Microsoft.ServiceFabric.Powershell.Http
 {
     using System;
+    using System.IO;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Client;
 
@@ -19,13 +20,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Secret name to update.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
+        [Parameter(Mandatory = true, ParameterSetName = "jsonfile")]
+        [ValidateNotNullOrEmpty]
         public string SecretResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets the json containing the description of the secret to be updated.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
+        [ValidateNotNullOrEmpty]
         public string JsonDescription { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Json resource file containing the description of the secret to be updated.
+        /// </summary>
+        [Parameter(Mandatory = true, ParameterSetName = "jsonfile")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceDescriptionFile { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -39,9 +50,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 throw new InvalidOperationException("Specified mesh secret doesn't exists in cluster.");
             }
 
+            var jsonDescription = this.JsonDescription;
+
+            if (this.ParameterSetName.Equals("jsonfile"))
+            {
+                jsonDescription = File.ReadAllText(this.ResourceDescriptionFile);
+            }
+
             client.MeshSecrets.CreateOrUpdateMeshSecretAsync(
                 secretResourceName: this.SecretResourceName,
-                jsonDescription: this.JsonDescription,
+                jsonDescription: jsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
         }
     }

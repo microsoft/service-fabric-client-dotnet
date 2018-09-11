@@ -6,6 +6,7 @@
 namespace Microsoft.ServiceFabric.Powershell.Http
 {
     using System;
+    using System.IO;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Client;
 
@@ -19,13 +20,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Application resource name to create.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
+        [Parameter(Mandatory = true, ParameterSetName = "jsonfile")]
+        [ValidateNotNullOrEmpty]
         public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets the json containing the description of the application to be created.
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "json")]
+        [ValidateNotNullOrEmpty]
         public string JsonDescription { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Json resource file containing the description of the application to be created.
+        /// </summary>
+        [Parameter(Mandatory = true, ParameterSetName = "jsonfile")]
+        [ValidateNotNullOrEmpty]
+        public string ResourceDescriptionFile { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -36,12 +47,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             if (applicationResourceInfo != null)
             {
-                throw new InvalidOperationException("Specified mesh application already exists in cluster. If you want to update it use Update-SFMeshApplication");
+                throw new InvalidOperationException("Specified mesh application already exists in cluster. If you want to update it, use Update-SFMeshApplication");
+            }
+
+            var jsonDescription = this.JsonDescription;
+
+            if (this.ParameterSetName.Equals("jsonfile"))
+            {
+                jsonDescription = File.ReadAllText(this.ResourceDescriptionFile);
             }
 
             client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
                 applicationResourceName: this.ApplicationResourceName,
-                jsonDescription: this.JsonDescription,
+                jsonDescription: jsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
         }
     }
