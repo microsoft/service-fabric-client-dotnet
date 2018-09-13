@@ -132,6 +132,9 @@
   <data name="ErrorNoServerCommonNameIrServerCertThumbprint" xml:space="preserve">
     <value>Connecting with IP Address. provide value for at least one of ServerCommonName or ServerCertThumbprint..</value>
   </data>
+  <data name="ErrorNotConnected" xml:space="preserve">
+    <value>Not connected to Service Fabric cluster, please connect using Connect-SFCluster cmdlet before invoking this cmdlet.</value>
+  </data>
   <data name="Error_MissingImageStoreConnectionStringArgument" xml:space="preserve">
     <value>Error_MissingImageStoreConnectionStringArgument</value>
   </data>

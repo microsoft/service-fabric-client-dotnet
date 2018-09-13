@@ -14,14 +14,30 @@
             Gets or sets Name of Resource to create.
             </summary>
         </member>
+        <member name="P:SfSbzYamlMergeUtils.ResourceInformation.ParentResourceName">
+            <summary>
+            Gets or sets Parent Resource Name of Resource to create.
+            </summary>
+        </member>
         <member name="P:SfSbzYamlMergeUtils.ResourceInformation.ApiVersion">
             <summary>
-            Gets or sets Api version to use for making REST cal to local cluster.
+            Gets or sets Api version to use for making REST call to local cluster.
             </summary>
         </member>
         <member name="T:SfSbzYamlMergeUtils.SfSbzYamlMergeLib">
             <summary>
-            Generates documentation in markdown format from the swagger specification using AutoRest based swagger parser and YAML parser.
+            Generates merged json resource descriptions from partial yaml files.
+            </summary>
+        </member>
+        <member name="F:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.resourceCreationOrder">
+            <summary>
+            Specifies order of creation of individual resources:
+              - Secret
+              - SecretValue
+              - Volume
+              - Network
+              - Gateway
+              - Application
             </summary>
         </member>
         <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.GenerateMergedDescriptions(System.String[],System.String,System.String,SfSbzYamlMergeUtils.OutputType,System.String,System.String)">
@@ -36,11 +52,14 @@
             <param name="region">Region</param>
             <returns>Success/Failure</returns>
         </member>
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadInputDocuments(System.String[],System.String)">
+        <!-- Badly formed XML comment ignored for member "M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadAndMergePartialDocuments(System.String[])" -->
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.SaveAllMergedDocuments(System.Action{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument,System.String},System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String)">
             <summary>
-            Loads input documents, groups them by resourceKind and name..
+            Saves merged yaml documents as per the resource creation order using the provided delegate.
             </summary>
-            <returns>Returns loaded input documents, grouped by resourceKind and name.</returns>
+            <param name="saveMergedDocumentFunc"></param>
+            <param name="resourceMergedDocumentMap"></param>
+            <param name="fileNamePrefix"></param>
         </member>
         <member name="T:SfSbzYamlMergeUtils.OutputType">
             <summary>
@@ -106,6 +125,41 @@
         <member name="T:Microsoft.ServiceFabric.Swagger.Tools.Metadata">
             <summary>
             Class representing metadata to be added about an arm parameter.
+            </summary>
+        </member>
+        <member name="T:Microsoft.ServiceFabric.Swagger.Tools.Schema">
+            <summary>
+            Contains Schema ,apping information.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ServiceFabric.Swagger.Tools.Schema.SchemaVersionRpApiVersionMap">
+            <summary>
+            SchemaVersion to RP api version map.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ServiceFabric.Swagger.Tools.Schema.SchemaVersionFabricApiVersionMap">
+            <summary>
+            SchemaVersion to Service Fabric api version map.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ServiceFabric.Swagger.Tools.Schema.SFSeabreezeResourceMap">
+            <summary>
+            Service Fabric to Mesh Resource Mao
+            </summary>
+        </member>
+        <member name="P:Microsoft.ServiceFabric.Swagger.Tools.Schema.SchemaVersionSupportedResourcesKindMap">
+            <summary>
+            Map for SchemaVersion and supported Resource Kinds in Service Fabric runtime.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ServiceFabric.Swagger.Tools.Schema.HierarchichalSbzResourceNameBuilderMap">
+            <summary>
+            Map for hierarchical Mesh resource names.
+            </summary>
+        </member>
+        <member name="P:Microsoft.ServiceFabric.Swagger.Tools.Schema.SchemaVersionSupportedResourcesTypeMap">
+            <summary>
+            Map for SchemaVersion and supported Resource Types map in Mesh.
             </summary>
         </member>
     </members>

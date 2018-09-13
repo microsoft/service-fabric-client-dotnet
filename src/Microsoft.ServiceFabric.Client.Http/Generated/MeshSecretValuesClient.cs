@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// <summary>
     /// Class containing methods for performing MeshSecretValuesClient operations.
     /// </summary>
-    internal partial class MeshSecretValuesClient : IMeshSecretValuesClient
+    public partial class MeshSecretValuesClient : IMeshSecretValuesClient
     {
         private readonly ServiceFabricHttpClient httpClient;
 

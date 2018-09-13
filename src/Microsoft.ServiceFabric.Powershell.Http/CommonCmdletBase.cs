@@ -22,8 +22,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets the service fabric client object
         /// </summary>
-        protected IServiceFabricClient ServiceFabricClient =>
-        (IServiceFabricClient)this.SessionState.PSVariable.GetValue(Constants.ClusterConnectionVariableName);
+        protected IServiceFabricClient ServiceFabricClient
+        {
+            get
+            {
+                var client = (IServiceFabricClient)this.SessionState.PSVariable.GetValue(Constants.ClusterConnectionVariableName);
+
+                if (client == null)
+                {
+                    throw new InvalidOperationException(Resource.ErrorNotConnected);
+                }
+
+                return client;
+            }
+        }
 
         /// <summary>
         /// Gets the cancellation Token object

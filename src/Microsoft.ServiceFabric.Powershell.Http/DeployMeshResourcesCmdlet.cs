@@ -27,6 +27,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             Application,
             Volume,
             Secret,
+            SecretValue,
             Network,
             Gateway,
             Unknown,
@@ -48,15 +49,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the output directory for the generated resource descriptions.
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Default")]
-        public string OutputResourceDescription { get; set; }
+        public string OutputDirectory { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
         {
-            var client = (IServiceFabricClient)this.SessionState.PSVariable.GetValue(Constants.ClusterConnectionVariableName);
+            var client = this.ServiceFabricClient;
 
-            var outputDir = this.OutputResourceDescription;
-            if (string.IsNullOrEmpty(this.OutputResourceDescription))
+            var outputDir = this.OutputDirectory;
+            if (string.IsNullOrEmpty(this.OutputDirectory))
             {
                 outputDir = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
             }
@@ -91,6 +92,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
+                    case ResourseType.SecretValue:
+                        client.MeshSecretValues.AddMeshSecretValueAsync(
+                            resource.ParentResourceName,
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
+                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                        break;
+
                     default:
                         this.WriteWarning(string.Format(Resource.WarningInvalidResourceType, resource.Type.ToString()));
                         break;
@@ -98,7 +108,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             }
 
             // Clear output dir if it wasnt specified on commandline.
-            if (string.IsNullOrEmpty(this.OutputResourceDescription))
+            if (string.IsNullOrEmpty(this.OutputDirectory))
             {
                 Directory.Delete(outputDir, true);
             }
@@ -125,6 +135,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
             [JsonProperty("api-version")]
             public string ApiVersion { get; set; }
+
+            [JsonProperty("parentResourceName")]
+            public string ParentResourceName { get; set; }
 
             [JsonProperty("description")]
             public JObject Description { get; set; }

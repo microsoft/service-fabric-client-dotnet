@@ -115,6 +115,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not connected to Service Fabric cluster, please connect using Connect-SFCluster cmdlet before invoking this cmdlet..
+        /// </summary>
+        internal static string ErrorNotConnected {
+            get {
+                return ResourceManager.GetString("ErrorNotConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cluster connection with the same name already existed, the old connection will be deleted.
         /// </summary>
         internal static string Info_ClusterConnectionAlreadyExisted {
