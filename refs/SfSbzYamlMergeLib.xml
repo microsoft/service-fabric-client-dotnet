@@ -4,6 +4,11 @@
         <name>SfSbzYamlMergeLib</name>
     </assembly>
     <members>
+        <member name="T:SfSbzYamlMergeUtils.ResourceInformation">
+            <summary>
+            Represents information about resource as read from yaml files.
+            </summary>
+        </member>
         <member name="P:SfSbzYamlMergeUtils.ResourceInformation.Kind">
             <summary>
             Gets or sets Resource Kind.
@@ -14,12 +19,27 @@
             Gets or sets Name of Resource to create.
             </summary>
         </member>
-        <member name="P:SfSbzYamlMergeUtils.ResourceInformation.ParentResourceName">
+        <member name="T:SfSbzYamlMergeUtils.ResourceDeploymentInformation">
             <summary>
-            Gets or sets Parent Resource Name of Resource to create.
+            Represents Deployment information for a resource for deploying to Service Fabric cluster.
             </summary>
         </member>
-        <member name="P:SfSbzYamlMergeUtils.ResourceInformation.ApiVersion">
+        <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.Kind">
+            <summary>
+            Gets or sets Resource Kind.
+            </summary>
+        </member>
+        <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.Name">
+            <summary>
+            Gets or sets Name of Resource to create.
+            </summary>
+        </member>
+        <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.ParentResourceName">
+            <summary>
+            Gets or sets Parent Resource Name of Resource to create for Hierarchical resources.
+            </summary>
+        </member>
+        <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.ApiVersion">
             <summary>
             Gets or sets Api version to use for making REST call to local cluster.
             </summary>
@@ -53,7 +73,7 @@
             <returns>Success/Failure</returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadAndMergePartialDocuments(System.String[])" -->
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.SaveAllMergedDocuments(System.Action{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument,System.String},System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String)">
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.SaveAllMergedDocuments(System.Action{SfSbzYamlMergeUtils.ResourceDeploymentInformation,YamlDotNet.RepresentationModel.YamlDocument,System.String},System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String)">
             <summary>
             Saves merged yaml documents as per the resource creation order using the provided delegate.
             </summary>
