@@ -339,8 +339,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return response;
             }
 
-            // Not Successful, continue with handling the unsuccessful response.
-
+            // Continue with handling the unsuccessful response.
             var message = string.Format(
                 SR.ErrorHttpOperationUnsuccessfulFormatString,
                 requestUri.ToString(),
