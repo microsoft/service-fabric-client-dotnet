@@ -28,16 +28,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
-        /// Reads the current token and moves to content.
-        /// </summary>
-        /// <param name="reader">The JsonReader.</param>
-        public static void ReadAndMoveToContent(this JsonReader reader)
-        {
-            reader.Read();
-            reader.MoveToContent();
-        }
-
-        /// <summary>
         /// Reads StartObject token, throws if its not.
         /// </summary>
         /// <param name="reader">The JsonReader.</param>
@@ -515,10 +505,17 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             var obj = default(T);
 
-            // handle null json Token.
+            // handle null.
             if (reader.TokenType.Equals(JsonToken.Null))
             {
                 reader.Read();
+                return obj;
+            }
+
+            // Handle JsonReader created over stream of length 0.
+            reader.MoveToContent();
+            if (reader.TokenType.Equals(JsonToken.None))
+            {
                 return obj;
             }
 

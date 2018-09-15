@@ -22,6 +22,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     [Cmdlet(VerbsCommon.New, "SFMeshResourceDeployment")]
     public class DeployMeshResourcesCmdlet : CommonCmdletBase
     {
+        private const char FullyQualifiedResourceNameSeparator = '/';
+
         private enum ResourseType
         {
             Application,
@@ -93,8 +95,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         break;
 
                     case ResourseType.SecretValue:
+                        var secretResourcename = resource.FullyQualifiedResourceName.Split(FullyQualifiedResourceNameSeparator)[0];
+
                         client.MeshSecretValues.AddMeshSecretValueAsync(
-                            resource.ParentResourceName,
+                            secretResourcename,
                             resource.Name,
                             resource.Description.ToString(),
                             resource.ApiVersion,
@@ -136,8 +140,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             [JsonProperty("api-version")]
             public string ApiVersion { get; set; }
 
-            [JsonProperty("parentResourceName")]
-            public string ParentResourceName { get; set; }
+            [JsonProperty("fullyQualifiedResourceName")]
+            public string FullyQualifiedResourceName { get; set; }
 
             [JsonProperty("description")]
             public JObject Description { get; set; }

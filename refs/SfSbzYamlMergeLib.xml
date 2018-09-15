@@ -34,9 +34,9 @@
             Gets or sets Name of Resource to create.
             </summary>
         </member>
-        <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.ParentResourceName">
+        <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.FullyQualifiedResourceName">
             <summary>
-            Gets or sets Parent Resource Name of Resource to create for Hierarchical resources.
+            Gets or sets full qualified name which would include the hiearachy order for Hierarchical resources.
             </summary>
         </member>
         <member name="P:SfSbzYamlMergeUtils.ResourceDeploymentInformation.ApiVersion">

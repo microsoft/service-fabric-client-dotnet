@@ -171,7 +171,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(T);
 
-            if (response.Content != null)
+            if (response != null && response.Content != null)
             {
                 try
                 {
@@ -217,7 +217,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(IEnumerable<T>);
 
-            if (response.Content != null)
+            if (response != null && response.Content != null)
             {
                 try
                 {
@@ -263,7 +263,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(PagedData<T>);
 
-            if (response.Content != null)
+            if (response != null && response.Content != null)
             {
                 try
                 {
@@ -339,6 +339,8 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return response;
             }
 
+            // Not Successful, continue with handling the unsuccessful response.
+
             var message = string.Format(
                 SR.ErrorHttpOperationUnsuccessfulFormatString,
                 requestUri.ToString(),
@@ -348,6 +350,13 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{clientRequestId}", message);
 
+            // Handle NotFound 404.
+            if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+            {
+                return null;
+            }
+
+            // Try to get Fabric Error Code if present in response body.
             if (response.Content != null)
             {
                 FabricError error = null;
@@ -374,12 +383,9 @@ namespace Microsoft.ServiceFabric.Client.Http
                     throw new ServiceFabricException(error.Message, error.ErrorCode ?? FabricErrorCodes.UNKNOWN, false);
                 }
             }
-            else
-            {
-                throw new ServiceFabricException(string.Format(SR.ServerErrorNoMeaningFulResponse, response.StatusCode));
-            }
 
-            return response;
+            // Couldn't determine FabricError code, throw exception with status code.
+            throw new ServiceFabricException(string.Format(SR.ServerErrorNoMeaningFulResponse, response.StatusCode));
         }
 
         /// <summary>
