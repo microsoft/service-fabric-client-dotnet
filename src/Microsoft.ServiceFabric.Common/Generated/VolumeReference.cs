@@ -9,14 +9,14 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Describes a reference to a volume
+    /// Describes a reference to a volume resource.
     /// </summary>
     public partial class VolumeReference
     {
         /// <summary>
         /// Initializes a new instance of the VolumeReference class.
         /// </summary>
-        /// <param name="name">Name of the volume.</param>
+        /// <param name="name">Name of the volume being referenced.</param>
         /// <param name="destinationPath">The path within the container at which the volume should be mounted. Only valid path
         /// characters are allowed.</param>
         /// <param name="readOnly">The flag indicating whether the volume is read only. Default is 'false'.</param>
@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets name of the volume.
+        /// Gets name of the volume being referenced.
         /// </summary>
         public string Name { get; }
 

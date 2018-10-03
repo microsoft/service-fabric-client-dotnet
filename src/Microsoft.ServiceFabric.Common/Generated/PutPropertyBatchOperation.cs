@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes a Service Fabric property value.
+        /// Gets a Service Fabric property value.
         /// </summary>
         public PropertyValue Value { get; }
 

@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum BackupStorageKind
     {
         /// <summary>
-        /// Indicates an invalid backup storage kind. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid backup storage kind. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates file/ SMB share to be used as backup storage..
+        /// Indicates file/ SMB share to be used as backup storage.
         /// </summary>
         FileShare,
 
         /// <summary>
-        /// Indicates Azure blob store to be used as backup storage..
+        /// Indicates Azure blob store to be used as backup storage.
         /// </summary>
         AzureBlobStore,
     }

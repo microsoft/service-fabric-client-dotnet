@@ -52,19 +52,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("NodeAddedToCluster", StringComparison.Ordinal))
                     {
-                        return NodeAddedEventConverter.GetFromJsonProperties(reader);
+                        return NodeAddedToClusterEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeClosed", StringComparison.Ordinal))
                     {
-                        return NodeCloseEventConverter.GetFromJsonProperties(reader);
+                        return NodeClosedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.Ordinal))
                     {
-                        return NodeDeactivateCompleteEventConverter.GetFromJsonProperties(reader);
+                        return NodeDeactivateCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeDeactivateStarted", StringComparison.Ordinal))
                     {
-                        return NodeDeactivateStartEventConverter.GetFromJsonProperties(reader);
+                        return NodeDeactivateStartedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeDown", StringComparison.Ordinal))
                     {
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("NodeNewHealthReport", StringComparison.Ordinal))
                     {
-                        return NodeHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return NodeNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -80,7 +80,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("NodeOpenSucceeded", StringComparison.Ordinal))
                     {
-                        return NodeOpenedSuccessEventConverter.GetFromJsonProperties(reader);
+                        return NodeOpenSucceededEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeOpenFailed", StringComparison.Ordinal))
                     {
@@ -88,7 +88,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.Ordinal))
                     {
-                        return NodeRemovedEventConverter.GetFromJsonProperties(reader);
+                        return NodeRemovedFromClusterEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeUp", StringComparison.Ordinal))
                     {
@@ -96,7 +96,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.Ordinal))
                     {
-                        return ChaosRestartNodeFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                        return ChaosNodeRestartScheduledEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("NodeEvent", StringComparison.Ordinal))
                     {

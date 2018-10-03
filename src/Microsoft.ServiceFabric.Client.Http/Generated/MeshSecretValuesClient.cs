@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// <summary>
     /// Class containing methods for performing MeshSecretValuesClient operations.
     /// </summary>
-    public partial class MeshSecretValuesClient : IMeshSecretValuesClient
+    internal partial class MeshSecretValuesClient : IMeshSecretValuesClient
     {
         private readonly ServiceFabricHttpClient httpClient;
 
@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<SecretValueResourceDescription> AddMeshSecretValueAsync(
+        public Task<SecretValueResourceDescription> AddValueAsync(
             string secretResourceName,
             string secretValueResourceName,
             SecretValueResourceDescription secretValueResourceDescription,
@@ -75,7 +75,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<SecretValueResourceDescription> GetMeshSecretValueAsync(
+        public Task<SecretValueResourceDescription> GetAsync(
             string secretResourceName,
             string secretValueResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -105,7 +105,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteMeshSecretValueAsync(
+        public Task DeleteAsync(
             string secretResourceName,
             string secretValueResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -135,7 +135,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedData<SecretValueResourceDescription>> ListMeshSecretValuesAsync(
+        public Task<PagedData<SecretValueResourceDescription>> ListAsync(
             string secretResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -162,7 +162,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<SecretValue> ListMeshSecretValueAsync(
+        public Task<SecretValue> ShowAsync(
             string secretResourceName,
             string secretValueResourceName,
             CancellationToken cancellationToken = default(CancellationToken))

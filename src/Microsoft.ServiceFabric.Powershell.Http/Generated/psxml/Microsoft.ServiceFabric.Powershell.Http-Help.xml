@@ -2327,6 +2327,42 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>Get-SFClusterVersion</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ClusterVersion</command:noun>
+                <maml:description>
+                    <maml:para>Get the current Service Fabric cluster version.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFClusterVersion</maml:name>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>If a cluster upgrade is happening, then this API will return the lowest (older) version of the current and target cluster runtime versions.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="false" position="0">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Get-SFNode</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>Node</command:noun>
@@ -20115,574 +20151,23 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
-                <command:name>New-SFMeshApplication</command:name>
-                <command:verb>New</command:verb>
-                <command:noun>MeshApplication</command:noun>
-                <maml:description>
-                    <maml:para>Creates or updates an application resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>New-SFMeshApplication</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>Name</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>Description</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>DebugParams</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>Services</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>Sinks</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>Enabled</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>DefaultSinkRefs</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Creates an application with the specified name and description. If an application with the same name already exists, then its description are updated to the one indicated in this request.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>Name</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>Description</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    User readable description of the application.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="3">
-                <maml:name>DebugParams</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Internal use.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="4">
-                <maml:name>Services</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    describes the services in the application.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">IEnumerable&lt;ServiceResourceDescription&gt;</command:parameterValue>
-                <dev:type>
-                    <maml:name>IEnumerable&lt;ServiceResourceDescription&gt;</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="5">
-                <maml:name>Sinks</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    List of supported sinks that can be referenced.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">IEnumerable&lt;DiagnosticsSinkProperties&gt;</command:parameterValue>
-                <dev:type>
-                    <maml:name>IEnumerable&lt;DiagnosticsSinkProperties&gt;</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="6">
-                <maml:name>Enabled</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Status of whether or not sinks are enabled.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">bool?</command:parameterValue>
-                <dev:type>
-                    <maml:name>bool?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="7">
-                <maml:name>DefaultSinkRefs</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The sinks to be used if diagnostics is enabled. Sink choices can be overridden at the service and code package level.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">IEnumerable&lt;string&gt;</command:parameterValue>
-                <dev:type>
-                    <maml:name>IEnumerable&lt;string&gt;</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshApplication</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshApplication</command:noun>
-                <maml:description>
-                    <maml:para>Gets the application with the given name.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshApplication</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the application with the given name. This includes the information about the application's services and other runtime information.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Remove-SFMeshApplication</command:name>
+                <command:name>Remove-SFMeshSecret</command:name>
                 <command:verb>Remove</command:verb>
-                <command:noun>MeshApplication</command:noun>
-                <maml:description>
-                    <maml:para>Deletes the specified application.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Remove-SFMeshApplication</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Deletes the application identified by the name.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshService</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshService</command:noun>
-                <maml:description>
-                    <maml:para>Gets all the services in the application resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshService</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshService</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>ServiceResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>The operation returns the service descriptions of all the services in the application resource. </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>ServiceResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric service resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshReplica</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshReplica</command:noun>
-                <maml:description>
-                    <maml:para>Gets replicas of a given service in an applciation resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshReplica</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>ServiceResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshReplica</maml:name>
-                <command:parameter required="true">
-                        <maml:name>ApplicationResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>ServiceResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>ReplicaName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about all replicas of a given service of an application. The information includes the runtime properties of the replica instance.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric application resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>ServiceResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric service resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>ReplicaName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric replica name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>New-SFMeshVolume</command:name>
-                <command:verb>New</command:verb>
-                <command:noun>MeshVolume</command:noun>
-                <maml:description>
-                    <maml:para>Creates or updates a volume resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>New-SFMeshVolume</maml:name>
-                <command:parameter required="true">
-                        <maml:name>VolumeResourceName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>Provider</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>AccountName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>ShareName</maml:name>
-                </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>Name</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>Description</maml:name>
-                </command:parameter>
-                <command:parameter required="false">
-                        <maml:name>AccountKey</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Creates a volume resource with the specified name and description. If a volume with the same name already exists, then its description is updated to the one indicated in this request.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>VolumeResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric volume resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>Provider</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Provider of the volume.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>AccountName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Name of the Azure storage account for the File Share.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="3">
-                <maml:name>ShareName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Name of the Azure Files file share that provides storage for the volume.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="4">
-                <maml:name>Name</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Volume resource name.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="5">
-                <maml:name>Description</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    User readable description of the volume.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="6">
-                <maml:name>AccountKey</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Access key of the Azure storage account for the File Share.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshVolume</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshVolume</command:noun>
-                <maml:description>
-                    <maml:para>Gets the volume resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Get-SFMeshVolume</maml:name>
-                <command:parameter required="true">
-                        <maml:name>VolumeResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about the volume resource with a given name. This information includes the volume description and other runtime information.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>VolumeResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric volume resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Remove-SFMeshVolume</command:name>
-                <command:verb>Remove</command:verb>
-                <command:noun>MeshVolume</command:noun>
-                <maml:description>
-                    <maml:para>Deletes the volume resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Remove-SFMeshVolume</maml:name>
-                <command:parameter required="true">
-                        <maml:name>VolumeResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Deletes the volume identified by the name.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>VolumeResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Service Fabric volume resource name.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>New-SFMeshSecret</command:name>
-                <command:verb>New</command:verb>
                 <command:noun>MeshSecret</command:noun>
                 <maml:description>
-                    <maml:para>Creates or updates a secret resource.</maml:para>
+                    <maml:para>Deletes the Secret resource.</maml:para>
                 </maml:description>
             </command:details>
             <command:syntax>
                 <command:syntaxItem>
-                    <maml:name>New-SFMeshSecret</maml:name>
+                    <maml:name>Remove-SFMeshSecret</maml:name>
                 <command:parameter required="true">
-                        <maml:name>Name</maml:name>
+                        <maml:name>SecretResourceName</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
             <maml:description>
-                <maml:para>Creates a secret resource with the specified name, description and metadata describing its value(s). If a secret resource with the same name does not exist, a new resource is created with specified properties.
-                If a secret resource with the same name exists, its description is updated. Updating an existing secret resource may not change its kind, name or content type. 
-                </maml:para>
+                <maml:para>Deletes the specified Secret resource and all of its named values.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" position="0">
@@ -20690,30 +20175,6 @@
                 <maml:Description>
                     <maml:para>
                     The name of the secret resource.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>Kind</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Describes the kind of secret.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">SecretKind?</command:parameterValue>
-                <dev:type>
-                    <maml:name>SecretKind?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>Name</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Secret resource name.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="true">string</command:parameterValue>
@@ -20729,7 +20190,7 @@
                 <command:verb>Get</command:verb>
                 <command:noun>MeshSecret</command:noun>
                 <maml:description>
-                    <maml:para>Gets the secret resource with the specified name.</maml:para>
+                    <maml:para>Lists all the secret resources.</maml:para>
                 </maml:description>
             </command:details>
             <command:syntax>
@@ -20741,8 +20202,7 @@
                 </command:syntaxItem>
             </command:syntax>
             <maml:description>
-                <maml:para>Returns the information associated with the secret resource specified by name. The information includes the secret's kind, description and metadata describing its value. The secret's value is not included.
-                </maml:para>
+                <maml:para>Gets the information about all secret resources in a given resource group. The information include the description and other properties of the Secret.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" position="0">
@@ -20761,69 +20221,16 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
-                <command:name>Remove-SFMeshSecret</command:name>
-                <command:verb>Remove</command:verb>
-                <command:noun>MeshSecret</command:noun>
-                <maml:description>
-                    <maml:para>Deletes the specified secret, including all of its versions.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>Remove-SFMeshSecret</maml:name>
-                <command:parameter required="true">
-                        <maml:name>SecretResourceName</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Deletes the secret resource identified by the name; all of the versioned values of this secret, if any exist, are also deleted.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>SecretResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the secret resource.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Get-SFMeshSecrets</command:name>
-                <command:verb>Get</command:verb>
-                <command:noun>MeshSecrets</command:noun>
-                <maml:description>
-                    <maml:para>Lists all secret resources.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Gets the information about all of the secret resources. The information includes each secret's kind, description and metadata describing its value. The secret values are not included.
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Add-SFMeshSecretValue</command:name>
+                <command:name>Add-SFValueMeshSecretValue</command:name>
                 <command:verb>Add</command:verb>
-                <command:noun>MeshSecretValue</command:noun>
+                <command:noun>ValueMeshSecretValue</command:noun>
                 <maml:description>
                     <maml:para>Adds the specified value as a new version of the specified secret resource.</maml:para>
                 </maml:description>
             </command:details>
             <command:syntax>
                 <command:syntaxItem>
-                    <maml:name>Add-SFMeshSecretValue</maml:name>
+                    <maml:name>Add-SFValueMeshSecretValue</maml:name>
                 <command:parameter required="true">
                         <maml:name>SecretResourceName</maml:name>
                 </command:parameter>
@@ -20942,9 +20349,6 @@
                 <command:parameter required="true">
                         <maml:name>SecretResourceName</maml:name>
                 </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>SecretValueResourceName</maml:name>
-                </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
             <maml:description>
@@ -20984,7 +20388,7 @@
                 <command:verb>Get</command:verb>
                 <command:noun>MeshSecretValue</command:noun>
                 <maml:description>
-                    <maml:para>Lists the specified value of the secret resource.</maml:para>
+                    <maml:para>List names of all values of the the specified secret resource.</maml:para>
                 </maml:description>
             </command:details>
             <command:syntax>
@@ -20993,14 +20397,43 @@
                 <command:parameter required="true">
                         <maml:name>SecretResourceName</maml:name>
                 </command:parameter>
-                <command:parameter required="true">
-                        <maml:name>SecretValueResourceName</maml:name>
-                </command:parameter>
                 </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets information about all secret value resources of the specified secret resource. The information includes the names of the secret value resources, but not the actual values.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>SecretResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the secret resource.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Show-SFMeshSecretValue</command:name>
+                <command:verb>Show</command:verb>
+                <command:noun>MeshSecretValue</command:noun>
+                <maml:description>
+                    <maml:para>Lists the specified value of the secret resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
                 <command:syntaxItem>
-                    <maml:name>Get-SFMeshSecretValue</maml:name>
+                    <maml:name>Show-SFMeshSecretValue</maml:name>
                 <command:parameter required="true">
                         <maml:name>SecretResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>SecretValueResourceName</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
@@ -21025,6 +20458,429 @@
                 <maml:Description>
                     <maml:para>
                     The name of the secret resource value which is typically the version identifier for the value.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFMeshVolume</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>MeshVolume</command:noun>
+                <maml:description>
+                    <maml:para>Deletes the Volume resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Deletes the Volume resource identified by the name.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>VolumeResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the volume.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshVolume</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshVolume</command:noun>
+                <maml:description>
+                    <maml:para>Lists all the volume resources.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all volume resources in a given resource group. The information include the description and other properties of the Volume.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>VolumeResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the volume.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFMeshNetwork</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>MeshNetwork</command:noun>
+                <maml:description>
+                    <maml:para>Deletes the Network resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Deletes the Network resource identified by the name.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>NetworkResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the network.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshNetwork</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshNetwork</command:noun>
+                <maml:description>
+                    <maml:para>Lists all the network resources.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all network resources in a given resource group. The information include the description and other properties of the Network.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>NetworkResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the network.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFMeshApplication</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>MeshApplication</command:noun>
+                <maml:description>
+                    <maml:para>Deletes the Application resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Deletes the Application resource identified by the name.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshApplication</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshApplication</command:noun>
+                <maml:description>
+                    <maml:para>Lists all the application resources.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all application resources in a given resource group. The information include the description and other properties of the Application.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshService</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshService</command:noun>
+                <maml:description>
+                    <maml:para>Lists all the service resources.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all services of an application resource. The information include the description and other properties of the Service.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>ServiceResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the service.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFContainerLogsMeshCodePackage</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ContainerLogsMeshCodePackage</command:noun>
+                <maml:description>
+                    <maml:para>Gets the logs from the container.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFContainerLogsMeshCodePackage</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ApplicationResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ServiceResourceName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ReplicaName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>CodePackageName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Tail</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the logs for the container of the specified code package of the service replica.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>ServiceResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the service.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="2">
+                <maml:name>ReplicaName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Service Fabric replica name.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="3">
+                <maml:name>CodePackageName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of code package of the service.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
+                <maml:name>Tail</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Number of lines to show from the end of the logs. Default is 100. 'all' to show the complete logs.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshServiceReplica</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshServiceReplica</command:noun>
+                <maml:description>
+                    <maml:para>Lists all the replicas of a service.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all replicas of a service. The information include the description and other properties of the service replica.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>ServiceResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the service.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="2">
+                <maml:name>ReplicaName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Service Fabric replica name.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFMeshGateway</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>MeshGateway</command:noun>
+                <maml:description>
+                    <maml:para>Deletes the Gateway resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Deletes the Gateway resource identified by the name.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>GatewayResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the gateway.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFMeshGateway</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>MeshGateway</command:noun>
+                <maml:description>
+                    <maml:para>Lists all the gateway resources.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the information about all gateway resources in a given resource group. The information include the description and other properties of the Gateway.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>GatewayResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the gateway.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="true">string</command:parameterValue>

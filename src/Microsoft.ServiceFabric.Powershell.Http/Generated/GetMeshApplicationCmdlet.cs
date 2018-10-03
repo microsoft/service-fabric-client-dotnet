@@ -11,15 +11,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Gets the application with the given name.
+    /// Lists all the application resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshApplication", DefaultParameterSetName = "GetMeshApplication")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshApplication", DefaultParameterSetName = "List")]
     public partial class GetMeshApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets ApplicationResourceName. Service Fabric application resource name.
+        /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetMeshApplication")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string ApplicationResourceName
         {
             get;
@@ -29,11 +29,33 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            var result = this.ServiceFabricClient.MeshApplications.GetMeshApplicationAsync(
-                applicationResourceName: this.ApplicationResourceName,
-                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            if (this.ParameterSetName.Equals("List"))
+            {
+                var continuationToken = ContinuationToken.Empty;
+                do
+                {
+                    var result = this.ServiceFabricClient.MeshApplications.ListAsync().GetAwaiter().GetResult();
 
-            this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
+                }
+                while (continuationToken.Next);
+            }
+            else if (this.ParameterSetName.Equals("Get"))
+            {
+                var result = this.ServiceFabricClient.MeshApplications.GetAsync(
+                    applicationResourceName: this.ApplicationResourceName,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
+            }
         }
 
         /// <inheritdoc/>

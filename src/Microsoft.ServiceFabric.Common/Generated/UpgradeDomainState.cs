@@ -12,7 +12,7 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates the upgrade domain state is invalid. All Service Fabric enumerations have the invalid type. The value is
-        /// zero..
+        /// zero.
         /// </summary>
         Invalid,
 

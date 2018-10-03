@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum PropertyBatchInfoKind
     {
         /// <summary>
-        /// Indicates the property batch info is invalid. All Service Fabric enumerations have the invalid type..
+        /// Indicates the property batch info is invalid. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The property batch succeeded..
+        /// The property batch succeeded.
         /// </summary>
         Successful,
 
         /// <summary>
-        /// The property batch failed..
+        /// The property batch failed.
         /// </summary>
         Failed,
     }

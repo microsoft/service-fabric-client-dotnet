@@ -11,15 +11,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Gets the secret resource with the specified name.
+    /// Lists all the secret resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshSecret", DefaultParameterSetName = "GetMeshSecret")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshSecret", DefaultParameterSetName = "List")]
     public partial class GetMeshSecretCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets SecretResourceName. The name of the secret resource.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetMeshSecret")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string SecretResourceName
         {
             get;
@@ -29,11 +29,33 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            var result = this.ServiceFabricClient.MeshSecrets.GetMeshSecretAsync(
-                secretResourceName: this.SecretResourceName,
-                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            if (this.ParameterSetName.Equals("List"))
+            {
+                var continuationToken = ContinuationToken.Empty;
+                do
+                {
+                    var result = this.ServiceFabricClient.MeshSecrets.ListAsync().GetAwaiter().GetResult();
 
-            this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
+                }
+                while (continuationToken.Next);
+            }
+            else if (this.ParameterSetName.Equals("Get"))
+            {
+                var result = this.ServiceFabricClient.MeshSecrets.GetAsync(
+                    secretResourceName: this.SecretResourceName,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
+            }
         }
 
         /// <inheritdoc/>

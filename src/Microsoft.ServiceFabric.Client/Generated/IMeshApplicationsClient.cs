@@ -19,15 +19,14 @@ namespace Microsoft.ServiceFabric.Client
     public partial interface IMeshApplicationsClient
     {
         /// <summary>
-        /// Creates or updates an application resource.
+        /// Creates or updates a Application resource.
         /// </summary>
         /// <remarks>
-        /// Creates an application with the specified name and description. If an application with the same name already
-        /// exists, then its description are updated to the one indicated in this request.
+        /// Creates a Application resource with the specified name, description and properties. If Application resource with
+        /// the same name exists, then it is updated with the specified description and properties.
         /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
-        /// <param name ="applicationResourceDescription">Description for creating an application resource.</param>
+        /// <param name ="applicationResourceName">The identity of the application.</param>
+        /// <param name ="applicationResourceDescription">Description for creating a Application resource.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -36,20 +35,19 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task CreateOrUpdateMeshApplicationAsync(
+        Task<ApplicationResourceDescription> CreateOrUpdateAsync(
             string applicationResourceName,
             ApplicationResourceDescription applicationResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the application with the given name.
+        /// Gets the Application resource with the given name.
         /// </summary>
         /// <remarks>
-        /// Gets the application with the given name. This includes the information about the application's services and other
-        /// runtime information.
+        /// Gets the information about the Application resource with the given name. The information include the description
+        /// and other properties of the Application.
         /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
+        /// <param name ="applicationResourceName">The identity of the application.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -58,18 +56,17 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ApplicationResourceDescription> GetMeshApplicationAsync(
+        Task<ApplicationResourceDescription> GetAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes the specified application.
+        /// Deletes the Application resource.
         /// </summary>
         /// <remarks>
-        /// Deletes the application identified by the name.
+        /// Deletes the Application resource identified by the name.
         /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
+        /// <param name ="applicationResourceName">The identity of the application.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -78,18 +75,17 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task DeleteMeshApplicationAsync(
+        Task DeleteAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets all the services in the application resource.
+        /// Lists all the application resources.
         /// </summary>
         /// <remarks>
-        /// The operation returns the service descriptions of all the services in the application resource.
+        /// Gets the information about all application resources in a given resource group. The information include the
+        /// description and other properties of the Application.
         /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -98,82 +94,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<PagedData<ServiceResourceDescription>> GetMeshServicesAsync(
-            string applicationResourceName,
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Gets the description of the specified service in an application resource.
-        /// </summary>
-        /// <remarks>
-        /// Gets the description of the service resource.
-        /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
-        /// <param name ="serviceResourceName">Service Fabric service resource name.
-        /// </param>
-        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
-        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
-        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
-        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ServiceResourceDescription> GetMeshServiceAsync(
-            string applicationResourceName,
-            string serviceResourceName,
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Gets replicas of a given service in an applciation resource.
-        /// </summary>
-        /// <remarks>
-        /// Gets the information about all replicas of a given service of an application. The information includes the runtime
-        /// properties of the replica instance.
-        /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
-        /// <param name ="serviceResourceName">Service Fabric service resource name.
-        /// </param>
-        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
-        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
-        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
-        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<PagedData<ServiceReplicaDescription>> GetMeshReplicasAsync(
-            string applicationResourceName,
-            string serviceResourceName,
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Gets a specific replica of a given service in an application resource.
-        /// </summary>
-        /// <remarks>
-        /// Gets the information about the specified replica of a given service of an application. The information includes the
-        /// runtime properties of the replica instance.
-        /// </remarks>
-        /// <param name ="applicationResourceName">Service Fabric application resource name.
-        /// </param>
-        /// <param name ="serviceResourceName">Service Fabric service resource name.
-        /// </param>
-        /// <param name ="replicaName">Service Fabric replica name.
-        /// </param>
-        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
-        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
-        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
-        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<ServiceReplicaDescription> GetMeshReplicaAsync(
-            string applicationResourceName,
-            string serviceResourceName,
-            string replicaName,
+        Task<PagedData<ApplicationResourceDescription>> ListAsync(
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

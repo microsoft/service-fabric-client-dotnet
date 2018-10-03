@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ServiceReplicaDescription GetFromJsonProperties(JsonReader reader)
         {
-            var osType = default(OperatingSystemTypes?);
+            var osType = default(OperatingSystemType?);
             var codePackages = default(IEnumerable<ContainerCodePackageProperties>);
             var networkRefs = default(IEnumerable<NetworkRef>);
             var diagnostics = default(DiagnosticsRef);
@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 var propName = reader.ReadPropertyName();
                 if (string.Compare("osType", propName, StringComparison.Ordinal) == 0)
                 {
-                    osType = OperatingSystemTypesConverter.Deserialize(reader);
+                    osType = OperatingSystemTypeConverter.Deserialize(reader);
                 }
                 else if (string.Compare("codePackages", propName, StringComparison.Ordinal) == 0)
                 {
@@ -86,7 +86,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.OsType, "osType", OperatingSystemTypesConverter.Serialize);
+            writer.WriteProperty(obj.OsType, "osType", OperatingSystemTypeConverter.Serialize);
             writer.WriteEnumerableProperty(obj.CodePackages, "codePackages", ContainerCodePackagePropertiesConverter.Serialize);
             writer.WriteProperty(obj.ReplicaName, "replicaName", JsonWriterExtensions.WriteStringValue);
             if (obj.NetworkRefs != null)

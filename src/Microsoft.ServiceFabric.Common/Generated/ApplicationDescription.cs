@@ -67,8 +67,8 @@ namespace Microsoft.ServiceFabric.Common
         public IReadOnlyDictionary<string, string> Parameters { get; }
 
         /// <summary>
-        /// Gets describes capacity information for services of this application. This description can be used for describing
-        /// the following.
+        /// Gets capacity information for services of this application. This description can be used for describing the
+        /// following.
         /// - Reserving the capacity for the services on the nodes
         /// - Limiting the total number of nodes that services of this application can run on
         /// - Limiting the custom capacity metrics to limit the total consumption of this metric by the services of this

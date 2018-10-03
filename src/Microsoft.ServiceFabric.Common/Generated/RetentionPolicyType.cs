@@ -11,12 +11,12 @@ namespace Microsoft.ServiceFabric.Common
     public enum RetentionPolicyType
     {
         /// <summary>
-        /// Indicates a basic retention policy type..
+        /// Indicates a basic retention policy type.
         /// </summary>
         Basic,
 
         /// <summary>
-        /// Indicates an invalid retention policy type..
+        /// Indicates an invalid retention policy type.
         /// </summary>
         Invalid,
     }

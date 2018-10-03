@@ -115,53 +115,46 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            try
+            PropertyValue propertyValue = null;
+            if (this.Binary.IsPresent)
             {
-                PropertyValue propertyValue = null;
-                if (this.Binary.IsPresent)
-                {
-                    propertyValue = new BinaryPropertyValue(
-                        data: this.Data);
-                }
-
-                /*else if (this.Int64.IsPresent)
-                {
-                    propertyValue = new Int64PropertyValue(
-                        data: this.Data);
-                }
-                else if (this.Double.IsPresent)
-                {
-                    propertyValue = new DoublePropertyValue(
-                        data: this.Data);
-                }
-                else if (this.String.IsPresent)
-                {
-                    propertyValue = new StringPropertyValue(
-                        data: this.Data);
-                }
-                else if (this.Guid.IsPresent)
-                {
-                    propertyValue = new GuidPropertyValue(
-                        data: this.Data);
-                }*/
-
-                var propertyDescription = new PropertyDescription(
-                propertyName: this.PropertyName,
-                value: propertyValue,
-                customTypeId: this.CustomTypeId);
-
-                this.ServiceFabricClient.Properties.PutPropertyAsync(
-                    nameId: this.NameId,
-                    propertyDescription: propertyDescription,
-                    serverTimeout: this.ServerTimeout,
-                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
-
-                Console.WriteLine("Success!");
+                propertyValue = new BinaryPropertyValue(
+                    data: this.Data);
             }
-            catch (Exception ex)
+
+            /*else if (this.Int64.IsPresent)
             {
-                Console.WriteLine(ex.Message);
+                propertyValue = new Int64PropertyValue(
+                    data: this.Data);
             }
+            else if (this.Double.IsPresent)
+            {
+                propertyValue = new DoublePropertyValue(
+                    data: this.Data);
+            }
+            else if (this.String.IsPresent)
+            {
+                propertyValue = new StringPropertyValue(
+                    data: this.Data);
+            }
+            else if (this.Guid.IsPresent)
+            {
+                propertyValue = new GuidPropertyValue(
+                    data: this.Data);
+            }*/
+
+            var propertyDescription = new PropertyDescription(
+            propertyName: this.PropertyName,
+            value: propertyValue,
+            customTypeId: this.CustomTypeId);
+
+            this.ServiceFabricClient.Properties.PutPropertyAsync(
+                nameId: this.NameId,
+                propertyDescription: propertyDescription,
+                serverTimeout: this.ServerTimeout,
+                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+            Console.WriteLine("Success!");
         }
     }
 }

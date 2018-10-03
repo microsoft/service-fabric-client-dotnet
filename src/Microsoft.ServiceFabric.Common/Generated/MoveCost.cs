@@ -11,22 +11,22 @@ namespace Microsoft.ServiceFabric.Common
     public enum MoveCost
     {
         /// <summary>
-        /// Zero move cost. This value is zero..
+        /// Zero move cost. This value is zero.
         /// </summary>
         Zero,
 
         /// <summary>
-        /// Specifies the move cost of the service as Low. The value is 1..
+        /// Specifies the move cost of the service as Low. The value is 1.
         /// </summary>
         Low,
 
         /// <summary>
-        /// Specifies the move cost of the service as Medium. The value is 2..
+        /// Specifies the move cost of the service as Medium. The value is 2.
         /// </summary>
         Medium,
 
         /// <summary>
-        /// Specifies the move cost of the service as High. The value is 3..
+        /// Specifies the move cost of the service as High. The value is 3.
         /// </summary>
         High,
     }

@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes reason.
+        /// Gets reason.
         /// </summary>
         public string Reason { get; }
     }

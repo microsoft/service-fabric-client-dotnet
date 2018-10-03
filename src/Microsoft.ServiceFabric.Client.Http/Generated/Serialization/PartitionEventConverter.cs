@@ -52,7 +52,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("PartitionNewHealthReport", StringComparison.Ordinal))
                     {
-                        return PartitionHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return PartitionNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("PartitionHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -60,7 +60,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("PartitionReconfigured", StringComparison.Ordinal))
                     {
-                        return PartitionReconfigurationCompletedEventConverter.GetFromJsonProperties(reader);
+                        return PartitionReconfiguredEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.Ordinal))
                     {
@@ -68,11 +68,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ChaosPartitionSecondaryMoveScheduled", StringComparison.Ordinal))
                     {
-                        return ChaosMoveSecondaryFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                        return ChaosPartitionSecondaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ChaosPartitionPrimaryMoveScheduled", StringComparison.Ordinal))
                     {
-                        return ChaosMovePrimaryFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                        return ChaosPartitionPrimaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("PartitionEvent", StringComparison.Ordinal))
                     {

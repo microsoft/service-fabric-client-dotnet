@@ -11,12 +11,12 @@ namespace Microsoft.ServiceFabric.Common
     public enum RepairTargetKind
     {
         /// <summary>
-        /// The repair target is not valid or is of an unknown type..
+        /// The repair target is not valid or is of an unknown type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The repair target is a set of Service Fabric nodes..
+        /// The repair target is a set of Service Fabric nodes.
         /// </summary>
         Node,
     }

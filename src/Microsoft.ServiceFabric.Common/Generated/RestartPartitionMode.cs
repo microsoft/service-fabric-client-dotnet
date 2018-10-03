@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum RestartPartitionMode
     {
         /// <summary>
-        /// Reserved.  Do not pass into API..
+        /// Reserved.  Do not pass into API.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// All replicas or instances in the partition are restarted at once..
+        /// All replicas or instances in the partition are restarted at once.
         /// </summary>
         AllReplicasOrInstances,
 
         /// <summary>
-        /// Only the secondary replicas are restarted..
+        /// Only the secondary replicas are restarted.
         /// </summary>
         OnlyActiveSecondaries,
     }

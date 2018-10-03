@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task CreateOrUpdateMeshApplicationAsync(
+        public Task<ApplicationResourceDescription> CreateOrUpdateAsync(
             string applicationResourceName,
             ApplicationResourceDescription applicationResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -68,11 +68,11 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ApplicationResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<ApplicationResourceDescription> GetMeshApplicationAsync(
+        public Task<ApplicationResourceDescription> GetAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -83,7 +83,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -99,7 +99,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteMeshApplicationAsync(
+        public Task DeleteAsync(
             string applicationResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -110,7 +110,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -126,18 +126,15 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedData<ServiceResourceDescription>> GetMeshServicesAsync(
-            string applicationResourceName,
+        public Task<PagedData<ApplicationResourceDescription>> ListAsync(
             CancellationToken cancellationToken = default(CancellationToken))
         {
-            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
             var requestId = Guid.NewGuid().ToString();
-            var url = "Resources/Applications/{applicationResourceName}/Services";
-            url = url.Replace("{applicationResourceName}", applicationResourceName);
+            var url = "Resources/Applications";
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -149,100 +146,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ServiceResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<ServiceResourceDescription> GetMeshServiceAsync(
-            string applicationResourceName,
-            string serviceResourceName,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
-            serviceResourceName.ThrowIfNull(nameof(serviceResourceName));
-            var requestId = Guid.NewGuid().ToString();
-            var url = "Resources/Applications/{applicationResourceName}/Services/{serviceResourceName}";
-            url = url.Replace("{applicationResourceName}", applicationResourceName);
-            url = url.Replace("{serviceResourceName}", serviceResourceName);
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ServiceResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<PagedData<ServiceReplicaDescription>> GetMeshReplicasAsync(
-            string applicationResourceName,
-            string serviceResourceName,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
-            serviceResourceName.ThrowIfNull(nameof(serviceResourceName));
-            var requestId = Guid.NewGuid().ToString();
-            var url = "Resources/Applications/{applicationResourceName}/Services/{serviceResourceName}/Replicas";
-            url = url.Replace("{applicationResourceName}", applicationResourceName);
-            url = url.Replace("{serviceResourceName}", serviceResourceName);
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ServiceReplicaDescriptionConverter.Deserialize, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task<ServiceReplicaDescription> GetMeshReplicaAsync(
-            string applicationResourceName,
-            string serviceResourceName,
-            string replicaName,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
-            serviceResourceName.ThrowIfNull(nameof(serviceResourceName));
-            replicaName.ThrowIfNull(nameof(replicaName));
-            var requestId = Guid.NewGuid().ToString();
-            var url = "Resources/Applications/{applicationResourceName}/Services/{serviceResourceName}/Replicas/{replicaName}";
-            url = url.Replace("{applicationResourceName}", applicationResourceName);
-            url = url.Replace("{serviceResourceName}", serviceResourceName);
-            url = url.Replace("{replicaName}", replicaName);
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Get,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ServiceReplicaDescriptionConverter.Deserialize, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ApplicationResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
     }
 }

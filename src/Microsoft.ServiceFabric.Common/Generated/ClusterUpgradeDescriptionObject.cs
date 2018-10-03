@@ -114,7 +114,7 @@ namespace Microsoft.ServiceFabric.Common
         public bool? EnableDeltaHealthEvaluation { get; }
 
         /// <summary>
-        /// Gets describes the parameters for monitoring an upgrade in Monitored mode.
+        /// Gets the parameters for monitoring an upgrade in Monitored mode.
         /// </summary>
         public MonitoringPolicyDescription MonitoringPolicy { get; }
 

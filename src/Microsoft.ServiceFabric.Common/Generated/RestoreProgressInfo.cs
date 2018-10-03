@@ -48,7 +48,7 @@ namespace Microsoft.ServiceFabric.Common
         public DateTime? TimeStampUtc { get; }
 
         /// <summary>
-        /// Gets describes the epoch at which the partition is restored.
+        /// Gets the epoch at which the partition is restored.
         /// </summary>
         public Epoch RestoredEpoch { get; }
 

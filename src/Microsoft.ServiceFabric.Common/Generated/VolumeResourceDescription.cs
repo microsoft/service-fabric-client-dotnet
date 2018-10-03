@@ -9,33 +9,33 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Describes a service fabric volume resource.
+    /// This type describes a volume resource.
     /// </summary>
     public partial class VolumeResourceDescription
     {
         /// <summary>
         /// Initializes a new instance of the VolumeResourceDescription class.
         /// </summary>
-        /// <param name="properties">This type describes properties of a volume resource.</param>
-        /// <param name="name">Volume resource name.</param>
+        /// <param name="name">Name of the Volume resource.</param>
+        /// <param name="properties">Describes properties of a volume resource.</param>
         public VolumeResourceDescription(
-            VolumeProperties properties,
-            string name)
+            string name,
+            VolumeProperties properties)
         {
-            properties.ThrowIfNull(nameof(properties));
             name.ThrowIfNull(nameof(name));
-            this.Properties = properties;
+            properties.ThrowIfNull(nameof(properties));
             this.Name = name;
+            this.Properties = properties;
         }
 
         /// <summary>
-        /// Gets this type describes properties of a volume resource.
-        /// </summary>
-        public VolumeProperties Properties { get; }
-
-        /// <summary>
-        /// Gets volume resource name.
+        /// Gets name of the Volume resource.
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets properties of a volume resource.
+        /// </summary>
+        public VolumeProperties Properties { get; }
     }
 }

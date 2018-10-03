@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum BackupScheduleFrequencyType
     {
         /// <summary>
-        /// Indicates an invalid backup schedule frequency type. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid backup schedule frequency type. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the time based backup schedule is repeated at a daily frequency..
+        /// Indicates that the time based backup schedule is repeated at a daily frequency.
         /// </summary>
         Daily,
 
         /// <summary>
-        /// Indicates that the time based backup schedule is repeated at a weekly frequency..
+        /// Indicates that the time based backup schedule is repeated at a weekly frequency.
         /// </summary>
         Weekly,
     }

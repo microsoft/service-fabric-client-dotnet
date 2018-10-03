@@ -11,12 +11,12 @@ namespace Microsoft.ServiceFabric.Common
     public enum OperationState
     {
         /// <summary>
-        /// The operation state is invalid..
+        /// The operation state is invalid.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The operation is in progress..
+        /// The operation is in progress.
         /// </summary>
         Running,
 
@@ -25,28 +25,28 @@ namespace Microsoft.ServiceFabric.Common
         /// user.  "RollingBack"     does not refer to user state.  For example, if CancelOperation is called on a command of
         /// type PartitionDataLoss, state of "RollingBack" does not mean service data is being restored (assuming the command
         /// has progressed far enough to cause data loss). It means the system is rolling back/cleaning up internal system
-        /// state associated with the command..
+        /// state associated with the command.
         /// </summary>
         RollingBack,
 
         /// <summary>
-        /// The operation has completed successfully and is no longer running..
+        /// The operation has completed successfully and is no longer running.
         /// </summary>
         Completed,
 
         /// <summary>
-        /// The operation has failed and is no longer running..
+        /// The operation has failed and is no longer running.
         /// </summary>
         Faulted,
 
         /// <summary>
-        /// The operation was cancelled by the user using CancelOperation, and is no longer running..
+        /// The operation was cancelled by the user using CancelOperation, and is no longer running.
         /// </summary>
         Cancelled,
 
         /// <summary>
         /// The operation was cancelled by the user using CancelOperation, with the force parameter set to true.  It is no
-        /// longer running.  Refer to CancelOperation for more details..
+        /// longer running.  Refer to CancelOperation for more details.
         /// </summary>
         ForceCancelled,
     }

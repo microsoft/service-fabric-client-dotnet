@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes a map that contains a collection of ChaosContextMapItem's.
+        /// Gets a map that contains a collection of ChaosContextMapItem's.
         /// </summary>
         public IReadOnlyDictionary<string, string> Map { get; }
     }

@@ -11,27 +11,27 @@ namespace Microsoft.ServiceFabric.Common
     public enum OperationType
     {
         /// <summary>
-        /// The operation state is invalid..
+        /// The operation state is invalid.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// An operation started using the StartDataLoss API..
+        /// An operation started using the StartDataLoss API.
         /// </summary>
         PartitionDataLoss,
 
         /// <summary>
-        /// An operation started using the StartQuorumLoss API..
+        /// An operation started using the StartQuorumLoss API.
         /// </summary>
         PartitionQuorumLoss,
 
         /// <summary>
-        /// An operation started using the StartPartitionRestart API..
+        /// An operation started using the StartPartitionRestart API.
         /// </summary>
         PartitionRestart,
 
         /// <summary>
-        /// An operation started using the StartNodeTransition API..
+        /// An operation started using the StartNodeTransition API.
         /// </summary>
         NodeTransition,
     }

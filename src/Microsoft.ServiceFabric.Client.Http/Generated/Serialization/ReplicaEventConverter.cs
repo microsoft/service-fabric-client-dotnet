@@ -49,7 +49,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
                     if (propValue.Equals("StatefulReplicaNewHealthReport", StringComparison.Ordinal))
                     {
-                        return StatefulReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return StatefulReplicaNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("StatefulReplicaHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -57,7 +57,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("StatelessReplicaNewHealthReport", StringComparison.Ordinal))
                     {
-                        return StatelessReplicaHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return StatelessReplicaNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("StatelessReplicaHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -65,11 +65,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ChaosReplicaRemovalScheduled", StringComparison.Ordinal))
                     {
-                        return ChaosRemoveReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                        return ChaosReplicaRemovalScheduledEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ChaosReplicaRestartScheduled", StringComparison.Ordinal))
                     {
-                        return ChaosRestartReplicaFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                        return ChaosReplicaRestartScheduledEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ReplicaEvent", StringComparison.Ordinal))
                     {

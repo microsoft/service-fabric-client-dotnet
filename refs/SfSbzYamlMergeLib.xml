@@ -73,7 +73,7 @@
             <returns>Success/Failure</returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadAndMergePartialDocuments(System.String[])" -->
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.SaveAllMergedDocuments(System.Action{SfSbzYamlMergeUtils.ResourceDeploymentInformation,YamlDotNet.RepresentationModel.YamlDocument,System.String},System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String)">
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.SaveAllMergedDocuments(System.Action{SfSbzYamlMergeUtils.ResourceDeploymentInformation,YamlDotNet.RepresentationModel.YamlDocument,System.String,System.Globalization.CultureInfo},System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String,System.Globalization.CultureInfo)">
             <summary>
             Saves merged yaml documents as per the resource creation order using the provided delegate.
             </summary>
@@ -132,9 +132,16 @@
         </member>
         <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.ProcessResourceRefs(Newtonsoft.Json.Linq.JObject,System.String)">
             <summary>
-            Fixes ResourceRefs in provided JObject.
+            Fixes ResourceRefs in provided properties JObject.
             </summary>
-            <param name="jObject">JObject</param>
+            <param name="jObject">JObject representing the properties of the resource.</param>
+            <param name="schemaVersion">Schema Version</param>
+        </member>
+        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.ProcessResourceRefsForGateway(Newtonsoft.Json.Linq.JObject,System.String)">
+            <summary>
+            Fixes ResourceRefs in provided JObject for Gateway.
+            </summary>
+            <param name="jObject">JObject representing the properties of the gateway resource.</param>
             <param name="schemaVersion">Schema Version</param>
         </member>
         <member name="T:Microsoft.ServiceFabric.Swagger.Tools.ArmParameter">

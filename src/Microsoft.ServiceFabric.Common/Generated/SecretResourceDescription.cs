@@ -16,10 +16,10 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the SecretResourceDescription class.
         /// </summary>
-        /// <param name="properties">This type describes the properties of a secret resource, including its kind.</param>
-        /// <param name="name">Secret resource name.</param>
+        /// <param name="properties">Describes the properties of a secret resource.</param>
+        /// <param name="name">Name of the Secret resource.</param>
         public SecretResourceDescription(
-            SecretResourcePropertiesBase properties,
+            SecretResourceProperties properties,
             string name)
         {
             properties.ThrowIfNull(nameof(properties));
@@ -29,12 +29,12 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets this type describes the properties of a secret resource, including its kind.
+        /// Gets the properties of a secret resource.
         /// </summary>
-        public SecretResourcePropertiesBase Properties { get; }
+        public SecretResourceProperties Properties { get; }
 
         /// <summary>
-        /// Gets secret resource name.
+        /// Gets name of the Secret resource.
         /// </summary>
         public string Name { get; }
     }

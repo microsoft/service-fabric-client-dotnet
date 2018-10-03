@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum DeactivationIntent
     {
         /// <summary>
-        /// Indicates that the node should be paused. The value is 1..
+        /// Indicates that the node should be paused. The value is 1.
         /// </summary>
         Pause,
 
         /// <summary>
-        /// Indicates that the intent is for the node to be restarted after a short period of time. The value is 2..
+        /// Indicates that the intent is for the node to be restarted after a short period of time. The value is 2.
         /// </summary>
         Restart,
 
         /// <summary>
-        /// Indicates the intent is for the node to remove data. The value is 3..
+        /// Indicates the intent is for the node to remove data. The value is 3.
         /// </summary>
         RemoveData,
     }

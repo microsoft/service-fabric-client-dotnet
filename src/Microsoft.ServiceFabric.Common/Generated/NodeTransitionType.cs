@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum NodeTransitionType
     {
         /// <summary>
-        /// Reserved.  Do not pass into API..
+        /// Reserved.  Do not pass into API.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Transition a stopped node to up..
+        /// Transition a stopped node to up.
         /// </summary>
         Start,
 
         /// <summary>
-        /// Transition an up node to stopped..
+        /// Transition an up node to stopped.
         /// </summary>
         Stop,
     }

@@ -56,7 +56,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ServiceNewHealthReport", StringComparison.Ordinal))
                     {
-                        return ServiceHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return ServiceNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ServiceHealthReportExpired", StringComparison.Ordinal))
                     {

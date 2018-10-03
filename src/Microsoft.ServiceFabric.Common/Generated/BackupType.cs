@@ -11,18 +11,18 @@ namespace Microsoft.ServiceFabric.Common
     public enum BackupType
     {
         /// <summary>
-        /// Indicates an invalid backup type. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid backup type. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates a full backup..
+        /// Indicates a full backup.
         /// </summary>
         Full,
 
         /// <summary>
         /// Indicates an incremental backup. A backup chain is comprised of a full backup followed by 0 or more incremental
-        /// backups..
+        /// backups.
         /// </summary>
         Incremental,
     }

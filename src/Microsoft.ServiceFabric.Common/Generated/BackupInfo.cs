@@ -90,7 +90,7 @@ namespace Microsoft.ServiceFabric.Common
         public string BackupLocation { get; }
 
         /// <summary>
-        /// Gets describes the type of backup, whether its full or incremental.
+        /// Gets the type of backup, whether its full or incremental.
         /// . Possible values include: 'Invalid', 'Full', 'Incremental'
         /// </summary>
         public BackupType? BackupType { get; }

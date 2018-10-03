@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum ComposeDeploymentUpgradeState
     {
         /// <summary>
-        /// Indicates the upgrade state is invalid. All Service Fabric enumerations have the invalid type. The value is zero..
+        /// Indicates the upgrade state is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The upgrade is in the progress of provisioning target application type version. The value is 1..
+        /// The upgrade is in the progress of provisioning target application type version. The value is 1.
         /// </summary>
         ProvisioningTarget,
 
         /// <summary>
-        /// The upgrade is rolling forward to the target version but is not complete yet. The value is 2..
+        /// The upgrade is rolling forward to the target version but is not complete yet. The value is 2.
         /// </summary>
         RollingForwardInProgress,
 
@@ -33,33 +33,33 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// The upgrade is in the progress of unprovisioning current application type version and rolling forward to the target
-        /// version is completed. The value is 4..
+        /// version is completed. The value is 4.
         /// </summary>
         UnprovisioningCurrent,
 
         /// <summary>
-        /// The upgrade has finished rolling forward. The value is 5..
+        /// The upgrade has finished rolling forward. The value is 5.
         /// </summary>
         RollingForwardCompleted,
 
         /// <summary>
-        /// The upgrade is rolling back to the previous version but is not complete yet. The value is 6..
+        /// The upgrade is rolling back to the previous version but is not complete yet. The value is 6.
         /// </summary>
         RollingBackInProgress,
 
         /// <summary>
         /// The upgrade is in the progress of unprovisioning target application type version and rolling back to the current
-        /// version is completed. The value is 7..
+        /// version is completed. The value is 7.
         /// </summary>
         UnprovisioningTarget,
 
         /// <summary>
-        /// The upgrade has finished rolling back. The value is 8..
+        /// The upgrade has finished rolling back. The value is 8.
         /// </summary>
         RollingBackCompleted,
 
         /// <summary>
-        /// The upgrade has failed and is unable to execute FailureAction. The value is 9..
+        /// The upgrade has failed and is unable to execute FailureAction. The value is 9.
         /// </summary>
         Failed,
     }

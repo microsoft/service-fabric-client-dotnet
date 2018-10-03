@@ -18,7 +18,8 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="server">Docker image registry server, without protocol such as `http` and `https`.</param>
         /// <param name="username">The username for the private registry.</param>
-        /// <param name="password">The password for the private registry.</param>
+        /// <param name="password">The password for the private registry. The password is required for create or update
+        /// operations, however it is not returned in the get or list operations.</param>
         public ImageRegistryCredential(
             string server,
             string username,
@@ -42,7 +43,8 @@ namespace Microsoft.ServiceFabric.Common
         public string Username { get; }
 
         /// <summary>
-        /// Gets the password for the private registry.
+        /// Gets the password for the private registry. The password is required for create or update operations, however it is
+        /// not returned in the get or list operations.
         /// </summary>
         public string Password { get; }
     }

@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
                     if (propValue.Equals("ClusterNewHealthReport", StringComparison.Ordinal))
                     {
-                        return ClusterHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return ClusterNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ClusterHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -55,23 +55,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.Ordinal))
                     {
-                        return ClusterUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
+                        return ClusterUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.Ordinal))
                     {
-                        return ClusterUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
+                        return ClusterUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.Ordinal))
                     {
-                        return ClusterUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
+                        return ClusterUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.Ordinal))
                     {
-                        return ClusterUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
+                        return ClusterUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.Ordinal))
                     {
-                        return ClusterUpgradeStartEventConverter.GetFromJsonProperties(reader);
+                        return ClusterUpgradeStartedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ChaosStopped", StringComparison.Ordinal))
                     {

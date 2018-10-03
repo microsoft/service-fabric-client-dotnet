@@ -31,9 +31,9 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes why the ValidationFailedChaosEvent was generated. This may happen because more than
-        /// MaxPercentUnhealthyNodes are unhealthy for more than MaxClusterStabilizationTimeout. This reason will be in the
-        /// Reason property of the ValidationFailedChaosEvent as a string.
+        /// Gets why the ValidationFailedChaosEvent was generated. This may happen because more than MaxPercentUnhealthyNodes
+        /// are unhealthy for more than MaxClusterStabilizationTimeout. This reason will be in the Reason property of the
+        /// ValidationFailedChaosEvent as a string.
         /// </summary>
         public string Reason { get; }
     }

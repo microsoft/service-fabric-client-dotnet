@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes the frequency with which to run the time based backup schedule.
+        /// Gets the frequency with which to run the time based backup schedule.
         /// . Possible values include: 'Invalid', 'Daily', 'Weekly'
         /// </summary>
         public BackupScheduleFrequencyType? ScheduleFrequencyType { get; }

@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="name">The name of the code package.</param>
         /// <param name="image">The Container image to use.</param>
-        /// <param name="resources">This type describes the resource requirements for a container or a service.</param>
+        /// <param name="resources">The resources required by this container.</param>
         /// <param name="imageRegistryCredential">Image registry credential.</param>
         /// <param name="entrypoint">Override for the default entry point in the container.</param>
         /// <param name="commands">Command array to execute within the container in exec form.</param>
@@ -28,13 +28,13 @@ namespace Microsoft.ServiceFabric.Common
         /// "/var/secrets".</param>
         /// <param name="labels">The labels to set in this container.</param>
         /// <param name="endpoints">The endpoints exposed by this container.</param>
-        /// <param name="volumeRefs">Volumes to be attached to the container.
-        /// The lifetime of these volumes is independent of the application's lifetime.</param>
-        /// <param name="volumes">Volumes to be attached to the container.
-        /// The lifetime of these volumes is scoped to the application's lifetime.</param>
-        /// <param name="instanceView">Runtime information of a container instance.</param>
+        /// <param name="volumeRefs">Volumes to be attached to the container. The lifetime of these volumes is independent of
+        /// the application's lifetime.</param>
+        /// <param name="volumes">Volumes to be attached to the container. The lifetime of these volumes is scoped to the
+        /// application's lifetime.</param>
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
-        /// <param name="reliableCollectionsRefs">nothing</param>
+        /// <param name="reliableCollectionsRefs">A list of ReliableCollection resources used by this particular code package.
+        /// Please refer to ReliablecollectionsRef for more details.</param>
         public ContainerCodePackageProperties(
             string name,
             string image,
@@ -48,7 +48,6 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<EndpointProperties> endpoints = default(IEnumerable<EndpointProperties>),
             IEnumerable<VolumeReference> volumeRefs = default(IEnumerable<VolumeReference>),
             IEnumerable<ApplicationScopedVolume> volumes = default(IEnumerable<ApplicationScopedVolume>),
-            ContainerInstanceView instanceView = default(ContainerInstanceView),
             DiagnosticsRef diagnostics = default(DiagnosticsRef),
             IEnumerable<ReliableCollectionsRef> reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>))
         {
@@ -67,7 +66,6 @@ namespace Microsoft.ServiceFabric.Common
             this.Endpoints = endpoints;
             this.VolumeRefs = volumeRefs;
             this.Volumes = volumes;
-            this.InstanceView = instanceView;
             this.Diagnostics = diagnostics;
             this.ReliableCollectionsRefs = reliableCollectionsRefs;
         }
@@ -120,26 +118,21 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<EndpointProperties> Endpoints { get; }
 
         /// <summary>
-        /// Gets this type describes the resource requirements for a container or a service.
+        /// Gets the resources required by this container.
         /// </summary>
         public ResourceRequirements Resources { get; }
 
         /// <summary>
-        /// Gets volumes to be attached to the container.
-        /// The lifetime of these volumes is independent of the application's lifetime.
+        /// Gets volumes to be attached to the container. The lifetime of these volumes is independent of the application's
+        /// lifetime.
         /// </summary>
         public IEnumerable<VolumeReference> VolumeRefs { get; }
 
         /// <summary>
-        /// Gets volumes to be attached to the container.
-        /// The lifetime of these volumes is scoped to the application's lifetime.
+        /// Gets volumes to be attached to the container. The lifetime of these volumes is scoped to the application's
+        /// lifetime.
         /// </summary>
         public IEnumerable<ApplicationScopedVolume> Volumes { get; }
-
-        /// <summary>
-        /// Gets runtime information of a container instance.
-        /// </summary>
-        public ContainerInstanceView InstanceView { get; }
 
         /// <summary>
         /// Gets reference to sinks in DiagnosticsDescription.
@@ -147,8 +140,14 @@ namespace Microsoft.ServiceFabric.Common
         public DiagnosticsRef Diagnostics { get; }
 
         /// <summary>
-        /// Gets collecation refs.
+        /// Gets a list of ReliableCollection resources used by this particular code package. Please refer to
+        /// ReliablecollectionsRef for more details.
         /// </summary>
         public IEnumerable<ReliableCollectionsRef> ReliableCollectionsRefs { get; }
+
+        /// <summary>
+        /// Gets runtime information of a container instance.
+        /// </summary>
+        public ContainerInstanceView InstanceView { get; internal set; }
     }
 }

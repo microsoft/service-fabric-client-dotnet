@@ -33,8 +33,8 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes why TestErrorChaosEvent was generated. For example, Chaos tries to fault a partition but finds that
-        /// the partition is no longer fault tolerant, then a TestErrorEvent gets generated with the reason stating that the
+        /// Gets why TestErrorChaosEvent was generated. For example, Chaos tries to fault a partition but finds that the
+        /// partition is no longer fault tolerant, then a TestErrorEvent gets generated with the reason stating that the
         /// partition is not fault tolerant.
         /// </summary>
         public string Reason { get; }

@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes the intent or reason for deactivating the node. The possible values are following.
+        /// Gets the intent or reason for deactivating the node. The possible values are following.
         /// . Possible values include: 'Pause', 'Restart', 'RemoveData'
         /// </summary>
         public DeactivationIntent? DeactivationIntent { get; }

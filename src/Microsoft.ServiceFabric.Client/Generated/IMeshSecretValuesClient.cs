@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<SecretValueResourceDescription> AddMeshSecretValueAsync(
+        Task<SecretValueResourceDescription> AddValueAsync(
             string secretResourceName,
             string secretValueResourceName,
             SecretValueResourceDescription secretValueResourceDescription,
@@ -61,7 +61,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<SecretValueResourceDescription> GetMeshSecretValueAsync(
+        Task<SecretValueResourceDescription> GetAsync(
             string secretResourceName,
             string secretValueResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -84,7 +84,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task DeleteMeshSecretValueAsync(
+        Task DeleteAsync(
             string secretResourceName,
             string secretValueResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
@@ -105,7 +105,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<PagedData<SecretValueResourceDescription>> ListMeshSecretValuesAsync(
+        Task<PagedData<SecretValueResourceDescription>> ListAsync(
             string secretResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<SecretValue> ListMeshSecretValueAsync(
+        Task<SecretValue> ShowAsync(
             string secretResourceName,
             string secretValueResourceName,
             CancellationToken cancellationToken = default(CancellationToken));

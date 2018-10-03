@@ -11,32 +11,32 @@ namespace Microsoft.ServiceFabric.Common
     public enum RestoreState
     {
         /// <summary>
-        /// Indicates an invalid restore state. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid restore state. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Operation has been validated and accepted. Restore is yet to be triggered..
+        /// Operation has been validated and accepted. Restore is yet to be triggered.
         /// </summary>
         Accepted,
 
         /// <summary>
-        /// Restore operation has been triggered and is under process..
+        /// Restore operation has been triggered and is under process.
         /// </summary>
         RestoreInProgress,
 
         /// <summary>
-        /// Operation completed with success..
+        /// Operation completed with success.
         /// </summary>
         Success,
 
         /// <summary>
-        /// Operation completed with failure..
+        /// Operation completed with failure.
         /// </summary>
         Failure,
 
         /// <summary>
-        /// Operation timed out..
+        /// Operation timed out.
         /// </summary>
         Timeout,
     }

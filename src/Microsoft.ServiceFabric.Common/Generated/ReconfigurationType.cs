@@ -11,23 +11,23 @@ namespace Microsoft.ServiceFabric.Common
     public enum ReconfigurationType
     {
         /// <summary>
-        /// Indicates the invalid reconfiguration type..
+        /// Indicates the invalid reconfiguration type.
         /// </summary>
         Unknown,
 
         /// <summary>
-        /// Specifies that the primary replica is being swapped with a different replica..
+        /// Specifies that the primary replica is being swapped with a different replica.
         /// </summary>
         SwapPrimary,
 
         /// <summary>
         /// Reconfiguration triggered in response to a primary going down. This could be due to many reasons such as primary
-        /// replica crashing etc..
+        /// replica crashing etc.
         /// </summary>
         Failover,
 
         /// <summary>
-        /// Reconfigurations where the primary replica is not changing..
+        /// Reconfigurations where the primary replica is not changing.
         /// </summary>
         Other,
     }

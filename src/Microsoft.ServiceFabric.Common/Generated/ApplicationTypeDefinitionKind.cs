@@ -12,18 +12,18 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates the application type definition kind is invalid. All Service Fabric enumerations have the invalid type.
-        /// The value is 0..
+        /// The value is 0.
         /// </summary>
         Invalid,
 
         /// <summary>
         /// Indicates the application type is defined and created by a Service Fabric application package provided by the user.
-        /// The value is 1..
+        /// The value is 1.
         /// </summary>
         ServiceFabricApplicationPackage,
 
         /// <summary>
-        /// Indicates the application type is defined and created implicitly as part of a compose deployment. The value is 2..
+        /// Indicates the application type is defined and created implicitly as part of a compose deployment. The value is 2.
         /// </summary>
         Compose,
     }

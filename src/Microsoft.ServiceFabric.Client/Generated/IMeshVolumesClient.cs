@@ -19,15 +19,14 @@ namespace Microsoft.ServiceFabric.Client
     public partial interface IMeshVolumesClient
     {
         /// <summary>
-        /// Creates or updates a volume resource.
+        /// Creates or updates a Volume resource.
         /// </summary>
         /// <remarks>
-        /// Creates a volume resource with the specified name and description. If a volume with the same name already exists,
-        /// then its description is updated to the one indicated in this request.
+        /// Creates a Volume resource with the specified name, description and properties. If Volume resource with the same
+        /// name exists, then it is updated with the specified description and properties.
         /// </remarks>
-        /// <param name ="volumeResourceName">Service Fabric volume resource name.
-        /// </param>
-        /// <param name ="volumeResourceDescription">Description for creating a volume resource.</param>
+        /// <param name ="volumeResourceName">The identity of the volume.</param>
+        /// <param name ="volumeResourceDescription">Description for creating a Volume resource.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -36,20 +35,19 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task CreateOrUpdateMeshVolumeAsync(
+        Task<VolumeResourceDescription> CreateOrUpdateAsync(
             string volumeResourceName,
             VolumeResourceDescription volumeResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Gets the volume resource.
+        /// Gets the Volume resource with the given name.
         /// </summary>
         /// <remarks>
-        /// Gets the information about the volume resource with a given name. This information includes the volume description
-        /// and other runtime information.
+        /// Gets the information about the Volume resource with the given name. The information include the description and
+        /// other properties of the Volume.
         /// </remarks>
-        /// <param name ="volumeResourceName">Service Fabric volume resource name.
-        /// </param>
+        /// <param name ="volumeResourceName">The identity of the volume.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -58,18 +56,17 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task<VolumeResourceDescription> GetMeshVolumeAsync(
+        Task<VolumeResourceDescription> GetAsync(
             string volumeResourceName,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// Deletes the volume resource.
+        /// Deletes the Volume resource.
         /// </summary>
         /// <remarks>
-        /// Deletes the volume identified by the name.
+        /// Deletes the Volume resource identified by the name.
         /// </remarks>
-        /// <param name ="volumeResourceName">Service Fabric volume resource name.
-        /// </param>
+        /// <param name ="volumeResourceName">The identity of the volume.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -78,8 +75,26 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
         /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task DeleteMeshVolumeAsync(
+        Task DeleteAsync(
             string volumeResourceName,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Lists all the volume resources.
+        /// </summary>
+        /// <remarks>
+        /// Gets the information about all volume resources in a given resource group. The information include the description
+        /// and other properties of the Volume.
+        /// </remarks>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<PagedData<VolumeResourceDescription>> ListAsync(
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -136,7 +136,7 @@ namespace Microsoft.ServiceFabric.Common
         public ClusterHealthPolicy ClusterHealthPolicy { get; }
 
         /// <summary>
-        /// Gets describes a map, which is a collection of (string, string) type key-value pairs. The map can be used to record
+        /// Gets a map, which is a collection of (string, string) type key-value pairs. The map can be used to record
         /// information about
         /// the Chaos run. There cannot be more than 100 such pairs and each string (key or value) can be at most 4095
         /// characters long.

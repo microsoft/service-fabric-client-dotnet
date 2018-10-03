@@ -114,7 +114,7 @@ namespace Microsoft.ServiceFabric.Common
         public string NodeVersion { get; }
 
         /// <summary>
-        /// Gets describes the error.
+        /// Gets the error.
         /// </summary>
         public string Error { get; }
     }

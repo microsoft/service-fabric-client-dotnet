@@ -11,27 +11,27 @@ namespace Microsoft.ServiceFabric.Common
     public enum RepairTaskHealthCheckState
     {
         /// <summary>
-        /// Indicates that the health check has not started..
+        /// Indicates that the health check has not started.
         /// </summary>
         NotStarted,
 
         /// <summary>
-        /// Indicates that the health check is in progress..
+        /// Indicates that the health check is in progress.
         /// </summary>
         InProgress,
 
         /// <summary>
-        /// Indicates that the health check succeeded..
+        /// Indicates that the health check succeeded.
         /// </summary>
         Succeeded,
 
         /// <summary>
-        /// Indicates that the health check was skipped..
+        /// Indicates that the health check was skipped.
         /// </summary>
         Skipped,
 
         /// <summary>
-        /// Indicates that the health check timed out..
+        /// Indicates that the health check timed out.
         /// </summary>
         TimedOut,
     }

@@ -11,24 +11,24 @@ namespace Microsoft.ServiceFabric.Common
     public enum ApplicationPackageCleanupPolicy
     {
         /// <summary>
-        /// Indicates that the application package cleanup policy is invalid. This value is default. The value is zero..
+        /// Indicates that the application package cleanup policy is invalid. This value is default. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
         /// Indicates that the cleanup policy of application packages is based on the cluster setting
-        /// "CleanupApplicationPackageOnProvisionSuccess." The value is 1..
+        /// "CleanupApplicationPackageOnProvisionSuccess." The value is 1.
         /// </summary>
         Default,
 
         /// <summary>
         /// Indicates that the service fabric runtime determines when to do the application package cleanup. By default,
-        /// cleanup is done on successful provision. The value is 2..
+        /// cleanup is done on successful provision. The value is 2.
         /// </summary>
         Automatic,
 
         /// <summary>
-        /// Indicates that the user has to explicitly clean up the application package. The value is 3..
+        /// Indicates that the user has to explicitly clean up the application package. The value is 3.
         /// </summary>
         Manual,
     }

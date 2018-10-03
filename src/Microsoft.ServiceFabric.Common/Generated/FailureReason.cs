@@ -12,7 +12,7 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates the reason is invalid or unknown. All Service Fabric enumerations have the invalid type. The value is
-        /// zero..
+        /// zero.
         /// </summary>
         None,
 

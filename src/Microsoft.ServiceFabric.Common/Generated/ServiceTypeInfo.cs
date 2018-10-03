@@ -36,8 +36,8 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes a service type defined in the service manifest of a provisioned application type. The properties the
-        /// ones defined in the service manifest.
+        /// Gets a service type defined in the service manifest of a provisioned application type. The properties the ones
+        /// defined in the service manifest.
         /// </summary>
         public ServiceTypeDescription ServiceTypeDescription { get; }
 

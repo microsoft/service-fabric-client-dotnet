@@ -11,18 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum ScalingTriggerKind
     {
         /// <summary>
-        /// Indicates the scaling trigger is invalid. All Service Fabric enumerations have the invalid type. The value is
-        /// zero..
+        /// Indicates the scaling trigger is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates a trigger where scaling decisions are made based on average load of a partition. The value is 1..
+        /// Indicates a trigger where scaling decisions are made based on average load of a partition. The value is 1.
         /// </summary>
         AveragePartitionLoad,
 
         /// <summary>
-        /// Indicates a trigger where scaling decisions are made based on average load of a service. The value is 2..
+        /// Indicates a trigger where scaling decisions are made based on average load of a service. The value is 2.
         /// </summary>
         AverageServiceLoad,
     }

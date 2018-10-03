@@ -18,11 +18,10 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshSecretsClient : IMeshSecretsClient
     {
         /// <inheritdoc />
-        public Task<SecretResourceDescription> CreateOrUpdateMeshSecretAsync(
+        public Task<SecretResourceDescription> CreateOrUpdateAsync(
             string secretResourceName,
             string jsonDescription,
             string apiVersion = Constants.DefaultApiVersionForResources,
-            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             secretResourceName.ThrowIfNull(nameof(secretResourceName));

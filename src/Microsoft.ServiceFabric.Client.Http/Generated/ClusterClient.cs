@@ -736,5 +736,32 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, AadMetadataObjectConverter.Deserialize, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task<ClusterVersion> GetClusterVersionAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/GetClusterVersion";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.4");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ClusterVersionConverter.Deserialize, requestId, cancellationToken);
+        }
     }
 }

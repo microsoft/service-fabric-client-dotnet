@@ -41,6 +41,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
 
             var propValue = reader.ReadValueAsString();
+            if (propValue.Equals("AzureInternalMonitoringPipeline", StringComparison.Ordinal))
+            {
+                obj = AzureInternalMonitoringPipelineSinkDescriptionConverter.GetFromJsonProperties(reader);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown kind.");
+            }
 
             return obj;
         }
@@ -53,6 +61,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, DiagnosticsSinkProperties obj)
         {
             var kind = obj.Kind;
+            if (kind.Equals(DiagnosticsSinkKind.AzureInternalMonitoringPipeline))
+            {
+                AzureInternalMonitoringPipelineSinkDescriptionConverter.Serialize(writer, (AzureInternalMonitoringPipelineSinkDescription)obj);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown kind.");
+            }
         }
     }
 }

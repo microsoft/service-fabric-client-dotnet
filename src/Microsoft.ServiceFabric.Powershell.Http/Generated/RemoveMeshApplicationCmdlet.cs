@@ -11,15 +11,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Deletes the specified application.
+    /// Deletes the Application resource.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshApplication", DefaultParameterSetName = "DeleteMeshApplication")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshApplication", DefaultParameterSetName = "Delete")]
     public partial class RemoveMeshApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets ApplicationResourceName. Service Fabric application resource name.
+        /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "DeleteMeshApplication")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Delete")]
         public string ApplicationResourceName
         {
             get;
@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DeleteMeshApplication")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "Delete")]
         public SwitchParameter Force
         {
             get;
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                this.ServiceFabricClient.MeshApplications.DeleteMeshApplicationAsync(
+                this.ServiceFabricClient.MeshApplications.DeleteAsync(
                     applicationResourceName: this.ApplicationResourceName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

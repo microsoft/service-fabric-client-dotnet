@@ -11,12 +11,12 @@ namespace Microsoft.ServiceFabric.Common
     public enum RepairImpactKind
     {
         /// <summary>
-        /// The repair impact is not valid or is of an unknown type..
+        /// The repair impact is not valid or is of an unknown type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The repair impact affects a set of Service Fabric nodes..
+        /// The repair impact affects a set of Service Fabric nodes.
         /// </summary>
         Node,
     }

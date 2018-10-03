@@ -54,7 +54,7 @@ namespace Microsoft.ServiceFabric.Common
         public ApplicationHealthPolicy ApplicationHealthPolicy { get; }
 
         /// <summary>
-        /// Gets describes the parameters for updating a rolling upgrade of application or cluster.
+        /// Gets the parameters for updating a rolling upgrade of application or cluster.
         /// </summary>
         public RollingUpgradeUpdateDescription UpdateDescription { get; }
     }

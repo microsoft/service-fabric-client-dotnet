@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum HostType
     {
         /// <summary>
-        /// Indicates the type of host is not known or invalid. The value is 0..
+        /// Indicates the type of host is not known or invalid. The value is 0.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates the host is an executable. The value is 1..
+        /// Indicates the host is an executable. The value is 1.
         /// </summary>
         ExeHost,
 
         /// <summary>
-        /// Indicates the host is a container. The value is 2..
+        /// Indicates the host is a container. The value is 2.
         /// </summary>
         ContainerHost,
     }

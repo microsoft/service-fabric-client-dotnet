@@ -50,7 +50,7 @@ namespace Microsoft.ServiceFabric.Common
         public BackupPolicyScope? PolicyInheritedFrom { get; }
 
         /// <summary>
-        /// Gets describes the backup suspension details.
+        /// Gets the backup suspension details.
         /// </summary>
         public BackupSuspensionInfo SuspensionInfo { get; }
 

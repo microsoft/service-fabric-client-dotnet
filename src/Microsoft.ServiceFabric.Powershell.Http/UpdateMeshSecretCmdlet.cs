@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
         {
-            var applicationResourceInfo = this.ServiceFabricClient.MeshSecrets.GetMeshSecretAsync(this.SecretResourceName, this.CancellationToken).GetAwaiter().GetResult();
+            var applicationResourceInfo = this.ServiceFabricClient.MeshSecrets.GetAsync(this.SecretResourceName, this.CancellationToken).GetAwaiter().GetResult();
 
             if (applicationResourceInfo == null)
             {
@@ -55,7 +55,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 jsonDescription = File.ReadAllText(this.ResourceDescriptionFile);
             }
 
-            this.ServiceFabricClient.MeshSecrets.CreateOrUpdateMeshSecretAsync(
+            this.ServiceFabricClient.MeshSecrets.CreateOrUpdateAsync(
                 secretResourceName: this.SecretResourceName,
                 jsonDescription: jsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

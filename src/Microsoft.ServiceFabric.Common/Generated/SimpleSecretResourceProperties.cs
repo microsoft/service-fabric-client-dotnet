@@ -18,15 +18,19 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the SimpleSecretResourceProperties class.
         /// </summary>
-        /// <param name="description">Description of the secret resource.</param>
+        /// <param name="description">User readable description of the secret.</param>
+        /// <param name="status">Status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
+        /// 'Deleting', 'Failed'</param>
         /// <param name="contentType">The type of the content stored in the secret value. The value of this property is opaque
         /// to Service Fabric. Once set, the value of this property cannot be changed.</param>
         public SimpleSecretResourceProperties(
             string description = default(string),
+            ResourceStatus? status = default(ResourceStatus?),
             string contentType = default(string))
             : base(
                 Common.SecretKind.InlinedValue,
                 description,
+                status,
                 contentType)
         {
         }

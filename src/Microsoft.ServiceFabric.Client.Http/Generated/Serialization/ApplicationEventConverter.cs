@@ -56,7 +56,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.Ordinal))
                     {
-                        return ApplicationHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -64,27 +64,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.Ordinal))
                     {
-                        return ApplicationUpgradeCompleteEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.Ordinal))
                     {
-                        return ApplicationUpgradeDomainCompleteEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal))
                     {
-                        return ApplicationUpgradeRollbackCompleteEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.Ordinal))
                     {
-                        return ApplicationUpgradeRollbackStartEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.Ordinal))
                     {
-                        return ApplicationUpgradeStartEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationUpgradeStartedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.Ordinal))
                     {
-                        return DeployedApplicationHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return DeployedApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.Ordinal))
                     {
@@ -92,23 +92,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     }
                     else if (propValue.Equals("ApplicationProcessExited", StringComparison.Ordinal))
                     {
-                        return ProcessDeactivatedEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationProcessExitedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.Ordinal))
                     {
-                        return ContainerDeactivatedEventConverter.GetFromJsonProperties(reader);
+                        return ApplicationContainerInstanceExitedEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.Ordinal))
                     {
-                        return DeployedServiceHealthReportCreatedEventConverter.GetFromJsonProperties(reader);
+                        return DeployedServicePackageNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.Ordinal))
                     {
-                        return DeployedServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+                        return DeployedServicePackageHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.Ordinal))
                     {
-                        return ChaosRestartCodePackageFaultScheduledEventConverter.GetFromJsonProperties(reader);
+                        return ChaosCodePackageRestartScheduledEventConverter.GetFromJsonProperties(reader);
                     }
                     else if (propValue.Equals("ApplicationEvent", StringComparison.Ordinal))
                     {

@@ -12,22 +12,22 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates the service endpoint role is invalid. All Service Fabric enumerations have the invalid type. The value is
-        /// zero..
+        /// zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the service endpoint is of a stateless service. The value is 1..
+        /// Indicates that the service endpoint is of a stateless service. The value is 1.
         /// </summary>
         Stateless,
 
         /// <summary>
-        /// Indicates that the service endpoint is of a primary replica of a stateful service. The value is 2..
+        /// Indicates that the service endpoint is of a primary replica of a stateful service. The value is 2.
         /// </summary>
         StatefulPrimary,
 
         /// <summary>
-        /// Indicates that the service endpoint is of a secondary replica of a stateful service. The value is 3..
+        /// Indicates that the service endpoint is of a secondary replica of a stateful service. The value is 3.
         /// </summary>
         StatefulSecondary,
     }

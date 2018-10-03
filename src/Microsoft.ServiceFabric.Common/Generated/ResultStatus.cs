@@ -11,33 +11,33 @@ namespace Microsoft.ServiceFabric.Common
     public enum ResultStatus
     {
         /// <summary>
-        /// Indicates that the repair task result is invalid. All Service Fabric enumerations have the invalid value..
+        /// Indicates that the repair task result is invalid. All Service Fabric enumerations have the invalid value.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the repair task completed execution successfully..
+        /// Indicates that the repair task completed execution successfully.
         /// </summary>
         Succeeded,
 
         /// <summary>
-        /// Indicates that the repair task was cancelled prior to execution..
+        /// Indicates that the repair task was cancelled prior to execution.
         /// </summary>
         Cancelled,
 
         /// <summary>
         /// Indicates that execution of the repair task was interrupted by a cancellation request after some work had already
-        /// been performed..
+        /// been performed.
         /// </summary>
         Interrupted,
 
         /// <summary>
-        /// Indicates that there was a failure during execution of the repair task. Some work may have been performed..
+        /// Indicates that there was a failure during execution of the repair task. Some work may have been performed.
         /// </summary>
         Failed,
 
         /// <summary>
-        /// Indicates that the repair task result is not yet available, because the repair task has not finished executing..
+        /// Indicates that the repair task result is not yet available, because the repair task has not finished executing.
         /// </summary>
         Pending,
     }
