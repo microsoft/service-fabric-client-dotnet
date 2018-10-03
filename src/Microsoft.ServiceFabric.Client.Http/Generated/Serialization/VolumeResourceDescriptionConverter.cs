@@ -33,19 +33,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static VolumeResourceDescription GetFromJsonProperties(JsonReader reader)
         {
-            var properties = default(VolumeProperties);
             var name = default(string);
+            var properties = default(VolumeProperties);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("properties", propName, StringComparison.Ordinal) == 0)
-                {
-                    properties = VolumePropertiesConverter.Deserialize(reader);
-                }
-                else if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
                 {
                     name = reader.ReadValueAsString();
+                }
+                else if (string.Compare("properties", propName, StringComparison.Ordinal) == 0)
+                {
+                    properties = VolumePropertiesConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -55,8 +55,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             while (reader.TokenType != JsonToken.EndObject);
 
             return new VolumeResourceDescription(
-                properties: properties,
-                name: name);
+                name: name,
+                properties: properties);
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Properties, "properties", VolumePropertiesConverter.Serialize);
             writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Properties, "properties", VolumePropertiesConverter.Serialize);
             writer.WriteEndObject();
         }
     }

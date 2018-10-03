@@ -16,7 +16,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ApplicationScopedVolume class.
         /// </summary>
-        /// <param name="name">Name of the volume.</param>
+        /// <param name="name">Name of the volume being referenced.</param>
         /// <param name="destinationPath">The path within the container at which the volume should be mounted. Only valid path
         /// characters are allowed.</param>
         /// <param name="creationParameters">Describes parameters for creating application-scoped volumes.</param>
@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes parameters for creating application-scoped volumes.
+        /// Gets parameters for creating application-scoped volumes.
         /// </summary>
         public ApplicationScopedVolumeCreationParameters CreationParameters { get; }
     }

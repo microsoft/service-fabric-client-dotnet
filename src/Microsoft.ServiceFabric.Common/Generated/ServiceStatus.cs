@@ -11,33 +11,33 @@ namespace Microsoft.ServiceFabric.Common
     public enum ServiceStatus
     {
         /// <summary>
-        /// Indicates the service status is unknown. The value is zero..
+        /// Indicates the service status is unknown. The value is zero.
         /// </summary>
         Unknown,
 
         /// <summary>
-        /// Indicates the service status is active. The value is 1..
+        /// Indicates the service status is active. The value is 1.
         /// </summary>
         Active,
 
         /// <summary>
-        /// Indicates the service is upgrading. The value is 2..
+        /// Indicates the service is upgrading. The value is 2.
         /// </summary>
         Upgrading,
 
         /// <summary>
-        /// Indicates the service is being deleted. The value is 3..
+        /// Indicates the service is being deleted. The value is 3.
         /// </summary>
         Deleting,
 
         /// <summary>
-        /// Indicates the service is being created. The value is 4..
+        /// Indicates the service is being created. The value is 4.
         /// </summary>
         Creating,
 
         /// <summary>
         /// Indicates creation or deletion was terminated due to persistent failures. Another create/delete request can be
-        /// accepted. The value is 5..
+        /// accepted. The value is 5.
         /// </summary>
         Failed,
     }

@@ -11,16 +11,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Gets all the services in the application resource.
+    /// Lists all the service resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshService", DefaultParameterSetName = "GetMeshServices")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshService", DefaultParameterSetName = "List")]
     public partial class GetMeshServiceCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets ApplicationResourceName. Service Fabric application resource name.
+        /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetMeshServices")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetMeshService")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string ApplicationResourceName
         {
             get;
@@ -28,9 +28,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
-        /// Gets or sets ServiceResourceName. Service Fabric service resource name.
+        /// Gets or sets ServiceResourceName. The identity of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "GetMeshService")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Get")]
         public string ServiceResourceName
         {
             get;
@@ -40,12 +40,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            if (this.ParameterSetName.Equals("GetMeshServices"))
+            if (this.ParameterSetName.Equals("List"))
             {
                 var continuationToken = ContinuationToken.Empty;
                 do
                 {
-                    var result = this.ServiceFabricClient.MeshApplications.GetMeshServicesAsync(
+                    var result = this.ServiceFabricClient.MeshServices.ListAsync(
                         applicationResourceName: this.ApplicationResourceName,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
@@ -61,9 +61,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 }
                 while (continuationToken.Next);
             }
-            else if (this.ParameterSetName.Equals("GetMeshService"))
+            else if (this.ParameterSetName.Equals("Get"))
             {
-                var result = this.ServiceFabricClient.MeshApplications.GetMeshServiceAsync(
+                var result = this.ServiceFabricClient.MeshServices.GetAsync(
                     applicationResourceName: this.ApplicationResourceName,
                     serviceResourceName: this.ServiceResourceName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

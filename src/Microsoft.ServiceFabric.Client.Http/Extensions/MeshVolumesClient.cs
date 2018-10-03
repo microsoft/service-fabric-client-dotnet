@@ -18,11 +18,10 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshVolumesClient : IMeshVolumesClient
     {
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> CreateOrUpdateMeshVolumeAsync(
+        public Task<VolumeResourceDescription> CreateOrUpdateAsync(
             string volumeResourceName,
             string jsonDescription,
             string apiVersion = Constants.DefaultApiVersionForResources,
-            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             volumeResourceName.ThrowIfNull(nameof(volumeResourceName));

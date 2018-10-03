@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes the kind of secret.
+        /// Gets the kind of secret.
         /// </summary>
         public SecretKind? Kind { get; }
     }

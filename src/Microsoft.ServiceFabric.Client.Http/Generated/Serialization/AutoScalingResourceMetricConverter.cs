@@ -33,14 +33,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static AutoScalingResourceMetric GetFromJsonProperties(JsonReader reader)
         {
-            var name = default(string);
+            var name = default(AutoScalingResourceMetricName?);
 
             do
             {
                 var propName = reader.ReadPropertyName();
                 if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
                 {
-                    name = reader.ReadValueAsString();
+                    name = AutoScalingResourceMetricNameConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
             writer.WriteProperty(obj.Kind, "kind", AutoScalingMetricKindConverter.Serialize);
-            writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.Name, "name", AutoScalingResourceMetricNameConverter.Serialize);
             writer.WriteEndObject();
         }
     }

@@ -11,15 +11,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Gets the volume resource.
+    /// Lists all the volume resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshVolume", DefaultParameterSetName = "GetMeshVolume")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshVolume", DefaultParameterSetName = "List")]
     public partial class GetMeshVolumeCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets VolumeResourceName. Service Fabric volume resource name.
+        /// Gets or sets VolumeResourceName. The identity of the volume.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetMeshVolume")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string VolumeResourceName
         {
             get;
@@ -29,11 +29,33 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
-            var result = this.ServiceFabricClient.MeshVolumes.GetMeshVolumeAsync(
-                volumeResourceName: this.VolumeResourceName,
-                cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            if (this.ParameterSetName.Equals("List"))
+            {
+                var continuationToken = ContinuationToken.Empty;
+                do
+                {
+                    var result = this.ServiceFabricClient.MeshVolumes.ListAsync().GetAwaiter().GetResult();
 
-            this.WriteObject(this.FormatOutput(result));
+                    var count = 0;
+                    foreach (var item in result.Data)
+                    {
+                        count++;
+                        this.WriteObject(this.FormatOutput(item));
+                    }
+
+                    continuationToken = result.ContinuationToken;
+                    this.WriteDebug(string.Format(Resource.MsgCountAndContinuationToken, count, continuationToken));
+                }
+                while (continuationToken.Next);
+            }
+            else if (this.ParameterSetName.Equals("Get"))
+            {
+                var result = this.ServiceFabricClient.MeshVolumes.GetAsync(
+                    volumeResourceName: this.VolumeResourceName,
+                    cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                this.WriteObject(this.FormatOutput(result));
+            }
         }
 
         /// <inheritdoc/>

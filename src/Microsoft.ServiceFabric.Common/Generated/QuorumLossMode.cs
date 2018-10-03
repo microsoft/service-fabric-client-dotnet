@@ -11,12 +11,12 @@ namespace Microsoft.ServiceFabric.Common
     public enum QuorumLossMode
     {
         /// <summary>
-        /// Reserved.  Do not pass into API..
+        /// Reserved.  Do not pass into API.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Partial Quorum loss mode : Minimum number of replicas for a partition will be down that will cause a quorum loss..
+        /// Partial Quorum loss mode : Minimum number of replicas for a partition will be down that will cause a quorum loss.
         /// </summary>
         QuorumReplicas,
 

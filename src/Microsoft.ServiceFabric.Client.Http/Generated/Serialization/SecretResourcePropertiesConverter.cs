@@ -35,6 +35,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             var kind = default(SecretKind?);
             var description = default(string);
+            var status = default(ResourceStatus?);
+            var statusDetails = default(string);
             var contentType = default(string);
 
             do
@@ -48,6 +50,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     description = reader.ReadValueAsString();
                 }
+                else if (string.Compare("status", propName, StringComparison.Ordinal) == 0)
+                {
+                    status = ResourceStatusConverter.Deserialize(reader);
+                }
+                else if (string.Compare("statusDetails", propName, StringComparison.Ordinal) == 0)
+                {
+                    statusDetails = reader.ReadValueAsString();
+                }
                 else if (string.Compare("contentType", propName, StringComparison.Ordinal) == 0)
                 {
                     contentType = reader.ReadValueAsString();
@@ -59,10 +69,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new SecretResourceProperties(
+            var secretResourceProperties = new SecretResourceProperties(
                 kind: kind,
                 description: description,
+                status: status,
                 contentType: contentType);
+
+            secretResourceProperties.StatusDetails = statusDetails;
+            return secretResourceProperties;
         }
 
         /// <summary>
@@ -75,9 +89,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
             writer.WriteProperty(obj.Kind, "kind", SecretKindConverter.Serialize);
+            writer.WriteProperty(obj.Status, "status", ResourceStatusConverter.Serialize);
             if (obj.Description != null)
             {
                 writer.WriteProperty(obj.Description, "description", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.StatusDetails != null)
+            {
+                writer.WriteProperty(obj.StatusDetails, "statusDetails", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.ContentType != null)

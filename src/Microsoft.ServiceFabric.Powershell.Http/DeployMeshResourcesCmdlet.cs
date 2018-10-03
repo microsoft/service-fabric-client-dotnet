@@ -71,7 +71,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 switch (resource.Type)
                 {                    
                     case ResourseType.Volume:
-                        client.MeshVolumes.CreateOrUpdateMeshVolumeAsync(
+                        client.MeshVolumes.CreateOrUpdateAsync(
                             resource.Name,
                             resource.Description.ToString(),
                             resource.ApiVersion,
@@ -79,7 +79,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         break;
 
                     case ResourseType.Application:
-                        client.MeshApplications.CreateOrUpdateMeshApplicationAsync(
+                        client.MeshApplications.CreateOrUpdateAsync(
                             resource.Name,
                             resource.Description.ToString(),
                             resource.ApiVersion,
@@ -87,7 +87,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         break;
 
                     case ResourseType.Secret:
-                        client.MeshSecrets.CreateOrUpdateMeshSecretAsync(
+                        client.MeshSecrets.CreateOrUpdateAsync(
                             resource.Name,
                             resource.Description.ToString(),
                             resource.ApiVersion,
@@ -97,7 +97,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     case ResourseType.SecretValue:
                         var secretResourcename = resource.FullyQualifiedResourceName.Split(FullyQualifiedResourceNameSeparator)[0];
 
-                        client.MeshSecretValues.AddMeshSecretValueAsync(
+                        client.MeshSecretValues.AddValueAsync(
                             secretResourcename,
                             resource.Name,
                             resource.Description.ToString(),

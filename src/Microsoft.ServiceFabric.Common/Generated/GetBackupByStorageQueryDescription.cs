@@ -63,10 +63,10 @@ namespace Microsoft.ServiceFabric.Common
         public bool? Latest { get; }
 
         /// <summary>
-        /// Gets describes the parameters for the backup storage from where to enumerate backups. This is optional and by
-        /// default backups are enumerated from the backup storage where this backup entity is currently being backed up (as
-        /// specified in backup policy). This parameter is useful to be able to enumerate backups from another cluster where
-        /// you may intend to restore.
+        /// Gets the parameters for the backup storage from where to enumerate backups. This is optional and by default backups
+        /// are enumerated from the backup storage where this backup entity is currently being backed up (as specified in
+        /// backup policy). This parameter is useful to be able to enumerate backups from another cluster where you may intend
+        /// to restore.
         /// </summary>
         public BackupStorageDescription Storage { get; }
 

@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task CreateOrUpdateMeshVolumeAsync(
+        public Task<VolumeResourceDescription> CreateOrUpdateAsync(
             string volumeResourceName,
             VolumeResourceDescription volumeResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             string content;
@@ -68,11 +68,11 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, VolumeResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
-        public Task<VolumeResourceDescription> GetMeshVolumeAsync(
+        public Task<VolumeResourceDescription> GetAsync(
             string volumeResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -83,7 +83,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -99,7 +99,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteMeshVolumeAsync(
+        public Task DeleteAsync(
             string volumeResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -110,7 +110,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            queryParams.Add("api-version=6.3-preview");
+            queryParams.Add("api-version=6.4-preview");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -123,6 +123,30 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<PagedData<VolumeResourceDescription>> ListAsync(
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Resources/Volumes";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            queryParams.Add("api-version=6.4-preview");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, VolumeResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
     }
 }

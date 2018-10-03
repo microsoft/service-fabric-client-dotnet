@@ -11,15 +11,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Deletes the volume resource.
+    /// Deletes the Volume resource.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshVolume", DefaultParameterSetName = "DeleteMeshVolume")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshVolume", DefaultParameterSetName = "Delete")]
     public partial class RemoveMeshVolumeCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets VolumeResourceName. Service Fabric volume resource name.
+        /// Gets or sets VolumeResourceName. The identity of the volume.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "DeleteMeshVolume")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Delete")]
         public string VolumeResourceName
         {
             get;
@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DeleteMeshVolume")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "Delete")]
         public SwitchParameter Force
         {
             get;
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                this.ServiceFabricClient.MeshVolumes.DeleteMeshVolumeAsync(
+                this.ServiceFabricClient.MeshVolumes.DeleteAsync(
                     volumeResourceName: this.VolumeResourceName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

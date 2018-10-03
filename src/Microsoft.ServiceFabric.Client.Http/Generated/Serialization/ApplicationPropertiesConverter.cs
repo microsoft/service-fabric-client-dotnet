@@ -34,14 +34,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static ApplicationProperties GetFromJsonProperties(JsonReader reader)
         {
             var description = default(string);
-            var debugParams = default(string);
             var services = default(IEnumerable<ServiceResourceDescription>);
+            var diagnostics = default(DiagnosticsDescription);
+            var debugParams = default(string);
+            var serviceNames = default(IEnumerable<string>);
+            var status = default(ResourceStatus?);
+            var statusDetails = default(string);
             var healthState = default(HealthState?);
             var unhealthyEvaluation = default(string);
-            var status = default(ApplicationResourceStatus?);
-            var statusDetails = default(string);
-            var serviceNames = default(IEnumerable<string>);
-            var diagnostics = default(DiagnosticsDescription);
 
             do
             {
@@ -50,13 +50,29 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     description = reader.ReadValueAsString();
                 }
+                else if (string.Compare("services", propName, StringComparison.Ordinal) == 0)
+                {
+                    services = reader.ReadList(ServiceResourceDescriptionConverter.Deserialize);
+                }
+                else if (string.Compare("diagnostics", propName, StringComparison.Ordinal) == 0)
+                {
+                    diagnostics = DiagnosticsDescriptionConverter.Deserialize(reader);
+                }
                 else if (string.Compare("debugParams", propName, StringComparison.Ordinal) == 0)
                 {
                     debugParams = reader.ReadValueAsString();
                 }
-                else if (string.Compare("services", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("serviceNames", propName, StringComparison.Ordinal) == 0)
                 {
-                    services = reader.ReadList(ServiceResourceDescriptionConverter.Deserialize);
+                    serviceNames = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
+                }
+                else if (string.Compare("status", propName, StringComparison.Ordinal) == 0)
+                {
+                    status = ResourceStatusConverter.Deserialize(reader);
+                }
+                else if (string.Compare("statusDetails", propName, StringComparison.Ordinal) == 0)
+                {
+                    statusDetails = reader.ReadValueAsString();
                 }
                 else if (string.Compare("healthState", propName, StringComparison.Ordinal) == 0)
                 {
@@ -66,22 +82,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     unhealthyEvaluation = reader.ReadValueAsString();
                 }
-                else if (string.Compare("status", propName, StringComparison.Ordinal) == 0)
-                {
-                    status = ApplicationResourceStatusConverter.Deserialize(reader);
-                }
-                else if (string.Compare("statusDetails", propName, StringComparison.Ordinal) == 0)
-                {
-                    statusDetails = reader.ReadValueAsString();
-                }
-                else if (string.Compare("serviceNames", propName, StringComparison.Ordinal) == 0)
-                {
-                    serviceNames = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
-                }
-                else if (string.Compare("diagnostics", propName, StringComparison.Ordinal) == 0)
-                {
-                    diagnostics = DiagnosticsDescriptionConverter.Deserialize(reader);
-                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -89,16 +89,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new ApplicationProperties(
+            var applicationProperties = new ApplicationProperties(
                 description: description,
-                debugParams: debugParams,
                 services: services,
-                healthState: healthState,
-                unhealthyEvaluation: unhealthyEvaluation,
-                status: status,
-                statusDetails: statusDetails,
-                serviceNames: serviceNames,
-                diagnostics: diagnostics);
+                diagnostics: diagnostics,
+                debugParams: debugParams,
+                status: status);
+
+            applicationProperties.ServiceNames = serviceNames;
+            applicationProperties.StatusDetails = statusDetails;
+            applicationProperties.HealthState = healthState;
+            applicationProperties.UnhealthyEvaluation = unhealthyEvaluation;
+            return applicationProperties;
         }
 
         /// <summary>
@@ -110,16 +112,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
+            writer.WriteProperty(obj.Status, "status", ResourceStatusConverter.Serialize);
             writer.WriteProperty(obj.HealthState, "healthState", HealthStateConverter.Serialize);
-            writer.WriteProperty(obj.Status, "status", ApplicationResourceStatusConverter.Serialize);
             if (obj.Description != null)
             {
                 writer.WriteProperty(obj.Description, "description", JsonWriterExtensions.WriteStringValue);
-            }
-
-            if (obj.DebugParams != null)
-            {
-                writer.WriteProperty(obj.DebugParams, "debugParams", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.Services != null)
@@ -127,14 +124,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.Services, "services", ServiceResourceDescriptionConverter.Serialize);
             }
 
-            if (obj.UnhealthyEvaluation != null)
+            if (obj.Diagnostics != null)
             {
-                writer.WriteProperty(obj.UnhealthyEvaluation, "unhealthyEvaluation", JsonWriterExtensions.WriteStringValue);
+                writer.WriteProperty(obj.Diagnostics, "diagnostics", DiagnosticsDescriptionConverter.Serialize);
             }
 
-            if (obj.StatusDetails != null)
+            if (obj.DebugParams != null)
             {
-                writer.WriteProperty(obj.StatusDetails, "statusDetails", JsonWriterExtensions.WriteStringValue);
+                writer.WriteProperty(obj.DebugParams, "debugParams", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.ServiceNames != null)
@@ -142,9 +139,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.ServiceNames, "serviceNames", (w, v) => writer.WriteStringValue(v));
             }
 
-            if (obj.Diagnostics != null)
+            if (obj.StatusDetails != null)
             {
-                writer.WriteProperty(obj.Diagnostics, "diagnostics", DiagnosticsDescriptionConverter.Serialize);
+                writer.WriteProperty(obj.StatusDetails, "statusDetails", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.UnhealthyEvaluation != null)
+            {
+                writer.WriteProperty(obj.UnhealthyEvaluation, "unhealthyEvaluation", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

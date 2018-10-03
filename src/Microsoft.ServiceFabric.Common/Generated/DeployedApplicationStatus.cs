@@ -12,32 +12,32 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates that deployment status is not valid. All Service Fabric enumerations have the invalid type. The value is
-        /// zero..
+        /// zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the package is downloading from the ImageStore. The value is 1..
+        /// Indicates that the package is downloading from the ImageStore. The value is 1.
         /// </summary>
         Downloading,
 
         /// <summary>
-        /// Indicates that the package is activating. The value is 2..
+        /// Indicates that the package is activating. The value is 2.
         /// </summary>
         Activating,
 
         /// <summary>
-        /// Indicates that the package is active. The value is 3..
+        /// Indicates that the package is active. The value is 3.
         /// </summary>
         Active,
 
         /// <summary>
-        /// Indicates that the package is upgrading. The value is 4..
+        /// Indicates that the package is upgrading. The value is 4.
         /// </summary>
         Upgrading,
 
         /// <summary>
-        /// Indicates that the package is deactivating. The value is 5..
+        /// Indicates that the package is deactivating. The value is 5.
         /// </summary>
         Deactivating,
     }

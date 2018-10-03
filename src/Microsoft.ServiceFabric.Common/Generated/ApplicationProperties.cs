@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// This type describes properties of an application resource.
+    /// Describes properties of a application resource.
     /// </summary>
     public partial class ApplicationProperties
     {
@@ -17,41 +17,29 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the ApplicationProperties class.
         /// </summary>
         /// <param name="description">User readable description of the application.</param>
-        /// <param name="debugParams">Internal use.</param>
-        /// <param name="services">describes the services in the application.</param>
-        /// <param name="healthState">Describes the health state of an application resource. Possible values include:
-        /// 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'
-        /// 
-        /// The health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
-        /// </param>
-        /// <param name="unhealthyEvaluation">When the application's health state is not 'Ok', this additional details from
-        /// service fabric Health Manager for the user to know why the application is marked unhealthy.</param>
-        /// <param name="status">Status of the application resource. Possible values include: 'Invalid', 'Ready', 'Upgrading',
-        /// 'Creating', 'Deleting', 'Failed'</param>
-        /// <param name="statusDetails">Gives additional information about the current status of the application
-        /// deployment.</param>
-        /// <param name="serviceNames">Names of the services in the application.</param>
+        /// <param name="services">Describes the services in the application. This property is used to create or modify
+        /// services of the application. On get only the name of the service is returned. The service description can be
+        /// obtained by querying for the service resource.</param>
         /// <param name="diagnostics">Describes the diagnostics definition and usage for an application resource.</param>
+        /// <param name="debugParams">Internal - used by Visual Studio to setup the debugging session on the local development
+        /// environment.</param>
+        /// <param name="status">Status of the application. Possible values include: 'Unknown', 'Ready', 'Upgrading',
+        /// 'Creating', 'Deleting', 'Failed'
+        /// 
+        /// Status of the resource.
+        /// </param>
         public ApplicationProperties(
             string description = default(string),
-            string debugParams = default(string),
             IEnumerable<ServiceResourceDescription> services = default(IEnumerable<ServiceResourceDescription>),
-            HealthState? healthState = default(HealthState?),
-            string unhealthyEvaluation = default(string),
-            ApplicationResourceStatus? status = default(ApplicationResourceStatus?),
-            string statusDetails = default(string),
-            IEnumerable<string> serviceNames = default(IEnumerable<string>),
-            DiagnosticsDescription diagnostics = default(DiagnosticsDescription))
+            DiagnosticsDescription diagnostics = default(DiagnosticsDescription),
+            string debugParams = default(string),
+            ResourceStatus? status = default(ResourceStatus?))
         {
             this.Description = description;
-            this.DebugParams = debugParams;
             this.Services = services;
-            this.HealthState = healthState;
-            this.UnhealthyEvaluation = unhealthyEvaluation;
-            this.Status = status;
-            this.StatusDetails = statusDetails;
-            this.ServiceNames = serviceNames;
             this.Diagnostics = diagnostics;
+            this.DebugParams = debugParams;
+            this.Status = status;
         }
 
         /// <summary>
@@ -60,48 +48,52 @@ namespace Microsoft.ServiceFabric.Common
         public string Description { get; }
 
         /// <summary>
-        /// Gets internal use.
-        /// </summary>
-        public string DebugParams { get; }
-
-        /// <summary>
-        /// Gets describes the services in the application.
+        /// Gets the services in the application. This property is used to create or modify services of the application. On get
+        /// only the name of the service is returned. The service description can be obtained by querying for the service
+        /// resource.
         /// </summary>
         public IEnumerable<ServiceResourceDescription> Services { get; }
 
         /// <summary>
-        /// Gets describes the health state of an application resource. Possible values include: 'Invalid', 'Ok', 'Warning',
-        /// 'Error', 'Unknown'
+        /// Gets the diagnostics definition and usage for an application resource.
+        /// </summary>
+        public DiagnosticsDescription Diagnostics { get; }
+
+        /// <summary>
+        /// Gets internal - used by Visual Studio to setup the debugging session on the local development environment.
+        /// </summary>
+        public string DebugParams { get; }
+
+        /// <summary>
+        /// Gets names of the services in the application.
+        /// </summary>
+        public IEnumerable<string> ServiceNames { get; internal set; }
+
+        /// <summary>
+        /// Gets status of the application. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating', 'Deleting',
+        /// 'Failed'
+        /// 
+        /// Status of the resource.
+        /// </summary>
+        public ResourceStatus? Status { get; }
+
+        /// <summary>
+        /// Gets additional information about the current status of the application.
+        /// </summary>
+        public string StatusDetails { get; internal set; }
+
+        /// <summary>
+        /// Gets the health state of an application resource. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error',
+        /// 'Unknown'
         /// 
         /// The health state of a Service Fabric entity such as Cluster, Node, Application, Service, Partition, Replica etc.
         /// </summary>
-        public HealthState? HealthState { get; }
+        public HealthState? HealthState { get; internal set; }
 
         /// <summary>
         /// Gets when the application's health state is not 'Ok', this additional details from service fabric Health Manager
         /// for the user to know why the application is marked unhealthy.
         /// </summary>
-        public string UnhealthyEvaluation { get; }
-
-        /// <summary>
-        /// Gets status of the application resource. Possible values include: 'Invalid', 'Ready', 'Upgrading', 'Creating',
-        /// 'Deleting', 'Failed'
-        /// </summary>
-        public ApplicationResourceStatus? Status { get; }
-
-        /// <summary>
-        /// Gets gives additional information about the current status of the application deployment.
-        /// </summary>
-        public string StatusDetails { get; }
-
-        /// <summary>
-        /// Gets names of the services in the application.
-        /// </summary>
-        public IEnumerable<string> ServiceNames { get; }
-
-        /// <summary>
-        /// Gets describes the diagnostics definition and usage for an application resource.
-        /// </summary>
-        public DiagnosticsDescription Diagnostics { get; }
+        public string UnhealthyEvaluation { get; internal set; }
     }
 }

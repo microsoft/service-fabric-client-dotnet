@@ -16,10 +16,10 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// <summary>
     /// Class containing methods for performing MeshSecretValuesClient operations.
     /// </summary>
-    public partial class MeshSecretValuesClient : IMeshSecretValuesClient
+    internal partial class MeshSecretValuesClient : IMeshSecretValuesClient
     {
         /// <inheritdoc />
-        public Task<SecretValueResourceDescription> AddMeshSecretValueAsync(
+        public Task<SecretValueResourceDescription> AddValueAsync(
             string secretResourceName,
             string secretValueResourceName,
             string jsonDescription,
@@ -30,10 +30,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             secretValueResourceName.ThrowIfNull(nameof(secretValueResourceName));
             jsonDescription.ThrowIfNull(nameof(jsonDescription));
             var requestId = Guid.NewGuid().ToString();
-            var url = "Resources/Secrets/{secretResourceName}/values/{secretValueResourceName}";
-            url = url.Replace("{secretResourceName}", secretResourceName);
-            url = url.Replace("{secretValueResourceName}", secretValueResourceName);
-            url = $"{url}?api-version={apiVersion}";
+            var url = $"Resources/Secrets/{secretResourceName}/values/{secretValueResourceName}?api-version={apiVersion}";
 
             HttpRequestMessage RequestFunc()
             {

@@ -11,27 +11,27 @@ namespace Microsoft.ServiceFabric.Common
     public enum PackageSharingPolicyScope
     {
         /// <summary>
-        /// No package sharing policy scope. The value is 0..
+        /// No package sharing policy scope. The value is 0.
         /// </summary>
         None,
 
         /// <summary>
-        /// Share all code, config and data packages from corresponding service manifest. The value is 1..
+        /// Share all code, config and data packages from corresponding service manifest. The value is 1.
         /// </summary>
         All,
 
         /// <summary>
-        /// Share all code packages from corresponding service manifest. The value is 2..
+        /// Share all code packages from corresponding service manifest. The value is 2.
         /// </summary>
         Code,
 
         /// <summary>
-        /// Share all config packages from corresponding service manifest. The value is 3..
+        /// Share all config packages from corresponding service manifest. The value is 3.
         /// </summary>
         Config,
 
         /// <summary>
-        /// Share all data packages from corresponding service manifest. The value is 4..
+        /// Share all data packages from corresponding service manifest. The value is 4.
         /// </summary>
         Data,
     }

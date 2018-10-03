@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum FailureAction
     {
         /// <summary>
-        /// Indicates the failure action is invalid. All Service Fabric enumerations have the invalid type. The value is zero..
+        /// Indicates the failure action is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 

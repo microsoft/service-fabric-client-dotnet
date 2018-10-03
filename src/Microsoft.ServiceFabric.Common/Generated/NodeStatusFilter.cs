@@ -11,49 +11,49 @@ namespace Microsoft.ServiceFabric.Common
     public enum NodeStatusFilter
     {
         /// <summary>
-        /// This filter value will match all of the nodes excepts the ones with with status as Unknown or Removed..
+        /// This filter value will match all of the nodes excepts the ones with with status as Unknown or Removed.
         /// </summary>
         Default,
 
         /// <summary>
-        /// This filter value will match all of the nodes..
+        /// This filter value will match all of the nodes.
         /// </summary>
         All,
 
         /// <summary>
-        /// This filter value will match nodes that are Up..
+        /// This filter value will match nodes that are Up.
         /// </summary>
         Up,
 
         /// <summary>
-        /// This filter value will match nodes that are Down..
+        /// This filter value will match nodes that are Down.
         /// </summary>
         Down,
 
         /// <summary>
-        /// This filter value will match nodes that are in the process of being enabled with status as Enabling..
+        /// This filter value will match nodes that are in the process of being enabled with status as Enabling.
         /// </summary>
         Enabling,
 
         /// <summary>
-        /// This filter value will match nodes that are in the process of being disabled with status as Disabling..
+        /// This filter value will match nodes that are in the process of being disabled with status as Disabling.
         /// </summary>
         Disabling,
 
         /// <summary>
-        /// This filter value will match nodes that are Disabled..
+        /// This filter value will match nodes that are Disabled.
         /// </summary>
         Disabled,
 
         /// <summary>
         /// This filter value will match nodes whose status is Unknown. A node would be in Unknown state if Service Fabric does
-        /// not have authoritative information about that node. This can happen if the system learns about a node at runtime..
+        /// not have authoritative information about that node. This can happen if the system learns about a node at runtime.
         /// </summary>
         Unknown,
 
         /// <summary>
         /// This filter value will match nodes whose status is Removed. These are the nodes that are removed from the cluster
-        /// using the RemoveNodeState API..
+        /// using the RemoveNodeState API.
         /// </summary>
         Removed,
     }

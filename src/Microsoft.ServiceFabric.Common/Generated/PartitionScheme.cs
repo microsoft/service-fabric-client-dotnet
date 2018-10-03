@@ -11,19 +11,19 @@ namespace Microsoft.ServiceFabric.Common
     public enum PartitionScheme
     {
         /// <summary>
-        /// Indicates the partition kind is invalid. All Service Fabric enumerations have the invalid type. The value is zero..
+        /// Indicates the partition kind is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
         /// Indicates that the partition is based on string names, and is a SingletonPartitionSchemeDescription object, The
-        /// value is 1..
+        /// value is 1.
         /// </summary>
         Singleton,
 
         /// <summary>
         /// Indicates that the partition is based on Int64 key ranges, and is a UniformInt64RangePartitionSchemeDescription
-        /// object. The value is 2..
+        /// object. The value is 2.
         /// </summary>
         UniformInt64Range,
 

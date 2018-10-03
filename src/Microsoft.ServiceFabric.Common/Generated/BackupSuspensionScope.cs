@@ -12,24 +12,24 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates an invalid backup suspension scope type also indicating entity is not suspended. All Service Fabric
-        /// enumerations have the invalid type..
+        /// enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates the backup suspension is applied at partition level..
+        /// Indicates the backup suspension is applied at partition level.
         /// </summary>
         Partition,
 
         /// <summary>
         /// Indicates the backup suspension is applied at service level. All partitions of the service are hence suspended for
-        /// backup..
+        /// backup.
         /// </summary>
         Service,
 
         /// <summary>
         /// Indicates the backup suspension is applied at application level. All services and partitions of the application are
-        /// hence suspended for backup..
+        /// hence suspended for backup.
         /// </summary>
         Application,
     }

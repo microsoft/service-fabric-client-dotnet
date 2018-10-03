@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum AutoScalingTriggerKind
     {
         /// <summary>
-        /// Indicates that scaling should be performed based on average load of all replicas in the service..
+        /// Indicates that scaling should be performed based on average load of all replicas in the service.
         /// </summary>
         AverageLoad,
     }

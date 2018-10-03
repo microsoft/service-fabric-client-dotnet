@@ -31,8 +31,8 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes why Chaos stopped. Chaos can stop because of StopChaos API call or the timeToRun provided in
-        /// ChaosParameters is over.
+        /// Gets why Chaos stopped. Chaos can stop because of StopChaos API call or the timeToRun provided in ChaosParameters
+        /// is over.
         /// </summary>
         public string Reason { get; }
     }

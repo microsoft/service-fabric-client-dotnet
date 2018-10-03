@@ -18,11 +18,10 @@ namespace Microsoft.ServiceFabric.Client.Http
     internal partial class MeshApplicationsClient : IMeshApplicationsClient
     {
         /// <inheritdoc />
-        public Task<ApplicationResourceDescription> CreateOrUpdateMeshApplicationAsync(
+        public Task<ApplicationResourceDescription> CreateOrUpdateAsync(
             string applicationResourceName,
             string jsonDescription,
             string apiVersion = Constants.DefaultApiVersionForResources,
-            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             applicationResourceName.ThrowIfNull(nameof(applicationResourceName));

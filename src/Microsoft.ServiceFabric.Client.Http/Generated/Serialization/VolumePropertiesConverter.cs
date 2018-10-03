@@ -34,6 +34,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static VolumeProperties GetFromJsonProperties(JsonReader reader)
         {
             var description = default(string);
+            var status = default(ResourceStatus?);
+            var statusDetails = default(string);
             var azureFileParameters = default(VolumeProviderParametersAzureFile);
 
             do
@@ -42,6 +44,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
                 {
                     description = reader.ReadValueAsString();
+                }
+                else if (string.Compare("status", propName, StringComparison.Ordinal) == 0)
+                {
+                    status = ResourceStatusConverter.Deserialize(reader);
+                }
+                else if (string.Compare("statusDetails", propName, StringComparison.Ordinal) == 0)
+                {
+                    statusDetails = reader.ReadValueAsString();
                 }
                 else if (string.Compare("azureFileParameters", propName, StringComparison.Ordinal) == 0)
                 {
@@ -54,9 +64,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new VolumeProperties(
+            var volumeProperties = new VolumeProperties(
                 description: description,
+                status: status,
                 azureFileParameters: azureFileParameters);
+
+            volumeProperties.StatusDetails = statusDetails;
+            return volumeProperties;
         }
 
         /// <summary>
@@ -68,9 +82,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
+            writer.WriteProperty(obj.Status, "status", ResourceStatusConverter.Serialize);
             if (obj.Description != null)
             {
                 writer.WriteProperty(obj.Description, "description", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.StatusDetails != null)
+            {
+                writer.WriteProperty(obj.StatusDetails, "statusDetails", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.AzureFileParameters != null)

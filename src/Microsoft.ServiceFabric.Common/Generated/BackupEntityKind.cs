@@ -11,22 +11,22 @@ namespace Microsoft.ServiceFabric.Common
     public enum BackupEntityKind
     {
         /// <summary>
-        /// Indicates an invalid entity kind. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid entity kind. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates the entity is a Service Fabric partition..
+        /// Indicates the entity is a Service Fabric partition.
         /// </summary>
         Partition,
 
         /// <summary>
-        /// Indicates the entity is a Service Fabric service..
+        /// Indicates the entity is a Service Fabric service.
         /// </summary>
         Service,
 
         /// <summary>
-        /// Indicates the entity is a Service Fabric application..
+        /// Indicates the entity is a Service Fabric application.
         /// </summary>
         Application,
     }

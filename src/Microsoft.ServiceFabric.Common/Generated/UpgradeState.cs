@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum UpgradeState
     {
         /// <summary>
-        /// Indicates the upgrade state is invalid. All Service Fabric enumerations have the invalid type. The value is zero..
+        /// Indicates the upgrade state is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 

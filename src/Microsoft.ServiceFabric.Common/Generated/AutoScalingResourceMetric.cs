@@ -16,10 +16,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the AutoScalingResourceMetric class.
         /// </summary>
-        /// <param name="name">Name of the resource (like cpu or memoryInGB). Possible values include: 'cpu',
-        /// 'memoryInGB'</param>
+        /// <param name="name">Name of the resource. Possible values include: 'cpu', 'memoryInGB'
+        /// 
+        /// Enumerates the resources that are used for triggering auto scaling.
+        /// </param>
         public AutoScalingResourceMetric(
-            string name)
+            AutoScalingResourceMetricName? name)
             : base(
                 Common.AutoScalingMetricKind.Resource)
         {
@@ -28,8 +30,10 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets name of the resource (like cpu or memoryInGB). Possible values include: 'cpu', 'memoryInGB'
+        /// Gets name of the resource. Possible values include: 'cpu', 'memoryInGB'
+        /// 
+        /// Enumerates the resources that are used for triggering auto scaling.
         /// </summary>
-        public string Name { get; }
+        public AutoScalingResourceMetricName? Name { get; }
     }
 }

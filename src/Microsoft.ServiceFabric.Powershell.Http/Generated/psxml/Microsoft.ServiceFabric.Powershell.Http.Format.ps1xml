@@ -127,6 +127,24 @@
             </ListControl>
         </View>
         <View>
+            <Name>ClusterVersion</Name>
+            <ViewSelectedBy>
+                <TypeName>Microsoft.ServiceFabric.Common.ClusterVersion</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>properties</PropertyName>
+                                <FormatString>properties</FormatString>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+        <View>
             <Name>ServiceHealth</Name>
             <ViewSelectedBy>
                 <TypeName>Microsoft.ServiceFabric.Common.ServiceHealth</TypeName>

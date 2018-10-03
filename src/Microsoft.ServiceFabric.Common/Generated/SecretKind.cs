@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum SecretKind
     {
         /// <summary>
-        /// A simple secret resource whose plaintext value is provided by the user..
+        /// A simple secret resource whose plaintext value is provided by the user.
         /// </summary>
         InlinedValue,
     }

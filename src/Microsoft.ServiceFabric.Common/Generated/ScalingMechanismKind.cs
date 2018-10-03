@@ -12,17 +12,17 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// Indicates the scaling mechanism is invalid. All Service Fabric enumerations have the invalid type. The value is
-        /// zero..
+        /// zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates a mechanism for scaling where new instances are added or removed from a partition. The value is 1..
+        /// Indicates a mechanism for scaling where new instances are added or removed from a partition. The value is 1.
         /// </summary>
         PartitionInstanceCount,
 
         /// <summary>
-        /// Indicates a mechanism for scaling where new named partitions are added or removed from a service. The value is 2..
+        /// Indicates a mechanism for scaling where new named partitions are added or removed from a service. The value is 2.
         /// </summary>
         AddRemoveIncrementalNamedPartition,
     }

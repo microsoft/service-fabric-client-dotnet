@@ -9,34 +9,33 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Describes a service fabric application resource.
+    /// This type describes a application resource.
     /// </summary>
     public partial class ApplicationResourceDescription
     {
         /// <summary>
         /// Initializes a new instance of the ApplicationResourceDescription class.
         /// </summary>
-        /// <param name="properties">This type describes properties of an application resource.</param>
-        /// <param name="name">Application resource name.
-        /// </param>
+        /// <param name="name">Name of the Application resource.</param>
+        /// <param name="properties">Describes properties of a application resource.</param>
         public ApplicationResourceDescription(
-            ApplicationProperties properties,
-            string name)
+            string name,
+            ApplicationProperties properties)
         {
-            properties.ThrowIfNull(nameof(properties));
             name.ThrowIfNull(nameof(name));
-            this.Properties = properties;
+            properties.ThrowIfNull(nameof(properties));
             this.Name = name;
+            this.Properties = properties;
         }
 
         /// <summary>
-        /// Gets this type describes properties of an application resource.
-        /// </summary>
-        public ApplicationProperties Properties { get; }
-
-        /// <summary>
-        /// Gets application resource name.
+        /// Gets name of the Application resource.
         /// </summary>
         public string Name { get; }
+
+        /// <summary>
+        /// Gets properties of a application resource.
+        /// </summary>
+        public ApplicationProperties Properties { get; }
     }
 }

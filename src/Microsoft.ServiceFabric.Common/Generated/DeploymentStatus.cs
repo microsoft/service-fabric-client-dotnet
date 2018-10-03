@@ -11,32 +11,32 @@ namespace Microsoft.ServiceFabric.Common
     public enum DeploymentStatus
     {
         /// <summary>
-        /// Indicates status of the application or service package is not known or invalid. The value is 0..
+        /// Indicates status of the application or service package is not known or invalid. The value is 0.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates the application or service package is being downloaded to the node from the ImageStore. The value is 1..
+        /// Indicates the application or service package is being downloaded to the node from the ImageStore. The value is 1.
         /// </summary>
         Downloading,
 
         /// <summary>
-        /// Indicates the application or service package is being activated. The value is 2..
+        /// Indicates the application or service package is being activated. The value is 2.
         /// </summary>
         Activating,
 
         /// <summary>
-        /// Indicates the application or service package is active the node. The value is 3..
+        /// Indicates the application or service package is active the node. The value is 3.
         /// </summary>
         Active,
 
         /// <summary>
-        /// Indicates the application or service package is being upgraded. The value is 4..
+        /// Indicates the application or service package is being upgraded. The value is 4.
         /// </summary>
         Upgrading,
 
         /// <summary>
-        /// Indicates the application or service package is being deactivated. The value is 5..
+        /// Indicates the application or service package is being deactivated. The value is 5.
         /// </summary>
         Deactivating,
     }

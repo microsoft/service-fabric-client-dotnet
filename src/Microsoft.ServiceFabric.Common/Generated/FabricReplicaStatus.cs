@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum FabricReplicaStatus
     {
         /// <summary>
-        /// Indicates that the read or write operation access status is not valid. This value is not returned to the caller..
+        /// Indicates that the read or write operation access status is not valid. This value is not returned to the caller.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the replica is down..
+        /// Indicates that the replica is down.
         /// </summary>
         Down,
 
         /// <summary>
-        /// Indicates that the replica is up..
+        /// Indicates that the replica is up.
         /// </summary>
         Up,
     }

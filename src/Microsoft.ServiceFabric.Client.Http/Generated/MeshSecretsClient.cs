@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<SecretResourceDescription> CreateOrUpdateMeshSecretAsync(
+        public Task<SecretResourceDescription> CreateOrUpdateAsync(
             string secretResourceName,
             SecretResourceDescription secretResourceDescription,
             CancellationToken cancellationToken = default(CancellationToken))
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<SecretResourceDescription> GetMeshSecretAsync(
+        public Task<SecretResourceDescription> GetAsync(
             string secretResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -99,7 +99,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task DeleteMeshSecretAsync(
+        public Task DeleteAsync(
             string secretResourceName,
             CancellationToken cancellationToken = default(CancellationToken))
         {
@@ -126,7 +126,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
-        public Task<PagedData<SecretResourceDescription>> ListMeshSecretsAsync(
+        public Task<PagedData<SecretResourceDescription>> ListAsync(
             CancellationToken cancellationToken = default(CancellationToken))
         {
             var requestId = Guid.NewGuid().ToString();

@@ -11,18 +11,18 @@ namespace Microsoft.ServiceFabric.Common
     public enum DataLossMode
     {
         /// <summary>
-        /// Reserved.  Do not pass into API..
+        /// Reserved.  Do not pass into API.
         /// </summary>
         Invalid,
 
         /// <summary>
         /// PartialDataLoss option will cause a quorum of replicas to go down, triggering an OnDataLoss event in the system for
-        /// the given partition..
+        /// the given partition.
         /// </summary>
         PartialDataLoss,
 
         /// <summary>
-        /// FullDataLoss option will drop all the replicas which means that all the data will be lost..
+        /// FullDataLoss option will drop all the replicas which means that all the data will be lost.
         /// </summary>
         FullDataLoss,
     }

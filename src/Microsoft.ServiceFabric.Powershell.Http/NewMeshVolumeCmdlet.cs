@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
         {
-            var volumeResourceInfo = this.ServiceFabricClient.MeshVolumes.GetMeshVolumeAsync(this.VolumeResourceName, cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var volumeResourceInfo = this.ServiceFabricClient.MeshVolumes.GetAsync(this.VolumeResourceName, cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
             if (volumeResourceInfo != null)
             {
@@ -55,7 +55,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 jsonDescription = File.ReadAllText(this.ResourceDescriptionFile);
             }
 
-            this.ServiceFabricClient.MeshVolumes.CreateOrUpdateMeshVolumeAsync(
+            this.ServiceFabricClient.MeshVolumes.CreateOrUpdateAsync(
                 volumeResourceName: this.VolumeResourceName,
                 jsonDescription: jsonDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

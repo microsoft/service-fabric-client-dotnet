@@ -16,8 +16,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ServiceReplicaProperties class.
         /// </summary>
-        /// <param name="osType">The Operating system type required by the code in service.
-        /// . Possible values include: 'Linux', 'Windows'</param>
+        /// <param name="osType">The operation system required by the code in service. Possible values include: 'Linux',
+        /// 'Windows'</param>
         /// <param name="codePackages">Describes the set of code packages that forms the service. A code package describes the
         /// container and the properties for running it. All the code packages are started together on the same host and share
         /// the same context (network, process etc.).
@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="networkRefs">The names of the private networks that this service needs to be part of.</param>
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
         public ServiceReplicaProperties(
-            OperatingSystemTypes? osType,
+            OperatingSystemType? osType,
             IEnumerable<ContainerCodePackageProperties> codePackages,
             IEnumerable<NetworkRef> networkRefs = default(IEnumerable<NetworkRef>),
             DiagnosticsRef diagnostics = default(DiagnosticsRef))
@@ -39,15 +39,13 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the Operating system type required by the code in service.
-        /// . Possible values include: 'Linux', 'Windows'
+        /// Gets the operation system required by the code in service. Possible values include: 'Linux', 'Windows'
         /// </summary>
-        public OperatingSystemTypes? OsType { get; }
+        public OperatingSystemType? OsType { get; }
 
         /// <summary>
-        /// Gets describes the set of code packages that forms the service. A code package describes the container and the
-        /// properties for running it. All the code packages are started together on the same host and share the same context
-        /// (network, process etc.).
+        /// Gets the set of code packages that forms the service. A code package the container and the properties for running
+        /// it. All the code packages are started together on the same host and share the same context (network, process etc.).
         /// </summary>
         public IEnumerable<ContainerCodePackageProperties> CodePackages { get; }
 

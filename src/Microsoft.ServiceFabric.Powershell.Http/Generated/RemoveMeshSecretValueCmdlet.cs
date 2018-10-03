@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes the specified  value of the named secret resource.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshSecretValue", DefaultParameterSetName = "DeleteMeshSecretValue")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshSecretValue", DefaultParameterSetName = "Delete")]
     public partial class RemoveMeshSecretValueCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets SecretResourceName. The name of the secret resource.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "DeleteMeshSecretValue")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Delete")]
         public string SecretResourceName
         {
             get;
@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets SecretValueResourceName. The name of the secret resource value which is typically the version
         /// identifier for the value.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "DeleteMeshSecretValue")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Delete")]
         public string SecretValueResourceName
         {
             get;
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DeleteMeshSecretValue")]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "Delete")]
         public SwitchParameter Force
         {
             get;
@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                this.ServiceFabricClient.MeshSecretValues.DeleteMeshSecretValueAsync(
+                this.ServiceFabricClient.MeshSecretValues.DeleteAsync(
                     secretResourceName: this.SecretResourceName,
                     secretValueResourceName: this.SecretValueResourceName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static SecretResourceDescription GetFromJsonProperties(JsonReader reader)
         {
-            var properties = default(SecretResourcePropertiesBase);
+            var properties = default(SecretResourceProperties);
             var name = default(string);
 
             do
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 var propName = reader.ReadPropertyName();
                 if (string.Compare("properties", propName, StringComparison.Ordinal) == 0)
                 {
-                    properties = SecretResourcePropertiesBaseConverter.Deserialize(reader);
+                    properties = SecretResourcePropertiesConverter.Deserialize(reader);
                 }
                 else if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
                 {
@@ -68,7 +68,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Properties, "properties", SecretResourcePropertiesBaseConverter.Serialize);
+            writer.WriteProperty(obj.Properties, "properties", SecretResourcePropertiesConverter.Serialize);
             writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
             writer.WriteEndObject();
         }

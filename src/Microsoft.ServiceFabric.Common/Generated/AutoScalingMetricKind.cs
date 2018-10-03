@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum AutoScalingMetricKind
     {
         /// <summary>
-        /// Indicates that the metric is one of resources, like cpu or memory..
+        /// Indicates that the metric is one of resources, like cpu or memory.
         /// </summary>
         Resource,
     }

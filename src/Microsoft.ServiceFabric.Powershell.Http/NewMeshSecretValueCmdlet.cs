@@ -56,7 +56,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 jsonDescription = File.ReadAllText(this.ResourceDescriptionFile);
             }
 
-            this.ServiceFabricClient.MeshSecretValues.AddMeshSecretValueAsync(
+            this.ServiceFabricClient.MeshSecretValues.AddValueAsync(
                 secretResourceName: this.SecretResourceName,
                 secretValueResourceName: this.SecretValueResourceName,
                 jsonDescription: jsonDescription,

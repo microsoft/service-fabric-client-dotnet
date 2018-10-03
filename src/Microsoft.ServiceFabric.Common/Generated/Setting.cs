@@ -9,7 +9,9 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Describes a setting for the container.
+    /// Describes a setting for the container. The setting file path can be fetched from environment variable
+    /// "Fabric_SettingPath". The path for Windows container is "C:\\secrets". The path for Linux container is
+    /// "/var/secrets".
     /// </summary>
     public partial class Setting
     {

@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum AutoScalingMechanismKind
     {
         /// <summary>
-        /// Indicates that scaling should be performed by adding or removing replicas..
+        /// Indicates that scaling should be performed by adding or removing replicas.
         /// </summary>
         AddRemoveReplica,
     }

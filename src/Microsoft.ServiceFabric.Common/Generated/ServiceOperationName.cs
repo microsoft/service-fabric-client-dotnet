@@ -11,32 +11,32 @@ namespace Microsoft.ServiceFabric.Common
     public enum ServiceOperationName
     {
         /// <summary>
-        /// Reserved for future use..
+        /// Reserved for future use.
         /// </summary>
         Unknown,
 
         /// <summary>
-        /// The service replica or instance is not going through any life-cycle changes..
+        /// The service replica or instance is not going through any life-cycle changes.
         /// </summary>
         None,
 
         /// <summary>
-        /// The service replica or instance is being opened..
+        /// The service replica or instance is being opened.
         /// </summary>
         Open,
 
         /// <summary>
-        /// The service replica is changing roles..
+        /// The service replica is changing roles.
         /// </summary>
         ChangeRole,
 
         /// <summary>
-        /// The service replica or instance is being closed..
+        /// The service replica or instance is being closed.
         /// </summary>
         Close,
 
         /// <summary>
-        /// The service replica or instance is being aborted..
+        /// The service replica or instance is being aborted.
         /// </summary>
         Abort,
     }

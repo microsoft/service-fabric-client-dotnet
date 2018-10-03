@@ -11,18 +11,18 @@ namespace Microsoft.ServiceFabric.Common
     public enum ProvisionApplicationTypeKind
     {
         /// <summary>
-        /// Indicates that the provision kind is invalid. This value is default and should not be used. The value is zero..
+        /// Indicates that the provision kind is invalid. This value is default and should not be used. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the provision is for a package that was previously uploaded to the image store. The value is 1..
+        /// Indicates that the provision is for a package that was previously uploaded to the image store. The value is 1.
         /// </summary>
         ImageStorePath,
 
         /// <summary>
         /// Indicates that the provision is for an application package that was previously uploaded to an external store. The
-        /// application package ends with the extension *.sfpkg. The value is 2..
+        /// application package ends with the extension *.sfpkg. The value is 2.
         /// </summary>
         ExternalStore,
     }

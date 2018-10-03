@@ -11,27 +11,27 @@ namespace Microsoft.ServiceFabric.Common
     public enum PartitionAccessStatus
     {
         /// <summary>
-        /// Indicates that the read or write operation access status is not valid. This value is not returned to the caller..
+        /// Indicates that the read or write operation access status is not valid. This value is not returned to the caller.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the read or write operation access is granted and the operation is allowed..
+        /// Indicates that the read or write operation access is granted and the operation is allowed.
         /// </summary>
         Granted,
 
         /// <summary>
-        /// Indicates that the client should try again later, because a reconfiguration is in progress..
+        /// Indicates that the client should try again later, because a reconfiguration is in progress.
         /// </summary>
         ReconfigurationPending,
 
         /// <summary>
-        /// Indicates that this client request was received by a replica that is not a Primary replica..
+        /// Indicates that this client request was received by a replica that is not a Primary replica.
         /// </summary>
         NotPrimary,
 
         /// <summary>
-        /// Indicates that no write quorum is available and, therefore, no write operation can be accepted..
+        /// Indicates that no write quorum is available and, therefore, no write operation can be accepted.
         /// </summary>
         NoWriteQuorum,
     }

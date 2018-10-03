@@ -147,5 +147,35 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <returns>The <see cref="IMeshSecretsClient"/></returns>
         IMeshSecretValuesClient MeshSecretValues { get; }
+
+        /// <summary>
+        /// Gets MeshGateways Client to perform management operations for Gateways.
+        /// </summary>
+        /// <returns>The <see cref="IMeshGatewaysClient"/></returns>
+        IMeshGatewaysClient MeshGateways { get; }
+
+        /// <summary>
+        /// Gets MeshNetworks Client to perform management operations for Networks.
+        /// </summary>
+        /// <returns>The <see cref="IMeshNetworksClient"/></returns>
+        IMeshNetworksClient MeshNetworks { get; }
+
+        /// <summary>
+        /// Gets MeshServices Client to perform management operations for Services.
+        /// </summary>
+        /// <returns>The <see cref="IMeshServicesClient"/></returns>
+        IMeshServicesClient MeshServices { get; }
+
+        /// <summary>
+        /// Gets MeshServiceReplicas Client to perform management operations for Service Replicas.
+        /// </summary>
+        /// <returns>The <see cref="IMeshServiceReplicasClient"/></returns>
+        IMeshServiceReplicasClient MeshServiceReplicas { get; }
+
+        /// <summary>
+        /// Gets MeshCodePackages to perform management operations for Service code packages.
+        /// </summary>
+        /// <returns>The <see cref="IMeshServiceReplicasClient"/></returns>
+        IMeshCodePackagesClient MeshCodePackages { get; }
     }
 }

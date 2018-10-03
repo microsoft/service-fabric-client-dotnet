@@ -11,15 +11,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
-    /// Deletes the specified secret, including all of its versions.
+    /// Deletes the Secret resource.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshSecret", DefaultParameterSetName = "DeleteMeshSecret")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshSecret", DefaultParameterSetName = "Delete")]
     public partial class RemoveMeshSecretCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets SecretResourceName. The name of the secret resource.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "DeleteMeshSecret")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Delete")]
         public string SecretResourceName
         {
             get;
@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DeleteMeshSecret")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "Delete")]
         public SwitchParameter Force
         {
             get;
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (((this.Force != null) && this.Force) || this.ShouldContinue(string.Empty, string.Empty))
             {
-                this.ServiceFabricClient.MeshSecrets.DeleteMeshSecretAsync(
+                this.ServiceFabricClient.MeshSecrets.DeleteAsync(
                     secretResourceName: this.SecretResourceName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

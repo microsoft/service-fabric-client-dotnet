@@ -28,12 +28,12 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes the requested resources for a given container.
+        /// Gets the requested resources for a given container.
         /// </summary>
         public ResourceRequests Requests { get; }
 
         /// <summary>
-        /// Gets describes the maximum limits on the resources for a given container.
+        /// Gets the maximum limits on the resources for a given container.
         /// </summary>
         public ResourceLimits Limits { get; }
     }

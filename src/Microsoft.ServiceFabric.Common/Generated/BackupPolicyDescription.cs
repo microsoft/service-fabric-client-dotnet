@@ -73,17 +73,17 @@ namespace Microsoft.ServiceFabric.Common
         public int? MaxIncrementalBackups { get; }
 
         /// <summary>
-        /// Gets describes the backup schedule parameters.
+        /// Gets the backup schedule parameters.
         /// </summary>
         public BackupScheduleDescription Schedule { get; }
 
         /// <summary>
-        /// Gets describes the details of backup storage where to store the periodic backups.
+        /// Gets the details of backup storage where to store the periodic backups.
         /// </summary>
         public BackupStorageDescription Storage { get; }
 
         /// <summary>
-        /// Gets describes the policy to retain backups in storage.
+        /// Gets the policy to retain backups in storage.
         /// </summary>
         public RetentionPolicyDescription RetentionPolicy { get; }
     }

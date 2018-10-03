@@ -11,33 +11,33 @@ namespace Microsoft.ServiceFabric.Common
     public enum ReplicaStatus
     {
         /// <summary>
-        /// Indicates the replica status is invalid. All Service Fabric enumerations have the invalid type. The value is zero..
+        /// Indicates the replica status is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The replica is being built. This means that a primary replica is seeding this replica. The value is 1..
+        /// The replica is being built. This means that a primary replica is seeding this replica. The value is 1.
         /// </summary>
         InBuild,
 
         /// <summary>
-        /// The replica is in standby. The value is 2..
+        /// The replica is in standby. The value is 2.
         /// </summary>
         Standby,
 
         /// <summary>
-        /// The replica is ready. The value is 3..
+        /// The replica is ready. The value is 3.
         /// </summary>
         Ready,
 
         /// <summary>
-        /// The replica is down. The value is 4..
+        /// The replica is down. The value is 4.
         /// </summary>
         Down,
 
         /// <summary>
         /// Replica is dropped. This means that the replica has been removed from the replica set. If it is persisted, its
-        /// state has been deleted. The value is 5..
+        /// state has been deleted. The value is 5.
         /// </summary>
         Dropped,
     }

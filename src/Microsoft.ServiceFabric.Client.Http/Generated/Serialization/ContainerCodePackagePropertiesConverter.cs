@@ -45,9 +45,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var resources = default(ResourceRequirements);
             var volumeRefs = default(IEnumerable<VolumeReference>);
             var volumes = default(IEnumerable<ApplicationScopedVolume>);
-            var instanceView = default(ContainerInstanceView);
             var diagnostics = default(DiagnosticsRef);
             var reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>);
+            var instanceView = default(ContainerInstanceView);
 
             do
             {
@@ -100,10 +100,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     volumes = reader.ReadList(ApplicationScopedVolumeConverter.Deserialize);
                 }
-                else if (string.Compare("instanceView", propName, StringComparison.Ordinal) == 0)
-                {
-                    instanceView = ContainerInstanceViewConverter.Deserialize(reader);
-                }
                 else if (string.Compare("diagnostics", propName, StringComparison.Ordinal) == 0)
                 {
                     diagnostics = DiagnosticsRefConverter.Deserialize(reader);
@@ -112,6 +108,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     reliableCollectionsRefs = reader.ReadList(ReliableCollectionsRefConverter.Deserialize);
                 }
+                else if (string.Compare("instanceView", propName, StringComparison.Ordinal) == 0)
+                {
+                    instanceView = ContainerInstanceViewConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -119,7 +119,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new ContainerCodePackageProperties(
+            var containerCodePackageProperties = new ContainerCodePackageProperties(
                 name: name,
                 image: image,
                 imageRegistryCredential: imageRegistryCredential,
@@ -132,9 +132,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 resources: resources,
                 volumeRefs: volumeRefs,
                 volumes: volumes,
-                instanceView: instanceView,
                 diagnostics: diagnostics,
                 reliableCollectionsRefs: reliableCollectionsRefs);
+
+            containerCodePackageProperties.InstanceView = instanceView;
+            return containerCodePackageProperties;
         }
 
         /// <summary>
@@ -194,11 +196,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.Volumes, "volumes", ApplicationScopedVolumeConverter.Serialize);
             }
 
-            if (obj.InstanceView != null)
-            {
-                writer.WriteProperty(obj.InstanceView, "instanceView", ContainerInstanceViewConverter.Serialize);
-            }
-
             if (obj.Diagnostics != null)
             {
                 writer.WriteProperty(obj.Diagnostics, "diagnostics", DiagnosticsRefConverter.Serialize);
@@ -207,6 +204,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ReliableCollectionsRefs != null)
             {
                 writer.WriteEnumerableProperty(obj.ReliableCollectionsRefs, "reliableCollectionsRefs", ReliableCollectionsRefConverter.Serialize);
+            }
+
+            if (obj.InstanceView != null)
+            {
+                writer.WriteProperty(obj.InstanceView, "instanceView", ContainerInstanceViewConverter.Serialize);
             }
 
             writer.WriteEndObject();

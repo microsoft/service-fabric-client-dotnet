@@ -12,13 +12,13 @@ namespace Microsoft.ServiceFabric.Common
     {
         /// <summary>
         /// This is the default activation mode. With this activation mode, replicas or instances from different partition(s)
-        /// of service, on a given node, will share same activation of service package on a node. The value is zero..
+        /// of service, on a given node, will share same activation of service package on a node. The value is zero.
         /// </summary>
         SharedProcess,
 
         /// <summary>
         /// With this activation mode, each replica or instance of service, on a given node, will have its own dedicated
-        /// activation of service package on a node. The value is 1..
+        /// activation of service package on a node. The value is 1.
         /// </summary>
         ExclusiveProcess,
     }

@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum UpgradeType
     {
         /// <summary>
-        /// Indicates the upgrade kind is invalid. All Service Fabric enumerations have the invalid type. The value is zero..
+        /// Indicates the upgrade kind is invalid. All Service Fabric enumerations have the invalid type. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// The upgrade progresses one upgrade domain at a time. The value is 1..
+        /// The upgrade progresses one upgrade domain at a time. The value is 1.
         /// </summary>
         Rolling,
 
         /// <summary>
-        /// The upgrade gets restarted by force. The value is 2..
+        /// The upgrade gets restarted by force. The value is 2.
         /// </summary>
         Rolling_ForceRestart,
     }

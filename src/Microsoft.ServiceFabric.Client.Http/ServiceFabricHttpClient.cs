@@ -714,10 +714,13 @@ namespace Microsoft.ServiceFabric.Client.Http
             this.EventsStore = new EventsStoreClient(this);
             this.MeshApplications = new MeshApplicationsClient(this);
             this.MeshVolumes = new MeshVolumesClient(this);
-            //// this.MeshNetworks = new MeshNetworksClient(this);
-            ////this.MeshGateways = new MeshGatewaysClient(this);
             this.MeshSecrets = new MeshSecretsClient(this);
             this.MeshSecretValues = new MeshSecretValuesClient(this);
+            this.MeshNetworks = new MeshNetworksClient(this);
+            this.MeshGateways = new MeshGatewaysClient(this);
+            this.MeshServices = new MeshServicesClient(this);
+            this.MeshServiceReplicas = new MeshServiceReplicasClient(this);
+            this.MeshCodePackages = new MeshCodePackagesClient(this);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// This type describes properties of a volume resource.
+    /// Describes properties of a volume resource.
     /// </summary>
     public partial class VolumeProperties
     {
@@ -17,12 +17,19 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the VolumeProperties class.
         /// </summary>
         /// <param name="description">User readable description of the volume.</param>
+        /// <param name="status">Status of the volume. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
+        /// 'Deleting', 'Failed'
+        /// 
+        /// Status of the resource.
+        /// </param>
         /// <param name="azureFileParameters">This type describes a volume provided by an Azure Files file share.</param>
         public VolumeProperties(
             string description = default(string),
+            ResourceStatus? status = default(ResourceStatus?),
             VolumeProviderParametersAzureFile azureFileParameters = default(VolumeProviderParametersAzureFile))
         {
             this.Description = description;
+            this.Status = status;
             this.AzureFileParameters = azureFileParameters;
         }
 
@@ -30,6 +37,19 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets user readable description of the volume.
         /// </summary>
         public string Description { get; }
+
+        /// <summary>
+        /// Gets status of the volume. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating', 'Deleting',
+        /// 'Failed'
+        /// 
+        /// Status of the resource.
+        /// </summary>
+        public ResourceStatus? Status { get; }
+
+        /// <summary>
+        /// Gets additional information about the current status of the volume.
+        /// </summary>
+        public string StatusDetails { get; internal set; }
 
         /// <summary>
         /// Gets this type describes a volume provided by an Azure Files file share.

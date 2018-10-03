@@ -11,17 +11,17 @@ namespace Microsoft.ServiceFabric.Common
     public enum ChaosStatus
     {
         /// <summary>
-        /// Indicates an invalid Chaos status. All Service Fabric enumerations have the invalid type. The valus is zero..
+        /// Indicates an invalid Chaos status. All Service Fabric enumerations have the invalid type. The valus is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that Chaos is not stopped. The value is one..
+        /// Indicates that Chaos is not stopped. The value is one.
         /// </summary>
         Running,
 
         /// <summary>
-        /// Indicates that Chaos is not scheduling further faults. The value is two..
+        /// Indicates that Chaos is not scheduling further faults. The value is two.
         /// </summary>
         Stopped,
     }

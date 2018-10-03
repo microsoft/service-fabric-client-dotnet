@@ -89,12 +89,12 @@ namespace Microsoft.ServiceFabric.Common
         public string SourceId { get; }
 
         /// <summary>
-        /// Gets describes the property.
+        /// Gets the property.
         /// </summary>
         public string Property { get; }
 
         /// <summary>
-        /// Gets describes the property health state.
+        /// Gets the property health state.
         /// </summary>
         public string HealthState { get; }
 

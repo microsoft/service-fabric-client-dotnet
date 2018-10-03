@@ -11,42 +11,42 @@ namespace Microsoft.ServiceFabric.Common
     public enum ComposeDeploymentStatus
     {
         /// <summary>
-        /// Indicates that the compose deployment status is invalid. The value is zero..
+        /// Indicates that the compose deployment status is invalid. The value is zero.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Indicates that the compose deployment is being provisioned in background. The value is 1..
+        /// Indicates that the compose deployment is being provisioned in background. The value is 1.
         /// </summary>
         Provisioning,
 
         /// <summary>
-        /// Indicates that the compose deployment is being created in background. The value is 2..
+        /// Indicates that the compose deployment is being created in background. The value is 2.
         /// </summary>
         Creating,
 
         /// <summary>
-        /// Indicates that the compose deployment has been successfully created or upgraded. The value is 3..
+        /// Indicates that the compose deployment has been successfully created or upgraded. The value is 3.
         /// </summary>
         Ready,
 
         /// <summary>
-        /// Indicates that the compose deployment is being unprovisioned in background. The value is 4..
+        /// Indicates that the compose deployment is being unprovisioned in background. The value is 4.
         /// </summary>
         Unprovisioning,
 
         /// <summary>
-        /// Indicates that the compose deployment is being deleted in background. The value is 5..
+        /// Indicates that the compose deployment is being deleted in background. The value is 5.
         /// </summary>
         Deleting,
 
         /// <summary>
-        /// Indicates that the compose deployment was terminated due to persistent failures. The value is 6..
+        /// Indicates that the compose deployment was terminated due to persistent failures. The value is 6.
         /// </summary>
         Failed,
 
         /// <summary>
-        /// Indicates that the compose deployment is being upgraded in the background. The value is 7..
+        /// Indicates that the compose deployment is being upgraded in the background. The value is 7.
         /// </summary>
         Upgrading,
     }

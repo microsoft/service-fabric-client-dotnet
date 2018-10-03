@@ -11,25 +11,25 @@ namespace Microsoft.ServiceFabric.Common
     public enum BackupPolicyScope
     {
         /// <summary>
-        /// Indicates an invalid backup policy scope type. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid backup policy scope type. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
         /// Indicates the backup policy is applied at partition level. Hence overriding any policy which may have applied at
-        /// partition's service or application level..
+        /// partition's service or application level.
         /// </summary>
         Partition,
 
         /// <summary>
         /// Indicates the backup policy is applied at service level. All partitions of the service inherit this policy unless
-        /// explicitly overridden at partition level..
+        /// explicitly overridden at partition level.
         /// </summary>
         Service,
 
         /// <summary>
         /// Indicates the backup policy is applied at application level. All services and partitions of the application inherit
-        /// this policy unless explicitly overridden at service or partition level..
+        /// this policy unless explicitly overridden at service or partition level.
         /// </summary>
         Application,
     }

@@ -11,12 +11,12 @@ namespace Microsoft.ServiceFabric.Common
     public enum DiagnosticsSinkKind
     {
         /// <summary>
-        /// Indicates an invalid sink kind. All Service Fabric enumerations have the invalid type..
+        /// Indicates an invalid sink kind. All Service Fabric enumerations have the invalid type.
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// Diagnostics settings for Geneva..
+        /// Diagnostics settings for Geneva.
         /// </summary>
         AzureInternalMonitoringPipeline,
     }

@@ -31,7 +31,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets describes why the WaitingChaosEvent was generated, for example, due to a cluster upgrade.
+        /// Gets why the WaitingChaosEvent was generated, for example, due to a cluster upgrade.
         /// </summary>
         public string Reason { get; }
     }

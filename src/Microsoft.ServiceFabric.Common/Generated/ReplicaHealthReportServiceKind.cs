@@ -16,7 +16,7 @@ namespace Microsoft.ServiceFabric.Common
         Stateless,
 
         /// <summary>
-        /// Uses Service Fabric to make its state or part of its state highly available and reliable. The value is 2..
+        /// Uses Service Fabric to make its state or part of its state highly available and reliable. The value is 2.
         /// </summary>
         Stateful,
     }

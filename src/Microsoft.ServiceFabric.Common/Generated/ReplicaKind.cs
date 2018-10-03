@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum ReplicaKind
     {
         /// <summary>
-        /// Represents an invalid replica kind. The value is zero..
+        /// Represents an invalid replica kind. The value is zero.
         /// </summary>
         Invalid,
 
