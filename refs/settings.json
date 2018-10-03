@@ -83,6 +83,10 @@
     {
       "path": "network/properties/ingressConfig/layer4/publicPort",
       "type": "Integer"
+    },
+    {
+      "path": "application/properties/services/properties/codePackages/reliableCollectionsRefs/doNotPersistState",
+      "type": "Boolean"
     }
   ]
 }
