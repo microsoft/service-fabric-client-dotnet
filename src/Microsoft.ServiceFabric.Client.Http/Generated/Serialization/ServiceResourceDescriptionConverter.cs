@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static ServiceResourceDescription GetFromJsonProperties(JsonReader reader)
         {
             var name = default(string);
-            var properties = default(ServiceProperties);
+            var properties = default(ServiceResourceProperties);
 
             do
             {
@@ -45,7 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("properties", propName, StringComparison.Ordinal) == 0)
                 {
-                    properties = ServicePropertiesConverter.Deserialize(reader);
+                    properties = ServiceResourcePropertiesConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
             writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.Properties, "properties", ServicePropertiesConverter.Serialize);
+            writer.WriteProperty(obj.Properties, "properties", ServiceResourcePropertiesConverter.Serialize);
             writer.WriteEndObject();
         }
     }

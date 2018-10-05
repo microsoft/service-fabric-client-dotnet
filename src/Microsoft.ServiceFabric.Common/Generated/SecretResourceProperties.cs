@@ -18,20 +18,16 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="kind">Describes the kind of secret.</param>
         /// <param name="description">User readable description of the secret.</param>
-        /// <param name="status">Status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
-        /// 'Deleting', 'Failed'</param>
         /// <param name="contentType">The type of the content stored in the secret value. The value of this property is opaque
         /// to Service Fabric. Once set, the value of this property cannot be changed.</param>
         public SecretResourceProperties(
             SecretKind? kind,
             string description = default(string),
-            ResourceStatus? status = default(ResourceStatus?),
             string contentType = default(string))
             : base(
                 kind)
         {
             this.Description = description;
-            this.Status = status;
             this.ContentType = contentType;
         }
 
@@ -44,7 +40,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating', 'Deleting',
         /// 'Failed'
         /// </summary>
-        public ResourceStatus? Status { get; }
+        public ResourceStatus? Status { get; internal set; }
 
         /// <summary>
         /// Gets additional information about the current status of the secret.

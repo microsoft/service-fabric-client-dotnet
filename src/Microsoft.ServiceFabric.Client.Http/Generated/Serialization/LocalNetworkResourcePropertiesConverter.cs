@@ -66,9 +66,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             var localNetworkResourceProperties = new LocalNetworkResourceProperties(
                 description: description,
-                status: status,
                 networkAddressPrefix: networkAddressPrefix);
 
+            localNetworkResourceProperties.Status = status;
             localNetworkResourceProperties.StatusDetails = statusDetails;
             return localNetworkResourceProperties;
         }

@@ -17,10 +17,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the ServiceResourceDescription class.
         /// </summary>
         /// <param name="name">Name of the Service resource.</param>
-        /// <param name="properties">Describes properties of a service resource.</param>
+        /// <param name="properties">This type describes properties of a service resource.</param>
         public ServiceResourceDescription(
             string name,
-            ServiceProperties properties)
+            ServiceResourceProperties properties)
         {
             name.ThrowIfNull(nameof(name));
             properties.ThrowIfNull(nameof(properties));
@@ -34,8 +34,8 @@ namespace Microsoft.ServiceFabric.Common
         public string Name { get; }
 
         /// <summary>
-        /// Gets properties of a service resource.
+        /// Gets this type describes properties of a service resource.
         /// </summary>
-        public ServiceProperties Properties { get; }
+        public ServiceResourceProperties Properties { get; }
     }
 }

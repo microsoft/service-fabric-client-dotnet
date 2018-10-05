@@ -18,20 +18,13 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="kind">The type of a Service Fabric container network.</param>
         /// <param name="description">User readable description of the network.</param>
-        /// <param name="status">Status of the network. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
-        /// 'Deleting', 'Failed'
-        /// 
-        /// Status of the resource.
-        /// </param>
         public NetworkResourceProperties(
             NetworkKind? kind,
-            string description = default(string),
-            ResourceStatus? status = default(ResourceStatus?))
+            string description = default(string))
             : base(
                 kind)
         {
             this.Description = description;
-            this.Status = status;
         }
 
         /// <summary>
@@ -45,7 +38,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// Status of the resource.
         /// </summary>
-        public ResourceStatus? Status { get; }
+        public ResourceStatus? Status { get; internal set; }
 
         /// <summary>
         /// Gets additional information about the current status of the network.

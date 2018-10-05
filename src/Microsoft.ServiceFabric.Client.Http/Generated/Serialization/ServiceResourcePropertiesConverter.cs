@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="ServiceProperties" />.
+    /// Converter for <see cref="ServiceResourceProperties" />.
     /// </summary>
-    internal class ServicePropertiesConverter
+    internal class ServiceResourcePropertiesConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static ServiceProperties Deserialize(JsonReader reader)
+        internal static ServiceResourceProperties Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,8 +31,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static ServiceProperties GetFromJsonProperties(JsonReader reader)
+        internal static ServiceResourceProperties GetFromJsonProperties(JsonReader reader)
         {
+            var osType = default(OperatingSystemType?);
+            var codePackages = default(IEnumerable<ContainerCodePackageProperties>);
+            var networkRefs = default(IEnumerable<NetworkRef>);
+            var diagnostics = default(DiagnosticsRef);
             var description = default(string);
             var replicaCount = default(int?);
             var autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>);
@@ -44,7 +48,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("osType", propName, StringComparison.Ordinal) == 0)
+                {
+                    osType = OperatingSystemTypeConverter.Deserialize(reader);
+                }
+                else if (string.Compare("codePackages", propName, StringComparison.Ordinal) == 0)
+                {
+                    codePackages = reader.ReadList(ContainerCodePackagePropertiesConverter.Deserialize);
+                }
+                else if (string.Compare("networkRefs", propName, StringComparison.Ordinal) == 0)
+                {
+                    networkRefs = reader.ReadList(NetworkRefConverter.Deserialize);
+                }
+                else if (string.Compare("diagnostics", propName, StringComparison.Ordinal) == 0)
+                {
+                    diagnostics = DiagnosticsRefConverter.Deserialize(reader);
+                }
+                else if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
@@ -79,16 +99,20 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            var serviceProperties = new ServiceProperties(
+            var serviceResourceProperties = new ServiceResourceProperties(
+                osType: osType,
+                codePackages: codePackages,
+                networkRefs: networkRefs,
+                diagnostics: diagnostics,
                 description: description,
                 replicaCount: replicaCount,
                 autoScalingPolicies: autoScalingPolicies);
 
-            serviceProperties.Status = status;
-            serviceProperties.StatusDetails = statusDetails;
-            serviceProperties.HealthState = healthState;
-            serviceProperties.UnhealthyEvaluation = unhealthyEvaluation;
-            return serviceProperties;
+            serviceResourceProperties.Status = status;
+            serviceResourceProperties.StatusDetails = statusDetails;
+            serviceResourceProperties.HealthState = healthState;
+            serviceResourceProperties.UnhealthyEvaluation = unhealthyEvaluation;
+            return serviceResourceProperties;
         }
 
         /// <summary>
@@ -96,12 +120,24 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, ServiceProperties obj)
+        internal static void Serialize(JsonWriter writer, ServiceResourceProperties obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
+            writer.WriteProperty(obj.OsType, "osType", OperatingSystemTypeConverter.Serialize);
+            writer.WriteEnumerableProperty(obj.CodePackages, "codePackages", ContainerCodePackagePropertiesConverter.Serialize);
             writer.WriteProperty(obj.Status, "status", ResourceStatusConverter.Serialize);
             writer.WriteProperty(obj.HealthState, "healthState", HealthStateConverter.Serialize);
+            if (obj.NetworkRefs != null)
+            {
+                writer.WriteEnumerableProperty(obj.NetworkRefs, "networkRefs", NetworkRefConverter.Serialize);
+            }
+
+            if (obj.Diagnostics != null)
+            {
+                writer.WriteProperty(obj.Diagnostics, "diagnostics", DiagnosticsRefConverter.Serialize);
+            }
+
             if (obj.Description != null)
             {
                 writer.WriteProperty(obj.Description, "description", JsonWriterExtensions.WriteStringValue);

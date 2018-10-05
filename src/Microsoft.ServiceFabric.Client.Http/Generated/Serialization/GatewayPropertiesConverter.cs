@@ -89,9 +89,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 sourceNetwork: sourceNetwork,
                 destinationNetwork: destinationNetwork,
                 tcp: tcp,
-                http: http,
-                status: status);
+                http: http);
 
+            gatewayProperties.Status = status;
             gatewayProperties.StatusDetails = statusDetails;
             gatewayProperties.IpAddress = ipAddress;
             return gatewayProperties;

@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="SimpleSecretResourceProperties" />.
+    /// Converter for <see cref="InlinedValueSecretResourceProperties" />.
     /// </summary>
-    internal class SimpleSecretResourcePropertiesConverter
+    internal class InlinedValueSecretResourcePropertiesConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static SimpleSecretResourceProperties Deserialize(JsonReader reader)
+        internal static InlinedValueSecretResourceProperties Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,7 +31,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static SimpleSecretResourceProperties GetFromJsonProperties(JsonReader reader)
+        internal static InlinedValueSecretResourceProperties GetFromJsonProperties(JsonReader reader)
         {
             var description = default(string);
             var status = default(ResourceStatus?);
@@ -64,13 +64,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            var simpleSecretResourceProperties = new SimpleSecretResourceProperties(
+            var inlinedValueSecretResourceProperties = new InlinedValueSecretResourceProperties(
                 description: description,
-                status: status,
                 contentType: contentType);
 
-            simpleSecretResourceProperties.StatusDetails = statusDetails;
-            return simpleSecretResourceProperties;
+            inlinedValueSecretResourceProperties.Status = status;
+            inlinedValueSecretResourceProperties.StatusDetails = statusDetails;
+            return inlinedValueSecretResourceProperties;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, SimpleSecretResourceProperties obj)
+        internal static void Serialize(JsonWriter writer, InlinedValueSecretResourceProperties obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();

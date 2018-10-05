@@ -93,10 +93,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 description: description,
                 services: services,
                 diagnostics: diagnostics,
-                debugParams: debugParams,
-                status: status);
+                debugParams: debugParams);
 
             applicationProperties.ServiceNames = serviceNames;
+            applicationProperties.Status = status;
             applicationProperties.StatusDetails = statusDetails;
             applicationProperties.HealthState = healthState;
             applicationProperties.UnhealthyEvaluation = unhealthyEvaluation;

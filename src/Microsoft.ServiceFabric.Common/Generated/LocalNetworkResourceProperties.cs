@@ -17,20 +17,13 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the LocalNetworkResourceProperties class.
         /// </summary>
         /// <param name="description">User readable description of the network.</param>
-        /// <param name="status">Status of the network. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
-        /// 'Deleting', 'Failed'
-        /// 
-        /// Status of the resource.
-        /// </param>
         /// <param name="networkAddressPrefix">Address space for the local container network.</param>
         public LocalNetworkResourceProperties(
             string description = default(string),
-            ResourceStatus? status = default(ResourceStatus?),
             string networkAddressPrefix = default(string))
             : base(
                 Common.NetworkKind.Local,
-                description,
-                status)
+                description)
         {
             this.NetworkAddressPrefix = networkAddressPrefix;
         }

@@ -21,15 +21,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="description">User readable description of the gateway.</param>
         /// <param name="tcp">Configuration for tcp connectivity for this gateway.</param>
         /// <param name="http">Configuration for http connectivity for this gateway.</param>
-        /// <param name="status">Status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
-        /// 'Deleting', 'Failed'</param>
         public GatewayProperties(
             NetworkRef sourceNetwork,
             NetworkRef destinationNetwork,
             string description = default(string),
             IEnumerable<TcpConfig> tcp = default(IEnumerable<TcpConfig>),
-            IEnumerable<HttpConfig> http = default(IEnumerable<HttpConfig>),
-            ResourceStatus? status = default(ResourceStatus?))
+            IEnumerable<HttpConfig> http = default(IEnumerable<HttpConfig>))
         {
             sourceNetwork.ThrowIfNull(nameof(sourceNetwork));
             destinationNetwork.ThrowIfNull(nameof(destinationNetwork));
@@ -38,7 +35,6 @@ namespace Microsoft.ServiceFabric.Common
             this.Description = description;
             this.Tcp = tcp;
             this.Http = http;
-            this.Status = status;
         }
 
         /// <summary>
@@ -70,7 +66,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets status of the resource. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating', 'Deleting',
         /// 'Failed'
         /// </summary>
-        public ResourceStatus? Status { get; }
+        public ResourceStatus? Status { get; internal set; }
 
         /// <summary>
         /// Gets additional information about the current status of the gateway.

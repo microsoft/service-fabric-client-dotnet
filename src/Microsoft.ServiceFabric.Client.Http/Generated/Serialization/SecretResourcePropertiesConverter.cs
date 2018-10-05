@@ -72,9 +72,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var secretResourceProperties = new SecretResourceProperties(
                 kind: kind,
                 description: description,
-                status: status,
                 contentType: contentType);
 
+            secretResourceProperties.Status = status;
             secretResourceProperties.StatusDetails = statusDetails;
             return secretResourceProperties;
         }

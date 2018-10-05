@@ -23,23 +23,16 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="diagnostics">Describes the diagnostics definition and usage for an application resource.</param>
         /// <param name="debugParams">Internal - used by Visual Studio to setup the debugging session on the local development
         /// environment.</param>
-        /// <param name="status">Status of the application. Possible values include: 'Unknown', 'Ready', 'Upgrading',
-        /// 'Creating', 'Deleting', 'Failed'
-        /// 
-        /// Status of the resource.
-        /// </param>
         public ApplicationProperties(
             string description = default(string),
             IEnumerable<ServiceResourceDescription> services = default(IEnumerable<ServiceResourceDescription>),
             DiagnosticsDescription diagnostics = default(DiagnosticsDescription),
-            string debugParams = default(string),
-            ResourceStatus? status = default(ResourceStatus?))
+            string debugParams = default(string))
         {
             this.Description = description;
             this.Services = services;
             this.Diagnostics = diagnostics;
             this.DebugParams = debugParams;
-            this.Status = status;
         }
 
         /// <summary>
@@ -75,7 +68,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// Status of the resource.
         /// </summary>
-        public ResourceStatus? Status { get; }
+        public ResourceStatus? Status { get; internal set; }
 
         /// <summary>
         /// Gets additional information about the current status of the application.

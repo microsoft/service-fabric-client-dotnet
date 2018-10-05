@@ -66,9 +66,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             var volumeProperties = new VolumeProperties(
                 description: description,
-                status: status,
                 azureFileParameters: azureFileParameters);
 
+            volumeProperties.Status = status;
             volumeProperties.StatusDetails = statusDetails;
             return volumeProperties;
         }

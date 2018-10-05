@@ -11,46 +11,22 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Describes properties of a service resource.
     /// </summary>
-    public partial class ServiceProperties : ServiceReplicaProperties
+    public partial class ServiceProperties
     {
         /// <summary>
         /// Initializes a new instance of the ServiceProperties class.
         /// </summary>
-        /// <param name="osType">The operation system required by the code in service. Possible values include: 'Linux',
-        /// 'Windows'</param>
-        /// <param name="codePackages">Describes the set of code packages that forms the service. A code package describes the
-        /// container and the properties for running it. All the code packages are started together on the same host and share
-        /// the same context (network, process etc.).
-        /// </param>
-        /// <param name="networkRefs">The names of the private networks that this service needs to be part of.</param>
-        /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
         /// <param name="description">User readable description of the service.</param>
         /// <param name="replicaCount">The number of replicas of the service to create. Defaults to 1 if not specified.</param>
         /// <param name="autoScalingPolicies">Auto scaling policies</param>
-        /// <param name="status">Status of the service. Possible values include: 'Unknown', 'Ready', 'Upgrading', 'Creating',
-        /// 'Deleting', 'Failed'
-        /// 
-        /// Status of the resource.
-        /// </param>
         public ServiceProperties(
-            OperatingSystemType? osType,
-            IEnumerable<ContainerCodePackageProperties> codePackages,
-            IEnumerable<NetworkRef> networkRefs = default(IEnumerable<NetworkRef>),
-            DiagnosticsRef diagnostics = default(DiagnosticsRef),
             string description = default(string),
             int? replicaCount = default(int?),
-            IEnumerable<AutoScalingPolicy> autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>),
-            ResourceStatus? status = default(ResourceStatus?))
-            : base(
-                osType,
-                codePackages,
-                networkRefs,
-                diagnostics)
+            IEnumerable<AutoScalingPolicy> autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>))
         {
             this.Description = description;
             this.ReplicaCount = replicaCount;
             this.AutoScalingPolicies = autoScalingPolicies;
-            this.Status = status;
         }
 
         /// <summary>
@@ -74,7 +50,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// Status of the resource.
         /// </summary>
-        public ResourceStatus? Status { get; }
+        public ResourceStatus? Status { get; internal set; }
 
         /// <summary>
         /// Gets additional information about the current status of the service.

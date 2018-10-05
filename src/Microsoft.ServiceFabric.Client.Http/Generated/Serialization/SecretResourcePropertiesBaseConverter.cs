@@ -43,7 +43,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var propValue = reader.ReadValueAsString();
             if (propValue.Equals("inlinedValue", StringComparison.Ordinal))
             {
-                obj = SimpleSecretResourcePropertiesConverter.GetFromJsonProperties(reader);
+                obj = InlinedValueSecretResourcePropertiesConverter.GetFromJsonProperties(reader);
             }
             else
             {
@@ -63,7 +63,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var kind = obj.Kind;
             if (kind.Equals(SecretKind.InlinedValue))
             {
-                SimpleSecretResourcePropertiesConverter.Serialize(writer, (SimpleSecretResourceProperties)obj);
+                InlinedValueSecretResourcePropertiesConverter.Serialize(writer, (InlinedValueSecretResourceProperties)obj);
             }
             else
             {
