@@ -105,6 +105,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                             cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
                         break;
 
+                    case ResourseType.Network:
+                        client.MeshNetworks.CreateOrUpdateAsync(
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
+                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                        break;
+
+                    case ResourseType.Gateway:
+                        client.MeshGateways.CreateOrUpdateAsync(
+                            resource.Name,
+                            resource.Description.ToString(),
+                            resource.ApiVersion,
+                            cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+                        break;
+
                     default:
                         this.WriteWarning(string.Format(Resource.WarningInvalidResourceType, resource.Type.ToString()));
                         break;
