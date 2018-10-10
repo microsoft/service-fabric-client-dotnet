@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ExternalStore flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ProvisionApplicationType")]
         public SwitchParameter ExternalStore
         {
             get;
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ApplicationTypeBuildPath. The relative path for the application package in the image store specified
         /// during the prior upload operation.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ProvisionApplicationType")]
         public string ApplicationTypeBuildPath { get; set; }
 
         /// <summary>
@@ -50,21 +50,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// that provides GET operation to download the file. Supported protocols are HTTP and HTTPS, and the path must allow
         /// READ access.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "ProvisionApplicationType")]
         public string ApplicationPackageDownloadUri { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeName. The application type name represents the name of the application type found in
         /// the application manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "ProvisionApplicationType")]
         public string ApplicationTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeVersion. The application type version represents the version of the application type
         /// found in the application manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "ProvisionApplicationType")]
         public string ApplicationTypeVersion { get; set; }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// without any timeout limit. The default value is false. For large application packages, we recommend setting the
         /// value to true.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "ProvisionApplicationType")]
         public bool? Async { get; set; } = false;
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// application package after successful provision. Possible values include: 'Invalid', 'Default', 'Automatic',
         /// 'Manual'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "ProvisionApplicationType")]
         public ApplicationPackageCleanupPolicy? ApplicationPackageCleanupPolicy { get; set; }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "ProvisionApplicationType")]
+        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "ProvisionApplicationType")]
         public long? ServerTimeout
         {
             get;
