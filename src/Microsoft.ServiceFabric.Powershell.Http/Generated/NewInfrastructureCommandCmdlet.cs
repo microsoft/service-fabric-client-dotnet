@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Invokes an administrative command on the given Infrastructure Service instance.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFInfrastructureCommand", DefaultParameterSetName = "InvokeInfrastructureCommand")]
+    [Cmdlet(VerbsCommon.New, "SFInfrastructureCommand")]
     public partial class NewInfrastructureCommandCmdlet : CommonCmdletBase
     {
         /// <summary>

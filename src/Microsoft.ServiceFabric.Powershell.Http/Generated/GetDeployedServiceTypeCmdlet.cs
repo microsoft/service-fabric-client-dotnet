@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// Gets the list containing the information about service types from the applications deployed on a node in a Service
     /// Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDeployedServiceType", DefaultParameterSetName = "GetDeployedServiceTypeInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFDeployedServiceType")]
     public partial class GetDeployedServiceTypeCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of a Service Fabric application using the specified policy.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationHealthUsingPolicy", DefaultParameterSetName = "GetApplicationHealthUsingPolicy")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationHealthUsingPolicy")]
     public partial class GetApplicationHealthUsingPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -121,7 +121,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetApplicationHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 5)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// application is currently deployed on in the cluster.
         /// The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetApplicationHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 6)]
         public int? MaxPercentUnhealthyDeployedApplications { get; set; } = 0;
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the service.
         /// The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetApplicationHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 7)]
         public int? MaxPercentUnhealthyPartitionsPerService { get; set; } = 0;
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// partition.
         /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetApplicationHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 8)]
         public int? MaxPercentUnhealthyReplicasPerPartition { get; set; } = 0;
 
         /// <summary>
@@ -175,14 +175,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// of services of the specific service type.
         /// The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetApplicationHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 9)]
         public int? MaxPercentUnhealthyServices { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ServiceTypeHealthPolicyMap. The map with service type health policy per service type name. The map is
         /// empty by default.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "GetApplicationHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 10)]
         public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap { get; set; }
 
         /// <summary>

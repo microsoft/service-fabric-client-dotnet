@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets a list of user-induced fault operations filtered by provided input.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFFaultOperationList", DefaultParameterSetName = "GetFaultOperationList")]
+    [Cmdlet(VerbsCommon.Get, "SFFaultOperationList")]
     public partial class GetFaultOperationListCmdlet : CommonCmdletBase
     {
         /// <summary>

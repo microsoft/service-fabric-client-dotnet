@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Cluster-related events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterEventList", DefaultParameterSetName = "GetClusterEventList")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterEventList")]
     public partial class GetClusterEventListCmdlet : CommonCmdletBase
     {
         /// <summary>

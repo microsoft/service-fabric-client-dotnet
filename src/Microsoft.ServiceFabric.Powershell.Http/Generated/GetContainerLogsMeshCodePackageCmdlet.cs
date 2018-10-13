@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the logs from the container.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFContainerLogsMeshCodePackage", DefaultParameterSetName = "GetContainerLogs")]
+    [Cmdlet(VerbsCommon.Get, "SFContainerLogsMeshCodePackage")]
     public partial class GetContainerLogsMeshCodePackageCmdlet : CommonCmdletBase
     {
         /// <summary>

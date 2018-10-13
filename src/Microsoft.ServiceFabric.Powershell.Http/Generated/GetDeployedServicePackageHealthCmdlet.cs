@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// Gets the information about health of a service package for a specific application deployed for a Service Fabric
     /// node and application.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDeployedServicePackageHealth", DefaultParameterSetName = "GetDeployedServicePackageHealth")]
+    [Cmdlet(VerbsCommon.Get, "SFDeployedServicePackageHealth")]
     public partial class GetDeployedServicePackageHealthCmdlet : CommonCmdletBase
     {
         /// <summary>

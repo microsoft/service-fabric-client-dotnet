@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the manifest describing a service type.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFServiceManifest", DefaultParameterSetName = "GetServiceManifest")]
+    [Cmdlet(VerbsCommon.Get, "SFServiceManifest")]
     public partial class GetServiceManifestCmdlet : CommonCmdletBase
     {
         /// <summary>

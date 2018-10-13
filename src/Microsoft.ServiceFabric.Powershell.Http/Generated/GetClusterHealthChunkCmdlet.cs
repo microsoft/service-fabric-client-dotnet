@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of a Service Fabric cluster using health chunks.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterHealthChunk", DefaultParameterSetName = "GetClusterHealthChunk")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterHealthChunk")]
     public partial class GetClusterHealthChunkCmdlet : CommonCmdletBase
     {
         /// <summary>

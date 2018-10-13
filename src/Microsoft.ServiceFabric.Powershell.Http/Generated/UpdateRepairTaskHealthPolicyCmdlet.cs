@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Updates the health policy of the given repair task.
     /// </summary>
-    [Cmdlet(VerbsData.Update, "SFRepairTaskHealthPolicy", DefaultParameterSetName = "UpdateRepairTaskHealthPolicy")]
+    [Cmdlet(VerbsData.Update, "SFRepairTaskHealthPolicy")]
     public partial class UpdateRepairTaskHealthPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets TaskId. The ID of the repair task to be updated.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
+        [Parameter(Mandatory = true, Position = 0)]
         public string TaskId { get; set; }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// succeed if this value matches the actual current value of the repair task. If zero, then no version check is
         /// performed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
+        [Parameter(Mandatory = false, Position = 1)]
         public string Version { get; set; }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// stage of the repair task. If not specified the existing value should not be altered. Otherwise, specify the desired
         /// new value.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
+        [Parameter(Mandatory = false, Position = 2)]
         public bool? PerformPreparingHealthCheck { get; set; }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// stage of the repair task. If not specified the existing value should not be altered. Otherwise, specify the desired
         /// new value.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "UpdateRepairTaskHealthPolicy")]
+        [Parameter(Mandatory = false, Position = 3)]
         public bool? PerformRestoringHealthCheck { get; set; }
 
         /// <inheritdoc/>

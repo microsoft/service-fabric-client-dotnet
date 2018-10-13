@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Requests the cancellation of the given repair task.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "SFRepairTask", DefaultParameterSetName = "CancelRepairTask")]
+    [Cmdlet(VerbsLifecycle.Stop, "SFRepairTask")]
     public partial class StopRepairTaskCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets TaskId. The ID of the repair task.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CancelRepairTask")]
+        [Parameter(Mandatory = true, Position = 0)]
         public string TaskId { get; set; }
 
         /// <summary>
@@ -27,14 +27,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// succeed if this value matches the actual current version of the repair task. If zero, then no version check is
         /// performed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "CancelRepairTask")]
+        [Parameter(Mandatory = false, Position = 1)]
         public string Version { get; set; }
 
         /// <summary>
         /// Gets or sets RequestAbort. _True_ if the repair should be stopped as soon as possible even if it has already
         /// started executing. _False_ if the repair should be cancelled only if execution has not yet started.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CancelRepairTask")]
+        [Parameter(Mandatory = false, Position = 2)]
         public bool? RequestAbort { get; set; }
 
         /// <inheritdoc/>

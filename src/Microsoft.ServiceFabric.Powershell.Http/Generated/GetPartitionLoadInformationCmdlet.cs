@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the load information of the specified Service Fabric partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionLoadInformation", DefaultParameterSetName = "GetPartitionLoadInformation")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionLoadInformation")]
     public partial class GetPartitionLoadInformationCmdlet : CommonCmdletBase
     {
         /// <summary>

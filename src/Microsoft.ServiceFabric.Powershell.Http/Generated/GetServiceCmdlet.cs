@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the information about all services belonging to the application specified by the application ID.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFService", DefaultParameterSetName = "GetServiceInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFService")]
     public partial class GetServiceCmdlet : CommonCmdletBase
     {
         /// <summary>

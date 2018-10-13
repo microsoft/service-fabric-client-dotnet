@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Applications-related events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationsEvent", DefaultParameterSetName = "GetApplicationsEventList")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationsEvent")]
     public partial class GetApplicationsEventCmdlet : CommonCmdletBase
     {
         /// <summary>

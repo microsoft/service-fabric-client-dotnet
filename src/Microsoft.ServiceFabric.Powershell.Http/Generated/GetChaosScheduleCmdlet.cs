@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the Chaos Schedule defining when and how to run Chaos.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFChaosSchedule", DefaultParameterSetName = "GetChaosSchedule")]
+    [Cmdlet(VerbsCommon.Get, "SFChaosSchedule")]
     public partial class GetChaosScheduleCmdlet : CommonCmdletBase
     {
         /// <summary>

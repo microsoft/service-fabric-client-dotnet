@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of backups available for every partition in this application.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationBackupList", DefaultParameterSetName = "GetApplicationBackupList")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationBackupList")]
     public partial class GetApplicationBackupListCmdlet : CommonCmdletBase
     {
         /// <summary>

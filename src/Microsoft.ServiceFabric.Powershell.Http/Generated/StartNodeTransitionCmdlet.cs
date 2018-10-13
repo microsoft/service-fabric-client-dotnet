@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Starts or stops a cluster node.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFNodeTransition", DefaultParameterSetName = "StartNodeTransition")]
+    [Cmdlet(VerbsLifecycle.Start, "SFNodeTransition")]
     public partial class StartNodeTransitionCmdlet : CommonCmdletBase
     {
         /// <summary>

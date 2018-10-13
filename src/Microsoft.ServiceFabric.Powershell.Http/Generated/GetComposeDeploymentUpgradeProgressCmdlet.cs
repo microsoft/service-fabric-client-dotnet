@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets details for the latest upgrade performed on this Service Fabric compose deployment.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFComposeDeploymentUpgradeProgress", DefaultParameterSetName = "GetComposeDeploymentUpgradeProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFComposeDeploymentUpgradeProgress")]
     public partial class GetComposeDeploymentUpgradeProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets details for the latest restore operation triggered for this partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionRestoreProgress", DefaultParameterSetName = "GetPartitionRestoreProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionRestoreProgress")]
     public partial class GetPartitionRestoreProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

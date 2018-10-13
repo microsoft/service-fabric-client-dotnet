@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of the specified Service Fabric partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionHealth", DefaultParameterSetName = "GetPartitionHealth")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionHealth")]
     public partial class GetPartitionHealthCmdlet : CommonCmdletBase
     {
         /// <summary>

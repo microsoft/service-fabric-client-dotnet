@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of a Service Fabric stateful service replica or stateless service instance.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFReplicaHealth", DefaultParameterSetName = "GetReplicaHealth")]
+    [Cmdlet(VerbsCommon.Get, "SFReplicaHealth")]
     public partial class GetReplicaHealthCmdlet : CommonCmdletBase
     {
         /// <summary>

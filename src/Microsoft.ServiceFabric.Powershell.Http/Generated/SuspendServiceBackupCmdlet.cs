@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Suspends periodic backup for the specified Service Fabric service.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Suspend, "SFServiceBackup", DefaultParameterSetName = "SuspendServiceBackup")]
+    [Cmdlet(VerbsLifecycle.Suspend, "SFServiceBackup")]
     public partial class SuspendServiceBackupCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -46,7 +46,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "SuspendServiceBackup")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

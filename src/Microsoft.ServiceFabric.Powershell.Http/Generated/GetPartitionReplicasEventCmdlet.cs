@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Replicas-related events for a Partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionReplicasEvent", DefaultParameterSetName = "GetPartitionReplicasEventList")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionReplicasEvent")]
     public partial class GetPartitionReplicasEventCmdlet : CommonCmdletBase
     {
         /// <summary>

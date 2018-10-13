@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of the specified Service Fabric service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFServiceHealth", DefaultParameterSetName = "GetServiceHealth")]
+    [Cmdlet(VerbsCommon.Get, "SFServiceHealth")]
     public partial class GetServiceHealthCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,37 +13,37 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Creates a Service Fabric compose deployment.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFComposeDeployment", DefaultParameterSetName = "CreateComposeDeployment")]
+    [Cmdlet(VerbsCommon.New, "SFComposeDeployment")]
     public partial class NewComposeDeploymentCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets DeploymentName. The name of the deployment.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CreateComposeDeployment")]
+        [Parameter(Mandatory = true, Position = 0)]
         public string DeploymentName { get; set; }
 
         /// <summary>
         /// Gets or sets ComposeFileContent. The content of the compose file that describes the deployment to create.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CreateComposeDeployment")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string ComposeFileContent { get; set; }
 
         /// <summary>
         /// Gets or sets RegistryUserName. The user name to connect to container registry.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CreateComposeDeployment")]
+        [Parameter(Mandatory = false, Position = 2)]
         public string RegistryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets RegistryPassword. The password for supplied username to connect to container registry.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateComposeDeployment")]
+        [Parameter(Mandatory = false, Position = 3)]
         public string RegistryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets PasswordEncrypted. Indicates that supplied container registry password is encrypted.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateComposeDeployment")]
+        [Parameter(Mandatory = false, Position = 4)]
         public bool? PasswordEncrypted { get; set; }
 
         /// <summary>

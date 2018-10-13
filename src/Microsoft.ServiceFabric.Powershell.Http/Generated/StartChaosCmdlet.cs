@@ -13,14 +13,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Starts Chaos in the cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFChaos", DefaultParameterSetName = "StartChaos")]
+    [Cmdlet(VerbsLifecycle.Start, "SFChaos")]
     public partial class StartChaosCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets TimeToRunInSeconds. Total time (in seconds) for which Chaos will run before automatically stopping.
         /// The maximum allowed value is 4,294,967,295 (System.UInt32.MaxValue).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 0)]
         public string TimeToRunInSeconds { get; set; } = "4294967295";
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// During validation if a cluster entity is not stable and healthy within MaxClusterStabilizationTimeoutInSeconds,
         /// Chaos generates a validation failed event.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 1)]
         public long? MaxClusterStabilizationTimeoutInSeconds { get; set; } = 60;
 
         /// <summary>
@@ -41,13 +41,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// states to uncover bugs.
         /// The recommendation is to start with a value of 2 or 3 and to exercise caution while moving up.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 2)]
         public long? MaxConcurrentFaults { get; set; } = 1;
 
         /// <summary>
         /// Gets or sets EnableMoveReplicaFaults. Enables or disables the move primary and move secondary faults.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 3)]
         public bool? EnableMoveReplicaFaults { get; set; } = true;
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// that the cluster goes through.
         /// The recommendation is to start with a value between 1 and 5 and exercise caution while moving up.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 4)]
         public long? WaitTimeBetweenFaultsInSeconds { get; set; } = 20;
 
         /// <summary>
@@ -65,13 +65,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Chaos.
         /// The larger the value, the lower the fault injection rate.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 5)]
         public long? WaitTimeBetweenIterationsInSeconds { get; set; } = 30;
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 6)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
         /// tolerate that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 7)]
         public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ApplicationTypeHealthPolicyMap.
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 8)]
         public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
@@ -125,13 +125,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 9)]
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 10)]
         public IReadOnlyDictionary<string, string> Map { get; set; }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// At most 100 node type names can be included in this list, to increase this number, a config upgrade is required for
         /// MaxNumberOfNodeTypesInChaosEntityFilter configuration.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 11)]
         public IEnumerable<string> NodeTypeInclusionList { get; set; }
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// At most 1000 application names can be included in this list, to increase this number, a config upgrade is required
         /// for MaxNumberOfApplicationsInChaosEntityFilter configuration.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "StartChaos")]
+        [Parameter(Mandatory = false, Position = 12)]
         public IEnumerable<string> ApplicationInclusionList { get; set; }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// This API will restart some or all replicas or instances of the specified partition.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFPartitionRestart", DefaultParameterSetName = "StartPartitionRestart")]
+    [Cmdlet(VerbsLifecycle.Start, "SFPartitionRestart")]
     public partial class StartPartitionRestartCmdlet : CommonCmdletBase
     {
         /// <summary>

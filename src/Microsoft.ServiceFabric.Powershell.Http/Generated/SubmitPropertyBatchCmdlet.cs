@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Submits a property batch.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Submit, "SFPropertyBatch", DefaultParameterSetName = "SubmitPropertyBatch")]
+    [Cmdlet(VerbsLifecycle.Submit, "SFPropertyBatch")]
     public partial class SubmitPropertyBatchCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Operations. A list of the property batch operations to be executed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "SubmitPropertyBatch")]
+        [Parameter(Mandatory = false, Position = 1)]
         public IEnumerable<PropertyBatchOperation> Operations { get; set; }
 
         /// <summary>

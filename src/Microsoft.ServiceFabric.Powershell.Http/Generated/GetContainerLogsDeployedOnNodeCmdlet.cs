@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the container logs for container deployed on a Service Fabric node.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFContainerLogsDeployedOnNode", DefaultParameterSetName = "GetContainerLogsDeployedOnNode")]
+    [Cmdlet(VerbsCommon.Get, "SFContainerLogsDeployedOnNode")]
     public partial class GetContainerLogsDeployedOnNodeCmdlet : CommonCmdletBase
     {
         /// <summary>

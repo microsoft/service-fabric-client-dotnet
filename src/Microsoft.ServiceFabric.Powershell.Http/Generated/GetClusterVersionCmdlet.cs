@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the current Service Fabric cluster version.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterVersion", DefaultParameterSetName = "GetClusterVersion")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterVersion")]
     public partial class GetClusterVersionCmdlet : CommonCmdletBase
     {
         /// <summary>

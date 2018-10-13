@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes a Service Fabric name.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFName", DefaultParameterSetName = "DeleteName")]
+    [Cmdlet(VerbsCommon.Remove, "SFName")]
     public partial class RemoveNameCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DeleteName")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

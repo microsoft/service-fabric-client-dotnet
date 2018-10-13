@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the Azure Active Directory metadata used for secured connection to cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFAadMetadata", DefaultParameterSetName = "GetAadMetadata")]
+    [Cmdlet(VerbsCommon.Get, "SFAadMetadata")]
     public partial class GetAadMetadataCmdlet : CommonCmdletBase
     {
         /// <summary>

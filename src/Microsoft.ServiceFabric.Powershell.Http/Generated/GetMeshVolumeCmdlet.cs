@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the volume resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshVolume", DefaultParameterSetName = "List")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshVolume")]
     public partial class GetMeshVolumeCmdlet : CommonCmdletBase
     {
         /// <summary>

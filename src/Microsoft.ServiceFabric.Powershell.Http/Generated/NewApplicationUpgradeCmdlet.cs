@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Starts rolling back the currently on-going upgrade of an application in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFApplicationUpgrade", DefaultParameterSetName = "RollbackApplicationUpgrade")]
+    [Cmdlet(VerbsCommon.New, "SFApplicationUpgrade")]
     public partial class NewApplicationUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// This API will induce data loss for the specified partition. It will trigger a call to the OnDataLossAsync API of
     /// the partition.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFDataLoss", DefaultParameterSetName = "StartDataLoss")]
+    [Cmdlet(VerbsLifecycle.Start, "SFDataLoss")]
     public partial class StartDataLossCmdlet : CommonCmdletBase
     {
         /// <summary>

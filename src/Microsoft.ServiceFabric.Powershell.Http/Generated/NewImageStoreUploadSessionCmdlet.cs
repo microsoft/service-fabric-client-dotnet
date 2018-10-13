@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Commit an image store upload session.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFImageStoreUploadSession", DefaultParameterSetName = "CommitImageStoreUploadSession")]
+    [Cmdlet(VerbsCommon.New, "SFImageStoreUploadSession")]
     public partial class NewImageStoreUploadSessionCmdlet : CommonCmdletBase
     {
         /// <summary>

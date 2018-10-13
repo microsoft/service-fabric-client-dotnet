@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the progress of the current cluster upgrade.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterUpgradeProgress", DefaultParameterSetName = "GetClusterUpgradeProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterUpgradeProgress")]
     public partial class GetClusterUpgradeProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

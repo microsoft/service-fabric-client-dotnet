@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Removes or unregisters a Service Fabric application type from the cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Unregister, "SFApplicationType", DefaultParameterSetName = "UnprovisionApplicationType")]
+    [Cmdlet(VerbsLifecycle.Unregister, "SFApplicationType")]
     public partial class UnregisterApplicationTypeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationTypeVersion. The version of the application type as defined in the application manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "UnprovisionApplicationType")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string ApplicationTypeVersion { get; set; }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// continues without any timeout limit. The default value is false. However, we recommend setting it to true for large
         /// application packages that were provisioned.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "UnprovisionApplicationType")]
+        [Parameter(Mandatory = false, Position = 2)]
         public bool? Async { get; set; }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "UnprovisionApplicationType")]
+        [Parameter(Mandatory = false, Position = 4)]
         public SwitchParameter Force
         {
             get;

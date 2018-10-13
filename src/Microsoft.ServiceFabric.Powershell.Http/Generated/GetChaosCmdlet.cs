@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the status of Chaos.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFChaos", DefaultParameterSetName = "GetChaos")]
+    [Cmdlet(VerbsCommon.Get, "SFChaos")]
     public partial class GetChaosCmdlet : CommonCmdletBase
     {
         /// <summary>

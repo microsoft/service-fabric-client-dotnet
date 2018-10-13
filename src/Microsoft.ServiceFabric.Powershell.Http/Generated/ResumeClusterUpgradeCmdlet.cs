@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Make the cluster upgrade move on to the next upgrade domain.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Resume, "SFClusterUpgrade", DefaultParameterSetName = "ResumeClusterUpgrade")]
+    [Cmdlet(VerbsLifecycle.Resume, "SFClusterUpgrade")]
     public partial class ResumeClusterUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets UpgradeDomain. The next upgrade domain for this cluster upgrade.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ResumeClusterUpgrade")]
+        [Parameter(Mandatory = true, Position = 0)]
         public string UpgradeDomain { get; set; }
 
         /// <summary>

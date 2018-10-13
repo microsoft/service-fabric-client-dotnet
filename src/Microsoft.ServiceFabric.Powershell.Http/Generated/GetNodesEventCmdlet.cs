@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Nodes-related Events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFNodesEvent", DefaultParameterSetName = "GetNodesEventList")]
+    [Cmdlet(VerbsCommon.Get, "SFNodesEvent")]
     public partial class GetNodesEventCmdlet : CommonCmdletBase
     {
         /// <summary>

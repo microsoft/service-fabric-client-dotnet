@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the progress of a partition data loss operation started using the StartDataLoss API.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDataLossProgress", DefaultParameterSetName = "GetDataLossProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFDataLossProgress")]
     public partial class GetDataLossProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

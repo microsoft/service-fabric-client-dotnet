@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Invoke container API on a container deployed on a Service Fabric node.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFContainerApi", DefaultParameterSetName = "InvokeContainerApi")]
+    [Cmdlet(VerbsCommon.New, "SFContainerApi")]
     public partial class NewContainerApiCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -76,25 +76,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets UriPath. URI path of container REST API
         /// </summary>
-        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "InvokeContainerApi")]
+        [Parameter(Mandatory = true, Position = 5)]
         public string UriPath { get; set; }
 
         /// <summary>
         /// Gets or sets HttpVerb. HTTP verb of container REST API, defaults to "GET"
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "InvokeContainerApi")]
+        [Parameter(Mandatory = false, Position = 6)]
         public string HttpVerb { get; set; }
 
         /// <summary>
         /// Gets or sets ContentType. Content type of container REST API request, defaults to "application/json"
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "InvokeContainerApi")]
+        [Parameter(Mandatory = false, Position = 7)]
         public string ContentType { get; set; }
 
         /// <summary>
         /// Gets or sets Body. HTTP request body of container REST API
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "InvokeContainerApi")]
+        [Parameter(Mandatory = false, Position = 8)]
         public string Body { get; set; }
 
         /// <summary>

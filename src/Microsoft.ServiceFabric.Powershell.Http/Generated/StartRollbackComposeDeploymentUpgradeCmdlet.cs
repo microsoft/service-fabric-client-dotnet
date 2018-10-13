@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Starts rolling back a compose deployment upgrade in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFRollbackComposeDeploymentUpgrade", DefaultParameterSetName = "StartRollbackComposeDeploymentUpgrade")]
+    [Cmdlet(VerbsLifecycle.Start, "SFRollbackComposeDeploymentUpgrade")]
     public partial class StartRollbackComposeDeploymentUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>

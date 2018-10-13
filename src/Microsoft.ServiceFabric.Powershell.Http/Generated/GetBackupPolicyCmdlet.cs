@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all the backup policies configured.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFBackupPolicy", DefaultParameterSetName = "GetBackupPolicyList")]
+    [Cmdlet(VerbsCommon.Get, "SFBackupPolicy")]
     public partial class GetBackupPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>

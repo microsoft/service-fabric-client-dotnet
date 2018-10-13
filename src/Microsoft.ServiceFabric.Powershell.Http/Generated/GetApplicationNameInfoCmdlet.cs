@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the name of the Service Fabric application for a service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationNameInfo", DefaultParameterSetName = "GetApplicationNameInfo")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationNameInfo")]
     public partial class GetApplicationNameInfoCmdlet : CommonCmdletBase
     {
         /// <summary>

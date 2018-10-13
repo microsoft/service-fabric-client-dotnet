@@ -13,19 +13,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Unprovision the code or configuration packages of a Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Unregister, "SFCluster", DefaultParameterSetName = "UnprovisionCluster")]
+    [Cmdlet(VerbsLifecycle.Unregister, "SFCluster")]
     public partial class UnregisterClusterCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets CodeVersion. The cluster code package version.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "UnprovisionCluster")]
+        [Parameter(Mandatory = false, Position = 0)]
         public string CodeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets ConfigVersion. The cluster manifest version.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "UnprovisionCluster")]
+        [Parameter(Mandatory = false, Position = 1)]
         public string ConfigVersion { get; set; }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "UnprovisionCluster")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Force
         {
             get;

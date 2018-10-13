@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets a list of fabric config versions that are provisioned in a Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFProvisionedFabricConfigVersionInfoList", DefaultParameterSetName = "GetProvisionedFabricConfigVersionInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFProvisionedFabricConfigVersionInfoList")]
     public partial class GetProvisionedFabricConfigVersionInfoListCmdlet : CommonCmdletBase
     {
         /// <summary>

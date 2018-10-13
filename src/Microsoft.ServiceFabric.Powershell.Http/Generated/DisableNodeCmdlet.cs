@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deactivate a Service Fabric cluster node with the specified deactivation intent.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Disable, "SFNode", DefaultParameterSetName = "DisableNode")]
+    [Cmdlet(VerbsLifecycle.Disable, "SFNode")]
     public partial class DisableNodeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -31,7 +31,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// following.
         /// . Possible values include: 'Pause', 'Restart', 'RemoveData'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "DisableNode")]
+        [Parameter(Mandatory = false, Position = 1)]
         public DeactivationIntent? DeactivationIntent { get; set; }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "DisableNode")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Force
         {
             get;

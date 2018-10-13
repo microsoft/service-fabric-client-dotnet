@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the next segment of the Chaos events based on the continuation token or the time range.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFChaosEvents", DefaultParameterSetName = "GetChaosEvents")]
+    [Cmdlet(VerbsCommon.Get, "SFChaosEvents")]
     public partial class GetChaosEventsCmdlet : CommonCmdletBase
     {
         /// <summary>

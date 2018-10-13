@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets information on all Service Fabric properties under a given name.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPropertyInfoList", DefaultParameterSetName = "GetPropertyInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFPropertyInfoList")]
     public partial class GetPropertyInfoListCmdlet : CommonCmdletBase
     {
         /// <summary>

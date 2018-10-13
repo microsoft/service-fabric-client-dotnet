@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the gateway resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshGateway", DefaultParameterSetName = "List")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshGateway")]
     public partial class GetMeshGatewayCmdlet : CommonCmdletBase
     {
         /// <summary>

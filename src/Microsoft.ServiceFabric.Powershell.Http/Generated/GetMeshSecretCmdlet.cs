@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the secret resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshSecret", DefaultParameterSetName = "List")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshSecret")]
     public partial class GetMeshSecretCmdlet : CommonCmdletBase
     {
         /// <summary>

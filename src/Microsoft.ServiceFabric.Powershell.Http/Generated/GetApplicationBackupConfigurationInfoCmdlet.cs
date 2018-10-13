@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the Service Fabric application backup configuration information.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationBackupConfigurationInfo", DefaultParameterSetName = "GetApplicationBackupConfigurationInfo")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationBackupConfigurationInfo")]
     public partial class GetApplicationBackupConfigurationInfoCmdlet : CommonCmdletBase
     {
         /// <summary>

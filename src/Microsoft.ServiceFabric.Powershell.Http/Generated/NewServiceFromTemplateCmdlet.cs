@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Creates a Service Fabric service from the service template.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFServiceFromTemplate", DefaultParameterSetName = "CreateServiceFromTemplate")]
+    [Cmdlet(VerbsCommon.New, "SFServiceFromTemplate")]
     public partial class NewServiceFromTemplateCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -33,25 +33,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CreateServiceFromTemplate")]
+        [Parameter(Mandatory = true, Position = 1)]
         public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "CreateServiceFromTemplate")]
+        [Parameter(Mandatory = true, Position = 2)]
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceTypeName. Name of the service type as specified in the service manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "CreateServiceFromTemplate")]
+        [Parameter(Mandatory = true, Position = 3)]
         public string ServiceTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets InitializationData. The initialization data for the newly created service instance.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateServiceFromTemplate")]
+        [Parameter(Mandatory = false, Position = 4)]
         public byte[] InitializationData { get; set; }
 
         /// <summary>
@@ -61,14 +61,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
         /// creating the Service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateServiceFromTemplate")]
+        [Parameter(Mandatory = false, Position = 5)]
         public ServicePackageActivationMode? ServicePackageActivationMode { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceDnsName. The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "CreateServiceFromTemplate")]
+        [Parameter(Mandatory = false, Position = 6)]
         public string ServiceDnsName { get; set; }
 
         /// <summary>

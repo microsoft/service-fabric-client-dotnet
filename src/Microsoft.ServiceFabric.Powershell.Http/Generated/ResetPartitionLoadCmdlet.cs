@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Resets the current load of a Service Fabric partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Reset, "SFPartitionLoad", DefaultParameterSetName = "ResetPartitionLoad")]
+    [Cmdlet(VerbsCommon.Reset, "SFPartitionLoad")]
     public partial class ResetPartitionLoadCmdlet : CommonCmdletBase
     {
         /// <summary>

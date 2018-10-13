@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Enumerates all the Service Fabric names under a given name.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFSubNameInfoList", DefaultParameterSetName = "GetSubNameInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFSubNameInfoList")]
     public partial class GetSubNameInfoListCmdlet : CommonCmdletBase
     {
         /// <summary>

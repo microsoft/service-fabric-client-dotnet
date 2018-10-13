@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Returns whether the Service Fabric name exists.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFNameExistsInfo", DefaultParameterSetName = "GetNameExistsInfo")]
+    [Cmdlet(VerbsCommon.Get, "SFNameExistsInfo")]
     public partial class GetNameExistsInfoCmdlet : CommonCmdletBase
     {
         /// <summary>

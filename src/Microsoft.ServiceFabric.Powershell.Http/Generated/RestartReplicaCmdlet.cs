@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Restarts a service replica of a persisted service running on a node.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Restart, "SFReplica", DefaultParameterSetName = "RestartReplica")]
+    [Cmdlet(VerbsLifecycle.Restart, "SFReplica")]
     public partial class RestartReplicaCmdlet : CommonCmdletBase
     {
         /// <summary>

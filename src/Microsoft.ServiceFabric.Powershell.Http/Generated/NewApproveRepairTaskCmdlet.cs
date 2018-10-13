@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Forces the approval of the given repair task.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFApproveRepairTask", DefaultParameterSetName = "ForceApproveRepairTask")]
+    [Cmdlet(VerbsCommon.New, "SFApproveRepairTask")]
     public partial class NewApproveRepairTaskCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets TaskId. The ID of the repair task.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "ForceApproveRepairTask")]
+        [Parameter(Mandatory = true, Position = 0)]
         public string TaskId { get; set; }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// succeed if this value matches the actual current version of the repair task. If zero, then no version check is
         /// performed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ForceApproveRepairTask")]
+        [Parameter(Mandatory = false, Position = 1)]
         public string Version { get; set; }
 
         /// <inheritdoc/>

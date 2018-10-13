@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of compose deployments created in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFComposeDeploymentStatusList", DefaultParameterSetName = "GetComposeDeploymentStatusList")]
+    [Cmdlet(VerbsCommon.Get, "SFComposeDeploymentStatusList")]
     public partial class GetComposeDeploymentStatusListCmdlet : CommonCmdletBase
     {
         /// <summary>

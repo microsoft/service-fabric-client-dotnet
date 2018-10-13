@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the information about replicas of a Service Fabric service partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFReplica", DefaultParameterSetName = "GetReplicaInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFReplica")]
     public partial class GetReplicaCmdlet : CommonCmdletBase
     {
         /// <summary>

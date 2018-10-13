@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of applications deployed on a Service Fabric node.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDeployedApplication", DefaultParameterSetName = "GetDeployedApplicationInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFDeployedApplication")]
     public partial class GetDeployedApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>

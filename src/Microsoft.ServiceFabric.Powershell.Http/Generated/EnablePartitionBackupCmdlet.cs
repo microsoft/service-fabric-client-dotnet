@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Enables periodic backup of the stateful persisted partition.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Enable, "SFPartitionBackup", DefaultParameterSetName = "EnablePartitionBackup")]
+    [Cmdlet(VerbsLifecycle.Enable, "SFPartitionBackup")]
     public partial class EnablePartitionBackupCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets BackupPolicyName. Name of the backup policy to be used for enabling periodic backups.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "EnablePartitionBackup")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string BackupPolicyName { get; set; }
 
         /// <summary>

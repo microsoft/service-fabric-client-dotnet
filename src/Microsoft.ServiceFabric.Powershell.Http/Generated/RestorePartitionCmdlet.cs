@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Triggers restore of the state of the partition using the specified restore partition description.
     /// </summary>
-    [Cmdlet(VerbsData.Restore, "SFPartition", DefaultParameterSetName = "RestorePartition")]
+    [Cmdlet(VerbsData.Restore, "SFPartition")]
     public partial class RestorePartitionCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets AzureBlobStore flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 0)]
         public SwitchParameter AzureBlobStore
         {
             get;
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 1)]
         public SwitchParameter FileShare
         {
             get;
@@ -49,61 +49,61 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets BackupId. Unique backup ID.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 3)]
         public Guid? BackupId { get; set; }
 
         /// <summary>
         /// Gets or sets BackupLocation. Location of the backup relative to the backup storage specified/ configured.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 4)]
         public string BackupLocation { get; set; }
 
         /// <summary>
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 5)]
         public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 6)]
         public string ContainerName { get; set; }
 
         /// <summary>
         /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = true, Position = 7)]
         public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 8)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 9)]
         public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 10)]
         public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 11)]
         public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "RestorePartition")]
+        [Parameter(Mandatory = false, Position = 12)]
         public string SecondaryPassword { get; set; }
 
         /// <summary>

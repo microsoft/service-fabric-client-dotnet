@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes the specified  value of the named secret resource.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshSecretValue", DefaultParameterSetName = "Delete")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshSecretValue")]
     public partial class RemoveMeshSecretValueCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "Delete")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

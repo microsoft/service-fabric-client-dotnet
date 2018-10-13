@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the replicas of a service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshServiceReplica", DefaultParameterSetName = "List")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshServiceReplica")]
     public partial class GetMeshServiceReplicaCmdlet : CommonCmdletBase
     {
         /// <summary>

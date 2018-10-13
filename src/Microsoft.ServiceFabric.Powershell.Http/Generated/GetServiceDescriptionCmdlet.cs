@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the description of an existing Service Fabric service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFServiceDescription", DefaultParameterSetName = "GetServiceDescription")]
+    [Cmdlet(VerbsCommon.Get, "SFServiceDescription")]
     public partial class GetServiceDescriptionCmdlet : CommonCmdletBase
     {
         /// <summary>

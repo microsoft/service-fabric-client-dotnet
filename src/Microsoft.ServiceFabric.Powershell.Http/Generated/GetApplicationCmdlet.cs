@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of applications created in the Service Fabric cluster that match the specified filters.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplication", DefaultParameterSetName = "GetApplicationInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFApplication")]
     public partial class GetApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>

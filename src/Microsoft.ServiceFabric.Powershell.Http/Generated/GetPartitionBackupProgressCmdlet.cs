@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets details for the latest backup triggered for this partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionBackupProgress", DefaultParameterSetName = "GetPartitionBackupProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionBackupProgress")]
     public partial class GetPartitionBackupProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

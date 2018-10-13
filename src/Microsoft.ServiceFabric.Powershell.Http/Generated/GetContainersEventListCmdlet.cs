@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Containers-related events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFContainersEventList", DefaultParameterSetName = "GetContainersEventList")]
+    [Cmdlet(VerbsCommon.Get, "SFContainersEventList")]
     public partial class GetContainersEventListCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of backups available for the specified backed up entity at the specified backup location.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFBackupsFromBackupLocation", DefaultParameterSetName = "GetBackupsFromBackupLocation")]
+    [Cmdlet(VerbsCommon.Get, "SFBackupsFromBackupLocation")]
     public partial class GetBackupsFromBackupLocationCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets AzureBlobStore flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 0)]
         public SwitchParameter AzureBlobStore
         {
             get;
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 1)]
         public SwitchParameter FileShare
         {
             get;
@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Application flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Application
         {
             get;
@@ -49,7 +49,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Service flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Service
         {
             get;
@@ -59,7 +59,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Partition flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 4)]
         public SwitchParameter Partition
         {
             get;
@@ -69,88 +69,88 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = true, Position = 5)]
         public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = true, Position = 6)]
         public string ContainerName { get; set; }
 
         /// <summary>
         /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = true, Position = 7)]
         public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets StartDateTimeFilter. Specifies the start date time in ISO8601 from which to enumerate backups. If not
         /// specified, backups are enumerated from the beginning.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 8)]
         public DateTime? StartDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets EndDateTimeFilter. Specifies the end date time in ISO8601 till which to enumerate backups. If not
         /// specified, backups are enumerated till the end.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 9)]
         public DateTime? EndDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets Latest. If specified as true, gets the most recent backup (within the specified time range) for every
         /// partition under the specified backup entity.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 10)]
         public bool? Latest { get; set; } = false;
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 11)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 12)]
         public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 13)]
         public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 14)]
         public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 15)]
         public string SecondaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 16)]
         public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 17)]
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The partition ID indentifying the partition.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "GetBackupsFromBackupLocation")]
+        [Parameter(Mandatory = false, Position = 18)]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>

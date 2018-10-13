@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the cluster configuration upgrade status of a Service Fabric standalone cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterConfigurationUpgradeStatus", DefaultParameterSetName = "GetClusterConfigurationUpgradeStatus")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterConfigurationUpgradeStatus")]
     public partial class GetClusterConfigurationUpgradeStatusCmdlet : CommonCmdletBase
     {
         /// <summary>

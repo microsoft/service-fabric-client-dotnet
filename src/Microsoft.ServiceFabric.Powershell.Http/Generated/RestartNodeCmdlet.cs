@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Restarts a Service Fabric cluster node.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Restart, "SFNode", DefaultParameterSetName = "RestartNode")]
+    [Cmdlet(VerbsLifecycle.Restart, "SFNode")]
     public partial class RestartNodeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -31,14 +31,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// only if it matches with the current instance of the node. A default value of "0" would match any instance ID. The
         /// instance ID can be obtained using get node query.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "RestartNode")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string NodeInstanceId { get; set; } = "0";
 
         /// <summary>
         /// Gets or sets CreateFabricDump. Specify True to create a dump of the fabric node process. This is case-sensitive.
         /// Possible values include: 'False', 'True'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "RestartNode")]
+        [Parameter(Mandatory = false, Position = 2)]
         public CreateFabricDump? CreateFabricDump { get; set; } = Common.CreateFabricDump.False;
 
         /// <summary>

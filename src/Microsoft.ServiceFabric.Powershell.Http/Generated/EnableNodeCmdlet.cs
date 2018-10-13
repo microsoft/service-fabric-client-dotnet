@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Activate a Service Fabric cluster node that is currently deactivated.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Enable, "SFNode", DefaultParameterSetName = "EnableNode")]
+    [Cmdlet(VerbsLifecycle.Enable, "SFNode")]
     public partial class EnableNodeCmdlet : CommonCmdletBase
     {
         /// <summary>

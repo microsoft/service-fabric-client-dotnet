@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes the Application resource.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFMeshApplication", DefaultParameterSetName = "Delete")]
+    [Cmdlet(VerbsCommon.Remove, "SFMeshApplication")]
     public partial class RemoveMeshApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "Delete")]
+        [Parameter(Mandatory = false, Position = 1)]
         public SwitchParameter Force
         {
             get;

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Disables periodic backup of Service Fabric service which was previously enabled.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Disable, "SFServiceBackup", DefaultParameterSetName = "DisableServiceBackup")]
+    [Cmdlet(VerbsLifecycle.Disable, "SFServiceBackup")]
     public partial class DisableServiceBackupCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets CleanBackup. Boolean flag to delete backups. It can be set to true for deleting all the backups which
         /// were created for the backup entity that is getting disabled for backup.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "DisableServiceBackup")]
+        [Parameter(Mandatory = true, Position = 1)]
         public bool? CleanBackup { get; set; }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "DisableServiceBackup")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Force
         {
             get;

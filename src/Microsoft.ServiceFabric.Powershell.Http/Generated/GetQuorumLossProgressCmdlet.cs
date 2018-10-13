@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the progress of a quorum loss operation on a partition started using the StartQuorumLoss API.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFQuorumLossProgress", DefaultParameterSetName = "GetQuorumLossProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFQuorumLossProgress")]
     public partial class GetQuorumLossProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

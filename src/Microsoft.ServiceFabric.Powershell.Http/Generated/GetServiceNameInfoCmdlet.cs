@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the name of the Service Fabric service for a partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFServiceNameInfo", DefaultParameterSetName = "GetServiceNameInfo")]
+    [Cmdlet(VerbsCommon.Get, "SFServiceNameInfo")]
     public partial class GetServiceNameInfoCmdlet : CommonCmdletBase
     {
         /// <summary>

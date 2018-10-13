@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes the specified Service Fabric property.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFProperty", DefaultParameterSetName = "DeleteProperty")]
+    [Cmdlet(VerbsCommon.Remove, "SFProperty")]
     public partial class RemovePropertyCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -52,7 +52,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "DeleteProperty")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Force
         {
             get;

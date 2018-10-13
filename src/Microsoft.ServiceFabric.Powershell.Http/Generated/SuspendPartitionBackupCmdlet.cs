@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Suspends periodic backup for the specified partition.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Suspend, "SFPartitionBackup", DefaultParameterSetName = "SuspendPartitionBackup")]
+    [Cmdlet(VerbsLifecycle.Suspend, "SFPartitionBackup")]
     public partial class SuspendPartitionBackupCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "SuspendPartitionBackup")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

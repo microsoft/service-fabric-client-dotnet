@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets load information about a Service Fabric application.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationLoadInfo", DefaultParameterSetName = "GetApplicationLoadInfo")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationLoadInfo")]
     public partial class GetApplicationLoadInfoCmdlet : CommonCmdletBase
     {
         /// <summary>

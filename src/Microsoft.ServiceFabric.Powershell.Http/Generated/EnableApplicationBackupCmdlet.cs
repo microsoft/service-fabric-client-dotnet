@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Enables periodic backup of stateful partitions under this Service Fabric application.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Enable, "SFApplicationBackup", DefaultParameterSetName = "EnableApplicationBackup")]
+    [Cmdlet(VerbsLifecycle.Enable, "SFApplicationBackup")]
     public partial class EnableApplicationBackupCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets BackupPolicyName. Name of the backup policy to be used for enabling periodic backups.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "EnableApplicationBackup")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string BackupPolicyName { get; set; }
 
         /// <summary>

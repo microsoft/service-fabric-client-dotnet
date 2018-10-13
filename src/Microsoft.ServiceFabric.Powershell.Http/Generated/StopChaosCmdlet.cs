@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Stops Chaos if it is running in the cluster and put the Chaos Schedule in a stopped state.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "SFChaos", DefaultParameterSetName = "StopChaos")]
+    [Cmdlet(VerbsLifecycle.Stop, "SFChaos")]
     public partial class StopChaosCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of a Service Fabric cluster using the specified policy.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterHealthUsingPolicy", DefaultParameterSetName = "GetClusterHealthUsingPolicy")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterHealthUsingPolicy")]
     public partial class GetClusterHealthUsingPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -131,13 +131,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// manifest).
         /// The map is empty by default.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetClusterHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 5)]
         public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetClusterHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 6)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
         /// tolerate that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "GetClusterHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 7)]
         public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ApplicationTypeHealthPolicyMap.
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "GetClusterHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 8)]
         public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetClusterHealthUsingPolicy")]
+        [Parameter(Mandatory = false, Position = 9)]
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>

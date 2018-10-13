@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Invokes a read-only query on the given infrastructure service instance.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFInfrastructureQuery", DefaultParameterSetName = "InvokeInfrastructureQuery")]
+    [Cmdlet(VerbsCommon.New, "SFInfrastructureQuery")]
     public partial class NewInfrastructureQueryCmdlet : CommonCmdletBase
     {
         /// <summary>

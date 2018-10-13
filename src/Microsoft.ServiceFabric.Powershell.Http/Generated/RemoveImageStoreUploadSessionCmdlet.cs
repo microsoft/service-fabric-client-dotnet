@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Cancels an image store upload session.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFImageStoreUploadSession", DefaultParameterSetName = "DeleteImageStoreUploadSession")]
+    [Cmdlet(VerbsCommon.Remove, "SFImageStoreUploadSession")]
     public partial class RemoveImageStoreUploadSessionCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -43,7 +43,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DeleteImageStoreUploadSession")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

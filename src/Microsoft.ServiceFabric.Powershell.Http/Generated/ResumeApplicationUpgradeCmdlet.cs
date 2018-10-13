@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Resumes upgrading an application in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Resume, "SFApplicationUpgrade", DefaultParameterSetName = "ResumeApplicationUpgrade")]
+    [Cmdlet(VerbsLifecycle.Resume, "SFApplicationUpgrade")]
     public partial class ResumeApplicationUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -33,7 +33,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets UpgradeDomainName. The name of the upgrade domain in which to resume the upgrade.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "ResumeApplicationUpgrade")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string UpgradeDomainName { get; set; }
 
         /// <summary>

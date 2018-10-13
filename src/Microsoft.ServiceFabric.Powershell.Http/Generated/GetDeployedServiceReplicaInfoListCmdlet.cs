@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of replicas deployed on a Service Fabric node.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDeployedServiceReplicaInfoList", DefaultParameterSetName = "GetDeployedServiceReplicaInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFDeployedServiceReplicaInfoList")]
     public partial class GetDeployedServiceReplicaInfoListCmdlet : CommonCmdletBase
     {
         /// <summary>

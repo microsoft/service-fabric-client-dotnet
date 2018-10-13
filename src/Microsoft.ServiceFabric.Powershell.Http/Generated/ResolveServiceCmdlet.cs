@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Resolve a Service Fabric partition.
     /// </summary>
-    [Cmdlet(VerbsDiagnostic.Resolve, "SFService", DefaultParameterSetName = "ResolveService")]
+    [Cmdlet(VerbsDiagnostic.Resolve, "SFService")]
     public partial class ResolveServiceCmdlet : CommonCmdletBase
     {
         /// <summary>

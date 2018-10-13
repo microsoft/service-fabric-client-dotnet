@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the image store upload session by relative path.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFImageStoreUploadSessionByPath", DefaultParameterSetName = "GetImageStoreUploadSessionByPath")]
+    [Cmdlet(VerbsCommon.Get, "SFImageStoreUploadSessionByPath")]
     public partial class GetImageStoreUploadSessionByPathCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets details for the latest upgrade performed on this application.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationUpgrade", DefaultParameterSetName = "GetApplicationUpgrade")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationUpgrade")]
     public partial class GetApplicationUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>

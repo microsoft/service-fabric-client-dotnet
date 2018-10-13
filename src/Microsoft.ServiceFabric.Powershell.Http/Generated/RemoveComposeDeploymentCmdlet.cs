@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes an existing Service Fabric compose deployment from cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFComposeDeployment", DefaultParameterSetName = "RemoveComposeDeployment")]
+    [Cmdlet(VerbsCommon.Remove, "SFComposeDeployment")]
     public partial class RemoveComposeDeploymentCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "RemoveComposeDeployment")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

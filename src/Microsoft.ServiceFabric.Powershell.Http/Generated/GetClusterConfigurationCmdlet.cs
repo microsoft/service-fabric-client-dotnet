@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the Service Fabric standalone cluster configuration.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterConfiguration", DefaultParameterSetName = "GetClusterConfiguration")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterConfiguration")]
     public partial class GetClusterConfigurationCmdlet : CommonCmdletBase
     {
         /// <summary>

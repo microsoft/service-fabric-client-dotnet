@@ -13,25 +13,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Copies image store content internally
     /// </summary>
-    [Cmdlet(VerbsCommon.Copy, "SFImageStoreContent", DefaultParameterSetName = "CopyImageStoreContent")]
+    [Cmdlet(VerbsCommon.Copy, "SFImageStoreContent")]
     public partial class CopyImageStoreContentCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets RemoteSource. The relative path of source image store content to be copied from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CopyImageStoreContent")]
+        [Parameter(Mandatory = true, Position = 0)]
         public string RemoteSource { get; set; }
 
         /// <summary>
         /// Gets or sets RemoteDestination. The relative path of destination image store content to be copied to.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CopyImageStoreContent")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string RemoteDestination { get; set; }
 
         /// <summary>
         /// Gets or sets SkipFiles. The list of the file names to be skipped for copying.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CopyImageStoreContent")]
+        [Parameter(Mandatory = false, Position = 2)]
         public IEnumerable<string> SkipFiles { get; set; }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// mark file is required, false otherwise. The mark file is used to check whether the folder is well constructed. If
         /// the property is true and mark file does not exist, the copy is skipped.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CopyImageStoreContent")]
+        [Parameter(Mandatory = false, Position = 3)]
         public bool? CheckMarkFile { get; set; }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of backup entities that are associated with this policy.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFAllEntitiesBackedUpByPolicy", DefaultParameterSetName = "GetAllEntitiesBackedUpByPolicy")]
+    [Cmdlet(VerbsCommon.Get, "SFAllEntitiesBackedUpByPolicy")]
     public partial class GetAllEntitiesBackedUpByPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>

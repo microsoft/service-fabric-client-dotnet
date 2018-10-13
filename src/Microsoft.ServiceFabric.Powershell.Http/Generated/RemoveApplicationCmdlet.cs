@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes an existing Service Fabric application.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFApplication", DefaultParameterSetName = "DeleteApplication")]
+    [Cmdlet(VerbsCommon.Remove, "SFApplication")]
     public partial class RemoveApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -58,7 +58,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "DeleteApplication")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter Force
         {
             get;

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes the backup policy.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFBackupPolicy", DefaultParameterSetName = "DeleteBackupPolicy")]
+    [Cmdlet(VerbsCommon.Remove, "SFBackupPolicy")]
     public partial class RemoveBackupPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DeleteBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Induces quorum loss for a given stateful service partition.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFQuorumLoss", DefaultParameterSetName = "StartQuorumLoss")]
+    [Cmdlet(VerbsLifecycle.Start, "SFQuorumLoss")]
     public partial class StartQuorumLossCmdlet : CommonCmdletBase
     {
         /// <summary>

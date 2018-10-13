@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Cancels a user-induced fault operation.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "SFOperation", DefaultParameterSetName = "CancelOperation")]
+    [Cmdlet(VerbsLifecycle.Stop, "SFOperation")]
     public partial class StopOperationCmdlet : CommonCmdletBase
     {
         /// <summary>

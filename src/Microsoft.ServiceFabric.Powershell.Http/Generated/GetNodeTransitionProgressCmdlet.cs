@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the progress of an operation started using StartNodeTransition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFNodeTransitionProgress", DefaultParameterSetName = "GetNodeTransitionProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFNodeTransitionProgress")]
     public partial class GetNodeTransitionProgressCmdlet : CommonCmdletBase
     {
         /// <summary>

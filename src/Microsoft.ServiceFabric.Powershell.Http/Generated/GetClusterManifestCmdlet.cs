@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Get the Service Fabric cluster manifest.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterManifest", DefaultParameterSetName = "GetClusterManifest")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterManifest")]
     public partial class GetClusterManifestCmdlet : CommonCmdletBase
     {
         /// <summary>

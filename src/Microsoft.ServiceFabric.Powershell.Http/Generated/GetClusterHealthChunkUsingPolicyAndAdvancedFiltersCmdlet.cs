@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the health of a Service Fabric cluster using health chunks.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFClusterHealthChunkUsingPolicyAndAdvancedFilters", DefaultParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+    [Cmdlet(VerbsCommon.Get, "SFClusterHealthChunkUsingPolicyAndAdvancedFilters")]
     public partial class GetClusterHealthChunkUsingPolicyAndAdvancedFiltersCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, it can specify a filter to return all nodes with health state Error and another filter to always
         /// include a node identified by its NodeName.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 0)]
         public IEnumerable<NodeHealthStateFilter> NodeFilters { get; set; }
 
         /// <summary>
@@ -37,13 +37,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, it can specify a filter to return all applications with health state Error and another filter to
         /// always include applications of a specified application type.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 1)]
         public IEnumerable<ApplicationHealthStateFilter> ApplicationFilters { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 2)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
         /// tolerate that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 3)]
         public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ApplicationTypeHealthPolicyMap.
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 4)]
         public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
@@ -97,14 +97,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 5)]
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
         /// evaluate specific applications in the cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetClusterHealthChunkUsingPolicyAndAdvancedFilters")]
+        [Parameter(Mandatory = false, Position = 6)]
         public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>

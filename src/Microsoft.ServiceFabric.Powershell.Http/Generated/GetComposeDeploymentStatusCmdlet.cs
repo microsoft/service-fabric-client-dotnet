@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets information about a Service Fabric compose deployment.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFComposeDeploymentStatus", DefaultParameterSetName = "GetComposeDeploymentStatus")]
+    [Cmdlet(VerbsCommon.Get, "SFComposeDeploymentStatus")]
     public partial class GetComposeDeploymentStatusCmdlet : CommonCmdletBase
     {
         /// <summary>

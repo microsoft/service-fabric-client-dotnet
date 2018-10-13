@@ -13,19 +13,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Provision the code or configuration packages of a Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Register, "SFCluster", DefaultParameterSetName = "ProvisionCluster")]
+    [Cmdlet(VerbsLifecycle.Register, "SFCluster")]
     public partial class RegisterClusterCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets CodeFilePath. The cluster code package file path.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "ProvisionCluster")]
+        [Parameter(Mandatory = false, Position = 0)]
         public string CodeFilePath { get; set; }
 
         /// <summary>
         /// Gets or sets ClusterManifestFilePath. The cluster manifest file path.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ProvisionCluster")]
+        [Parameter(Mandatory = false, Position = 1)]
         public string ClusterManifestFilePath { get; set; }
 
         /// <summary>

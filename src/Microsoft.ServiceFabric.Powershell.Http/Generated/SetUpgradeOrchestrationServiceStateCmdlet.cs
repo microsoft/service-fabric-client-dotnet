@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Update the service state of Service Fabric Upgrade Orchestration Service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Set, "SFUpgradeOrchestrationServiceState", DefaultParameterSetName = "SetUpgradeOrchestrationServiceState")]
+    [Cmdlet(VerbsCommon.Set, "SFUpgradeOrchestrationServiceState")]
     public partial class SetUpgradeOrchestrationServiceStateCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets ServiceState. The state of Service Fabric Upgrade Orchestration Service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "SetUpgradeOrchestrationServiceState")]
+        [Parameter(Mandatory = false, Position = 0)]
         public string ServiceState { get; set; }
 
         /// <summary>

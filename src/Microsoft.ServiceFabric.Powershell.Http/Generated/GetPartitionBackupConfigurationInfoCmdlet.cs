@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the partition backup configuration information
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionBackupConfigurationInfo", DefaultParameterSetName = "GetPartitionBackupConfigurationInfo")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionBackupConfigurationInfo")]
     public partial class GetPartitionBackupConfigurationInfoCmdlet : CommonCmdletBase
     {
         /// <summary>

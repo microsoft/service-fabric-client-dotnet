@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Updates an ongoing application upgrade in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsData.Update, "SFApplicationUpgrade", DefaultParameterSetName = "UpdateApplicationUpgrade")]
+    [Cmdlet(VerbsData.Update, "SFApplicationUpgrade")]
     public partial class UpdateApplicationUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -33,14 +33,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Name. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = true, Position = 1)]
         public ApplicationName Name { get; set; }
 
         /// <summary>
         /// Gets or sets UpgradeKind. The kind of upgrade out of the following possible values. Possible values include:
         /// 'Invalid', 'Rolling'
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = true, Position = 2)]
         public UpgradeKind? UpgradeKind { get; set; } = Common.UpgradeKind.Rolling;
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
         /// 'UnmonitoredManual', 'Monitored'
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = true, Position = 3)]
         public UpgradeMode? RollingUpgradeMode { get; set; } = Common.UpgradeMode.UnmonitoredAuto;
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 4)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// application is currently deployed on in the cluster.
         /// The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 5)]
         public int? MaxPercentUnhealthyDeployedApplications { get; set; } = 0;
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the service.
         /// The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 6)]
         public int? MaxPercentUnhealthyPartitionsPerService { get; set; } = 0;
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// partition.
         /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 7)]
         public int? MaxPercentUnhealthyReplicasPerPartition { get; set; } = 0;
 
         /// <summary>
@@ -108,21 +108,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// of services of the specific service type.
         /// The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 8)]
         public int? MaxPercentUnhealthyServices { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ServiceTypeHealthPolicyMap. The map with service type health policy per service type name. The map is
         /// empty by default.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 9)]
         public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets ForceRestart. If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 10)]
         public bool? ForceRestart { get; set; }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the upgrade domain will proceed regardless of availability loss issues. The timeout is reset at the start of each
         /// upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 11)]
         public long? ReplicaSetCheckTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Manual indicates that the upgrade will switch to UnmonitoredManual upgrade mode.
         /// . Possible values include: 'Invalid', 'Rollback', 'Manual'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 12)]
         public FailureAction? FailureAction { get; set; }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// before applying health policies. It is first interpreted as a string representing an ISO 8601 duration. If that
         /// fails, then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 13)]
         public string HealthCheckWaitDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 14)]
         public string HealthCheckStableDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 15)]
         public string HealthCheckRetryTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 16)]
         public string UpgradeTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "UpdateApplicationUpgrade")]
+        [Parameter(Mandatory = false, Position = 17)]
         public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>

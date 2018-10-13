@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Creates a backup policy.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFBackupPolicy", DefaultParameterSetName = "CreateBackupPolicy")]
+    [Cmdlet(VerbsCommon.New, "SFBackupPolicy")]
     public partial class NewBackupPolicyCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets FrequencyBased flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 0)]
         public SwitchParameter FrequencyBased
         {
             get;
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets TimeBased flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 1)]
         public SwitchParameter TimeBased
         {
             get;
@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets AzureBlobStore flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter AzureBlobStore
         {
             get;
@@ -49,7 +49,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter FileShare
         {
             get;
@@ -59,7 +59,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Basic flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 4)]
         public SwitchParameter Basic
         {
             get;
@@ -69,14 +69,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Name. The unique name identifying this backup policy.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 5)]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets AutoRestoreOnDataLoss. Specifies whether to trigger restore automatically using the latest available
         /// backup in case the partition experiences a data loss event.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 6)]
         public bool? AutoRestoreOnDataLoss { get; set; }
 
         /// <summary>
@@ -87,90 +87,90 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Some of the log records since the last backup has been truncated, or
         /// - Replica passed the MaxAccumulatedBackupLogSizeInMB limit.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 7)]
         public int? MaxIncrementalBackups { get; set; }
 
         /// <summary>
         /// Gets or sets Interval. Defines the interval with which backups are periodically taken. It should be specified in
         /// ISO8601 format. Timespan in seconds is not supported and will be ignored while creating the policy.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 8, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 8)]
         public TimeSpan? Interval { get; set; }
 
         /// <summary>
         /// Gets or sets ScheduleFrequencyType. Describes the frequency with which to run the time based backup schedule.
         /// . Possible values include: 'Invalid', 'Daily', 'Weekly'
         /// </summary>
-        [Parameter(Mandatory = true, Position = 9, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 9)]
         public BackupScheduleFrequencyType? ScheduleFrequencyType { get; set; }
 
         /// <summary>
         /// Gets or sets RunTimes. Represents the list of exact time during the day in ISO8601 format. Like '19:00:00' will
         /// represent '7PM' during the day. Date specified along with time will be ignored.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 10)]
         public IEnumerable<DateTime?> RunTimes { get; set; }
 
         /// <summary>
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 11, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 11)]
         public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 12, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 12)]
         public string ContainerName { get; set; }
 
         /// <summary>
         /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 13)]
         public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets RetentionDuration. It is the minimum duration for which a backup created, will remain stored in the
         /// storage and might get deleted after that span of time. It should be specified in ISO8601 format.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 14, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = true, Position = 14)]
         public TimeSpan? RetentionDuration { get; set; }
 
         /// <summary>
         /// Gets or sets RunDays. List of days of a week when to trigger the periodic backup. This is valid only when the
         /// backup schedule frequency type is weekly.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 15)]
         public IEnumerable<DayOfWeek?> RunDays { get; set; }
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 16)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 17)]
         public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 18)]
         public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 19)]
         public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 20)]
         public string SecondaryPassword { get; set; }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// specified with a non zero value, backups will not be deleted even if the backups have gone past retention duration
         /// and have number of backups less than or equal to it.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "CreateBackupPolicy")]
+        [Parameter(Mandatory = false, Position = 21)]
         public int? MinimumNumberOfBackups { get; set; }
 
         /// <summary>

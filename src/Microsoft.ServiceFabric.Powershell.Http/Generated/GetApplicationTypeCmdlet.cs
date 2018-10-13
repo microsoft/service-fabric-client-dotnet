@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of application types in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplicationType", DefaultParameterSetName = "GetApplicationTypeInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFApplicationType")]
     public partial class GetApplicationTypeCmdlet : CommonCmdletBase
     {
         /// <summary>

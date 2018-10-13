@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Starts upgrading a compose deployment in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "SFComposeDeploymentUpgrade", DefaultParameterSetName = "StartComposeDeploymentUpgrade")]
+    [Cmdlet(VerbsLifecycle.Start, "SFComposeDeploymentUpgrade")]
     public partial class StartComposeDeploymentUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -29,32 +29,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ComposeFileContent. The content of the compose file that describes the deployment to create.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string ComposeFileContent { get; set; }
 
         /// <summary>
         /// Gets or sets UpgradeKind. The kind of upgrade out of the following possible values. Possible values include:
         /// 'Invalid', 'Rolling'
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = true, Position = 2)]
         public UpgradeKind? UpgradeKind { get; set; } = Common.UpgradeKind.Rolling;
 
         /// <summary>
         /// Gets or sets RegistryUserName. The user name to connect to container registry.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 3)]
         public string RegistryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets RegistryPassword. The password for supplied username to connect to container registry.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 4)]
         public string RegistryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets PasswordEncrypted. Indicates that supplied container registry password is encrypted.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 5)]
         public bool? PasswordEncrypted { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
         /// 'UnmonitoredManual', 'Monitored'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 6)]
         public UpgradeMode? RollingUpgradeMode { get; set; } = Common.UpgradeMode.UnmonitoredAuto;
 
         /// <summary>
@@ -71,14 +71,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the upgrade domain will proceed regardless of availability loss issues. The timeout is reset at the start of each
         /// upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 7)]
         public long? UpgradeReplicaSetCheckTimeoutInSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets ForceRestart. If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 8)]
         public bool? ForceRestart { get; set; }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Manual indicates that the upgrade will switch to UnmonitoredManual upgrade mode.
         /// . Possible values include: 'Invalid', 'Rollback', 'Manual'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 9)]
         public FailureAction? FailureAction { get; set; }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// before applying health policies. It is first interpreted as a string representing an ISO 8601 duration. If that
         /// fails, then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 10)]
         public string HealthCheckWaitDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 11)]
         public string HealthCheckStableDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 12)]
         public string HealthCheckRetryTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 13)]
         public string UpgradeTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -131,13 +131,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 14)]
         public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 15)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// application is currently deployed on in the cluster.
         /// The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 16)]
         public int? MaxPercentUnhealthyDeployedApplications { get; set; } = 0;
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the service.
         /// The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 17)]
         public int? MaxPercentUnhealthyPartitionsPerService { get; set; } = 0;
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// partition.
         /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 18)]
         public int? MaxPercentUnhealthyReplicasPerPartition { get; set; } = 0;
 
         /// <summary>
@@ -191,14 +191,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// of services of the specific service type.
         /// The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 19)]
         public int? MaxPercentUnhealthyServices { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ServiceTypeHealthPolicyMap. The map with service type health policy per service type name. The map is
         /// empty by default.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "StartComposeDeploymentUpgrade")]
+        [Parameter(Mandatory = false, Position = 20)]
         public IEnumerable<ServiceTypeHealthPolicyMapItem> ServiceTypeHealthPolicyMap { get; set; }
 
         /// <summary>

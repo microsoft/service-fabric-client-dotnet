@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Resumes periodic backup of partition which was previously suspended.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Resume, "SFPartitionBackup", DefaultParameterSetName = "ResumePartitionBackup")]
+    [Cmdlet(VerbsLifecycle.Resume, "SFPartitionBackup")]
     public partial class ResumePartitionBackupCmdlet : CommonCmdletBase
     {
         /// <summary>

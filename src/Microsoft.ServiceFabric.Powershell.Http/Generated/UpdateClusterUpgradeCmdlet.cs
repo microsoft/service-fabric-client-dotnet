@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Update the upgrade parameters of a Service Fabric cluster upgrade.
     /// </summary>
-    [Cmdlet(VerbsData.Update, "SFClusterUpgrade", DefaultParameterSetName = "UpdateClusterUpgrade")]
+    [Cmdlet(VerbsData.Update, "SFClusterUpgrade")]
     public partial class UpdateClusterUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -21,21 +21,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
         /// 'UnmonitoredManual', 'Monitored'
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = true, Position = 0)]
         public UpgradeMode? RollingUpgradeMode { get; set; } = Common.UpgradeMode.UnmonitoredAuto;
 
         /// <summary>
         /// Gets or sets UpgradeKind. The type of upgrade out of the following possible values. Possible values include:
         /// 'Invalid', 'Rolling', 'Rolling_ForceRestart'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 1)]
         public UpgradeType? UpgradeKind { get; set; } = Common.UpgradeType.Rolling;
 
         /// <summary>
         /// Gets or sets ForceRestart. If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 2)]
         public bool? ForceRestart { get; set; }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the upgrade domain will proceed regardless of availability loss issues. The timeout is reset at the start of each
         /// upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 3)]
         public long? ReplicaSetCheckTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Manual indicates that the upgrade will switch to UnmonitoredManual upgrade mode.
         /// . Possible values include: 'Invalid', 'Rollback', 'Manual'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 4)]
         public FailureAction? FailureAction { get; set; }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// before applying health policies. It is first interpreted as a string representing an ISO 8601 duration. If that
         /// fails, then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 5)]
         public string HealthCheckWaitDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 6)]
         public string HealthCheckStableDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 7)]
         public string HealthCheckRetryTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 8)]
         public string UpgradeTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -97,13 +97,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 9)]
         public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 10)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
         /// tolerate that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 11)]
         public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ApplicationTypeHealthPolicyMap.
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 12)]
         public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
@@ -157,14 +157,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 13)]
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets EnableDeltaHealthEvaluation. When true, enables delta health evaluation rather than absolute health
         /// evaluation after completion of each upgrade domain.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 14)]
         public bool? EnableDeltaHealthEvaluation { get; set; }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// state of the nodes at the time of the health evaluation. The check is performed after every upgrade domain upgrade
         /// completion to make sure the global state of the cluster is within tolerated limits. The default value is 10%.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 15)]
         public int? MaxPercentDeltaUnhealthyNodes { get; set; }
 
         /// <summary>
@@ -183,14 +183,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The check is performed after every upgrade domain upgrade completion for all completed upgrade domains to make sure
         /// the state of the upgrade domains is within tolerated limits. The default value is 15%.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 16)]
         public int? MaxPercentUpgradeDomainDeltaUnhealthyNodes { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
         /// evaluate specific applications in the cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "UpdateClusterUpgrade")]
+        [Parameter(Mandatory = false, Position = 17)]
         public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>

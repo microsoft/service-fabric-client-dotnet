@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Restarts a code package deployed on a Service Fabric node in a cluster.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Restart, "SFDeployedCodePackage", DefaultParameterSetName = "RestartDeployedCodePackage")]
+    [Cmdlet(VerbsLifecycle.Restart, "SFDeployedCodePackage")]
     public partial class RestartDeployedCodePackageCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -43,13 +43,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ServiceManifestName. The name of service manifest that specified this code package.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "RestartDeployedCodePackage")]
+        [Parameter(Mandatory = true, Position = 2)]
         public string ServiceManifestName { get; set; }
 
         /// <summary>
         /// Gets or sets CodePackageName. The name of the code package defined in the service manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "RestartDeployedCodePackage")]
+        [Parameter(Mandatory = true, Position = 3)]
         public string CodePackageName { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Note, passing in the exact instance ID (not 0) in the API is safer, because if ensures at most one restart of the
         /// code package.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "RestartDeployedCodePackage")]
+        [Parameter(Mandatory = true, Position = 4)]
         public string CodePackageInstanceId { get; set; }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ServicePackageActivationId
         /// is always an empty string.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "RestartDeployedCodePackage")]
+        [Parameter(Mandatory = false, Position = 5)]
         public string ServicePackageActivationId { get; set; }
 
         /// <summary>

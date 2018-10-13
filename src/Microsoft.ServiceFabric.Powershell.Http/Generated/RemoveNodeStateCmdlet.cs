@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Notifies Service Fabric that the persisted state on a node has been permanently removed or lost.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFNodeState", DefaultParameterSetName = "RemoveNodeState")]
+    [Cmdlet(VerbsCommon.Remove, "SFNodeState")]
     public partial class RemoveNodeStateCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "RemoveNodeState")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

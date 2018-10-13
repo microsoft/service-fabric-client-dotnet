@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Creates a Service Fabric name.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFName", DefaultParameterSetName = "CreateName")]
+    [Cmdlet(VerbsCommon.New, "SFName")]
     public partial class NewNameCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets Name. The Service Fabric name, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CreateName")]
+        [Parameter(Mandatory = true, Position = 0)]
         public FabricName Name { get; set; }
 
         /// <summary>

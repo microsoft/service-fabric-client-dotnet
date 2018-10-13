@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of partitions of a Service Fabric service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartition", DefaultParameterSetName = "GetPartitionInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFPartition")]
     public partial class GetPartitionCmdlet : CommonCmdletBase
     {
         /// <summary>

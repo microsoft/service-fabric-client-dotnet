@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Removes a service replica running on a node.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFReplica", DefaultParameterSetName = "RemoveReplica")]
+    [Cmdlet(VerbsCommon.Remove, "SFReplica")]
     public partial class RemoveReplicaCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -74,7 +74,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "RemoveReplica")]
+        [Parameter(Mandatory = false, Position = 5)]
         public SwitchParameter Force
         {
             get;

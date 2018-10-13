@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Deletes existing image store content.
     /// </summary>
-    [Cmdlet(VerbsCommon.Remove, "SFImageStoreContent", DefaultParameterSetName = "DeleteImageStoreContent")]
+    [Cmdlet(VerbsCommon.Remove, "SFImageStoreContent")]
     public partial class RemoveImageStoreContentCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "DeleteImageStoreContent")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Force
         {
             get;

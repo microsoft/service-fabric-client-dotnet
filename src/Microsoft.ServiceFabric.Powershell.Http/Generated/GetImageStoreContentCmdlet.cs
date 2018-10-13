@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the image store content information.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFImageStoreContent", DefaultParameterSetName = "GetImageStoreContent")]
+    [Cmdlet(VerbsCommon.Get, "SFImageStoreContent")]
     public partial class GetImageStoreContentCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all correlated events for a given event.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFCorrelatedEventList", DefaultParameterSetName = "GetCorrelatedEventList")]
+    [Cmdlet(VerbsCommon.Get, "SFCorrelatedEventList")]
     public partial class GetCorrelatedEventListCmdlet : CommonCmdletBase
     {
         /// <summary>

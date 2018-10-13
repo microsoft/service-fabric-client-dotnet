@@ -13,32 +13,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Creates a Service Fabric application.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFApplication", DefaultParameterSetName = "CreateApplication")]
+    [Cmdlet(VerbsCommon.New, "SFApplication")]
     public partial class NewApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets Name. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = true, Position = 0)]
         public ApplicationName Name { get; set; }
 
         /// <summary>
         /// Gets or sets TypeName. The application type name as defined in the application manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = true, Position = 1)]
         public string TypeName { get; set; }
 
         /// <summary>
         /// Gets or sets TypeVersion. The version of the application type as defined in the application manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = true, Position = 2)]
         public string TypeVersion { get; set; }
 
         /// <summary>
         /// Gets or sets Parameters. List of application parameters with overridden values from their default values specified
         /// in the application manifest.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = false, Position = 3)]
         public IReadOnlyDictionary<string, string> Parameters { get; set; }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more
         /// than the value of the MaximumNodes property.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = false, Position = 4)]
         public long? MinimumNodes { get; set; }
 
         /// <summary>
@@ -55,13 +55,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// application. Note that this does not mean that the services of this application will be placed on all of those
         /// nodes. By default, the value of this property is zero and it means that the services can be placed on any node.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = false, Position = 5)]
         public long? MaximumNodes { get; set; } = 0;
 
         /// <summary>
         /// Gets or sets ApplicationMetrics. List of application capacity metric description.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "CreateApplication")]
+        [Parameter(Mandatory = false, Position = 6)]
         public IEnumerable<ApplicationMetricDescription> ApplicationMetrics { get; set; }
 
         /// <summary>

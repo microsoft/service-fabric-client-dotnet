@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Resumes periodic backup of a Service Fabric service which was previously suspended.
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Resume, "SFServiceBackup", DefaultParameterSetName = "ResumeServiceBackup")]
+    [Cmdlet(VerbsLifecycle.Resume, "SFServiceBackup")]
     public partial class ResumeServiceBackupCmdlet : CommonCmdletBase
     {
         /// <summary>

@@ -14,7 +14,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// Indicates to the Service Fabric cluster that it should attempt to recover a specific partition that is currently
     /// stuck in quorum loss.
     /// </summary>
-    [Cmdlet(VerbsDiagnostic.Repair, "SFPartition", DefaultParameterSetName = "RecoverPartition")]
+    [Cmdlet(VerbsDiagnostic.Repair, "SFPartition")]
     public partial class RepairPartitionCmdlet : CommonCmdletBase
     {
         /// <summary>

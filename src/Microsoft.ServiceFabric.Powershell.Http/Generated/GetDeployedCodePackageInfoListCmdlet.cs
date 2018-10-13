@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of code packages deployed on a Service Fabric node.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDeployedCodePackageInfoList", DefaultParameterSetName = "GetDeployedCodePackageInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFDeployedCodePackageInfoList")]
     public partial class GetDeployedCodePackageInfoListCmdlet : CommonCmdletBase
     {
         /// <summary>

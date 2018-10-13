@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Creates or updates a Service Fabric property.
     /// </summary>
-    [Cmdlet(VerbsCommon.New, "SFProperty", DefaultParameterSetName = "PutProperty")]
+    [Cmdlet(VerbsCommon.New, "SFProperty")]
     public partial class NewPropertyCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets Binary flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = false, Position = 0)]
         public SwitchParameter Binary
         {
             get;
@@ -29,7 +29,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Int64 flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = false, Position = 1)]
         public SwitchParameter Int64
         {
             get;
@@ -39,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Double flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = false, Position = 2)]
         public SwitchParameter Double
         {
             get;
@@ -49,7 +49,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets String flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = false, Position = 3)]
         public SwitchParameter String
         {
             get;
@@ -59,7 +59,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Guid flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = false, Position = 4)]
         public SwitchParameter Guid
         {
             get;
@@ -79,21 +79,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PropertyName. The name of the Service Fabric property.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = true, Position = 6)]
         public string PropertyName { get; set; }
 
         /// <summary>
         /// Gets or sets Data. Array of bytes to be sent as an integer array. Each element of array is a number between 0 and
         /// 255.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = true, Position = 7)]
         public byte[] Data { get; set; }
 
         /// <summary>
         /// Gets or sets CustomTypeId. The property's custom type ID. Using this property, the user is able to tag the type of
         /// the value of the property.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "PutProperty")]
+        [Parameter(Mandatory = false, Position = 8)]
         public string CustomTypeId { get; set; }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 propertyValue = new BinaryPropertyValue(
                     data: this.Data);
             }
-            
+
             /*else if (this.Int64.IsPresent)
             {
                 propertyValue = new Int64PropertyValue(

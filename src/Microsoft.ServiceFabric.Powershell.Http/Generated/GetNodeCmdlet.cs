@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of nodes in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFNode", DefaultParameterSetName = "GetNodeInfoList")]
+    [Cmdlet(VerbsCommon.Get, "SFNode")]
     public partial class GetNodeCmdlet : CommonCmdletBase
     {
         /// <summary>

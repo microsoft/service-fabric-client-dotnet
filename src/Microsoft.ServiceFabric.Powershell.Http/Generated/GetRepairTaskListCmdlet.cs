@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets a list of repair tasks matching the given filters.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFRepairTaskList", DefaultParameterSetName = "GetRepairTaskList")]
+    [Cmdlet(VerbsCommon.Get, "SFRepairTaskList")]
     public partial class GetRepairTaskListCmdlet : CommonCmdletBase
     {
         /// <summary>

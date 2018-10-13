@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the progress of a PartitionRestart operation started using StartPartitionRestart.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionRestartProgress", DefaultParameterSetName = "GetPartitionRestartProgress")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionRestartProgress")]
     public partial class GetPartitionRestartProgressCmdlet : CommonCmdletBase
     {
         /// <summary>
