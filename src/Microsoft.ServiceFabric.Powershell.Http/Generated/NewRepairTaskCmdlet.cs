@@ -20,11 +20,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Node flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter Node
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Node { get; set; }
 
         /// <summary>
         /// Gets or sets TaskId. The ID of the repair task.

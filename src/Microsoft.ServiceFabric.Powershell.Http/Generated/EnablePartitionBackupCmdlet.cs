@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "EnablePartitionBackup")]
-        public PartitionId PartitionId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets BackupPolicyName. Name of the backup policy to be used for enabling periodic backups.
@@ -37,12 +33,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "EnablePartitionBackup")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

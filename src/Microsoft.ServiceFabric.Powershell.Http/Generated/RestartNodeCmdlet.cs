@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "RestartNode")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets NodeInstanceId. The instance ID of the target node. If instance ID is specified the node is restarted
@@ -46,12 +42,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "RestartNode")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

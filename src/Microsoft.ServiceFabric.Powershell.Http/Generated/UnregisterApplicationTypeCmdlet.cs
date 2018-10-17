@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationTypeName. The name of the application type.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "UnprovisionApplicationType")]
-        public string ApplicationTypeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string ApplicationTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeVersion. The version of the application type as defined in the application manifest.
@@ -46,23 +42,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "UnprovisionApplicationType")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
         [Parameter(Mandatory = false, Position = 4)]
-        public SwitchParameter Force
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Force { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

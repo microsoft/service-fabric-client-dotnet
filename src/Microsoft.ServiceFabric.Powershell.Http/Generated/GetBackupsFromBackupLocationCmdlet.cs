@@ -20,51 +20,31 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets AzureBlobStore flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter AzureBlobStore
-        {
-            get;
-            set;
-        }
+        public SwitchParameter AzureBlobStore { get; set; }
 
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter FileShare
-        {
-            get;
-            set;
-        }
+        public SwitchParameter FileShare { get; set; }
 
         /// <summary>
         /// Gets or sets Application flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter Application
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Application { get; set; }
 
         /// <summary>
         /// Gets or sets Service flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
-        public SwitchParameter Service
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Service { get; set; }
 
         /// <summary>
         /// Gets or sets Partition flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 4)]
-        public SwitchParameter Partition
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Partition { get; set; }
 
         /// <summary>
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
@@ -158,12 +138,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 19)]
+        public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets MaxResults. The maximum number of results to be returned as part of the paged queries. This parameter
@@ -172,12 +148,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "GetBackupsFromBackupLocation")]
-        public long? MaxResults
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 20)]
+        public long? MaxResults { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

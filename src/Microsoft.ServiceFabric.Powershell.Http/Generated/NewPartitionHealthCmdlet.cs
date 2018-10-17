@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "ReportPartitionHealth")]
-        public PartitionId PartitionId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets SourceId. The source name that identifies the client/watchdog/system component that generated the
@@ -117,24 +113,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// store as well as health report processing.
         /// By default, reports are not sent immediately.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "ReportPartitionHealth")]
-        public bool? Immediate
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 8)]
+        public bool? Immediate { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "ReportPartitionHealth")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 9)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

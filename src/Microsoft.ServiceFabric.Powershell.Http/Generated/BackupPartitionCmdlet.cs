@@ -20,31 +20,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets AzureBlobStore flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter AzureBlobStore
-        {
-            get;
-            set;
-        }
+        public SwitchParameter AzureBlobStore { get; set; }
 
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter FileShare
-        {
-            get;
-            set;
-        }
+        public SwitchParameter FileShare { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "BackupPartition")]
-        public PartitionId PartitionId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
@@ -101,24 +89,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// recommended to invoke this operation again with a greater timeout value. The default value for the same is 10
         /// minutes.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "BackupPartition")]
-        public int? BackupTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 11)]
+        public int? BackupTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "BackupPartition")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 12)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

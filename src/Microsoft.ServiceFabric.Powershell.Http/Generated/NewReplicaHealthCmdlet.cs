@@ -19,33 +19,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "ReportReplicaHealth")]
-        public PartitionId PartitionId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaId. The identifier of the replica.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "ReportReplicaHealth")]
-        public ReplicaId ReplicaId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public ReplicaId ReplicaId { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaHealthReportServiceKind. The kind of service replica (Stateless or Stateful) for which the
         /// health is being reported. Following are the possible values. Possible values include: 'Stateless', 'Stateful'
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "ReportReplicaHealth")]
-        public ReplicaHealthReportServiceKind? ReplicaHealthReportServiceKind
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        public ReplicaHealthReportServiceKind? ReplicaHealthReportServiceKind { get; set; }
 
         /// <summary>
         /// Gets or sets SourceId. The source name that identifies the client/watchdog/system component that generated the
@@ -138,24 +126,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// store as well as health report processing.
         /// By default, reports are not sent immediately.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "ReportReplicaHealth")]
-        public bool? Immediate
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 10)]
+        public bool? Immediate { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "ReportReplicaHealth")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 11)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

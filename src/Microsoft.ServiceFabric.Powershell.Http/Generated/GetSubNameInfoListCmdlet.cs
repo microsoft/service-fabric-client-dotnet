@@ -19,34 +19,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NameId. The Service Fabric name, without the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetSubNameInfoList")]
-        public string NameId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string NameId { get; set; }
 
         /// <summary>
         /// Gets or sets Recursive. Allows specifying that the search performed should be recursive.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetSubNameInfoList")]
-        public bool? Recursive
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public bool? Recursive { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetSubNameInfoList")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

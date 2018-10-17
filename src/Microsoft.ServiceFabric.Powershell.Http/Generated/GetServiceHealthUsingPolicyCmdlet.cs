@@ -23,12 +23,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public string ServiceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets EventsHealthStateFilter. Allows filtering the collection of HealthEvent objects returned based on
@@ -47,12 +43,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public int? EventsHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public int? EventsHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionsHealthStateFilter. Allows filtering of the partitions health state objects returned in the
@@ -73,12 +65,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public int? PartitionsHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public int? PartitionsHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
@@ -152,24 +140,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// query result. False by default.
         /// The statistics show the number of children entities in health state Ok, Warning, and Error.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public bool? ExcludeHealthStatistics
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 9)]
+        public bool? ExcludeHealthStatistics { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "GetServiceHealthUsingPolicy")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 10)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -35,11 +35,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// confirmation prompt.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter Force
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Force { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

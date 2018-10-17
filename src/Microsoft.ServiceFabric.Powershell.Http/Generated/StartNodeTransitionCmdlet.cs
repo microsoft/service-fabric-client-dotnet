@@ -19,69 +19,45 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "StartNodeTransition")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets OperationId. A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "StartNodeTransition")]
-        public Guid? OperationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 1)]
+        public Guid? OperationId { get; set; }
 
         /// <summary>
         /// Gets or sets NodeTransitionType. Indicates the type of transition to perform.  NodeTransitionType.Start will start
         /// a stopped node.  NodeTransitionType.Stop will stop a node that is up. Possible values include: 'Invalid', 'Start',
         /// 'Stop'
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "StartNodeTransition")]
-        public NodeTransitionType? NodeTransitionType
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        public NodeTransitionType? NodeTransitionType { get; set; }
 
         /// <summary>
         /// Gets or sets NodeInstanceId. The node instance ID of the target node.  This can be determined through GetNodeInfo
         /// API.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 3, ParameterSetName = "StartNodeTransition")]
-        public string NodeInstanceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 3)]
+        public string NodeInstanceId { get; set; }
 
         /// <summary>
         /// Gets or sets StopDurationInSeconds. The duration, in seconds, to keep the node stopped.  The minimum value is 600,
         /// the maximum is 14400.  After this time expires, the node will automatically come back up.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 4, ParameterSetName = "StartNodeTransition")]
-        public int? StopDurationInSeconds
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 4)]
+        public int? StopDurationInSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartNodeTransition")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 5)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -25,12 +25,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - 4 - select PartitionRestart.
         /// - 8 - select NodeTransition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetFaultOperationList")]
-        public int? TypeFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public int? TypeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets StateFilter. Used to filter on OperationState's for user-induced operations.
@@ -43,24 +39,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - 32 - select Cancelled
         /// - 64 - select ForceCancelled
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetFaultOperationList")]
-        public int? StateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public int? StateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetFaultOperationList")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -23,67 +23,43 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "StartQuorumLoss")]
-        public string ServiceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "StartQuorumLoss")]
-        public PartitionId PartitionId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets OperationId. A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "StartQuorumLoss")]
-        public Guid? OperationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 2)]
+        public Guid? OperationId { get; set; }
 
         /// <summary>
         /// Gets or sets QuorumLossMode. This enum is passed to the StartQuorumLoss API to indicate what type of quorum loss to
         /// induce. Possible values include: 'Invalid', 'QuorumReplicas', 'AllReplicas'
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 3, ParameterSetName = "StartQuorumLoss")]
-        public QuorumLossMode? QuorumLossMode
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 3)]
+        public QuorumLossMode? QuorumLossMode { get; set; }
 
         /// <summary>
         /// Gets or sets QuorumLossDuration. The amount of time for which the partition will be kept in quorum loss.  This must
         /// be specified in seconds.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 4, ParameterSetName = "StartQuorumLoss")]
-        public int? QuorumLossDuration
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 4)]
+        public int? QuorumLossDuration { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "StartQuorumLoss")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 5)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NetworkResourceName. The identity of the network.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
-        public string NetworkResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string NetworkResourceName { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

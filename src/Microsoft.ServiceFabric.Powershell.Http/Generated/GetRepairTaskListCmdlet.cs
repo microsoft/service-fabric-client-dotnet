@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets TaskIdFilter. The repair task ID prefix to be matched.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "GetRepairTaskList")]
-        public string TaskIdFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 0)]
+        public string TaskIdFilter { get; set; }
 
         /// <summary>
         /// Gets or sets StateFilter. A bitwise-OR of the following values, specifying which task states should be included in
@@ -38,22 +34,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - 32 - Restoring
         /// - 64 - Completed
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetRepairTaskList")]
-        public int? StateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public int? StateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExecutorFilter. The name of the repair executor whose claimed tasks should be included in the list.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetRepairTaskList")]
-        public string ExecutorFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public string ExecutorFilter { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

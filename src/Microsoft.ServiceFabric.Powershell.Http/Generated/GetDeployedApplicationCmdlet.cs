@@ -19,13 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetDeployedApplicationInfoList")]
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetDeployedApplicationInfo")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationId. The identity of the application. This is typically the full name of the application
@@ -34,25 +29,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetDeployedApplicationInfo")]
-        public string ApplicationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetDeployedApplicationInfoList")]
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetDeployedApplicationInfo")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets IncludeHealthState. Include the health state of an entity.
@@ -61,13 +47,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// merged.
         /// As a result, the query is more expensive and may take a longer time.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetDeployedApplicationInfoList")]
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetDeployedApplicationInfo")]
-        public bool? IncludeHealthState
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public bool? IncludeHealthState { get; set; }
 
         /// <summary>
         /// Gets or sets MaxResults. The maximum number of results to be returned as part of the paged queries. This parameter
@@ -76,12 +57,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetDeployedApplicationInfoList")]
-        public long? MaxResults
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public long? MaxResults { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

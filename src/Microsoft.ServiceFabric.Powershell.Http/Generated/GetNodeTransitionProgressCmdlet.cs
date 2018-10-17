@@ -19,35 +19,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetNodeTransitionProgress")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets OperationId. A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "GetNodeTransitionProgress")]
-        public Guid? OperationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 1)]
+        public Guid? OperationId { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetNodeTransitionProgress")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

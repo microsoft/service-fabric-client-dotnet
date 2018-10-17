@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetNodeHealthUsingPolicy")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets EventsHealthStateFilter. Allows filtering the collection of HealthEvent objects returned based on
@@ -43,12 +39,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetNodeHealthUsingPolicy")]
-        public int? EventsHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public int? EventsHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
@@ -115,12 +107,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetNodeHealthUsingPolicy")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 6)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

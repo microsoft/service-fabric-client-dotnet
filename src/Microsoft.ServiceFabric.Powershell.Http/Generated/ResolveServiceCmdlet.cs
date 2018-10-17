@@ -23,12 +23,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "ResolveService")]
-        public string ServiceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionKeyType. Key type for the partition. This parameter is required if the partition scheme for
@@ -40,12 +36,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Named (3) - Indicates that the PartitionKeyValue parameter is a name of the partition. This is valid for the
         /// partitions with partitioning scheme as Named. The value is 3.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "ResolveService")]
-        public int? PartitionKeyType
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public int? PartitionKeyType { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionKeyValue. Partition key. This is required if the partition scheme for the service is
@@ -54,35 +46,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if your service is using ranged partitions from 0 to 10, then they PartitionKeyValue would be an
         /// integer in that range. Query service description to see the range or name.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "ResolveService")]
-        public string PartitionKeyValue
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public string PartitionKeyValue { get; set; }
 
         /// <summary>
         /// Gets or sets PreviousRspVersion. The value in the Version field of the response that was received previously. This
         /// is required if the user knows that the result that was gotten previously is stale.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "ResolveService")]
-        public string PreviousRspVersion
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public string PreviousRspVersion { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "ResolveService")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -20,61 +20,37 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Binary flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter Binary
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Binary { get; set; }
 
         /// <summary>
         /// Gets or sets Int64 flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter Int64
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Int64 { get; set; }
 
         /// <summary>
         /// Gets or sets Double flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter Double
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Double { get; set; }
 
         /// <summary>
         /// Gets or sets String flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
-        public SwitchParameter String
-        {
-            get;
-            set;
-        }
+        public SwitchParameter String { get; set; }
 
         /// <summary>
         /// Gets or sets Guid flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 4)]
-        public SwitchParameter Guid
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Guid { get; set; }
 
         /// <summary>
         /// Gets or sets NameId. The Service Fabric name, without the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 5, ParameterSetName = "PutProperty")]
-        public string NameId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 5)]
+        public string NameId { get; set; }
 
         /// <summary>
         /// Gets or sets PropertyName. The name of the Service Fabric property.
@@ -101,12 +77,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "PutProperty")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 9)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

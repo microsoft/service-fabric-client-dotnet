@@ -19,24 +19,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ContentPath. Relative path to file or folder in the image store from its root.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetImageStoreUploadSessionByPath")]
-        public string ContentPath
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string ContentPath { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetImageStoreUploadSessionByPath")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -19,23 +19,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Delete")]
-        public string ApplicationResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter Force
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Force { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

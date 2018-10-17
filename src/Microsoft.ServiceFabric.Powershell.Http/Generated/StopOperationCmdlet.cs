@@ -20,35 +20,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets OperationId. A GUID that identifies a call of this API.  This is passed into the corresponding
         /// GetProgress API
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "CancelOperation")]
-        public Guid? OperationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public Guid? OperationId { get; set; }
 
         /// <summary>
         /// Gets or sets Force. Indicates whether to gracefully roll back and clean up internal system state modified by
         /// executing the user-induced operation.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "CancelOperation")]
-        public bool? Force
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public bool? Force { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "CancelOperation")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

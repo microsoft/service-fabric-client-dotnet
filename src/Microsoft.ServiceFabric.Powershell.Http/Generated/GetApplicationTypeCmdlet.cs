@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationTypeName. The name of the application type.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetApplicationTypeInfoListByName")]
-        public string ApplicationTypeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string ApplicationTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeDefinitionKindFilter. Used to filter on ApplicationTypeDefinitionKind which is the
@@ -35,24 +31,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ServiceFabricApplicationPackage. The value is 1.
         /// - Compose - Filter that matches input with ApplicationTypeDefinitionKind value Compose. The value is 2.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetApplicationTypeInfoList")]
-        public int? ApplicationTypeDefinitionKindFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public int? ApplicationTypeDefinitionKindFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeApplicationParameters. The flag that specifies whether application parameters will be excluded
         /// from the result.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetApplicationTypeInfoList")]
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetApplicationTypeInfoListByName")]
-        public bool? ExcludeApplicationParameters
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public bool? ExcludeApplicationParameters { get; set; }
 
         /// <summary>
         /// Gets or sets MaxResults. The maximum number of results to be returned as part of the paged queries. This parameter
@@ -61,36 +48,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetApplicationTypeInfoList")]
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetApplicationTypeInfoListByName")]
-        public long? MaxResults
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public long? MaxResults { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetApplicationTypeInfoList")]
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetApplicationTypeInfoListByName")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeVersion. The version of the application type.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetApplicationTypeInfoListByName")]
-        public string ApplicationTypeVersion
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 5)]
+        public string ApplicationTypeVersion { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

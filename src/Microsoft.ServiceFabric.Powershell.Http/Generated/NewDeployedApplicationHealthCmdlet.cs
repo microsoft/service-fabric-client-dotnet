@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "ReportDeployedApplicationHealth")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationId. The identity of the application. This is typically the full name of the application
@@ -33,12 +29,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "ReportDeployedApplicationHealth")]
-        public string ApplicationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets SourceId. The source name that identifies the client/watchdog/system component that generated the
@@ -131,24 +123,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// store as well as health report processing.
         /// By default, reports are not sent immediately.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "ReportDeployedApplicationHealth")]
-        public bool? Immediate
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 9)]
+        public bool? Immediate { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "ReportDeployedApplicationHealth")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 10)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

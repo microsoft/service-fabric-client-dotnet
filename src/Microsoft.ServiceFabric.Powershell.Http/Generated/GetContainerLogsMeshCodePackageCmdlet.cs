@@ -19,53 +19,33 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "GetContainerLogs")]
-        public string ApplicationResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceResourceName. The identity of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "GetContainerLogs")]
-        public string ServiceResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 1)]
+        public string ServiceResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaName. Service Fabric replica name.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "GetContainerLogs")]
-        public string ReplicaName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 2)]
+        public string ReplicaName { get; set; }
 
         /// <summary>
         /// Gets or sets CodePackageName. The name of code package of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "GetContainerLogs")]
-        public string CodePackageName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 3)]
+        public string CodePackageName { get; set; }
 
         /// <summary>
         /// Gets or sets Tail. Number of lines to show from the end of the logs. Default is 100. 'all' to show the complete
         /// logs.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetContainerLogs")]
-        public string Tail
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public string Tail { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

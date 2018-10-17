@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetDeployedApplicationHealth")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationId. The identity of the application. This is typically the full name of the application
@@ -33,12 +29,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetDeployedApplicationHealth")]
-        public string ApplicationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets EventsHealthStateFilter. Allows filtering the collection of HealthEvent objects returned based on
@@ -57,12 +49,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetDeployedApplicationHealth")]
-        public int? EventsHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public int? EventsHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets DeployedServicePackagesHealthStateFilter. Allows filtering of the deployed service package health
@@ -84,36 +72,24 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetDeployedApplicationHealth")]
-        public int? DeployedServicePackagesHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public int? DeployedServicePackagesHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeHealthStatistics. Indicates whether the health statistics should be returned as part of the
         /// query result. False by default.
         /// The statistics show the number of children entities in health state Ok, Warning, and Error.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetDeployedApplicationHealth")]
-        public bool? ExcludeHealthStatistics
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public bool? ExcludeHealthStatistics { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetDeployedApplicationHealth")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 5)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

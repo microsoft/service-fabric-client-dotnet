@@ -19,23 +19,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "List")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
-        public string ApplicationResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceResourceName. The identity of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Get")]
-        public string ServiceResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 1)]
+        public string ServiceResourceName { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

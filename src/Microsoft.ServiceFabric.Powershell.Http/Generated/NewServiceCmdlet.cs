@@ -20,51 +20,31 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Named flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter Named
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Named { get; set; }
 
         /// <summary>
         /// Gets or sets Singleton flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter Singleton
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Singleton { get; set; }
 
         /// <summary>
         /// Gets or sets UniformInt64Range flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter UniformInt64Range
-        {
-            get;
-            set;
-        }
+        public SwitchParameter UniformInt64Range { get; set; }
 
         /// <summary>
         /// Gets or sets Stateful flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
-        public SwitchParameter Stateful
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Stateful { get; set; }
 
         /// <summary>
         /// Gets or sets Stateless flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 4)]
-        public SwitchParameter Stateless
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Stateless { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationId. The identity of the application. This is typically the full name of the application
@@ -73,12 +53,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 5, ParameterSetName = "CreateService")]
-        public string ApplicationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 5)]
+        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
@@ -262,12 +238,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 31, ParameterSetName = "CreateService")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 31)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

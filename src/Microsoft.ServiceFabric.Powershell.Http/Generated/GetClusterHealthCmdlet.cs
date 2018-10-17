@@ -36,12 +36,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "GetClusterHealth")]
-        public int? NodesHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 0)]
+        public int? NodesHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationsHealthStateFilter. Allows filtering of the application health state objects returned in
@@ -63,12 +59,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetClusterHealth")]
-        public int? ApplicationsHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public int? ApplicationsHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets EventsHealthStateFilter. Allows filtering the collection of HealthEvent objects returned based on
@@ -87,24 +79,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Error - Filter that matches input with HealthState value Error. The value is 8.
         /// - All - Filter that matches input with any HealthState value. The value is 65535.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetClusterHealth")]
-        public int? EventsHealthStateFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public int? EventsHealthStateFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeHealthStatistics. Indicates whether the health statistics should be returned as part of the
         /// query result. False by default.
         /// The statistics show the number of children entities in health state Ok, Warning, and Error.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetClusterHealth")]
-        public bool? ExcludeHealthStatistics
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public bool? ExcludeHealthStatistics { get; set; }
 
         /// <summary>
         /// Gets or sets IncludeSystemApplicationHealthStatistics. Indicates whether the health statistics should include the
@@ -114,24 +98,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Otherwise, the query result includes health statistics only for user applications.
         /// The health statistics must be included in the query result for this parameter to be applied.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetClusterHealth")]
-        public bool? IncludeSystemApplicationHealthStatistics
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public bool? IncludeSystemApplicationHealthStatistics { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetClusterHealth")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 5)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

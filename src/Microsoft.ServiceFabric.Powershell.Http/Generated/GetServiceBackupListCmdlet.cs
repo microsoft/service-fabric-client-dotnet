@@ -23,59 +23,39 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetServiceBackupList")]
-        public string ServiceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public string ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetServiceBackupList")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 1)]
+        public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets Latest. Specifies whether to get only the most recent backup available for a partition for the
         /// specified time range.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetServiceBackupList")]
-        public bool? Latest
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 2)]
+        public bool? Latest { get; set; }
 
         /// <summary>
         /// Gets or sets StartDateTimeFilter. Specify the start date time from which to enumerate backups, in datetime format.
         /// The date time must be specified in ISO8601 format. This is an optional parameter. If not specified, all backups
         /// from the beginning are enumerated.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceBackupList")]
-        public DateTime? StartDateTimeFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 3)]
+        public DateTime? StartDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets EndDateTimeFilter. Specify the end date time till which to enumerate backups, in datetime format. The
         /// date time must be specified in ISO8601 format. This is an optional parameter. If not specified, enumeration is done
         /// till the most recent backup.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetServiceBackupList")]
-        public DateTime? EndDateTimeFilter
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 4)]
+        public DateTime? EndDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets MaxResults. The maximum number of results to be returned as part of the paged queries. This parameter
@@ -84,12 +64,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetServiceBackupList")]
-        public long? MaxResults
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 5)]
+        public long? MaxResults { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

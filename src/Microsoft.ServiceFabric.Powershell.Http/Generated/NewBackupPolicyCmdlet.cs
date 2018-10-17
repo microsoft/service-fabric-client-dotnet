@@ -20,51 +20,31 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets FrequencyBased flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter FrequencyBased
-        {
-            get;
-            set;
-        }
+        public SwitchParameter FrequencyBased { get; set; }
 
         /// <summary>
         /// Gets or sets TimeBased flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter TimeBased
-        {
-            get;
-            set;
-        }
+        public SwitchParameter TimeBased { get; set; }
 
         /// <summary>
         /// Gets or sets AzureBlobStore flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter AzureBlobStore
-        {
-            get;
-            set;
-        }
+        public SwitchParameter AzureBlobStore { get; set; }
 
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
-        public SwitchParameter FileShare
-        {
-            get;
-            set;
-        }
+        public SwitchParameter FileShare { get; set; }
 
         /// <summary>
         /// Gets or sets Basic flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 4)]
-        public SwitchParameter Basic
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Basic { get; set; }
 
         /// <summary>
         /// Gets or sets Name. The unique name identifying this backup policy.
@@ -186,12 +166,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "CreateBackupPolicy")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 22)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

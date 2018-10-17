@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets VolumeResourceName. The identity of the volume.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
-        public string VolumeResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string VolumeResourceName { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

@@ -20,51 +20,31 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets FrequencyBased flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter FrequencyBased
-        {
-            get;
-            set;
-        }
+        public SwitchParameter FrequencyBased { get; set; }
 
         /// <summary>
         /// Gets or sets TimeBased flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter TimeBased
-        {
-            get;
-            set;
-        }
+        public SwitchParameter TimeBased { get; set; }
 
         /// <summary>
         /// Gets or sets AzureBlobStore flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter AzureBlobStore
-        {
-            get;
-            set;
-        }
+        public SwitchParameter AzureBlobStore { get; set; }
 
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
-        public SwitchParameter FileShare
-        {
-            get;
-            set;
-        }
+        public SwitchParameter FileShare { get; set; }
 
         /// <summary>
         /// Gets or sets Basic flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 4)]
-        public SwitchParameter Basic
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Basic { get; set; }
 
         /// <summary>
         /// Gets or sets Name. The unique name identifying this backup policy.
@@ -139,12 +119,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets BackupPolicyName. The name of the backup policy.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 15, ParameterSetName = "UpdateBackupPolicy")]
-        public string BackupPolicyName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 15)]
+        public string BackupPolicyName { get; set; }
 
         /// <summary>
         /// Gets or sets RunDays. List of days of a week when to trigger the periodic backup. This is valid only when the
@@ -196,12 +172,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "UpdateBackupPolicy")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 23)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

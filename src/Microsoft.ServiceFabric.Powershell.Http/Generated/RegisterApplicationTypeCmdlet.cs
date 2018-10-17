@@ -21,21 +21,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets ImageStorePath flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter ImageStorePath
-        {
-            get;
-            set;
-        }
+        public SwitchParameter ImageStorePath { get; set; }
 
         /// <summary>
         /// Gets or sets ExternalStore flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter ExternalStore
-        {
-            get;
-            set;
-        }
+        public SwitchParameter ExternalStore { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeBuildPath. The relative path for the application package in the image store specified
@@ -89,12 +81,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "ProvisionApplicationType")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 8)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

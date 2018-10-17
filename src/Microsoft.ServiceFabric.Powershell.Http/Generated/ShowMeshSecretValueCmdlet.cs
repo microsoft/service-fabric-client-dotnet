@@ -19,23 +19,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets SecretResourceName. The name of the secret resource.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Show")]
-        public string SecretResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string SecretResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets SecretValueResourceName. The name of the secret resource value which is typically the version
         /// identifier for the value.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Show")]
-        public string SecretValueResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 1)]
+        public string SecretValueResourceName { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

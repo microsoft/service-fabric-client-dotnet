@@ -19,34 +19,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets SecretResourceName. The name of the secret resource.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Delete")]
-        public string SecretResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string SecretResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets SecretValueResourceName. The name of the secret resource value which is typically the version
         /// identifier for the value.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Delete")]
-        public string SecretValueResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 1)]
+        public string SecretValueResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets the force flag. If provided, then the destructive action will be performed without asking for
         /// confirmation prompt.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter Force
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Force { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

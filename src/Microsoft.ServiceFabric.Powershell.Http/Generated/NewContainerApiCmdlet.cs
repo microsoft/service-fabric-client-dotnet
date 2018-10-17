@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "InvokeContainerApi")]
-        public NodeName NodeName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationId. The identity of the application. This is typically the full name of the application
@@ -33,45 +29,29 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "InvokeContainerApi")]
-        public string ApplicationId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceManifestName. The name of a service manifest registered as part of an application type in a
         /// Service Fabric cluster.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "InvokeContainerApi")]
-        public string ServiceManifestName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        public string ServiceManifestName { get; set; }
 
         /// <summary>
         /// Gets or sets CodePackageName. The name of code package specified in service manifest registered as part of an
         /// application type in a Service Fabric cluster.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 3, ParameterSetName = "InvokeContainerApi")]
-        public string CodePackageName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 3)]
+        public string CodePackageName { get; set; }
 
         /// <summary>
         /// Gets or sets CodePackageInstanceId. ID that uniquely identifies a code package instance deployed on a service
         /// fabric node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 4, ParameterSetName = "InvokeContainerApi")]
-        public string CodePackageInstanceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 4)]
+        public string CodePackageInstanceId { get; set; }
 
         /// <summary>
         /// Gets or sets UriPath. URI path of container REST API
@@ -102,12 +82,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "InvokeContainerApi")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 9)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

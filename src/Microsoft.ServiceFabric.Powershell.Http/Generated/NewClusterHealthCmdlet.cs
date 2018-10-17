@@ -107,24 +107,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// store as well as health report processing.
         /// By default, reports are not sent immediately.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7, ParameterSetName = "ReportClusterHealth")]
-        public bool? Immediate
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 7)]
+        public bool? Immediate { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8, ParameterSetName = "ReportClusterHealth")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 8)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

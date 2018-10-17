@@ -19,12 +19,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets GatewayResourceName. The identity of the gateway.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
-        public string GatewayResourceName
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, Position = 0)]
+        public string GatewayResourceName { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()

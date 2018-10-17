@@ -20,21 +20,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Stateful flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 0)]
-        public SwitchParameter Stateful
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Stateful { get; set; }
 
         /// <summary>
         /// Gets or sets Stateless flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
-        public SwitchParameter Stateless
-        {
-            get;
-            set;
-        }
+        public SwitchParameter Stateless { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceId. The identity of the service. This ID is typically the full name of the service without the
@@ -43,12 +35,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "UpdateService")]
-        public string ServiceId
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        public string ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets Flags. Flags indicating whether other properties are set. Each of the associated properties
@@ -160,12 +148,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "UpdateService")]
-        public long? ServerTimeout
-        {
-            get;
-            set;
-        }
+        [Parameter(Mandatory = false, Position = 16)]
+        public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
