@@ -189,7 +189,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ApplicationHealthPolicyConverter.Serialize(new JsonTextWriter(sw), applicationHealthPolicy);
+                if (applicationHealthPolicy != default(ApplicationHealthPolicy))
+                {
+                    ApplicationHealthPolicyConverter.Serialize(new JsonTextWriter(sw), applicationHealthPolicy);
+                }
+
                 content = sw.ToString();
             }
 

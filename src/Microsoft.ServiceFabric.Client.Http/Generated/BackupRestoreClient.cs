@@ -302,7 +302,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                if (disableBackupDescription != default(DisableBackupDescription))
+                {
+                    DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                }
+
                 content = sw.ToString();
             }
 
@@ -519,7 +523,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                if (disableBackupDescription != default(DisableBackupDescription))
+                {
+                    DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                }
+
                 content = sw.ToString();
             }
 
@@ -736,7 +744,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                if (disableBackupDescription != default(DisableBackupDescription))
+                {
+                    DisableBackupDescriptionConverter.Serialize(new JsonTextWriter(sw), disableBackupDescription);
+                }
+
                 content = sw.ToString();
             }
 
@@ -904,7 +916,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                BackupPartitionDescriptionConverter.Serialize(new JsonTextWriter(sw), backupPartitionDescription);
+                if (backupPartitionDescription != default(BackupPartitionDescription))
+                {
+                    BackupPartitionDescriptionConverter.Serialize(new JsonTextWriter(sw), backupPartitionDescription);
+                }
+
                 content = sw.ToString();
             }
 

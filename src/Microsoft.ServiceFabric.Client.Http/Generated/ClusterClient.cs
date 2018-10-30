@@ -126,7 +126,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ClusterHealthPoliciesConverter.Serialize(new JsonTextWriter(sw), clusterHealthPolicies);
+                if (clusterHealthPolicies != default(ClusterHealthPolicies))
+                {
+                    ClusterHealthPoliciesConverter.Serialize(new JsonTextWriter(sw), clusterHealthPolicies);
+                }
+
                 content = sw.ToString();
             }
 
@@ -190,7 +194,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ClusterHealthChunkQueryDescriptionConverter.Serialize(new JsonTextWriter(sw), clusterHealthChunkQueryDescription);
+                if (clusterHealthChunkQueryDescription != default(ClusterHealthChunkQueryDescription))
+                {
+                    ClusterHealthChunkQueryDescriptionConverter.Serialize(new JsonTextWriter(sw), clusterHealthChunkQueryDescription);
+                }
+
                 content = sw.ToString();
             }
 

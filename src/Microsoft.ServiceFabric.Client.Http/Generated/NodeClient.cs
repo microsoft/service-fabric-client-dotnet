@@ -153,7 +153,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ClusterHealthPolicyConverter.Serialize(new JsonTextWriter(sw), clusterHealthPolicy);
+                if (clusterHealthPolicy != default(ClusterHealthPolicy))
+                {
+                    ClusterHealthPolicyConverter.Serialize(new JsonTextWriter(sw), clusterHealthPolicy);
+                }
+
                 content = sw.ToString();
             }
 
