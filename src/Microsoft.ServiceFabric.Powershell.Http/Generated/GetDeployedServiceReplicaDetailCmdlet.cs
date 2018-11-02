@@ -13,25 +13,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the details of replica deployed on a Service Fabric node.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFDeployedServiceReplicaDetail")]
+    [Cmdlet(VerbsCommon.Get, "SFDeployedServiceReplicaDetail", DefaultParameterSetName = "GetDeployedServiceReplicaDetailInfo")]
     public partial class GetDeployedServiceReplicaDetailCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetDeployedServiceReplicaDetailInfo")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetDeployedServiceReplicaDetailInfoByPartitionId")]
         public NodeName NodeName { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetDeployedServiceReplicaDetailInfo")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetDeployedServiceReplicaDetailInfoByPartitionId")]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaId. The identifier of the replica.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "GetDeployedServiceReplicaDetailInfo")]
         public ReplicaId ReplicaId { get; set; }
 
         /// <summary>
@@ -39,7 +41,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetDeployedServiceReplicaDetailInfo")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetDeployedServiceReplicaDetailInfoByPartitionId")]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

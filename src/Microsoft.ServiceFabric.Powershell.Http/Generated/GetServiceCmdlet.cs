@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the information about all services belonging to the application specified by the application ID.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFService")]
+    [Cmdlet(VerbsCommon.Get, "SFService", DefaultParameterSetName = "GetServiceInfoList")]
     public partial class GetServiceCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -23,7 +23,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetServiceInfoList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetServiceInfo")]
         public string ApplicationId { get; set; }
 
         /// <summary>
@@ -33,13 +34,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetServiceInfo")]
         public string ServiceId { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceTypeName. The service type name used to filter the services to query for.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetServiceInfoList")]
         public string ServiceTypeName { get; set; }
 
         /// <summary>
@@ -47,7 +48,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceInfoList")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceInfo")]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

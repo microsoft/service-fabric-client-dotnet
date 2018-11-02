@@ -13,19 +13,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the service resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshService")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshService", DefaultParameterSetName = "List")]
     public partial class GetMeshServiceCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceResourceName. The identity of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Get")]
         public string ServiceResourceName { get; set; }
 
         /// <inheritdoc/>

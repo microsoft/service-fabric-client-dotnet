@@ -13,19 +13,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Services-related events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFServicesEvent")]
+    [Cmdlet(VerbsCommon.Get, "SFServicesEvent", DefaultParameterSetName = "GetServicesEventList")]
     public partial class GetServicesEventCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets StartTimeUtc. The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetServicesEventList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetServiceEventList")]
         public string StartTimeUtc { get; set; }
 
         /// <summary>
         /// Gets or sets EndTimeUtc. The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetServicesEventList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetServiceEventList")]
         public string EndTimeUtc { get; set; }
 
         /// <summary>
@@ -35,7 +37,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "GetServiceEventList")]
         public string ServiceId { get; set; }
 
         /// <summary>
@@ -43,20 +45,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServicesEventList")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceEventList")]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets EventsTypesFilter. This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetServicesEventList")]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetServiceEventList")]
         public string EventsTypesFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeAnalysisEvents. This param disables the retrieval of AnalysisEvents if true is passed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5)]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetServicesEventList")]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetServiceEventList")]
         public bool? ExcludeAnalysisEvents { get; set; }
 
         /// <summary>
@@ -64,7 +69,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
         /// populated.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6)]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetServicesEventList")]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetServiceEventList")]
         public bool? SkipCorrelationLookup { get; set; }
 
         /// <inheritdoc/>

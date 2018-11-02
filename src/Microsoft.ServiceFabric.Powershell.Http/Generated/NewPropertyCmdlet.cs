@@ -19,57 +19,61 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Binary flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Binary_")]
         public SwitchParameter Binary { get; set; }
 
         /// <summary>
         /// Gets or sets Int64 flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Int64_")]
         public SwitchParameter Int64 { get; set; }
 
         /// <summary>
         /// Gets or sets Double flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Double_")]
         public SwitchParameter Double { get; set; }
 
         /// <summary>
         /// Gets or sets String flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_String_")]
         public SwitchParameter String { get; set; }
 
         /// <summary>
         /// Gets or sets Guid flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Guid_")]
         public SwitchParameter Guid { get; set; }
 
         /// <summary>
         /// Gets or sets NameId. The Service Fabric name, without the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 5)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
         public string NameId { get; set; }
 
         /// <summary>
         /// Gets or sets PropertyName. The name of the Service Fabric property.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6)]
+        [Parameter(Mandatory = true, Position = 2)]
         public string PropertyName { get; set; }
 
         /// <summary>
         /// Gets or sets Data. Array of bytes to be sent as an integer array. Each element of array is a number between 0 and
         /// 255.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Binary_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Int64_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Double_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_String_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Guid_")]
         public byte[] Data { get; set; }
 
         /// <summary>
         /// Gets or sets CustomTypeId. The property's custom type ID. Using this property, the user is able to tag the type of
         /// the value of the property.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8)]
+        [Parameter(Mandatory = false, Position = 4)]
         public string CustomTypeId { get; set; }
 
         /// <summary>
@@ -77,7 +81,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9)]
+        [Parameter(Mandatory = false, Position = 5)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

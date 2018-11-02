@@ -13,25 +13,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the replicas of a service.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshServiceReplica")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshServiceReplica", DefaultParameterSetName = "List")]
     public partial class GetMeshServiceReplicaCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceResourceName. The identity of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Get")]
         public string ServiceResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaName. Service Fabric replica name.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "Get")]
         public string ReplicaName { get; set; }
 
         /// <inheritdoc/>

@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Lists all the network resources.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFMeshNetwork")]
+    [Cmdlet(VerbsCommon.Get, "SFMeshNetwork", DefaultParameterSetName = "List")]
     public partial class GetMeshNetworkCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets NetworkResourceName. The identity of the network.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
         public string NetworkResourceName { get; set; }
 
         /// <inheritdoc/>

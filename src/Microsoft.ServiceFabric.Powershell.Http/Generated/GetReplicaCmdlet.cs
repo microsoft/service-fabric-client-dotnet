@@ -13,19 +13,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the information about replicas of a Service Fabric service partition.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFReplica")]
+    [Cmdlet(VerbsCommon.Get, "SFReplica", DefaultParameterSetName = "GetReplicaInfoList")]
     public partial class GetReplicaCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetReplicaInfoList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetReplicaInfo")]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaId. The identifier of the replica.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetReplicaInfo")]
         public ReplicaId ReplicaId { get; set; }
 
         /// <summary>
@@ -33,7 +34,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetReplicaInfoList")]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetReplicaInfo")]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

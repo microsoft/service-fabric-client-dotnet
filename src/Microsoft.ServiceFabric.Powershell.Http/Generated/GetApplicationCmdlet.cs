@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of applications created in the Service Fabric cluster that match the specified filters.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFApplication")]
+    [Cmdlet(VerbsCommon.Get, "SFApplication", DefaultParameterSetName = "GetApplicationInfoList")]
     public partial class GetApplicationCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -23,7 +23,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetApplicationInfo")]
         public string ApplicationId { get; set; }
 
         /// <summary>
@@ -35,21 +35,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ServiceFabricApplicationDescription. The value is 1.
         /// - Compose - Filter that matches input with ApplicationDefinitionKind value Compose. The value is 2.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetApplicationInfoList")]
         public int? ApplicationDefinitionKindFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationTypeName. The application type name used to filter the applications to query for. This
         /// value should not contain the application type version.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetApplicationInfoList")]
         public string ApplicationTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeApplicationParameters. The flag that specifies whether application parameters will be excluded
         /// from the result.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetApplicationInfoList")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetApplicationInfo")]
         public bool? ExcludeApplicationParameters { get; set; }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetApplicationInfoList")]
         public long? MaxResults { get; set; }
 
         /// <summary>
@@ -67,7 +68,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5)]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetApplicationInfoList")]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetApplicationInfo")]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

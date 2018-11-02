@@ -19,13 +19,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Stateful flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Stateful_")]
         public SwitchParameter Stateful { get; set; }
 
         /// <summary>
         /// Gets or sets Stateless flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Stateless_")]
         public SwitchParameter Stateless { get; set; }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
         public string ServiceId { get; set; }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
         /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 2)]
         public string Flags { get; set; }
 
         /// <summary>
@@ -68,25 +68,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor ==
         /// blue)".
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 3)]
         public string PlacementConstraints { get; set; }
 
         /// <summary>
         /// Gets or sets CorrelationScheme. The correlation scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5)]
+        [Parameter(Mandatory = false, Position = 4)]
         public IEnumerable<ServiceCorrelationDescription> CorrelationScheme { get; set; }
 
         /// <summary>
         /// Gets or sets LoadMetrics. The service load metrics.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6)]
+        [Parameter(Mandatory = false, Position = 5)]
         public IEnumerable<ServiceLoadMetricDescription> LoadMetrics { get; set; }
 
         /// <summary>
         /// Gets or sets ServicePlacementPolicies. The service placement policies.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7)]
+        [Parameter(Mandatory = false, Position = 6)]
         public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies { get; set; }
 
         /// <summary>
@@ -95,52 +95,52 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 
         /// Specifies the move cost for the service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8)]
+        [Parameter(Mandatory = false, Position = 7)]
         public MoveCost? DefaultMoveCost { get; set; }
 
         /// <summary>
         /// Gets or sets ScalingPolicies. Scaling policies for this service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9)]
+        [Parameter(Mandatory = false, Position = 8)]
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; set; }
 
         /// <summary>
         /// Gets or sets TargetReplicaSetSize. The target replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10)]
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "_Stateful_")]
         public int? TargetReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets MinReplicaSetSize. The minimum replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11)]
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_Stateful_")]
         public int? MinReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaRestartWaitDurationSeconds. The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12)]
+        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_Stateful_")]
         public string ReplicaRestartWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets QuorumLossWaitDurationSeconds. The maximum duration, in seconds, for which a partition is allowed to
         /// be in a state of quorum loss.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13)]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_Stateful_")]
         public string QuorumLossWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets StandByReplicaKeepDurationSeconds. The definition on how long StandBy replicas should be maintained
         /// before being removed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14)]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_Stateful_")]
         public string StandByReplicaKeepDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_Stateless_")]
         public int? InstanceCount { get; set; }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 15)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

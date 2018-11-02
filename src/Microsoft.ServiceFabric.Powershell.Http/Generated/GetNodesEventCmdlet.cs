@@ -13,25 +13,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Nodes-related Events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFNodesEvent")]
+    [Cmdlet(VerbsCommon.Get, "SFNodesEvent", DefaultParameterSetName = "GetNodesEventList")]
     public partial class GetNodesEventCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets StartTimeUtc. The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetNodesEventList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetNodeEventList")]
         public string StartTimeUtc { get; set; }
 
         /// <summary>
         /// Gets or sets EndTimeUtc. The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetNodesEventList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetNodeEventList")]
         public string EndTimeUtc { get; set; }
 
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "GetNodeEventList")]
         public NodeName NodeName { get; set; }
 
         /// <summary>
@@ -39,20 +41,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetNodesEventList")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetNodeEventList")]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets EventsTypesFilter. This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetNodesEventList")]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetNodeEventList")]
         public string EventsTypesFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeAnalysisEvents. This param disables the retrieval of AnalysisEvents if true is passed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5)]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetNodesEventList")]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetNodeEventList")]
         public bool? ExcludeAnalysisEvents { get; set; }
 
         /// <summary>
@@ -60,7 +65,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
         /// populated.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6)]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetNodesEventList")]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetNodeEventList")]
         public bool? SkipCorrelationLookup { get; set; }
 
         /// <inheritdoc/>

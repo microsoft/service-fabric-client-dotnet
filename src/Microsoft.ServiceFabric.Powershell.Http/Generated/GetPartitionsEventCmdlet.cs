@@ -13,25 +13,27 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets all Partitions-related events.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFPartitionsEvent")]
+    [Cmdlet(VerbsCommon.Get, "SFPartitionsEvent", DefaultParameterSetName = "GetPartitionsEventList")]
     public partial class GetPartitionsEventCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets StartTimeUtc. The start time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetPartitionsEventList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetPartitionEventList")]
         public string StartTimeUtc { get; set; }
 
         /// <summary>
         /// Gets or sets EndTimeUtc. The end time of a lookup query in ISO UTC yyyy-MM-ddTHH:mm:ssZ.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetPartitionsEventList")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "GetPartitionEventList")]
         public string EndTimeUtc { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "GetPartitionEventList")]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
@@ -39,20 +41,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetPartitionsEventList")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetPartitionEventList")]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets EventsTypesFilter. This is a comma separated string specifying the types of FabricEvents that should
         /// only be included in the response.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetPartitionsEventList")]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetPartitionEventList")]
         public string EventsTypesFilter { get; set; }
 
         /// <summary>
         /// Gets or sets ExcludeAnalysisEvents. This param disables the retrieval of AnalysisEvents if true is passed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 5)]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetPartitionsEventList")]
+        [Parameter(Mandatory = false, Position = 5, ParameterSetName = "GetPartitionEventList")]
         public bool? ExcludeAnalysisEvents { get; set; }
 
         /// <summary>
@@ -60,7 +65,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// passed. otherwise the CorrelationEvents get processed and HasCorrelatedEvents field in every FabricEvent gets
         /// populated.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6)]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetPartitionsEventList")]
+        [Parameter(Mandatory = false, Position = 6, ParameterSetName = "GetPartitionEventList")]
         public bool? SkipCorrelationLookup { get; set; }
 
         /// <inheritdoc/>

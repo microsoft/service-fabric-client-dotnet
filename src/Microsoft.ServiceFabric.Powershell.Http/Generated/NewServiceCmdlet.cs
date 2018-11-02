@@ -19,31 +19,38 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Named flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Named__Stateless_")]
         public SwitchParameter Named { get; set; }
 
         /// <summary>
         /// Gets or sets Singleton flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_Singleton__Stateless_")]
         public SwitchParameter Singleton { get; set; }
 
         /// <summary>
         /// Gets or sets UniformInt64Range flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_UniformInt64Range__Stateful_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public SwitchParameter UniformInt64Range { get; set; }
 
         /// <summary>
         /// Gets or sets Stateful flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public SwitchParameter Stateful { get; set; }
 
         /// <summary>
         /// Gets or sets Stateless flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_Singleton__Stateless_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public SwitchParameter Stateless { get; set; }
 
         /// <summary>
@@ -53,83 +60,97 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
         /// 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 5)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
         public string ApplicationId { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6)]
+        [Parameter(Mandatory = true, Position = 3)]
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceTypeName. Name of the service type as specified in the service manifest.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7)]
+        [Parameter(Mandatory = true, Position = 4)]
         public string ServiceTypeName { get; set; }
 
         /// <summary>
         /// Gets or sets Count. The number of partitions.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 8)]
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "_UniformInt64Range__Stateful_")]
+        [Parameter(Mandatory = true, Position = 5, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public int? Count { get; set; }
 
         /// <summary>
         /// Gets or sets Names. Array of size specified by the ‘Count’ parameter, for the names of the partitions.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 9)]
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_Named__Stateless_")]
         public IEnumerable<string> Names { get; set; }
 
         /// <summary>
         /// Gets or sets LowKey. String indicating the lower bound of the partition key range that
         /// should be split between the partitions.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 10)]
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_UniformInt64Range__Stateful_")]
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public string LowKey { get; set; }
 
         /// <summary>
         /// Gets or sets HighKey. String indicating the upper bound of the partition key range that
         /// should be split between the partitions.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 11)]
+        [Parameter(Mandatory = true, Position = 8, ParameterSetName = "_UniformInt64Range__Stateful_")]
+        [Parameter(Mandatory = true, Position = 8, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public string HighKey { get; set; }
 
         /// <summary>
         /// Gets or sets TargetReplicaSetSize. The target replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 12)]
+        [Parameter(Mandatory = true, Position = 9, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = true, Position = 9, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = true, Position = 9, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public int? TargetReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets MinReplicaSetSize. The minimum replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 13)]
+        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public int? MinReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets HasPersistedState. A flag indicating whether this is a persistent service which stores states on the
         /// local disk. If it is then the value of this property is true, if not it is false.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 14)]
+        [Parameter(Mandatory = true, Position = 11, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = true, Position = 11, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = true, Position = 11, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public bool? HasPersistedState { get; set; }
 
         /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 15)]
+        [Parameter(Mandatory = true, Position = 12, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = true, Position = 12, ParameterSetName = "_Singleton__Stateless_")]
+        [Parameter(Mandatory = true, Position = 12, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public int? InstanceCount { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 13)]
         public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets InitializationData. The initialization data as an array of bytes. Initialization data is passed to
         /// service instances or replicas when they are created.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17)]
+        [Parameter(Mandatory = false, Position = 14)]
         public byte[] InitializationData { get; set; }
 
         /// <summary>
@@ -138,25 +159,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// requirements. For example, to place a service on nodes where NodeType is blue specify the following: "NodeColor ==
         /// blue)".
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18)]
+        [Parameter(Mandatory = false, Position = 15)]
         public string PlacementConstraints { get; set; }
 
         /// <summary>
         /// Gets or sets CorrelationScheme. The correlation scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19)]
+        [Parameter(Mandatory = false, Position = 16)]
         public IEnumerable<ServiceCorrelationDescription> CorrelationScheme { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceLoadMetrics. The service load metrics.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20)]
+        [Parameter(Mandatory = false, Position = 17)]
         public IEnumerable<ServiceLoadMetricDescription> ServiceLoadMetrics { get; set; }
 
         /// <summary>
         /// Gets or sets ServicePlacementPolicies. The service placement policies.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21)]
+        [Parameter(Mandatory = false, Position = 18)]
         public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies { get; set; }
 
         /// <summary>
@@ -165,13 +186,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 
         /// Specifies the move cost for the service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 22)]
+        [Parameter(Mandatory = false, Position = 19)]
         public MoveCost? DefaultMoveCost { get; set; }
 
         /// <summary>
         /// Gets or sets IsDefaultMoveCostSpecified. Indicates if the DefaultMoveCost property is specified.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 23)]
+        [Parameter(Mandatory = false, Position = 20)]
         public bool? IsDefaultMoveCostSpecified { get; set; }
 
         /// <summary>
@@ -181,20 +202,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The activation mode of service package to be used for a Service Fabric service. This is specified at the time of
         /// creating the Service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 24)]
+        [Parameter(Mandatory = false, Position = 21)]
         public ServicePackageActivationMode? ServicePackageActivationMode { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceDnsName. The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 25)]
+        [Parameter(Mandatory = false, Position = 22)]
         public string ServiceDnsName { get; set; }
 
         /// <summary>
         /// Gets or sets ScalingPolicies. Scaling policies for this service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 26)]
+        [Parameter(Mandatory = false, Position = 23)]
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; set; }
 
         /// <summary>
@@ -209,28 +230,36 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 27)]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public int? Flags { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaRestartWaitDurationSeconds. The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 28)]
+        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public long? ReplicaRestartWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets QuorumLossWaitDurationSeconds. The maximum duration, in seconds, for which a partition is allowed to
         /// be in a state of quorum loss.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 29)]
+        [Parameter(Mandatory = false, Position = 26, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 26, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 26, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public long? QuorumLossWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets StandByReplicaKeepDurationSeconds. The definition on how long StandBy replicas should be maintained
         /// before being removed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 30)]
+        [Parameter(Mandatory = false, Position = 27, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 27, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 27, ParameterSetName = "_UniformInt64Range__Stateful_")]
         public long? StandByReplicaKeepDurationSeconds { get; set; }
 
         /// <summary>
@@ -238,7 +267,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 31)]
+        [Parameter(Mandatory = false, Position = 28)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

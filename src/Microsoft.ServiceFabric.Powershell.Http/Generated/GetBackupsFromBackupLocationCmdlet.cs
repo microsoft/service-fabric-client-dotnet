@@ -19,118 +19,144 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets AzureBlobStore flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 0)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_AzureBlobStore__Partition_")]
         public SwitchParameter AzureBlobStore { get; set; }
 
         /// <summary>
         /// Gets or sets FileShare flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FileShare__Partition_")]
         public SwitchParameter FileShare { get; set; }
 
         /// <summary>
         /// Gets or sets Application flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FileShare__Application_")]
         public SwitchParameter Application { get; set; }
 
         /// <summary>
         /// Gets or sets Service flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FileShare__Service_")]
         public SwitchParameter Service { get; set; }
 
         /// <summary>
         /// Gets or sets Partition flag
         /// </summary>
-        [Parameter(Mandatory = false, Position = 4)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FileShare__Partition_")]
         public SwitchParameter Partition { get; set; }
 
         /// <summary>
         /// Gets or sets ConnectionString. The connection string to connect to the Azure blob store.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 5)]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "_AzureBlobStore__Partition_")]
         public string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets or sets ContainerName. The name of the container in the blob store to store and enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 6)]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_AzureBlobStore__Partition_")]
         public string ContainerName { get; set; }
 
         /// <summary>
         /// Gets or sets Path. UNC path of the file share where to store or enumerate backups from.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 7)]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = true, Position = 4, ParameterSetName = "_FileShare__Partition_")]
         public string Path { get; set; }
 
         /// <summary>
         /// Gets or sets StartDateTimeFilter. Specifies the start date time in ISO8601 from which to enumerate backups. If not
         /// specified, backups are enumerated from the beginning.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8)]
+        [Parameter(Mandatory = false, Position = 5)]
         public DateTime? StartDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets EndDateTimeFilter. Specifies the end date time in ISO8601 till which to enumerate backups. If not
         /// specified, backups are enumerated till the end.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9)]
+        [Parameter(Mandatory = false, Position = 6)]
         public DateTime? EndDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets Latest. If specified as true, gets the most recent backup (within the specified time range) for every
         /// partition under the specified backup entity.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10)]
+        [Parameter(Mandatory = false, Position = 7)]
         public bool? Latest { get; set; } = false;
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11)]
+        [Parameter(Mandatory = false, Position = 8)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12)]
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "_FileShare__Partition_")]
         public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13)]
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_FileShare__Partition_")]
         public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14)]
+        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_FileShare__Partition_")]
         public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Partition_")]
         public string SecondaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Application_")]
         public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17)]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_FileShare__Partition_")]
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The partition ID indentifying the partition.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18)]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Partition_")]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
@@ -138,7 +164,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19)]
+        [Parameter(Mandatory = false, Position = 16)]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
@@ -148,7 +174,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20)]
+        [Parameter(Mandatory = false, Position = 17)]
         public long? MaxResults { get; set; }
 
         /// <inheritdoc/>

@@ -13,13 +13,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Gets the list of nodes in the Service Fabric cluster.
     /// </summary>
-    [Cmdlet(VerbsCommon.Get, "SFNode")]
+    [Cmdlet(VerbsCommon.Get, "SFNode", DefaultParameterSetName = "GetNodeInfoList")]
     public partial class GetNodeCmdlet : CommonCmdletBase
     {
         /// <summary>
         /// Gets or sets NodeName. The name of the node.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0)]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "GetNodeInfo")]
         public NodeName NodeName { get; set; }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// the specified filter value will be returned. The filter value can be one of the following. Possible values include:
         /// 'default', 'all', 'up', 'down', 'enabling', 'disabling', 'disabled', 'unknown', 'removed'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 1)]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "GetNodeInfoList")]
         public NodeStatusFilter? NodeStatusFilter { get; set; }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 2)]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "GetNodeInfoList")]
         public long? MaxResults { get; set; }
 
         /// <summary>
@@ -45,7 +45,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3)]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetNodeInfoList")]
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetNodeInfo")]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>

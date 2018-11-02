@@ -1984,6 +1984,18 @@
                         <maml:name>ServerTimeout</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFNode</maml:name>
+                <command:parameter required="false">
+                        <maml:name>NodeStatusFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MaxResults</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>The response includes the name, status, ID, health, uptime, and other details about the nodes.</maml:para>
@@ -2693,6 +2705,21 @@
                         <maml:name>ContinuationToken</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFApplicationType</maml:name>
+                <command:parameter required="false">
+                        <maml:name>ApplicationTypeDefinitionKindFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeApplicationParameters</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MaxResults</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Returns the information about the application types that are provisioned or in the process of being provisioned in the Service Fabric cluster. Each version of an application type is returned as one application type. The response includes the name, version, status, and other details about the application type. This is a paged query, meaning that if not all of the application types fit in a page, one page of results is returned as well as a continuation token, which can be used to get the next page. For example, if there are 10 application types but a page only fits the first three application types, or if max results is set to 3, then three is returned. To access the rest of the results, retrieve subsequent pages by using the returned continuation token in the next query. An empty continuation token is returned if there are no subsequent pages.</maml:para>
@@ -2799,6 +2826,27 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Register-SFApplicationType</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ApplicationTypeBuildPath</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ApplicationPackageCleanupPolicy</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Register-SFApplicationType</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ApplicationPackageDownloadUri</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ApplicationTypeName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ApplicationTypeVersion</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Provisions a Service Fabric application type with the cluster. The provision is required before any new applications can be instantiated.
@@ -3028,6 +3076,18 @@
                 <command:parameter required="true">
                         <maml:name>ApplicationTypeVersion</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFServiceType</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ApplicationTypeName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ApplicationTypeVersion</maml:name>
+                </command:parameter>
                 <command:parameter required="true">
                         <maml:name>ServiceTypeName</maml:name>
                 </command:parameter>
@@ -3165,6 +3225,21 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFDeployedServiceType</maml:name>
+                <command:parameter required="true">
+                        <maml:name>NodeName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ApplicationId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceManifestName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Get-SFDeployedServiceType</maml:name>
                 <command:parameter required="true">
@@ -3483,6 +3558,24 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ExcludeApplicationParameters</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFApplication</maml:name>
+                <command:parameter required="false">
+                        <maml:name>ApplicationDefinitionKindFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ApplicationTypeName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeApplicationParameters</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MaxResults</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
@@ -4840,6 +4933,21 @@
                 <command:parameter required="true">
                         <maml:name>NodeName</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>IncludeHealthState</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MaxResults</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFDeployedApplication</maml:name>
+                <command:parameter required="true">
+                        <maml:name>NodeName</maml:name>
+                </command:parameter>
                 <command:parameter required="true">
                         <maml:name>ApplicationId</maml:name>
                 </command:parameter>
@@ -5467,6 +5575,18 @@
                 <command:parameter required="true">
                         <maml:name>ApplicationId</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceTypeName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ApplicationId</maml:name>
+                </command:parameter>
                 <command:parameter required="true">
                         <maml:name>ServiceId</maml:name>
                 </command:parameter>
@@ -5589,6 +5709,126 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Count</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Names</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>TargetReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>MinReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>HasPersistedState</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Flags</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ReplicaRestartWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>QuorumLossWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Count</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Names</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Count</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>LowKey</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>HighKey</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>TargetReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>MinReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>HasPersistedState</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Flags</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ReplicaRestartWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>QuorumLossWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Count</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>LowKey</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>HighKey</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>TargetReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>MinReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>HasPersistedState</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Flags</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ReplicaRestartWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>QuorumLossWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFService</maml:name>
+                <command:parameter required="true">
+                        <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>This api allows creating a new Service Fabric stateless or stateful service under a specified Service Fabric application. The description for creating the service includes partitioning information and optional properties for placement and load balancing. Some of the properties can later be modified using `UpdateService` API.</maml:para>
@@ -6126,6 +6366,30 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Update-SFService</maml:name>
+                <command:parameter required="false">
+                        <maml:name>TargetReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinReplicaSetSize</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ReplicaRestartWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>QuorumLossWaitDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Update-SFService</maml:name>
+                <command:parameter required="false">
+                        <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>This API allows updating properties of a running Service Fabric service. The set of properties that can be updated are a subset of the properties that were specified at the time of creating the service. The current set of properties can be obtained using `GetServiceDescription` API. Note that updating the properties of a running service is different than upgrading your application using `StartApplicationUpgrade` API. The upgrade is a long running background operation that involves moving the application from one version to another, one upgrade domain at a time, whereas update applies the new properties immediately to the service.</maml:para>
@@ -6978,6 +7242,15 @@
                 <command:syntaxItem>
                     <maml:name>Get-SFPartition</maml:name>
                 <command:parameter required="true">
+                        <maml:name>ServiceId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFPartition</maml:name>
+                <command:parameter required="true">
                         <maml:name>PartitionId</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
@@ -7789,6 +8062,15 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFRepairTask</maml:name>
+                <command:parameter required="false">
+                        <maml:name>NodeNames</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>NodeImpactList</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>For clusters that have the Repair Manager Service configured,
@@ -8442,6 +8724,15 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Update-SFRepairExecutionState</maml:name>
+                <command:parameter required="false">
+                        <maml:name>NodeNames</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>NodeImpactList</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>This API supports the Service Fabric platform; it is not meant to be used directly from your code.
@@ -8818,6 +9109,15 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFReplica</maml:name>
+                <command:parameter required="true">
+                        <maml:name>PartitionId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Get-SFReplica</maml:name>
                 <command:parameter required="true">
@@ -9427,6 +9727,21 @@
                 <command:parameter required="true">
                         <maml:name>PartitionId</maml:name>
                 </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ReplicaId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFDeployedServiceReplicaDetail</maml:name>
+                <command:parameter required="true">
+                        <maml:name>NodeName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>PartitionId</maml:name>
+                </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
                 </command:parameter>
@@ -9638,6 +9953,18 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFDeployedServicePackage</maml:name>
+                <command:parameter required="true">
+                        <maml:name>NodeName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ApplicationId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Get-SFDeployedServicePackage</maml:name>
                 <command:parameter required="true">
@@ -13089,6 +13416,108 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Interval</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Interval</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ScheduleFrequencyType</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RunTimes</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>RunDays</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ScheduleFrequencyType</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RunTimes</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>RunDays</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Creates a backup policy which can be associated later with a Service Fabric application, service or a partition for periodic backup.
@@ -13379,6 +13808,15 @@
                         <maml:name>ServerTimeout</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupPolicy</maml:name>
+                <command:parameter required="false">
+                        <maml:name>MaxResults</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Get a list of all the backup policies configured.
@@ -13487,6 +13925,108 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Update-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Interval</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Update-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Interval</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Update-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ScheduleFrequencyType</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RunTimes</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>RunDays</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Update-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ScheduleFrequencyType</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RunTimes</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>RunDays</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Updates the backup policy identified by {backupPolicyName}
@@ -14757,6 +15297,33 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Backup-SFPartition</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Backup-SFPartition</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Creates a backup of the stateful persisted partition's state. In case the partition is already being periodically backed up, then by default the new backup is created at the same backup storage. One can also override the same by specifying the backup storage details as part of the request body. Once the backup is initiated, its progress can be tracked using the GetBackupProgress operation. 
@@ -14950,6 +15517,33 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Restore-SFPartition</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Restore-SFPartition</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Restores the state of a of the stateful persisted partition using the specified backup point. In case the partition is already being periodically backed up, then by default the backup point is looked for in the storage specified in backup policy. One can also override the same by specifying the backup storage details as part of the restore partition description in body. Once the restore is initiated, its progress can be tracked using the GetRestoreProgress operation. 
@@ -15167,6 +15761,111 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ApplicationName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ConnectionString</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PartitionId</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ApplicationName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Path</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PrimaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryUserName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PartitionId</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Gets the list of backups available for the specified backed up entity (Application, Service or Partition) at the specified backup location (FileShare or Azure Blob Storage).
@@ -15606,6 +16305,36 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>New-SFProperty</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Data</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFProperty</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Data</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFProperty</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Data</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFProperty</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Data</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFProperty</maml:name>
+                <command:parameter required="true">
+                        <maml:name>Data</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
             </command:syntax>
             <maml:description>
                 <maml:para>Creates or updates the specified Service Fabric property under a given name.</maml:para>
@@ -16032,6 +16761,27 @@
                 <command:parameter required="true">
                         <maml:name>EndTimeUtc</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>EventsTypesFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeAnalysisEvents</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SkipCorrelationLookup</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFNodesEvent</maml:name>
+                <command:parameter required="true">
+                        <maml:name>StartTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>EndTimeUtc</maml:name>
+                </command:parameter>
                 <command:parameter required="true">
                         <maml:name>NodeName</maml:name>
                 </command:parameter>
@@ -16151,6 +16901,27 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFApplicationsEvent</maml:name>
+                <command:parameter required="true">
+                        <maml:name>StartTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>EndTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>EventsTypesFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeAnalysisEvents</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SkipCorrelationLookup</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Get-SFApplicationsEvent</maml:name>
                 <command:parameter required="true">
@@ -16289,6 +17060,27 @@
                 <command:parameter required="true">
                         <maml:name>EndTimeUtc</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>EventsTypesFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeAnalysisEvents</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SkipCorrelationLookup</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFServicesEvent</maml:name>
+                <command:parameter required="true">
+                        <maml:name>StartTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>EndTimeUtc</maml:name>
+                </command:parameter>
                 <command:parameter required="true">
                         <maml:name>ServiceId</maml:name>
                 </command:parameter>
@@ -16419,6 +17211,27 @@
                 <command:parameter required="true">
                         <maml:name>EndTimeUtc</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>EventsTypesFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeAnalysisEvents</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SkipCorrelationLookup</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFPartitionsEvent</maml:name>
+                <command:parameter required="true">
+                        <maml:name>StartTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>EndTimeUtc</maml:name>
+                </command:parameter>
                 <command:parameter required="true">
                         <maml:name>PartitionId</maml:name>
                 </command:parameter>
@@ -16538,6 +17351,30 @@
                 </maml:description>
             </command:details>
             <command:syntax>
+                <command:syntaxItem>
+                    <maml:name>Get-SFPartitionReplicasEvent</maml:name>
+                <command:parameter required="true">
+                        <maml:name>PartitionId</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StartTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>EndTimeUtc</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServerTimeout</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>EventsTypesFilter</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ExcludeAnalysisEvents</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>SkipCorrelationLookup</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Get-SFPartitionReplicasEvent</maml:name>
                 <command:parameter required="true">
