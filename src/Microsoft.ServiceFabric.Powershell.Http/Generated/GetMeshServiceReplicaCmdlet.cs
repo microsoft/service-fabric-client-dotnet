@@ -69,7 +69,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     replicaName: this.ReplicaName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
+                if (result != null)
+                {
+                    this.WriteObject(this.FormatOutput(result));
+                }
             }
         }
 

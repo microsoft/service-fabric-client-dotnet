@@ -52,9 +52,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 executorFilter: this.ExecutorFilter,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-            foreach (var item in result)
+            if (result != null)
             {
-                this.WriteObject(this.FormatOutput(item));
+                foreach (var item in result)
+                {
+                    this.WriteObject(this.FormatOutput(item));
+                }
             }
         }
     }

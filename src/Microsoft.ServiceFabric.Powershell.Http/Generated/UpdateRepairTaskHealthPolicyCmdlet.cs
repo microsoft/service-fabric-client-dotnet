@@ -59,7 +59,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 repairTaskUpdateHealthPolicyDescription: repairTaskUpdateHealthPolicyDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-            this.WriteObject(this.FormatOutput(result));
+            if (result != null)
+            {
+                this.WriteObject(this.FormatOutput(result));
+            }
         }
 
         /// <inheritdoc/>

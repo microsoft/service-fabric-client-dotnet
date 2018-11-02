@@ -50,7 +50,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     networkResourceName: this.NetworkResourceName,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
+                if (result != null)
+                {
+                    this.WriteObject(this.FormatOutput(result));
+                }
             }
         }
 

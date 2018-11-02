@@ -57,9 +57,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     serverTimeout: this.ServerTimeout,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                foreach (var item in result)
+                if (result != null)
                 {
-                    this.WriteObject(this.FormatOutput(item));
+                    foreach (var item in result)
+                    {
+                        this.WriteObject(this.FormatOutput(item));
+                    }
                 }
             }
             else if (this.ParameterSetName.Equals("GetServiceTypeInfoByName"))
@@ -71,7 +74,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     serverTimeout: this.ServerTimeout,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-                this.WriteObject(this.FormatOutput(result));
+                if (result != null)
+                {
+                    this.WriteObject(this.FormatOutput(result));
+                }
             }
         }
     }

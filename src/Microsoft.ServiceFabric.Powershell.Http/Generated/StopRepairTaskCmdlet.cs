@@ -49,7 +49,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 repairTaskCancelDescription: repairTaskCancelDescription,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
-            this.WriteObject(this.FormatOutput(result));
+            if (result != null)
+            {
+                this.WriteObject(this.FormatOutput(result));
+            }
         }
 
         /// <inheritdoc/>
