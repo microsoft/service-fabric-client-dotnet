@@ -7,6 +7,7 @@ var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
 ```
 
 ### Connecting to cluster secured with X509 certificate
+Certificate inforamtion should be provided explictly when connecting to a secured cluster from within the cluster or outside the cluster.
 ```csharp
 // create client using security settings
 var clusterUrl = new Uri(@"https://<cluster_fqdn>:19080");
