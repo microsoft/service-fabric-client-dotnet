@@ -136,7 +136,7 @@
             Creates the ARM document describing service fabric resources based on the provided service fabric resource document.
             </summary>
         </member>
-        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.BeginWriteArmDocument(Newtonsoft.Json.JsonTextWriter)">
+        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.BeginWriteArmDocument(Newtonsoft.Json.JsonTextWriter,System.String)">
             <summary>
             Writes the begining data
             {
