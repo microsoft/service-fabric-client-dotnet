@@ -25,6 +25,6 @@
     <MinorVersion>4</MinorVersion>
     <BuildVersion>0</BuildVersion>
     <Revision>0</Revision>
-    <PreviewTag>-preview10</PreviewTag>
+    <PreviewTag>-preview11</PreviewTag>
   </PropertyGroup>
 </Project>
