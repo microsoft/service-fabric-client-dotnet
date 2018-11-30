@@ -71,8 +71,8 @@
             <param name="defaultParameterFilePath">Path to file containing default parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
             <param name="outputFormat">Output format SF_SBZ_YAML/SF_SBZ_JSON/SF_SBZ_RP_JSON</param>
             <param name="fileNamePrefix">Prefix of the generated file</param>
-            <param name="templateFileName">Prefix of the generated file</param>
-            <param name="parameterFileName">Prefix of the generated file</param>
+            <param name="templateFileName">Name of the generated template file</param>
+            <param name="parameterFileName">Name of the generated arm parameter file</param>
             <param name="region">Region</param>
             <returns>Success/Failure</returns>
         </member>
