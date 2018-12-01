@@ -2,48 +2,76 @@
 ### Connecting to unsecured cluster
 ```csharp
 // create client
-var clusterUrl = new Uri(@"http://<cluster_fqdn>:19080");
-var sfClient = ServiceFabricClientFactory.Create(clusterUrl);
+var sfClient = new ServiceFabricClientBuilder()
+                .UseEndpoints(new Uri(@"http://<cluster_fqdn>:19080"))
+                .BuildAsync().GetAwaiter().GetResult();
 ```
 
 ### Connecting to cluster secured with X509 certificate
 ```csharp
-// create client using security settings
-var clusterUrl = new Uri(@"https://<cluster_fqdn>:19080");
-var settings = new ClientSettings(GetSecurityCredentials);
-var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
+// create client using ServiceFabricClientBuilder.UseX509Security
+var sfClient = new ServiceFabricClientBuilder()
+                .UseEndpoints(new Uri(@"http://<cluster_fqdn>:19080"))
+                .UseX509Security(GetSecurityCredentials)
+                .BuildAsync().GetAwaiter().GetResult();
 
-public static X509SecuritySettings GetSecurityCredentials()
+Func<CancellationToken, Task<SecuritySettings>> GetSecurityCredentials = (ct) =>
 {
     // get the X509Certificate2 either from Certificate store or from file.
     var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate2("<Path to .pfx file>", "password");
-    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
-    return new X509SecuritySettings(clientCert, remoteSecuritySettings);
-}
-
+    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { server_cert_thumbprint });
+    return Task.FromResult<SecuritySettings>(new X509SecuritySettings(clientCert, remoteSecuritySettings));
+};
 ```
 
 ### Connecting to cluster secured with Azure Active Directory
+There are different ways to connect to the cluster secured with Azure Active Directory depending on if you have the AAD metadata(authority, resource, clientId) to get the token from Azure Active Directory. If you have the AAD metadata, sue the option 1 below, if you don't have the AAD metadata, use the option 2 below.
+#### 1. You have the AAD metadata to get the token from Azure Active Directory.
+If you have the AAD metadata(authority, resource, client id) to get the token from Azure Active Directory, you can use it directly to get the token as shown below.
 ```csharp
-// create client using security settings
-var clusterUrl = new Uri(@"http:<luster_fqdn>19080");
-var settings = new ClientSettings(GetSecurityCredentials);
-var sfClient = ServiceFabricClientFactory.Create(clusterUrl, settings);
+// create client using ServiceFabricClientBuilder.UseAzureActiveDirectorySecurity
+var sfClient = new ServiceFabricClientBuilder()
+                .UseEndpoints(new Uri(@"http://<cluster_fqdn>:19080"))
+                .UseAzureActiveDirectorySecurity(GetSecurityCredentials)
+                .BuildAsync().GetAwaiter().GetResult();
 
-static ClaimsSecuritySettings GetSecurityCredentials()
+Func<CancellationToken, Task<SecuritySettings>> GetSecurityCredentials = (ct) =>
 {
-    var token = GetAccessToken();
-    var remoteCertSettings = new RemoteX509SecuritySettings(new List<string>() { "server_cert_thumbprint" });
-    return new ClaimsSecuritySettings(token, remoteCertSettings);
-}
+    var token = GetAccessTokenAsync(ct).GetAwaiter().GetResult();    
+    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
+    return Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(token, remoteSecuritySettings));
+};
 
-static string GetAccessToken()
+public static async Task<string> GetAccessTokenAsync(CancellationToken cancellationToken)
 {
     // get token from azure active directory using Active Directory APIs
-    var authorityFormat = @"https://login.microsoftonline.com/{0}";
-    var authority = string.Format(authorityFormat, "your_tenant_id");
+    var authority = @"https://login.microsoftonline.com/" + "tenant_Id";
     var authContext = new AuthenticationContext(authority);
-    var authResult = authContext.AcquireTokenAsync("resource_id", "client_Id", new UserCredential("userName")).GetAwaiter().GetResult();
+    var authResult = await authContext.AcquireTokenAsync("resource_Id", "client_Id", new UserCredential());
+    return authResult.AccessToken;
+}
+```
+#### 2. You don't have the AAD metadata to get the token from Azure Active Directory.
+If you don't have the AAD metadata(authority, resource, client id) to get the token from Azure Active Directory, you can provide a delegate which will be invoked with AAD metadata fetched from the cluster. This approach is shown in the code below:
+
+```csharp
+// create client using ServiceFabricClientBuilder.UseAzureActiveDirectorySecurity
+var sfClient = new ServiceFabricClientBuilder()
+                .UseEndpoints(new Uri(@"http://<cluster_fqdn>:19080"))
+                .UseAzureActiveDirectorySecurity(GetSecurityCredentials)
+                .BuildAsync().GetAwaiter().GetResult();
+
+Func<CancellationToken, Task<SecuritySettings>> GetSecurityCredentials = (ct) =>
+{
+    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
+    return Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(GetAccessTokenAsync, remoteSecuritySettings));
+};
+
+public static async Task<string> GetAccessTokenAsync(AadMetadata aad, CancellationToken cancellationToken)
+{
+    // get token from azure active directory using Active Directory APIs
+    var authContext = new AuthenticationContext(aad.Authority);
+    var authResult = await authContext.AcquireTokenAsync(aad.Cluster, aad.Client, new UserCredential());
     return authResult.AccessToken;
 }
 

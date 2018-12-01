@@ -22,20 +22,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceFabricClient"/> class.
         /// </summary>
-        /// <param name="clusterEndpoint">Uri for Service Cluster management endpoint.</param>
-        /// <param name="clientSettings">Client settings for connecting to cluster. Default value is null which means connecting to unsecured cluster.</param>
-        protected ServiceFabricClient(Uri clusterEndpoint, ClientSettings clientSettings = null)
-            : this(new List<Uri>() { clusterEndpoint }, clientSettings)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceFabricClient"/> class.
-        /// </summary>
         /// <param name="clusterEndpoints">Uris for Service Cluster management endpoint.</param>
+        /// <param name="securitySettings">A delegate to get ClaimsSecuritySettings.</param>
         /// <param name="clientSettings">Client settings for connecting to cluster. Default value is null which means connecting to unsecured cluster.</param>
         protected ServiceFabricClient(
             IReadOnlyList<Uri> clusterEndpoints,
+            Func<CancellationToken, Task<SecuritySettings>> securitySettings = null,
             ClientSettings clientSettings = null)
         {
             if (clusterEndpoints == null)
@@ -56,6 +48,7 @@ namespace Microsoft.ServiceFabric.Client
             this.ClusterEndpoints = clusterEndpoints;
 
             // setup security settings
+            this.SecuritySettingsFunc = securitySettings;
             this.ClientSettings = clientSettings;
         }
 
@@ -148,6 +141,12 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <value><see cref="ClientSettings"/> for connecting to cluster.</value>
         protected ClientSettings ClientSettings { get; }
+
+        /// <summary>
+        /// Gets the delegate to create security settings for connecting to cluster.
+        /// </summary>
+        /// <value><see cref="SecuritySettings"/> for connecting to cluster.</value>
+        protected Func<CancellationToken, Task<SecuritySettings>> SecuritySettingsFunc { get; }
 
         /// <summary>
         /// Gets the Uri for Service Cluster management endpoint.

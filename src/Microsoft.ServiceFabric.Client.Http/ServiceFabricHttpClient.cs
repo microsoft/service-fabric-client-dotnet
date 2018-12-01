@@ -31,7 +31,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         private const int MaxTryCount = 2;
         private readonly RandomizedList<Uri> randomizedEndpoints;        
         private readonly SemaphoreSlim refresSecurityLockObj = new SemaphoreSlim(1, 1);
-        private readonly SemaphoreSlim initializeLockObj = new SemaphoreSlim(1, 1);
         private readonly Random rand = new Random();
         private readonly TimeSpan maxRetryInterval = TimeSpan.FromSeconds(2);        
         private SecurityType securityType = SecurityType.None;
@@ -43,7 +42,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         private IBearerTokenHandler bearerTokenHandler;
         private IReadOnlyList<DelegatingHandler> delegateHandlers;
         private Func<CancellationToken, Task<SecuritySettings>> refreshSecuritySettingsFunc;
-        private bool clientInitialized;
 
         /// <summary>
         /// Used to synchronize refresh of security settings.
@@ -53,39 +51,14 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceFabricHttpClient"/> class.
         /// </summary>
-        /// <param name="clusterEndpoint">Uri for Service Cluster management endpoint.</param>
-        /// <param name="clientSettings">Client settings for connecting to cluster. Default value is null which means connecting to unsecured cluster.</param>
-        /// <param name="innerHandler">The inner handler which is responsible for processing the HTTP response messages. When null or not provided, <see cref="System.Net.Http.HttpClientHandler"/> will be used as last handler in channel.</param>
-        /// <param name="delegateHandlers">An ordered list of <see cref="System.Net.Http.DelegatingHandler"/> instances to be invoked in HTTP message channel as message flows to and from the last handler in the channel.
-        /// Last handler in the channel is created using <paramref name="innerHandler"/>.</param>
-        public ServiceFabricHttpClient(
-            Uri clusterEndpoint,
-            ClientSettings clientSettings = null,
-            HttpClientHandler innerHandler = null,
-            params DelegatingHandler[] delegateHandlers)
-            : this(new List<Uri>() { clusterEndpoint }, clientSettings, innerHandler, delegateHandlers)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceFabricHttpClient"/> class.
-        /// </summary>
-        /// <param name="clusterEndpoints">Uris for Service Cluster management endpoint.</param>
-        /// <param name="clientSettings">Client settings for connecting to cluster. Default value is null which means connecting to unsecured cluster.</param>
-        /// <param name="innerHandler">The inner handler which is responsible for processing the HTTP response messages. When null or not provided, <see cref="System.Net.Http.HttpClientHandler"/> will be used as last handler in channel.</param>
-        /// <param name="delegateHandlers">An ordered list of <see cref="System.Net.Http.DelegatingHandler"/> instances to be invoked in HTTP message channel as message flows to and from the final handler in the channel.
-        /// Last handler in the channel is <paramref name="innerHandler"/>.</param>
-        public ServiceFabricHttpClient(
-            IReadOnlyList<Uri> clusterEndpoints,
-            ClientSettings clientSettings = null,
-            HttpClientHandler innerHandler = null,
-            params DelegatingHandler[] delegateHandlers)
-            : base(clusterEndpoints, clientSettings)
+        /// <param name="builder">Builder isntance to create ServiceFabricHttpClient from.</param>
+        private ServiceFabricHttpClient(ServiceFabricClientBuilder builder)
+            : base(builder.Endpoints, builder.SecuritySettings, builder.ClientSettings)
         {
             this.CreateManagementClients();            
 
-            // Validate when Security Settings is null, url cant be https
-            if (this.ClientSettings?.SecuritySettings == null)
+            // Validate when Security Settings is null, url can't be https
+            if (this.SecuritySettingsFunc == null)
             {
                 var scheme = Uri.UriSchemeHttp;
                 var invalidClusterEndpoint = this.ClusterEndpoints.FirstOrDefault(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase));
@@ -100,18 +73,24 @@ namespace Microsoft.ServiceFabric.Client.Http
                 // Url validation for secured cluster will be done after SecuritySettings is invoked in Initialize, it can be https only for Claims and X509.
             }
 
-            if (delegateHandlers.Any(handler => handler == null))
-            {
-                throw new ArgumentException(SR.ErrorNullDelegateHandler);
-            }
-
             var seed = (int)DateTime.Now.Ticks;
             this.randomizedEndpoints = new RandomizedList<Uri>(this.ClusterEndpoints, new Random(seed));
             this.ClientId = Guid.NewGuid().ToString();
-            this.innerHandler = innerHandler ?? new HttpClientHandler();
-            this.delegateHandlers = delegateHandlers;
 
-            // Delay initializing Security settings and getting AAD metadata until the first call is made.
+            // Get information from DI container in ServiceFabricClientBuilder
+            this.innerHandler = new HttpClientHandler();
+            if (builder.Container.ContainsKey(typeof(HttpClientHandler)))
+            {
+                this.innerHandler = (HttpClientHandler)builder.Container[typeof(HttpClientHandler)];
+            }
+
+            if (builder.Container.ContainsKey(typeof(DelegatingHandler[])))
+            {
+                this.delegateHandlers = (DelegatingHandler[])builder.Container[typeof(DelegatingHandler[])];
+            }
+
+            this.refreshSecuritySettingsFunc = this.SecuritySettingsFunc;
+            this.httpClientHandlerWrapper = new HttpClientHandlerWrapper(this.innerHandler);
         }
 
         /// <summary>
@@ -125,6 +104,21 @@ namespace Microsoft.ServiceFabric.Client.Http
         public void Dispose()
         {
             this.Dispose(true);
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the <see cref="ServiceFabricHttpClient"/> class.
+        /// </summary>
+        /// <param name="builder">Builder isntance to create ServiceFabricHttpClient from.</param>
+        /// <param name="cancellationToken">A cancellation token to cancel the async operation.</param>
+        /// <returns><see cref="ServiceFabricHttpClient"/> instance.</returns>
+        internal static async Task<IServiceFabricClient> CreateAsync(
+            ServiceFabricClientBuilder builder,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var obj = new ServiceFabricHttpClient(builder);
+            await obj.InitializeAsync(cancellationToken);
+            return obj;
         }
 
         /// <summary>
@@ -396,9 +390,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <returns>The task object representing the asynchronous operation.</returns>
         private async Task<HttpResponseMessage> SendAsyncHandleSecurityExceptions(Func<HttpRequestMessage> requestFunc, string clientRequestId, CancellationToken cancellationToken)
         {
-            // Ensure client has been initialized
-            await this.InitializeClientAsync(cancellationToken);
-
             // Sends request, if Exception is thrown because Server Cert is not validated OR its Forbidden because of invalid client creds,
             // refreshes security settings by calling the func and retires request one more time. If it faisl again Excpetion is thrown.
             var tryCount = 1;
@@ -570,70 +561,61 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
         }
 
-        private async Task InitializeClientAsync(CancellationToken cancellationToken)
+        private async Task InitializeAsync(CancellationToken cancellationToken)
+        {
+            // setup security settings
+            if (this.SecuritySettingsFunc != null)
+            {
+                this.securitySettings = await this.SecuritySettingsFunc.Invoke(cancellationToken);
+            }
+
+            this.securityType = this.securitySettings?.SecurityType ?? SecurityType.None;
+
+            // Validate Url scheme.
+            var scheme = Uri.UriSchemeHttp;
+            if (this.securityType == SecurityType.X509 ||
+                this.securityType == SecurityType.Claims)
+            {
+                scheme = Uri.UriSchemeHttps;
+            }
+
+            var invalidClusterEndpoint = this.ClusterEndpoints.FirstOrDefault(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase));
+            if (invalidClusterEndpoint != null)
+            {
+                throw new InvalidOperationException(string.Format(SR.ErrorUrlScheme, invalidClusterEndpoint.Scheme, scheme));
+            }
+
+            if (this.securitySettings != null)
+            {
+                this.httpClientHandlerWrapper.ConfigureSecuritySettings(this.securitySettings);
+            }
+
+            this.httpClient = this.CreateHttpClient(cancellationToken);
+            await this.InitializeBearerTokenHandlerAsync(cancellationToken);
+        }
+
+        private HttpClient CreateHttpClient(CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            if (this.clientInitialized)
+            // Chain Delegating Handlers.
+            HttpMessageHandler pipeline = this.innerHandler;
+            if (this.delegateHandlers != null)
             {
-                return;
+                for (var i = this.delegateHandlers.Count - 1; i >= 0; i--)
+                {
+                    var handler = this.delegateHandlers[i];
+                    handler.InnerHandler = pipeline;
+                    pipeline = handler;
+                }
             }
 
-            await this.initializeLockObj.WaitAsync();
-
-            try
+            if (this.ClientSettings?.ClientTimeout != null)
             {
-                if (this.clientInitialized)
-                {
-                    return;
-                }
-
-                if (this.ClientSettings?.SecuritySettings != null)
-                {
-                    this.securitySettings = await this.ClientSettings?.SecuritySettings.Invoke(cancellationToken);
-                }
-
-                this.securityType = this.securitySettings?.SecurityType ?? SecurityType.None;
-
-                // validate Uri schema.
-                var scheme = Uri.UriSchemeHttp;
-                if (this.securityType == SecurityType.X509 ||
-                    this.securityType == SecurityType.Claims)
-                {
-                    scheme = Uri.UriSchemeHttps;
-                }
-
-                var invalidClusterEndpoint = this.ClusterEndpoints.FirstOrDefault(url => !string.Equals(url.Scheme, scheme, StringComparison.OrdinalIgnoreCase));
-
-                if (invalidClusterEndpoint != null)
-                {
-                    throw new InvalidOperationException(string.Format(SR.ErrorUrlScheme, invalidClusterEndpoint.Scheme, scheme));
-                }
-
-                this.refreshSecuritySettingsFunc = this.ClientSettings?.SecuritySettings;
-                this.httpClientHandlerWrapper = new HttpClientHandlerWrapper(this.innerHandler);
-
-                if (this.securitySettings != null)
-                {
-                    this.httpClientHandlerWrapper.ConfigureSecuritySettings(this.securitySettings);
-                }
-
-                HttpMessageHandler pipeline = this.innerHandler;
-                this.ChainDelegatingHandlers(pipeline);
-                this.httpClient = new HttpClient(pipeline, true);
-
-                if (this.ClientSettings?.ClientTimeout != null)
-                {
-                    this.httpClient.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
-                }
-
-                await this.InitializeBearerTokenHandlerAsync(cancellationToken);
-                this.clientInitialized = true;
+                this.httpClient.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
             }
-            finally
-            {
-                this.initializeLockObj.Release();
-            }
+
+            return new HttpClient(pipeline, true);
         }
 
         private async Task InitializeBearerTokenHandlerAsync(CancellationToken cancellationToken)
@@ -651,20 +633,9 @@ namespace Microsoft.ServiceFabric.Client.Http
                     // Get AaadMetadata for AzureActiveDirectorySecuritySettings, if user has provided the Func for getting Bearer token.
                     if (aadSecuritySettings.GetClaimsToken != null)
                     {
-                        // get AadMetadata from cluster using another http client as the current call to SFHttpClient is waiting for this initialization.
-                        // Pass in empty string token to make the call to get aad metadata from cluster.
-                        AadMetadataObject aadMetadataObject = null;
-                        Func<CancellationToken, Task<SecuritySettings>> securitySettings =
-                            (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings("DummyTokenToGetMetadata", aadSecuritySettings.RemoteX509SecuritySettings));
-
-                        var settingsToGetAadToken = new ClientSettings(securitySettings);
-                        using (var httpClientToGetAadToken = new ServiceFabricHttpClient(this.ClusterEndpoints, settingsToGetAadToken))
-                        {
-                            await httpClientToGetAadToken.InitializeClientAsync(cancellationToken);
-                            aadMetadataObject = await httpClientToGetAadToken.Cluster.GetAadMetadataAsync(cancellationToken: cancellationToken);
-                        }
-                        
-                        this.bearerTokenHandler = new AADTokenHandler(aadMetadataObject.Metadata);
+                        // get AadMetadata from cluster using another http client.
+                        var aadMetaData = await this.Cluster.GetAadMetadataAsync(cancellationToken: cancellationToken);
+                        this.bearerTokenHandler = new AADTokenHandler(aadMetaData.Metadata);
                     }
                     else
                     {

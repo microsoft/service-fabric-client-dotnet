@@ -15,6 +15,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Client;
+    using Microsoft.ServiceFabric.Client.Http;
     using Microsoft.ServiceFabric.Common.Security;
     using Newtonsoft.Json;
 
@@ -194,100 +195,70 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (this.ConnectionEndpoint == null)
             {
-                this.ConfigureDefaultConnect();
+                if (!this.TryConfiguringDefaultConnect())
+                {
+                    throw new InvalidOperationException("Cluster Connection Information is not provided. Please try connecting again with correct connection information.");
+                }
             }
 
-            Func<CancellationToken, Task<SecuritySettings>> securitySettings = null;
+            // Create Builder            
+            var builder = new ServiceFabricClientBuilder()
+                .UseEndpoints(this.ConnectionEndpoint.Select(e => new Uri(e)).ToArray());
+
+            // Configure Security for builder
             if (this.WindowsCredential.IsPresent)
             {
-                securitySettings = (ct) => Task.FromResult<SecuritySettings>(new WindowsSecuritySettings());
+                builder.UseWindowsSecurity();
             }
-            else if (this.X509Credential.IsPresent || this.AzureActiveDirectory.IsPresent)
+            else if (this.X509Credential.IsPresent)
             {
-                var x509Names = new List<X509Name>();
-                RemoteX509SecuritySettings remoteX509SecuritySettings = null;
+                var remoteX509SecuritySettings = this.GetServerX509SecuritySettings();
+                Func<CancellationToken, Task<SecuritySettings>> securitySettings;
 
-                // ServerCommonName or ServerThumbprint must be provided when connecting with IP Address.
-                if (this.ServerCertThumbprint == null && this.ServerCommonName == null)
+                if (this.ClientCertificate == null)
                 {
-                    var uri = this.ConnectionEndpoint.Select(e => new Uri(e)).Where(u => u.HostNameType.Equals(UriHostNameType.Dns));
+                    var clientCert = CredentialsUtil.GetCertificate(this.StoreLocation, this.StoreName, this.FindValue, this.FindType);
 
-                    if (uri.Count() == 0)
+                    if (clientCert == null)
                     {
-                        throw new PSArgumentException(Resource.ErrorNoServerCommonNameIrServerCertThumbprint);
-                    }
-
-                    x509Names = uri.Select(x => new X509Name(x.Host)).ToList();
-                    remoteX509SecuritySettings = new RemoteX509SecuritySettings(x509Names);
-                }
-                else if (this.ServerCommonName != null)
-                {
-                    // Use Issuer thumbprint if provided.
-                    if (this.IssuerCertThumbprints != null && this.IssuerCertThumbprints.Length > 0)
-                    {
-                        if (this.ServerCommonName.Length != this.IssuerCertThumbprints.Length)
-                        {
-                            throw new PSArgumentException(Resource.CommonNameIssuerThumbprintMismatch);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < this.ServerCommonName.Length; i++)
-                            {
-                                x509Names.Add(new X509Name(this.ServerCommonName[i], this.IssuerCertThumbprints[i]));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        x509Names = this.ServerCommonName.Select(name => new X509Name(name)).ToList();
+                        throw new PSInvalidOperationException(Resource.ErrorLoadingClientCertificate);
                     }
 
-                    remoteX509SecuritySettings = new RemoteX509SecuritySettings(x509Names);
-                }
-                else if (this.ServerCertThumbprint != null)
-                {
-                    remoteX509SecuritySettings = new RemoteX509SecuritySettings(this.ServerCertThumbprint);
-                }
-
-                if (this.AzureActiveDirectory.IsPresent)
-                {
-                    if (this.GetMetadata.IsPresent)
-                    {
-                        securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings("DummyTokenToGetMetadata", remoteX509SecuritySettings));
-                    }
-                    else
-                    {
-                        if (this.SecurityToken != null)
-                        {
-                            securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(this.SecurityToken, remoteX509SecuritySettings));
-                        }
-                        else
-                        {
-                            securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(CredentialsUtil.GetAccessTokenAsync, remoteX509SecuritySettings));
-                        }
-                    }
+                    securitySettings = (ct) => Task.FromResult<SecuritySettings>(new X509SecuritySettings(clientCert, remoteX509SecuritySettings));
                 }
                 else
                 {
-                    if (this.ClientCertificate == null)
+                    securitySettings = (ct) => Task.FromResult<SecuritySettings>(new X509SecuritySettings(this.ClientCertificate, remoteX509SecuritySettings));
+                }
+
+                builder.UseX509Security(securitySettings);
+            }
+            else if (this.AzureActiveDirectory.IsPresent)
+            {
+                var remoteX509SecuritySettings = this.GetServerX509SecuritySettings();
+                Func<CancellationToken, Task<SecuritySettings>> securitySettings;
+
+                if (this.GetMetadata.IsPresent)
+                {
+                    securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings("DummyTokenToGetMetadata", remoteX509SecuritySettings));
+                }
+                else
+                {
+                    if (this.SecurityToken != null)
                     {
-                        var clientCert = CredentialsUtil.GetCertificate(this.StoreLocation, this.StoreName, this.FindValue, this.FindType);
-
-                        if (clientCert == null)
-                        {
-                            throw new PSInvalidOperationException(Resource.ErrorLoadingClientCertificate);
-                        }
-
-                        securitySettings = (ct) => Task.FromResult<SecuritySettings>(new X509SecuritySettings(clientCert, remoteX509SecuritySettings));
+                        securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(this.SecurityToken, remoteX509SecuritySettings));
                     }
                     else
                     {
-                        securitySettings = (ct) => Task.FromResult<SecuritySettings>(new X509SecuritySettings(this.ClientCertificate, remoteX509SecuritySettings));
+                        securitySettings = (ct) => Task.FromResult<SecuritySettings>(new AzureActiveDirectorySecuritySettings(CredentialsUtil.GetAccessTokenAsync, remoteX509SecuritySettings));
                     }
                 }
+
+                builder.UseAzureActiveDirectorySecurity(securitySettings);
             }
 
-            var client = ServiceFabricClientFactory.Create(this.ConnectionEndpoint.Select(e => new Uri(e)).ToList(), new ClientSettings(securitySettings));
+            // build the client
+            var client = builder.BuildAsync(cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
             if (this.GetMetadata.IsPresent)
             {
@@ -323,7 +294,57 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             this.SessionState.PSVariable.Set(Constants.ClusterConnectionVariableName, clusterConnection);
         }
 
-        private void ConfigureDefaultConnect()
+        private RemoteX509SecuritySettings GetServerX509SecuritySettings()
+        {
+            var x509Names = new List<X509Name>();
+            RemoteX509SecuritySettings remoteX509SecuritySettings = null;
+
+            // ServerCommonName or ServerThumbprint must be provided when connecting with IP Address.
+            if (this.ServerCertThumbprint == null && this.ServerCommonName == null)
+            {
+                var uri = this.ConnectionEndpoint.Select(e => new Uri(e)).Where(u => u.HostNameType.Equals(UriHostNameType.Dns));
+
+                if (uri.Count() == 0)
+                {
+                    throw new PSArgumentException(Resource.ErrorNoServerCommonNameIrServerCertThumbprint);
+                }
+
+                x509Names = uri.Select(x => new X509Name(x.Host)).ToList();
+                remoteX509SecuritySettings = new RemoteX509SecuritySettings(x509Names);
+            }
+            else if (this.ServerCommonName != null)
+            {
+                // Use Issuer thumbprint if provided.
+                if (this.IssuerCertThumbprints != null && this.IssuerCertThumbprints.Length > 0)
+                {
+                    if (this.ServerCommonName.Length != this.IssuerCertThumbprints.Length)
+                    {
+                        throw new PSArgumentException(Resource.CommonNameIssuerThumbprintMismatch);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < this.ServerCommonName.Length; i++)
+                        {
+                            x509Names.Add(new X509Name(this.ServerCommonName[i], this.IssuerCertThumbprints[i]));
+                        }
+                    }
+                }
+                else
+                {
+                    x509Names = this.ServerCommonName.Select(name => new X509Name(name)).ToList();
+                }
+
+                remoteX509SecuritySettings = new RemoteX509SecuritySettings(x509Names);
+            }
+            else if (this.ServerCertThumbprint != null)
+            {
+                remoteX509SecuritySettings = new RemoteX509SecuritySettings(this.ServerCertThumbprint);
+            }
+
+            return remoteX509SecuritySettings;
+        }
+
+        private bool TryConfiguringDefaultConnect()
         {
 #if DotNetCoreClr
             if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
@@ -332,7 +353,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             }
             else
             {
-                return;
+                return false;
             }
 #endif
             
@@ -349,7 +370,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 }
                 catch (JsonReaderException)
                 {
-                    return;
+                    return false;
                 }
 
                 if (connParams.HttpConnectionEndpoint != null)
@@ -395,6 +416,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 {
                     this.StoreName = connParams.StoreName;
                 }
+
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
