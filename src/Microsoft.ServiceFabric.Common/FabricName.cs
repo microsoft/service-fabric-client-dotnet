@@ -103,7 +103,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="name1">The first object to compare.</param>
         /// <param name="name2">The second object to compare</param>
         /// <returns>true if name1 and name2 are not equal; otherwise, false.</returns>
-        public static bool operator !=(FabricName name1, FabricName name2) => name1 is null ? !(name2 is null) : !name1.Equals(name2);
+        public static bool operator !=(FabricName name1, FabricName name2)
+            => !(name1 == name2);
 
         /// <summary>
         /// Returns a string representation of the value of this instance.
@@ -116,14 +117,30 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="other">An object to compare to this instance.</param>
         /// <returns>true if this instance equal to other parameter; otherwise, false.</returns>
-        public bool Equals(FabricName other) => this.uri.Equals(other?.uri);
+        public bool Equals(FabricName other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            return this.uri.Equals(other?.uri);
+        }
 
         /// <summary>
         /// Returns a value that indicates whether this instance is equal to a specified object.
         /// </summary>
         /// <param name="other">The object to compare with this instance.</param>
         /// <returns>true if other object  has the same value as this instance; otherwise, false.</returns>
-        public override bool Equals(object other) => (other is FabricName) && this.uri.Equals(((FabricName)other)?.uri);
+        public override bool Equals(object other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            return (other is FabricName) && this.uri.Equals(((FabricName)other)?.uri);
+        }
 
         /// <summary>
         /// Returns the hash code for this instance.
