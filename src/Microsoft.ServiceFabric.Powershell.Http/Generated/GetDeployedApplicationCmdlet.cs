@@ -68,7 +68,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (this.ParameterSetName.Equals("GetDeployedApplicationInfoList"))
             {
-                var continuationToken = ContinuationToken.Empty;
+                var continuationToken = default(ContinuationToken);
                 do
                 {
                     var result = this.ServiceFabricClient.Applications.GetDeployedApplicationInfoListAsync(
@@ -78,6 +78,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         continuationToken: continuationToken,
                         maxResults: this.MaxResults,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                    if (result == null)
+                    {
+                        break;
+                    }
 
                     var count = 0;
                     foreach (var item in result.Data)

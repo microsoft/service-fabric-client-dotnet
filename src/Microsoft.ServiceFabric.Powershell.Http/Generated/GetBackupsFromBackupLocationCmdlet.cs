@@ -224,7 +224,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             endDateTimeFilter: this.EndDateTimeFilter,
             latest: this.Latest);
 
-            var continuationToken = ContinuationToken.Empty;
+            var continuationToken = default(ContinuationToken);
             do
             {
                 var result = this.ServiceFabricClient.BackupRestore.GetBackupsFromBackupLocationAsync(
@@ -233,6 +233,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     continuationToken: continuationToken,
                     maxResults: this.MaxResults,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                if (result == null)
+                {
+                    break;
+                }
 
                 var count = 0;
                 foreach (var item in result.Data)

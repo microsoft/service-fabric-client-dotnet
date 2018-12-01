@@ -145,6 +145,41 @@
             </ListControl>
         </View>
         <View>
+            <Name>PartitionHealth</Name>
+            <ViewSelectedBy>
+                <TypeName>Microsoft.ServiceFabric.Common.PartitionHealth</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>PartitionId</PropertyName>
+                                <FormatString>PartitionId</FormatString>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>HealthEvents</PropertyName>
+                                <FormatString>{0}</FormatString>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>UnhealthyEvaluations</PropertyName>
+                                <ItemSelectionCondition>
+                                    <ScriptBlock>$_.UnhealthyEvaluations.Count -gt 0</ScriptBlock>
+                                </ItemSelectionCondition>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>HealthStatistics</PropertyName>
+                                <ItemSelectionCondition>
+                                    <ScriptBlock>($_.HealthStatistics -ne $null) -and ($_.HealthStatistics.HealthStateCountList.Count -ge 1)</ScriptBlock>
+                                </ItemSelectionCondition>
+                                <FormatString>{0}</FormatString>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+        <View>
             <Name>ServiceHealth</Name>
             <ViewSelectedBy>
                 <TypeName>Microsoft.ServiceFabric.Common.ServiceHealth</TypeName>
@@ -153,6 +188,23 @@
                 <ListEntries>
                     <ListEntry>
                         <ListItems>
+                            <ListItem>
+                                <PropertyName>ServiceName</PropertyName>
+                                <FormatString>Name</FormatString>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>AggregatedHealthState</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>UnhealthyEvaluations</PropertyName>
+                                <ItemSelectionCondition>
+                                    <ScriptBlock>$_.UnhealthyEvaluations.Count -gt 0</ScriptBlock>
+                                </ItemSelectionCondition>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>PartitionHealthStates</PropertyName>
+                                <FormatString>{0}</FormatString>
+                            </ListItem>
                             <ListItem>
                                 <PropertyName>HealthEvents</PropertyName>
                                 <FormatString>{0}</FormatString>

@@ -67,7 +67,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Double_")]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_String_")]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Guid_")]
-        public byte[] Data { get; set; }
+        public byte[] BinaryData { get; set; }
+
+        /// <summary>
+        /// Gets or sets Data.
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Int64_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Double_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_String_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Guid_")]
+        public string Data { get; set; }
 
         /// <summary>
         /// Gets or sets CustomTypeId. The property's custom type ID. Using this property, the user is able to tag the type of
@@ -91,10 +100,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             if (this.Binary.IsPresent)
             {
                 propertyValue = new BinaryPropertyValue(
-                    data: this.Data);
+                    data: this.BinaryData);
             }
-
-            /*else if (this.Int64.IsPresent)
+            else if (this.Int64.IsPresent)
             {
                 propertyValue = new Int64PropertyValue(
                     data: this.Data);
@@ -102,7 +110,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             else if (this.Double.IsPresent)
             {
                 propertyValue = new DoublePropertyValue(
-                    data: this.Data);
+                    data: double.Parse(this.Data));
             }
             else if (this.String.IsPresent)
             {
@@ -112,8 +120,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             else if (this.Guid.IsPresent)
             {
                 propertyValue = new GuidPropertyValue(
-                    data: this.Data);
-            }*/
+                    data: new Guid(this.Data));
+            }
 
             var propertyDescription = new PropertyDescription(
             propertyName: this.PropertyName,

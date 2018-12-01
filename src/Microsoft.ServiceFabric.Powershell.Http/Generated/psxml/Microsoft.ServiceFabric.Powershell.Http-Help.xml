@@ -1490,7 +1490,7 @@
                 <maml:name>ClusterConfig</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The cluster configuration.
+                    The cluster configuration as a JSON string. For example, [this file](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/blob/master/Samples/ClusterConfig.Unsecure.DevCluster.json) contains JSON describing the [nodes and other properties of the cluster](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-manifest).
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="true">string</command:parameterValue>
@@ -16297,113 +16297,6 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
-                <command:name>New-SFProperty</command:name>
-                <command:verb>New</command:verb>
-                <command:noun>Property</command:noun>
-                <maml:description>
-                    <maml:para>Creates or updates a Service Fabric property.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-                <command:syntaxItem>
-                    <maml:name>New-SFProperty</maml:name>
-                <command:parameter required="true">
-                        <maml:name>Data</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-                <command:syntaxItem>
-                    <maml:name>New-SFProperty</maml:name>
-                <command:parameter required="true">
-                        <maml:name>Data</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-                <command:syntaxItem>
-                    <maml:name>New-SFProperty</maml:name>
-                <command:parameter required="true">
-                        <maml:name>Data</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-                <command:syntaxItem>
-                    <maml:name>New-SFProperty</maml:name>
-                <command:parameter required="true">
-                        <maml:name>Data</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-                <command:syntaxItem>
-                    <maml:name>New-SFProperty</maml:name>
-                <command:parameter required="true">
-                        <maml:name>Data</maml:name>
-                </command:parameter>
-                </command:syntaxItem>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Creates or updates the specified Service Fabric property under a given name.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
-                <maml:name>NameId</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The Service Fabric name, without the 'fabric:' URI scheme.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>PropertyName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the Service Fabric property.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>Data</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Array of bytes to be sent as an integer array. Each element of array is a number between 0 and 255.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">byte[]</command:parameterValue>
-                <dev:type>
-                    <maml:name>byte[]</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="3">
-                <maml:name>CustomTypeId</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The property's custom type ID. Using this property, the user is able to tag the type of the value of the property.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="4">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
                 <command:name>Get-SFPropertyInfo</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>PropertyInfo</command:noun>
@@ -17614,59 +17507,6 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
-                <command:name>Add-SFValueMeshSecretValue</command:name>
-                <command:verb>Add</command:verb>
-                <command:noun>ValueMeshSecretValue</command:noun>
-                <maml:description>
-                    <maml:para>Adds the specified value as a new version of the specified secret resource.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Creates a new value of the specified secret resource. The name of the value is typically the version identifier. Once created the value cannot be changed.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>SecretResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the secret resource.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>SecretValueResourceName</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the secret resource value which is typically the version identifier for the value.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>Name</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Version identifier of the secret value.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
                 <command:name>Get-SFMeshSecretValue</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>MeshSecretValue</command:noun>
@@ -18013,7 +17853,7 @@
                 <maml:para>Gets the information about all services of an application resource. The information include the description and other properties of the Service.</maml:para>
             </maml:description>
             <command:parameters>
-            <command:parameter required="true" position="0">
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
                 <maml:name>ApplicationResourceName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18025,7 +17865,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="true" position="1">
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="1">
                 <maml:name>ServiceResourceName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18132,7 +17972,7 @@
                 <maml:para>Gets the information about all replicas of a service. The information include the description and other properties of the service replica.</maml:para>
             </maml:description>
             <command:parameters>
-            <command:parameter required="true" position="0">
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
                 <maml:name>ApplicationResourceName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18144,7 +17984,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="true" position="1">
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="1">
                 <maml:name>ServiceResourceName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18156,7 +17996,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="true" position="2">
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="2">
                 <maml:name>ReplicaName</maml:name>
                 <maml:Description>
                     <maml:para>

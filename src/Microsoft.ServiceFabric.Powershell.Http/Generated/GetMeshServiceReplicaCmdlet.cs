@@ -19,21 +19,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets ApplicationResourceName. The identity of the application.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "List")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Get")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 0, ParameterSetName = "Get")]
         public string ApplicationResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceResourceName. The identity of the service.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "List")]
-        [Parameter(Mandatory = true, Position = 1, ParameterSetName = "Get")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "List")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "Get")]
         public string ServiceResourceName { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaName. Service Fabric replica name.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "Get")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2, ParameterSetName = "Get")]
         public string ReplicaName { get; set; }
 
         /// <inheritdoc/>
@@ -41,13 +41,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (this.ParameterSetName.Equals("List"))
             {
-                var continuationToken = ContinuationToken.Empty;
+                var continuationToken = default(ContinuationToken);
                 do
                 {
                     var result = this.ServiceFabricClient.MeshServiceReplicas.ListAsync(
                         applicationResourceName: this.ApplicationResourceName,
                         serviceResourceName: this.ServiceResourceName,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                    if (result == null)
+                    {
+                        break;
+                    }
 
                     var count = 0;
                     foreach (var item in result.Data)
@@ -79,7 +84,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override object FormatOutput(object output)
         {
-            return output;
+            var outputResult = output as ServiceReplicaDescription;
+
+            var result = new PSObject();
+
+            result.Properties.Add(new PSNoteProperty("ReplicaName", outputResult.ReplicaName));
+            result.Properties.Add(new PSNoteProperty("OperatingSystem", outputResult.OsType));
+
+            return result;
         }
     }
 }

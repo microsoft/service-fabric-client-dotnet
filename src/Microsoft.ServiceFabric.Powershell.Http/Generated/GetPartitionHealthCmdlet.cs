@@ -98,7 +98,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override object FormatOutput(object output)
         {
-            return output;
+            var outputResult = output as PartitionHealth;
+
+            var healthEventsObj = new PSObject(outputResult.HealthEvents);
+            healthEventsObj.Members.Add(new PSCodeMethod("ToString", typeof(OutputFormatter).GetMethod("FormatObject")));
+
+            var healthStatisticsObj = new PSObject(outputResult.HealthStatistics);
+            healthStatisticsObj.Members.Add(new PSCodeMethod("ToString", typeof(OutputFormatter).GetMethod("FormatObject")));
+
+            var result = new PSObject(outputResult);
+
+            result.Properties.Add(new PSNoteProperty("PartitionId", outputResult.PartitionId));
+            result.Properties.Add(new PSNoteProperty("AggregatedHealthState", outputResult.AggregatedHealthState));
+
+            return result;
         }
     }
 }

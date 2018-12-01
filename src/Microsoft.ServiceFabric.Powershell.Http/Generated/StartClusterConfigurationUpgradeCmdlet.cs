@@ -17,7 +17,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     public partial class StartClusterConfigurationUpgradeCmdlet : CommonCmdletBase
     {
         /// <summary>
-        /// Gets or sets ClusterConfig. The cluster configuration.
+        /// Gets or sets ClusterConfig. The cluster configuration as a JSON string. For example, [this
+        /// file](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/blob/master/Samples/ClusterConfig.Unsecure.DevCluster.json)
+        /// contains JSON describing the [nodes and other properties of the
+        /// cluster](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-manifest).
         /// </summary>
         [Parameter(Mandatory = true, Position = 0)]
         public string ClusterConfig { get; set; }

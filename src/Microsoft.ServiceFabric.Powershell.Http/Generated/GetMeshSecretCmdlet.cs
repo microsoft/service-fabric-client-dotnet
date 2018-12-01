@@ -27,10 +27,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (this.ParameterSetName.Equals("List"))
             {
-                var continuationToken = ContinuationToken.Empty;
+                var continuationToken = default(ContinuationToken);
                 do
                 {
                     var result = this.ServiceFabricClient.MeshSecrets.ListAsync().GetAwaiter().GetResult();
+
+                    if (result == null)
+                    {
+                        break;
+                    }
 
                     var count = 0;
                     foreach (var item in result.Data)
@@ -60,7 +65,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <inheritdoc/>
         protected override object FormatOutput(object output)
         {
-            return output;
+            var outputResult = output as SecretResourceDescription;
+
+            var result = new PSObject();
+
+            result.Properties.Add(new PSNoteProperty("Name", outputResult.Name));
+            result.Properties.Add(new PSNoteProperty("Description", outputResult.Properties.Description));
+            result.Properties.Add(new PSNoteProperty("Status", outputResult.Properties.Status));
+            result.Properties.Add(new PSNoteProperty("ContentType", outputResult.Properties.ContentType));
+
+            return result;
         }
     }
 }

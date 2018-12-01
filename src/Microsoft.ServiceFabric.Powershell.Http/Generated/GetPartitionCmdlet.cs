@@ -46,7 +46,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (this.ParameterSetName.Equals("GetPartitionInfoList"))
             {
-                var continuationToken = ContinuationToken.Empty;
+                var continuationToken = default(ContinuationToken);
                 do
                 {
                     var result = this.ServiceFabricClient.Partitions.GetPartitionInfoListAsync(
@@ -54,6 +54,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         continuationToken: continuationToken,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                    if (result == null)
+                    {
+                        break;
+                    }
 
                     var count = 0;
                     foreach (var item in result.Data)

@@ -54,7 +54,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             if (this.ParameterSetName.Equals("GetNodeInfoList"))
             {
-                var continuationToken = ContinuationToken.Empty;
+                var continuationToken = default(ContinuationToken);
                 do
                 {
                     var result = this.ServiceFabricClient.Nodes.GetNodeInfoListAsync(
@@ -63,6 +63,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         maxResults: this.MaxResults,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+
+                    if (result == null)
+                    {
+                        break;
+                    }
 
                     var count = 0;
                     foreach (var item in result.Data)
