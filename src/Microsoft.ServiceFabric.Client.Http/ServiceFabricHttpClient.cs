@@ -136,7 +136,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             string requestId,
             CancellationToken cancellationToken)
         {
-            var requestUri = this.GetRequestUri(relativeUri);
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
             var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
             await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
         }
@@ -160,7 +162,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             CancellationToken cancellationToken)
             where T : class
         {
-            var requestUri = this.GetRequestUri(relativeUri);
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
             var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(T);
@@ -206,7 +210,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             string requestId,
             CancellationToken cancellationToken)
         {
-            var requestUri = this.GetRequestUri(relativeUri);
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
             var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(IEnumerable<T>);
@@ -252,7 +258,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             string requestId,
             CancellationToken cancellationToken)
         {
-            var requestUri = this.GetRequestUri(relativeUri);
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
             var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
             var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
             var retValue = default(PagedData<T>);
@@ -506,13 +514,6 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return clientRequestId;
-        }
-
-        private Uri GetRequestUri(string relativeUri)
-        {
-            // pick a random Uri from endpoints(if more than 1) to send request to.
-            var endpoint = this.randomizedEndpoints.GetElement();
-            return new Uri(endpoint, relativeUri);
         }
 
         private async Task<object> WaitToUseHttpClient(CancellationToken cancellationToken)

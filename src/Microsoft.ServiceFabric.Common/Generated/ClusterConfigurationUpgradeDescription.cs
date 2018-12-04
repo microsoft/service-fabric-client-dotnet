@@ -16,7 +16,10 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ClusterConfigurationUpgradeDescription class.
         /// </summary>
-        /// <param name="clusterConfig">The cluster configuration.</param>
+        /// <param name="clusterConfig">The cluster configuration as a JSON string. For example, [this
+        /// file](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/blob/master/Samples/ClusterConfig.Unsecure.DevCluster.json)
+        /// contains JSON describing the [nodes and other properties of the
+        /// cluster](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-manifest).</param>
         /// <param name="healthCheckRetryTimeout">The length of time between attempts to perform health checks if the
         /// application or cluster is not healthy.</param>
         /// <param name="healthCheckWaitDurationInSeconds">The length of time to wait after completing an upgrade domain before
@@ -64,7 +67,10 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the cluster configuration.
+        /// Gets the cluster configuration as a JSON string. For example, [this
+        /// file](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/blob/master/Samples/ClusterConfig.Unsecure.DevCluster.json)
+        /// contains JSON describing the [nodes and other properties of the
+        /// cluster](https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-manifest).
         /// </summary>
         public string ClusterConfig { get; }
 

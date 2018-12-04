@@ -19,13 +19,13 @@ Func<CancellationToken, Task<SecuritySettings>> GetSecurityCredentials = (ct) =>
 {
     // get the X509Certificate2 either from Certificate store or from file.
     var clientCert = new System.Security.Cryptography.X509Certificates.X509Certificate2("<Path to .pfx file>", "password");
-    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { server_cert_thumbprint });
+    var remoteSecuritySettings = new RemoteX509SecuritySettings(new List<string> { "server_cert_thumbprint" });
     return Task.FromResult<SecuritySettings>(new X509SecuritySettings(clientCert, remoteSecuritySettings));
 };
 ```
 
 ### Connecting to cluster secured with Azure Active Directory
-There are different ways to connect to the cluster secured with Azure Active Directory depending on if you have the AAD metadata(authority, resource, clientId) to get the token from Azure Active Directory. If you have the AAD metadata, sue the option 1 below, if you don't have the AAD metadata, use the option 2 below.
+There are different ways to connect to the cluster secured with Azure Active Directory depending on if you have the AAD metadata(authority, resource, clientId) to get the token from Azure Active Directory. If you have the AAD metadata, use the option 1 below, if you don't have the AAD metadata, use the option 2 below.
 #### 1. You have the AAD metadata to get the token from Azure Active Directory.
 If you have the AAD metadata(authority, resource, client id) to get the token from Azure Active Directory, you can use it directly to get the token as shown below.
 ```csharp

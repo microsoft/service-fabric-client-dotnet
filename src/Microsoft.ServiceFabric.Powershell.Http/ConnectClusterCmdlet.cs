@@ -30,7 +30,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// </summary>
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "Default")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Windows")]
-        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "X509")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Aad")]
         public string[] ConnectionEndpoint
         {
@@ -51,7 +52,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets switch parameter for slecting X509 Credentials when connecting to Service Fabric Cluster secured with X509 certificate.
         /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "X509")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
         public SwitchParameter X509Credential
         {
             get;
@@ -71,7 +73,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Subject common names or DNS names of X509 certificate of the server.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "X509")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
         [Parameter(Mandatory = false, ParameterSetName = "Dsts")]
         [Parameter(Mandatory = false, ParameterSetName = "Aad")]
         public string[] ServerCommonName
@@ -83,7 +86,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets Issuer Cert thumbprints for X509 certificate of the server. When provided alongwith ServerCommonName, its used to validate server cert's issuer thumbprint.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "X509")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
         [Parameter(Mandatory = false, ParameterSetName = "Dsts")]
         [Parameter(Mandatory = false, ParameterSetName = "Aad")]
         public string[] IssuerCertThumbprints
@@ -95,7 +99,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets thumbprint of X509 certificate of the server.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "X509")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
         [Parameter(Mandatory = false, ParameterSetName = "Dsts")]
         [Parameter(Mandatory = false, ParameterSetName = "Aad")]
         public string[] ServerCertThumbprint
@@ -117,7 +122,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets the client certificate.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "X509")]
+        [Parameter(Mandatory = true, ParameterSetName = "X509_ClientCertProvided")]
         public X509Certificate2 ClientCertificate
         {
             get;
@@ -127,7 +132,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets the <see cref="X509FindType"/> to find the client certificate.
         /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "X509")]
+        [Parameter(Mandatory = true, ParameterSetName = "X509_FindClientCert")]
         public X509FindType FindType
         {
             get;
@@ -137,7 +142,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets the FindValue to find the client certificate.
         /// </summary>
-        [Parameter(Mandatory = true, ParameterSetName = "X509")]
+        [Parameter(Mandatory = true, ParameterSetName = "X509_FindClientCert")]
         public string FindValue
         {
             get;
@@ -147,7 +152,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets the <see cref="StoreLocation"/> to find the client certificate.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "X509")]
+        [Parameter(Mandatory = true, ParameterSetName = "X509_FindClientCert")]
         public StoreLocation StoreLocation
         {
             get;
@@ -157,7 +162,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets the StoreName to find the client certificate.
         /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "X509")]
+        [Parameter(Mandatory = true, ParameterSetName = "X509_FindClientCert")]
         public string StoreName
         {
             get;

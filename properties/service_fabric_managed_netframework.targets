@@ -20,14 +20,9 @@
     <MSBuild Projects ="@(Projects_Prod_netframework)" ContinueOnError ="false" Targets="Clean" Properties="Configuration=$(Configuration)"/>
   </Target>
 
-  <!-- Copy prod  binaries for full net framework-->
+  <!-- Copy prod  binaries for full net framework for Microsoft.SErviceFabric.Powershell.Http-->
   <Target Name="CopyProdBinaries_netframework">
     <ItemGroup>
-      <BinairesNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Common.*"/>
-      <BinairesNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Client.*"/>
-      <BinairesNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Client.Http.*"/>
-      <BinairesNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Newtonsoft.Json.*"/>
-
       <!-- PS Module -->
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Common.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Client.*"/>

@@ -63,10 +63,6 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// 255.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Binary_")]
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Int64_")]
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Double_")]
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_String_")]
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Guid_")]
         public byte[] BinaryData { get; set; }
 
         /// <summary>
