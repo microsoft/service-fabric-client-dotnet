@@ -263,7 +263,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             }
 
             // build the client
-            var client = builder.BuildAsync(cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
+            var client = builder.BuildAsync(cancellationToken: this.CancellationToken).GetAwaiter().GetResult() as ServiceFabricHttpClient;
+            
+            // set the client type for Telemetry on HttpGateway.
+            client.ClientTypeHeaderValue = Constants.PowershellClientTypeHeaderValue;
 
             if (this.GetMetadata.IsPresent)
             {

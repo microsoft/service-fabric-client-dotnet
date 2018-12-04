@@ -41,5 +41,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             builder.Container[typeof(DelegatingHandler[])] = delegateHandlers;
             return builder;
         }
+
+        internal static ServiceFabricClientBuilder AddClientTypeIdentity(
+            this ServiceFabricClientBuilder builder,
+            string clientType)
+        {
+            return builder;
+        }
     }
 }

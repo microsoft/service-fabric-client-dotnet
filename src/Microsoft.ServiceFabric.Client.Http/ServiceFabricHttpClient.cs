@@ -11,6 +11,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Runtime.InteropServices;
     using System.Security.Authentication;
     using System.Threading;
     using System.Threading.Tasks;
@@ -42,6 +43,11 @@ namespace Microsoft.ServiceFabric.Client.Http
         private IBearerTokenHandler bearerTokenHandler;
         private IReadOnlyList<DelegatingHandler> delegateHandlers;
         private Func<CancellationToken, Task<SecuritySettings>> refreshSecuritySettingsFunc;
+
+        /// <summary>
+        /// ClientType used for telemetry in http gateway.
+        /// </summary>
+        private string clientTypeHeaderValue;
 
         /// <summary>
         /// Used to synchronize refresh of security settings.
@@ -91,12 +97,40 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             this.refreshSecuritySettingsFunc = this.SecuritySettingsFunc;
             this.httpClientHandlerWrapper = new HttpClientHandlerWrapper(this.innerHandler);
-        }
+            this.ClientTypeHeaderValue = Constants.ClientlibClientTypeHeaderValue;
+    }
 
         /// <summary>
         /// Gets the clientId used for tracing.
         /// </summary>
         internal string ClientId { get; }
+
+        /// <summary>
+        /// Gets or sets the clientType used for telemetry in http gateway.
+        /// </summary>
+        internal string ClientTypeHeaderValue
+        {
+            get
+            {
+                return this.clientTypeHeaderValue;
+            }
+
+            set
+            {
+                // Append OS platform.
+                var osPlatformAppend = "-Windows";
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    osPlatformAppend = "-Linux";
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    osPlatformAppend = "-OSX";
+                }
+
+                this.clientTypeHeaderValue = value + osPlatformAppend;
+            }
+        }
 
         /// <summary>
         /// Disposes resources.
@@ -331,6 +365,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 
                 // Add client request id to header for corelation on server.
                 request.Headers.Add(Constants.ServiceFabricHttpRequestIdHeaderName, $"{clientRequestId}");
+                request.Headers.Add(Constants.ServiceFabricHttpClientTypeHeaderName, $"{this.ClientTypeHeaderValue}");
                 return request;
             }
 
