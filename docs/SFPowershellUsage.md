@@ -28,7 +28,8 @@ Connect-SFCluster -ConnectionEndpoint http://<cluster_fqdn>:<httgateway_port>
 Please see [Connect-SFCluster](cmdlets\Connect-SFCluster.md) cmdlet for information on how to connect to a secured cluster.
 
 ## Commands
-Following is the list of commands available in this module: 
+Following is the list of commands available in this module:
+
 Command | Summary
 -|-
 [Add-SFMeshSecretValue](cmdlets\Add-SFMeshSecretValue.md) | Adds the specified value as a new version of the specified secret resource.
