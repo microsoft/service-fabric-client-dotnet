@@ -30,7 +30,7 @@ Please see [Connect-SFCluster](cmdlets\Connect-SFCluster.md) cmdlet for informat
 ## Commands
 Following is the all commands available in the module is available [here](PSCmdHelp.md)
 Command | Summary
---- | ---
+-|-
 [Add-SFMeshSecretValue](cmdlets\Add-SFMeshSecretValue.md)|Adds the specified value as a new version of the specified secret resource.
 [Backup-SFPartition](cmdlets\Backup-SFPartition.md)|Triggers backup of the partition's state.
 [Connect-SFCluster](cmdlets\Connect-SFCluster.md)|Cmdlet to connect to Service Fabric cluster.
