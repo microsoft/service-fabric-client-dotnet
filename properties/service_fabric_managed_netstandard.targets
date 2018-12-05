@@ -47,9 +47,15 @@
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\settings.json"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\SfSbzYamlMergeLib.*"/>
+
+      <!-- Module manifest file. -->
+      <PSModuleManifest Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\manifest\Microsoft.ServiceFabric.Powershell.Http.psd1"/>
     </ItemGroup>
     <Copy SourceFiles="@(BinairesNetStandard)" DestinationFiles="@(BinairesNetStandard->'$(DropFolderNetStandard)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
     <Copy SourceFiles="@(BinairesPSModuleNetStandard)" DestinationFiles="@(BinairesPSModuleNetStandard->'$(PSModuleDropFolderNetStandard)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+
+    <!-- Copy Module manifest file to Root of PSModule. -->
+    <Copy SourceFiles="@(PSModuleManifest)" DestinationFiles="@(PSModuleManifest->'$(PSModuleRootDropFolder)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
    
 </Project>

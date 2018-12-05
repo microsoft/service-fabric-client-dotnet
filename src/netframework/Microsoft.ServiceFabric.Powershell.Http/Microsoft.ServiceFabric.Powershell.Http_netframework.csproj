@@ -30,7 +30,7 @@
     <None Include="$(SourceCodeDir)Generated\psxml\Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="$(SourceCodeDir)Microsoft.ServiceFabric.Powershell.Http.psd1" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+    <None Include="$(SourceCodeDir)manifest\Microsoft.ServiceFabric.Powershell.Http.psd1" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

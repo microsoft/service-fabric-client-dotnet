@@ -45,8 +45,8 @@
     <None Update="Generated\psxml\Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Microsoft.ServiceFabric.Powershell.Http.psd1">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Update="manifest\Microsoft.ServiceFabric.Powershell.Http.psd1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>  
 </Project>
