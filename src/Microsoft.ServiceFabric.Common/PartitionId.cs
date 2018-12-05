@@ -40,11 +40,11 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Indicates whether the values of two specified <see cref="PartitionId"/> objects are equal.
         /// </summary>
-        /// <param name="partitionId1">The first object to compare.</param>
+        /// <param name="partitionId1">The first object to compare.</param>z
         /// <param name="partitionId2">The second object to compare</param>
         /// <returns>true if partitionId1 and partitionId2 are equal; otherwise, false.</returns>
         public static bool operator ==(PartitionId partitionId1, PartitionId partitionId2)
-            => partitionId1.Equals(partitionId2);
+            => partitionId1 is null ? partitionId2 is null : partitionId1.Equals(partitionId2);
 
         /// <summary>
         /// Indicates whether the values of two specified <see cref="PartitionId"/> objects are not equal.
@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="partitionId2">The second object to compare</param>
         /// <returns>true if partitionId1 and partitionId2 are not equal; otherwise, false.</returns>
         public static bool operator !=(PartitionId partitionId1, PartitionId partitionId2)
-            => !partitionId1.Equals(partitionId2);
+            => !(partitionId1 == partitionId2);
 
         /// <summary>
         /// Creates a PartitionId class instance using the string representation of the GUID passed in as argument.
@@ -73,14 +73,30 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="other">An object to compare to this instance.</param>
         /// <returns>true if this instance equal to other parameter; otherwise, false.</returns>
-        public bool Equals(PartitionId other) => this.id.Equals(other.id);
+        public bool Equals(PartitionId other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            return this.id.Equals(other.id);
+        }
 
         /// <summary>
         /// Returns a value that indicates whether this instance is equal to a specified object.
         /// </summary>
         /// <param name="other">The object to compare with this instance.</param>
         /// <returns>true if other object is a <see cref="PartitionId"/> that has the same value as this instance; otherwise, false.</returns>
-        public override bool Equals(object other) => (other is PartitionId) && this.Equals((PartitionId)other);
+        public override bool Equals(object other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            return (other is PartitionId) && this.Equals((PartitionId)other);
+        }
 
         /// <summary>
         /// Returns the hash code for this instance.

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <Import Project="..\..\..\properties\service_fabric_managed_netframework.props" />
+  <Import Project="..\..\..\properties\service_fabric_managed_stylecop.props" />
+  <PropertyGroup>
+    <AssemblyName>Microsoft.ServiceFabric.Powershell.Http</AssemblyName>
+    <RootNamespace>Microsoft.ServiceFabric.Powershell.Http</RootNamespace>
+    <DocumentationFile>$(OutputPath)\$(AssemblyName).xml</DocumentationFile>
+    <SourceCodeDir>$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\</SourceCodeDir>
+    <TargetFramework>net461</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--Add required .cs files to build for netframework-->
+    <Compile Include="$(SourceCodeDir)*.cs" Exclude="$(SourceCodeDir)Resource.Designer.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
+    <Compile Include="$(SourceCodeDir)Generated\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SfSbzYamlMergeLib">
+      <HintPath>$(RepoRoot)refs\SfSbzYamlMergeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.YamlUtils">
+      <HintPath>$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(SourceCodeDir)Generated\psxml\Microsoft.ServiceFabric.Powershell.Http-Help.xml" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(SourceCodeDir)Generated\psxml\Microsoft.ServiceFabric.Powershell.Http.Format.ps1xml" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(SourceCodeDir)manifest\Microsoft.ServiceFabric.Powershell.Http.psd1" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(SourceCodeDir)Resource.Designer.cs">
+      <Link>Resource.Designer.cs</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
+    <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" />
+    <PackageReference Include="YamlDotNet.Signed" Version="4.2.2" />   
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(SourceCodeDir)Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj" />
+  </ItemGroup>   
+</Project>

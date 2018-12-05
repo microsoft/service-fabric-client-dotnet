@@ -16,8 +16,18 @@ namespace Microsoft.ServiceFabric.Client.Http
         public const string ServiceFabricHttpRequestIdHeaderName = "X-ServiceFabricRequestId";
 
         /// <summary>
-        /// Constant string for request id in header.
+        /// Constant string for client type in header.
         /// </summary>
-        public const string DefaultApiVersionForResources = "6.3-preview";
+        public const string ServiceFabricHttpClientTypeHeaderName = "X-ServiceFabricClientType";
+
+        /// <summary>
+        /// Constant string default api version for resources.
+        /// </summary>
+        public const string DefaultApiVersionForResources = "6.4-preview";
+
+        /// <summary>
+        /// Constant string for client type in header.
+        /// </summary>
+        public const string ClientlibClientTypeHeaderValue = "CSharpClientlib";
     }
 }

@@ -22,20 +22,12 @@ namespace Microsoft.ServiceFabric.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceFabricClient"/> class.
         /// </summary>
-        /// <param name="clusterEndpoint">Uri for Service Cluster management endpoint.</param>
-        /// <param name="clientSettings">Client settings for connecting to cluster. Default value is null which means connecting to unsecured cluster.</param>
-        protected ServiceFabricClient(Uri clusterEndpoint, ClientSettings clientSettings = null)
-            : this(new List<Uri>() { clusterEndpoint }, clientSettings)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceFabricClient"/> class.
-        /// </summary>
         /// <param name="clusterEndpoints">Uris for Service Cluster management endpoint.</param>
+        /// <param name="securitySettings">A delegate to get ClaimsSecuritySettings.</param>
         /// <param name="clientSettings">Client settings for connecting to cluster. Default value is null which means connecting to unsecured cluster.</param>
         protected ServiceFabricClient(
             IReadOnlyList<Uri> clusterEndpoints,
+            Func<CancellationToken, Task<SecuritySettings>> securitySettings = null,
             ClientSettings clientSettings = null)
         {
             if (clusterEndpoints == null)
@@ -56,6 +48,7 @@ namespace Microsoft.ServiceFabric.Client
             this.ClusterEndpoints = clusterEndpoints;
 
             // setup security settings
+            this.SecuritySettingsFunc = securitySettings;
             this.ClientSettings = clientSettings;
         }
 
@@ -117,16 +110,43 @@ namespace Microsoft.ServiceFabric.Client
         public IEventsStoreClient EventsStore { get; protected set; }
 
         /// <inheritdoc/>
-        public IApplicationResourceClient ApplicationResources { get; protected set; }
+        public IMeshApplicationsClient MeshApplications { get; protected set; }
 
         /// <inheritdoc/>
-        public IVolumeResourceClient VolumeResources { get; protected set; }
+        public IMeshVolumesClient MeshVolumes { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshSecretsClient MeshSecrets { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshSecretValuesClient MeshSecretValues { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshNetworksClient MeshNetworks { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshGatewaysClient MeshGateways { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshServicesClient MeshServices { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshCodePackagesClient MeshCodePackages { get; protected set; }
+
+        /// <inheritdoc/>
+        public IMeshServiceReplicasClient MeshServiceReplicas { get; protected set; }
 
         /// <summary>
         /// Gets the client settings for connecting to cluster.
         /// </summary>
         /// <value><see cref="ClientSettings"/> for connecting to cluster.</value>
         protected ClientSettings ClientSettings { get; }
+
+        /// <summary>
+        /// Gets the delegate to create security settings for connecting to cluster.
+        /// </summary>
+        /// <value><see cref="SecuritySettings"/> for connecting to cluster.</value>
+        protected Func<CancellationToken, Task<SecuritySettings>> SecuritySettingsFunc { get; }
 
         /// <summary>
         /// Gets the Uri for Service Cluster management endpoint.

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <!-- List of .csproj to build -->
+    <Projects_Prod_netframework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\Microsoft.ServiceFabric.Powershell.Http_netframework.csproj" />
+  </ItemGroup>
+
+
+  <!--Targets for prod code -->
+  <Target Name="RestoreProd_netframework">
+    <!-- Restores nuget packages and project specific tools -->
+    <MSBuild Projects ="@(Projects_Prod_netframework)" ContinueOnError ="false" Targets="restore" Properties="Verbosity=quiet"/>
+  </Target>
+  
+  <Target Name="BuildProd_netframework" DependsOnTargets="RestoreProd_netframework">
+    <MSBuild Projects ="@(Projects_Prod_netframework)" ContinueOnError ="false" Properties="Configuration=$(Configuration)" BuildInParallel="true"/>
+  </Target>
+
+  <Target Name="CleanProd_netframework" DependsOnTargets="RestoreProd_netframework">
+    <MSBuild Projects ="@(Projects_Prod_netframework)" ContinueOnError ="false" Targets="Clean" Properties="Configuration=$(Configuration)"/>
+  </Target>
+
+  <!-- Copy prod  binaries for full net framework for Microsoft.SErviceFabric.Powershell.Http-->
+  <Target Name="CopyProdBinaries_netframework">
+    <ItemGroup>
+      <!-- PS Module -->
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Common.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Client.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Client.Http.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.ServiceFabric.Powershell.Http*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Generated\psxml\Microsoft.ServiceFabric.Powershell.Http*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Newtonsoft.Json.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\YamlDotNet.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.CSharp.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.IdentityModel.Clients.ActiveDirectory.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.*"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\settings.json"/>
+      <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\SfSbzYamlMergeLib.*"/>
+
+      <!-- Module manifest file. -->
+      <PSModuleManifest Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)manifest\Microsoft.ServiceFabric.Powershell.Http.psd1"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(BinairesNetFramework)" DestinationFiles="@(BinairesNetFramework->'$(DropFolderNetFramework)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(BinairesPSModuleNetFramework)" DestinationFiles="@(BinairesPSModuleNetFramework->'$(PSModuleDropFolderNetFramework)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+
+    <!-- Module manifest is same for both netstandard and netframework and is copied by netstandard targets as well. -->
+    <Copy SourceFiles="@(PSModuleManifest)" DestinationFiles="@(PSModuleManifest->'$(PSModuleRootDropFolder)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+   
+</Project>

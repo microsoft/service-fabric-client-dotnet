@@ -10,7 +10,11 @@
     
     <!-- Set Drop folders -->
     <DropFolder>$(RepoRoot)drop\$(Configuration)\</DropFolder>
+    <DropFolderNetFramework>$(DropFolder)netframework\</DropFolderNetFramework>
     <DropFolderNetStandard>$(DropFolder)netstandard\</DropFolderNetStandard>
+    <PSModuleRootDropFolder>$(DropFolder)PSModule\Microsoft.ServiceFabric.Powershell.Http\</PSModuleRootDropFolder>
+    <PSModuleDropFolderNetFramework>$(PSModuleRootDropFolder)netframework\</PSModuleDropFolderNetFramework>
+    <PSModuleDropFolderNetStandard>$(PSModuleRootDropFolder)netstandard\</PSModuleDropFolderNetStandard>
     <NugetPackageDropFolder>$(DropFolder)packages</NugetPackageDropFolder>
     
     <!-- Set Nuget exe path -->
@@ -18,11 +22,10 @@
 
     <!-- Version for binaries, nuget packages generated from this repo. -->
     <!-- TODO: Versions numbers are changed here manually for now, Integrate this with GitVersion. -->
-    <MajorVersion>1</MajorVersion>
+    <MajorVersion>2</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <BuildVersion>0</BuildVersion>
     <Revision>0</Revision>
-    <PreviewTag>-preview61</PreviewTag>
-
+    <PreviewTag>-preview1</PreviewTag>
   </PropertyGroup>
 </Project>

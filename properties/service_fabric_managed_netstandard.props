@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="service_fabric_managed_common.props" />
+  <PropertyGroup>
+    <!-- Define Constants used in code for netstandard 2.0. -->
+    <DefineConstants>$(DefineConstants);DotNetCoreClr</DefineConstants>
+  </PropertyGroup>
+</Project>
