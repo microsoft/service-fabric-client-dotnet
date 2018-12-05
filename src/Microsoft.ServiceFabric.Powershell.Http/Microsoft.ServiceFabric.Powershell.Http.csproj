@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="3.19.8" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06" />
-    <PackageReference Include="YamlDotNet.Signed" Version="4.2.2" />
+    <PackageReference Include="YamlDotNet.Signed" Version="5.2.1" />
   </ItemGroup>  
   <ItemGroup>
     <Reference Include="SfSbzYamlMergeLib">
