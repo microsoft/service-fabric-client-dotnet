@@ -8,6 +8,7 @@ var sfClient = new ServiceFabricClientBuilder()
 ```
 
 ### Connecting to cluster secured with X509 certificate
+Certificate information must be provided when connecting to a secured cluster from within the cluster or outside the cluster.
 ```csharp
 // create client using ServiceFabricClientBuilder.UseX509Security
 var sfClient = new ServiceFabricClientBuilder()
