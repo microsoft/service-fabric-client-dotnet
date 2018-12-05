@@ -1,3 +1,13 @@
+## Microsoft.ServiceFabric.Client.Http
+
+## Client Library nuget package version and Service Fabric Runtime Compatibility
+Nuget Package Version | Compatible Service Fabric Runtime version
+-|-
+2.0.3-preview1 | >= 6.4
+1.0.0-preview59 - 1.0.0-preview61 | >=6.3
+1.0.0-preview58 | >=6.2
+
+
 ## Using the Client Library
 ### Connecting to unsecured cluster
 ```csharp

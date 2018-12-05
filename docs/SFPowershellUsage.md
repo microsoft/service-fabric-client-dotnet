@@ -13,6 +13,11 @@ Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
 
 For more information on downloading packages from Powershell Gallery, please see [Downloading packages from the PowerShell Gallery](https://docs.microsoft.com/en-us/powershell/gallery/getting-started#downloading-packages-from-the-powershell-gallery).
 
+## PS Module and Service Fabric Runtime Compatibility
+Module Version | Compatible Service Fabric Runtime version
+-|-
+1.0.3-preview1 | >= 6.4.617
+
 ## Connecting to Cluster
 ### Connecting to unsecured cluster
 ```PowerShell

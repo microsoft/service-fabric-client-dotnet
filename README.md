@@ -1,8 +1,9 @@
-## Service Fabric Client Library for .NET
-Client library for managing Service Fabric clusters and applications.
+## Service Fabric Client Library for .NET and PowerShell module
+REST based Client library and PowerShell module for managing Service Fabric clusters and applications.
 
-This repo builds the following packages:
- - Microsoft.ServiceFabric.Client.Http ([nuget.org link](https://www.nuget.org/packages/Microsoft.ServiceFabric.Client.Http/))
+This repo builds the following nuget packages and powershell modules:
+ - Nuget package: Microsoft.ServiceFabric.Client.Http ([nuget.org link](https://www.nuget.org/packages/Microsoft.ServiceFabric.Client.Http/))
+ - Powershell Module: Microsoft.ServiceFabric.Powershell.Http ([PowerShell Gallery link](https://www.powershellgallery.com/packages/Microsoft.ServiceFabric.Powershell.Http))
 
 For more Service Fabric open source projects, visit the Service Fabric [home repo](https://github.com/Microsoft/service-fabric).
 
