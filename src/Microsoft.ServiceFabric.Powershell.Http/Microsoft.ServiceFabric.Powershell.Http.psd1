@@ -33,7 +33,7 @@ Copyright = '(c) 2018 Microsoft Corporation. All rights reserved.'
 Description = 'Powershell cmdlets to manage a Service Fabric Cluster.'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '6.1'
+PowerShellVersion = '5.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
