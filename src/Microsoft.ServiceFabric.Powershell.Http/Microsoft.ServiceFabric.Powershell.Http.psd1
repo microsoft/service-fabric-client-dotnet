@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'ServiceFabric, Service Fabric'
+        Tags = 'ServiceFabric'
 
         # A URL to the license for this module.
         LicenseUri = 'http://www.microsoft.com/web/webpi/eula/net_library_eula_ENU.htm'
