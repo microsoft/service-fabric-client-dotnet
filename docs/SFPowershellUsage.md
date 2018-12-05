@@ -1,9 +1,15 @@
 # Microsoft.ServiceFabric.Powershell.Http Powershell Module
-The new Service Fabric Powershell module works over HTTP with the service Fabric HTTP Gateway. This module is build for Powershell core using .net standard 2.0 and it can be used with [Powershell Core](https://github.com/powershell/powershell) on Windows, Linux and MacOS.
-For a full list of systems supported by PowerShell Core see [Installing Powershell Core](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell?view=powershell-6)
+The new Service Fabric Powershell module works over HTTP with the service Fabric HTTP Gateway. This module is build for Powershell core and .net standard 2.0 and can be used with following:
+- [Powershell Core](https://github.com/powershell/powershell) on Windows, Linux and MacOS.
+ For a full list of systems supported by PowerShell Core see [Installing Powershell Core](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-powershell?view=powershell-6)
+- [Windows Powershell](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-windows-powershell?view=powershell-6) (Using the module in Windows Powershell requires .net framework 4.7.1 and Windows Powershell version 6.1)
 
 ## Getting the module
 Service Fabric REST Powershell module is available in Powershell Gallery and can be installed as
+```PowerShell
+Install-Module -Name Microsoft.ServiceFabric.Powershell.Http
+```
+
 
 For more information on downloading packages from Powershell Gallery, please see [Downloading packages from the PowerShell Gallery](https://docs.microsoft.com/en-us/powershell/gallery/getting-started#downloading-packages-from-the-powershell-gallery).
 

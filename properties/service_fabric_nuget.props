@@ -16,6 +16,7 @@
     <RequireLicenseAcceptance>True</RequireLicenseAcceptance>
     <NoNuspecTags>true</NoNuspecTags>
     <Tags>ServiceFabric Microsoft Azure Fabric</Tags>
+    <IconUrl>http://go.microsoft.com/fwlink/?LinkID=288890</IconUrl>
     <Language>en-US</Language>
     <NupkgOutputDir>$(OutputRoot)\packages</NupkgOutputDir>
 
