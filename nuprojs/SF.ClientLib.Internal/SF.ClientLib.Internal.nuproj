@@ -8,23 +8,27 @@
       <Description>This package provides Service Fabric dotnet client libraries for consumption by other Service Fabric repos.</Description>
       <Summary>This package provides Service Fabric Actors and Services libraries for consumption by other Service Fabric repos.</Summary>
       <Tags>ServiceFabric Microsoft Azure Fabric</Tags>
+      <NoPackageAnalysis>true</NoPackageAnalysis>
     </PropertyGroup>
 
     <Import Project="$(NuProjPath)\NuProj.props" />
     <Import Project="$(NuProjPath)\NuProj.targets" />
 
     <ItemGroup>
-      <File Include="$(DropFolderNetFramework)*.*">
-        <TargetPath>lib\netframework</TargetPath>
-      </File>
-      <File Include="$(DropFolderNetFramework)\PSModule\*.*">
-        <TargetPath>lib\netframework\PSModule</TargetPath>
-      </File>
+      <!-- Clientlib binaries -->
       <File Include="$(DropFolderNetStandard)*.*">
         <TargetPath>lib\netstandard</TargetPath>
       </File>
-      <File Include="$(DropFolderNetStandard)\PSModule\*.*">
-        <TargetPath>lib\netstandard\PSModule</TargetPath>
+
+      <!-- PS Module -->
+      <File Include="$(PSModuleRootDropFolder)*.*">
+        <TargetPath>lib\PSModule\Microsoft.ServiceFabric.Powershell.Http</TargetPath>
+      </File>
+      <File Include="$(PSModuleDropFolderNetFramework)*.*">
+        <TargetPath>lib\PSModule\Microsoft.ServiceFabric.Powershell.Http\netframework</TargetPath>
+      </File>
+      <File Include="$(PSModuleDropFolderNetStandard)*.*">
+        <TargetPath>lib\PSModule\Microsoft.ServiceFabric.Powershell.Http\netstandard</TargetPath>
       </File>
     </ItemGroup>    
   </Project>
