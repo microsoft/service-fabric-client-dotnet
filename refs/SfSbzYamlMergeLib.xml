@@ -86,7 +86,12 @@
             <param name="secretsParameterFileList"></param>
             <returns>Processed Merged description after the parametes are expanded</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadAndMergePartialDocuments(System.String[])" -->
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadAndMergePartialDocuments(System.String[])">
+             <summary>
+            Loads partial yaml documents groups them, by resource kind and name and merges them.
+             </summary>
+             <returns>Returns merged documents</returns>
+        </member>
         <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.SaveAllMergedDocuments(System.Action{SfSbzYamlMergeUtils.ResourceDeploymentInformation,YamlDotNet.RepresentationModel.YamlDocument,System.String},System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String)">
             <summary>
             Saves merged yaml documents as per the resource creation order using the provided delegate.
