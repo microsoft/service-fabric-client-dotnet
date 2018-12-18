@@ -13,6 +13,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06" />
     <PackageReference Include="YamlDotNet.Signed" Version="5.2.1" />
+    <PackageReference Include="Microsoft.Win32.Registry" Version="4.5.0 " />
   </ItemGroup>  
   <ItemGroup>
     <Reference Include="SfSbzYamlMergeLib">

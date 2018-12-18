@@ -367,65 +367,73 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             
             // Try Default Connect, if running from a node on cluster.
             // Currently supports reading connection settings created Local Dev cluster setup.
-            var connectionParamFile = Environment.ExpandEnvironmentVariables(Constants.LocalDevClusterConnectionParamFile);
-            if (this.ParameterSetName.Equals("Default") && File.Exists(connectionParamFile))
+            var key = Win32.Registry.LocalMachine.OpenSubKey(Constants.SFRegistryPath);
+            if (this.ParameterSetName.Equals("Default") && key != null)
             {
-                ConnectionParameters connParams = null;
-
-                try
+                var connectionParamFile = Path.Combine(key.GetValue(Constants.SFDataRootkeyName).ToString(), Constants.LocalDevClusterConnectionParamFileName);
+                if (File.Exists(connectionParamFile))
                 {
-                    connParams = JsonConvert.DeserializeObject<ConnectionParameters>(File.ReadAllText(connectionParamFile));
+                    ConnectionParameters connParams = null;
+
+                    try
+                    {
+                        connParams = JsonConvert.DeserializeObject<ConnectionParameters>(File.ReadAllText(connectionParamFile));
+                    }
+                    catch (JsonReaderException)
+                    {
+                        return false;
+                    }
+
+                    if (connParams.HttpConnectionEndpoint != null)
+                    {
+                        this.ConnectionEndpoint = new string[] { connParams.HttpConnectionEndpoint };
+                    }
+
+                    if (connParams.X509Credential)
+                    {
+                        this.X509Credential = SwitchParameter.Present;
+                    }
+
+                    if (connParams.StoreLocation != null)
+                    {
+                        Enum.TryParse<StoreLocation>(connParams.StoreLocation, out var storeLocation);
+                        this.StoreLocation = storeLocation;
+                    }
+
+                    if (connParams.FindType != null && connParams.FindValue != null)
+                    {
+                        Enum.TryParse<X509FindType>(connParams.FindType, out var findType);
+                        this.FindType = findType;
+                        var findValue = connParams.FindValue;
+
+                        if (findType.Equals(X509FindType.FindBySubjectName))
+                        {
+                            var subjectNamePrefix = "CN=";
+                            if (connParams.FindValue.StartsWith("CN="))
+                            {
+                                findValue = connParams.FindValue.Substring(subjectNamePrefix.Length);
+                            }
+                        }
+
+                        this.FindValue = findValue;
+                    }
+
+                    if (connParams.ServerCommonName != null)
+                    {
+                        this.ServerCommonName = new string[] { connParams.ServerCommonName };
+                    }
+
+                    if (connParams.StoreName != null)
+                    {
+                        this.StoreName = connParams.StoreName;
+                    }
+
+                    return true;
                 }
-                catch (JsonReaderException)
+                else
                 {
                     return false;
                 }
-
-                if (connParams.HttpConnectionEndpoint != null)
-                {
-                    this.ConnectionEndpoint = new string[] { connParams.HttpConnectionEndpoint };
-                }
-
-                if (connParams.X509Credential)
-                {
-                    this.X509Credential = SwitchParameter.Present;
-                }
-
-                if (connParams.StoreLocation != null)
-                {
-                    Enum.TryParse<StoreLocation>(connParams.StoreLocation, out var storeLocation);
-                    this.StoreLocation = storeLocation;
-                }
-
-                if (connParams.FindType != null && connParams.FindValue != null)
-                {
-                    Enum.TryParse<X509FindType>(connParams.FindType, out var findType);
-                    this.FindType = findType;
-                    var findValue = connParams.FindValue;
-
-                    if (findType.Equals(X509FindType.FindBySubjectName))
-                    {
-                        var subjectNamePrefix = "CN=";
-                        if (connParams.FindValue.StartsWith("CN="))
-                        {
-                            findValue = connParams.FindValue.Substring(subjectNamePrefix.Length);
-                        }
-                    }
-
-                    this.FindValue = findValue;
-                }
-
-                if (connParams.ServerCommonName != null)
-                {
-                    this.ServerCommonName = new string[] { connParams.ServerCommonName };
-                }
-
-                if (connParams.StoreName != null)
-                {
-                    this.StoreName = connParams.StoreName;
-                }
-
-                return true;
             }
             else
             {
