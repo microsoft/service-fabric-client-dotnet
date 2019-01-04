@@ -42,28 +42,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string[] ResourceDescriptionList { get; set; }
 
         /// <summary>
-        /// Gets or sets the list of path to parameter file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]".
+        /// Gets or sets the path to parameter file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]".
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Default")]
-        public string[] ParameterFileName { get; set; }
+        public string ParameterFileName { get; set; }
 
         /// <summary>
-        /// Gets or sets the list of path to secrets parameter file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]".
+        /// Gets or sets the path to secrets parameter file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]".
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Default")]
-        public string[] SecretsParameterFileName { get; set; }
+        public string SecretsParameterFileName { get; set; }
 
         /// <summary>
         /// Gets or sets the output directory for the generated resource descriptions.
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Default")]
         public string OutputDirectory { get; set; }
-
-        /// <summary>
-        /// Gets or sets the path to default parameter file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]".
-        /// </summary>
-        [Parameter(Mandatory = false, ParameterSetName = "Default")]
-        public string DefaultParameterFileName { get; set; }
 
         /// <inheritdoc />
         protected override void ProcessRecordInternal()
@@ -150,7 +144,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             // Give input to merge tool all the yamlfile list and output folder and of type:SF_SBZ_JSON
             var filePrefix = "resource_";
-            SfSbzYamlMergeLib.GenerateMergedDescriptions(this.ResourceDescriptionList, outputRootDirectory, this.ParameterFileName, this.SecretsParameterFileName, this.DefaultParameterFileName, OutputType.SF_SBZ_JSON, filePrefix);
+            SfSbzYamlMergeLib.GenerateMergedDescriptions(this.ResourceDescriptionList, outputRootDirectory, this.ParameterFileName, this.SecretsParameterFileName, OutputType.SF_SBZ_JSON, filePrefix);
 
             // Read ResourceInformation from all files sorted by name.
             var files = Directory.GetFiles(outputRootDirectory, $"{filePrefix}*.json", SearchOption.AllDirectories).Select(file => new FileInfo(file)).OrderBy(f => f.Name);

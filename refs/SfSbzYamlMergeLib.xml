@@ -60,31 +60,18 @@
               - Application
             </summary>
         </member>
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.GenerateMergedDescriptions(System.String[],System.String,System.String[],System.String[],System.String,SfSbzYamlMergeUtils.OutputType,System.String,System.String,System.String,System.String)">
+        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.GenerateMergedDescriptions(System.String[],System.String,System.String,System.String,SfSbzYamlMergeUtils.OutputType,System.String,System.String)">
             <summary>
             Utility function to take in yaml input files and generate the output description files based on the output format
             </summary>
             <param name="inputFileNames">Yaml file list</param>        
             <param name="outputPath">Dir output path</param>
-            <param name="parameterFilePath">List of Path to file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
-            <param name="secretsParameterFilePath">List of Path to file containing secrets parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
-            <param name="defaultParameterFilePath">Path to file containing default parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
+            <param name="parameterFilePath">Path to file containing parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
+            <param name="secretsParameterFilePath">Path to file containing secrets parameter values to be replaced in the yamls. Values to be parameterised are specified in yaml files as "[parameters('ParamName')]"</param>
             <param name="outputFormat">Output format SF_SBZ_YAML/SF_SBZ_JSON/SF_SBZ_RP_JSON</param>
             <param name="fileNamePrefix">Prefix of the generated file</param>
-            <param name="templateFileName">Name of the generated template file</param>
-            <param name="parameterFileName">Name of the generated arm parameter file</param>
             <param name="region">Region</param>
             <returns>Success/Failure</returns>
-        </member>
-        <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.ProcessParamsForLocalDeployment(System.Collections.Generic.IDictionary{SfSbzYamlMergeUtils.ResourceInformation,YamlDotNet.RepresentationModel.YamlDocument},System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
-            <summary>
-            Method that takes in the merged descriptions, and replaces all the parameters with their values
-            </summary>
-            <param name="processedResourceDocumentMap"></param>
-            <param name="defaultParameterFilePath"></param>
-            <param name="parameterFileList"></param>
-            <param name="secretsParameterFileList"></param>
-            <returns>Processed Merged description after the parametes are expanded</returns>
         </member>
         <member name="M:SfSbzYamlMergeUtils.SfSbzYamlMergeLib.LoadAndMergePartialDocuments(System.String[])">
              <summary>
@@ -141,7 +128,7 @@
             Creates the ARM document describing service fabric resources based on the provided service fabric resource document.
             </summary>
         </member>
-        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.BeginWriteArmDocument(Newtonsoft.Json.JsonTextWriter,System.String)">
+        <member name="M:Microsoft.ServiceFabric.Swagger.Tools.ArmDocumentGenerator.BeginWriteArmDocument(Newtonsoft.Json.JsonTextWriter)">
             <summary>
             Writes the begining data
             {
