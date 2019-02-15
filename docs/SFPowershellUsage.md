@@ -13,12 +13,12 @@ Service Fabric REST Powershell module is available in Powershell Gallery and can
 Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
 Import-Module -Name Microsoft.ServiceFabric.Powershell.Http
 ```
-### Powershell Core
+### Windows Powershell
 Service Fabric REST Powershell module is available in Powershell Gallery and can be installed as
 ```PowerShell
 Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
 ```
-Note: You might have to pdate the PowerShellGet module (if its version is less than 1.6.0) to get support for [-AllowPrerelease flag](https://blogs.msdn.microsoft.com/powershell/2017/12/05/prerelease-versioning-added-to-powershellget-and-powershell-gallery/). IT can be updated as:
+Note: You might have to update the PowerShellGet module (if its version is less than 1.6.0) to get support for [-AllowPrerelease flag](https://blogs.msdn.microsoft.com/powershell/2017/12/05/prerelease-versioning-added-to-powershellget-and-powershell-gallery/). It can be updated as:
 ```PowerShell
 Install-Module -Name PowerShellGet -Force
 ```
