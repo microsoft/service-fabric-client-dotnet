@@ -5,14 +5,23 @@ The new Service Fabric Powershell module works over HTTP with the service Fabric
 - [Windows Powershell](https://docs.microsoft.com/en-us/powershell/scripting/setup/installing-windows-powershell?view=powershell-6)
 
 ## Getting the module
+The module is available in Powershell Gallery, for more information on downloading packages from Powershell Gallery, please see [Downloading packages from the PowerShell Gallery](https://docs.microsoft.com/en-us/powershell/gallery/getting-started#downloading-packages-from-the-powershell-gallery).
+
+### Powershell Core
+Service Fabric REST Powershell module is available in Powershell Gallery and can be installed as
+```PowerShell
+Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
+Import-Module -Name Microsoft.ServiceFabric.Powershell.Http
+```
+### Powershell Core
 Service Fabric REST Powershell module is available in Powershell Gallery and can be installed as
 ```PowerShell
 Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
 ```
-
-
-For more information on downloading packages from Powershell Gallery, please see [Downloading packages from the PowerShell Gallery](https://docs.microsoft.com/en-us/powershell/gallery/getting-started#downloading-packages-from-the-powershell-gallery).
-
+Note: You might have to pdate the PowerShellGet module (if its version is less than 1.6.0) to get support for [-AllowPrerelease flag](https://blogs.msdn.microsoft.com/powershell/2017/12/05/prerelease-versioning-added-to-powershellget-and-powershell-gallery/). IT can be updated as:
+```PowerShell
+Install-Module -Name PowerShellGet -Force
+```
 ## PS Module and Service Fabric Runtime Compatibility
 Module Version | Compatible Service Fabric Runtime version
 -|-
