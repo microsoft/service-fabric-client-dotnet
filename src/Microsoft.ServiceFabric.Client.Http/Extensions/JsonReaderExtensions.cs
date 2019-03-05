@@ -411,7 +411,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <param name="reader">Json reader.</param>
         public static void SkipPropertyValue(this JsonReader reader)
         {
-            if (reader.TokenType.Equals(JsonToken.StartArray) || reader.TokenType.Equals(JsonToken.StartArray))
+            if (reader.TokenType.Equals(JsonToken.StartObject) || reader.TokenType.Equals(JsonToken.StartArray))
             {
                 reader.Skip();
             }
