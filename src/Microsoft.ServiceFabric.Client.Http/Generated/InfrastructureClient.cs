@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, JsonReaderExtensions.ReadValueAsString, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsRawJson(RequestFunc, url, requestId, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -94,7 +94,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 return request;
             }
 
-            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, JsonReaderExtensions.ReadValueAsString, requestId, cancellationToken);
+            return this.httpClient.SendAsyncGetResponseAsRawJson(RequestFunc, url, requestId, cancellationToken);
         }
     }
 }

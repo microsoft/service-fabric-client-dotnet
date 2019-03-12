@@ -61,6 +61,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AADTokenHandler cannot be created for SecuritySettings of type {0}.
+        /// </summary>
+        internal static string ErrorAADTokenHandlerIncorrectSecuritySettings {
+            get {
+                return ResourceManager.GetString("ErrorAADTokenHandlerIncorrectSecuritySettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot refresh security settings before configuring security..
         /// </summary>
         internal static string ErrorCannotCallRefreshSecuritySettingsBeforeConfiguring {
@@ -84,6 +93,24 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         internal static string ErrorCannotConfigureSecurityAgain {
             get {
                 return ResourceManager.GetString("ErrorCannotConfigureSecurityAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to deserialize json response from server..
+        /// </summary>
+        internal static string ErrorCanNotDeserializeResponseFromServer {
+            get {
+                return ResourceManager.GetString("ErrorCanNotDeserializeResponseFromServer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClaimsTokenHandler cannot be created for SecuritySettings of type {0}.
+        /// </summary>
+        internal static string ErrorClaimsTokenHandlerIncorrectSecuritySettings {
+            get {
+                return ResourceManager.GetString("ErrorClaimsTokenHandlerIncorrectSecuritySettings", resourceCulture);
             }
         }
         
@@ -178,7 +205,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Json returned from server is invalid {0}.
+        ///   Looks up a localized string similar to Json returned from server is invalid .
         /// </summary>
         internal static string ErrorInvalidJsonInResponse {
             get {
@@ -232,7 +259,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Security error has occurred, failed to verify remote certificate..
+        ///   Looks up a localized string similar to The remote certificate is invalid according to the validation procedure..
         /// </summary>
         internal static string ErrorRemoteServerCertValidation {
             get {
@@ -300,6 +327,24 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         internal static string ErrorUrlScheme {
             get {
                 return ResourceManager.GetString("ErrorUrlScheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server returned error while processing the request, but did not provide a meaningful error response. Response Error Code {0}.
+        /// </summary>
+        internal static string ServerErrorNoMeaningFulResponse {
+            get {
+                return ResourceManager.GetString("ServerErrorNoMeaningFulResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ClaimsTokenHandler cannot be created for SecuritySettings of type {0}.
+        /// </summary>
+        internal static string String1ErrorClaimsTokenHandlerIncorrectSecuritySettings {
+            get {
+                return ResourceManager.GetString("String1ErrorClaimsTokenHandlerIncorrectSecuritySettings", resourceCulture);
             }
         }
     }

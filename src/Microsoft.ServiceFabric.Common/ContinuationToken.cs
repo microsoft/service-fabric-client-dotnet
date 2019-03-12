@@ -40,6 +40,11 @@ namespace Microsoft.ServiceFabric.Common
         /// <returns>true if other object is a <see cref="ContinuationToken"/> that has the same value as this instance; otherwise, false.</returns>
         public bool Equals(ContinuationToken other)
         {
+            if (other == null)
+            {
+                return false;
+            }
+
             return this.continuationToken.Equals(other?.continuationToken);
         }
 
@@ -50,6 +55,11 @@ namespace Microsoft.ServiceFabric.Common
         /// <returns>true if other object is a <see cref="ContinuationToken"/> that has the same value as this instance; otherwise, false.</returns>
         public override bool Equals(object other)
         {
+            if (other == null)
+            {
+                return false;
+            }
+
             if (other is ContinuationToken)
             {
                 return this.Equals((ContinuationToken)other);

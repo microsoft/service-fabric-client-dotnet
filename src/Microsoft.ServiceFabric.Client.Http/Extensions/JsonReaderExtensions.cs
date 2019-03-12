@@ -28,16 +28,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
-        /// Reads the current token and moves to content.
-        /// </summary>
-        /// <param name="reader">The JsonReader.</param>
-        public static void ReadAndMoveToContent(this JsonReader reader)
-        {
-            reader.Read();
-            reader.MoveToContent();
-        }
-
-        /// <summary>
         /// Reads StartObject token, throws if its not.
         /// </summary>
         /// <param name="reader">The JsonReader.</param>
@@ -299,7 +289,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <returns>A <see cref="System.DateTime" /></returns>
         public static DateTime? ReadValueAsDateTime(this JsonReader reader)
         {
-            // DateTime is a string in ISO8096 format
+            // DateTime is a string in ISO8601 format
             DateTime? value = null;
 
             switch (reader.TokenType)
@@ -313,11 +303,19 @@ namespace Microsoft.ServiceFabric.Client.Http
                     {
                         value = XmlConvert.ToDateTime(valueString, XmlDateTimeSerializationMode.Utc);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        throw new JsonReaderException(
-                            $"Error converting string to System.DateTime, string value to be converted is {valueString}",
-                            ex);
+                        // TODO: try parsing with DateTime.Parse, Remove it once all apis return in ISO8601 format.
+                        try
+                        {
+                            value = DateTime.Parse(valueString);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new JsonReaderException(
+                                $"Error converting string to System.DateTime, string value to be converted is {valueString}.  DateTime values must be specified in string as per ISO8601",
+                                ex);
+                        }
                     }
 
                     break;
@@ -341,7 +339,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <returns>A <see cref="System.TimeSpan" /></returns>
         public static TimeSpan? ReadValueAsTimeSpan(this JsonReader reader)
         {
-            // TimeSpan is a string in ISO8096 format
+            // TimeSpan is a string in ISO8601 format
             TimeSpan? value = null;
 
             switch (reader.TokenType)
@@ -352,11 +350,19 @@ namespace Microsoft.ServiceFabric.Client.Http
                     {
                         value = XmlConvert.ToTimeSpan(valueString);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        throw new JsonReaderException(
-                            $"Error converting string to System.TimeSpan, string value to be converted is {valueString}",
+                        // TODO: try parsing with DateTime.Parse, Remove it once all apis return in ISO8601 format.
+                        try
+                        {
+                            value = TimeSpan.Parse(valueString);
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new JsonReaderException(
+                            $"Error converting string to System.TimeSpan, string value to be converted is {valueString}. Timespan values must be specified in string as per ISO8601.",
                             ex);
+                        }
                     }
 
                     break;
@@ -405,7 +411,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <param name="reader">Json reader.</param>
         public static void SkipPropertyValue(this JsonReader reader)
         {
-            if (reader.TokenType.Equals(JsonToken.StartArray) || reader.TokenType.Equals(JsonToken.StartArray))
+            if (reader.TokenType.Equals(JsonToken.StartObject) || reader.TokenType.Equals(JsonToken.StartArray))
             {
                 reader.Skip();
             }
@@ -499,10 +505,17 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             var obj = default(T);
 
-            // handle null json Token.
+            // handle null.
             if (reader.TokenType.Equals(JsonToken.Null))
             {
                 reader.Read();
+                return obj;
+            }
+
+            // Handle JsonReader created over stream of length 0.
+            reader.MoveToContent();
+            if (reader.TokenType.Equals(JsonToken.None))
+            {
                 return obj;
             }
 

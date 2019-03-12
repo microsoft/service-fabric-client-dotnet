@@ -205,4 +205,19 @@
   <data name="ErrorInvalidJsonInResponse" xml:space="preserve">
     <value>Json returned from server is invalid </value>
   </data>
+  <data name="ErrorAADTokenHandlerIncorrectSecuritySettings" xml:space="preserve">
+    <value>AADTokenHandler cannot be created for SecuritySettings of type {0}</value>
+  </data>
+  <data name="ErrorCanNotDeserializeResponseFromServer" xml:space="preserve">
+    <value>Failed to deserialize json response from server.</value>
+  </data>
+  <data name="ServerErrorNoMeaningFulResponse" xml:space="preserve">
+    <value>Server returned error while processing the request, but did not provide a meaningful error response. Response Error Code {0}</value>
+  </data>
+  <data name="String1ErrorClaimsTokenHandlerIncorrectSecuritySettings" xml:space="preserve">
+    <value>ClaimsTokenHandler cannot be created for SecuritySettings of type {0}</value>
+  </data>
+  <data name="ErrorClaimsTokenHandlerIncorrectSecuritySettings" xml:space="preserve">
+    <value>ClaimsTokenHandler cannot be created for SecuritySettings of type {0}</value>
+  </data>
 </root>
