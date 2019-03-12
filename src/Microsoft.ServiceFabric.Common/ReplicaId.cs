@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="replicaId2">The second object to compare</param>
         /// <returns>true if replicaId1 and replicaId2 are equal; otherwise, false.</returns>
         public static bool operator ==(ReplicaId replicaId1, ReplicaId replicaId2)
-            => replicaId1.Equals(replicaId2);
+            => replicaId1 is null ? replicaId2 is null : replicaId1.Equals(replicaId2);
 
         /// <summary>
         /// Indicates whether the values of two specified <see cref="ReplicaId"/> objects are not equal.
@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="replicaId2">The second object to compare</param>
         /// <returns>true if replicaId1 and replicaId2 are not equal; otherwise, false.</returns>
         public static bool operator !=(ReplicaId replicaId1, ReplicaId replicaId2)
-            => !replicaId1.Equals(replicaId2);
+            => !(replicaId1 == replicaId2);
 
         /// <summary>
         /// Creates a ReplicaId class instance using the string representation of the long passed in as argument.
@@ -73,14 +73,30 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="other">An object to compare to this instance.</param>
         /// <returns>true if this instance equal to other parameter; otherwise, false.</returns>
-        public bool Equals(ReplicaId other) => this.id.Equals(other.id);
+        public bool Equals(ReplicaId other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            return this.id.Equals(other.id);
+        }
 
         /// <summary>
         /// Returns a value that indicates whether this instance is equal to a specified object.
         /// </summary>
         /// <param name="other">The object to compare with this instance.</param>
         /// <returns>true if other object is a <see cref="ReplicaId"/> that has the same value as this instance; otherwise, false.</returns>
-        public override bool Equals(object other) => (other is ReplicaId) && this.Equals((ReplicaId)other);
+        public override bool Equals(object other)
+        {
+            if (other is null)
+            {
+                return false;
+            }
+
+            return (other is ReplicaId) && this.Equals((ReplicaId)other);
+        }
 
         /// <summary>
         /// Returns the hash code for this instance.

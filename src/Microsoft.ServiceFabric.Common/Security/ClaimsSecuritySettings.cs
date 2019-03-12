@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common.Security
     /// <summary>
     /// Represents the claim based security credential acquired from STS (security token service).
     /// </summary>
-    public sealed class ClaimsSecuritySettings : SecuritySettings
+    public class ClaimsSecuritySettings : SecuritySettings
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ClaimsSecuritySettings" /> class.
@@ -28,6 +28,17 @@ namespace Microsoft.ServiceFabric.Common.Security
 
             remoteX509SecuritySettings.ThrowIfNull(nameof(remoteX509SecuritySettings));
             this.ClaimsToken = claimsToken;
+            this.RemoteX509SecuritySettings = remoteX509SecuritySettings;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClaimsSecuritySettings" /> class.
+        /// </summary>
+        /// <param name="remoteX509SecuritySettings">Security settings to verify remote X509 certificate.</param>
+        internal ClaimsSecuritySettings(RemoteX509SecuritySettings remoteX509SecuritySettings)
+            : base(SecurityType.Claims)
+        {
+            remoteX509SecuritySettings.ThrowIfNull(nameof(remoteX509SecuritySettings));
             this.RemoteX509SecuritySettings = remoteX509SecuritySettings;
         }
 
