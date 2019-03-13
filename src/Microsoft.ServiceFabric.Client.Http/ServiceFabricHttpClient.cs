@@ -178,6 +178,36 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
+        /// Sends an HTTP get request to cluster http gateway and returns the result as raw json.
+        /// </summary>
+        /// <param name="requestFunc">Func to create HttpRequest to send.</param>
+        /// <param name="relativeUri">The relative URI.</param>
+        /// <param name="requestId">Request Id for corelation</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The payload of the GET response as string.</returns>
+        /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
+        internal async Task<string> SendAsyncGetResponseAsRawJson(
+            Func<HttpRequestMessage> requestFunc,
+            string relativeUri,
+            string requestId,
+            CancellationToken cancellationToken)
+        {
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
+            var retValue = default(string);
+
+            if (response != null && response.Content != null)
+            {
+                retValue = await response.Content.ReadAsStringAsync();
+            }
+
+            return retValue;
+        }
+
+        /// <summary>
         /// Sends an HTTP get request to cluster http gateway and deserializes the result.
         /// </summary>
         /// <typeparam name="T">The type of the response payload.</typeparam>
