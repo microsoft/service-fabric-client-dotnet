@@ -6,6 +6,7 @@
 namespace Microsoft.ServiceFabric.Powershell.Http
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Common;
@@ -27,12 +28,6 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string ApplicationId { get; set; }
 
         /// <summary>
-        /// Gets or sets Name. The name of the target application, including the 'fabric:' URI scheme.
-        /// </summary>
-        [Parameter(Mandatory = true, Position = 1)]
-        public string Name { get; set; }
-
-        /// <summary>
         /// Gets or sets TargetApplicationTypeVersion. The target application type version (found in the application manifest)
         /// for the application upgrade.
         /// </summary>
@@ -44,7 +39,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// in the application manifest.
         /// </summary>
         [Parameter(Mandatory = true, Position = 3)]
-        public IReadOnlyDictionary<string, string> Parameters { get; set; }
+        public Hashtable Parameters { get; set; }
 
         /// <summary>
         /// Gets or sets UpgradeKind. The kind of upgrade out of the following possible values. Possible values include:
@@ -228,9 +223,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             serviceTypeHealthPolicyMap: this.ServiceTypeHealthPolicyMap);
 
             var applicationUpgradeDescription = new ApplicationUpgradeDescription(
-            name: this.Name,
+            name: $"fabric:/{this.ApplicationId}",
             targetApplicationTypeVersion: this.TargetApplicationTypeVersion,
-            parameters: this.Parameters,
+            parameters: this.Parameters?.ToDictionary<string, string>(),
             upgradeKind: this.UpgradeKind,
             rollingUpgradeMode: this.RollingUpgradeMode,
             upgradeReplicaSetCheckTimeoutInSeconds: this.UpgradeReplicaSetCheckTimeoutInSeconds,

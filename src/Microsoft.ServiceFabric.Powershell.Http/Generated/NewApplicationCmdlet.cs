@@ -6,6 +6,7 @@
 namespace Microsoft.ServiceFabric.Powershell.Http
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Common;
@@ -39,7 +40,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// in the application manifest.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
-        public IReadOnlyDictionary<string, string> Parameters { get; set; }
+        public Hashtable Parameters { get; set; }
 
         /// <summary>
         /// Gets or sets MinimumNodes. The minimum number of nodes where Service Fabric will reserve capacity for this
@@ -84,7 +85,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             name: this.Name,
             typeName: this.TypeName,
             typeVersion: this.TypeVersion,
-            parameters: this.Parameters,
+            parameters: this.Parameters?.ToDictionary<string, string>(),
             applicationCapacity: applicationCapacityDescription);
 
             this.ServiceFabricClient.Applications.CreateApplicationAsync(

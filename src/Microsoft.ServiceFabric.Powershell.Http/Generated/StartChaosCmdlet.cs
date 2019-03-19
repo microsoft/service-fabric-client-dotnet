@@ -6,6 +6,7 @@
 namespace Microsoft.ServiceFabric.Powershell.Http
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Common;
@@ -132,7 +133,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10)]
-        public IReadOnlyDictionary<string, string> Map { get; set; }
+        public Hashtable Map { get; set; }
 
         /// <summary>
         /// Gets or sets NodeTypeInclusionList. A list of node types to include in Chaos faults.
@@ -183,7 +184,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
 
             var chaosContext = new ChaosContext(
-            map: this.Map);
+            map: this.Map?.ToDictionary<string, string>());
 
             var chaosTargetFilter = new ChaosTargetFilter(
             nodeTypeInclusionList: this.NodeTypeInclusionList,
