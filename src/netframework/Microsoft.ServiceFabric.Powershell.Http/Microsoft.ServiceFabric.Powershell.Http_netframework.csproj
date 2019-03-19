@@ -14,6 +14,7 @@
     <!--Add required .cs files to build for netframework-->
     <Compile Include="$(SourceCodeDir)*.cs" Exclude="$(SourceCodeDir)Resource.Designer.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
     <Compile Include="$(SourceCodeDir)Generated\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
+    <Compile Include="$(SourceCodeDir)Extensions\*.cs" Link="$([System.String]::Copy('%(Identity)').Replace('$(SourceCodeDir)',''))" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SfSbzYamlMergeLib">
