@@ -416,12 +416,6 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{clientRequestId}", message);
 
-            // Handle NotFound 404.
-            if (response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                return null;
-            }
-
             // Try to get Fabric Error Code if present in response body.
             if (response.Content != null)
             {
@@ -430,11 +424,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                 try
                 {
                     var contentStream = await response.Content.ReadAsStreamAsync();
-                    using (var streamReader = new StreamReader(contentStream))
+                    if (contentStream.Length != 0)
                     {
-                        using (var reader = new JsonTextReader(streamReader))
+                        using (var streamReader = new StreamReader(contentStream))
                         {
-                            error = FabricErrorConverter.Deserialize(reader);
+                            using (var reader = new JsonTextReader(streamReader))
+                            {
+                                error = FabricErrorConverter.Deserialize(reader);
+                            }
                         }
                     }
                 }
@@ -447,6 +444,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                 if (error != null)
                 {
                     throw new ServiceFabricException(error.Message, error.ErrorCode ?? FabricErrorCodes.UNKNOWN, false);
+                }
+                else
+                {
+                    // Handle NotFound 404, without any ErrorCode.
+                    if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+                    {
+                        return null;
+                    }
                 }
             }
 
