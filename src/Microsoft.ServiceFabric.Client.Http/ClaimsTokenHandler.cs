@@ -17,28 +17,14 @@ namespace Microsoft.ServiceFabric.Client.Http
     /// </summary>
     internal class ClaimsTokenHandler : IBearerTokenHandler
     {
-        private const string BearerPrefix = "Bearer ";
         private string token;
-
-        protected string Token
-        {
-            get
-            {
-                return this.token;
-            }
-
-            set
-            {
-                this.token = value.StartsWith(BearerPrefix) ? value.Remove(0, BearerPrefix.Length) : value;
-            }
-        }
 
         /// <inheritdoc />
         public virtual Task InitializeTokenAsync(SecuritySettings securitySettings, CancellationToken cancellationToken)
         {
             if (securitySettings is ClaimsSecuritySettings claimsSecuritySettings)
             {
-                this.Token = claimsSecuritySettings.ClaimsToken;
+                this.token = claimsSecuritySettings.ClaimsToken;
             }
             else
             {
@@ -53,7 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             if (securitySettings is ClaimsSecuritySettings claimsSecuritySettings)
             {
-                this.Token = claimsSecuritySettings.ClaimsToken;
+                this.token = claimsSecuritySettings.ClaimsToken;
             }
             else
             {
@@ -66,7 +52,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public void AddTokenToRequest(HttpRequestMessage request)
         {
-            request.Headers.Add("Authorization", $"Bearer {this.Token}");
+            request.Headers.Add("Authorization", this.token);
         }
     }
 }
