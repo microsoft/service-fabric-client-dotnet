@@ -25,7 +25,7 @@ Install-Module -Name PowerShellGet -Force
 ## PS Module and Service Fabric Runtime Compatibility
 Module Version | Compatible Service Fabric Runtime version
 -|-
-1.0.3-preview1 | >= 6.4.617
+1.0.3-preview* | >= 6.4.*
 
 ## Connecting to Cluster
 ### Connecting to unsecured cluster
