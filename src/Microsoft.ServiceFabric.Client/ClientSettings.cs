@@ -16,32 +16,15 @@ namespace Microsoft.ServiceFabric.Client
         /// <summary>
         /// Initializes a new instance of the <see cref="ClientSettings"/> class.
         /// </summary>
-        /// <param name="securitySettings">Delegate to create security settings for connecting to cluster.
-        /// Default value is null which means that cluster is not secured.</param>
         /// <param name="clientTimeout">Timespan to wait before the request times out for the client.</param>
-        /// <remarks>
-        /// Security Settings for connecting to a secured cluster are created by calling the delegate <paramref name="securitySettings"/>.
-        /// The delegate will be used to refresh security settings if needed by implementaions of <see cref="IServiceFabricClient"/>.
-        /// If client request fails because of Authentication, the delegate is invoked once again to get security settings, if the client call fails again because of Authentication after getting 
-        /// security settings, the exception is thrown to the user. This allows applications to refresh Claims an X509 security credentials without restarting.
-        /// </remarks>
-        public ClientSettings(
-            Func<SecuritySettings> securitySettings = null,
-            TimeSpan? clientTimeout = null)
+        public ClientSettings(TimeSpan? clientTimeout = null)
         {
-            this.SecuritySettings = securitySettings;
             this.ClientTimeout = clientTimeout;
         }
 
         /// <summary>
-        /// Gets the delegate to create security settings for connecting to cluster.
+        /// Gets or sets the Timespan to wait before the request times out for the client.
         /// </summary>
-        /// <value><see cref="SecuritySettings"/> for connecting to cluster.</value>
-        public Func<SecuritySettings> SecuritySettings { get; }
-
-        /// <summary>
-        /// Gets the Timespan to wait before the request times out for the client.
-        /// </summary>
-        public TimeSpan? ClientTimeout { get; }
+        public TimeSpan? ClientTimeout { get; set;  }
     }
 }
