@@ -681,12 +681,13 @@ namespace Microsoft.ServiceFabric.Client.Http
                 }
             }
 
+            var httpClientInstance = new HttpClient(pipeline, true);
             if (this.ClientSettings?.ClientTimeout != null)
             {
-                this.httpClient.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
+                httpClientInstance.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
             }
 
-            return new HttpClient(pipeline, true);
+            return httpClientInstance;
         }
 
         private async Task InitializeBearerTokenHandlerAsync(CancellationToken cancellationToken)
