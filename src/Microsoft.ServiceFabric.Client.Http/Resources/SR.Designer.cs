@@ -223,7 +223,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The requested resource does not exist on the server..
+        ///   Looks up a localized string similar to The requested resource/content/path does not exist on the server..
         /// </summary>
         internal static string ErrorMessageHTTP404 {
             get {
