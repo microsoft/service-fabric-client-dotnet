@@ -223,6 +223,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The requested resource/content/path does not exist on the server..
+        /// </summary>
+        internal static string ErrorMessageHTTP404 {
+            get {
+                return ResourceManager.GetString("ErrorMessageHTTP404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Handlers specified in delegate handlers list cannot be null..
         /// </summary>
         internal static string ErrorNullDelegateHandler {

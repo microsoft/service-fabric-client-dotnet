@@ -16,6 +16,11 @@ namespace Microsoft.ServiceFabric.Common
         UNKNOWN = 0,
 
         /// <summary>
+        /// Requested resource/content/path does not exist.
+        /// </summary>
+        FABRIC_E_DOES_NOT_EXIST,
+
+        /// <summary>
         /// FABRIC_E_INVALID_PARTITION_KEY.
         /// </summary>
         FABRIC_E_INVALID_PARTITION_KEY,
