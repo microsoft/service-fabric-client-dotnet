@@ -220,4 +220,7 @@
   <data name="ErrorClaimsTokenHandlerIncorrectSecuritySettings" xml:space="preserve">
     <value>ClaimsTokenHandler cannot be created for SecuritySettings of type {0}</value>
   </data>
+  <data name="ErrorMessageHTTP404" xml:space="preserve">
+    <value>The requested resource/content/path does not exist on the server.</value>
+  </data>
 </root>

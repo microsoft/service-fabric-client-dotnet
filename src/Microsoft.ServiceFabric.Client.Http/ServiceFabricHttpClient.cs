@@ -450,7 +450,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     // Handle NotFound 404, without any ErrorCode.
                     if (response.StatusCode.Equals(HttpStatusCode.NotFound))
                     {
-                        return null;
+                        throw new ServiceFabricException(SR.ErrorMessageHTTP404, FabricErrorCodes.FABRIC_E_DOES_NOT_EXIST, false);
                     }
                 }
             }
