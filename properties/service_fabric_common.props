@@ -22,7 +22,7 @@
 
     <!-- Version for binaries, nuget packages generated from this repo. -->
     <!-- TODO: Versions numbers are changed here manually for now, Integrate this with GitVersion. -->
-    <MajorVersion>2</MajorVersion>
+    <MajorVersion>3</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <BuildVersion>0</BuildVersion>
     <Revision>0</Revision>
