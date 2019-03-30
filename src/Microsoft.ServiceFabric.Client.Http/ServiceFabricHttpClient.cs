@@ -714,6 +714,20 @@ namespace Microsoft.ServiceFabric.Client.Http
                         this.bearerTokenHandler = new AADTokenHandler();
                     }
                 }
+                else if (this.securitySettings is DstsClaimsSecuritySettings dstsSecuritySettings)
+                {
+                    // Get AaadMetadata for AzureActiveDirectorySecuritySettings, if user has provided the Func for getting Bearer token.
+                    if (dstsSecuritySettings.GetClaimsToken != null)
+                    {
+                        // get AadMetadata from cluster using another http client.
+                        var metaData = await this.Cluster.GetTokenServiceMetadtaAsync(cancellationToken: cancellationToken);
+                        this.bearerTokenHandler = new DstsTokenHandler(metaData);
+                    }
+                    else
+                    {
+                        this.bearerTokenHandler = new DstsTokenHandler();
+                    }
+                }
                 else
                 {
                     this.bearerTokenHandler = new ClaimsTokenHandler();

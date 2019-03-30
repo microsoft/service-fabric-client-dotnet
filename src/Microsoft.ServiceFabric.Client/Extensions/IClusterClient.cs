@@ -21,7 +21,25 @@ namespace Microsoft.ServiceFabric.Client
         /// <summary>
         /// Gets the connection string for the image store on the current cluster
         /// </summary>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>The connection string used by the image store</returns>
-        Task<string> GetImageStoreConnectionStringAsync();
+        Task<string> GetImageStoreConnectionStringAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets the Metadata for the Token Service. For internal use only by Service Fabric tooling.
+        /// </summary>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>Gets the Metadata for the Token Service.</returns>
+        Task<TokenServiceMetadata> GetTokenServiceMetadtaAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }
