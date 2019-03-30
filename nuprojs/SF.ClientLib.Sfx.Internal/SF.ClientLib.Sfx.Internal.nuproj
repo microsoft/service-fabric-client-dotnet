@@ -3,8 +3,8 @@
     <Import Project="..\..\properties\service_fabric_nuget.props" />
 
     <PropertyGroup>
-      <Id>SF.ClienLib.Sfx.Internal</Id>
-      <Title>SF.ClienLib.Sfx.Internal</Title>
+      <Id>SF.ClientLib.Sfx.Internal</Id>
+      <Title>SF.ClientLib.Sfx.Internal</Title>
       <Description>This package provides Service Fabric dotnet client libraries for consumption by other Service Fabric repos.</Description>
       <Summary>This package provides Service Fabric Actors and Services libraries for consumption by other Service Fabric repos.</Summary>
       <Tags>ServiceFabric Microsoft Azure Fabric</Tags>
