@@ -7,6 +7,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 {
     using System;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Client.Http.Resources;
@@ -14,49 +15,35 @@ namespace Microsoft.ServiceFabric.Client.Http
     using Microsoft.ServiceFabric.Common.Security;
 
     /// <summary>
-    /// Token Handler for AzureActiveDirectorySecuritySettings
+    /// Token Handler for DstsSecuritySettings
     /// </summary>
-    internal class AADTokenHandler : IBearerTokenHandler
+    internal class DstsTokenHandler : IBearerTokenHandler
     {
-        private const string BearerPrefix = "Bearer ";
-        private readonly AadMetadata aadMetaData;
+        private readonly TokenServiceMetadata metaData;
         private string token;
 
-        public AADTokenHandler()
+        public DstsTokenHandler()
         {
         }
 
-        public AADTokenHandler(AadMetadata aadMetaData)
+        public DstsTokenHandler(TokenServiceMetadata aadMetaData)
         {
-            this.aadMetaData = aadMetaData;
-        }
-
-        private string Token
-        {
-            get
-            {
-                return this.token;
-            }
-
-            set
-            {
-                this.token = value.StartsWith(BearerPrefix) ? value.Remove(0, BearerPrefix.Length) : value;
-            }
+            this.metaData = aadMetaData;
         }
 
         /// <inheritdoc />
         public async Task InitializeTokenAsync(SecuritySettings securitySettings, CancellationToken cancellationToken)
         {
-            if (securitySettings is AzureActiveDirectorySecuritySettings aadSecuritySettings)
+            if (securitySettings is DstsClaimsSecuritySettings dstsSecuritySettings)
             {
                 // Use ClaimsToken if provided by the user directly else use the delegate to get the ClaimsToken from user.
-                if (aadSecuritySettings.ClaimsToken != null)
+                if (dstsSecuritySettings.ClaimsToken != null)
                 {
-                    this.Token = aadSecuritySettings.ClaimsToken;
+                    this.token = dstsSecuritySettings.ClaimsToken;
                 }
-                else if (aadSecuritySettings.GetClaimsToken != null && this.aadMetaData != null)
+                else if (dstsSecuritySettings.GetClaimsToken != null && this.metaData != null)
                 {
-                    this.Token = await aadSecuritySettings.GetClaimsToken.Invoke(this.aadMetaData, cancellationToken);
+                    this.token = await dstsSecuritySettings.GetClaimsToken.Invoke(this.metaData, cancellationToken);
                 }
             }
             else
@@ -68,16 +55,16 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public async Task RefreshTokenAsync(SecuritySettings securitySettings, CancellationToken cancellationToken)
         {
-            if (securitySettings is AzureActiveDirectorySecuritySettings aadSecuritySettings)
+            if (securitySettings is DstsClaimsSecuritySettings dstsSecuritySettings)
             {
                 // Use ClaimsToken if provided by the user directly else use the delegate to get the ClaimsToken from user.
-                if (aadSecuritySettings.ClaimsToken != null)
+                if (dstsSecuritySettings.ClaimsToken != null)
                 {
-                    this.Token = aadSecuritySettings.ClaimsToken;
+                    this.token = dstsSecuritySettings.ClaimsToken;
                 }
-                else if (aadSecuritySettings.GetClaimsToken != null && this.aadMetaData != null)
+                else if (dstsSecuritySettings.GetClaimsToken != null && this.metaData != null)
                 {
-                    this.Token = await aadSecuritySettings.GetClaimsToken.Invoke(this.aadMetaData, cancellationToken);
+                    this.token = await dstsSecuritySettings.GetClaimsToken.Invoke(this.metaData, cancellationToken);
                 }
             }
         }
@@ -85,7 +72,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public void AddTokenToRequest(HttpRequestMessage request)
         {
-            request.Headers.Add("Authorization", $"Bearer {this.Token}");
+             request.Headers.TryAddWithoutValidation("Authorization", this.token);
         }
     }
 }
