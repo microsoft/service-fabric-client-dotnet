@@ -433,7 +433,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             cancellationToken.ThrowIfCancellationRequested();
 
             // Get the chunk
-            var length = chunkInfo.StartPosition - chunkInfo.EndPosition + 1;
+            var length = chunkInfo.EndPosition - chunkInfo.StartPosition + 1;
             var chunk = new byte[length];
 
             using (var streamSource = new FileStream(
