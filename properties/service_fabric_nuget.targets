@@ -3,7 +3,8 @@
   <ItemGroup>
     <!-- List of .nuproj to build to generate nuget packages -->
     <NuprojsToBuild Include="$(RepoRoot)nuprojs\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.nuproj;
-                    $(RepoRoot)nuprojs\SF.ClientLib.Internal\SF.ClientLib.Internal.nuproj;"/>
+                    $(RepoRoot)nuprojs\SF.ClientLib.Internal\SF.ClientLib.Internal.nuproj;
+                    $(RepoRoot)nuprojs\SF.ClientLib.Sfx.Internal\SF.ClientLib.Sfx.Internal.nuproj;" />
     
     <!-- List of packages.config to restore nuget packages -->
         <PackagesConfigs Include="nuprojs\packages.config"/>
@@ -20,6 +21,7 @@
     <ItemGroup>      
       <Nupkgs Include="nuprojs\Microsoft.ServiceFabric.Client.Http\$(OutputPath)\Microsoft.ServiceFabric.Client.Http.*.nupkg"/>
       <Nupkgs Include="nuprojs\SF.ClientLib.Internal\$(OutputPath)\SF.ClientLib.Internal.*.nupkg"/>
+      <Nupkgs Include="nuprojs\SF.ClientLib.Sfx.Internal\$(OutputPath)\SF.ClientLib.Sfx.Internal.*.nupkg"/>
     </ItemGroup>
     <Copy SourceFiles="@(Nupkgs)" DestinationFiles="@(Nupkgs->'$(NugetPackageDropFolder)\%(Destination)\%(Filename)%(Extension)')" />
   </Target>
