@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="..\..\properties\service_fabric_nuget.props" />
+
+    <PropertyGroup>
+      <Id>SF.ClienLib.Sfx.Internal</Id>
+      <Title>SF.ClienLib.Sfx.Internal</Title>
+      <Description>This package provides Service Fabric dotnet client libraries for consumption by other Service Fabric repos.</Description>
+      <Summary>This package provides Service Fabric Actors and Services libraries for consumption by other Service Fabric repos.</Summary>
+      <Tags>ServiceFabric Microsoft Azure Fabric</Tags>
+      <NoPackageAnalysis>true</NoPackageAnalysis>
+    </PropertyGroup>
+
+    <Import Project="$(NuProjPath)\NuProj.props" />
+    <Import Project="$(NuProjPath)\NuProj.targets" />
+
+    <ItemGroup>
+      <!-- Clientlib binaries -->
+      <File Include="$(DropFolderNetStandard)*.*">
+        <TargetPath>lib\netstandard</TargetPath>
+      </File>
+    </ItemGroup>
+  </Project>

@@ -2,7 +2,8 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <!-- List of .nuproj to build to generate nuget packages -->
-    <NuprojsToBuild Include="$(RepoRoot)nuprojs\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.nuproj;" />
+    <NuprojsToBuild Include="$(RepoRoot)nuprojs\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.nuproj;
+                    $(RepoRoot)nuprojs\SF.ClienLib.Sfx.Internal\SF.ClienLib.Sfx.Internal.nuproj;" />
     
     <!-- List of packages.config to restore nuget packages -->
         <PackagesConfigs Include="nuprojs\packages.config"/>
