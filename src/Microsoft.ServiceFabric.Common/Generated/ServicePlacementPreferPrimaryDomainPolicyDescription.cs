@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         public ServicePlacementPreferPrimaryDomainPolicyDescription(
             string domainName = default(string))
             : base(
-                Common.ServicePlacementPolicyType.PreferredPrimaryDomain)
+                Common.ServicePlacementPolicyType.PreferPrimaryDomain)
         {
             this.DomainName = domainName;
         }
