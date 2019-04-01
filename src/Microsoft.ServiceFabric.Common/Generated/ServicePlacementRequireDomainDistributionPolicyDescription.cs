@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         public ServicePlacementRequireDomainDistributionPolicyDescription(
             string domainName = default(string))
             : base(
-                Common.ServicePlacementPolicyType.RequiredDomainDistribution)
+                Common.ServicePlacementPolicyType.RequireDomainDistribution)
         {
             this.DomainName = domainName;
         }

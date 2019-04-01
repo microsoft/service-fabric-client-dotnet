@@ -36,15 +36,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             else if (string.Compare(value, "RequiredDomain", StringComparison.Ordinal) == 0)
             {
-                obj = ServicePlacementPolicyType.RequiredDomain;
+                obj = ServicePlacementPolicyType.RequireDomain;
             }
             else if (string.Compare(value, "PreferredPrimaryDomain", StringComparison.Ordinal) == 0)
             {
-                obj = ServicePlacementPolicyType.PreferredPrimaryDomain;
+                obj = ServicePlacementPolicyType.PreferPrimaryDomain;
             }
             else if (string.Compare(value, "RequiredDomainDistribution", StringComparison.Ordinal) == 0)
             {
-                obj = ServicePlacementPolicyType.RequiredDomainDistribution;
+                obj = ServicePlacementPolicyType.RequireDomainDistribution;
             }
             else if (string.Compare(value, "NonPartiallyPlaceService", StringComparison.Ordinal) == 0)
             {
@@ -69,13 +69,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case ServicePlacementPolicyType.InvalidDomain:
                     writer.WriteStringValue("InvalidDomain");
                     break;
-                case ServicePlacementPolicyType.RequiredDomain:
+                case ServicePlacementPolicyType.RequireDomain:
                     writer.WriteStringValue("RequiredDomain");
                     break;
-                case ServicePlacementPolicyType.PreferredPrimaryDomain:
+                case ServicePlacementPolicyType.PreferPrimaryDomain:
                     writer.WriteStringValue("PreferredPrimaryDomain");
                     break;
-                case ServicePlacementPolicyType.RequiredDomainDistribution:
+                case ServicePlacementPolicyType.RequireDomainDistribution:
                     writer.WriteStringValue("RequiredDomainDistribution");
                     break;
                 case ServicePlacementPolicyType.NonPartiallyPlaceService:
