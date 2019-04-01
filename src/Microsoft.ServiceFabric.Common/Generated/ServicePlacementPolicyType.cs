@@ -28,21 +28,21 @@ namespace Microsoft.ServiceFabric.Common
         /// ServicePlacementRequireDomainDistributionPolicyDescription indicating that the replicas of the service must be
         /// placed in a specific domain. The value is 2.
         /// </summary>
-        RequiredDomain,
+        RequireDomain,
 
         /// <summary>
         /// Indicates that the ServicePlacementPolicyDescription is of type
         /// ServicePlacementPreferPrimaryDomainPolicyDescription, which indicates that if possible the Primary replica for the
         /// partitions of the service should be located in a particular domain as an optimization. The value is 3.
         /// </summary>
-        PreferredPrimaryDomain,
+        PreferPrimaryDomain,
 
         /// <summary>
         /// Indicates that the ServicePlacementPolicyDescription is of type
         /// ServicePlacementRequireDomainDistributionPolicyDescription, indicating that the system will disallow placement of
         /// any two replicas from the same partition in the same domain at any time. The value is 4.
         /// </summary>
-        RequiredDomainDistribution,
+        RequireDomainDistribution,
 
         /// <summary>
         /// Indicates that the ServicePlacementPolicyDescription is of type
