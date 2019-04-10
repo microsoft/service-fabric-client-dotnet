@@ -8,6 +8,8 @@ Nuget Package Version | Compatible Service Fabric Runtime version
 
 
 ## Using the Client Library
+For nuget package version 1.0.0-preview58 - 1.0.0-preview61, please see [Older Usage](docs/OlderUsage.md)
+
 ### Connecting to unsecured cluster
 ```csharp
 // create client
