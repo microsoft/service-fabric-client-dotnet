@@ -36,4 +36,4 @@ For details on contributing to Service Fabric projects, please refer to [Contrib
 ## Documentation
 Service Fabric has conceptual and reference documentation available at [https://docs.microsoft.com/azure/service-fabric](https://docs.microsoft.com/azure/service-fabric).
 
-#### [Client Library Usage](docs/ClientLibraryUsage.md.md)
+#### [Client Library Usage](docs/ClientLibraryUsage.md)
