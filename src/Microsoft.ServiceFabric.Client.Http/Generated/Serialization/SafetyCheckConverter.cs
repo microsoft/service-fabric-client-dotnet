@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = SeedNodeSafetyCheckConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("WaitForInbuildReplica", StringComparison.Ordinal))
+            else if (propValue.Equals("WaitForInbuildReplica", StringComparison.OrdinalIgnoreCase))
             {
                 obj = WaitForInbuildReplicaSafetyCheckConverter.GetFromJsonProperties(reader);
             }
