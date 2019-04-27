@@ -223,4 +223,7 @@
   <data name="ErrorMessageHTTP404" xml:space="preserve">
     <value>The requested resource/content/path does not exist on the server.</value>
   </data>
+  <data name="ErrorDstsNotSupported" xml:space="preserve">
+    <value>DSTS option is not supported in the current configuration. Its supported only in internal Service Fabric tooling drops.</value>
+  </data>
 </root>
