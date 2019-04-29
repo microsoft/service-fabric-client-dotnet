@@ -10,6 +10,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.IdentityModel.Clients.ActiveDirectory;
+    using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
@@ -77,6 +78,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             }
 
             return null;
+        }
+
+        public static Task<string> GetAccessTokenDstsAsync(TokenServiceMetadata metadata, CancellationToken cancellationToken)
+        {
+            return DstsTokenHelper.GetAccessTokenFromDstsAsync(metadata, true, cancellationToken);
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
         [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Aad")]
+        [Parameter(Mandatory = true, Position = 0, ParameterSetName = "Dsts")]
         public string[] ConnectionEndpoint
         {
             get;
@@ -65,6 +66,16 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// </summary>
         [Parameter(Mandatory = true, ParameterSetName = "Aad")]
         public SwitchParameter AzureActiveDirectory
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets switch parameter for slecting DSTS credentials. This parameter is for internal use only.
+        /// </summary>
+        [Parameter(Mandatory = true, ParameterSetName = "Dsts")]
+        public SwitchParameter DSTS
         {
             get;
             set;
@@ -260,6 +271,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 }
 
                 builder.UseAzureActiveDirectorySecurity(securitySettings);
+            }
+            else if (this.DSTS.IsPresent)
+            {
+                var remoteX509SecuritySettings = this.GetServerX509SecuritySettings();
+                Func<CancellationToken, Task<SecuritySettings>> securitySettings =
+                    (ct) => Task.FromResult<SecuritySettings>(new DstsClaimsSecuritySettings(CredentialsUtil.GetAccessTokenDstsAsync, remoteX509SecuritySettings));
+
+                builder.UseClaimsSecurity(securitySettings);
             }
 
             // build the client
