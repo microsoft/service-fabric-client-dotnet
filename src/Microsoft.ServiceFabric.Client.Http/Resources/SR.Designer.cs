@@ -151,15 +151,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DSTS option is not supported in the current configuration. Its supported only in internal Service Fabric tooling drops..
-        /// </summary>
-        internal static string ErrorDstsNotSupported {
-            get {
-                return ResourceManager.GetString("ErrorDstsNotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Expected an object of type &apos;{0}&apos;..
         /// </summary>
         internal static string ErrorExpectedObjectOfTypeFormatString {

@@ -3,14 +3,14 @@
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
 
-namespace Microsoft.ServiceFabric.Client.Http
+namespace Microsoft.ServiceFabric.Client
 {
     using System;
     using System.IO;
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.ServiceFabric.Client.Http.Resources;
+    using Microsoft.ServiceFabric.Client.Resources;
     using Microsoft.ServiceFabric.Common;
 
     /// <summary>
@@ -29,15 +29,15 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <param name="interactive">Flag to indicate interactive logon.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the operation.</param>
         /// <returns>Access Token from DSTS.</returns>
-        public static Task<string> GetAccessTokenFromDstsMetadata(TokenServiceMetadata metadata, bool interactive, CancellationToken cancellationToken = default(CancellationToken))
+        public static Task<string> GetAccessTokenFromDstsAsync(TokenServiceMetadata metadata, bool interactive, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (cancellationToken.IsCancellationRequested)
             {
                 throw new OperationCanceledException();
             }
 
-            Assembly module;
-            var assembly = Path.Combine(Environment.CurrentDirectory, DstsClientLibraryName);
+            Assembly module;            
+            var assembly = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DstsClientLibraryName);
 
             try
             {

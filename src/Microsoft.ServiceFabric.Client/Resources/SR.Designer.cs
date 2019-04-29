@@ -19,7 +19,7 @@ namespace Microsoft.ServiceFabric.Client.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class SR {
@@ -66,6 +66,15 @@ namespace Microsoft.ServiceFabric.Client.Resources {
         internal static string ErrorClusterEndpointNotProvided {
             get {
                 return ResourceManager.GetString("ErrorClusterEndpointNotProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DSTS option is not supported in the current configuration. Its supported only in internal Service Fabric tooling drops..
+        /// </summary>
+        internal static string ErrorDstsNotSupported {
+            get {
+                return ResourceManager.GetString("ErrorDstsNotSupported", resourceCulture);
             }
         }
         
