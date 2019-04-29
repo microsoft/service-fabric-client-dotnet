@@ -26,10 +26,16 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// Gets Access token from Dsts secure token service. For internal use only by Service Fabric tooling.
         /// </summary>
         /// <param name="metadata">Token Service metadata used for secured connection to cluster.</param>
-        /// <param name="cancellationToken">Cancellation Token to cancel the operation..</param>
+        /// <param name="interactive">Flag to indicate interactive logon.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the operation.</param>
         /// <returns>Access Token from DSTS.</returns>
-        public static Task<string> GetAccessTokenFromDstsMetadata(TokenServiceMetadata metadata, CancellationToken cancellationToken)
+        public static Task<string> GetAccessTokenFromDstsMetadata(TokenServiceMetadata metadata, bool interactive, CancellationToken cancellationToken = default(CancellationToken))
         {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                throw new OperationCanceledException();
+            }
+
             Assembly module;
             var assembly = Path.Combine(Environment.CurrentDirectory, DstsClientLibraryName);
 
@@ -54,7 +60,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 throw new InvalidOperationException(SR.ErrorDstsNotSupported);
             }
 
-            var authHeader = getAuthorizationHeaderMetod.Invoke(null, new object[] { metadata.ServiceName, metadata.ServiceDnsName, metadata.Metadata });
+            var authHeader = getAuthorizationHeaderMetod.Invoke(null, new object[] { metadata.ServiceName, metadata.ServiceDnsName, metadata.Metadata, interactive });
             return Task.FromResult((string)authHeader);
         }
     }
