@@ -138,4 +138,7 @@
   <data name="ErrorListenerNotFound" xml:space="preserve">
     <value>Service replica did not publish an address for listener with name name '{0}'.</value>
   </data>
+  <data name="ErrorDstsNotSupported" xml:space="preserve">
+    <value>DSTS option is not supported in the current configuration. Its supported only in internal Service Fabric tooling drops.</value>
+  </data>
 </root>
