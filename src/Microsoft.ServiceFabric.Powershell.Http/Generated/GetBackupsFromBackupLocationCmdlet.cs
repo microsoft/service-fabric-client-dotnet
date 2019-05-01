@@ -153,7 +153,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
-        /// Gets or sets PartitionId. The partition ID indentifying the partition.
+        /// Gets or sets PartitionId. The partition ID identifying the partition.
         /// </summary>
         [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_AzureBlobStore__Partition_")]
         [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Partition_")]

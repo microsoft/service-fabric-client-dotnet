@@ -1967,6 +1967,78 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>Get-SFClusterLoad</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ClusterLoad</command:noun>
+                <maml:description>
+                    <maml:para>Gets the load of a Service Fabric cluster.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Retrieves the load information of a Service Fabric cluster for all the metrics that have load or capacity defined.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="false" position="0">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Switch-SFVerboseServicePlacementHealthReporting</command:name>
+                <command:verb>Switch</command:verb>
+                <command:noun>VerboseServicePlacementHealthReporting</command:noun>
+                <maml:description>
+                    <maml:para>Changes the verbosity of service placement health reporting.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>If verbosity is set to true, then detailed health reports will be generated when replicas cannot be placed or dropped.
+                If verbosity is set to false, then no health reports will be generated when replicas cannot be placed or dropped.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>Enabled</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The verbosity of service placement health reporting.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Get-SFNode</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>Node</command:noun>
@@ -3980,7 +4052,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -4206,303 +4278,6 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
-                <command:name>Start-SFApplicationUpgrade</command:name>
-                <command:verb>Start</command:verb>
-                <command:noun>ApplicationUpgrade</command:noun>
-                <maml:description>
-                    <maml:para>Starts upgrading an application in the Service Fabric cluster.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Validates the supplied application upgrade parameters and starts upgrading the application if the parameters are valid.</maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
-                <maml:name>ApplicationId</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The identity of the application. This is typically the full name of the application without the 'fabric:' URI scheme.
-                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
-                    For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in 6.0+ and "myapp/app1" in previous versions.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="1">
-                <maml:name>Name</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The name of the target application, including the 'fabric:' URI scheme.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="2">
-                <maml:name>TargetApplicationTypeVersion</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The target application type version (found in the application manifest) for the application upgrade.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="3">
-                <maml:name>Parameters</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    List of application parameters with overridden values from their default values specified in the application manifest.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">IReadOnlyDictionary&lt;string, string&gt;</command:parameterValue>
-                <dev:type>
-                    <maml:name>IReadOnlyDictionary&lt;string, string&gt;</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="true" position="4">
-                <maml:name>UpgradeKind</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The kind of upgrade out of the following possible values. Possible values include: 'Invalid', 'Rolling'
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">UpgradeKind?</command:parameterValue>
-                <dev:type>
-                    <maml:name>UpgradeKind?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="5">
-                <maml:name>RollingUpgradeMode</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The mode used to monitor health during a rolling upgrade. The values are UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored'
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">UpgradeMode?</command:parameterValue>
-                <dev:type>
-                    <maml:name>UpgradeMode?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="6">
-                <maml:name>UpgradeReplicaSetCheckTimeoutInSeconds</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum amount of time to block processing of an upgrade domain and prevent loss of availability when there are unexpected issues. When this timeout expires, processing of the upgrade domain will proceed regardless of availability loss issues. The timeout is reset at the start of each upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="7">
-                <maml:name>ForceRestart</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    If true, then processes are forcefully restarted during upgrade even when the code version has not changed (the upgrade only changes configuration or data).
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">bool?</command:parameterValue>
-                <dev:type>
-                    <maml:name>bool?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="8">
-                <maml:name>FailureAction</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The compensating action to perform when a Monitored upgrade encounters monitoring policy or health policy violations.
-                    Invalid indicates the failure action is invalid. Rollback specifies that the upgrade will start rolling back automatically.
-                    Manual indicates that the upgrade will switch to UnmonitoredManual upgrade mode.
-                    . Possible values include: 'Invalid', 'Rollback', 'Manual'
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">FailureAction?</command:parameterValue>
-                <dev:type>
-                    <maml:name>FailureAction?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="9">
-                <maml:name>HealthCheckWaitDurationInMilliseconds</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The amount of time to wait after completing an upgrade domain before applying health policies. It is first interpreted as a string representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number of milliseconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="10">
-                <maml:name>HealthCheckStableDurationInMilliseconds</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The amount of time that the application or cluster must remain healthy before the upgrade proceeds to the next upgrade domain. It is first interpreted as a string representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number of milliseconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="11">
-                <maml:name>HealthCheckRetryTimeoutInMilliseconds</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The amount of time to retry health evaluation when the application or cluster is unhealthy before FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number of milliseconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="12">
-                <maml:name>UpgradeTimeoutInMilliseconds</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The amount of time the overall upgrade has to complete before FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number of milliseconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="13">
-                <maml:name>UpgradeDomainTimeoutInMilliseconds</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The amount of time each upgrade domain has to complete before FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number of milliseconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="14">
-                <maml:name>ConsiderWarningAsError</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Indicates whether warnings are treated with the same severity as errors.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">bool?</command:parameterValue>
-                <dev:type>
-                    <maml:name>bool?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="15">
-                <maml:name>MaxPercentUnhealthyDeployedApplications</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum allowed percentage of unhealthy deployed applications. Allowed values are Byte values from zero to 100.
-                    The percentage represents the maximum tolerated percentage of deployed applications that can be unhealthy before the application is considered in error.
-                    This is calculated by dividing the number of unhealthy deployed applications over the number of nodes where the application is currently deployed on in the cluster.
-                    The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage is zero.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">int?</command:parameterValue>
-                <dev:type>
-                    <maml:name>int?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="16">
-                <maml:name>MaxPercentUnhealthyPartitionsPerService</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum allowed percentage of unhealthy partitions per service. Allowed values are Byte values from zero to 100
-                    
-                    The percentage represents the maximum tolerated percentage of partitions that can be unhealthy before the service is considered in error.
-                    If the percentage is respected but there is at least one unhealthy partition, the health is evaluated as Warning.
-                    The percentage is calculated by dividing the number of unhealthy partitions over the total number of partitions in the service.
-                    The computation rounds up to tolerate one failure on small numbers of partitions. Default percentage is zero.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">int?</command:parameterValue>
-                <dev:type>
-                    <maml:name>int?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="17">
-                <maml:name>MaxPercentUnhealthyReplicasPerPartition</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum allowed percentage of unhealthy replicas per partition. Allowed values are Byte values from zero to 100.
-                    
-                    The percentage represents the maximum tolerated percentage of replicas that can be unhealthy before the partition is considered in error.
-                    If the percentage is respected but there is at least one unhealthy replica, the health is evaluated as Warning.
-                    The percentage is calculated by dividing the number of unhealthy replicas over the total number of replicas in the partition.
-                    The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">int?</command:parameterValue>
-                <dev:type>
-                    <maml:name>int?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="18">
-                <maml:name>MaxPercentUnhealthyServices</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
-                    
-                    The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
-                    If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
-                    This is calculated by dividing the number of unhealthy services of the specific service type over the total number of services of the specific service type.
-                    The computation rounds up to tolerate one failure on small numbers of services. Default percentage is zero.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">int?</command:parameterValue>
-                <dev:type>
-                    <maml:name>int?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="19">
-                <maml:name>ServiceTypeHealthPolicyMap</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The map with service type health policy per service type name. The map is empty by default.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">IEnumerable&lt;ServiceTypeHealthPolicyMapItem&gt;</command:parameterValue>
-                <dev:type>
-                    <maml:name>IEnumerable&lt;ServiceTypeHealthPolicyMapItem&gt;</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="20">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
                 <command:name>Get-SFApplicationUpgrade</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>ApplicationUpgrade</command:noun>
@@ -4679,7 +4454,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -5310,7 +5085,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -6903,7 +6678,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -7216,6 +6991,78 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="4">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFUnplacedReplicaInformation</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>UnplacedReplicaInformation</command:noun>
+                <maml:description>
+                    <maml:para>Gets the information about unplaced replica of the service.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Returns the information about the unplaced replicas of the service.
+                If PartitionId is specified, then result will contain information only about unplaced replicas for that partition.
+                If PartitionId is not specified, then result will contain information about unplaced replicas for all partitions of that service.
+                If OnlyQueryPrimaries is set to true, then result will contain information only about primary replicas, and will ignore unplaced secondary replicas.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ServiceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the service. This ID is typically the full name of the service without the 'fabric:' URI scheme.
+                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
+                    For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>PartitionId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the partition.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">PartitionId</command:parameterValue>
+                <dev:type>
+                    <maml:name>PartitionId</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>OnlyQueryPrimaries</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Indicates that unplaced replica information will be queries only for primary replicas.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7589,7 +7436,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -8039,6 +7886,156 @@
             </maml:description>
             <command:parameters>
             <command:parameter required="false" position="0">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Move-SFPrimaryReplica</command:name>
+                <command:verb>Move</command:verb>
+                <command:noun>PrimaryReplica</command:noun>
+                <maml:description>
+                    <maml:para>Moves the primary replica of a partition of a stateful service.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>This command moves the primary replica of a partition of a stateful service, respecting all constraints.
+                If NodeName parameter is specified, primary will be moved to the specified node (if constraints allow it).
+                If NodeName parameter is not specified, primary replica will be moved to a random node in the cluster.
+                If IgnoreConstraints parameter is specified and set to true, then primary will be moved regardless of the constraints.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>PartitionId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the partition.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">PartitionId</command:parameterValue>
+                <dev:type>
+                    <maml:name>PartitionId</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>NodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>IgnoreConstraints</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Ignore constraints when moving a replica. If this parameter is not specified, all constraints are honored.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Move-SFSecondaryReplica</command:name>
+                <command:verb>Move</command:verb>
+                <command:noun>SecondaryReplica</command:noun>
+                <maml:description>
+                    <maml:para>Moves the secondary replica of a partition of a stateful service.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>This command moves the secondary replica of a partition of a stateful service, respecting all constraints.
+                CuurentNodeName parameter must be specified to identify the replica that is moved.
+                Source node name must be specified, but new node name can be ommited, and in that case replica is moved to a random node.
+                If IgnoreConstraints parameter is specified and set to true, then secondary will be moved regardless of the constraints.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>PartitionId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the partition.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">PartitionId</command:parameterValue>
+                <dev:type>
+                    <maml:name>PartitionId</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>CurrentNodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the source node for secondary replica move.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>NewNodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the target node for secondary replica move. If not specified, replica is moved to a random node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>IgnoreConstraints</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Ignore constraints when moving a replica. If this parameter is not specified, all constraints are honored.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -9384,7 +9381,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -10275,7 +10272,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -11591,7 +11588,7 @@
                 <maml:name>MaxPercentUnhealthyServices</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+                    The maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
                     
                     The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application is considered in error.
                     If the percentage is respected but there is at least one unhealthy service, the health is evaluated as Warning.
@@ -11912,7 +11909,7 @@
                 <maml:name>ApplicationInclusionList</maml:name>
                 <maml:Description>
                     <maml:para>
-                    A list of application URI's to include in Chaos faults.
+                    A list of application URIs to include in Chaos faults.
                     All replicas belonging to services of these applications are amenable to replica faults (restart replica, remove replica, move primary, and move secondary) by Chaos.
                     Chaos may restart a code package only if the code package hosts replicas of these applications only.
                     If an application does not appear in this list, it can still be faulted in some Chaos iteration if the application ends up on a node of a node type that is included in NodeTypeInclusionList.
@@ -12494,6 +12491,77 @@
             </command:syntax>
             <maml:description>
                 <maml:para>Gets the image store upload session associated with the given image store relative path. User can query the upload session at any time during uploading. 
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ContentPath</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Relative path to file or folder in the image store from its root.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFImageStoreRootFolderSize</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ImageStoreRootFolderSize</command:noun>
+                <maml:description>
+                    <maml:para>Get the folder size at the root of the image store.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Returns the total size of files at the root and children folders in image store.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="false" position="0">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFImageStoreFolderSize</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ImageStoreFolderSize</command:noun>
+                <maml:description>
+                    <maml:para>Get the size of a folder in image store</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the total size of file under a image store folder, specified by contentPath. The contentPath is relative to the root of the image store.
                 </maml:para>
             </maml:description>
             <command:parameters>
@@ -16032,7 +16100,7 @@
                 <maml:name>PartitionId</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The partition ID indentifying the partition.
+                    The partition ID identifying the partition.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">PartitionId</command:parameterValue>

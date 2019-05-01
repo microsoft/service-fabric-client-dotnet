@@ -34,17 +34,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ServicePlacementPolicyType.InvalidDomain;
             }
-            else if (string.Compare(value, "RequiredDomain", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RequireDomain", StringComparison.Ordinal) == 0)
             {
-                obj = ServicePlacementPolicyType.RequiredDomain;
+                obj = ServicePlacementPolicyType.RequireDomain;
             }
-            else if (string.Compare(value, "PreferredPrimaryDomain", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PreferPrimaryDomain", StringComparison.Ordinal) == 0)
             {
-                obj = ServicePlacementPolicyType.PreferredPrimaryDomain;
+                obj = ServicePlacementPolicyType.PreferPrimaryDomain;
             }
-            else if (string.Compare(value, "RequiredDomainDistribution", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RequireDomainDistribution", StringComparison.Ordinal) == 0)
             {
-                obj = ServicePlacementPolicyType.RequiredDomainDistribution;
+                obj = ServicePlacementPolicyType.RequireDomainDistribution;
             }
             else if (string.Compare(value, "NonPartiallyPlaceService", StringComparison.Ordinal) == 0)
             {
@@ -69,14 +69,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case ServicePlacementPolicyType.InvalidDomain:
                     writer.WriteStringValue("InvalidDomain");
                     break;
-                case ServicePlacementPolicyType.RequiredDomain:
-                    writer.WriteStringValue("RequiredDomain");
+                case ServicePlacementPolicyType.RequireDomain:
+                    writer.WriteStringValue("RequireDomain");
                     break;
-                case ServicePlacementPolicyType.PreferredPrimaryDomain:
-                    writer.WriteStringValue("PreferredPrimaryDomain");
+                case ServicePlacementPolicyType.PreferPrimaryDomain:
+                    writer.WriteStringValue("PreferPrimaryDomain");
                     break;
-                case ServicePlacementPolicyType.RequiredDomainDistribution:
-                    writer.WriteStringValue("RequiredDomainDistribution");
+                case ServicePlacementPolicyType.RequireDomainDistribution:
+                    writer.WriteStringValue("RequireDomainDistribution");
                     break;
                 case ServicePlacementPolicyType.NonPartiallyPlaceService:
                     writer.WriteStringValue("NonPartiallyPlaceService");

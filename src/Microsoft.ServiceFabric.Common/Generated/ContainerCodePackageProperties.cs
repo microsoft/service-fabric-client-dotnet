@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         /// application's lifetime.</param>
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
         /// <param name="reliableCollectionsRefs">A list of ReliableCollection resources used by this particular code package.
-        /// Please refer to ReliablecollectionsRef for more details.</param>
+        /// Please refer to ReliableCollectionsRef for more details.</param>
         public ContainerCodePackageProperties(
             string name,
             string image,
@@ -141,7 +141,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets a list of ReliableCollection resources used by this particular code package. Please refer to
-        /// ReliablecollectionsRef for more details.
+        /// ReliableCollectionsRef for more details.
         /// </summary>
         public IEnumerable<ReliableCollectionsRef> ReliableCollectionsRefs { get; }
 

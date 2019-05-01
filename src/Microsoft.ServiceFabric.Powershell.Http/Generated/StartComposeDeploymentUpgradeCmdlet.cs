@@ -177,8 +177,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public int? MaxPercentUnhealthyReplicasPerPartition { get; set; } = 0;
 
         /// <summary>
-        /// Gets or sets MaxPercentUnhealthyServices. The maximum maximum allowed percentage of unhealthy services. Allowed
-        /// values are Byte values from zero to 100.
+        /// Gets or sets MaxPercentUnhealthyServices. The maximum allowed percentage of unhealthy services. Allowed values are
+        /// Byte values from zero to 100.
         /// 
         /// The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application
         /// is considered in error.

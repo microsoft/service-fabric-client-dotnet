@@ -24,10 +24,10 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="name">The name of the target application, including the 'fabric:' URI scheme.</param>
         /// <param name="targetApplicationTypeVersion">The target application type version (found in the application manifest)
         /// for the application upgrade.</param>
-        /// <param name="parameters">List of application parameters with overridden values from their default values specified
-        /// in the application manifest.</param>
         /// <param name="upgradeKind">The kind of upgrade out of the following possible values. Possible values include:
         /// 'Invalid', 'Rolling'</param>
+        /// <param name="parameters">List of application parameters with overridden values from their default values specified
+        /// in the application manifest.</param>
         /// <param name="rollingUpgradeMode">The mode used to monitor health during a rolling upgrade. The values are
         /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
         /// 'UnmonitoredManual', 'Monitored'</param>
@@ -44,8 +44,8 @@ namespace Microsoft.ServiceFabric.Common
         public ApplicationUpgradeDescription(
             string name,
             string targetApplicationTypeVersion,
-            IReadOnlyDictionary<string, string> parameters,
             UpgradeKind? upgradeKind = Common.UpgradeKind.Rolling,
+            IReadOnlyDictionary<string, string> parameters = default(IReadOnlyDictionary<string, string>),
             UpgradeMode? rollingUpgradeMode = Common.UpgradeMode.UnmonitoredAuto,
             long? upgradeReplicaSetCheckTimeoutInSeconds = default(long?),
             bool? forceRestart = default(bool?),
@@ -54,12 +54,11 @@ namespace Microsoft.ServiceFabric.Common
         {
             name.ThrowIfNull(nameof(name));
             targetApplicationTypeVersion.ThrowIfNull(nameof(targetApplicationTypeVersion));
-            parameters.ThrowIfNull(nameof(parameters));
             upgradeKind.ThrowIfNull(nameof(upgradeKind));
             this.Name = name;
             this.TargetApplicationTypeVersion = targetApplicationTypeVersion;
-            this.Parameters = parameters;
             this.UpgradeKind = upgradeKind;
+            this.Parameters = parameters;
             this.RollingUpgradeMode = rollingUpgradeMode;
             this.UpgradeReplicaSetCheckTimeoutInSeconds = upgradeReplicaSetCheckTimeoutInSeconds;
             this.ForceRestart = forceRestart;

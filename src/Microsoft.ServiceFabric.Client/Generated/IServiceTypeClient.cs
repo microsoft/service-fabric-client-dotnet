@@ -52,7 +52,7 @@ namespace Microsoft.ServiceFabric.Client
         /// <remarks>
         /// Gets the information about a specific service type that is supported by a provisioned application type in a Service
         /// Fabric cluster. The provided application type must exist. Otherwise, a 404 status is returned. A 204 response is
-        /// returned if the specificed service type is not found in the cluster.
+        /// returned if the specified service type is not found in the cluster.
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>

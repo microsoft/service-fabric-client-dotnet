@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     public enum NodeStatusFilter
     {
         /// <summary>
-        /// This filter value will match all of the nodes excepts the ones with with status as Unknown or Removed.
+        /// This filter value will match all of the nodes excepts the ones with status as Unknown or Removed.
         /// </summary>
         Default,
 

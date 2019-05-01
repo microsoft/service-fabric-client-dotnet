@@ -36,8 +36,8 @@ namespace Microsoft.ServiceFabric.Common
         /// partition.
         /// The computation rounds up to tolerate one failure on small numbers of replicas. Default percentage is zero.
         /// </param>
-        /// <param name="maxPercentUnhealthyServices">The maximum maximum allowed percentage of unhealthy services. Allowed
-        /// values are Byte values from zero to 100.
+        /// <param name="maxPercentUnhealthyServices">The maximum allowed percentage of unhealthy services. Allowed values are
+        /// Byte values from zero to 100.
         /// 
         /// The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application
         /// is considered in error.
@@ -83,7 +83,7 @@ namespace Microsoft.ServiceFabric.Common
         public int? MaxPercentUnhealthyReplicasPerPartition { get; }
 
         /// <summary>
-        /// Gets the maximum maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
+        /// Gets the maximum allowed percentage of unhealthy services. Allowed values are Byte values from zero to 100.
         /// 
         /// The percentage represents the maximum tolerated percentage of services that can be unhealthy before the application
         /// is considered in error.

@@ -24,7 +24,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="suspensionInfo">Describes the backup suspension details.
         /// </param>
         /// <param name="serviceName">The full name of the service with 'fabric:' URI scheme.</param>
-        /// <param name="partitionId">The partition ID indentifying the partition.</param>
+        /// <param name="partitionId">The partition ID identifying the partition.</param>
         public PartitionBackupConfigurationInfo(
             string policyName = default(string),
             BackupPolicyScope? policyInheritedFrom = default(BackupPolicyScope?),
@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Common
         public ServiceName ServiceName { get; }
 
         /// <summary>
-        /// Gets the partition ID indentifying the partition.
+        /// Gets the partition ID identifying the partition.
         /// </summary>
         public PartitionId PartitionId { get; }
     }
