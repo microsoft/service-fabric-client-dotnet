@@ -771,5 +771,62 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ClusterVersionConverter.Deserialize, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task<ClusterLoadInfo> GetClusterLoadAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/GetLoadInformation";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ClusterLoadInfoConverter.Deserialize, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task ToggleVerboseServicePlacementHealthReportingAsync(
+            bool? enabled,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            enabled.ThrowIfNull(nameof(enabled));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/ToggleVerboseServicePlacementHealthReporting";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            enabled?.AddToQueryParameters(queryParams, $"Enabled={enabled}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.4");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

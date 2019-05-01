@@ -6,7 +6,6 @@
 namespace Microsoft.ServiceFabric.Powershell.Http
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
     using Microsoft.ServiceFabric.Common;
@@ -133,7 +132,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10)]
-        public Hashtable Map { get; set; }
+        public System.Collections.Hashtable Map { get; set; }
 
         /// <summary>
         /// Gets or sets NodeTypeInclusionList. A list of node types to include in Chaos faults.
@@ -151,7 +150,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public IEnumerable<string> NodeTypeInclusionList { get; set; }
 
         /// <summary>
-        /// Gets or sets ApplicationInclusionList. A list of application URI's to include in Chaos faults.
+        /// Gets or sets ApplicationInclusionList. A list of application URIs to include in Chaos faults.
         /// All replicas belonging to services of these applications are amenable to replica faults (restart replica, remove
         /// replica, move primary, and move secondary) by Chaos.
         /// Chaos may restart a code package only if the code package hosts replicas of these applications only.

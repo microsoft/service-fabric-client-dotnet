@@ -113,8 +113,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.UpgradeKind, "UpgradeKind", UpgradeKindConverter.Serialize);
             writer.WriteProperty(obj.Name, "Name", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.TargetApplicationTypeVersion, "TargetApplicationTypeVersion", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.Parameters, "Parameters", ApplicationParametersConverter.Serialize);
             writer.WriteProperty(obj.RollingUpgradeMode, "RollingUpgradeMode", UpgradeModeConverter.Serialize);
+            if (obj.Parameters != null)
+            {
+                writer.WriteProperty(obj.Parameters, "Parameters", ApplicationParametersConverter.Serialize);
+            }
+
             if (obj.UpgradeReplicaSetCheckTimeoutInSeconds != null)
             {
                 writer.WriteProperty(obj.UpgradeReplicaSetCheckTimeoutInSeconds, "UpgradeReplicaSetCheckTimeoutInSeconds", JsonWriterExtensions.WriteLongValue);

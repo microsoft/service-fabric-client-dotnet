@@ -531,5 +531,43 @@ namespace Microsoft.ServiceFabric.Client
             string previousRspVersion = default(string),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets the information about unplaced replica of the service.
+        /// </summary>
+        /// <remarks>
+        /// Returns the information about the unplaced replicas of the service.
+        /// If PartitionId is specified, then result will contain information only about unplaced replicas for that partition.
+        /// If PartitionId is not specified, then result will contain information about unplaced replicas for all partitions of
+        /// that service.
+        /// If OnlyQueryPrimaries is set to true, then result will contain information only about primary replicas, and will
+        /// ignore unplaced secondary replicas.
+        /// </remarks>
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
+        /// <param name ="partitionId">The identity of the partition.</param>
+        /// <param name ="onlyQueryPrimaries">Indicates that unplaced replica information will be queries only for primary
+        /// replicas.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<UnplacedReplicaInformation> GetUnplacedReplicaInformationAsync(
+            string serviceId,
+            PartitionId partitionId = default(PartitionId),
+            bool? onlyQueryPrimaries = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

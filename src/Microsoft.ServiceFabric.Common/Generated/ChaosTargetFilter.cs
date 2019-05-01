@@ -40,7 +40,7 @@ namespace Microsoft.ServiceFabric.Common
         /// At most 100 node type names can be included in this list, to increase this number, a config upgrade is required for
         /// MaxNumberOfNodeTypesInChaosEntityFilter configuration.
         /// </param>
-        /// <param name="applicationInclusionList">A list of application URI's to include in Chaos faults.
+        /// <param name="applicationInclusionList">A list of application URIs to include in Chaos faults.
         /// All replicas belonging to services of these applications are amenable to replica faults (restart replica, remove
         /// replica, move primary, and move secondary) by Chaos.
         /// Chaos may restart a code package only if the code package hosts replicas of these applications only.
@@ -75,7 +75,7 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<string> NodeTypeInclusionList { get; }
 
         /// <summary>
-        /// Gets a list of application URI's to include in Chaos faults.
+        /// Gets a list of application URIs to include in Chaos faults.
         /// All replicas belonging to services of these applications are amenable to replica faults (restart replica, remove
         /// replica, move primary, and move secondary) by Chaos.
         /// Chaos may restart a code package only if the code package hosts replicas of these applications only.

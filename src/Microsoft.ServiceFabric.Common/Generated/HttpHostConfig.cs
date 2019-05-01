@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="name">http hostname config name.</param>
         /// <param name="routes">Route information to use for routing. Routes are processed in the order they are specified.
-        /// Specify routes that are more specific before routes that can hamdle general cases.</param>
+        /// Specify routes that are more specific before routes that can handle general cases.</param>
         public HttpHostConfig(
             string name,
             IEnumerable<HttpRouteConfig> routes)
@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets route information to use for routing. Routes are processed in the order they are specified. Specify routes
-        /// that are more specific before routes that can hamdle general cases.
+        /// that are more specific before routes that can handle general cases.
         /// </summary>
         public IEnumerable<HttpRouteConfig> Routes { get; }
     }

@@ -427,5 +427,76 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task MovePrimaryReplicaAsync(
+            PartitionId partitionId,
+            NodeName nodeName = default(NodeName),
+            bool? ignoreConstraints = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            partitionId.ThrowIfNull(nameof(partitionId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Partitions/{partitionId}/$/MovePrimaryReplica";
+            url = url.Replace("{partitionId}", partitionId.ToString());
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            nodeName?.AddToQueryParameters(queryParams, $"NodeName={nodeName.ToString()}");
+            ignoreConstraints?.AddToQueryParameters(queryParams, $"IgnoreConstraints={ignoreConstraints}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.5");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task MoveSecondaryReplicaAsync(
+            PartitionId partitionId,
+            NodeName currentNodeName,
+            NodeName newNodeName = default(NodeName),
+            bool? ignoreConstraints = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            partitionId.ThrowIfNull(nameof(partitionId));
+            currentNodeName.ThrowIfNull(nameof(currentNodeName));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Partitions/{partitionId}/$/MoveSecondaryReplica";
+            url = url.Replace("{partitionId}", partitionId.ToString());
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            currentNodeName?.AddToQueryParameters(queryParams, $"CurrentNodeName={currentNodeName.ToString()}");
+            newNodeName?.AddToQueryParameters(queryParams, $"NewNodeName={newNodeName.ToString()}");
+            ignoreConstraints?.AddToQueryParameters(queryParams, $"IgnoreConstraints={ignoreConstraints}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.5");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

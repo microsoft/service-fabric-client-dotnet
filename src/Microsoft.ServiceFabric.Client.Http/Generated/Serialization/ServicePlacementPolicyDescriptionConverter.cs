@@ -49,15 +49,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ServicePlacementNonPartiallyPlaceServicePolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PreferredPrimaryDomain", StringComparison.Ordinal))
+            else if (propValue.Equals("PreferPrimaryDomain", StringComparison.Ordinal))
             {
                 obj = ServicePlacementPreferPrimaryDomainPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("RequiredDomain", StringComparison.Ordinal))
+            else if (propValue.Equals("RequireDomain", StringComparison.Ordinal))
             {
                 obj = ServicePlacementRequiredDomainPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("RequiredDomainDistribution", StringComparison.Ordinal))
+            else if (propValue.Equals("RequireDomainDistribution", StringComparison.Ordinal))
             {
                 obj = ServicePlacementRequireDomainDistributionPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
@@ -85,15 +85,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 ServicePlacementNonPartiallyPlaceServicePolicyDescriptionConverter.Serialize(writer, (ServicePlacementNonPartiallyPlaceServicePolicyDescription)obj);
             }
-            else if (kind.Equals(ServicePlacementPolicyType.PreferredPrimaryDomain))
+            else if (kind.Equals(ServicePlacementPolicyType.PreferPrimaryDomain))
             {
                 ServicePlacementPreferPrimaryDomainPolicyDescriptionConverter.Serialize(writer, (ServicePlacementPreferPrimaryDomainPolicyDescription)obj);
             }
-            else if (kind.Equals(ServicePlacementPolicyType.RequiredDomain))
+            else if (kind.Equals(ServicePlacementPolicyType.RequireDomain))
             {
                 ServicePlacementRequiredDomainPolicyDescriptionConverter.Serialize(writer, (ServicePlacementRequiredDomainPolicyDescription)obj);
             }
-            else if (kind.Equals(ServicePlacementPolicyType.RequiredDomainDistribution))
+            else if (kind.Equals(ServicePlacementPolicyType.RequireDomainDistribution))
             {
                 ServicePlacementRequireDomainDistributionPolicyDescriptionConverter.Serialize(writer, (ServicePlacementRequireDomainDistributionPolicyDescription)obj);
             }

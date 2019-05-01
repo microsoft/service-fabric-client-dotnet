@@ -31,7 +31,7 @@ namespace Microsoft.ServiceFabric.Common
         Creating,
 
         /// <summary>
-        /// Indicates the resource is being deletd. The value is 4.
+        /// Indicates the resource is being deleted. The value is 4.
         /// </summary>
         Deleting,
 

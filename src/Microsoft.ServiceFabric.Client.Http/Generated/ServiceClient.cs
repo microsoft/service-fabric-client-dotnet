@@ -479,5 +479,39 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ResolvedServicePartitionConverter.Deserialize, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task<UnplacedReplicaInformation> GetUnplacedReplicaInformationAsync(
+            string serviceId,
+            PartitionId partitionId = default(PartitionId),
+            bool? onlyQueryPrimaries = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serviceId.ThrowIfNull(nameof(serviceId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Services/{serviceId}/$/GetUnplacedReplicaInformation";
+            url = url.Replace("{serviceId}", serviceId);
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            partitionId?.AddToQueryParameters(queryParams, $"PartitionId={partitionId.ToString()}");
+            onlyQueryPrimaries?.AddToQueryParameters(queryParams, $"OnlyQueryPrimaries={onlyQueryPrimaries}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.4");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, UnplacedReplicaInformationConverter.Deserialize, requestId, cancellationToken);
+        }
     }
 }

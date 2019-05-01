@@ -18,12 +18,24 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="name">Name of the metric for which this load information is provided.</param>
         /// <param name="nodeCapacity">Total capacity on the node for this metric.</param>
-        /// <param name="nodeLoad">Current load on the node for this metric.</param>
-        /// <param name="nodeRemainingCapacity">The remaining capacity on the node for this metric.</param>
+        /// <param name="nodeLoad">Current load on the node for this metric. In future releases of Service Fabric this
+        /// parameter will be deprecated in favor of CurrentNodeLoad.</param>
+        /// <param name="nodeRemainingCapacity">The remaining capacity on the node for this metric. In future releases of
+        /// Service Fabric this parameter will be deprecated in favor of NodeCapacityRemaining.</param>
         /// <param name="isCapacityViolation">Indicates if there is a capacity violation for this metric on the node.</param>
         /// <param name="nodeBufferedCapacity">The value that indicates the reserved capacity for this metric on the
         /// node.</param>
-        /// <param name="nodeRemainingBufferedCapacity">The remaining reserved capacity for this metric on the node.</param>
+        /// <param name="nodeRemainingBufferedCapacity">The remaining reserved capacity for this metric on the node. In future
+        /// releases of Service Fabric this parameter will be deprecated in favor of BufferedNodeCapacityRemaining.</param>
+        /// <param name="currentNodeLoad">Current load on the node for this metric.</param>
+        /// <param name="nodeCapacityRemaining">The remaining capacity on the node for the metric.</param>
+        /// <param name="bufferedNodeCapacityRemaining">The remaining capacity which is not reserved by NodeBufferPercentage
+        /// for this metric on the node.</param>
+        /// <param name="plannedNodeLoadRemoval">This value represents the load of the replicas that are planned to be removed
+        /// in the future.
+        /// This kind of load is reported for replicas that are currently being moving to other nodes and for replicas that are
+        /// currently being dropped but still use the load on the source node.
+        /// </param>
         public NodeLoadMetricInformation(
             string name = default(string),
             string nodeCapacity = default(string),
@@ -31,7 +43,11 @@ namespace Microsoft.ServiceFabric.Common
             string nodeRemainingCapacity = default(string),
             bool? isCapacityViolation = default(bool?),
             string nodeBufferedCapacity = default(string),
-            string nodeRemainingBufferedCapacity = default(string))
+            string nodeRemainingBufferedCapacity = default(string),
+            string currentNodeLoad = default(string),
+            string nodeCapacityRemaining = default(string),
+            string bufferedNodeCapacityRemaining = default(string),
+            string plannedNodeLoadRemoval = default(string))
         {
             this.Name = name;
             this.NodeCapacity = nodeCapacity;
@@ -40,6 +56,10 @@ namespace Microsoft.ServiceFabric.Common
             this.IsCapacityViolation = isCapacityViolation;
             this.NodeBufferedCapacity = nodeBufferedCapacity;
             this.NodeRemainingBufferedCapacity = nodeRemainingBufferedCapacity;
+            this.CurrentNodeLoad = currentNodeLoad;
+            this.NodeCapacityRemaining = nodeCapacityRemaining;
+            this.BufferedNodeCapacityRemaining = bufferedNodeCapacityRemaining;
+            this.PlannedNodeLoadRemoval = plannedNodeLoadRemoval;
         }
 
         /// <summary>
@@ -53,12 +73,14 @@ namespace Microsoft.ServiceFabric.Common
         public string NodeCapacity { get; }
 
         /// <summary>
-        /// Gets current load on the node for this metric.
+        /// Gets current load on the node for this metric. In future releases of Service Fabric this parameter will be
+        /// deprecated in favor of CurrentNodeLoad.
         /// </summary>
         public string NodeLoad { get; }
 
         /// <summary>
-        /// Gets the remaining capacity on the node for this metric.
+        /// Gets the remaining capacity on the node for this metric. In future releases of Service Fabric this parameter will
+        /// be deprecated in favor of NodeCapacityRemaining.
         /// </summary>
         public string NodeRemainingCapacity { get; }
 
@@ -73,8 +95,31 @@ namespace Microsoft.ServiceFabric.Common
         public string NodeBufferedCapacity { get; }
 
         /// <summary>
-        /// Gets the remaining reserved capacity for this metric on the node.
+        /// Gets the remaining reserved capacity for this metric on the node. In future releases of Service Fabric this
+        /// parameter will be deprecated in favor of BufferedNodeCapacityRemaining.
         /// </summary>
         public string NodeRemainingBufferedCapacity { get; }
+
+        /// <summary>
+        /// Gets current load on the node for this metric.
+        /// </summary>
+        public string CurrentNodeLoad { get; }
+
+        /// <summary>
+        /// Gets the remaining capacity on the node for the metric.
+        /// </summary>
+        public string NodeCapacityRemaining { get; }
+
+        /// <summary>
+        /// Gets the remaining capacity which is not reserved by NodeBufferPercentage for this metric on the node.
+        /// </summary>
+        public string BufferedNodeCapacityRemaining { get; }
+
+        /// <summary>
+        /// Gets this value represents the load of the replicas that are planned to be removed in the future.
+        /// This kind of load is reported for replicas that are currently being moving to other nodes and for replicas that are
+        /// currently being dropped but still use the load on the source node.
+        /// </summary>
+        public string PlannedNodeLoadRemoval { get; }
     }
 }
