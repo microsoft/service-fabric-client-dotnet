@@ -5,17 +5,9 @@
 
 namespace Microsoft.ServiceFabric.Client.Http
 {
-    using System;
+    using System.Collections;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
-    using System.Net.Http;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Microsoft.ServiceFabric.Client.Http.Serialization;
-    using Microsoft.ServiceFabric.Common;
-    using Microsoft.ServiceFabric.Common.Exceptions;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Class containing helper extension methods.

@@ -178,6 +178,36 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
+        /// Sends an HTTP get request to cluster http gateway and returns the result as raw json.
+        /// </summary>
+        /// <param name="requestFunc">Func to create HttpRequest to send.</param>
+        /// <param name="relativeUri">The relative URI.</param>
+        /// <param name="requestId">Request Id for corelation</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The payload of the GET response as string.</returns>
+        /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
+        internal async Task<string> SendAsyncGetResponseAsRawJson(
+            Func<HttpRequestMessage> requestFunc,
+            string relativeUri,
+            string requestId,
+            CancellationToken cancellationToken)
+        {
+            // pick a random Uri from endpoints(if more than 1) to send request to.
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
+            var clientRequestId = this.GetClientRequestIdWithCorrelation(requestId);
+            var response = await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, clientRequestId, cancellationToken);
+            var retValue = default(string);
+
+            if (response != null && response.Content != null)
+            {
+                retValue = await response.Content.ReadAsStringAsync();
+            }
+
+            return retValue;
+        }
+
+        /// <summary>
         /// Sends an HTTP get request to cluster http gateway and deserializes the result.
         /// </summary>
         /// <typeparam name="T">The type of the response payload.</typeparam>
@@ -386,12 +416,6 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             ServiceFabricHttpClientEventSource.Current.ErrorResponse($"{clientRequestId}", message);
 
-            // Handle NotFound 404.
-            if (response.StatusCode.Equals(HttpStatusCode.NotFound))
-            {
-                return null;
-            }
-
             // Try to get Fabric Error Code if present in response body.
             if (response.Content != null)
             {
@@ -400,11 +424,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                 try
                 {
                     var contentStream = await response.Content.ReadAsStreamAsync();
-                    using (var streamReader = new StreamReader(contentStream))
+                    if (contentStream.Length != 0)
                     {
-                        using (var reader = new JsonTextReader(streamReader))
+                        using (var streamReader = new StreamReader(contentStream))
                         {
-                            error = FabricErrorConverter.Deserialize(reader);
+                            using (var reader = new JsonTextReader(streamReader))
+                            {
+                                error = FabricErrorConverter.Deserialize(reader);
+                            }
                         }
                     }
                 }
@@ -417,6 +444,14 @@ namespace Microsoft.ServiceFabric.Client.Http
                 if (error != null)
                 {
                     throw new ServiceFabricException(error.Message, error.ErrorCode ?? FabricErrorCodes.UNKNOWN, false);
+                }
+                else
+                {
+                    // Handle NotFound 404, without any ErrorCode.
+                    if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+                    {
+                        throw new ServiceFabricException(SR.ErrorMessageHTTP404, FabricErrorCodes.FABRIC_E_DOES_NOT_EXIST, false);
+                    }
                 }
             }
 
@@ -646,12 +681,13 @@ namespace Microsoft.ServiceFabric.Client.Http
                 }
             }
 
+            var httpClientInstance = new HttpClient(pipeline, true);
             if (this.ClientSettings?.ClientTimeout != null)
             {
-                this.httpClient.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
+                httpClientInstance.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
             }
 
-            return new HttpClient(pipeline, true);
+            return httpClientInstance;
         }
 
         private async Task InitializeBearerTokenHandlerAsync(CancellationToken cancellationToken)
@@ -676,6 +712,20 @@ namespace Microsoft.ServiceFabric.Client.Http
                     else
                     {
                         this.bearerTokenHandler = new AADTokenHandler();
+                    }
+                }
+                else if (this.securitySettings is DstsClaimsSecuritySettings dstsSecuritySettings)
+                {
+                    // Get AaadMetadata for AzureActiveDirectorySecuritySettings, if user has provided the Func for getting Bearer token.
+                    if (dstsSecuritySettings.GetClaimsToken != null)
+                    {
+                        // get AadMetadata from cluster using another http client.
+                        var metaData = await this.Cluster.GetTokenServiceMetadtaAsync(cancellationToken: cancellationToken);
+                        this.bearerTokenHandler = new DstsTokenHandler(metaData);
+                    }
+                    else
+                    {
+                        this.bearerTokenHandler = new DstsTokenHandler();
                     }
                 }
                 else

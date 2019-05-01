@@ -53,6 +53,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     items = reader.ReadList(deserializeFunc);
                 }
+                else if (string.Compare("History", propName, StringComparison.Ordinal) == 0)
+                {
+                    items = reader.ReadList(deserializeFunc);
+                }
                 else
                 {
                     reader.SkipPropertyValue();

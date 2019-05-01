@@ -23,7 +23,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         internal static readonly string FormatObjectMethodName = "FormatObject";
         internal static readonly string ToStringMethodName = "ToString";
         internal static readonly string NodeNamePropertyName = "NodeName";
-        internal static readonly string LocalDevClusterConnectionParamFile = @"%appdata%\ServiceFabricLocalClusterConnectionParams.json";
+        internal static readonly string LocalDevClusterConnectionParamFileName = "ServiceFabricLocalClusterConnectionParams.json";
         internal static readonly string PowershellClientTypeHeaderValue = "SF-PS";
+        internal static readonly string SFRegistryPath = "Software\\Microsoft\\Service Fabric";
+        internal static readonly string SFDataRootkeyName = "FabricDataRoot";
     }
 }
