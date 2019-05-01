@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("IsSuspended", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("IsSuspended", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isSuspended = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("SuspensionInheritedFrom", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SuspensionInheritedFrom", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     suspensionInheritedFrom = BackupSuspensionScopeConverter.Deserialize(reader);
                 }

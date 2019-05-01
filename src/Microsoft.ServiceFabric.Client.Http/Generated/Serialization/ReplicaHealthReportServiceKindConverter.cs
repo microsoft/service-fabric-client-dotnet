@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReplicaHealthReportServiceKind);
 
-            if (string.Compare(value, "Stateless", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Stateless", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaHealthReportServiceKind.Stateless;
             }
-            else if (string.Compare(value, "Stateful", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stateful", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaHealthReportServiceKind.Stateful;
             }

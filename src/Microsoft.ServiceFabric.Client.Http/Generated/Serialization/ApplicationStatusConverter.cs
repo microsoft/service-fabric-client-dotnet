@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ApplicationStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationStatus.Invalid;
             }
-            else if (string.Compare(value, "Ready", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Ready", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationStatus.Ready;
             }
-            else if (string.Compare(value, "Upgrading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Upgrading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationStatus.Upgrading;
             }
-            else if (string.Compare(value, "Creating", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Creating", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationStatus.Creating;
             }
-            else if (string.Compare(value, "Deleting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Deleting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationStatus.Deleting;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationStatus.Failed;
             }

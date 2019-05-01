@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(RepairTaskHealthCheckState);
 
-            if (string.Compare(value, "NotStarted", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "NotStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairTaskHealthCheckState.NotStarted;
             }
-            else if (string.Compare(value, "InProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "InProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairTaskHealthCheckState.InProgress;
             }
-            else if (string.Compare(value, "Succeeded", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Succeeded", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairTaskHealthCheckState.Succeeded;
             }
-            else if (string.Compare(value, "Skipped", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Skipped", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairTaskHealthCheckState.Skipped;
             }
-            else if (string.Compare(value, "TimedOut", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "TimedOut", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairTaskHealthCheckState.TimedOut;
             }

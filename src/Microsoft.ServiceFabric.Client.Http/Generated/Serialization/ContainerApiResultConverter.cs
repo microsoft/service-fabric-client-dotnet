@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Status", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("Content-Type", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Content-Type", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     contentType = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Content-Encoding", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Content-Encoding", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     contentEncoding = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Body", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Body", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     body = reader.ReadValueAsString();
                 }

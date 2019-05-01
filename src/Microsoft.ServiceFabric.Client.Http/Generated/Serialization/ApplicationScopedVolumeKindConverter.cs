@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ApplicationScopedVolumeKind);
 
-            if (string.Compare(value, "ServiceFabricVolumeDisk", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "ServiceFabricVolumeDisk", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationScopedVolumeKind.ServiceFabricVolumeDisk;
             }

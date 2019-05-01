@@ -26,35 +26,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ComposeDeploymentStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Invalid;
             }
-            else if (string.Compare(value, "Provisioning", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Provisioning", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Provisioning;
             }
-            else if (string.Compare(value, "Creating", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Creating", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Creating;
             }
-            else if (string.Compare(value, "Ready", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Ready", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Ready;
             }
-            else if (string.Compare(value, "Unprovisioning", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Unprovisioning", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Unprovisioning;
             }
-            else if (string.Compare(value, "Deleting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Deleting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Deleting;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Failed;
             }
-            else if (string.Compare(value, "Upgrading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Upgrading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentStatus.Upgrading;
             }

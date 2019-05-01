@@ -26,39 +26,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeStatusFilter);
 
-            if (string.Compare(value, "default", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "default", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Default;
             }
-            else if (string.Compare(value, "all", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "all", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.All;
             }
-            else if (string.Compare(value, "up", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "up", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Up;
             }
-            else if (string.Compare(value, "down", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "down", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Down;
             }
-            else if (string.Compare(value, "enabling", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "enabling", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Enabling;
             }
-            else if (string.Compare(value, "disabling", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "disabling", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Disabling;
             }
-            else if (string.Compare(value, "disabled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "disabled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Disabled;
             }
-            else if (string.Compare(value, "unknown", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Unknown;
             }
-            else if (string.Compare(value, "removed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "removed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatusFilter.Removed;
             }

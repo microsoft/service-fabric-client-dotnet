@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NetworkKind);
 
-            if (string.Compare(value, "Local", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Local", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NetworkKind.Local;
             }

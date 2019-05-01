@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Async", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Async", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     async = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("ApplicationPackageDownloadUri", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationPackageDownloadUri", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationPackageDownloadUri = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeVersion = reader.ReadValueAsString();
                 }

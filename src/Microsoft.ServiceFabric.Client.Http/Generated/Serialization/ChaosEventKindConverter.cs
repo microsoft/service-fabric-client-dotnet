@@ -26,31 +26,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ChaosEventKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.Invalid;
             }
-            else if (string.Compare(value, "Started", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Started", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.Started;
             }
-            else if (string.Compare(value, "ExecutingFaults", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ExecutingFaults", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.ExecutingFaults;
             }
-            else if (string.Compare(value, "Waiting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Waiting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.Waiting;
             }
-            else if (string.Compare(value, "ValidationFailed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ValidationFailed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.ValidationFailed;
             }
-            else if (string.Compare(value, "TestError", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "TestError", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.TestError;
             }
-            else if (string.Compare(value, "Stopped", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stopped", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosEventKind.Stopped;
             }

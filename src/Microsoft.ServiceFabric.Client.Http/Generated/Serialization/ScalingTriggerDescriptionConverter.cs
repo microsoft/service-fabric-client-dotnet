@@ -35,17 +35,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             ScalingTriggerDescription obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("AveragePartitionLoad", StringComparison.Ordinal))
+            if (propValue.Equals("AveragePartitionLoad", StringComparison.OrdinalIgnoreCase))
             {
                 obj = AveragePartitionLoadScalingTriggerConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("AverageServiceLoad", StringComparison.Ordinal))
+            else if (propValue.Equals("AverageServiceLoad", StringComparison.OrdinalIgnoreCase))
             {
                 obj = AverageServiceLoadScalingTriggerConverter.GetFromJsonProperties(reader);
             }

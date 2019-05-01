@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("AggregatedHealthState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("AggregatedHealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     aggregatedHealthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HealthEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthEvents = reader.ReadList(HealthEventConverter.Deserialize);
                 }
-                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     unhealthyEvaluations = reader.ReadList(HealthEvaluationWrapperConverter.Deserialize);
                 }
-                else if (string.Compare("HealthStatistics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthStatistics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStatistics = HealthStatisticsConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationName = ApplicationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceManifestName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceManifestName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeName = NodeNameConverter.Deserialize(reader);
                 }

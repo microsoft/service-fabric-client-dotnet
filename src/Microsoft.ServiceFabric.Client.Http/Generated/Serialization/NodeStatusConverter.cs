@@ -26,35 +26,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Invalid;
             }
-            else if (string.Compare(value, "Up", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Up", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Up;
             }
-            else if (string.Compare(value, "Down", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Down", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Down;
             }
-            else if (string.Compare(value, "Enabling", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Enabling", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Enabling;
             }
-            else if (string.Compare(value, "Disabling", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Disabling", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Disabling;
             }
-            else if (string.Compare(value, "Disabled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Disabled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Disabled;
             }
-            else if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Unknown;
             }
-            else if (string.Compare(value, "Removed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Removed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeStatus.Removed;
             }

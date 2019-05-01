@@ -26,43 +26,43 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReplicatorOperationName);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.Invalid;
             }
-            else if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.None;
             }
-            else if (string.Compare(value, "Open", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Open", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.Open;
             }
-            else if (string.Compare(value, "ChangeRole", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChangeRole", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.ChangeRole;
             }
-            else if (string.Compare(value, "UpdateEpoch", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UpdateEpoch", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.UpdateEpoch;
             }
-            else if (string.Compare(value, "Close", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Close", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.Close;
             }
-            else if (string.Compare(value, "Abort", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Abort", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.Abort;
             }
-            else if (string.Compare(value, "OnDataLoss", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "OnDataLoss", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.OnDataLoss;
             }
-            else if (string.Compare(value, "WaitForCatchup", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "WaitForCatchup", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.WaitForCatchup;
             }
-            else if (string.Compare(value, "Build", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Build", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicatorOperationName.Build;
             }

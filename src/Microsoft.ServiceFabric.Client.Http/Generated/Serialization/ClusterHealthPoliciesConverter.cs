@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationHealthPolicyMap = reader.ReadList(ApplicationHealthPolicyMapItemConverter.Deserialize);
                 }
-                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterHealthPolicy = ClusterHealthPolicyConverter.Deserialize(reader);
                 }

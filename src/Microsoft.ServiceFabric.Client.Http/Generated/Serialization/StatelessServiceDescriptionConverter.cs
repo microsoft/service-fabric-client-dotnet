@@ -52,63 +52,63 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ApplicationName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ApplicationName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationName = ApplicationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("InitializationData", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InitializationData", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     initializationData = ByteArrayConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionDescription", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionDescription = PartitionSchemeDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PlacementConstraints", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PlacementConstraints", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     placementConstraints = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CorrelationScheme", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CorrelationScheme", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     correlationScheme = reader.ReadList(ServiceCorrelationDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("ServiceLoadMetrics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceLoadMetrics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceLoadMetrics = reader.ReadList(ServiceLoadMetricDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("ServicePlacementPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePlacementPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePlacementPolicies = reader.ReadList(ServicePlacementPolicyDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("DefaultMoveCost", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DefaultMoveCost", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultMoveCost = MoveCostConverter.Deserialize(reader);
                 }
-                else if (string.Compare("IsDefaultMoveCostSpecified", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsDefaultMoveCostSpecified", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isDefaultMoveCostSpecified = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("ServicePackageActivationMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageActivationMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageActivationMode = ServicePackageActivationModeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceDnsName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceDnsName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceDnsName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ScalingPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("InstanceCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceCount = reader.ReadValueAsInt();
                 }

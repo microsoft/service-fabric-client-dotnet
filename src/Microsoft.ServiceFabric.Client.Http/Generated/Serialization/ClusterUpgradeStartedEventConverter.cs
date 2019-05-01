@@ -46,39 +46,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("CurrentClusterVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentClusterVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentClusterVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TargetClusterVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TargetClusterVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetClusterVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpgradeType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeType = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     rollingUpgradeMode = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureAction", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureAction", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureAction = reader.ReadValueAsString();
                 }

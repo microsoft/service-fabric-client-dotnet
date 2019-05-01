@@ -49,51 +49,51 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("BackupId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("BackupId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("BackupChainId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupChainId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupChainId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("ApplicationName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PartitionInformation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionInformation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionInformation = PartitionInformationConverter.Deserialize(reader);
                 }
-                else if (string.Compare("BackupLocation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupLocation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupLocation = reader.ReadValueAsString();
                 }
-                else if (string.Compare("BackupType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupType = BackupTypeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("EpochOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EpochOfLastBackupRecord", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     epochOfLastBackupRecord = EpochConverter.Deserialize(reader);
                 }
-                else if (string.Compare("LsnOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LsnOfLastBackupRecord", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lsnOfLastBackupRecord = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CreationTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CreationTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     creationTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ServiceManifestVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceManifestVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureError", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureError", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureError = FabricErrorErrorConverter.Deserialize(reader);
                 }

@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("LastBalancingStartTimeUtc", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("LastBalancingStartTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastBalancingStartTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LastBalancingEndTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastBalancingEndTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastBalancingEndTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LoadMetricInformation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LoadMetricInformation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     loadMetricInformation = reader.ReadList(LoadMetricInformationConverter.Deserialize);
                 }

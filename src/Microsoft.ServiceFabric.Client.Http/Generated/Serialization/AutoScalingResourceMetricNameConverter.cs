@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(AutoScalingResourceMetricName);
 
-            if (string.Compare(value, "cpu", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "cpu", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = AutoScalingResourceMetricName.Cpu;
             }
-            else if (string.Compare(value, "memoryInGB", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "memoryInGB", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = AutoScalingResourceMetricName.MemoryInGB;
             }

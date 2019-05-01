@@ -45,35 +45,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Flags", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Flags", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     flags = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PlacementConstraints", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PlacementConstraints", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     placementConstraints = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CorrelationScheme", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CorrelationScheme", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     correlationScheme = reader.ReadList(ServiceCorrelationDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("LoadMetrics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LoadMetrics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     loadMetrics = reader.ReadList(ServiceLoadMetricDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("ServicePlacementPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePlacementPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePlacementPolicies = reader.ReadList(ServicePlacementPolicyDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("DefaultMoveCost", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DefaultMoveCost", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultMoveCost = MoveCostConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ScalingPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
                 }
-                else if (string.Compare("InstanceCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceCount = reader.ReadValueAsInt();
                 }

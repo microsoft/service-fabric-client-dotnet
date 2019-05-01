@@ -38,7 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("HealthStateCountList", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("HealthStateCountList", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStateCountList = reader.ReadList(EntityKindHealthStateCountConverter.Deserialize);
                 }

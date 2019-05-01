@@ -35,13 +35,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             AutoScalingMetric obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("kind", StringComparison.Ordinal))
+            if (!propName.Equals("kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Resource", StringComparison.Ordinal))
+            if (propValue.Equals("Resource", StringComparison.OrdinalIgnoreCase))
             {
                 obj = AutoScalingResourceMetricConverter.GetFromJsonProperties(reader);
             }

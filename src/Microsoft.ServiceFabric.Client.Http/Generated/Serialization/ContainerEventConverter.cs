@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("count", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("count", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     count = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("firstTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("firstTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     firstTimestamp = reader.ReadValueAsString();
                 }
-                else if (string.Compare("lastTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("lastTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastTimestamp = reader.ReadValueAsString();
                 }
-                else if (string.Compare("message", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("message", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     message = reader.ReadValueAsString();
                 }
-                else if (string.Compare("type", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("type", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     type = reader.ReadValueAsString();
                 }

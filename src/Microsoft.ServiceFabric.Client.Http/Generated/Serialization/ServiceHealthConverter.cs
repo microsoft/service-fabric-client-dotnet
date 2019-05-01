@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("AggregatedHealthState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("AggregatedHealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     aggregatedHealthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HealthEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthEvents = reader.ReadList(HealthEventConverter.Deserialize);
                 }
-                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     unhealthyEvaluations = reader.ReadList(HealthEvaluationWrapperConverter.Deserialize);
                 }
-                else if (string.Compare("HealthStatistics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthStatistics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStatistics = HealthStatisticsConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionHealthStates", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionHealthStates", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionHealthStates = reader.ReadList(PartitionHealthStateConverter.Deserialize);
                 }

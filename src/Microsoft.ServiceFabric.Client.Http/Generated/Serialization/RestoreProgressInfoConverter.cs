@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("RestoreState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("RestoreState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoreState = RestoreStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TimeStampUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStampUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStampUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("RestoredEpoch", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestoredEpoch", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoredEpoch = EpochConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RestoredLsn", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestoredLsn", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoredLsn = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureError", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureError", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureError = FabricErrorErrorConverter.Deserialize(reader);
                 }

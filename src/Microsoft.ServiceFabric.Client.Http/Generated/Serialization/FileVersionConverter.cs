@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("VersionNumber", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("VersionNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     versionNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("EpochDataLossNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EpochDataLossNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     epochDataLossNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("EpochConfigurationNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EpochConfigurationNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     epochConfigurationNumber = reader.ReadValueAsString();
                 }

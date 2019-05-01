@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("LastReportedUtc", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("LastReportedUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastReportedUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Value", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Value", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     value = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CurrentValue", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentValue", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentValue = reader.ReadValueAsString();
                 }

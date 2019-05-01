@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(BackupPolicyScope);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupPolicyScope.Invalid;
             }
-            else if (string.Compare(value, "Partition", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Partition", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupPolicyScope.Partition;
             }
-            else if (string.Compare(value, "Service", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Service", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupPolicyScope.Service;
             }
-            else if (string.Compare(value, "Application", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Application", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupPolicyScope.Application;
             }

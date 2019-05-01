@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationName = ApplicationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceHealthStateChunks", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceHealthStateChunks", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceHealthStateChunks = ServiceHealthStateChunkListConverter.Deserialize(reader);
                 }
-                else if (string.Compare("DeployedApplicationHealthStateChunks", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DeployedApplicationHealthStateChunks", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deployedApplicationHealthStateChunks = DeployedApplicationHealthStateChunkListConverter.Deserialize(reader);
                 }

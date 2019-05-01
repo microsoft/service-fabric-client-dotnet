@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("FriendlyName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("FriendlyName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     friendlyName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Path", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Path", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     path = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PrimaryUserName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PrimaryUserName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     primaryUserName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PrimaryPassword", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PrimaryPassword", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     primaryPassword = reader.ReadValueAsString();
                 }
-                else if (string.Compare("SecondaryUserName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SecondaryUserName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     secondaryUserName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("SecondaryPassword", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SecondaryPassword", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     secondaryPassword = reader.ReadValueAsString();
                 }

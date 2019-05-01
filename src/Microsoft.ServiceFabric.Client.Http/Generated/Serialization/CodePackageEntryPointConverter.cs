@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EntryPointLocation", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EntryPointLocation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     entryPointLocation = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ProcessId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ProcessId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     processId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RunAsUserName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RunAsUserName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     runAsUserName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CodePackageEntryPointStatistics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CodePackageEntryPointStatistics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codePackageEntryPointStatistics = CodePackageEntryPointStatisticsConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Status", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = EntryPointStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NextActivationTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NextActivationTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nextActivationTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("InstanceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceId = reader.ReadValueAsString();
                 }

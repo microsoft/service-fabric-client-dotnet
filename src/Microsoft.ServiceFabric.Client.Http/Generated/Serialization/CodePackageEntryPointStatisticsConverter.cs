@@ -48,47 +48,47 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("LastExitCode", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("LastExitCode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastExitCode = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LastActivationTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastActivationTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastActivationTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LastExitTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastExitTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastExitTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LastSuccessfulActivationTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastSuccessfulActivationTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastSuccessfulActivationTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LastSuccessfulExitTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastSuccessfulExitTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastSuccessfulExitTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ActivationCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ActivationCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     activationCount = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ActivationFailureCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ActivationFailureCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     activationFailureCount = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ContinuousActivationFailureCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ContinuousActivationFailureCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     continuousActivationFailureCount = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ExitCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExitCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     exitCount = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ExitFailureCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExitFailureCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     exitFailureCount = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ContinuousExitFailureCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ContinuousExitFailureCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     continuousExitFailureCount = reader.ReadValueAsString();
                 }

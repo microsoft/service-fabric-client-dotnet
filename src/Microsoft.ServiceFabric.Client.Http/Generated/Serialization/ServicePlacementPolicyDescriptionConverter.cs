@@ -35,29 +35,29 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             ServicePlacementPolicyDescription obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Type", StringComparison.Ordinal))
+            if (!propName.Equals("Type", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Type.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("InvalidDomain", StringComparison.Ordinal))
+            if (propValue.Equals("InvalidDomain", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicePlacementInvalidDomainPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NonPartiallyPlaceService", StringComparison.Ordinal))
+            else if (propValue.Equals("NonPartiallyPlaceService", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicePlacementNonPartiallyPlaceServicePolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PreferPrimaryDomain", StringComparison.Ordinal))
+            else if (propValue.Equals("PreferPrimaryDomain", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicePlacementPreferPrimaryDomainPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("RequireDomain", StringComparison.Ordinal))
+            else if (propValue.Equals("RequireDomain", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicePlacementRequiredDomainPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("RequireDomainDistribution", StringComparison.Ordinal))
+            else if (propValue.Equals("RequireDomainDistribution", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicePlacementRequireDomainDistributionPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }

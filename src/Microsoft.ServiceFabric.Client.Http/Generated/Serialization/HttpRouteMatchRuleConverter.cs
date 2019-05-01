@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("path", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("path", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     path = HttpRouteMatchPathConverter.Deserialize(reader);
                 }
-                else if (string.Compare("headers", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("headers", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     headers = reader.ReadList(HttpRouteMatchHeaderConverter.Deserialize);
                 }

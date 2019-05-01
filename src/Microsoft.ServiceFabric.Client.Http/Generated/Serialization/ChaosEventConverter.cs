@@ -35,33 +35,33 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             ChaosEvent obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("ExecutingFaults", StringComparison.Ordinal))
+            if (propValue.Equals("ExecutingFaults", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ExecutingFaultsChaosEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Started", StringComparison.Ordinal))
+            else if (propValue.Equals("Started", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StartedChaosEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Stopped", StringComparison.Ordinal))
+            else if (propValue.Equals("Stopped", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StoppedChaosEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("TestError", StringComparison.Ordinal))
+            else if (propValue.Equals("TestError", StringComparison.OrdinalIgnoreCase))
             {
                 obj = TestErrorChaosEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ValidationFailed", StringComparison.Ordinal))
+            else if (propValue.Equals("ValidationFailed", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ValidationFailedChaosEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Waiting", StringComparison.Ordinal))
+            else if (propValue.Equals("Waiting", StringComparison.OrdinalIgnoreCase))
             {
                 obj = WaitingChaosEventConverter.GetFromJsonProperties(reader);
             }

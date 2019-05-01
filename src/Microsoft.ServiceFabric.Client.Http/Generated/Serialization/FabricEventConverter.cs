@@ -35,257 +35,257 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             FabricEvent obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("ApplicationEvent", StringComparison.Ordinal))
+            if (propValue.Equals("ApplicationEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ContainerInstanceEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("ContainerInstanceEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ContainerInstanceEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionAnalysisEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionAnalysisEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionAnalysisEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ReplicaEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("ReplicaEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ReplicaEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ServiceEvent", StringComparison.Ordinal))
+            else if (propValue.Equals("ServiceEvent", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationCreated", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationCreatedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationDeleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationDeleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationDeletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationUpgradeStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationProcessExited", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationProcessExited", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationProcessExitedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationContainerInstanceExitedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeAborted", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeAborted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeAbortedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeAddedToCluster", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeAddedToCluster", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeAddedToClusterEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeClosed", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeClosed", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeClosedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeDeactivateCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeDeactivateStarted", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeDeactivateStarted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeDeactivateStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeDown", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeDown", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeDownEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeOpenSucceeded", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeOpenSucceeded", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeOpenSucceededEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeOpenFailed", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeOpenFailed", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeOpenFailedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeRemovedFromClusterEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("NodeUp", StringComparison.Ordinal))
+            else if (propValue.Equals("NodeUp", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeUpEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionReconfigured", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionReconfigured", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionReconfiguredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.Ordinal))
+            else if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionPrimaryMoveAnalysisEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ServiceCreated", StringComparison.Ordinal))
+            else if (propValue.Equals("ServiceCreated", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceCreatedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ServiceDeleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ServiceDeleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceDeletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ServiceNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("ServiceNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ServiceHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("ServiceHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedServicePackageNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedServicePackageHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("StatefulReplicaNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("StatefulReplicaNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StatefulReplicaNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("StatefulReplicaHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("StatefulReplicaHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StatefulReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("StatelessReplicaNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("StatelessReplicaNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StatelessReplicaNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("StatelessReplicaHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("StatelessReplicaHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StatelessReplicaHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterNewHealthReport", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterNewHealthReport", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterNewHealthReportEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterHealthReportExpired", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterHealthReportExpired", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.Ordinal))
+            else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ClusterUpgradeStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosStopped", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosStopped", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosStoppedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosStarted", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosStarted", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosStartedEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosCodePackageRestartScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosReplicaRemovalScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosReplicaRemovalScheduled", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosReplicaRemovalScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosPartitionSecondaryMoveScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosPartitionSecondaryMoveScheduled", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosPartitionSecondaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosPartitionPrimaryMoveScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosPartitionPrimaryMoveScheduled", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosPartitionPrimaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosReplicaRestartScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosReplicaRestartScheduled", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosReplicaRestartScheduledEventConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.Ordinal))
+            else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ChaosNodeRestartScheduledEventConverter.GetFromJsonProperties(reader);
             }

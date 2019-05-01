@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ScheduleFrequencyType", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ScheduleFrequencyType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     scheduleFrequencyType = BackupScheduleFrequencyTypeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RunDays", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RunDays", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     runDays = reader.ReadList(DayOfWeekConverter.Deserialize);
                 }
-                else if (string.Compare("RunTimes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RunTimes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     runTimes = reader.ReadList(JsonReaderExtensions.ReadValueAsDateTime);
                 }

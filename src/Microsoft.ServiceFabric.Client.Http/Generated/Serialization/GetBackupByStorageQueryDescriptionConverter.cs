@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("StartDateTimeFilter", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("StartDateTimeFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startDateTimeFilter = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("EndDateTimeFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EndDateTimeFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     endDateTimeFilter = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("Latest", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Latest", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     latest = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Storage", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Storage", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     storage = BackupStorageDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("BackupEntity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupEntity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupEntity = BackupEntityConverter.Deserialize(reader);
                 }

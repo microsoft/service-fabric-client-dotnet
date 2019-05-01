@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ServiceManifestNameFilter", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ServiceManifestNameFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestNameFilter = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServicePackageActivationIdFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageActivationIdFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageActivationIdFilter = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthStateFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthStateFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStateFilter = reader.ReadValueAsInt();
                 }

@@ -45,35 +45,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("sourceNetwork", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("sourceNetwork", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sourceNetwork = NetworkRefConverter.Deserialize(reader);
                 }
-                else if (string.Compare("destinationNetwork", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("destinationNetwork", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     destinationNetwork = NetworkRefConverter.Deserialize(reader);
                 }
-                else if (string.Compare("tcp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("tcp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     tcp = reader.ReadList(TcpConfigConverter.Deserialize);
                 }
-                else if (string.Compare("http", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("http", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     http = reader.ReadList(HttpConfigConverter.Deserialize);
                 }
-                else if (string.Compare("status", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = ResourceStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("statusDetails", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("statusDetails", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     statusDetails = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ipAddress", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ipAddress", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     ipAddress = reader.ReadValueAsString();
                 }

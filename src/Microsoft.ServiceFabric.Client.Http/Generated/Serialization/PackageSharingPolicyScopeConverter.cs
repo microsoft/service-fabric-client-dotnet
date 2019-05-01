@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(PackageSharingPolicyScope);
 
-            if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PackageSharingPolicyScope.None;
             }
-            else if (string.Compare(value, "All", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "All", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PackageSharingPolicyScope.All;
             }
-            else if (string.Compare(value, "Code", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Code", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PackageSharingPolicyScope.Code;
             }
-            else if (string.Compare(value, "Config", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Config", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PackageSharingPolicyScope.Config;
             }
-            else if (string.Compare(value, "Data", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Data", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PackageSharingPolicyScope.Data;
             }

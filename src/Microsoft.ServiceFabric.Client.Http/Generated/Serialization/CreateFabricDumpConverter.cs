@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(CreateFabricDump);
 
-            if (string.Compare(value, "False", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "False", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = CreateFabricDump.False;
             }
-            else if (string.Compare(value, "True", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "True", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = CreateFabricDump.True;
             }

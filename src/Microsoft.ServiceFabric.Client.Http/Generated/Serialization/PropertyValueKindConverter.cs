@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(PropertyValueKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyValueKind.Invalid;
             }
-            else if (string.Compare(value, "Binary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Binary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyValueKind.Binary;
             }
-            else if (string.Compare(value, "Int64", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Int64", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyValueKind.Int64;
             }
-            else if (string.Compare(value, "Double", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Double", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyValueKind.Double;
             }
-            else if (string.Compare(value, "String", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "String", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyValueKind.String;
             }
-            else if (string.Compare(value, "Guid", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Guid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyValueKind.Guid;
             }

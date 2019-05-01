@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(BackupScheduleFrequencyType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupScheduleFrequencyType.Invalid;
             }
-            else if (string.Compare(value, "Daily", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Daily", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupScheduleFrequencyType.Daily;
             }
-            else if (string.Compare(value, "Weekly", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Weekly", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupScheduleFrequencyType.Weekly;
             }

@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Weight", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Weight", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     weight = ServiceLoadMetricWeightConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PrimaryDefaultLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PrimaryDefaultLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     primaryDefaultLoad = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("SecondaryDefaultLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SecondaryDefaultLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     secondaryDefaultLoad = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("DefaultLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DefaultLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultLoad = reader.ReadValueAsInt();
                 }

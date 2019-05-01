@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReplicaKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaKind.Invalid;
             }
-            else if (string.Compare(value, "KeyValueStore", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "KeyValueStore", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaKind.KeyValueStore;
             }

@@ -46,39 +46,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReplicaId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicaId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaId = ReplicaIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("FaultGroupId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FaultGroupId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     faultGroupId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("FaultId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FaultId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     faultId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("ServiceUri", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceUri", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceUri = reader.ReadValueAsString();
                 }

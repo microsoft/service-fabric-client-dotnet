@@ -48,47 +48,47 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("CreatedUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("CreatedUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     createdUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ClaimedUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClaimedUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     claimedUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("PreparingUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PreparingUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     preparingUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ApprovedUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApprovedUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     approvedUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ExecutingUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExecutingUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     executingUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("RestoringUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestoringUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoringUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("CompletedUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CompletedUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     completedUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("PreparingHealthCheckStartUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PreparingHealthCheckStartUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     preparingHealthCheckStartUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("PreparingHealthCheckEndUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PreparingHealthCheckEndUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     preparingHealthCheckEndUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("RestoringHealthCheckStartUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestoringHealthCheckStartUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoringHealthCheckStartUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("RestoringHealthCheckEndUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestoringHealthCheckEndUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoringHealthCheckEndUtcTimestamp = reader.ReadValueAsDateTime();
                 }

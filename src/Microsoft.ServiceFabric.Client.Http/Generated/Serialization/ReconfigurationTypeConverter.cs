@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReconfigurationType);
 
-            if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationType.Unknown;
             }
-            else if (string.Compare(value, "SwapPrimary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "SwapPrimary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationType.SwapPrimary;
             }
-            else if (string.Compare(value, "Failover", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failover", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationType.Failover;
             }
-            else if (string.Compare(value, "Other", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Other", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationType.Other;
             }

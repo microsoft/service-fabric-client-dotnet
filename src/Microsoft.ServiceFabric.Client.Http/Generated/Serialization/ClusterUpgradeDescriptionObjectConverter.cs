@@ -48,47 +48,47 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ConfigVersion", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ConfigVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     configVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CodeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CodeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpgradeKind", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeKind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeKind = UpgradeKindConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     rollingUpgradeMode = UpgradeModeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeReplicaSetCheckTimeoutInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeReplicaSetCheckTimeoutInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeReplicaSetCheckTimeoutInSeconds = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("ForceRestart", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ForceRestart", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     forceRestart = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("EnableDeltaHealthEvaluation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EnableDeltaHealthEvaluation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     enableDeltaHealthEvaluation = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("MonitoringPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MonitoringPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     monitoringPolicy = MonitoringPolicyDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterHealthPolicy = ClusterHealthPolicyConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ClusterUpgradeHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterUpgradeHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterUpgradeHealthPolicy = ClusterUpgradeHealthPolicyObjectConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationHealthPolicyMap = reader.ReadList(ApplicationHealthPolicyMapItemConverter.Deserialize);
                 }

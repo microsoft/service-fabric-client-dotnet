@@ -55,75 +55,75 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeName = NodeNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeInstanceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeInstanceId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceType = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CcEpochDataLossVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CcEpochDataLossVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     ccEpochDataLossVersion = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("CcEpochConfigVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CcEpochConfigVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     ccEpochConfigVersion = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("ReconfigType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReconfigType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reconfigType = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Result", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Result", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     result = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Phase0DurationMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Phase0DurationMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     phase0DurationMs = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("Phase1DurationMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Phase1DurationMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     phase1DurationMs = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("Phase2DurationMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Phase2DurationMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     phase2DurationMs = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("Phase3DurationMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Phase3DurationMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     phase3DurationMs = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("Phase4DurationMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Phase4DurationMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     phase4DurationMs = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("TotalDurationMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TotalDurationMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     totalDurationMs = reader.ReadValueAsDouble();
                 }

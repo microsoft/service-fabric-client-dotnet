@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("StartDate", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("StartDate", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startDate = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ExpiryDate", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExpiryDate", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     expiryDate = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ChaosParametersDictionary", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ChaosParametersDictionary", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     chaosParametersDictionary = reader.ReadList(ChaosParametersDictionaryItemConverter.Deserialize);
                 }
-                else if (string.Compare("Jobs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Jobs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     jobs = reader.ReadList(ChaosScheduleJobConverter.Deserialize);
                 }

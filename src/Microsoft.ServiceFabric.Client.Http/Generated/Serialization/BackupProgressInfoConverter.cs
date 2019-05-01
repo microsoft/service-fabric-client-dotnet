@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("BackupState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("BackupState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupState = BackupStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TimeStampUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStampUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStampUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("BackupId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("BackupLocation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupLocation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupLocation = reader.ReadValueAsString();
                 }
-                else if (string.Compare("EpochOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EpochOfLastBackupRecord", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     epochOfLastBackupRecord = EpochConverter.Deserialize(reader);
                 }
-                else if (string.Compare("LsnOfLastBackupRecord", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LsnOfLastBackupRecord", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lsnOfLastBackupRecord = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureError", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureError", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureError = FabricErrorErrorConverter.Deserialize(reader);
                 }

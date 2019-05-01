@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ImpactLevel", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ImpactLevel", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     impactLevel = ImpactLevelConverter.Deserialize(reader);
                 }

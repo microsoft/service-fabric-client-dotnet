@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionStatus = ServicePartitionStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionInformation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionInformation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionInformation = PartitionInformationConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetReplicaSetSize = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("MinReplicaSetSize", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MinReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minReplicaSetSize = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("LastQuorumLossDuration", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastQuorumLossDuration", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastQuorumLossDuration = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("PrimaryEpoch", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PrimaryEpoch", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     primaryEpoch = EpochConverter.Deserialize(reader);
                 }

@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(DeploymentStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeploymentStatus.Invalid;
             }
-            else if (string.Compare(value, "Downloading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Downloading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeploymentStatus.Downloading;
             }
-            else if (string.Compare(value, "Activating", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Activating", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeploymentStatus.Activating;
             }
-            else if (string.Compare(value, "Active", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Active", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeploymentStatus.Active;
             }
-            else if (string.Compare(value, "Upgrading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Upgrading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeploymentStatus.Upgrading;
             }
-            else if (string.Compare(value, "Deactivating", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Deactivating", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeploymentStatus.Deactivating;
             }

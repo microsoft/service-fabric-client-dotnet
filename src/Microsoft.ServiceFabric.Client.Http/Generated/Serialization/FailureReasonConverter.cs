@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(FailureReason);
 
-            if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureReason.None;
             }
-            else if (string.Compare(value, "Interrupted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Interrupted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureReason.Interrupted;
             }
-            else if (string.Compare(value, "HealthCheck", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "HealthCheck", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureReason.HealthCheck;
             }
-            else if (string.Compare(value, "UpgradeDomainTimeout", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UpgradeDomainTimeout", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureReason.UpgradeDomainTimeout;
             }
-            else if (string.Compare(value, "OverallUpgradeTimeout", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "OverallUpgradeTimeout", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureReason.OverallUpgradeTimeout;
             }

@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceLoadMetricWeight);
 
-            if (string.Compare(value, "Zero", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Zero", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceLoadMetricWeight.Zero;
             }
-            else if (string.Compare(value, "Low", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Low", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceLoadMetricWeight.Low;
             }
-            else if (string.Compare(value, "Medium", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Medium", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceLoadMetricWeight.Medium;
             }
-            else if (string.Compare(value, "High", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "High", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceLoadMetricWeight.High;
             }

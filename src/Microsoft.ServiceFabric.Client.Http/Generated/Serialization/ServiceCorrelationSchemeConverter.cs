@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceCorrelationScheme);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceCorrelationScheme.Invalid;
             }
-            else if (string.Compare(value, "Affinity", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Affinity", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceCorrelationScheme.Affinity;
             }
-            else if (string.Compare(value, "AlignedAffinity", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AlignedAffinity", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceCorrelationScheme.AlignedAffinity;
             }
-            else if (string.Compare(value, "NonAlignedAffinity", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NonAlignedAffinity", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceCorrelationScheme.NonAlignedAffinity;
             }

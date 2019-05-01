@@ -42,75 +42,75 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.Ordinal))
+                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
                 {
                     var propValue = reader.ReadValueAsString();
 
-                    if (propValue.Equals("ApplicationCreated", StringComparison.Ordinal))
+                    if (propValue.Equals("ApplicationCreated", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationCreatedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationDeleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationDeleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationDeletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationUpgradeStartedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
                     {
                         return DeployedApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
                     {
                         return DeployedApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationProcessExited", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationProcessExited", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationProcessExitedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.OrdinalIgnoreCase))
                     {
                         return ApplicationContainerInstanceExitedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.OrdinalIgnoreCase))
                     {
                         return DeployedServicePackageNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.Ordinal))
+                    else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.OrdinalIgnoreCase))
                     {
                         return DeployedServicePackageHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.OrdinalIgnoreCase))
                     {
                         return ChaosCodePackageRestartScheduledEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ApplicationEvent", StringComparison.Ordinal))
+                    else if (propValue.Equals("ApplicationEvent", StringComparison.OrdinalIgnoreCase))
                     {
                         // kind specified as same type, deserialize using properties.
                     }
@@ -121,23 +121,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else
                 {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
                     }
-                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         category = reader.ReadValueAsString();
                     }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         timeStamp = reader.ReadValueAsDateTime();
                     }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         hasCorrelatedEvents = reader.ReadValueAsBool();
                     }
-                    else if (string.Compare("ApplicationId", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("ApplicationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         applicationId = reader.ReadValueAsString();
                     }

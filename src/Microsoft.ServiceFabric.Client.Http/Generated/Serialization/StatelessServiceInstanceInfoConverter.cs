@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ReplicaStatus", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ReplicaStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaStatus = ReplicaStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeName = NodeNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Address", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Address", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     address = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LastInBuildDurationInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastInBuildDurationInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastInBuildDurationInSeconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("InstanceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceId = ReplicaIdConverter.Deserialize(reader);
                 }

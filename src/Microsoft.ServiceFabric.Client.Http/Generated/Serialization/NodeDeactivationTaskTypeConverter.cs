@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeDeactivationTaskType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationTaskType.Invalid;
             }
-            else if (string.Compare(value, "Infrastructure", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Infrastructure", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationTaskType.Infrastructure;
             }
-            else if (string.Compare(value, "Repair", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Repair", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationTaskType.Repair;
             }
-            else if (string.Compare(value, "Client", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Client", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationTaskType.Client;
             }

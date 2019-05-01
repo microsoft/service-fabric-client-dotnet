@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("NodeDeactivationIntent", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("NodeDeactivationIntent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDeactivationIntent = NodeDeactivationIntentConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeDeactivationStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeDeactivationStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDeactivationStatus = NodeDeactivationStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeDeactivationTask", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeDeactivationTask", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDeactivationTask = reader.ReadList(NodeDeactivationTaskConverter.Deserialize);
                 }
-                else if (string.Compare("PendingSafetyChecks", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PendingSafetyChecks", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     pendingSafetyChecks = reader.ReadList(SafetyCheckWrapperConverter.Deserialize);
                 }

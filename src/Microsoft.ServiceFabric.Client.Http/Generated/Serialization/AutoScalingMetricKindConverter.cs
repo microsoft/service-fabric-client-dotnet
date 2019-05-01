@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(AutoScalingMetricKind);
 
-            if (string.Compare(value, "Resource", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Resource", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = AutoScalingMetricKind.Resource;
             }

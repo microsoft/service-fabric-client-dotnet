@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ConsiderWarningAsError", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ConsiderWarningAsError", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     considerWarningAsError = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("MaxPercentUnhealthyNodes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUnhealthyNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyNodes = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentUnhealthyApplications", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUnhealthyApplications", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyApplications = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("ApplicationTypeHealthPolicyMap", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeHealthPolicyMap", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeHealthPolicyMap = reader.ReadList(ApplicationTypeHealthPolicyMapItemConverter.Deserialize);
                 }

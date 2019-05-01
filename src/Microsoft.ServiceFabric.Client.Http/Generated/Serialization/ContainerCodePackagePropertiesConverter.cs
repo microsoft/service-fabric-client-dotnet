@@ -52,63 +52,63 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("image", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("image", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     image = reader.ReadValueAsString();
                 }
-                else if (string.Compare("imageRegistryCredential", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("imageRegistryCredential", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     imageRegistryCredential = ImageRegistryCredentialConverter.Deserialize(reader);
                 }
-                else if (string.Compare("entrypoint", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("entrypoint", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     entrypoint = reader.ReadValueAsString();
                 }
-                else if (string.Compare("commands", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("commands", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     commands = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
                 }
-                else if (string.Compare("environmentVariables", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("environmentVariables", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     environmentVariables = reader.ReadList(EnvironmentVariableConverter.Deserialize);
                 }
-                else if (string.Compare("settings", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("settings", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     settings = reader.ReadList(SettingConverter.Deserialize);
                 }
-                else if (string.Compare("labels", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("labels", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     labels = reader.ReadList(ContainerLabelConverter.Deserialize);
                 }
-                else if (string.Compare("endpoints", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("endpoints", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     endpoints = reader.ReadList(EndpointPropertiesConverter.Deserialize);
                 }
-                else if (string.Compare("resources", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("resources", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     resources = ResourceRequirementsConverter.Deserialize(reader);
                 }
-                else if (string.Compare("volumeRefs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("volumeRefs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     volumeRefs = reader.ReadList(VolumeReferenceConverter.Deserialize);
                 }
-                else if (string.Compare("volumes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("volumes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     volumes = reader.ReadList(ApplicationScopedVolumeConverter.Deserialize);
                 }
-                else if (string.Compare("diagnostics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("diagnostics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     diagnostics = DiagnosticsRefConverter.Deserialize(reader);
                 }
-                else if (string.Compare("reliableCollectionsRefs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("reliableCollectionsRefs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reliableCollectionsRefs = reader.ReadList(ReliableCollectionsRefConverter.Deserialize);
                 }
-                else if (string.Compare("instanceView", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("instanceView", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceView = ContainerInstanceViewConverter.Deserialize(reader);
                 }

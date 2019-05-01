@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReplicaRole);
 
-            if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaRole.Unknown;
             }
-            else if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaRole.None;
             }
-            else if (string.Compare(value, "Primary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Primary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaRole.Primary;
             }
-            else if (string.Compare(value, "IdleSecondary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "IdleSecondary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaRole.IdleSecondary;
             }
-            else if (string.Compare(value, "ActiveSecondary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ActiveSecondary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaRole.ActiveSecondary;
             }

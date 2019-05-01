@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeDeactivationStatus);
 
-            if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationStatus.None;
             }
-            else if (string.Compare(value, "SafetyCheckInProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "SafetyCheckInProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationStatus.SafetyCheckInProgress;
             }
-            else if (string.Compare(value, "SafetyCheckComplete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "SafetyCheckComplete", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationStatus.SafetyCheckComplete;
             }
-            else if (string.Compare(value, "Completed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Completed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationStatus.Completed;
             }

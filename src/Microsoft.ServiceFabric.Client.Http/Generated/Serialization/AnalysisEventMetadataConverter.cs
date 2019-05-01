@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Delay", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Delay", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     delay = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("Duration", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Duration", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     duration = reader.ReadValueAsTimeSpan();
                 }

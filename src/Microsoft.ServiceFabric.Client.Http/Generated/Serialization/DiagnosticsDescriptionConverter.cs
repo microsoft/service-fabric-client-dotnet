@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("sinks", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("sinks", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sinks = reader.ReadList(DiagnosticsSinkPropertiesConverter.Deserialize);
                 }
-                else if (string.Compare("enabled", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("enabled", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     enabled = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("defaultSinkRefs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("defaultSinkRefs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultSinkRefs = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
                 }

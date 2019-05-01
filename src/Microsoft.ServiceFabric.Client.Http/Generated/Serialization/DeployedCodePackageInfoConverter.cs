@@ -47,43 +47,43 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Version", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Version", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     version = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceManifestName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceManifestName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServicePackageActivationId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageActivationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageActivationId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HostType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HostType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hostType = HostTypeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HostIsolationMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HostIsolationMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hostIsolationMode = HostIsolationModeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Status", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = DeploymentStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RunFrequencyInterval", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RunFrequencyInterval", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     runFrequencyInterval = reader.ReadValueAsString();
                 }
-                else if (string.Compare("SetupEntryPoint", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SetupEntryPoint", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     setupEntryPoint = CodePackageEntryPointConverter.Deserialize(reader);
                 }
-                else if (string.Compare("MainEntryPoint", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MainEntryPoint", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     mainEntryPoint = CodePackageEntryPointConverter.Deserialize(reader);
                 }

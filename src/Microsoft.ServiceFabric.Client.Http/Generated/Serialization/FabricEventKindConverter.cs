@@ -26,251 +26,251 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(FabricEventKind);
 
-            if (string.Compare(value, "ClusterEvent", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "ClusterEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterEvent;
             }
-            else if (string.Compare(value, "ContainerInstanceEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ContainerInstanceEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ContainerInstanceEvent;
             }
-            else if (string.Compare(value, "NodeEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeEvent;
             }
-            else if (string.Compare(value, "ApplicationEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationEvent;
             }
-            else if (string.Compare(value, "ServiceEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ServiceEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ServiceEvent;
             }
-            else if (string.Compare(value, "PartitionEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.PartitionEvent;
             }
-            else if (string.Compare(value, "ReplicaEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ReplicaEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ReplicaEvent;
             }
-            else if (string.Compare(value, "PartitionAnalysisEvent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionAnalysisEvent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.PartitionAnalysisEvent;
             }
-            else if (string.Compare(value, "ApplicationCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationCreated", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationCreated;
             }
-            else if (string.Compare(value, "ApplicationDeleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationDeleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationDeleted;
             }
-            else if (string.Compare(value, "ApplicationNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationNewHealthReport;
             }
-            else if (string.Compare(value, "ApplicationHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationHealthReportExpired;
             }
-            else if (string.Compare(value, "ApplicationUpgradeCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationUpgradeCompleted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeDomainCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationUpgradeDomainCompleted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeRollbackCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationUpgradeRollbackCompleted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeRollbackStarted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationUpgradeRollbackStarted;
             }
-            else if (string.Compare(value, "ApplicationUpgradeStarted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationUpgradeStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationUpgradeStarted;
             }
-            else if (string.Compare(value, "DeployedApplicationNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.DeployedApplicationNewHealthReport;
             }
-            else if (string.Compare(value, "DeployedApplicationHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.DeployedApplicationHealthReportExpired;
             }
-            else if (string.Compare(value, "ApplicationProcessExited", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationProcessExited", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationProcessExited;
             }
-            else if (string.Compare(value, "ApplicationContainerInstanceExited", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationContainerInstanceExited", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ApplicationContainerInstanceExited;
             }
-            else if (string.Compare(value, "NodeAborted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeAborted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeAborted;
             }
-            else if (string.Compare(value, "NodeAddedToCluster", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeAddedToCluster", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeAddedToCluster;
             }
-            else if (string.Compare(value, "NodeClosed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeClosed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeClosed;
             }
-            else if (string.Compare(value, "NodeDeactivateCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeDeactivateCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeDeactivateCompleted;
             }
-            else if (string.Compare(value, "NodeDeactivateStarted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeDeactivateStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeDeactivateStarted;
             }
-            else if (string.Compare(value, "NodeDown", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeDown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeDown;
             }
-            else if (string.Compare(value, "NodeNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeNewHealthReport;
             }
-            else if (string.Compare(value, "NodeHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeHealthReportExpired;
             }
-            else if (string.Compare(value, "NodeOpenSucceeded", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeOpenSucceeded", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeOpenSucceeded;
             }
-            else if (string.Compare(value, "NodeOpenFailed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeOpenFailed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeOpenFailed;
             }
-            else if (string.Compare(value, "NodeRemovedFromCluster", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeRemovedFromCluster", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeRemovedFromCluster;
             }
-            else if (string.Compare(value, "NodeUp", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeUp", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.NodeUp;
             }
-            else if (string.Compare(value, "PartitionNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.PartitionNewHealthReport;
             }
-            else if (string.Compare(value, "PartitionHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.PartitionHealthReportExpired;
             }
-            else if (string.Compare(value, "PartitionReconfigured", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionReconfigured", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.PartitionReconfigured;
             }
-            else if (string.Compare(value, "PartitionPrimaryMoveAnalysis", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionPrimaryMoveAnalysis", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.PartitionPrimaryMoveAnalysis;
             }
-            else if (string.Compare(value, "ServiceCreated", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ServiceCreated", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ServiceCreated;
             }
-            else if (string.Compare(value, "ServiceDeleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ServiceDeleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ServiceDeleted;
             }
-            else if (string.Compare(value, "ServiceNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ServiceNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ServiceNewHealthReport;
             }
-            else if (string.Compare(value, "ServiceHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ServiceHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ServiceHealthReportExpired;
             }
-            else if (string.Compare(value, "DeployedServicePackageNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackageNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.DeployedServicePackageNewHealthReport;
             }
-            else if (string.Compare(value, "DeployedServicePackageHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackageHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.DeployedServicePackageHealthReportExpired;
             }
-            else if (string.Compare(value, "StatefulReplicaNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatefulReplicaNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.StatefulReplicaNewHealthReport;
             }
-            else if (string.Compare(value, "StatefulReplicaHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatefulReplicaHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.StatefulReplicaHealthReportExpired;
             }
-            else if (string.Compare(value, "StatelessReplicaNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatelessReplicaNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.StatelessReplicaNewHealthReport;
             }
-            else if (string.Compare(value, "StatelessReplicaHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatelessReplicaHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.StatelessReplicaHealthReportExpired;
             }
-            else if (string.Compare(value, "ClusterNewHealthReport", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterNewHealthReport", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterNewHealthReport;
             }
-            else if (string.Compare(value, "ClusterHealthReportExpired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterHealthReportExpired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterHealthReportExpired;
             }
-            else if (string.Compare(value, "ClusterUpgradeCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterUpgradeCompleted;
             }
-            else if (string.Compare(value, "ClusterUpgradeDomainCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterUpgradeDomainCompleted;
             }
-            else if (string.Compare(value, "ClusterUpgradeRollbackCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterUpgradeRollbackCompleted;
             }
-            else if (string.Compare(value, "ClusterUpgradeRollbackStarted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterUpgradeRollbackStarted;
             }
-            else if (string.Compare(value, "ClusterUpgradeStarted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ClusterUpgradeStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterUpgradeStarted;
             }
-            else if (string.Compare(value, "ChaosStopped", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosStopped", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosStopped;
             }
-            else if (string.Compare(value, "ChaosStarted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosStarted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosStarted;
             }
-            else if (string.Compare(value, "ChaosCodePackageRestartScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosCodePackageRestartScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosCodePackageRestartScheduled;
             }
-            else if (string.Compare(value, "ChaosReplicaRemovalScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosReplicaRemovalScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosReplicaRemovalScheduled;
             }
-            else if (string.Compare(value, "ChaosPartitionSecondaryMoveScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosPartitionSecondaryMoveScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosPartitionSecondaryMoveScheduled;
             }
-            else if (string.Compare(value, "ChaosPartitionPrimaryMoveScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosPartitionPrimaryMoveScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosPartitionPrimaryMoveScheduled;
             }
-            else if (string.Compare(value, "ChaosReplicaRestartScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosReplicaRestartScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosReplicaRestartScheduled;
             }
-            else if (string.Compare(value, "ChaosNodeRestartScheduled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChaosNodeRestartScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosNodeRestartScheduled;
             }

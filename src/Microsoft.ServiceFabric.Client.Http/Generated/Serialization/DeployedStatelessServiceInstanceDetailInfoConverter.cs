@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CurrentServiceOperation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentServiceOperation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentServiceOperation = ServiceOperationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CurrentServiceOperationStartTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentServiceOperationStartTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentServiceOperationStartTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ReportedLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReportedLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reportedLoad = reader.ReadList(LoadMetricReportInfoConverter.Deserialize);
                 }
-                else if (string.Compare("InstanceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceId = ReplicaIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("DeployedServiceReplicaQueryResult", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DeployedServiceReplicaQueryResult", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deployedServiceReplicaQueryResult = DeployedStatelessServiceInstanceInfoConverter.Deserialize(reader);
                 }

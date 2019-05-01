@@ -26,35 +26,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(State);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Invalid;
             }
-            else if (string.Compare(value, "Created", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Created", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Created;
             }
-            else if (string.Compare(value, "Claimed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Claimed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Claimed;
             }
-            else if (string.Compare(value, "Preparing", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Preparing", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Preparing;
             }
-            else if (string.Compare(value, "Approved", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Approved", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Approved;
             }
-            else if (string.Compare(value, "Executing", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Executing", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Executing;
             }
-            else if (string.Compare(value, "Restoring", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Restoring", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Restoring;
             }
-            else if (string.Compare(value, "Completed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Completed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = State.Completed;
             }

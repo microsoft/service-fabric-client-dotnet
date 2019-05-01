@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ScalingMechanismKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ScalingMechanismKind.Invalid;
             }
-            else if (string.Compare(value, "PartitionInstanceCount", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionInstanceCount", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ScalingMechanismKind.PartitionInstanceCount;
             }
-            else if (string.Compare(value, "AddRemoveIncrementalNamedPartition", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AddRemoveIncrementalNamedPartition", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ScalingMechanismKind.AddRemoveIncrementalNamedPartition;
             }

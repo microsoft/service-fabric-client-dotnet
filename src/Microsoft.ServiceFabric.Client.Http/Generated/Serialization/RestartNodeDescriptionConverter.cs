@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("NodeInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("NodeInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeInstanceId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CreateFabricDump", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CreateFabricDump", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     createFabricDump = CreateFabricDumpConverter.Deserialize(reader);
                 }

@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(HealthState);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthState.Invalid;
             }
-            else if (string.Compare(value, "Ok", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Ok", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthState.Ok;
             }
-            else if (string.Compare(value, "Warning", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Warning", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthState.Warning;
             }
-            else if (string.Compare(value, "Error", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Error", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthState.Error;
             }
-            else if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthState.Unknown;
             }

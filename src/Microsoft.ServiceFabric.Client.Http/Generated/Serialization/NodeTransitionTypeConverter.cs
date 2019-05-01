@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeTransitionType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeTransitionType.Invalid;
             }
-            else if (string.Compare(value, "Start", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Start", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeTransitionType.Start;
             }
-            else if (string.Compare(value, "Stop", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stop", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeTransitionType.Stop;
             }

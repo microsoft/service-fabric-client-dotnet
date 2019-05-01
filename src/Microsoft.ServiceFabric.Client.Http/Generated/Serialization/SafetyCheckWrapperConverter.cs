@@ -38,7 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("SafetyCheck", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("SafetyCheck", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     safetyCheck = SafetyCheckConverter.Deserialize(reader);
                 }

@@ -46,39 +46,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("ApplicationId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureReason", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureReason", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureReason = reader.ReadValueAsString();
                 }
-                else if (string.Compare("OverallUpgradeElapsedTimeInMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("OverallUpgradeElapsedTimeInMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     overallUpgradeElapsedTimeInMs = reader.ReadValueAsDouble();
                 }

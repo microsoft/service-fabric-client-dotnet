@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ApplicationTypeStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationTypeStatus.Invalid;
             }
-            else if (string.Compare(value, "Provisioning", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Provisioning", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationTypeStatus.Provisioning;
             }
-            else if (string.Compare(value, "Available", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Available", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationTypeStatus.Available;
             }
-            else if (string.Compare(value, "Unprovisioning", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Unprovisioning", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationTypeStatus.Unprovisioning;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationTypeStatus.Failed;
             }

@@ -54,71 +54,71 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("ApplicationId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServicePackageName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServicePackageActivationId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageActivationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageActivationId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IsExclusive", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsExclusive", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isExclusive = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("CodePackageName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CodePackageName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codePackageName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("EntryPointType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EntryPointType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     entryPointType = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ExeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     exeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ProcessId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ProcessId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     processId = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("HostId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HostId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hostId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ExitCode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExitCode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     exitCode = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("UnexpectedTermination", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UnexpectedTermination", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     unexpectedTermination = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("StartTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("StartTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startTime = reader.ReadValueAsDateTime();
                 }

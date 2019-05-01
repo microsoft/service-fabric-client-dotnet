@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ReplicationQueueStatus", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ReplicationQueueStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicationQueueStatus = ReplicatorQueueStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RemoteReplicators", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RemoteReplicators", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     remoteReplicators = reader.ReadList(RemoteReplicatorStatusConverter.Deserialize);
                 }

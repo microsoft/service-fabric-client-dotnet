@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("value", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("value", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     value = reader.ReadValueAsString();
                 }
-                else if (string.Compare("type", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("type", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     type = HeaderMatchTypeConverter.Deserialize(reader);
                 }

@@ -35,21 +35,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             BackupEntity obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("EntityKind", StringComparison.Ordinal))
+            if (!propName.Equals("EntityKind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is EntityKind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Application", StringComparison.Ordinal))
+            if (propValue.Equals("Application", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationBackupEntityConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Service", StringComparison.Ordinal))
+            else if (propValue.Equals("Service", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceBackupEntityConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Partition", StringComparison.Ordinal))
+            else if (propValue.Equals("Partition", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionBackupEntityConverter.GetFromJsonProperties(reader);
             }

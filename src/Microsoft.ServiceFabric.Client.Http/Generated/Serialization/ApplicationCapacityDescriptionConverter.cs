@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("MinimumNodes", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("MinimumNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minimumNodes = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("MaximumNodes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaximumNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maximumNodes = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("ApplicationMetrics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationMetrics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationMetrics = reader.ReadList(ApplicationMetricDescriptionConverter.Deserialize);
                 }

@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("enabled", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("enabled", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     enabled = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("sinkRefs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("sinkRefs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sinkRefs = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
                 }

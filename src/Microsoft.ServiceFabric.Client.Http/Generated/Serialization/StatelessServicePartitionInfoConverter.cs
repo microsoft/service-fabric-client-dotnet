@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionStatus = ServicePartitionStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionInformation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionInformation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionInformation = PartitionInformationConverter.Deserialize(reader);
                 }
-                else if (string.Compare("InstanceCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceCount = reader.ReadValueAsLong();
                 }

@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("MetricName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("MetricName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     metricName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LowerLoadThreshold", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LowerLoadThreshold", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lowerLoadThreshold = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpperLoadThreshold", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpperLoadThreshold", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upperLoadThreshold = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ScaleIntervalInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ScaleIntervalInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     scaleIntervalInSeconds = reader.ReadValueAsLong();
                 }

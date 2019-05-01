@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("FailureAction", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("FailureAction", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureAction = FailureActionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HealthCheckWaitDurationInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthCheckWaitDurationInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthCheckWaitDurationInMilliseconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthCheckStableDurationInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthCheckStableDurationInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthCheckStableDurationInMilliseconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthCheckRetryTimeoutInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthCheckRetryTimeoutInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthCheckRetryTimeoutInMilliseconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpgradeTimeoutInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeTimeoutInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeTimeoutInMilliseconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpgradeDomainTimeoutInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDomainTimeoutInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomainTimeoutInMilliseconds = reader.ReadValueAsString();
                 }

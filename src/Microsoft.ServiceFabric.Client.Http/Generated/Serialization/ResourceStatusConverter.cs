@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ResourceStatus);
 
-            if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResourceStatus.Unknown;
             }
-            else if (string.Compare(value, "Ready", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Ready", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResourceStatus.Ready;
             }
-            else if (string.Compare(value, "Upgrading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Upgrading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResourceStatus.Upgrading;
             }
-            else if (string.Compare(value, "Creating", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Creating", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResourceStatus.Creating;
             }
-            else if (string.Compare(value, "Deleting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Deleting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResourceStatus.Deleting;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResourceStatus.Failed;
             }

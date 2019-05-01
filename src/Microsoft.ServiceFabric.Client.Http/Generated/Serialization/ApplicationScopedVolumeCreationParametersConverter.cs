@@ -35,13 +35,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             ApplicationScopedVolumeCreationParameters obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("kind", StringComparison.Ordinal))
+            if (!propName.Equals("kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("ServiceFabricVolumeDisk", StringComparison.Ordinal))
+            if (propValue.Equals("ServiceFabricVolumeDisk", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationScopedVolumeCreationParametersServiceFabricVolumeDiskConverter.GetFromJsonProperties(reader);
             }

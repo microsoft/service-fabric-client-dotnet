@@ -26,35 +26,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReconfigurationPhase);
 
-            if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.Unknown;
             }
-            else if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.None;
             }
-            else if (string.Compare(value, "Phase0", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Phase0", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.Phase0;
             }
-            else if (string.Compare(value, "Phase1", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Phase1", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.Phase1;
             }
-            else if (string.Compare(value, "Phase2", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Phase2", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.Phase2;
             }
-            else if (string.Compare(value, "Phase3", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Phase3", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.Phase3;
             }
-            else if (string.Compare(value, "Phase4", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Phase4", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.Phase4;
             }
-            else if (string.Compare(value, "AbortPhaseZero", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AbortPhaseZero", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReconfigurationPhase.AbortPhaseZero;
             }

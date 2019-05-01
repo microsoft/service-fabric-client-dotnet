@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("authority", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("authority", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     authority = reader.ReadValueAsString();
                 }
-                else if (string.Compare("client", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("client", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     client = reader.ReadValueAsString();
                 }
-                else if (string.Compare("cluster", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("cluster", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     cluster = reader.ReadValueAsString();
                 }
-                else if (string.Compare("login", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("login", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     login = reader.ReadValueAsString();
                 }
-                else if (string.Compare("redirect", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("redirect", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     redirect = reader.ReadValueAsString();
                 }
-                else if (string.Compare("tenant", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("tenant", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     tenant = reader.ReadValueAsString();
                 }

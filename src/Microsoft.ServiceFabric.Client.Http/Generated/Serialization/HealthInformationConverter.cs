@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("SourceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("SourceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sourceId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Property", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Property", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     property = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TimeToLiveInMilliSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeToLiveInMilliSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeToLiveInMilliSeconds = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("Description", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("SequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RemoveWhenExpired", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RemoveWhenExpired", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     removeWhenExpired = reader.ReadValueAsBool();
                 }

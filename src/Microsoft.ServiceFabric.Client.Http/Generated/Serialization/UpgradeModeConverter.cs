@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(UpgradeMode);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeMode.Invalid;
             }
-            else if (string.Compare(value, "UnmonitoredAuto", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UnmonitoredAuto", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeMode.UnmonitoredAuto;
             }
-            else if (string.Compare(value, "UnmonitoredManual", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UnmonitoredManual", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeMode.UnmonitoredManual;
             }
-            else if (string.Compare(value, "Monitored", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Monitored", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeMode.Monitored;
             }

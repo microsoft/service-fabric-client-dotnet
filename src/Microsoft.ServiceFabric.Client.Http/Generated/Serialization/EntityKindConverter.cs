@@ -26,39 +26,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(EntityKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Invalid;
             }
-            else if (string.Compare(value, "Node", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Node", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Node;
             }
-            else if (string.Compare(value, "Partition", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Partition", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Partition;
             }
-            else if (string.Compare(value, "Service", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Service", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Service;
             }
-            else if (string.Compare(value, "Application", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Application", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Application;
             }
-            else if (string.Compare(value, "Replica", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Replica", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Replica;
             }
-            else if (string.Compare(value, "DeployedApplication", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedApplication", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.DeployedApplication;
             }
-            else if (string.Compare(value, "DeployedServicePackage", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackage", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.DeployedServicePackage;
             }
-            else if (string.Compare(value, "Cluster", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Cluster", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntityKind.Cluster;
             }

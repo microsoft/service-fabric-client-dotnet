@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(HostType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HostType.Invalid;
             }
-            else if (string.Compare(value, "ExeHost", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ExeHost", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HostType.ExeHost;
             }
-            else if (string.Compare(value, "ContainerHost", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ContainerHost", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HostType.ContainerHost;
             }

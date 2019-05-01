@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeName = NodeNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeInstance", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeInstance", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeInstance = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("LastNodeDownAt", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastNodeDownAt", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastNodeDownAt = reader.ReadValueAsDateTime();
                 }

@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("FileSize", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("FileSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     fileSize = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FileVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FileVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     fileVersion = FileVersionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ModifiedDate", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ModifiedDate", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     modifiedDate = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("StoreRelativePath", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("StoreRelativePath", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     storeRelativePath = reader.ReadValueAsString();
                 }

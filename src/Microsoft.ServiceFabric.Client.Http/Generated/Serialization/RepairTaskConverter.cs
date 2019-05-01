@@ -55,75 +55,75 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("TaskId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("TaskId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     taskId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Version", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Version", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     version = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Description", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("State", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("State", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     state = StateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Flags", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Flags", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     flags = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("Action", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Action", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     action = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Target", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Target", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     target = RepairTargetDescriptionBaseConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Executor", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Executor", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     executor = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ExecutorData", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExecutorData", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     executorData = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Impact", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Impact", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     impact = RepairImpactDescriptionBaseConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ResultStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ResultStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     resultStatus = ResultStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ResultCode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ResultCode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     resultCode = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("ResultDetails", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ResultDetails", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     resultDetails = reader.ReadValueAsString();
                 }
-                else if (string.Compare("History", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("History", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     history = RepairTaskHistoryConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PreparingHealthCheckState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PreparingHealthCheckState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     preparingHealthCheckState = RepairTaskHealthCheckStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RestoringHealthCheckState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestoringHealthCheckState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restoringHealthCheckState = RepairTaskHealthCheckStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PerformPreparingHealthCheck", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PerformPreparingHealthCheck", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     performPreparingHealthCheck = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("PerformRestoringHealthCheck", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PerformRestoringHealthCheck", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     performRestoringHealthCheck = reader.ReadValueAsBool();
                 }

@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("MinPartitionCount", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("MinPartitionCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minPartitionCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPartitionCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPartitionCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPartitionCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("ScaleIncrement", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ScaleIncrement", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     scaleIncrement = reader.ReadValueAsInt();
                 }

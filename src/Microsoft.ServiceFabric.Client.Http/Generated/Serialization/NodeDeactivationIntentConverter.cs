@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeDeactivationIntent);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationIntent.Invalid;
             }
-            else if (string.Compare(value, "Pause", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Pause", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationIntent.Pause;
             }
-            else if (string.Compare(value, "Restart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Restart", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationIntent.Restart;
             }
-            else if (string.Compare(value, "RemoveData", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RemoveData", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationIntent.RemoveData;
             }
-            else if (string.Compare(value, "RemoveNode", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RemoveNode", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeDeactivationIntent.RemoveNode;
             }

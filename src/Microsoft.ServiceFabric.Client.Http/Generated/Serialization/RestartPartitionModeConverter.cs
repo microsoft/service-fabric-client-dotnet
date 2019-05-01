@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(RestartPartitionMode);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestartPartitionMode.Invalid;
             }
-            else if (string.Compare(value, "AllReplicasOrInstances", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AllReplicasOrInstances", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestartPartitionMode.AllReplicasOrInstances;
             }
-            else if (string.Compare(value, "OnlyActiveSecondaries", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "OnlyActiveSecondaries", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestartPartitionMode.OnlyActiveSecondaries;
             }

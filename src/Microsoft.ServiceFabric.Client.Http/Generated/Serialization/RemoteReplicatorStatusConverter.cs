@@ -45,35 +45,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ReplicaId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ReplicaId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaId = ReplicaIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("LastAcknowledgementProcessedTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastAcknowledgementProcessedTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastAcknowledgementProcessedTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LastReceivedReplicationSequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastReceivedReplicationSequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastReceivedReplicationSequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LastAppliedReplicationSequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastAppliedReplicationSequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastAppliedReplicationSequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IsInBuild", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsInBuild", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isInBuild = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("LastReceivedCopySequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastReceivedCopySequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastReceivedCopySequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LastAppliedCopySequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastAppliedCopySequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastAppliedCopySequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RemoteReplicatorAcknowledgementStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RemoteReplicatorAcknowledgementStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     remoteReplicatorAcknowledgementStatus = RemoteReplicatorAcknowledgementStatusConverter.Deserialize(reader);
                 }

@@ -35,33 +35,33 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             PropertyBatchOperation obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("CheckExists", StringComparison.Ordinal))
+            if (propValue.Equals("CheckExists", StringComparison.OrdinalIgnoreCase))
             {
                 obj = CheckExistsPropertyBatchOperationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("CheckSequence", StringComparison.Ordinal))
+            else if (propValue.Equals("CheckSequence", StringComparison.OrdinalIgnoreCase))
             {
                 obj = CheckSequencePropertyBatchOperationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("CheckValue", StringComparison.Ordinal))
+            else if (propValue.Equals("CheckValue", StringComparison.OrdinalIgnoreCase))
             {
                 obj = CheckValuePropertyBatchOperationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Delete", StringComparison.Ordinal))
+            else if (propValue.Equals("Delete", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeletePropertyBatchOperationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Get", StringComparison.Ordinal))
+            else if (propValue.Equals("Get", StringComparison.OrdinalIgnoreCase))
             {
                 obj = GetPropertyBatchOperationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Put", StringComparison.Ordinal))
+            else if (propValue.Equals("Put", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PutPropertyBatchOperationConverter.GetFromJsonProperties(reader);
             }

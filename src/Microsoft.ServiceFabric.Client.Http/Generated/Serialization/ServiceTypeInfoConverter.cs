@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ServiceTypeDescription", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ServiceTypeDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceTypeDescription = ServiceTypeDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceManifestName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceManifestName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceManifestVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceManifestVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IsServiceGroup", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsServiceGroup", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isServiceGroup = reader.ReadValueAsBool();
                 }

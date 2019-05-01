@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(EntryPointStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntryPointStatus.Invalid;
             }
-            else if (string.Compare(value, "Pending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Pending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntryPointStatus.Pending;
             }
-            else if (string.Compare(value, "Starting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Starting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntryPointStatus.Starting;
             }
-            else if (string.Compare(value, "Started", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Started", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntryPointStatus.Started;
             }
-            else if (string.Compare(value, "Stopping", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stopping", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntryPointStatus.Stopping;
             }
-            else if (string.Compare(value, "Stopped", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stopped", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = EntryPointStatus.Stopped;
             }

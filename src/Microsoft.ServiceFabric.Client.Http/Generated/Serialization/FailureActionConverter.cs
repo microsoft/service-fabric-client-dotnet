@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(FailureAction);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureAction.Invalid;
             }
-            else if (string.Compare(value, "Rollback", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Rollback", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureAction.Rollback;
             }
-            else if (string.Compare(value, "Manual", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Manual", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FailureAction.Manual;
             }

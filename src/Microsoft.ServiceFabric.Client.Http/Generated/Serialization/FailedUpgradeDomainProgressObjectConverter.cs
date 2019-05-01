@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("DomainName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("DomainName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     domainName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeUpgradeProgressList", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeUpgradeProgressList", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeUpgradeProgressList = reader.ReadList(NodeUpgradeProgressInfoConverter.Deserialize);
                 }

@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceStatus);
 
-            if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceStatus.Unknown;
             }
-            else if (string.Compare(value, "Active", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Active", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceStatus.Active;
             }
-            else if (string.Compare(value, "Upgrading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Upgrading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceStatus.Upgrading;
             }
-            else if (string.Compare(value, "Deleting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Deleting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceStatus.Deleting;
             }
-            else if (string.Compare(value, "Creating", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Creating", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceStatus.Creating;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceStatus.Failed;
             }

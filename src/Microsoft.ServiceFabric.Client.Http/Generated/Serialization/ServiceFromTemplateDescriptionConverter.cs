@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ApplicationName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ApplicationName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationName = ApplicationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("InitializationData", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InitializationData", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     initializationData = ByteArrayConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServicePackageActivationMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageActivationMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageActivationMode = ServicePackageActivationModeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceDnsName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceDnsName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceDnsName = reader.ReadValueAsString();
                 }

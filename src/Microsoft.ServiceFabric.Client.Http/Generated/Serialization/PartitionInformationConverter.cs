@@ -35,21 +35,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             PartitionInformation obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("ServicePartitionKind", StringComparison.Ordinal))
+            if (!propName.Equals("ServicePartitionKind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is ServicePartitionKind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Int64Range", StringComparison.Ordinal))
+            if (propValue.Equals("Int64Range", StringComparison.OrdinalIgnoreCase))
             {
                 obj = Int64RangePartitionInformationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Named", StringComparison.Ordinal))
+            else if (propValue.Equals("Named", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NamedPartitionInformationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Singleton", StringComparison.Ordinal))
+            else if (propValue.Equals("Singleton", StringComparison.OrdinalIgnoreCase))
             {
                 obj = SingletonPartitionInformationConverter.GetFromJsonProperties(reader);
             }

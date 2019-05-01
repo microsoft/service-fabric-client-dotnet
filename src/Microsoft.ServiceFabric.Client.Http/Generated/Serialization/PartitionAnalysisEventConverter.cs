@@ -43,15 +43,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.Ordinal))
+                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
                 {
                     var propValue = reader.ReadValueAsString();
 
-                    if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.Ordinal))
+                    if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.OrdinalIgnoreCase))
                     {
                         return PartitionPrimaryMoveAnalysisEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("PartitionAnalysisEvent", StringComparison.Ordinal))
+                    else if (propValue.Equals("PartitionAnalysisEvent", StringComparison.OrdinalIgnoreCase))
                     {
                         // kind specified as same type, deserialize using properties.
                     }
@@ -62,27 +62,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else
                 {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
                     }
-                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         category = reader.ReadValueAsString();
                     }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         timeStamp = reader.ReadValueAsDateTime();
                     }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         hasCorrelatedEvents = reader.ReadValueAsBool();
                     }
-                    else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         partitionId = PartitionIdConverter.Deserialize(reader);
                     }
-                    else if (string.Compare("Metadata", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("Metadata", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         metadata = AnalysisEventMetadataConverter.Deserialize(reader);
                     }

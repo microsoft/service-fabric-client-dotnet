@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ProvisionApplicationTypeKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ProvisionApplicationTypeKind.Invalid;
             }
-            else if (string.Compare(value, "ImageStorePath", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ImageStorePath", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ProvisionApplicationTypeKind.ImageStorePath;
             }
-            else if (string.Compare(value, "ExternalStore", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ExternalStore", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ProvisionApplicationTypeKind.ExternalStore;
             }

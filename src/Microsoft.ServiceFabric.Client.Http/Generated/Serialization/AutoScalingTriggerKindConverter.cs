@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(AutoScalingTriggerKind);
 
-            if (string.Compare(value, "AverageLoad", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "AverageLoad", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = AutoScalingTriggerKind.AverageLoad;
             }

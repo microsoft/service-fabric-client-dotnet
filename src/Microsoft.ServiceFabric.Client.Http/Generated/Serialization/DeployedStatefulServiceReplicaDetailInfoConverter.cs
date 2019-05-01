@@ -49,51 +49,51 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CurrentServiceOperation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentServiceOperation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentServiceOperation = ServiceOperationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CurrentServiceOperationStartTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentServiceOperationStartTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentServiceOperationStartTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("ReportedLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReportedLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reportedLoad = reader.ReadList(LoadMetricReportInfoConverter.Deserialize);
                 }
-                else if (string.Compare("ReplicaId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicaId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaId = ReplicaIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CurrentReplicatorOperation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentReplicatorOperation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentReplicatorOperation = ReplicatorOperationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReadStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReadStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     readStatus = PartitionAccessStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("WriteStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("WriteStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     writeStatus = PartitionAccessStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReplicatorStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicatorStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicatorStatus = ReplicatorStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReplicaStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicaStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaStatus = KeyValueStoreReplicaStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("DeployedServiceReplicaQueryResult", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DeployedServiceReplicaQueryResult", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deployedServiceReplicaQueryResult = DeployedStatefulServiceReplicaInfoConverter.Deserialize(reader);
                 }

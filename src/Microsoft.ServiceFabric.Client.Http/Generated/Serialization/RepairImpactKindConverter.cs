@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(RepairImpactKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairImpactKind.Invalid;
             }
-            else if (string.Compare(value, "Node", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Node", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RepairImpactKind.Node;
             }

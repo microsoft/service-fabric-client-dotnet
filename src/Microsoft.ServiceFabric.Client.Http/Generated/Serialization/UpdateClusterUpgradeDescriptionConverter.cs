@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("UpgradeKind", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("UpgradeKind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeKind = UpgradeTypeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpdateDescription", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpdateDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     updateDescription = RollingUpgradeUpdateDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterHealthPolicy = ClusterHealthPolicyConverter.Deserialize(reader);
                 }
-                else if (string.Compare("EnableDeltaHealthEvaluation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EnableDeltaHealthEvaluation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     enableDeltaHealthEvaluation = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("ClusterUpgradeHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterUpgradeHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterUpgradeHealthPolicy = ClusterUpgradeHealthPolicyObjectConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationHealthPolicyMap = ApplicationHealthPoliciesConverter.Deserialize(reader);
                 }

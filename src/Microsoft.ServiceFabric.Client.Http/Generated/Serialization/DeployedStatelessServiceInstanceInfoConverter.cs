@@ -47,43 +47,43 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ServiceName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ServiceName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceName = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceManifestName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceManifestName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CodePackageName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CodePackageName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codePackageName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReplicaStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicaStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaStatus = ReplicaStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Address", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Address", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     address = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServicePackageActivationId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageActivationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageActivationId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HostProcessId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HostProcessId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hostProcessId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("InstanceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceId = ReplicaIdConverter.Deserialize(reader);
                 }

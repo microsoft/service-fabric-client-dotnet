@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(PartitionAccessStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PartitionAccessStatus.Invalid;
             }
-            else if (string.Compare(value, "Granted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Granted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PartitionAccessStatus.Granted;
             }
-            else if (string.Compare(value, "ReconfigurationPending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ReconfigurationPending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PartitionAccessStatus.ReconfigurationPending;
             }
-            else if (string.Compare(value, "NotPrimary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NotPrimary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PartitionAccessStatus.NotPrimary;
             }
-            else if (string.Compare(value, "NoWriteQuorum", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NoWriteQuorum", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PartitionAccessStatus.NoWriteQuorum;
             }

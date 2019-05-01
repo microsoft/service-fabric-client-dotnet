@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(HostIsolationMode);
 
-            if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HostIsolationMode.None;
             }
-            else if (string.Compare(value, "Process", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Process", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HostIsolationMode.Process;
             }
-            else if (string.Compare(value, "HyperV", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "HyperV", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HostIsolationMode.HyperV;
             }

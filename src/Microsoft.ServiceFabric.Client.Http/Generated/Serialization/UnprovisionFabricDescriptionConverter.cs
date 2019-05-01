@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("CodeVersion", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("CodeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ConfigVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ConfigVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     configVersion = reader.ReadValueAsString();
                 }

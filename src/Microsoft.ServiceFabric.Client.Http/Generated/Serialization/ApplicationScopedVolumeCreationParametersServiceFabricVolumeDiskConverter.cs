@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("sizeDisk", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("sizeDisk", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sizeDisk = SizeTypesConverter.Deserialize(reader);
                 }

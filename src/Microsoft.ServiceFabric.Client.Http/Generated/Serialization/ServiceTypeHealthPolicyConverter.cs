@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("MaxPercentUnhealthyPartitionsPerService", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("MaxPercentUnhealthyPartitionsPerService", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyPartitionsPerService = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentUnhealthyReplicasPerPartition", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUnhealthyReplicasPerPartition", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyReplicasPerPartition = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentUnhealthyServices", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUnhealthyServices", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyServices = reader.ReadValueAsInt();
                 }

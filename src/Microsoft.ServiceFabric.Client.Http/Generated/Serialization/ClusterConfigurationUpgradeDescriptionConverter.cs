@@ -48,47 +48,47 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ClusterConfig", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ClusterConfig", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterConfig = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthCheckRetryTimeout", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthCheckRetryTimeout", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthCheckRetryTimeout = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("HealthCheckWaitDurationInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthCheckWaitDurationInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthCheckWaitDurationInSeconds = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("HealthCheckStableDurationInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthCheckStableDurationInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthCheckStableDurationInSeconds = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("UpgradeDomainTimeoutInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDomainTimeoutInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomainTimeoutInSeconds = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("UpgradeTimeoutInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeTimeoutInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeTimeoutInSeconds = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("MaxPercentUnhealthyApplications", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUnhealthyApplications", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyApplications = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentUnhealthyNodes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUnhealthyNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUnhealthyNodes = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentDeltaUnhealthyNodes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentDeltaUnhealthyNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentDeltaUnhealthyNodes = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentUpgradeDomainDeltaUnhealthyNodes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUpgradeDomainDeltaUnhealthyNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUpgradeDomainDeltaUnhealthyNodes = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("ApplicationHealthPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationHealthPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationHealthPolicies = ApplicationHealthPoliciesConverter.Deserialize(reader);
                 }

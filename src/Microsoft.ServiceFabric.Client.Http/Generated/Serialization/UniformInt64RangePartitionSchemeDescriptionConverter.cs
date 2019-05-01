@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Count", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Count", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     count = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("LowKey", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LowKey", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lowKey = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HighKey", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HighKey", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     highKey = reader.ReadValueAsString();
                 }

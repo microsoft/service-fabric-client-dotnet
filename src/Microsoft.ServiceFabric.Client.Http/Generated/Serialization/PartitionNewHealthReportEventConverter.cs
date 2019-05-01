@@ -50,55 +50,55 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("SourceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SourceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sourceId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Property", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Property", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     property = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeToLiveMs", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeToLiveMs", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeToLiveMs = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("SequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sequenceNumber = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("Description", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RemoveWhenExpired", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RemoveWhenExpired", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     removeWhenExpired = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("SourceUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SourceUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sourceUtcTimestamp = reader.ReadValueAsDateTime();
                 }

@@ -51,59 +51,59 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("MaxConcurrentFaults", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxConcurrentFaults", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxConcurrentFaults = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("TimeToRunInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeToRunInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeToRunInSeconds = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("MaxClusterStabilizationTimeoutInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxClusterStabilizationTimeoutInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxClusterStabilizationTimeoutInSeconds = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("WaitTimeBetweenIterationsInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("WaitTimeBetweenIterationsInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     waitTimeBetweenIterationsInSeconds = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("WaitTimeBetweenFautlsInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("WaitTimeBetweenFautlsInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     waitTimeBetweenFautlsInSeconds = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("MoveReplicaFaultEnabled", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MoveReplicaFaultEnabled", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     moveReplicaFaultEnabled = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("IncludedNodeTypeList", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IncludedNodeTypeList", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     includedNodeTypeList = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IncludedApplicationList", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IncludedApplicationList", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     includedApplicationList = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterHealthPolicy = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ChaosContext", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ChaosContext", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     chaosContext = reader.ReadValueAsString();
                 }

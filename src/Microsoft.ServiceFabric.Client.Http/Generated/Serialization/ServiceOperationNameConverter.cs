@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceOperationName);
 
-            if (string.Compare(value, "Unknown", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Unknown", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceOperationName.Unknown;
             }
-            else if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceOperationName.None;
             }
-            else if (string.Compare(value, "Open", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Open", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceOperationName.Open;
             }
-            else if (string.Compare(value, "ChangeRole", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ChangeRole", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceOperationName.ChangeRole;
             }
-            else if (string.Compare(value, "Close", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Close", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceOperationName.Close;
             }
-            else if (string.Compare(value, "Abort", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Abort", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceOperationName.Abort;
             }

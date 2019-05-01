@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("CurrentCodeVersion", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("CurrentCodeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentCodeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CurrentManifestVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentManifestVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentManifestVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TargetCodeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TargetCodeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetCodeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TargetManifestVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TargetManifestVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetManifestVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PendingUpgradeType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PendingUpgradeType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     pendingUpgradeType = reader.ReadValueAsString();
                 }

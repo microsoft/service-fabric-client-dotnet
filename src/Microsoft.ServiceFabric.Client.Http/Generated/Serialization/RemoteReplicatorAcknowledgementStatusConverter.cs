@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ReplicationStreamAcknowledgementDetail", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ReplicationStreamAcknowledgementDetail", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicationStreamAcknowledgementDetail = RemoteReplicatorAcknowledgementDetailConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CopyStreamAcknowledgementDetail", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CopyStreamAcknowledgementDetail", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     copyStreamAcknowledgementDetail = RemoteReplicatorAcknowledgementDetailConverter.Deserialize(reader);
                 }

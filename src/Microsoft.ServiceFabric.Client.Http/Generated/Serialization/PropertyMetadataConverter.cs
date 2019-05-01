@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("TypeId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("TypeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeId = PropertyValueKindConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CustomTypeId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CustomTypeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     customTypeId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Parent", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Parent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     parent = FabricNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("SizeInBytes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SizeInBytes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sizeInBytes = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("LastModifiedUtcTimestamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastModifiedUtcTimestamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastModifiedUtcTimestamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("SequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sequenceNumber = reader.ReadValueAsString();
                 }

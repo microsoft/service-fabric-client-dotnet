@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(QuorumLossMode);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = QuorumLossMode.Invalid;
             }
-            else if (string.Compare(value, "QuorumReplicas", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "QuorumReplicas", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = QuorumLossMode.QuorumReplicas;
             }
-            else if (string.Compare(value, "AllReplicas", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AllReplicas", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = QuorumLossMode.AllReplicas;
             }

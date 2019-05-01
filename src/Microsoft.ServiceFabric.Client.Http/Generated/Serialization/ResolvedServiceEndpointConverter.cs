@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Kind", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Kind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     kind = ServiceEndpointRoleConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Address", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Address", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     address = reader.ReadValueAsString();
                 }

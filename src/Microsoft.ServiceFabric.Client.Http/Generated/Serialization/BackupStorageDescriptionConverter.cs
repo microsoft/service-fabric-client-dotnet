@@ -35,17 +35,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             BackupStorageDescription obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("StorageKind", StringComparison.Ordinal))
+            if (!propName.Equals("StorageKind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is StorageKind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("AzureBlobStore", StringComparison.Ordinal))
+            if (propValue.Equals("AzureBlobStore", StringComparison.OrdinalIgnoreCase))
             {
                 obj = AzureBlobBackupStorageDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("FileShare", StringComparison.Ordinal))
+            else if (propValue.Equals("FileShare", StringComparison.OrdinalIgnoreCase))
             {
                 obj = FileShareBackupStorageDescriptionConverter.GetFromJsonProperties(reader);
             }

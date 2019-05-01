@@ -35,17 +35,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             PropertyBatchInfo obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Successful", StringComparison.Ordinal))
+            if (propValue.Equals("Successful", StringComparison.OrdinalIgnoreCase))
             {
                 obj = SuccessfulPropertyBatchInfoConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Failed", StringComparison.Ordinal))
+            else if (propValue.Equals("Failed", StringComparison.OrdinalIgnoreCase))
             {
                 obj = FailedPropertyBatchInfoConverter.GetFromJsonProperties(reader);
             }

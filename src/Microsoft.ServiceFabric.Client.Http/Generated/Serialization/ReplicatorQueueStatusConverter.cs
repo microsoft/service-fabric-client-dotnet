@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("QueueUtilizationPercentage", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("QueueUtilizationPercentage", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     queueUtilizationPercentage = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("QueueMemorySize", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("QueueMemorySize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     queueMemorySize = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FirstSequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FirstSequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     firstSequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CompletedSequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CompletedSequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     completedSequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CommittedSequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CommittedSequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     committedSequenceNumber = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LastSequenceNumber", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastSequenceNumber", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastSequenceNumber = reader.ReadValueAsString();
                 }

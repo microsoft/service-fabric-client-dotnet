@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("RemoteSource", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("RemoteSource", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     remoteSource = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RemoteDestination", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RemoteDestination", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     remoteDestination = reader.ReadValueAsString();
                 }
-                else if (string.Compare("SkipFiles", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SkipFiles", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     skipFiles = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
                 }
-                else if (string.Compare("CheckMarkFile", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CheckMarkFile", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     checkMarkFile = reader.ReadValueAsBool();
                 }

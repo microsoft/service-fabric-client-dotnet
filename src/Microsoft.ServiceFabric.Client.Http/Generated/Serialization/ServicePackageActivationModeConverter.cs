@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServicePackageActivationMode);
 
-            if (string.Compare(value, "SharedProcess", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "SharedProcess", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePackageActivationMode.SharedProcess;
             }
-            else if (string.Compare(value, "ExclusiveProcess", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ExclusiveProcess", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePackageActivationMode.ExclusiveProcess;
             }

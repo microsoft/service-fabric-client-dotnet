@@ -51,59 +51,59 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     eventInstanceId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     category = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeStamp = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("ServiceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceInstance", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceInstance", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceInstance = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("IsStateful", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsStateful", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isStateful = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("PartitionCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetReplicaSetSize = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MinReplicaSetSize", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MinReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minReplicaSetSize = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("ServicePackageVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServicePackageVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     servicePackageVersion = reader.ReadValueAsString();
                 }

@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("TotalCount", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("TotalCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     totalCount = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("Items", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Items", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     items = reader.ReadList(ApplicationHealthStateChunkConverter.Deserialize);
                 }

@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("NodeDeactivationTaskId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("NodeDeactivationTaskId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDeactivationTaskId = NodeDeactivationTaskIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeDeactivationIntent", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeDeactivationIntent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDeactivationIntent = NodeDeactivationIntentConverter.Deserialize(reader);
                 }

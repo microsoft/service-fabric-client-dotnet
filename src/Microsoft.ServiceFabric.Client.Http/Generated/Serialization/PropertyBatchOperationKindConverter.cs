@@ -26,31 +26,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(PropertyBatchOperationKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.Invalid;
             }
-            else if (string.Compare(value, "Put", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Put", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.Put;
             }
-            else if (string.Compare(value, "Get", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Get", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.Get;
             }
-            else if (string.Compare(value, "CheckExists", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "CheckExists", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.CheckExists;
             }
-            else if (string.Compare(value, "CheckSequence", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "CheckSequence", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.CheckSequence;
             }
-            else if (string.Compare(value, "Delete", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Delete", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.Delete;
             }
-            else if (string.Compare(value, "CheckValue", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "CheckValue", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchOperationKind.CheckValue;
             }

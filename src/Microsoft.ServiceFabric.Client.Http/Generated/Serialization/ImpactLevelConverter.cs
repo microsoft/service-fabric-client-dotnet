@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ImpactLevel);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ImpactLevel.Invalid;
             }
-            else if (string.Compare(value, "None", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ImpactLevel.None;
             }
-            else if (string.Compare(value, "Restart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Restart", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ImpactLevel.Restart;
             }
-            else if (string.Compare(value, "RemoveData", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RemoveData", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ImpactLevel.RemoveData;
             }
-            else if (string.Compare(value, "RemoveNode", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RemoveNode", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ImpactLevel.RemoveNode;
             }

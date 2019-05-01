@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("accountName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("accountName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     accountName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("namespace", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("namespace", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     namespaceProperty = reader.ReadValueAsString();
                 }
-                else if (string.Compare("maConfigUrl", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("maConfigUrl", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maConfigUrl = reader.ReadValueAsString();
                 }
-                else if (string.Compare("fluentdConfigUrl", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("fluentdConfigUrl", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     fluentdConfigUrl = reader.ReadValueAsString();
                 }
-                else if (string.Compare("autoKeyConfigUrl", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("autoKeyConfigUrl", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     autoKeyConfigUrl = reader.ReadValueAsString();
                 }

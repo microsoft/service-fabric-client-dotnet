@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(DataLossMode);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DataLossMode.Invalid;
             }
-            else if (string.Compare(value, "PartialDataLoss", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartialDataLoss", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DataLossMode.PartialDataLoss;
             }
-            else if (string.Compare(value, "FullDataLoss", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FullDataLoss", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DataLossMode.FullDataLoss;
             }

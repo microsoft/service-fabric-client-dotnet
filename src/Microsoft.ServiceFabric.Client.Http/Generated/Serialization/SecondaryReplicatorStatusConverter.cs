@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Kind", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Kind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     kind = ReplicaRoleConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReplicationQueueStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicationQueueStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicationQueueStatus = ReplicatorQueueStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("LastReplicationOperationReceivedTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastReplicationOperationReceivedTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastReplicationOperationReceivedTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("IsInBuild", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsInBuild", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isInBuild = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("CopyQueueStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CopyQueueStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     copyQueueStatus = ReplicatorQueueStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("LastCopyOperationReceivedTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastCopyOperationReceivedTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastCopyOperationReceivedTimeUtc = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("LastAcknowledgementSentTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LastAcknowledgementSentTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastAcknowledgementSentTimeUtc = reader.ReadValueAsDateTime();
                 }

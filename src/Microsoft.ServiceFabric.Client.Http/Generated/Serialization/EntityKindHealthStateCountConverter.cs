@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("EntityKind", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("EntityKind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     entityKind = EntityKindConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HealthStateCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthStateCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStateCount = HealthStateCountConverter.Deserialize(reader);
                 }

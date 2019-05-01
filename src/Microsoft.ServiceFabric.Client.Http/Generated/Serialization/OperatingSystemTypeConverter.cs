@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(OperatingSystemType);
 
-            if (string.Compare(value, "Linux", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Linux", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperatingSystemType.Linux;
             }
-            else if (string.Compare(value, "Windows", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Windows", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperatingSystemType.Windows;
             }

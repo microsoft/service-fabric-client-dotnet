@@ -26,43 +26,43 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ComposeDeploymentUpgradeState);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.Invalid;
             }
-            else if (string.Compare(value, "ProvisioningTarget", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ProvisioningTarget", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.ProvisioningTarget;
             }
-            else if (string.Compare(value, "RollingForwardInProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingForwardInProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.RollingForwardInProgress;
             }
-            else if (string.Compare(value, "RollingForwardPending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingForwardPending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.RollingForwardPending;
             }
-            else if (string.Compare(value, "UnprovisioningCurrent", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UnprovisioningCurrent", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.UnprovisioningCurrent;
             }
-            else if (string.Compare(value, "RollingForwardCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingForwardCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.RollingForwardCompleted;
             }
-            else if (string.Compare(value, "RollingBackInProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingBackInProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.RollingBackInProgress;
             }
-            else if (string.Compare(value, "UnprovisioningTarget", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UnprovisioningTarget", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.UnprovisioningTarget;
             }
-            else if (string.Compare(value, "RollingBackCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingBackCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.RollingBackCompleted;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ComposeDeploymentUpgradeState.Failed;
             }

@@ -62,103 +62,103 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IsBalancedBefore", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsBalancedBefore", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isBalancedBefore = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("IsBalancedAfter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsBalancedAfter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isBalancedAfter = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("DeviationBefore", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DeviationBefore", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deviationBefore = reader.ReadValueAsString();
                 }
-                else if (string.Compare("DeviationAfter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DeviationAfter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deviationAfter = reader.ReadValueAsString();
                 }
-                else if (string.Compare("BalancingThreshold", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BalancingThreshold", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     balancingThreshold = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Action", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Action", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     action = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ActivityThreshold", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ActivityThreshold", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     activityThreshold = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterLoad = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CurrentClusterLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentClusterLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentClusterLoad = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterRemainingCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterRemainingCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterRemainingCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterCapacityRemaining", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterCapacityRemaining = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IsClusterCapacityViolation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsClusterCapacityViolation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isClusterCapacityViolation = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("NodeBufferPercentage", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeBufferPercentage", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeBufferPercentage = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterBufferedCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterBufferedCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterBufferedCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("BufferedClusterCapacityRemaining", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BufferedClusterCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     bufferedClusterCapacityRemaining = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterRemainingBufferedCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterRemainingBufferedCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterRemainingBufferedCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("MinNodeLoadValue", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MinNodeLoadValue", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minNodeLoadValue = reader.ReadValueAsString();
                 }
-                else if (string.Compare("MinimumNodeLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MinimumNodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minimumNodeLoad = reader.ReadValueAsString();
                 }
-                else if (string.Compare("MinNodeLoadNodeId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MinNodeLoadNodeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minNodeLoadNodeId = NodeIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("MaxNodeLoadValue", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxNodeLoadValue", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxNodeLoadValue = reader.ReadValueAsString();
                 }
-                else if (string.Compare("MaximumNodeLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaximumNodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maximumNodeLoad = reader.ReadValueAsString();
                 }
-                else if (string.Compare("MaxNodeLoadNodeId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxNodeLoadNodeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxNodeLoadNodeId = NodeIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PlannedLoadRemoval", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PlannedLoadRemoval", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     plannedLoadRemoval = reader.ReadValueAsString();
                 }

@@ -38,7 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Content", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Content", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     content = reader.ReadValueAsString();
                 }

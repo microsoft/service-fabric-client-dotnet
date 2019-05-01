@@ -26,339 +26,339 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(FabricErrorCodes);
 
-            if (string.Compare(value, "FABRIC_E_INVALID_PARTITION_KEY", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "FABRIC_E_INVALID_PARTITION_KEY", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_PARTITION_KEY;
             }
-            else if (string.Compare(value, "FABRIC_E_IMAGEBUILDER_VALIDATION_ERROR", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_IMAGEBUILDER_VALIDATION_ERROR", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_IMAGEBUILDER_VALIDATION_ERROR;
             }
-            else if (string.Compare(value, "FABRIC_E_INVALID_ADDRESS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INVALID_ADDRESS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_ADDRESS;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_NOT_UPGRADING", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_NOT_UPGRADING", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_NOT_UPGRADING;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_UPGRADE_VALIDATION_ERROR", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_UPGRADE_VALIDATION_ERROR", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_UPGRADE_VALIDATION_ERROR;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_NOT_UPGRADING", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_NOT_UPGRADING", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_NOT_UPGRADING;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_UPGRADE_VALIDATION_ERROR", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_UPGRADE_VALIDATION_ERROR", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_UPGRADE_VALIDATION_ERROR;
             }
-            else if (string.Compare(value, "FABRIC_E_INVALID_CONFIGURATION", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INVALID_CONFIGURATION", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_CONFIGURATION;
             }
-            else if (string.Compare(value, "FABRIC_E_INVALID_NAME_URI", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INVALID_NAME_URI", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_NAME_URI;
             }
-            else if (string.Compare(value, "FABRIC_E_PATH_TOO_LONG", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_PATH_TOO_LONG", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_PATH_TOO_LONG;
             }
-            else if (string.Compare(value, "FABRIC_E_KEY_TOO_LARGE", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_KEY_TOO_LARGE", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_KEY_TOO_LARGE;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_AFFINITY_CHAIN_NOT_SUPPORTED", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_AFFINITY_CHAIN_NOT_SUPPORTED", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_AFFINITY_CHAIN_NOT_SUPPORTED;
             }
-            else if (string.Compare(value, "FABRIC_E_INVALID_ATOMIC_GROUP", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INVALID_ATOMIC_GROUP", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_ATOMIC_GROUP;
             }
-            else if (string.Compare(value, "FABRIC_E_VALUE_EMPTY", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_VALUE_EMPTY", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_VALUE_EMPTY;
             }
-            else if (string.Compare(value, "FABRIC_E_NODE_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NODE_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NODE_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_TYPE_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_TYPE_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_TYPE_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_TYPE_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_DOES_NOT_EXIST", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_DOES_NOT_EXIST", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_DOES_NOT_EXIST;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_TYPE_TEMPLATE_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_TYPE_TEMPLATE_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_TYPE_TEMPLATE_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_CONFIGURATION_SECTION_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_CONFIGURATION_SECTION_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_CONFIGURATION_SECTION_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_PARTITION_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_PARTITION_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_PARTITION_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_REPLICA_DOES_NOT_EXIST", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_REPLICA_DOES_NOT_EXIST", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_REPLICA_DOES_NOT_EXIST;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_GROUP_DOES_NOT_EXIST", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_GROUP_DOES_NOT_EXIST", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_GROUP_DOES_NOT_EXIST;
             }
-            else if (string.Compare(value, "FABRIC_E_CONFIGURATION_PARAMETER_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_CONFIGURATION_PARAMETER_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_CONFIGURATION_PARAMETER_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_DIRECTORY_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_DIRECTORY_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_DIRECTORY_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_VERSION_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_VERSION_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_VERSION_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_FILE_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FILE_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FILE_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_NAME_DOES_NOT_EXIST", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NAME_DOES_NOT_EXIST", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NAME_DOES_NOT_EXIST;
             }
-            else if (string.Compare(value, "FABRIC_E_PROPERTY_DOES_NOT_EXIST", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_PROPERTY_DOES_NOT_EXIST", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_PROPERTY_DOES_NOT_EXIST;
             }
-            else if (string.Compare(value, "FABRIC_E_ENUMERATION_COMPLETED", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_ENUMERATION_COMPLETED", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_ENUMERATION_COMPLETED;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_MANIFEST_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_MANIFEST_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_MANIFEST_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_KEY_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_KEY_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_KEY_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_HEALTH_ENTITY_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_HEALTH_ENTITY_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_HEALTH_ENTITY_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_TYPE_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_ALREADY_IN_TARGET_VERSION", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_ALREADY_IN_TARGET_VERSION", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_ALREADY_IN_TARGET_VERSION;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_PROVISION_IN_PROGRESS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_PROVISION_IN_PROGRESS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_TYPE_PROVISION_IN_PROGRESS;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_UPGRADE_IN_PROGRESS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_UPGRADE_IN_PROGRESS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_UPGRADE_IN_PROGRESS;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_GROUP_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_GROUP_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_GROUP_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_IN_USE", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_APPLICATION_TYPE_IN_USE", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_APPLICATION_TYPE_IN_USE;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_ALREADY_IN_TARGET_VERSION", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_ALREADY_IN_TARGET_VERSION", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_ALREADY_IN_TARGET_VERSION;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_VERSION_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_VERSION_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_VERSION_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_VERSION_IN_USE", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_VERSION_IN_USE", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_VERSION_IN_USE;
             }
-            else if (string.Compare(value, "FABRIC_E_FABRIC_UPGRADE_IN_PROGRESS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FABRIC_UPGRADE_IN_PROGRESS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FABRIC_UPGRADE_IN_PROGRESS;
             }
-            else if (string.Compare(value, "FABRIC_E_NAME_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NAME_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NAME_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_NAME_NOT_EMPTY", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NAME_NOT_EMPTY", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NAME_NOT_EMPTY;
             }
-            else if (string.Compare(value, "FABRIC_E_PROPERTY_CHECK_FAILED", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_PROPERTY_CHECK_FAILED", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_PROPERTY_CHECK_FAILED;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_METADATA_MISMATCH", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_METADATA_MISMATCH", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_METADATA_MISMATCH;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_TYPE_MISMATCH", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_TYPE_MISMATCH", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_TYPE_MISMATCH;
             }
-            else if (string.Compare(value, "FABRIC_E_HEALTH_STALE_REPORT", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_HEALTH_STALE_REPORT", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_HEALTH_STALE_REPORT;
             }
-            else if (string.Compare(value, "FABRIC_E_SEQUENCE_NUMBER_CHECK_FAILED", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SEQUENCE_NUMBER_CHECK_FAILED", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SEQUENCE_NUMBER_CHECK_FAILED;
             }
-            else if (string.Compare(value, "FABRIC_E_NODE_HAS_NOT_STOPPED_YET", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NODE_HAS_NOT_STOPPED_YET", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NODE_HAS_NOT_STOPPED_YET;
             }
-            else if (string.Compare(value, "FABRIC_E_INSTANCE_ID_MISMATCH", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INSTANCE_ID_MISMATCH", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INSTANCE_ID_MISMATCH;
             }
-            else if (string.Compare(value, "FABRIC_E_VALUE_TOO_LARGE", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_VALUE_TOO_LARGE", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_VALUE_TOO_LARGE;
             }
-            else if (string.Compare(value, "FABRIC_E_NO_WRITE_QUORUM", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NO_WRITE_QUORUM", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NO_WRITE_QUORUM;
             }
-            else if (string.Compare(value, "FABRIC_E_NOT_PRIMARY", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NOT_PRIMARY", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NOT_PRIMARY;
             }
-            else if (string.Compare(value, "FABRIC_E_NOT_READY", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NOT_READY", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NOT_READY;
             }
-            else if (string.Compare(value, "FABRIC_E_RECONFIGURATION_PENDING", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_RECONFIGURATION_PENDING", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_RECONFIGURATION_PENDING;
             }
-            else if (string.Compare(value, "FABRIC_E_SERVICE_OFFLINE", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SERVICE_OFFLINE", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SERVICE_OFFLINE;
             }
-            else if (string.Compare(value, "E_ABORT", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "E_ABORT", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.E_ABORT;
             }
-            else if (string.Compare(value, "FABRIC_E_COMMUNICATION_ERROR", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_COMMUNICATION_ERROR", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_COMMUNICATION_ERROR;
             }
-            else if (string.Compare(value, "FABRIC_E_OPERATION_NOT_COMPLETE", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_OPERATION_NOT_COMPLETE", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_OPERATION_NOT_COMPLETE;
             }
-            else if (string.Compare(value, "FABRIC_E_TIMEOUT", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_TIMEOUT", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_TIMEOUT;
             }
-            else if (string.Compare(value, "FABRIC_E_NODE_IS_UP", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_NODE_IS_UP", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_NODE_IS_UP;
             }
-            else if (string.Compare(value, "E_FAIL", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "E_FAIL", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.E_FAIL;
             }
-            else if (string.Compare(value, "FABRIC_E_BACKUP_IS_ENABLED", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_BACKUP_IS_ENABLED", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_IS_ENABLED;
             }
-            else if (string.Compare(value, "FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_RESTORE_SOURCE_TARGET_PARTITION_MISMATCH;
             }
-            else if (string.Compare(value, "FABRIC_E_INVALID_FOR_STATELESS_SERVICES", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INVALID_FOR_STATELESS_SERVICES", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_FOR_STATELESS_SERVICES;
             }
-            else if (string.Compare(value, "FABRIC_E_BACKUP_NOT_ENABLED", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_BACKUP_NOT_ENABLED", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_NOT_ENABLED;
             }
-            else if (string.Compare(value, "FABRIC_E_BACKUP_POLICY_NOT_EXISTING", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_BACKUP_POLICY_NOT_EXISTING", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_POLICY_NOT_EXISTING;
             }
-            else if (string.Compare(value, "FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_FAULT_ANALYSIS_SERVICE_NOT_EXISTING;
             }
-            else if (string.Compare(value, "FABRIC_E_BACKUP_IN_PROGRESS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_BACKUP_IN_PROGRESS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_IN_PROGRESS;
             }
-            else if (string.Compare(value, "FABRIC_E_RESTORE_IN_PROGRESS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_RESTORE_IN_PROGRESS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_RESTORE_IN_PROGRESS;
             }
-            else if (string.Compare(value, "FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING;
             }
-            else if (string.Compare(value, "FABRIC_E_INVALID_SERVICE_SCALING_POLICY", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_INVALID_SERVICE_SCALING_POLICY", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_INVALID_SERVICE_SCALING_POLICY;
             }
-            else if (string.Compare(value, "E_INVALIDARG", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "E_INVALIDARG", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.E_INVALIDARG;
             }
-            else if (string.Compare(value, "FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND;
             }
-            else if (string.Compare(value, "FABRIC_E_VOLUME_ALREADY_EXISTS", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_VOLUME_ALREADY_EXISTS", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_VOLUME_ALREADY_EXISTS;
             }
-            else if (string.Compare(value, "FABRIC_E_VOLUME_NOT_FOUND", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_VOLUME_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_VOLUME_NOT_FOUND;
             }
-            else if (string.Compare(value, "SerializationError", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "SerializationError", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.SerializationError;
             }
-            else if (string.Compare(value, "FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricErrorCodes.FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR;
             }

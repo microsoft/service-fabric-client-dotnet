@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("requests", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("requests", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     requests = ResourceRequestsConverter.Deserialize(reader);
                 }
-                else if (string.Compare("limits", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("limits", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     limits = ResourceLimitsConverter.Deserialize(reader);
                 }

@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("AggregatedHealthState", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("AggregatedHealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     aggregatedHealthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("HealthEvents", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthEvents = reader.ReadList(HealthEventConverter.Deserialize);
                 }
-                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     unhealthyEvaluations = reader.ReadList(HealthEvaluationWrapperConverter.Deserialize);
                 }
-                else if (string.Compare("HealthStatistics", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthStatistics", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStatistics = HealthStatisticsConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PartitionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     partitionId = PartitionIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReplicaHealthStates", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReplicaHealthStates", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaHealthStates = reader.ReadList(ReplicaHealthStateConverter.Deserialize);
                 }

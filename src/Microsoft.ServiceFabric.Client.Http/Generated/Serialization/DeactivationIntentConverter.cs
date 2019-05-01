@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(DeactivationIntent);
 
-            if (string.Compare(value, "Pause", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Pause", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeactivationIntent.Pause;
             }
-            else if (string.Compare(value, "Restart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Restart", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeactivationIntent.Restart;
             }
-            else if (string.Compare(value, "RemoveData", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RemoveData", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = DeactivationIntent.RemoveData;
             }

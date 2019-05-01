@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("RetentionDuration", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("RetentionDuration", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     retentionDuration = reader.ReadValueAsTimeSpan();
                 }
-                else if (string.Compare("MinimumNumberOfBackups", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MinimumNumberOfBackups", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     minimumNumberOfBackups = reader.ReadValueAsInt();
                 }

@@ -26,31 +26,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(UpgradeState);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.Invalid;
             }
-            else if (string.Compare(value, "RollingBackInProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingBackInProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.RollingBackInProgress;
             }
-            else if (string.Compare(value, "RollingBackCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingBackCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.RollingBackCompleted;
             }
-            else if (string.Compare(value, "RollingForwardPending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingForwardPending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.RollingForwardPending;
             }
-            else if (string.Compare(value, "RollingForwardInProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingForwardInProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.RollingForwardInProgress;
             }
-            else if (string.Compare(value, "RollingForwardCompleted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingForwardCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.RollingForwardCompleted;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeState.Failed;
             }

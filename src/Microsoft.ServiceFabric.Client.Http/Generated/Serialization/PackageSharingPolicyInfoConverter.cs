@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("SharedPackageName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("SharedPackageName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sharedPackageName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PackageSharingScope", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PackageSharingScope", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     packageSharingScope = PackageSharingPolicyScopeConverter.Deserialize(reader);
                 }

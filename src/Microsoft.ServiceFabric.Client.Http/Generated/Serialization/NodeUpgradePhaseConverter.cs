@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(NodeUpgradePhase);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeUpgradePhase.Invalid;
             }
-            else if (string.Compare(value, "PreUpgradeSafetyCheck", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PreUpgradeSafetyCheck", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeUpgradePhase.PreUpgradeSafetyCheck;
             }
-            else if (string.Compare(value, "Upgrading", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Upgrading", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeUpgradePhase.Upgrading;
             }
-            else if (string.Compare(value, "PostUpgradeSafetyCheck", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PostUpgradeSafetyCheck", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = NodeUpgradePhase.PostUpgradeSafetyCheck;
             }

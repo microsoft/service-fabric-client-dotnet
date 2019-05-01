@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceTypeRegistrationStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceTypeRegistrationStatus.Invalid;
             }
-            else if (string.Compare(value, "Disabled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Disabled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceTypeRegistrationStatus.Disabled;
             }
-            else if (string.Compare(value, "Enabled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Enabled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceTypeRegistrationStatus.Enabled;
             }
-            else if (string.Compare(value, "Registered", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Registered", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceTypeRegistrationStatus.Registered;
             }

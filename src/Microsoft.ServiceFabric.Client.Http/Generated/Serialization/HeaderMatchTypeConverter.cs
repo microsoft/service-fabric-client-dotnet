@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(HeaderMatchType);
 
-            if (string.Compare(value, "exact", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "exact", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HeaderMatchType.Exact;
             }

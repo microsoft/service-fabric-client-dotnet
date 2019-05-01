@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Id", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Id", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     id = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = ServiceNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ManifestVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ManifestVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     manifestVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ServiceStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceStatus = ServiceStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("IsServiceGroup", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsServiceGroup", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isServiceGroup = reader.ReadValueAsBool();
                 }

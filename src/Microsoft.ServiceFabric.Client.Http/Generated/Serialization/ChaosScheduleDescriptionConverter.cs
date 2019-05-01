@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Version", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Version", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     version = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("Schedule", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Schedule", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     schedule = ChaosScheduleConverter.Deserialize(reader);
                 }

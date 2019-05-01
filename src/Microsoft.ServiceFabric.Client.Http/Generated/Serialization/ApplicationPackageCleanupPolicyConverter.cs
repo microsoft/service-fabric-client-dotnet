@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ApplicationPackageCleanupPolicy);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationPackageCleanupPolicy.Invalid;
             }
-            else if (string.Compare(value, "Default", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Default", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationPackageCleanupPolicy.Default;
             }
-            else if (string.Compare(value, "Automatic", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Automatic", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationPackageCleanupPolicy.Automatic;
             }
-            else if (string.Compare(value, "Manual", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Manual", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ApplicationPackageCleanupPolicy.Manual;
             }

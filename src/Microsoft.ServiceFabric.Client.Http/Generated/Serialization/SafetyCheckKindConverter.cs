@@ -26,35 +26,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(SafetyCheckKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.Invalid;
             }
-            else if (string.Compare(value, "EnsureSeedNodeQuorum", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "EnsureSeedNodeQuorum", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.EnsureSeedNodeQuorum;
             }
-            else if (string.Compare(value, "EnsurePartitionQuorum", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "EnsurePartitionQuorum", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.EnsurePartitionQuorum;
             }
-            else if (string.Compare(value, "WaitForPrimaryPlacement", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "WaitForPrimaryPlacement", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.WaitForPrimaryPlacement;
             }
-            else if (string.Compare(value, "WaitForPrimarySwap", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "WaitForPrimarySwap", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.WaitForPrimarySwap;
             }
-            else if (string.Compare(value, "WaitForReconfiguration", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "WaitForReconfiguration", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.WaitForReconfiguration;
             }
-            else if (string.Compare(value, "WaitForInbuildReplica", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "WaitForInbuildReplica", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.WaitForInbuildReplica;
             }
-            else if (string.Compare(value, "EnsureAvailability", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "EnsureAvailability", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SafetyCheckKind.EnsureAvailability;
             }

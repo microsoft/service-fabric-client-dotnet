@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("StartTime", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("StartTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startTime = TimeOfDayConverter.Deserialize(reader);
                 }
-                else if (string.Compare("EndTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EndTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     endTime = TimeOfDayConverter.Deserialize(reader);
                 }

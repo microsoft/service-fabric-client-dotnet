@@ -26,91 +26,91 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(HealthEvaluationKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Invalid;
             }
-            else if (string.Compare(value, "Event", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Event", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Event;
             }
-            else if (string.Compare(value, "Replicas", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Replicas", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Replicas;
             }
-            else if (string.Compare(value, "Partitions", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Partitions", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Partitions;
             }
-            else if (string.Compare(value, "DeployedServicePackages", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackages", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.DeployedServicePackages;
             }
-            else if (string.Compare(value, "DeployedApplications", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedApplications", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.DeployedApplications;
             }
-            else if (string.Compare(value, "Services", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Services", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Services;
             }
-            else if (string.Compare(value, "Nodes", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Nodes", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Nodes;
             }
-            else if (string.Compare(value, "Applications", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Applications", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Applications;
             }
-            else if (string.Compare(value, "SystemApplication", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "SystemApplication", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.SystemApplication;
             }
-            else if (string.Compare(value, "UpgradeDomainDeployedApplications", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UpgradeDomainDeployedApplications", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.UpgradeDomainDeployedApplications;
             }
-            else if (string.Compare(value, "UpgradeDomainNodes", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UpgradeDomainNodes", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.UpgradeDomainNodes;
             }
-            else if (string.Compare(value, "Replica", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Replica", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Replica;
             }
-            else if (string.Compare(value, "Partition", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Partition", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Partition;
             }
-            else if (string.Compare(value, "DeployedServicePackage", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedServicePackage", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.DeployedServicePackage;
             }
-            else if (string.Compare(value, "DeployedApplication", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeployedApplication", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.DeployedApplication;
             }
-            else if (string.Compare(value, "Service", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Service", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Service;
             }
-            else if (string.Compare(value, "Node", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Node", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Node;
             }
-            else if (string.Compare(value, "Application", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Application", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.Application;
             }
-            else if (string.Compare(value, "DeltaNodesCheck", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "DeltaNodesCheck", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.DeltaNodesCheck;
             }
-            else if (string.Compare(value, "UpgradeDomainDeltaNodesCheck", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "UpgradeDomainDeltaNodesCheck", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.UpgradeDomainDeltaNodesCheck;
             }
-            else if (string.Compare(value, "ApplicationTypeApplications", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ApplicationTypeApplications", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = HealthEvaluationKind.ApplicationTypeApplications;
             }

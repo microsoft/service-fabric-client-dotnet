@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("BackupId", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("BackupId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("BackupLocation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupLocation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupLocation = reader.ReadValueAsString();
                 }
-                else if (string.Compare("BackupStorage", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BackupStorage", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     backupStorage = BackupStorageDescriptionConverter.Deserialize(reader);
                 }

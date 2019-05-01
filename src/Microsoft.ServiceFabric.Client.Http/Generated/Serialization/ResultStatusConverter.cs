@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ResultStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResultStatus.Invalid;
             }
-            else if (string.Compare(value, "Succeeded", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Succeeded", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResultStatus.Succeeded;
             }
-            else if (string.Compare(value, "Cancelled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Cancelled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResultStatus.Cancelled;
             }
-            else if (string.Compare(value, "Interrupted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Interrupted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResultStatus.Interrupted;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResultStatus.Failed;
             }
-            else if (string.Compare(value, "Pending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Pending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ResultStatus.Pending;
             }

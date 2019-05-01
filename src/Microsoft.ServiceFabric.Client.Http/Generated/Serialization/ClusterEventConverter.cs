@@ -41,47 +41,47 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.Ordinal))
+                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
                 {
                     var propValue = reader.ReadValueAsString();
 
-                    if (propValue.Equals("ClusterNewHealthReport", StringComparison.Ordinal))
+                    if (propValue.Equals("ClusterNewHealthReport", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterNewHealthReportEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterHealthReportExpired", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterHealthReportExpired", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeCompleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterUpgradeStarted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ClusterUpgradeStartedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosStopped", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosStopped", StringComparison.OrdinalIgnoreCase))
                     {
                         return ChaosStoppedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ChaosStarted", StringComparison.Ordinal))
+                    else if (propValue.Equals("ChaosStarted", StringComparison.OrdinalIgnoreCase))
                     {
                         return ChaosStartedEventConverter.GetFromJsonProperties(reader);
                     }
-                    else if (propValue.Equals("ClusterEvent", StringComparison.Ordinal))
+                    else if (propValue.Equals("ClusterEvent", StringComparison.OrdinalIgnoreCase))
                     {
                         // kind specified as same type, deserialize using properties.
                     }
@@ -92,19 +92,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else
                 {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.Ordinal) == 0)
+                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         eventInstanceId = reader.ReadValueAsGuid();
                     }
-                    else if (string.Compare("Category", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         category = reader.ReadValueAsString();
                     }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         timeStamp = reader.ReadValueAsDateTime();
                     }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.Ordinal) == 0)
+                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
                     {
                         hasCorrelatedEvents = reader.ReadValueAsBool();
                     }

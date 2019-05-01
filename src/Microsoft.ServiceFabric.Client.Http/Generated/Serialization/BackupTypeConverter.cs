@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(BackupType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupType.Invalid;
             }
-            else if (string.Compare(value, "Full", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Full", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupType.Full;
             }
-            else if (string.Compare(value, "Incremental", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Incremental", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = BackupType.Incremental;
             }

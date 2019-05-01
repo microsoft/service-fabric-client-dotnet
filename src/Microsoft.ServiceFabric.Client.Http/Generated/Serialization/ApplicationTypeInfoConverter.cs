@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Version", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Version", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     version = reader.ReadValueAsString();
                 }
-                else if (string.Compare("DefaultParameterList", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DefaultParameterList", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultParameterList = ApplicationParametersConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Status", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = ApplicationTypeStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("StatusDetails", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("StatusDetails", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     statusDetails = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeDefinitionKind", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeDefinitionKind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeDefinitionKind = ApplicationTypeDefinitionKindConverter.Deserialize(reader);
                 }

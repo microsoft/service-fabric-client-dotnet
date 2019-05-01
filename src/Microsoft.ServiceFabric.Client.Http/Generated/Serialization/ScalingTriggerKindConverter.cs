@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ScalingTriggerKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ScalingTriggerKind.Invalid;
             }
-            else if (string.Compare(value, "AveragePartitionLoad", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AveragePartitionLoad", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ScalingTriggerKind.AveragePartitionLoad;
             }
-            else if (string.Compare(value, "AverageServiceLoad", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "AverageServiceLoad", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ScalingTriggerKind.AverageServiceLoad;
             }

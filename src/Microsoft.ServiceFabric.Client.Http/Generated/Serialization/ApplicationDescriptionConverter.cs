@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = ApplicationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TypeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TypeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ParameterList", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ParameterList", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     parameters = ApplicationParametersConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationCapacity = ApplicationCapacityDescriptionConverter.Deserialize(reader);
                 }

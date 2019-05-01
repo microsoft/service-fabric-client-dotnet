@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("StoreRelativePath", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("StoreRelativePath", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     storeRelativePath = reader.ReadValueAsString();
                 }
-                else if (string.Compare("SessionId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("SessionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sessionId = reader.ReadValueAsGuid();
                 }
-                else if (string.Compare("ModifiedDate", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ModifiedDate", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     modifiedDate = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("FileSize", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FileSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     fileSize = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ExpectedRanges", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ExpectedRanges", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     expectedRanges = reader.ReadList(UploadChunkRangeConverter.Deserialize);
                 }

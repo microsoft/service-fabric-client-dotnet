@@ -46,39 +46,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("DeploymentName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("DeploymentName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deploymentName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ComposeFileContent", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ComposeFileContent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     composeFileContent = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RegistryCredential", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RegistryCredential", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     registryCredential = RegistryCredentialConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeKind", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeKind", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeKind = UpgradeKindConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     rollingUpgradeMode = UpgradeModeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeReplicaSetCheckTimeoutInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeReplicaSetCheckTimeoutInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeReplicaSetCheckTimeoutInSeconds = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("ForceRestart", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ForceRestart", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     forceRestart = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("MonitoringPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MonitoringPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     monitoringPolicy = MonitoringPolicyDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationHealthPolicy = ApplicationHealthPolicyConverter.Deserialize(reader);
                 }

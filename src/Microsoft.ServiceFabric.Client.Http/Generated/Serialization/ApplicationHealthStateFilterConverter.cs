@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ApplicationNameFilter", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ApplicationNameFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationNameFilter = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeNameFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeNameFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeNameFilter = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthStateFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthStateFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthStateFilter = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("ServiceFilters", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ServiceFilters", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceFilters = reader.ReadList(ServiceHealthStateFilterConverter.Deserialize);
                 }
-                else if (string.Compare("DeployedApplicationFilters", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DeployedApplicationFilters", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deployedApplicationFilters = reader.ReadList(DeployedApplicationHealthStateFilterConverter.Deserialize);
                 }

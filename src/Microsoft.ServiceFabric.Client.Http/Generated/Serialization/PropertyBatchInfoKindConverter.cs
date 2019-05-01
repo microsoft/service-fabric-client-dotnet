@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(PropertyBatchInfoKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchInfoKind.Invalid;
             }
-            else if (string.Compare(value, "Successful", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Successful", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchInfoKind.Successful;
             }
-            else if (string.Compare(value, "Failed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = PropertyBatchInfoKind.Failed;
             }

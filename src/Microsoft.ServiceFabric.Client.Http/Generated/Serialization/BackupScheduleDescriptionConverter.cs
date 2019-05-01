@@ -35,17 +35,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             BackupScheduleDescription obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("ScheduleKind", StringComparison.Ordinal))
+            if (!propName.Equals("ScheduleKind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is ScheduleKind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("FrequencyBased", StringComparison.Ordinal))
+            if (propValue.Equals("FrequencyBased", StringComparison.OrdinalIgnoreCase))
             {
                 obj = FrequencyBasedBackupScheduleDescriptionConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("TimeBased", StringComparison.Ordinal))
+            else if (propValue.Equals("TimeBased", StringComparison.OrdinalIgnoreCase))
             {
                 obj = TimeBasedBackupScheduleDescriptionConverter.GetFromJsonProperties(reader);
             }

@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceEndpointRole);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceEndpointRole.Invalid;
             }
-            else if (string.Compare(value, "Stateless", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stateless", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceEndpointRole.Stateless;
             }
-            else if (string.Compare(value, "StatefulPrimary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatefulPrimary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceEndpointRole.StatefulPrimary;
             }
-            else if (string.Compare(value, "StatefulSecondary", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "StatefulSecondary", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceEndpointRole.StatefulSecondary;
             }

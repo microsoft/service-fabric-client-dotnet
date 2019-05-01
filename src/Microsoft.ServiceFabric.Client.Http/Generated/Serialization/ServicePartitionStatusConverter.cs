@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServicePartitionStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionStatus.Invalid;
             }
-            else if (string.Compare(value, "Ready", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Ready", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionStatus.Ready;
             }
-            else if (string.Compare(value, "NotReady", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NotReady", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionStatus.NotReady;
             }
-            else if (string.Compare(value, "InQuorumLoss", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "InQuorumLoss", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionStatus.InQuorumLoss;
             }
-            else if (string.Compare(value, "Reconfiguring", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Reconfiguring", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionStatus.Reconfiguring;
             }
-            else if (string.Compare(value, "Deleting", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Deleting", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionStatus.Deleting;
             }

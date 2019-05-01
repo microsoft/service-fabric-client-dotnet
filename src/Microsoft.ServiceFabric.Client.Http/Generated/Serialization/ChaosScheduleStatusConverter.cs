@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ChaosScheduleStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosScheduleStatus.Invalid;
             }
-            else if (string.Compare(value, "Stopped", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stopped", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosScheduleStatus.Stopped;
             }
-            else if (string.Compare(value, "Active", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Active", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosScheduleStatus.Active;
             }
-            else if (string.Compare(value, "Expired", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Expired", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosScheduleStatus.Expired;
             }
-            else if (string.Compare(value, "Pending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Pending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ChaosScheduleStatus.Pending;
             }

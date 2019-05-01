@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(SizeTypes);
 
-            if (string.Compare(value, "Small", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Small", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SizeTypes.Small;
             }
-            else if (string.Compare(value, "Medium", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Medium", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SizeTypes.Medium;
             }
-            else if (string.Compare(value, "Large", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Large", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SizeTypes.Large;
             }

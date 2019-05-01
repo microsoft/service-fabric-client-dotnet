@@ -35,13 +35,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             RetentionPolicyDescription obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("RetentionPolicyType", StringComparison.Ordinal))
+            if (!propName.Equals("RetentionPolicyType", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is RetentionPolicyType.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Basic", StringComparison.Ordinal))
+            if (propValue.Equals("Basic", StringComparison.OrdinalIgnoreCase))
             {
                 obj = BasicRetentionPolicyDescriptionConverter.GetFromJsonProperties(reader);
             }

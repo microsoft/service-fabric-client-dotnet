@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServiceKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceKind.Invalid;
             }
-            else if (string.Compare(value, "Stateless", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stateless", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceKind.Stateless;
             }
-            else if (string.Compare(value, "Stateful", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Stateful", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServiceKind.Stateful;
             }

@@ -45,35 +45,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Id", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Id", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     id = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = ApplicationNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("TypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Status", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = DeployedApplicationStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("WorkDirectory", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("WorkDirectory", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     workDirectory = reader.ReadValueAsString();
                 }
-                else if (string.Compare("LogDirectory", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("LogDirectory", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     logDirectory = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TempDirectory", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TempDirectory", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     tempDirectory = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }

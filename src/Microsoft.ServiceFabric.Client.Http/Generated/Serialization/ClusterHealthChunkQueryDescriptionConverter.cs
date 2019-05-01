@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("NodeFilters", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("NodeFilters", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeFilters = reader.ReadList(NodeHealthStateFilterConverter.Deserialize);
                 }
-                else if (string.Compare("ApplicationFilters", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationFilters", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationFilters = reader.ReadList(ApplicationHealthStateFilterConverter.Deserialize);
                 }
-                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterHealthPolicy = ClusterHealthPolicyConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ApplicationHealthPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationHealthPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationHealthPolicies = ApplicationHealthPoliciesConverter.Deserialize(reader);
                 }

@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ReplicaStatus);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaStatus.Invalid;
             }
-            else if (string.Compare(value, "InBuild", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "InBuild", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaStatus.InBuild;
             }
-            else if (string.Compare(value, "Standby", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Standby", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaStatus.Standby;
             }
-            else if (string.Compare(value, "Ready", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Ready", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaStatus.Ready;
             }
-            else if (string.Compare(value, "Down", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Down", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaStatus.Down;
             }
-            else if (string.Compare(value, "Dropped", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Dropped", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ReplicaStatus.Dropped;
             }

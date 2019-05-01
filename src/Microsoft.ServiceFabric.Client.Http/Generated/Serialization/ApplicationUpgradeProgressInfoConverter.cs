@@ -54,71 +54,71 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("TargetApplicationTypeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("TargetApplicationTypeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetApplicationTypeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpgradeDomains", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDomains", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomains = reader.ReadList(UpgradeDomainInfoConverter.Deserialize);
                 }
-                else if (string.Compare("UpgradeState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeState = UpgradeStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NextUpgradeDomain", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NextUpgradeDomain", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nextUpgradeDomain = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RollingUpgradeMode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     rollingUpgradeMode = UpgradeModeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeDescription", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDescription = ApplicationUpgradeDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeDurationInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDurationInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDurationInMilliseconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UpgradeDomainDurationInMilliseconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDomainDurationInMilliseconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomainDurationInMilliseconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UnhealthyEvaluations", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     unhealthyEvaluations = reader.ReadList(HealthEvaluationWrapperConverter.Deserialize);
                 }
-                else if (string.Compare("CurrentUpgradeDomainProgress", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentUpgradeDomainProgress", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentUpgradeDomainProgress = CurrentUpgradeDomainProgressInfoConverter.Deserialize(reader);
                 }
-                else if (string.Compare("StartTimestampUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("StartTimestampUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startTimestampUtc = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureTimestampUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureTimestampUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureTimestampUtc = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FailureReason", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FailureReason", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     failureReason = FailureReasonConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeDomainProgressAtFailure", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDomainProgressAtFailure", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomainProgressAtFailure = FailureUpgradeDomainProgressInfoConverter.Deserialize(reader);
                 }
-                else if (string.Compare("UpgradeStatusDetails", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeStatusDetails", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeStatusDetails = reader.ReadValueAsString();
                 }

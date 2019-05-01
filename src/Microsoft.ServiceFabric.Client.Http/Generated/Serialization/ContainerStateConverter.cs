@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("state", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("state", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     state = reader.ReadValueAsString();
                 }
-                else if (string.Compare("startTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("startTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("exitCode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("exitCode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     exitCode = reader.ReadValueAsString();
                 }
-                else if (string.Compare("finishTime", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("finishTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     finishTime = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("detailStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("detailStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     detailStatus = reader.ReadValueAsString();
                 }

@@ -26,31 +26,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(OperationState);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.Invalid;
             }
-            else if (string.Compare(value, "Running", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Running", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.Running;
             }
-            else if (string.Compare(value, "RollingBack", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RollingBack", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.RollingBack;
             }
-            else if (string.Compare(value, "Completed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Completed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.Completed;
             }
-            else if (string.Compare(value, "Faulted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Faulted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.Faulted;
             }
-            else if (string.Compare(value, "Cancelled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Cancelled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.Cancelled;
             }
-            else if (string.Compare(value, "ForceCancelled", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "ForceCancelled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationState.ForceCancelled;
             }

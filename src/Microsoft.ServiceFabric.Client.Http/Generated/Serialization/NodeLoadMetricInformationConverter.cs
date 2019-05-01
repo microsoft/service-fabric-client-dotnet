@@ -48,47 +48,47 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeLoad = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeRemainingCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeRemainingCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeRemainingCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("IsCapacityViolation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsCapacityViolation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isCapacityViolation = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("NodeBufferedCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeBufferedCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeBufferedCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeRemainingBufferedCapacity", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeRemainingBufferedCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeRemainingBufferedCapacity = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CurrentNodeLoad", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CurrentNodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentNodeLoad = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeCapacityRemaining", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeCapacityRemaining = reader.ReadValueAsString();
                 }
-                else if (string.Compare("BufferedNodeCapacityRemaining", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("BufferedNodeCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     bufferedNodeCapacityRemaining = reader.ReadValueAsString();
                 }
-                else if (string.Compare("PlannedNodeLoadRemoval", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PlannedNodeLoadRemoval", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     plannedNodeLoadRemoval = reader.ReadValueAsString();
                 }

@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(VolumeProvider);
 
-            if (string.Compare(value, "SFAzureFile", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "SFAzureFile", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = VolumeProvider.SFAzureFile;
             }

@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(SecretKind);
 
-            if (string.Compare(value, "inlinedValue", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "inlinedValue", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = SecretKind.InlinedValue;
             }

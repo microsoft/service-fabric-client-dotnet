@@ -35,29 +35,29 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             PropertyValue obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Binary", StringComparison.Ordinal))
+            if (propValue.Equals("Binary", StringComparison.OrdinalIgnoreCase))
             {
                 obj = BinaryPropertyValueConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Int64", StringComparison.Ordinal))
+            else if (propValue.Equals("Int64", StringComparison.OrdinalIgnoreCase))
             {
                 obj = Int64PropertyValueConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Double", StringComparison.Ordinal))
+            else if (propValue.Equals("Double", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DoublePropertyValueConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("String", StringComparison.Ordinal))
+            else if (propValue.Equals("String", StringComparison.OrdinalIgnoreCase))
             {
                 obj = StringPropertyValueConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Guid", StringComparison.Ordinal))
+            else if (propValue.Equals("Guid", StringComparison.OrdinalIgnoreCase))
             {
                 obj = GuidPropertyValueConverter.GetFromJsonProperties(reader);
             }

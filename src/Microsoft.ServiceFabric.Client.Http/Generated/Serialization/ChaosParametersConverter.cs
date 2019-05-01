@@ -46,39 +46,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("TimeToRunInSeconds", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("TimeToRunInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     timeToRunInSeconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("MaxClusterStabilizationTimeoutInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxClusterStabilizationTimeoutInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxClusterStabilizationTimeoutInSeconds = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("MaxConcurrentFaults", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxConcurrentFaults", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxConcurrentFaults = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("EnableMoveReplicaFaults", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("EnableMoveReplicaFaults", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     enableMoveReplicaFaults = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("WaitTimeBetweenFaultsInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("WaitTimeBetweenFaultsInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     waitTimeBetweenFaultsInSeconds = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("WaitTimeBetweenIterationsInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("WaitTimeBetweenIterationsInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     waitTimeBetweenIterationsInSeconds = reader.ReadValueAsLong();
                 }
-                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterHealthPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterHealthPolicy = ClusterHealthPolicyConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Context", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Context", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     context = ChaosContextConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ChaosTargetFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ChaosTargetFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     chaosTargetFilter = ChaosTargetFilterConverter.Deserialize(reader);
                 }

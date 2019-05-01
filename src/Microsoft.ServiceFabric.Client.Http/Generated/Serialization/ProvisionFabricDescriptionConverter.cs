@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("CodeFilePath", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("CodeFilePath", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codeFilePath = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ClusterManifestFilePath", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ClusterManifestFilePath", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     clusterManifestFilePath = reader.ReadValueAsString();
                 }

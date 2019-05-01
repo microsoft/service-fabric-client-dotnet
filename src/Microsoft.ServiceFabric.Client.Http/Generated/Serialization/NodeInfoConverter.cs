@@ -55,75 +55,75 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = NodeNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("IpAddressOrFQDN", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IpAddressOrFQDN", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     ipAddressOrFQDN = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Type", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Type", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     type = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CodeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CodeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     codeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ConfigVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ConfigVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     configVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeStatus", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeStatus", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeStatus = NodeStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("NodeUpTimeInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeUpTimeInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeUpTimeInSeconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("HealthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("HealthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("IsSeedNode", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsSeedNode", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isSeedNode = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("UpgradeDomain", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("UpgradeDomain", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomain = reader.ReadValueAsString();
                 }
-                else if (string.Compare("FaultDomain", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("FaultDomain", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     faultDomain = reader.ReadValueAsString();
                 }
-                else if (string.Compare("Id", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Id", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     id = NodeIdConverter.Deserialize(reader);
                 }
-                else if (string.Compare("InstanceId", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("InstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceId = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeDeactivationInfo", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeDeactivationInfo", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDeactivationInfo = NodeDeactivationInfoConverter.Deserialize(reader);
                 }
-                else if (string.Compare("IsStopped", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("IsStopped", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     isStopped = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("NodeDownTimeInSeconds", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeDownTimeInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDownTimeInSeconds = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeUpAt", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeUpAt", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeUpAt = reader.ReadValueAsDateTime();
                 }
-                else if (string.Compare("NodeDownAt", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeDownAt", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeDownAt = reader.ReadValueAsDateTime();
                 }

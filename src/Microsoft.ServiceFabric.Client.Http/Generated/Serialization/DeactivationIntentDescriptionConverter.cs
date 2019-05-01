@@ -38,7 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("DeactivationIntent", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("DeactivationIntent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deactivationIntent = DeactivationIntentConverter.Deserialize(reader);
                 }

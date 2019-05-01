@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("description", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("description", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     description = reader.ReadValueAsString();
                 }
-                else if (string.Compare("replicaCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("replicaCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("autoScalingPolicies", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("autoScalingPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     autoScalingPolicies = reader.ReadList(AutoScalingPolicyConverter.Deserialize);
                 }
-                else if (string.Compare("status", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     status = ResourceStatusConverter.Deserialize(reader);
                 }
-                else if (string.Compare("statusDetails", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("statusDetails", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     statusDetails = reader.ReadValueAsString();
                 }
-                else if (string.Compare("healthState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("healthState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     healthState = HealthStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("unhealthyEvaluation", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("unhealthyEvaluation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     unhealthyEvaluation = reader.ReadValueAsString();
                 }

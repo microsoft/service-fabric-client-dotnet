@@ -26,15 +26,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(UpgradeType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeType.Invalid;
             }
-            else if (string.Compare(value, "Rolling", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Rolling", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeType.Rolling;
             }
-            else if (string.Compare(value, "Rolling_ForceRestart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Rolling_ForceRestart", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeType.Rolling_ForceRestart;
             }

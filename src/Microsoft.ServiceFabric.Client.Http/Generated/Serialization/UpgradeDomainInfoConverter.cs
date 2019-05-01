@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("State", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("State", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     state = UpgradeDomainStateConverter.Deserialize(reader);
                 }

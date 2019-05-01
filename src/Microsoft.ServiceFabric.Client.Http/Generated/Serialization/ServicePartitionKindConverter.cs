@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServicePartitionKind);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionKind.Invalid;
             }
-            else if (string.Compare(value, "Singleton", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Singleton", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionKind.Singleton;
             }
-            else if (string.Compare(value, "Int64Range", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Int64Range", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionKind.Int64Range;
             }
-            else if (string.Compare(value, "Named", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Named", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePartitionKind.Named;
             }

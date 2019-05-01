@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(RestoreState);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.Invalid;
             }
-            else if (string.Compare(value, "Accepted", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Accepted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.Accepted;
             }
-            else if (string.Compare(value, "RestoreInProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RestoreInProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.RestoreInProgress;
             }
-            else if (string.Compare(value, "Success", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Success", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.Success;
             }
-            else if (string.Compare(value, "Failure", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Failure", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.Failure;
             }
-            else if (string.Compare(value, "Timeout", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Timeout", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.Timeout;
             }

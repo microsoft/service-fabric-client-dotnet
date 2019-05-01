@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(RetentionPolicyType);
 
-            if (string.Compare(value, "Basic", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Basic", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RetentionPolicyType.Basic;
             }
-            else if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RetentionPolicyType.Invalid;
             }

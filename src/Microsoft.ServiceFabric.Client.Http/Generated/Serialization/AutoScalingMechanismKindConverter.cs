@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(AutoScalingMechanismKind);
 
-            if (string.Compare(value, "AddRemoveReplica", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "AddRemoveReplica", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = AutoScalingMechanismKind.AddRemoveReplica;
             }

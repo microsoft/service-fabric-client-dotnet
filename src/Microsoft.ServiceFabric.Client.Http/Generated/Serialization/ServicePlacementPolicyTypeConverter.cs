@@ -26,27 +26,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ServicePlacementPolicyType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePlacementPolicyType.Invalid;
             }
-            else if (string.Compare(value, "InvalidDomain", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "InvalidDomain", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePlacementPolicyType.InvalidDomain;
             }
-            else if (string.Compare(value, "RequireDomain", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RequireDomain", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePlacementPolicyType.RequireDomain;
             }
-            else if (string.Compare(value, "PreferPrimaryDomain", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PreferPrimaryDomain", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePlacementPolicyType.PreferPrimaryDomain;
             }
-            else if (string.Compare(value, "RequireDomainDistribution", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "RequireDomainDistribution", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePlacementPolicyType.RequireDomainDistribution;
             }
-            else if (string.Compare(value, "NonPartiallyPlaceService", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NonPartiallyPlaceService", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ServicePlacementPolicyType.NonPartiallyPlaceService;
             }

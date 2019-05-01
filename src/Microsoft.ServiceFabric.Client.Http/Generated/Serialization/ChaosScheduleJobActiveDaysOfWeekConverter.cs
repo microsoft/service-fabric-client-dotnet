@@ -44,31 +44,31 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Sunday", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Sunday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     sunday = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Monday", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Monday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     monday = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Tuesday", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Tuesday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     tuesday = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Wednesday", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Wednesday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     wednesday = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Thursday", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Thursday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     thursday = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Friday", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Friday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     friday = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("Saturday", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Saturday", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     saturday = reader.ReadValueAsBool();
                 }

@@ -40,15 +40,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("DeploymentName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("DeploymentName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deploymentName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ComposeFileContent", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ComposeFileContent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     composeFileContent = reader.ReadValueAsString();
                 }
-                else if (string.Compare("RegistryCredential", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RegistryCredential", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     registryCredential = RegistryCredentialConverter.Deserialize(reader);
                 }

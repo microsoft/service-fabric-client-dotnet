@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("DatabaseRowCountEstimate", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("DatabaseRowCountEstimate", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     databaseRowCountEstimate = reader.ReadValueAsString();
                 }
-                else if (string.Compare("DatabaseLogicalSizeEstimate", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("DatabaseLogicalSizeEstimate", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     databaseLogicalSizeEstimate = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CopyNotificationCurrentKeyFilter", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CopyNotificationCurrentKeyFilter", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     copyNotificationCurrentKeyFilter = reader.ReadValueAsString();
                 }
-                else if (string.Compare("CopyNotificationCurrentProgress", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("CopyNotificationCurrentProgress", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     copyNotificationCurrentProgress = reader.ReadValueAsString();
                 }
-                else if (string.Compare("StatusDetails", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("StatusDetails", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     statusDetails = reader.ReadValueAsString();
                 }

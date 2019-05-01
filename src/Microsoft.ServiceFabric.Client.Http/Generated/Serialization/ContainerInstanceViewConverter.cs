@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("restartCount", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("restartCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restartCount = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("currentState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("currentState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     currentState = ContainerStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("previousState", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("previousState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     previousState = ContainerStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("events", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("events", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     events = reader.ReadList(ContainerEventConverter.Deserialize);
                 }

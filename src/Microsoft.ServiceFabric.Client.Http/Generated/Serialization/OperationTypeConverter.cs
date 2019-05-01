@@ -26,23 +26,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(OperationType);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationType.Invalid;
             }
-            else if (string.Compare(value, "PartitionDataLoss", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionDataLoss", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationType.PartitionDataLoss;
             }
-            else if (string.Compare(value, "PartitionQuorumLoss", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionQuorumLoss", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationType.PartitionQuorumLoss;
             }
-            else if (string.Compare(value, "PartitionRestart", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "PartitionRestart", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationType.PartitionRestart;
             }
-            else if (string.Compare(value, "NodeTransition", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "NodeTransition", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = OperationType.NodeTransition;
             }

@@ -35,89 +35,89 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             HealthEvaluation obj = null;
             var propName = reader.ReadPropertyName();
-            if (!propName.Equals("Kind", StringComparison.Ordinal))
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
                 throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("Application", StringComparison.Ordinal))
+            if (propValue.Equals("Application", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Applications", StringComparison.Ordinal))
+            else if (propValue.Equals("Applications", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationsHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("ApplicationTypeApplications", StringComparison.Ordinal))
+            else if (propValue.Equals("ApplicationTypeApplications", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ApplicationTypeApplicationsHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeltaNodesCheck", StringComparison.Ordinal))
+            else if (propValue.Equals("DeltaNodesCheck", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeltaNodesCheckHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedApplication", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedApplication", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedApplicationHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedApplications", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedApplications", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedApplicationsHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedServicePackage", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedServicePackage", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedServicePackageHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("DeployedServicePackages", StringComparison.Ordinal))
+            else if (propValue.Equals("DeployedServicePackages", StringComparison.OrdinalIgnoreCase))
             {
                 obj = DeployedServicePackagesHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Event", StringComparison.Ordinal))
+            else if (propValue.Equals("Event", StringComparison.OrdinalIgnoreCase))
             {
                 obj = EventHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Node", StringComparison.Ordinal))
+            else if (propValue.Equals("Node", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodeHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Nodes", StringComparison.Ordinal))
+            else if (propValue.Equals("Nodes", StringComparison.OrdinalIgnoreCase))
             {
                 obj = NodesHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Partition", StringComparison.Ordinal))
+            else if (propValue.Equals("Partition", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Partitions", StringComparison.Ordinal))
+            else if (propValue.Equals("Partitions", StringComparison.OrdinalIgnoreCase))
             {
                 obj = PartitionsHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Replica", StringComparison.Ordinal))
+            else if (propValue.Equals("Replica", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ReplicaHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Replicas", StringComparison.Ordinal))
+            else if (propValue.Equals("Replicas", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ReplicasHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Service", StringComparison.Ordinal))
+            else if (propValue.Equals("Service", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServiceHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("Services", StringComparison.Ordinal))
+            else if (propValue.Equals("Services", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicesHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("SystemApplication", StringComparison.Ordinal))
+            else if (propValue.Equals("SystemApplication", StringComparison.OrdinalIgnoreCase))
             {
                 obj = SystemApplicationHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("UpgradeDomainDeltaNodesCheck", StringComparison.Ordinal))
+            else if (propValue.Equals("UpgradeDomainDeltaNodesCheck", StringComparison.OrdinalIgnoreCase))
             {
                 obj = UpgradeDomainDeltaNodesCheckHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
-            else if (propValue.Equals("UpgradeDomainNodes", StringComparison.Ordinal))
+            else if (propValue.Equals("UpgradeDomainNodes", StringComparison.OrdinalIgnoreCase))
             {
                 obj = UpgradeDomainNodesHealthEvaluationConverter.GetFromJsonProperties(reader);
             }

@@ -43,27 +43,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("Name", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
-                else if (string.Compare("AutoRestoreOnDataLoss", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("AutoRestoreOnDataLoss", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     autoRestoreOnDataLoss = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("MaxIncrementalBackups", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxIncrementalBackups", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxIncrementalBackups = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("Schedule", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Schedule", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     schedule = BackupScheduleDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Storage", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Storage", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     storage = BackupStorageDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RetentionPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RetentionPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     retentionPolicy = RetentionPolicyDescriptionConverter.Deserialize(reader);
                 }

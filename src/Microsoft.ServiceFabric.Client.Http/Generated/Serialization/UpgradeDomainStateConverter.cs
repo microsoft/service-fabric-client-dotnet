@@ -26,19 +26,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(UpgradeDomainState);
 
-            if (string.Compare(value, "Invalid", StringComparison.Ordinal) == 0)
+            if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeDomainState.Invalid;
             }
-            else if (string.Compare(value, "Pending", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Pending", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeDomainState.Pending;
             }
-            else if (string.Compare(value, "InProgress", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "InProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeDomainState.InProgress;
             }
-            else if (string.Compare(value, "Completed", StringComparison.Ordinal) == 0)
+            else if (string.Compare(value, "Completed", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = UpgradeDomainState.Completed;
             }

@@ -42,23 +42,23 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ServiceManifestName", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ServiceManifestName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     serviceManifestName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ApplicationTypeVersion", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ApplicationTypeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     applicationTypeVersion = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NodeName", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeName = NodeNameConverter.Deserialize(reader);
                 }
-                else if (string.Compare("PackageSharingPolicy", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("PackageSharingPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     packageSharingPolicy = reader.ReadList(PackageSharingPolicyInfoConverter.Deserialize);
                 }

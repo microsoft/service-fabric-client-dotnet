@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("MaxPercentDeltaUnhealthyNodes", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("MaxPercentDeltaUnhealthyNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentDeltaUnhealthyNodes = reader.ReadValueAsInt();
                 }
-                else if (string.Compare("MaxPercentUpgradeDomainDeltaUnhealthyNodes", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("MaxPercentUpgradeDomainDeltaUnhealthyNodes", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     maxPercentUpgradeDomainDeltaUnhealthyNodes = reader.ReadValueAsInt();
                 }

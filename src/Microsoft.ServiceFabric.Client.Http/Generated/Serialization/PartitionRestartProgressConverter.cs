@@ -39,11 +39,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("State", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("State", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     state = OperationStateConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RestartPartitionResult", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("RestartPartitionResult", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     restartPartitionResult = RestartPartitionResultConverter.Deserialize(reader);
                 }

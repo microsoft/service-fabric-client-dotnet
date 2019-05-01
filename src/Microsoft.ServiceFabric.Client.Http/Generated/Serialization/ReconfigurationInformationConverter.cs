@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("PreviousConfigurationRole", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("PreviousConfigurationRole", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     previousConfigurationRole = ReplicaRoleConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReconfigurationPhase", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReconfigurationPhase", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reconfigurationPhase = ReconfigurationPhaseConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReconfigurationType", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReconfigurationType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reconfigurationType = ReconfigurationTypeConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ReconfigurationStartTimeUtc", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReconfigurationStartTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     reconfigurationStartTimeUtc = reader.ReadValueAsDateTime();
                 }

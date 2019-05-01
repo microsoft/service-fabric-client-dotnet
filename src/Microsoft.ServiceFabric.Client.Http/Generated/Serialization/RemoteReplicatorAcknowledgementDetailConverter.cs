@@ -41,19 +41,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("AverageReceiveDuration", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("AverageReceiveDuration", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     averageReceiveDuration = reader.ReadValueAsString();
                 }
-                else if (string.Compare("AverageApplyDuration", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("AverageApplyDuration", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     averageApplyDuration = reader.ReadValueAsString();
                 }
-                else if (string.Compare("NotReceivedCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("NotReceivedCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     notReceivedCount = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ReceivedAndNotAppliedCount", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("ReceivedAndNotAppliedCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     receivedAndNotAppliedCount = reader.ReadValueAsString();
                 }
