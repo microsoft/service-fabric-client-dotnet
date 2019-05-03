@@ -24,10 +24,15 @@
 
   <!-- Copy prod  binaries for dotnet standard-->
   <Target Name="CopyProdBinaries_dotnetstandard">
+
+    <!-- Publish FabActUtil so that all binaries from referenced nuget package are available for creation of drop-->
+
+    <Exec Command="dotnet publish &quot;$(RepoRoot)src\Microsoft.ServiceFabric.Client.Http\Microsoft.ServiceFabric.Client.Http.csproj&quot; -o &quot;$(OutputPath)Publish&quot; --no-restore" />
     <ItemGroup>
       <BinairesNetFramework Include="src\Microsoft.ServiceFabric.Common\$(OutputPath)Microsoft.ServiceFabric.Common.*"/>
       <BinairesNetFramework Include="src\Microsoft.ServiceFabric.Client\$(OutputPath)Microsoft.ServiceFabric.Client.*"/>
       <BinairesNetFramework Include="src\Microsoft.ServiceFabric.Client.Http\$(OutputPath)Microsoft.ServiceFabric.Client.Http.*"/>
+      <BinairesNetFramework Include="src\Microsoft.ServiceFabric.Client.Http\$(OutputPath)Publish\Newtonsoft.Json.dll"/>
     </ItemGroup>
     <Copy SourceFiles="@(BinairesNetFramework)" DestinationFiles="@(BinairesNetFramework->'$(DropFolderNetStandard)\%(Destination)\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
   </Target>
