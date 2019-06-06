@@ -45,15 +45,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("ContinuationToken", propName, StringComparison.Ordinal) == 0)
+                if (string.Compare("ContinuationToken", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     continuationToken = ContinuationTokenConverter.Deserialize(reader);
                 }
-                else if (string.Compare("Items", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("Items", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     items = reader.ReadList(deserializeFunc);
                 }
-                else if (string.Compare("History", propName, StringComparison.Ordinal) == 0)
+                else if (string.Compare("History", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    items = reader.ReadList(deserializeFunc);
+                }
+                else if (string.Compare("Properties", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     items = reader.ReadList(deserializeFunc);
                 }
