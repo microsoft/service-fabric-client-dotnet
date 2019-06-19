@@ -29,6 +29,8 @@ namespace Microsoft.ServiceFabric.Common
         /// upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).</param>
         /// <param name="forceRestart">If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).</param>
+        /// <param name="sortOrder">Defines the order in which an upgrade proceeds through the cluster. Possible values
+        /// include: 'Invalid', 'Default', 'Numeric', 'Lexicographical', 'ReverseNumeric', 'ReverseLexicographical'</param>
         /// <param name="enableDeltaHealthEvaluation">When true, enables delta health evaluation rather than absolute health
         /// evaluation after completion of each upgrade domain.</param>
         /// <param name="monitoringPolicy">Describes the parameters for monitoring an upgrade in Monitored mode.</param>
@@ -53,6 +55,7 @@ namespace Microsoft.ServiceFabric.Common
             UpgradeMode? rollingUpgradeMode = Common.UpgradeMode.UnmonitoredAuto,
             long? upgradeReplicaSetCheckTimeoutInSeconds = default(long?),
             bool? forceRestart = default(bool?),
+            UpgradeSortOrder? sortOrder = Common.UpgradeSortOrder.Default,
             bool? enableDeltaHealthEvaluation = default(bool?),
             MonitoringPolicyDescription monitoringPolicy = default(MonitoringPolicyDescription),
             ClusterHealthPolicy clusterHealthPolicy = default(ClusterHealthPolicy),
@@ -65,6 +68,7 @@ namespace Microsoft.ServiceFabric.Common
             this.RollingUpgradeMode = rollingUpgradeMode;
             this.UpgradeReplicaSetCheckTimeoutInSeconds = upgradeReplicaSetCheckTimeoutInSeconds;
             this.ForceRestart = forceRestart;
+            this.SortOrder = sortOrder;
             this.EnableDeltaHealthEvaluation = enableDeltaHealthEvaluation;
             this.MonitoringPolicy = monitoringPolicy;
             this.ClusterHealthPolicy = clusterHealthPolicy;
@@ -106,6 +110,12 @@ namespace Microsoft.ServiceFabric.Common
         /// (the upgrade only changes configuration or data).
         /// </summary>
         public bool? ForceRestart { get; }
+
+        /// <summary>
+        /// Gets defines the order in which an upgrade proceeds through the cluster. Possible values include: 'Invalid',
+        /// 'Default', 'Numeric', 'Lexicographical', 'ReverseNumeric', 'ReverseLexicographical'
+        /// </summary>
+        public UpgradeSortOrder? SortOrder { get; }
 
         /// <summary>
         /// Gets when true, enables delta health evaluation rather than absolute health evaluation after completion of each

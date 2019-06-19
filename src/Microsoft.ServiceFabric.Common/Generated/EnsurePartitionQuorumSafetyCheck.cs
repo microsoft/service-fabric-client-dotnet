@@ -11,13 +11,13 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Safety check that ensures that a quorum of replicas are not lost for a partition.
     /// </summary>
-    public partial class EnsurePartitionQurumSafetyCheck : PartitionSafetyCheck
+    public partial class EnsurePartitionQuorumSafetyCheck : PartitionSafetyCheck
     {
         /// <summary>
-        /// Initializes a new instance of the EnsurePartitionQurumSafetyCheck class.
+        /// Initializes a new instance of the EnsurePartitionQuorumSafetyCheck class.
         /// </summary>
         /// <param name="partitionId">Id of the partition which is undergoing the safety check.</param>
-        public EnsurePartitionQurumSafetyCheck(
+        public EnsurePartitionQuorumSafetyCheck(
             PartitionId partitionId = default(PartitionId))
             : base(
                 Common.SafetyCheckKind.EnsurePartitionQuorum,

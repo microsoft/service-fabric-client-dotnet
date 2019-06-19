@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="ApplicationResourceDescription" />.
+    /// Converter for <see cref="EnsurePartitionQuorumSafetyCheck" />.
     /// </summary>
-    internal class ApplicationResourceDescriptionConverter
+    internal class EnsurePartitionQuorumSafetyCheckConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static ApplicationResourceDescription Deserialize(JsonReader reader)
+        internal static EnsurePartitionQuorumSafetyCheck Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,26 +31,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static ApplicationResourceDescription GetFromJsonProperties(JsonReader reader)
+        internal static EnsurePartitionQuorumSafetyCheck GetFromJsonProperties(JsonReader reader)
         {
-            var name = default(string);
-            var properties = default(ApplicationProperties);
-            var identity = default(IdentityDescription);
+            var partitionId = default(PartitionId);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    name = reader.ReadValueAsString();
-                }
-                else if (string.Compare("properties", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                {
-                    properties = ApplicationPropertiesConverter.Deserialize(reader);
-                }
-                else if (string.Compare("identity", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                {
-                    identity = IdentityDescriptionConverter.Deserialize(reader);
+                    partitionId = PartitionIdConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -59,10 +49,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new ApplicationResourceDescription(
-                name: name,
-                properties: properties,
-                identity: identity);
+            return new EnsurePartitionQuorumSafetyCheck(
+                partitionId: partitionId);
         }
 
         /// <summary>
@@ -70,15 +58,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, ApplicationResourceDescription obj)
+        internal static void Serialize(JsonWriter writer, EnsurePartitionQuorumSafetyCheck obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);
-            writer.WriteProperty(obj.Properties, "properties", ApplicationPropertiesConverter.Serialize);
-            if (obj.Identity != null)
+            writer.WriteProperty(obj.Kind, "Kind", SafetyCheckKindConverter.Serialize);
+            if (obj.PartitionId != null)
             {
-                writer.WriteProperty(obj.Identity, "identity", IdentityDescriptionConverter.Serialize);
+                writer.WriteProperty(obj.PartitionId, "PartitionId", PartitionIdConverter.Serialize);
             }
 
             writer.WriteEndObject();

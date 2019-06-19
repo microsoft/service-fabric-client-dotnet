@@ -44,6 +44,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var statusDetails = default(string);
             var healthState = default(HealthState?);
             var unhealthyEvaluation = default(string);
+            var identityRefs = default(IEnumerable<ServiceIdentity>);
 
             do
             {
@@ -92,6 +93,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     unhealthyEvaluation = reader.ReadValueAsString();
                 }
+                else if (string.Compare("identityRefs", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    identityRefs = reader.ReadList(ServiceIdentityConverter.Deserialize);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -106,7 +111,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 diagnostics: diagnostics,
                 description: description,
                 replicaCount: replicaCount,
-                autoScalingPolicies: autoScalingPolicies);
+                autoScalingPolicies: autoScalingPolicies,
+                identityRefs: identityRefs);
 
             serviceResourceProperties.Status = status;
             serviceResourceProperties.StatusDetails = statusDetails;
@@ -161,6 +167,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.UnhealthyEvaluation != null)
             {
                 writer.WriteProperty(obj.UnhealthyEvaluation, "unhealthyEvaluation", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.IdentityRefs != null)
+            {
+                writer.WriteEnumerableProperty(obj.IdentityRefs, "identityRefs", ServiceIdentityConverter.Serialize);
             }
 
             writer.WriteEndObject();

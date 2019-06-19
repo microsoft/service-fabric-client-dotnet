@@ -181,9 +181,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="replicaId">The identifier of the replica.</param>
-        /// <param name ="replicaHealthReportServiceKind">The kind of service replica (Stateless or Stateful) for which the
-        /// health is being reported. Following are the possible values. Possible values include: 'Stateless',
-        /// 'Stateful'</param>
+        /// <param name ="serviceKind">The kind of service replica (Stateless or Stateful) for which the health is being
+        /// reported. Following are the possible values. Possible values include: 'Stateless', 'Stateful'</param>
         /// <param name ="healthInformation">Describes the health information for the health report. This information needs to
         /// be present in all of the health reports sent to the health manager.</param>
         /// <param name ="immediate">A flag that indicates whether the report should be sent immediately.
@@ -213,7 +212,7 @@ namespace Microsoft.ServiceFabric.Client
         Task ReportReplicaHealthAsync(
             PartitionId partitionId,
             ReplicaId replicaId,
-            ReplicaHealthReportServiceKind? replicaHealthReportServiceKind,
+            ReplicaHealthReportServiceKind? serviceKind,
             HealthInformation healthInformation,
             bool? immediate = false,
             long? serverTimeout = 60,

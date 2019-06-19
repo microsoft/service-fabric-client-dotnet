@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var timeToRunInSeconds = default(double?);
             var maxClusterStabilizationTimeoutInSeconds = default(double?);
             var waitTimeBetweenIterationsInSeconds = default(double?);
-            var waitTimeBetweenFautlsInSeconds = default(double?);
+            var waitTimeBetweenFaultsInSeconds = default(double?);
             var moveReplicaFaultEnabled = default(bool?);
             var includedNodeTypeList = default(string);
             var includedApplicationList = default(string);
@@ -83,9 +83,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     waitTimeBetweenIterationsInSeconds = reader.ReadValueAsDouble();
                 }
-                else if (string.Compare("WaitTimeBetweenFautlsInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare("WaitTimeBetweenFaultsInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    waitTimeBetweenFautlsInSeconds = reader.ReadValueAsDouble();
+                    waitTimeBetweenFaultsInSeconds = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("MoveReplicaFaultEnabled", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -123,7 +123,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 timeToRunInSeconds: timeToRunInSeconds,
                 maxClusterStabilizationTimeoutInSeconds: maxClusterStabilizationTimeoutInSeconds,
                 waitTimeBetweenIterationsInSeconds: waitTimeBetweenIterationsInSeconds,
-                waitTimeBetweenFautlsInSeconds: waitTimeBetweenFautlsInSeconds,
+                waitTimeBetweenFaultsInSeconds: waitTimeBetweenFaultsInSeconds,
                 moveReplicaFaultEnabled: moveReplicaFaultEnabled,
                 includedNodeTypeList: includedNodeTypeList,
                 includedApplicationList: includedApplicationList,
@@ -147,7 +147,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.TimeToRunInSeconds, "TimeToRunInSeconds", JsonWriterExtensions.WriteDoubleValue);
             writer.WriteProperty(obj.MaxClusterStabilizationTimeoutInSeconds, "MaxClusterStabilizationTimeoutInSeconds", JsonWriterExtensions.WriteDoubleValue);
             writer.WriteProperty(obj.WaitTimeBetweenIterationsInSeconds, "WaitTimeBetweenIterationsInSeconds", JsonWriterExtensions.WriteDoubleValue);
-            writer.WriteProperty(obj.WaitTimeBetweenFautlsInSeconds, "WaitTimeBetweenFautlsInSeconds", JsonWriterExtensions.WriteDoubleValue);
+            writer.WriteProperty(obj.WaitTimeBetweenFaultsInSeconds, "WaitTimeBetweenFaultsInSeconds", JsonWriterExtensions.WriteDoubleValue);
             writer.WriteProperty(obj.MoveReplicaFaultEnabled, "MoveReplicaFaultEnabled", JsonWriterExtensions.WriteBoolValue);
             writer.WriteProperty(obj.IncludedNodeTypeList, "IncludedNodeTypeList", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.IncludedApplicationList, "IncludedApplicationList", JsonWriterExtensions.WriteStringValue);

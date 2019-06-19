@@ -47,7 +47,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             else if (propValue.Equals("EnsurePartitionQuorum", StringComparison.OrdinalIgnoreCase))
             {
-                obj = EnsurePartitionQurumSafetyCheckConverter.GetFromJsonProperties(reader);
+                obj = EnsurePartitionQuorumSafetyCheckConverter.GetFromJsonProperties(reader);
             }
             else if (propValue.Equals("EnsureSeedNodeQuorum", StringComparison.OrdinalIgnoreCase))
             {
@@ -91,7 +91,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             else if (kind.Equals(SafetyCheckKind.EnsurePartitionQuorum))
             {
-                EnsurePartitionQurumSafetyCheckConverter.Serialize(writer, (EnsurePartitionQurumSafetyCheck)obj);
+                EnsurePartitionQuorumSafetyCheckConverter.Serialize(writer, (EnsurePartitionQuorumSafetyCheck)obj);
             }
             else if (kind.Equals(SafetyCheckKind.EnsureSeedNodeQuorum))
             {

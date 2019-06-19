@@ -37,6 +37,8 @@ namespace Microsoft.ServiceFabric.Common
         /// upgrade domain. Valid values are between 0 and 42949672925 inclusive. (unsigned 32-bit integer).</param>
         /// <param name="forceRestart">If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).</param>
+        /// <param name="sortOrder">Defines the order in which an upgrade proceeds through the cluster. Possible values
+        /// include: 'Invalid', 'Default', 'Numeric', 'Lexicographical', 'ReverseNumeric', 'ReverseLexicographical'</param>
         /// <param name="monitoringPolicy">Describes the parameters for monitoring an upgrade in Monitored mode.</param>
         /// <param name="applicationHealthPolicy">Defines a health policy used to evaluate the health of an application or one
         /// of its children entities.
@@ -49,6 +51,7 @@ namespace Microsoft.ServiceFabric.Common
             UpgradeMode? rollingUpgradeMode = Common.UpgradeMode.UnmonitoredAuto,
             long? upgradeReplicaSetCheckTimeoutInSeconds = default(long?),
             bool? forceRestart = default(bool?),
+            UpgradeSortOrder? sortOrder = Common.UpgradeSortOrder.Default,
             MonitoringPolicyDescription monitoringPolicy = default(MonitoringPolicyDescription),
             ApplicationHealthPolicy applicationHealthPolicy = default(ApplicationHealthPolicy))
         {
@@ -62,6 +65,7 @@ namespace Microsoft.ServiceFabric.Common
             this.RollingUpgradeMode = rollingUpgradeMode;
             this.UpgradeReplicaSetCheckTimeoutInSeconds = upgradeReplicaSetCheckTimeoutInSeconds;
             this.ForceRestart = forceRestart;
+            this.SortOrder = sortOrder;
             this.MonitoringPolicy = monitoringPolicy;
             this.ApplicationHealthPolicy = applicationHealthPolicy;
         }
@@ -106,6 +110,12 @@ namespace Microsoft.ServiceFabric.Common
         /// (the upgrade only changes configuration or data).
         /// </summary>
         public bool? ForceRestart { get; }
+
+        /// <summary>
+        /// Gets defines the order in which an upgrade proceeds through the cluster. Possible values include: 'Invalid',
+        /// 'Default', 'Numeric', 'Lexicographical', 'ReverseNumeric', 'ReverseLexicographical'
+        /// </summary>
+        public UpgradeSortOrder? SortOrder { get; }
 
         /// <summary>
         /// Gets the parameters for monitoring an upgrade in Monitored mode.

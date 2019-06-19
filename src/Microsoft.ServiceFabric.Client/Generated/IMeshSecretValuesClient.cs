@@ -90,7 +90,7 @@ namespace Microsoft.ServiceFabric.Client
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
-        /// List names of all values of the the specified secret resource.
+        /// List names of all values of the specified secret resource.
         /// </summary>
         /// <remarks>
         /// Gets information about all secret value resources of the specified secret resource. The information includes the

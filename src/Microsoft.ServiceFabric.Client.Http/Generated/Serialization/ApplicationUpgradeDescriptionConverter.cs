@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var rollingUpgradeMode = default(UpgradeMode?);
             var upgradeReplicaSetCheckTimeoutInSeconds = default(long?);
             var forceRestart = default(bool?);
+            var sortOrder = default(UpgradeSortOrder?);
             var monitoringPolicy = default(MonitoringPolicyDescription);
             var applicationHealthPolicy = default(ApplicationHealthPolicy);
 
@@ -74,6 +75,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     forceRestart = reader.ReadValueAsBool();
                 }
+                else if (string.Compare("SortOrder", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    sortOrder = UpgradeSortOrderConverter.Deserialize(reader);
+                }
                 else if (string.Compare("MonitoringPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     monitoringPolicy = MonitoringPolicyDescriptionConverter.Deserialize(reader);
@@ -97,6 +102,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 rollingUpgradeMode: rollingUpgradeMode,
                 upgradeReplicaSetCheckTimeoutInSeconds: upgradeReplicaSetCheckTimeoutInSeconds,
                 forceRestart: forceRestart,
+                sortOrder: sortOrder,
                 monitoringPolicy: monitoringPolicy,
                 applicationHealthPolicy: applicationHealthPolicy);
         }
@@ -114,6 +120,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.Name, "Name", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.TargetApplicationTypeVersion, "TargetApplicationTypeVersion", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.RollingUpgradeMode, "RollingUpgradeMode", UpgradeModeConverter.Serialize);
+            writer.WriteProperty(obj.SortOrder, "SortOrder", UpgradeSortOrderConverter.Serialize);
             if (obj.Parameters != null)
             {
                 writer.WriteProperty(obj.Parameters, "Parameters", ApplicationParametersConverter.Serialize);

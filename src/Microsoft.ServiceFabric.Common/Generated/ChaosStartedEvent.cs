@@ -22,7 +22,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="timeToRunInSeconds">Time to run in seconds.</param>
         /// <param name="maxClusterStabilizationTimeoutInSeconds">Maximum timeout for cluster stabilization in seconds.</param>
         /// <param name="waitTimeBetweenIterationsInSeconds">Wait time between iterations in seconds.</param>
-        /// <param name="waitTimeBetweenFautlsInSeconds">Wait time between faults in seconds.</param>
+        /// <param name="waitTimeBetweenFaultsInSeconds">Wait time between faults in seconds.</param>
         /// <param name="moveReplicaFaultEnabled">Indicates MoveReplica fault is enabled.</param>
         /// <param name="includedNodeTypeList">List of included Node types.</param>
         /// <param name="includedApplicationList">List of included Applications.</param>
@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Common
             double? timeToRunInSeconds,
             double? maxClusterStabilizationTimeoutInSeconds,
             double? waitTimeBetweenIterationsInSeconds,
-            double? waitTimeBetweenFautlsInSeconds,
+            double? waitTimeBetweenFaultsInSeconds,
             bool? moveReplicaFaultEnabled,
             string includedNodeTypeList,
             string includedApplicationList,
@@ -56,7 +56,7 @@ namespace Microsoft.ServiceFabric.Common
             timeToRunInSeconds.ThrowIfNull(nameof(timeToRunInSeconds));
             maxClusterStabilizationTimeoutInSeconds.ThrowIfNull(nameof(maxClusterStabilizationTimeoutInSeconds));
             waitTimeBetweenIterationsInSeconds.ThrowIfNull(nameof(waitTimeBetweenIterationsInSeconds));
-            waitTimeBetweenFautlsInSeconds.ThrowIfNull(nameof(waitTimeBetweenFautlsInSeconds));
+            waitTimeBetweenFaultsInSeconds.ThrowIfNull(nameof(waitTimeBetweenFaultsInSeconds));
             moveReplicaFaultEnabled.ThrowIfNull(nameof(moveReplicaFaultEnabled));
             includedNodeTypeList.ThrowIfNull(nameof(includedNodeTypeList));
             includedApplicationList.ThrowIfNull(nameof(includedApplicationList));
@@ -66,7 +66,7 @@ namespace Microsoft.ServiceFabric.Common
             this.TimeToRunInSeconds = timeToRunInSeconds;
             this.MaxClusterStabilizationTimeoutInSeconds = maxClusterStabilizationTimeoutInSeconds;
             this.WaitTimeBetweenIterationsInSeconds = waitTimeBetweenIterationsInSeconds;
-            this.WaitTimeBetweenFautlsInSeconds = waitTimeBetweenFautlsInSeconds;
+            this.WaitTimeBetweenFaultsInSeconds = waitTimeBetweenFaultsInSeconds;
             this.MoveReplicaFaultEnabled = moveReplicaFaultEnabled;
             this.IncludedNodeTypeList = includedNodeTypeList;
             this.IncludedApplicationList = includedApplicationList;
@@ -97,7 +97,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets wait time between faults in seconds.
         /// </summary>
-        public double? WaitTimeBetweenFautlsInSeconds { get; }
+        public double? WaitTimeBetweenFaultsInSeconds { get; }
 
         /// <summary>
         /// Gets indicates MoveReplica fault is enabled.
