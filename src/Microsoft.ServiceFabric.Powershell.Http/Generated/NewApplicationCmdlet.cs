@@ -65,11 +65,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public IEnumerable<ApplicationMetricDescription> ApplicationMetrics { get; set; }
 
         /// <summary>
+        /// Gets or sets TokenServiceEndpoint. Token service endpoint.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 7)]
+        public string TokenServiceEndpoint { get; set; }
+
+        /// <summary>
+        /// Gets or sets ManagedIdentities. A list of managed application identity objects.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 8)]
+        public IEnumerable<ManagedApplicationIdentity> ManagedIdentities { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7)]
+        [Parameter(Mandatory = false, Position = 9)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -80,12 +92,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             maximumNodes: this.MaximumNodes,
             applicationMetrics: this.ApplicationMetrics);
 
+            var managedApplicationIdentityDescription = new ManagedApplicationIdentityDescription(
+            tokenServiceEndpoint: this.TokenServiceEndpoint,
+            managedIdentities: this.ManagedIdentities);
+
             var applicationDescription = new ApplicationDescription(
             name: this.Name,
             typeName: this.TypeName,
             typeVersion: this.TypeVersion,
             parameters: this.Parameters?.ToDictionary<string, string>(),
-            applicationCapacity: applicationCapacityDescription);
+            applicationCapacity: applicationCapacityDescription,
+            managedApplicationIdentity: managedApplicationIdentityDescription);
 
             this.ServiceFabricClient.Applications.CreateApplicationAsync(
                 applicationDescription: applicationDescription,

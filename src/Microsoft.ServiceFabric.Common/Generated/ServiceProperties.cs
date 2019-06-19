@@ -19,14 +19,17 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="description">User readable description of the service.</param>
         /// <param name="replicaCount">The number of replicas of the service to create. Defaults to 1 if not specified.</param>
         /// <param name="autoScalingPolicies">Auto scaling policies</param>
+        /// <param name="identityRefs">The service identity list.</param>
         public ServiceProperties(
             string description = default(string),
             int? replicaCount = default(int?),
-            IEnumerable<AutoScalingPolicy> autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>))
+            IEnumerable<AutoScalingPolicy> autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>),
+            IEnumerable<ServiceIdentity> identityRefs = default(IEnumerable<ServiceIdentity>))
         {
             this.Description = description;
             this.ReplicaCount = replicaCount;
             this.AutoScalingPolicies = autoScalingPolicies;
+            this.IdentityRefs = identityRefs;
         }
 
         /// <summary>
@@ -70,5 +73,10 @@ namespace Microsoft.ServiceFabric.Common
         /// the user to know why the service is marked unhealthy.
         /// </summary>
         public string UnhealthyEvaluation { get; internal set; }
+
+        /// <summary>
+        /// Gets the service identity list.
+        /// </summary>
+        public IEnumerable<ServiceIdentity> IdentityRefs { get; }
     }
 }

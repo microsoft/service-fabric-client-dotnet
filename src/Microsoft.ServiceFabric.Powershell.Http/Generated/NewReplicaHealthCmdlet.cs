@@ -29,11 +29,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public ReplicaId ReplicaId { get; set; }
 
         /// <summary>
-        /// Gets or sets ReplicaHealthReportServiceKind. The kind of service replica (Stateless or Stateful) for which the
-        /// health is being reported. Following are the possible values. Possible values include: 'Stateless', 'Stateful'
+        /// Gets or sets ServiceKind. The kind of service replica (Stateless or Stateful) for which the health is being
+        /// reported. Following are the possible values. Possible values include: 'Stateless', 'Stateful'
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 2)]
-        public ReplicaHealthReportServiceKind? ReplicaHealthReportServiceKind { get; set; }
+        [Parameter(Mandatory = true, Position = 2)]
+        public ReplicaHealthReportServiceKind? ServiceKind { get; set; }
 
         /// <summary>
         /// Gets or sets SourceId. The source name that identifies the client/watchdog/system component that generated the
@@ -152,7 +152,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             this.ServiceFabricClient.Replicas.ReportReplicaHealthAsync(
                 partitionId: this.PartitionId,
                 replicaId: this.ReplicaId,
-                replicaHealthReportServiceKind: this.ReplicaHealthReportServiceKind,
+                serviceKind: this.ServiceKind,
                 healthInformation: healthInformation,
                 immediate: this.Immediate,
                 serverTimeout: this.ServerTimeout,

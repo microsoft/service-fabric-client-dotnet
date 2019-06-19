@@ -472,8 +472,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <remarks>
         /// This command moves the secondary replica of a partition of a stateful service, respecting all constraints.
-        /// CuurentNodeName parameter must be specified to identify the replica that is moved.
-        /// Source node name must be specified, but new node name can be ommited, and in that case replica is moved to a random
+        /// CurrentNodeName parameter must be specified to identify the replica that is moved.
+        /// Source node name must be specified, but new node name can be omitted, and in that case replica is moved to a random
         /// node.
         /// If IgnoreConstraints parameter is specified and set to true, then secondary will be moved regardless of the
         /// constraints.

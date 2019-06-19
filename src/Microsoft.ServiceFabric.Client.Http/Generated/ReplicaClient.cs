@@ -186,7 +186,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         public Task ReportReplicaHealthAsync(
             PartitionId partitionId,
             ReplicaId replicaId,
-            ReplicaHealthReportServiceKind? replicaHealthReportServiceKind,
+            ReplicaHealthReportServiceKind? serviceKind,
             HealthInformation healthInformation,
             bool? immediate = false,
             long? serverTimeout = 60,
@@ -194,7 +194,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         {
             partitionId.ThrowIfNull(nameof(partitionId));
             replicaId.ThrowIfNull(nameof(replicaId));
-            replicaHealthReportServiceKind.ThrowIfNull(nameof(replicaHealthReportServiceKind));
+            serviceKind.ThrowIfNull(nameof(serviceKind));
             healthInformation.ThrowIfNull(nameof(healthInformation));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
@@ -204,7 +204,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
-            replicaHealthReportServiceKind?.AddToQueryParameters(queryParams, $"ReplicaHealthReportServiceKind={replicaHealthReportServiceKind.ToString()}");
+            serviceKind?.AddToQueryParameters(queryParams, $"ServiceKind={serviceKind.ToString()}");
             immediate?.AddToQueryParameters(queryParams, $"Immediate={immediate}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.0");

@@ -60,6 +60,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public bool? ForceRestart { get; set; }
 
         /// <summary>
+        /// Gets or sets SortOrder. Defines the order in which an upgrade proceeds through the cluster. Possible values
+        /// include: 'Invalid', 'Default', 'Numeric', 'Lexicographical', 'ReverseNumeric', 'ReverseLexicographical'
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 6)]
+        public UpgradeSortOrder? SortOrder { get; set; } = Common.UpgradeSortOrder.Default;
+
+        /// <summary>
         /// Gets or sets FailureAction. The compensating action to perform when a Monitored upgrade encounters monitoring
         /// policy or health policy violations.
         /// Invalid indicates the failure action is invalid. Rollback specifies that the upgrade will start rolling back
@@ -67,7 +74,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Manual indicates that the upgrade will switch to UnmonitoredManual upgrade mode.
         /// . Possible values include: 'Invalid', 'Rollback', 'Manual'
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6)]
+        [Parameter(Mandatory = false, Position = 7)]
         public FailureAction? FailureAction { get; set; }
 
         /// <summary>
@@ -75,7 +82,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// before applying health policies. It is first interpreted as a string representing an ISO 8601 duration. If that
         /// fails, then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7)]
+        [Parameter(Mandatory = false, Position = 8)]
         public string HealthCheckWaitDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -84,7 +91,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8)]
+        [Parameter(Mandatory = false, Position = 9)]
         public string HealthCheckStableDurationInMilliseconds { get; set; }
 
         /// <summary>
@@ -93,7 +100,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// representing an ISO 8601 duration. If that fails, then it is interpreted as a number representing the total number
         /// of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9)]
+        [Parameter(Mandatory = false, Position = 10)]
         public string HealthCheckRetryTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -101,7 +108,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10)]
+        [Parameter(Mandatory = false, Position = 11)]
         public string UpgradeTimeoutInMilliseconds { get; set; }
 
         /// <summary>
@@ -109,13 +116,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11)]
+        [Parameter(Mandatory = false, Position = 12)]
         public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>
         /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12)]
+        [Parameter(Mandatory = false, Position = 13)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -132,7 +139,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
         /// tolerate that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13)]
+        [Parameter(Mandatory = false, Position = 14)]
         public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
@@ -147,7 +154,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ApplicationTypeHealthPolicyMap.
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14)]
+        [Parameter(Mandatory = false, Position = 15)]
         public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
@@ -169,14 +176,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 16)]
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets EnableDeltaHealthEvaluation. When true, enables delta health evaluation rather than absolute health
         /// evaluation after completion of each upgrade domain.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 17)]
         public bool? EnableDeltaHealthEvaluation { get; set; }
 
         /// <summary>
@@ -185,7 +192,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// state of the nodes at the time of the health evaluation. The check is performed after every upgrade domain upgrade
         /// completion to make sure the global state of the cluster is within tolerated limits. The default value is 10%.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17)]
+        [Parameter(Mandatory = false, Position = 18)]
         public int? MaxPercentDeltaUnhealthyNodes { get; set; }
 
         /// <summary>
@@ -195,14 +202,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The check is performed after every upgrade domain upgrade completion for all completed upgrade domains to make sure
         /// the state of the upgrade domains is within tolerated limits. The default value is 15%.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18)]
+        [Parameter(Mandatory = false, Position = 19)]
         public int? MaxPercentUpgradeDomainDeltaUnhealthyNodes { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
         /// evaluate specific applications in the cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19)]
+        [Parameter(Mandatory = false, Position = 20)]
         public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
@@ -210,7 +217,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20)]
+        [Parameter(Mandatory = false, Position = 21)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -244,6 +251,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             rollingUpgradeMode: this.RollingUpgradeMode,
             upgradeReplicaSetCheckTimeoutInSeconds: this.UpgradeReplicaSetCheckTimeoutInSeconds,
             forceRestart: this.ForceRestart,
+            sortOrder: this.SortOrder,
             monitoringPolicy: monitoringPolicyDescription,
             clusterHealthPolicy: clusterHealthPolicy,
             enableDeltaHealthEvaluation: this.EnableDeltaHealthEvaluation,

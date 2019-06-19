@@ -1263,6 +1263,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="6">
+                <maml:name>SortOrder</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Defines the order in which an upgrade proceeds through the cluster. Possible values include: 'Invalid', 'Default', 'Numeric', 'Lexicographical', 'ReverseNumeric', 'ReverseLexicographical'
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">UpgradeSortOrder?</command:parameterValue>
+                <dev:type>
+                    <maml:name>UpgradeSortOrder?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="7">
                 <maml:name>FailureAction</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1277,7 +1289,7 @@
                     <maml:name>FailureAction?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="7">
+            <command:parameter required="false" position="8">
                 <maml:name>HealthCheckWaitDurationInMilliseconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1289,7 +1301,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="8">
+            <command:parameter required="false" position="9">
                 <maml:name>HealthCheckStableDurationInMilliseconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1301,7 +1313,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>HealthCheckRetryTimeoutInMilliseconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1313,7 +1325,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>UpgradeTimeoutInMilliseconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1325,7 +1337,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>UpgradeDomainTimeoutInMilliseconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1337,7 +1349,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>ConsiderWarningAsError</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1349,7 +1361,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>MaxPercentUnhealthyNodes</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1369,7 +1381,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>MaxPercentUnhealthyApplications</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1387,7 +1399,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>ApplicationTypeHealthPolicyMap</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1409,7 +1421,7 @@
                     <maml:name>IEnumerable&lt;ApplicationTypeHealthPolicyMapItem&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>EnableDeltaHealthEvaluation</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1421,7 +1433,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="17">
+            <command:parameter required="false" position="18">
                 <maml:name>MaxPercentDeltaUnhealthyNodes</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1433,7 +1445,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="18">
+            <command:parameter required="false" position="19">
                 <maml:name>MaxPercentUpgradeDomainDeltaUnhealthyNodes</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1445,7 +1457,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="19">
+            <command:parameter required="false" position="20">
                 <maml:name>ApplicationHealthPolicyMap</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1457,7 +1469,7 @@
                     <maml:name>IEnumerable&lt;ApplicationHealthPolicyMapItem&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="20">
+            <command:parameter required="false" position="21">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -2652,7 +2664,7 @@
             <command:syntax>
             </command:syntax>
             <maml:description>
-                <maml:para>This implies that it is not possible to recover the persisted state of that node. This generally happens if a hard disk has been wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful. This operation lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric should stop waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not been removed and the node can come back up with its state intact.</maml:para>
+                <maml:para>This implies that it is not possible to recover the persisted state of that node. This generally happens if a hard disk has been wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful. This operation lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric should stop waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not been removed and the node can come back up with its state intact. Starting from Service Fabric 6.5, in order to use this API for seed nodes, please change the seed nodes to regular (non-seed) nodes and then invoke this API to remove the node state. If the cluster is running on Azure, after the seed node goes down, Service Fabric will try to change it to a non-seed node automatically. To make this happen, make sure the number of non-seed nodes in the primary node type is no less than the number of Down seed nodes. If necessary, add more nodes to the primary node type to achieve this. For standalone cluster, if the Down seed node is not expected to come back up with its state intact, please remove the node from the cluster, see https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
@@ -3500,6 +3512,30 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="7">
+                <maml:name>TokenServiceEndpoint</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Token service endpoint.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="8">
+                <maml:name>ManagedIdentities</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A list of managed application identity objects.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">IEnumerable&lt;ManagedApplicationIdentity&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;ManagedApplicationIdentity&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="9">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7981,8 +8017,8 @@
             </command:syntax>
             <maml:description>
                 <maml:para>This command moves the secondary replica of a partition of a stateful service, respecting all constraints.
-                CuurentNodeName parameter must be specified to identify the replica that is moved.
-                Source node name must be specified, but new node name can be ommited, and in that case replica is moved to a random node.
+                CurrentNodeName parameter must be specified to identify the replica that is moved.
+                Source node name must be specified, but new node name can be omitted, and in that case replica is moved to a random node.
                 If IgnoreConstraints parameter is specified and set to true, then secondary will be moved regardless of the constraints.
                 </maml:para>
             </maml:description>
@@ -9465,8 +9501,8 @@
                     <maml:name>ReplicaId</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="2">
-                <maml:name>ReplicaHealthReportServiceKind</maml:name>
+            <command:parameter required="true" position="2">
+                <maml:name>ServiceKind</maml:name>
                 <maml:Description>
                     <maml:para>
                     The kind of service replica (Stateless or Stateful) for which the health is being reported. Following are the possible values. Possible values include: 'Stateless', 'Stateful'
@@ -11893,7 +11929,7 @@
                     <maml:para>
                     A list of node types to include in Chaos faults.
                     All types of faults (restart node, restart code package, remove replica, restart replica, move primary, and move secondary) are enabled for the nodes of these node types.
-                    If a nodetype (say NodeTypeX) does not appear in the NodeTypeInclusionList, then node level faults (like NodeRestart) will never be enabled for the nodes of
+                    If a node type (say NodeTypeX) does not appear in the NodeTypeInclusionList, then node level faults (like NodeRestart) will never be enabled for the nodes of
                     NodeTypeX, but code package and replica faults can still be enabled for NodeTypeX if an application in the ApplicationInclusionList.
                     happens to reside on a node of NodeTypeX.
                     At most 100 node type names can be included in this list, to increase this number, a config upgrade is required for MaxNumberOfNodeTypesInChaosEntityFilter configuration.
@@ -17662,7 +17698,7 @@
                 <command:verb>Get</command:verb>
                 <command:noun>MeshSecretValue</command:noun>
                 <maml:description>
-                    <maml:para>List names of all values of the the specified secret resource.</maml:para>
+                    <maml:para>List names of all values of the specified secret resource.</maml:para>
                 </maml:description>
             </command:details>
             <command:syntax>

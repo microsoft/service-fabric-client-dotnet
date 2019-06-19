@@ -18,14 +18,17 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="name">Name of the Application resource.</param>
         /// <param name="properties">Describes properties of a application resource.</param>
+        /// <param name="identity">Describes the identity of the application.</param>
         public ApplicationResourceDescription(
             string name,
-            ApplicationProperties properties)
+            ApplicationProperties properties,
+            IdentityDescription identity = default(IdentityDescription))
         {
             name.ThrowIfNull(nameof(name));
             properties.ThrowIfNull(nameof(properties));
             this.Name = name;
             this.Properties = properties;
+            this.Identity = identity;
         }
 
         /// <summary>
@@ -37,5 +40,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets properties of a application resource.
         /// </summary>
         public ApplicationProperties Properties { get; }
+
+        /// <summary>
+        /// Gets the identity of the application.
+        /// </summary>
+        public IdentityDescription Identity { get; }
     }
 }

@@ -28,12 +28,14 @@ namespace Microsoft.ServiceFabric.Common
         /// - Limiting the custom capacity metrics to limit the total consumption of this metric by the services of this
         /// application
         /// </param>
+        /// <param name="managedApplicationIdentity">Managed application identity description.</param>
         public ApplicationDescription(
             ApplicationName name,
             string typeName,
             string typeVersion,
             IReadOnlyDictionary<string, string> parameters = default(IReadOnlyDictionary<string, string>),
-            ApplicationCapacityDescription applicationCapacity = default(ApplicationCapacityDescription))
+            ApplicationCapacityDescription applicationCapacity = default(ApplicationCapacityDescription),
+            ManagedApplicationIdentityDescription managedApplicationIdentity = default(ManagedApplicationIdentityDescription))
         {
             name.ThrowIfNull(nameof(name));
             typeName.ThrowIfNull(nameof(typeName));
@@ -43,6 +45,7 @@ namespace Microsoft.ServiceFabric.Common
             this.TypeVersion = typeVersion;
             this.Parameters = parameters;
             this.ApplicationCapacity = applicationCapacity;
+            this.ManagedApplicationIdentity = managedApplicationIdentity;
         }
 
         /// <summary>
@@ -75,5 +78,10 @@ namespace Microsoft.ServiceFabric.Common
         /// application
         /// </summary>
         public ApplicationCapacityDescription ApplicationCapacity { get; }
+
+        /// <summary>
+        /// Gets managed application identity description.
+        /// </summary>
+        public ManagedApplicationIdentityDescription ManagedApplicationIdentity { get; }
     }
 }

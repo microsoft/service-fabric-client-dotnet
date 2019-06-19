@@ -39,6 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var rollingUpgradeMode = default(UpgradeMode?);
             var upgradeReplicaSetCheckTimeoutInSeconds = default(long?);
             var forceRestart = default(bool?);
+            var sortOrder = default(UpgradeSortOrder?);
             var monitoringPolicy = default(MonitoringPolicyDescription);
             var clusterHealthPolicy = default(ClusterHealthPolicy);
             var enableDeltaHealthEvaluation = default(bool?);
@@ -71,6 +72,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("ForceRestart", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     forceRestart = reader.ReadValueAsBool();
+                }
+                else if (string.Compare("SortOrder", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    sortOrder = UpgradeSortOrderConverter.Deserialize(reader);
                 }
                 else if (string.Compare("MonitoringPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -106,6 +111,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 rollingUpgradeMode: rollingUpgradeMode,
                 upgradeReplicaSetCheckTimeoutInSeconds: upgradeReplicaSetCheckTimeoutInSeconds,
                 forceRestart: forceRestart,
+                sortOrder: sortOrder,
                 monitoringPolicy: monitoringPolicy,
                 clusterHealthPolicy: clusterHealthPolicy,
                 enableDeltaHealthEvaluation: enableDeltaHealthEvaluation,
@@ -124,6 +130,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteStartObject();
             writer.WriteProperty(obj.UpgradeKind, "UpgradeKind", UpgradeKindConverter.Serialize);
             writer.WriteProperty(obj.RollingUpgradeMode, "RollingUpgradeMode", UpgradeModeConverter.Serialize);
+            writer.WriteProperty(obj.SortOrder, "SortOrder", UpgradeSortOrderConverter.Serialize);
             if (obj.CodeVersion != null)
             {
                 writer.WriteProperty(obj.CodeVersion, "CodeVersion", JsonWriterExtensions.WriteStringValue);

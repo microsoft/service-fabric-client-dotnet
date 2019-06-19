@@ -294,7 +294,14 @@ namespace Microsoft.ServiceFabric.Client
         /// disk has been wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful.
         /// This operation lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric
         /// should stop waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not
-        /// been removed and the node can come back up with its state intact.
+        /// been removed and the node can come back up with its state intact. Starting from Service Fabric 6.5, in order to use
+        /// this API for seed nodes, please change the seed nodes to regular (non-seed) nodes and then invoke this API to
+        /// remove the node state. If the cluster is running on Azure, after the seed node goes down, Service Fabric will try
+        /// to change it to a non-seed node automatically. To make this happen, make sure the number of non-seed nodes in the
+        /// primary node type is no less than the number of Down seed nodes. If necessary, add more nodes to the primary node
+        /// type to achieve this. For standalone cluster, if the Down seed node is not expected to come back up with its state
+        /// intact, please remove the node from the cluster, see
+        /// https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the

@@ -12,16 +12,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="EnsurePartitionQurumSafetyCheck" />.
+    /// Converter for <see cref="ManagedApplicationIdentity" />.
     /// </summary>
-    internal class EnsurePartitionQurumSafetyCheckConverter
+    internal class ManagedApplicationIdentityConverter
     {
         /// <summary>
         /// Deserializes the JSON representation of the object.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from.</param>
         /// <returns>The object Value.</returns>
-        internal static EnsurePartitionQurumSafetyCheck Deserialize(JsonReader reader)
+        internal static ManagedApplicationIdentity Deserialize(JsonReader reader)
         {
             return reader.Deserialize(GetFromJsonProperties);
         }
@@ -31,16 +31,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The object Value.</returns>
-        internal static EnsurePartitionQurumSafetyCheck GetFromJsonProperties(JsonReader reader)
+        internal static ManagedApplicationIdentity GetFromJsonProperties(JsonReader reader)
         {
-            var partitionId = default(PartitionId);
+            var name = default(string);
+            var principalId = default(string);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare("Name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    partitionId = PartitionIdConverter.Deserialize(reader);
+                    name = reader.ReadValueAsString();
+                }
+                else if (string.Compare("PrincipalId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    principalId = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -49,8 +54,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
             while (reader.TokenType != JsonToken.EndObject);
 
-            return new EnsurePartitionQurumSafetyCheck(
-                partitionId: partitionId);
+            return new ManagedApplicationIdentity(
+                name: name,
+                principalId: principalId);
         }
 
         /// <summary>
@@ -58,14 +64,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="obj">The object to serialize to JSON.</param>
-        internal static void Serialize(JsonWriter writer, EnsurePartitionQurumSafetyCheck obj)
+        internal static void Serialize(JsonWriter writer, ManagedApplicationIdentity obj)
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind, "Kind", SafetyCheckKindConverter.Serialize);
-            if (obj.PartitionId != null)
+            writer.WriteProperty(obj.Name, "Name", JsonWriterExtensions.WriteStringValue);
+            if (obj.PrincipalId != null)
             {
-                writer.WriteProperty(obj.PartitionId, "PartitionId", PartitionIdConverter.Serialize);
+                writer.WriteProperty(obj.PrincipalId, "PrincipalId", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();
