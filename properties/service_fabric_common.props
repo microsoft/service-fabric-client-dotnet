@@ -22,10 +22,10 @@
 
     <!-- Version for binaries, nuget packages generated from this repo. -->
     <!-- TODO: Versions numbers are changed here manually for now, Integrate this with GitVersion. -->
-    <MajorVersion>3</MajorVersion>
+    <MajorVersion>4</MajorVersion>
     <MinorVersion>0</MinorVersion>
     <BuildVersion>0</BuildVersion>
     <Revision>0</Revision>
-    <PreviewTag>-preview15</PreviewTag>
+    <PreviewTag>-preview01</PreviewTag>
   </PropertyGroup>
 </Project>
