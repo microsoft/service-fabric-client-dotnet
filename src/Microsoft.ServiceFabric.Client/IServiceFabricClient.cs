@@ -5,10 +5,12 @@
 
 namespace Microsoft.ServiceFabric.Client
 {
+    using System;
+
     /// <summary>
     /// Interface for Service Fabric client.
     /// </summary>
-    public interface IServiceFabricClient
+    public interface IServiceFabricClient : IDisposable
     {
         /// <summary>
         /// Gets Application Client to performs management operations on applications.

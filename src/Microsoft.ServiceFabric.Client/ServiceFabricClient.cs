@@ -153,5 +153,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <value>Cluster endpoint <see cref="System.Uri"/> .</value>
         protected IReadOnlyList<Uri> ClusterEndpoints { get; }
+
+        /// <inheritdoc/>
+        public abstract void Dispose();
     }
 }
