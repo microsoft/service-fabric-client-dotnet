@@ -135,7 +135,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <summary>
         /// Disposes resources.
         /// </summary>
-        public void Dispose()
+        public override void Dispose()
         {
             this.Dispose(true);
         }
