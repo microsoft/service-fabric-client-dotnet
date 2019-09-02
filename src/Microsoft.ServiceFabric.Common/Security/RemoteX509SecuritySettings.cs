@@ -8,7 +8,7 @@ namespace Microsoft.ServiceFabric.Common.Security
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Resources;
+    using Microsoft.ServiceFabric.Common.Resources;
 
     /// <summary>
     /// Represents X509 certificate security settings of remote machine.

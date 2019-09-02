@@ -17,12 +17,12 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Client;
     using Microsoft.ServiceFabric.Client.Exceptions;
+    using Microsoft.ServiceFabric.Client.Http.Resources;
     using Microsoft.ServiceFabric.Client.Http.Serialization;
     using Microsoft.ServiceFabric.Common;
     using Microsoft.ServiceFabric.Common.Exceptions;
     using Microsoft.ServiceFabric.Common.Security;
     using Newtonsoft.Json;
-    using Resources;
 
     /// <summary>
     /// Represents a Service Fabric Client to the Http management endpoint (or HttpGatewayEndpoint) of Service Fabric cluster.

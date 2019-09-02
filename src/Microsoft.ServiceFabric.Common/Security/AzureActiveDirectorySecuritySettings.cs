@@ -8,7 +8,7 @@ namespace Microsoft.ServiceFabric.Common.Security
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-    using Resources;
+    using Microsoft.ServiceFabric.Common.Resources;
 
     /// <summary>
     /// Represents the claim based security credential acquired from Azure Active Directory.

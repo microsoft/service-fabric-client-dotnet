@@ -8,8 +8,8 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Net.Security;
     using System.Security.Authentication;
     using System.Security.Cryptography.X509Certificates;
+    using Microsoft.ServiceFabric.Client.Http.Resources;
     using Microsoft.ServiceFabric.Common.Security;
-    using Resources;
 
     /// <summary>
     /// Class to verify the remote Secure Sockets Layer (SSL) certificate used for authentication.

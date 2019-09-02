@@ -7,7 +7,7 @@ namespace Microsoft.ServiceFabric.Common
 {
     using System;
     using System.Linq;
-    using Resources;
+    using Microsoft.ServiceFabric.Common.Resources;
 
     /// <summary>
     /// Represents a Service Fabric name.

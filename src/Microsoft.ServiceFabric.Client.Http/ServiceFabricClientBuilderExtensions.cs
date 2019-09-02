@@ -8,7 +8,7 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System;
     using System.Linq;
     using System.Net.Http;
-    using Resources;
+    using Microsoft.ServiceFabric.Client.Http.Resources;
 
     /// <summary>
     /// Estensions for IServiceFabricClientBuilder for configuring ServiceFabricHttpClient.

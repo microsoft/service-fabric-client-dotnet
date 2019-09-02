@@ -7,7 +7,7 @@ namespace Microsoft.ServiceFabric.Client.Http
 {
     using System;
     using System.Collections.Generic;
-    using Resources;
+    using Microsoft.ServiceFabric.Client.Http.Resources;
 
     /// <summary>
     /// A list wrapper that can randomly return elements or round-robin through a list

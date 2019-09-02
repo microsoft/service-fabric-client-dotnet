@@ -10,8 +10,8 @@ namespace Microsoft.ServiceFabric.Client
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.ServiceFabric.Client.Resources;
     using Microsoft.ServiceFabric.Common.Security;
-    using Resources;
 
     /// <summary>
     /// A Builder for IServiceFabricClient

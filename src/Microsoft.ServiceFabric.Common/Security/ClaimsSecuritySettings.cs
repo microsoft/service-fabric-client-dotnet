@@ -6,7 +6,7 @@
 namespace Microsoft.ServiceFabric.Common.Security
 {
     using System;
-    using Resources;
+    using Microsoft.ServiceFabric.Common.Resources;
     
     /// <summary>
     /// Represents the claim based security credential acquired from STS (security token service).

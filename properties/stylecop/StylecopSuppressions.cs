@@ -32,5 +32,10 @@ using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage(
     "StyleCop.CSharp.DocumentationRules",
+    "SA1629:DocumentationTextMustEndWithAPeriod",
+    Justification = "Documentation from swagger may be wthout spaces.")]
+
+[assembly: SuppressMessage(
+    "StyleCop.CSharp.DocumentationRules",
     "SA1625:Element documentation should not be copied and pasted",
     Justification = "Some of the parameter documentation is similar in REST swagger specification.")]

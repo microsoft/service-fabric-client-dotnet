@@ -12,8 +12,8 @@ namespace Microsoft.ServiceFabric.Client.Http
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
+    using Microsoft.ServiceFabric.Client.Http.Resources;
     using Microsoft.ServiceFabric.Common.Security;
-    using Resources;
 
     /// <summary>
     /// Wrapper class to configure and refresh security settings for HttpClientHandler

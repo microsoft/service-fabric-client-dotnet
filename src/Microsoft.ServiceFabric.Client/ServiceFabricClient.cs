@@ -11,8 +11,8 @@ namespace Microsoft.ServiceFabric.Client
     using System.Runtime.ExceptionServices;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.ServiceFabric.Client.Resources;
     using Microsoft.ServiceFabric.Common.Security;
-    using Resources;
 
     /// <summary>
     /// Represents the base class for the Service Fabric client.
