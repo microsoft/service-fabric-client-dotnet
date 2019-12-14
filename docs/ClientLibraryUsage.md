@@ -3,6 +3,7 @@
 ## Client Library nuget package version and Service Fabric Runtime Compatibility
 Nuget Package Version | Compatible Service Fabric Runtime version
 -|-
+3.0.* | >= 6.5
 3.0.0-preview* | >= 6.5
 2.0.0-preview* | >= 6.4
 1.0.0-preview59 - 1.0.0-preview61 | >=6.3
