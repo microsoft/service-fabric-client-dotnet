@@ -26,7 +26,7 @@
   <!-- Copy prod  binaries for dotnet standard-->
   <Target Name="CopyProdBinaries_dotnetstandard">
     <!-- Publish FabActUtil so that all binaries from referenced nuget package are available for creation of drop-->
-    <Exec Command="dotnet publish &quot;$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\Microsoft.ServiceFabric.Powershell.Http.csproj&quot; -o &quot;$(OutputPath)Publish&quot; --no-restore" />
+    <Exec Command="dotnet publish &quot;$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\Microsoft.ServiceFabric.Powershell.Http.csproj&quot; -o &quot;$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish&quot; --no-restore" />
 
     <ItemGroup>
       <BinairesNetStandard Include="src\Microsoft.ServiceFabric.Common\$(OutputPath)Microsoft.ServiceFabric.Common.*"/>
