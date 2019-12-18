@@ -33,13 +33,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static EnvironmentVariable GetFromJsonProperties(JsonReader reader)
         {
+            var type = default(EnvironmentVariableType?);
             var name = default(string);
             var value = default(string);
 
             do
             {
                 var propName = reader.ReadPropertyName();
-                if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                if (string.Compare("type", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    type = EnvironmentVariableTypeConverter.Deserialize(reader);
+                }
+                else if (string.Compare("name", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     name = reader.ReadValueAsString();
                 }
@@ -55,6 +60,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             while (reader.TokenType != JsonToken.EndObject);
 
             return new EnvironmentVariable(
+                type: type,
                 name: name,
                 value: value);
         }
@@ -68,6 +74,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
+            writer.WriteProperty(obj.Type, "type", EnvironmentVariableTypeConverter.Serialize);
             if (obj.Name != null)
             {
                 writer.WriteProperty(obj.Name, "name", JsonWriterExtensions.WriteStringValue);

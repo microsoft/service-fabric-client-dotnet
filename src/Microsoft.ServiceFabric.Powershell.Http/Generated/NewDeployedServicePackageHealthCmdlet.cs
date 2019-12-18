@@ -116,6 +116,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public bool? RemoveWhenExpired { get; set; }
 
         /// <summary>
+        /// Gets or sets HealthReportId. A health report ID which identifies the health report and can be used to find more
+        /// detailed information about a specific health event at
+        /// aka.ms/sfhealthid
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 10)]
+        public string HealthReportId { get; set; }
+
+        /// <summary>
         /// Gets or sets Immediate. A flag that indicates whether the report should be sent immediately.
         /// A health report is sent to a Service Fabric gateway Application, which forwards to the health store.
         /// If Immediate is set to true, the report is sent immediately from HTTP Gateway to the health store, regardless of
@@ -129,7 +137,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// store as well as health report processing.
         /// By default, reports are not sent immediately.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10)]
+        [Parameter(Mandatory = false, Position = 11)]
         public bool? Immediate { get; set; }
 
         /// <summary>
@@ -137,7 +145,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11)]
+        [Parameter(Mandatory = false, Position = 12)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -150,7 +158,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             timeToLiveInMilliSeconds: this.TimeToLiveInMilliSeconds,
             description: this.Description,
             sequenceNumber: this.SequenceNumber,
-            removeWhenExpired: this.RemoveWhenExpired);
+            removeWhenExpired: this.RemoveWhenExpired,
+            healthReportId: this.HealthReportId);
 
             this.ServiceFabricClient.ServicePackages.ReportDeployedServicePackageHealthAsync(
                 nodeName: this.NodeName,

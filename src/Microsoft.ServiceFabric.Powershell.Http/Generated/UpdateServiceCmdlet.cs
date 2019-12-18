@@ -58,6 +58,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
         /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
+        /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 2048.
+        /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
+        /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
+        /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
         public string Flags { get; set; }
@@ -91,7 +95,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
         /// <summary>
         /// Gets or sets DefaultMoveCost. The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
-        /// 'High'
+        /// 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </summary>
@@ -138,17 +142,62 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string StandByReplicaKeepDurationSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets ServicePlacementTimeLimitSeconds. The duration for which replicas can stay InBuild before reporting
+        /// that build is stuck.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_Stateful_")]
+        public string ServicePlacementTimeLimitSeconds { get; set; }
+
+        /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_Stateless_")]
         public int? InstanceCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets MinInstanceCount. MinInstanceCount is the minimum number of instances that must be up to meet the
+        /// EnsureAvailability safety check during operations like upgrade or deactivate node.
+        /// The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+        /// Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of
+        /// nodes on which the instances are allowed to be placed according to the placement constraints on the service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_Stateless_")]
+        public int? MinInstanceCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets MinInstancePercentage. MinInstancePercentage is the minimum percentage of InstanceCount that must be
+        /// up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node.
+        /// The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+        /// Note, if InstanceCount is set to -1, during MinInstancePercentage computation, -1 is first converted into the
+        /// number of nodes on which the instances are allowed to be placed according to the placement constraints on the
+        /// service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_Stateless_")]
+        public int? MinInstancePercentage { get; set; }
+
+        /// <summary>
+        /// Gets or sets InstanceCloseDelayDurationSeconds. Duration in seconds, to wait before a stateless instance is closed,
+        /// to allow the active requests to drain gracefully. This would be effective when the instance is closing during the
+        /// application/cluster upgrade and disabling node.
+        /// The endpoint exposed on this instance is removed prior to starting the delay, which prevents new connections to
+        /// this instance.
+        /// In addition, clients that have subscribed to service endpoint change
+        /// events(https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.registerservicenotificationfilterasync),
+        /// can do
+        /// the following upon receiving the endpoint removal notification:
+        /// - Stop sending new requests to this instance.
+        /// - Close existing connections after in-flight requests have completed.
+        /// - Connect to a different instance of the service partition for future requests.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_Stateless_")]
+        public string InstanceCloseDelayDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 19)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -169,7 +218,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     minReplicaSetSize: this.MinReplicaSetSize,
                     replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
                     quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
-                    standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds);
+                    standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds,
+                    servicePlacementTimeLimitSeconds: this.ServicePlacementTimeLimitSeconds);
             }
             else if (this.Stateless.IsPresent)
             {
@@ -181,7 +231,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     servicePlacementPolicies: this.ServicePlacementPolicies,
                     defaultMoveCost: this.DefaultMoveCost,
                     scalingPolicies: this.ScalingPolicies,
-                    instanceCount: this.InstanceCount);
+                    instanceCount: this.InstanceCount,
+                    minInstanceCount: this.MinInstanceCount,
+                    minInstancePercentage: this.MinInstancePercentage,
+                    instanceCloseDelayDurationSeconds: this.InstanceCloseDelayDurationSeconds);
             }
 
             this.ServiceFabricClient.Services.UpdateServiceAsync(

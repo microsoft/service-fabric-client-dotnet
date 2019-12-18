@@ -41,6 +41,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var defaultMoveCost = default(MoveCost?);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var instanceCount = default(int?);
+            var minInstanceCount = default(int?);
+            var minInstancePercentage = default(int?);
+            var instanceCloseDelayDurationSeconds = default(string);
 
             do
             {
@@ -77,6 +80,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceCount = reader.ReadValueAsInt();
                 }
+                else if (string.Compare("MinInstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    minInstanceCount = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("MinInstancePercentage", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    minInstancePercentage = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("InstanceCloseDelayDurationSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceCloseDelayDurationSeconds = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -92,7 +107,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 servicePlacementPolicies: servicePlacementPolicies,
                 defaultMoveCost: defaultMoveCost,
                 scalingPolicies: scalingPolicies,
-                instanceCount: instanceCount);
+                instanceCount: instanceCount,
+                minInstanceCount: minInstanceCount,
+                minInstancePercentage: minInstancePercentage,
+                instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds);
         }
 
         /// <summary>
@@ -139,6 +157,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceCount != null)
             {
                 writer.WriteProperty(obj.InstanceCount, "InstanceCount", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.MinInstanceCount != null)
+            {
+                writer.WriteProperty(obj.MinInstanceCount, "MinInstanceCount", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.MinInstancePercentage != null)
+            {
+                writer.WriteProperty(obj.MinInstancePercentage, "MinInstancePercentage", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.InstanceCloseDelayDurationSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceCloseDelayDurationSeconds, "InstanceCloseDelayDurationSeconds", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

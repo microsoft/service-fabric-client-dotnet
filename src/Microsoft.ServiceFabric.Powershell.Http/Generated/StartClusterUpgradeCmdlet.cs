@@ -213,11 +213,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
+        /// Gets or sets InstanceCloseDelayDurationInSeconds. Duration in seconds, to wait before a stateless instance is
+        /// closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing
+        /// during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 21)]
+        public long? InstanceCloseDelayDurationInSeconds { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21)]
+        [Parameter(Mandatory = false, Position = 22)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -256,7 +268,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             clusterHealthPolicy: clusterHealthPolicy,
             enableDeltaHealthEvaluation: this.EnableDeltaHealthEvaluation,
             clusterUpgradeHealthPolicy: clusterUpgradeHealthPolicyObject,
-            applicationHealthPolicyMap: applicationHealthPolicies);
+            applicationHealthPolicyMap: applicationHealthPolicies,
+            instanceCloseDelayDurationInSeconds: this.InstanceCloseDelayDurationInSeconds);
 
             this.ServiceFabricClient.Cluster.StartClusterUpgradeAsync(
                 startClusterUpgradeDescription: startClusterUpgradeDescription,

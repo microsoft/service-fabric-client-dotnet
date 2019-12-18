@@ -101,9 +101,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>
-        /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
+        /// Gets or sets InstanceCloseDelayDurationInSeconds. Duration in seconds, to wait before a stateless instance is
+        /// closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing
+        /// during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10)]
+        public long? InstanceCloseDelayDurationInSeconds { get; set; }
+
+        /// <summary>
+        /// Gets or sets ConsiderWarningAsError. Indicates whether warnings are treated with the same severity as errors.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 11)]
         public bool? ConsiderWarningAsError { get; set; } = false;
 
         /// <summary>
@@ -120,7 +132,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to
         /// tolerate that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11)]
+        [Parameter(Mandatory = false, Position = 12)]
         public int? MaxPercentUnhealthyNodes { get; set; } = 0;
 
         /// <summary>
@@ -135,7 +147,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// ApplicationTypeHealthPolicyMap.
         /// The computation rounds up to tolerate one failure on small numbers of applications. Default percentage is zero.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12)]
+        [Parameter(Mandatory = false, Position = 13)]
         public int? MaxPercentUnhealthyApplications { get; set; } = 0;
 
         /// <summary>
@@ -157,14 +169,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13)]
+        [Parameter(Mandatory = false, Position = 14)]
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
         /// Gets or sets EnableDeltaHealthEvaluation. When true, enables delta health evaluation rather than absolute health
         /// evaluation after completion of each upgrade domain.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14)]
+        [Parameter(Mandatory = false, Position = 15)]
         public bool? EnableDeltaHealthEvaluation { get; set; }
 
         /// <summary>
@@ -173,7 +185,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// state of the nodes at the time of the health evaluation. The check is performed after every upgrade domain upgrade
         /// completion to make sure the global state of the cluster is within tolerated limits. The default value is 10%.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 16)]
         public int? MaxPercentDeltaUnhealthyNodes { get; set; }
 
         /// <summary>
@@ -183,14 +195,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The check is performed after every upgrade domain upgrade completion for all completed upgrade domains to make sure
         /// the state of the upgrade domains is within tolerated limits. The default value is 15%.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 17)]
         public int? MaxPercentUpgradeDomainDeltaUnhealthyNodes { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationHealthPolicyMap. The wrapper that contains the map with application health policies used to
         /// evaluate specific applications in the cluster.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17)]
+        [Parameter(Mandatory = false, Position = 18)]
         public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; set; }
 
         /// <summary>
@@ -198,7 +210,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18)]
+        [Parameter(Mandatory = false, Position = 19)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -213,7 +225,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             healthCheckStableDurationInMilliseconds: this.HealthCheckStableDurationInMilliseconds,
             healthCheckRetryTimeoutInMilliseconds: this.HealthCheckRetryTimeoutInMilliseconds,
             upgradeTimeoutInMilliseconds: this.UpgradeTimeoutInMilliseconds,
-            upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds);
+            upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds,
+            instanceCloseDelayDurationInSeconds: this.InstanceCloseDelayDurationInSeconds);
 
             var clusterHealthPolicy = new ClusterHealthPolicy(
             considerWarningAsError: this.ConsiderWarningAsError,

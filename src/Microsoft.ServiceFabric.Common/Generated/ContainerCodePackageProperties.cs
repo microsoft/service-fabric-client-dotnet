@@ -35,6 +35,10 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="diagnostics">Reference to sinks in DiagnosticsDescription.</param>
         /// <param name="reliableCollectionsRefs">A list of ReliableCollection resources used by this particular code package.
         /// Please refer to ReliableCollectionsRef for more details.</param>
+        /// <param name="livenessProbe">An array of liveness probes for a code package. It determines when to restart a code
+        /// package.</param>
+        /// <param name="readinessProbe">An array of readiness probes for a code package. It determines when to unpublish an
+        /// endpoint.</param>
         public ContainerCodePackageProperties(
             string name,
             string image,
@@ -49,7 +53,9 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<VolumeReference> volumeRefs = default(IEnumerable<VolumeReference>),
             IEnumerable<ApplicationScopedVolume> volumes = default(IEnumerable<ApplicationScopedVolume>),
             DiagnosticsRef diagnostics = default(DiagnosticsRef),
-            IEnumerable<ReliableCollectionsRef> reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>))
+            IEnumerable<ReliableCollectionsRef> reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>),
+            IEnumerable<Probe> livenessProbe = default(IEnumerable<Probe>),
+            IEnumerable<Probe> readinessProbe = default(IEnumerable<Probe>))
         {
             name.ThrowIfNull(nameof(name));
             image.ThrowIfNull(nameof(image));
@@ -68,6 +74,8 @@ namespace Microsoft.ServiceFabric.Common
             this.Volumes = volumes;
             this.Diagnostics = diagnostics;
             this.ReliableCollectionsRefs = reliableCollectionsRefs;
+            this.LivenessProbe = livenessProbe;
+            this.ReadinessProbe = readinessProbe;
         }
 
         /// <summary>
@@ -149,5 +157,15 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets runtime information of a container instance.
         /// </summary>
         public ContainerInstanceView InstanceView { get; internal set; }
+
+        /// <summary>
+        /// Gets an array of liveness probes for a code package. It determines when to restart a code package.
+        /// </summary>
+        public IEnumerable<Probe> LivenessProbe { get; }
+
+        /// <summary>
+        /// Gets an array of readiness probes for a code package. It determines when to unpublish an endpoint.
+        /// </summary>
+        public IEnumerable<Probe> ReadinessProbe { get; }
     }
 }

@@ -48,6 +48,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var serviceDnsName = default(string);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var instanceCount = default(int?);
+            var minInstanceCount = default(int?);
+            var minInstancePercentage = default(int?);
+            var flags = default(int?);
+            var instanceCloseDelayDurationSeconds = default(long?);
 
             do
             {
@@ -112,6 +116,22 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceCount = reader.ReadValueAsInt();
                 }
+                else if (string.Compare("MinInstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    minInstanceCount = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("MinInstancePercentage", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    minInstancePercentage = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("Flags", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    flags = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("InstanceCloseDelayDurationSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceCloseDelayDurationSeconds = reader.ReadValueAsLong();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -134,7 +154,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 servicePackageActivationMode: servicePackageActivationMode,
                 serviceDnsName: serviceDnsName,
                 scalingPolicies: scalingPolicies,
-                instanceCount: instanceCount);
+                instanceCount: instanceCount,
+                minInstanceCount: minInstanceCount,
+                minInstancePercentage: minInstancePercentage,
+                flags: flags,
+                instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds);
         }
 
         /// <summary>
@@ -196,6 +220,26 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ScalingPolicies != null)
             {
                 writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
+            }
+
+            if (obj.MinInstanceCount != null)
+            {
+                writer.WriteProperty(obj.MinInstanceCount, "MinInstanceCount", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.MinInstancePercentage != null)
+            {
+                writer.WriteProperty(obj.MinInstancePercentage, "MinInstancePercentage", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.Flags != null)
+            {
+                writer.WriteProperty(obj.Flags, "Flags", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.InstanceCloseDelayDurationSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceCloseDelayDurationSeconds, "InstanceCloseDelayDurationSeconds", JsonWriterExtensions.WriteLongValue);
             }
 
             writer.WriteEndObject();

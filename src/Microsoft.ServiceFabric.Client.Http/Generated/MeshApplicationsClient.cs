@@ -148,5 +148,32 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, ApplicationResourceDescriptionConverter.Deserialize, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task<ApplicationResourceUpgradeProgressInfo> GetUpgradeProgressAsync(
+            string applicationResourceName,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            applicationResourceName.ThrowIfNull(nameof(applicationResourceName));
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Resources/Applications/{applicationResourceName}/$/GetUpgradeProgress";
+            url = url.Replace("{applicationResourceName}", applicationResourceName);
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            queryParams.Add("api-version=7.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ApplicationResourceUpgradeProgressInfoConverter.Deserialize, requestId, cancellationToken);
+        }
     }
 }

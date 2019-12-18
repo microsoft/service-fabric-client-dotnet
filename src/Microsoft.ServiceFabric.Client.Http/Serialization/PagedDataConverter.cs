@@ -70,15 +70,5 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             return new PagedData<T>(continuationToken, items);
         }
-
-        /// <summary>
-        /// Serializes the object to JSON.
-        /// </summary>
-        /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
-        /// <param name="obj">The object to serialize to JSON.</param>
-        public static void Serialize(JsonWriter writer, ApplicationInfo obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

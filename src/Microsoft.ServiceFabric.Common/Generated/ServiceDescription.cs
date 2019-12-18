@@ -31,7 +31,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceLoadMetrics">The service load metrics.</param>
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
-        /// 'High'
+        /// 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </param>
@@ -132,7 +132,7 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies { get; }
 
         /// <summary>
-        /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+        /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </summary>

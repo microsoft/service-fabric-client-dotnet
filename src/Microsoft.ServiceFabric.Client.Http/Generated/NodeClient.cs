@@ -389,5 +389,108 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task RemoveConfigurationOverridesAsync(
+            NodeName nodeName,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            nodeName.ThrowIfNull(nameof(nodeName));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Nodes/{nodeName}/$/RemoveConfigurationOverrides";
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=7.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Delete,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task<IEnumerable<ConfigParameterOverride>> GetConfigurationOverridesAsync(
+            NodeName nodeName,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            nodeName.ThrowIfNull(nameof(nodeName));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Nodes/{nodeName}/$/GetConfigurationOverrides";
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=7.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponseAsList(RequestFunc, url, ConfigParameterOverrideConverter.Deserialize, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task AddConfigurationParameterOverridesAsync(
+            NodeName nodeName,
+            IEnumerable<ConfigParameterOverride> configParameterOverrideList,
+            bool? force = default(bool?),
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            nodeName.ThrowIfNull(nameof(nodeName));
+            configParameterOverrideList.ThrowIfNull(nameof(configParameterOverrideList));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Nodes/{nodeName}/$/AddConfigurationParameterOverrides";
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            force?.AddToQueryParameters(queryParams, $"Force={force}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=7.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ListTConverter<ConfigParameterOverride>.Serialize(new JsonTextWriter(sw), configParameterOverrideList, ConfigParameterOverrideConverter.Serialize);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

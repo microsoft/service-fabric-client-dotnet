@@ -375,6 +375,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0, -25} : {1}", "LastErrorTransitionAt", healthEvent.LastErrorTransitionAt));
             strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0, -25} : {1}", "HealthReportId", healthEvent.HealthReportId));
+            strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();
         }

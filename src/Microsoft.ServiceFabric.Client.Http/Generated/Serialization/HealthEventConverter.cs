@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var description = default(string);
             var sequenceNumber = default(string);
             var removeWhenExpired = default(bool?);
+            var healthReportId = default(string);
             var isExpired = default(bool?);
             var sourceUtcTimestamp = default(DateTime?);
             var lastModifiedUtcTimestamp = default(DateTime?);
@@ -77,6 +78,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("RemoveWhenExpired", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     removeWhenExpired = reader.ReadValueAsBool();
+                }
+                else if (string.Compare("HealthReportId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    healthReportId = reader.ReadValueAsString();
                 }
                 else if (string.Compare("IsExpired", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -117,6 +122,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 description: description,
                 sequenceNumber: sequenceNumber,
                 removeWhenExpired: removeWhenExpired,
+                healthReportId: healthReportId,
                 isExpired: isExpired,
                 sourceUtcTimestamp: sourceUtcTimestamp,
                 lastModifiedUtcTimestamp: lastModifiedUtcTimestamp,
@@ -155,6 +161,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.RemoveWhenExpired != null)
             {
                 writer.WriteProperty(obj.RemoveWhenExpired, "RemoveWhenExpired", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.HealthReportId != null)
+            {
+                writer.WriteProperty(obj.HealthReportId, "HealthReportId", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.IsExpired != null)

@@ -65,6 +65,10 @@ namespace Microsoft.ServiceFabric.Common
         /// health report expires.
         /// This flags the entity as being in Error health state.
         /// </param>
+        /// <param name="healthReportId">A health report ID which identifies the health report and can be used to find more
+        /// detailed information about a specific health event at
+        /// aka.ms/sfhealthid
+        /// </param>
         /// <param name="isExpired">Returns true if the health event is expired, otherwise false.</param>
         /// <param name="sourceUtcTimestamp">The date and time when the health report was sent by the source.</param>
         /// <param name="lastModifiedUtcTimestamp">The date and time when the health report was last modified by the health
@@ -107,6 +111,7 @@ namespace Microsoft.ServiceFabric.Common
             string description = default(string),
             string sequenceNumber = default(string),
             bool? removeWhenExpired = default(bool?),
+            string healthReportId = default(string),
             bool? isExpired = default(bool?),
             DateTime? sourceUtcTimestamp = default(DateTime?),
             DateTime? lastModifiedUtcTimestamp = default(DateTime?),
@@ -120,7 +125,8 @@ namespace Microsoft.ServiceFabric.Common
                 timeToLiveInMilliSeconds,
                 description,
                 sequenceNumber,
-                removeWhenExpired)
+                removeWhenExpired,
+                healthReportId)
         {
             this.IsExpired = isExpired;
             this.SourceUtcTimestamp = sourceUtcTimestamp;

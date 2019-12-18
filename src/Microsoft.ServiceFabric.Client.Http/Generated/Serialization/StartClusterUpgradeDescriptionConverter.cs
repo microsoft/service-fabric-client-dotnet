@@ -45,6 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var enableDeltaHealthEvaluation = default(bool?);
             var clusterUpgradeHealthPolicy = default(ClusterUpgradeHealthPolicyObject);
             var applicationHealthPolicyMap = default(ApplicationHealthPolicies);
+            var instanceCloseDelayDurationInSeconds = default(long?);
 
             do
             {
@@ -97,6 +98,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     applicationHealthPolicyMap = ApplicationHealthPoliciesConverter.Deserialize(reader);
                 }
+                else if (string.Compare("InstanceCloseDelayDurationInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceCloseDelayDurationInSeconds = reader.ReadValueAsLong();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -116,7 +121,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 clusterHealthPolicy: clusterHealthPolicy,
                 enableDeltaHealthEvaluation: enableDeltaHealthEvaluation,
                 clusterUpgradeHealthPolicy: clusterUpgradeHealthPolicy,
-                applicationHealthPolicyMap: applicationHealthPolicyMap);
+                applicationHealthPolicyMap: applicationHealthPolicyMap,
+                instanceCloseDelayDurationInSeconds: instanceCloseDelayDurationInSeconds);
         }
 
         /// <summary>
@@ -174,6 +180,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ApplicationHealthPolicyMap != null)
             {
                 writer.WriteProperty(obj.ApplicationHealthPolicyMap, "ApplicationHealthPolicyMap", ApplicationHealthPoliciesConverter.Serialize);
+            }
+
+            if (obj.InstanceCloseDelayDurationInSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceCloseDelayDurationInSeconds, "InstanceCloseDelayDurationInSeconds", JsonWriterExtensions.WriteLongValue);
             }
 
             writer.WriteEndObject();

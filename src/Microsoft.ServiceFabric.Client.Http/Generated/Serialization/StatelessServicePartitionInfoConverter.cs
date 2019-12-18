@@ -37,6 +37,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var partitionStatus = default(ServicePartitionStatus?);
             var partitionInformation = default(PartitionInformation);
             var instanceCount = default(long?);
+            var minInstanceCount = default(int?);
+            var minInstancePercentage = default(int?);
 
             do
             {
@@ -57,6 +59,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceCount = reader.ReadValueAsLong();
                 }
+                else if (string.Compare("MinInstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    minInstanceCount = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("MinInstancePercentage", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    minInstancePercentage = reader.ReadValueAsInt();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -68,7 +78,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 healthState: healthState,
                 partitionStatus: partitionStatus,
                 partitionInformation: partitionInformation,
-                instanceCount: instanceCount);
+                instanceCount: instanceCount,
+                minInstanceCount: minInstanceCount,
+                minInstancePercentage: minInstancePercentage);
         }
 
         /// <summary>
@@ -91,6 +103,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceCount != null)
             {
                 writer.WriteProperty(obj.InstanceCount, "InstanceCount", JsonWriterExtensions.WriteLongValue);
+            }
+
+            if (obj.MinInstanceCount != null)
+            {
+                writer.WriteProperty(obj.MinInstanceCount, "MinInstanceCount", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.MinInstancePercentage != null)
+            {
+                writer.WriteProperty(obj.MinInstancePercentage, "MinInstancePercentage", JsonWriterExtensions.WriteIntValue);
             }
 
             writer.WriteEndObject();

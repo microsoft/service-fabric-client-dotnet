@@ -65,6 +65,10 @@ namespace Microsoft.ServiceFabric.Common
         /// health report expires.
         /// This flags the entity as being in Error health state.
         /// </param>
+        /// <param name="healthReportId">A health report ID which identifies the health report and can be used to find more
+        /// detailed information about a specific health event at
+        /// aka.ms/sfhealthid
+        /// </param>
         public HealthInformation(
             string sourceId,
             string property,
@@ -72,7 +76,8 @@ namespace Microsoft.ServiceFabric.Common
             TimeSpan? timeToLiveInMilliSeconds = default(TimeSpan?),
             string description = default(string),
             string sequenceNumber = default(string),
-            bool? removeWhenExpired = default(bool?))
+            bool? removeWhenExpired = default(bool?),
+            string healthReportId = default(string))
         {
             sourceId.ThrowIfNull(nameof(sourceId));
             property.ThrowIfNull(nameof(property));
@@ -84,6 +89,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Description = description;
             this.SequenceNumber = sequenceNumber;
             this.RemoveWhenExpired = removeWhenExpired;
+            this.HealthReportId = healthReportId;
         }
 
         /// <summary>
@@ -152,5 +158,12 @@ namespace Microsoft.ServiceFabric.Common
         /// This flags the entity as being in Error health state.
         /// </summary>
         public bool? RemoveWhenExpired { get; }
+
+        /// <summary>
+        /// Gets a health report ID which identifies the health report and can be used to find more detailed information about
+        /// a specific health event at
+        /// aka.ms/sfhealthid
+        /// </summary>
+        public string HealthReportId { get; }
     }
 }

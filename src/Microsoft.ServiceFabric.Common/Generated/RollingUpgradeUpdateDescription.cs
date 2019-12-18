@@ -48,6 +48,14 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="upgradeDomainTimeoutInMilliseconds">The amount of time each upgrade domain has to complete before
         /// FailureAction is executed. It is first interpreted as a string representing an ISO 8601 duration. If that fails,
         /// then it is interpreted as a number representing the total number of milliseconds.</param>
+        /// <param name="instanceCloseDelayDurationInSeconds">Duration in seconds, to wait before a stateless instance is
+        /// closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing
+        /// during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
+        /// </param>
         public RollingUpgradeUpdateDescription(
             UpgradeMode? rollingUpgradeMode = Common.UpgradeMode.UnmonitoredAuto,
             bool? forceRestart = default(bool?),
@@ -57,7 +65,8 @@ namespace Microsoft.ServiceFabric.Common
             string healthCheckStableDurationInMilliseconds = default(string),
             string healthCheckRetryTimeoutInMilliseconds = default(string),
             string upgradeTimeoutInMilliseconds = default(string),
-            string upgradeDomainTimeoutInMilliseconds = default(string))
+            string upgradeDomainTimeoutInMilliseconds = default(string),
+            long? instanceCloseDelayDurationInSeconds = default(long?))
         {
             rollingUpgradeMode.ThrowIfNull(nameof(rollingUpgradeMode));
             this.RollingUpgradeMode = rollingUpgradeMode;
@@ -69,6 +78,7 @@ namespace Microsoft.ServiceFabric.Common
             this.HealthCheckRetryTimeoutInMilliseconds = healthCheckRetryTimeoutInMilliseconds;
             this.UpgradeTimeoutInMilliseconds = upgradeTimeoutInMilliseconds;
             this.UpgradeDomainTimeoutInMilliseconds = upgradeDomainTimeoutInMilliseconds;
+            this.InstanceCloseDelayDurationInSeconds = instanceCloseDelayDurationInSeconds;
         }
 
         /// <summary>
@@ -135,5 +145,15 @@ namespace Microsoft.ServiceFabric.Common
         /// representing the total number of milliseconds.
         /// </summary>
         public string UpgradeDomainTimeoutInMilliseconds { get; }
+
+        /// <summary>
+        /// Gets duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain
+        /// gracefully. This would be effective when the instance is closing during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
+        /// </summary>
+        public long? InstanceCloseDelayDurationInSeconds { get; }
     }
 }

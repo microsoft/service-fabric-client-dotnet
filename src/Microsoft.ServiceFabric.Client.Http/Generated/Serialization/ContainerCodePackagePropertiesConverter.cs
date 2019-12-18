@@ -48,6 +48,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var diagnostics = default(DiagnosticsRef);
             var reliableCollectionsRefs = default(IEnumerable<ReliableCollectionsRef>);
             var instanceView = default(ContainerInstanceView);
+            var livenessProbe = default(IEnumerable<Probe>);
+            var readinessProbe = default(IEnumerable<Probe>);
 
             do
             {
@@ -112,6 +114,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceView = ContainerInstanceViewConverter.Deserialize(reader);
                 }
+                else if (string.Compare("livenessProbe", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    livenessProbe = reader.ReadList(ProbeConverter.Deserialize);
+                }
+                else if (string.Compare("readinessProbe", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    readinessProbe = reader.ReadList(ProbeConverter.Deserialize);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -133,7 +143,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 volumeRefs: volumeRefs,
                 volumes: volumes,
                 diagnostics: diagnostics,
-                reliableCollectionsRefs: reliableCollectionsRefs);
+                reliableCollectionsRefs: reliableCollectionsRefs,
+                livenessProbe: livenessProbe,
+                readinessProbe: readinessProbe);
 
             containerCodePackageProperties.InstanceView = instanceView;
             return containerCodePackageProperties;
@@ -209,6 +221,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceView != null)
             {
                 writer.WriteProperty(obj.InstanceView, "instanceView", ContainerInstanceViewConverter.Serialize);
+            }
+
+            if (obj.LivenessProbe != null)
+            {
+                writer.WriteEnumerableProperty(obj.LivenessProbe, "livenessProbe", ProbeConverter.Serialize);
+            }
+
+            if (obj.ReadinessProbe != null)
+            {
+                writer.WriteEnumerableProperty(obj.ReadinessProbe, "readinessProbe", ProbeConverter.Serialize);
             }
 
             writer.WriteEndObject();

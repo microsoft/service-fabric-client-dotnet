@@ -42,6 +42,14 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="applicationHealthPolicyMap">Defines the application health policy map used to evaluate the health of
         /// an application or one of its children entities.
         /// </param>
+        /// <param name="instanceCloseDelayDurationInSeconds">Duration in seconds, to wait before a stateless instance is
+        /// closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing
+        /// during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
+        /// </param>
         public StartClusterUpgradeDescription(
             string codeVersion = default(string),
             string configVersion = default(string),
@@ -54,7 +62,8 @@ namespace Microsoft.ServiceFabric.Common
             ClusterHealthPolicy clusterHealthPolicy = default(ClusterHealthPolicy),
             bool? enableDeltaHealthEvaluation = default(bool?),
             ClusterUpgradeHealthPolicyObject clusterUpgradeHealthPolicy = default(ClusterUpgradeHealthPolicyObject),
-            ApplicationHealthPolicies applicationHealthPolicyMap = default(ApplicationHealthPolicies))
+            ApplicationHealthPolicies applicationHealthPolicyMap = default(ApplicationHealthPolicies),
+            long? instanceCloseDelayDurationInSeconds = default(long?))
         {
             this.CodeVersion = codeVersion;
             this.ConfigVersion = configVersion;
@@ -68,6 +77,7 @@ namespace Microsoft.ServiceFabric.Common
             this.EnableDeltaHealthEvaluation = enableDeltaHealthEvaluation;
             this.ClusterUpgradeHealthPolicy = clusterUpgradeHealthPolicy;
             this.ApplicationHealthPolicyMap = applicationHealthPolicyMap;
+            this.InstanceCloseDelayDurationInSeconds = instanceCloseDelayDurationInSeconds;
         }
 
         /// <summary>
@@ -137,5 +147,15 @@ namespace Microsoft.ServiceFabric.Common
         /// entities.
         /// </summary>
         public ApplicationHealthPolicies ApplicationHealthPolicyMap { get; }
+
+        /// <summary>
+        /// Gets duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain
+        /// gracefully. This would be effective when the instance is closing during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
+        /// </summary>
+        public long? InstanceCloseDelayDurationInSeconds { get; }
     }
 }

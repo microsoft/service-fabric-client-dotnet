@@ -334,5 +334,32 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, FolderSizeInfoConverter.Deserialize, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task<ImageStoreInfo> GetImageStoreInfoAsync(
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "ImageStore/$/Info";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=6.5");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ImageStoreInfoConverter.Deserialize, requestId, cancellationToken);
+        }
     }
 }

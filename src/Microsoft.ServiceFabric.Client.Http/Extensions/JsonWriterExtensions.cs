@@ -1,4 +1,4 @@
-﻿// ------------------------------------------------------------
+// ------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License (MIT). See License.txt in the repo root for license information.
 // ------------------------------------------------------------
@@ -254,6 +254,35 @@ namespace Microsoft.ServiceFabric.Client.Http
                 }
 
                 writer.WriteEndObject();
+            }
+        }
+
+        /// <summary>
+        /// Writes IEnumerable property as json array
+        /// </summary>
+        /// <typeparam name="T">Type of IEnumerable elements.</typeparam>
+        /// <param name="writer">JsonWriter instance.</param>
+        /// <param name="sequence">IEnumerable to write.</param>
+        /// <param name="serializeFunc">Func to serialize obj of type T.</param>
+        public static void WriteEnumerableValue<T>(this JsonWriter writer, IEnumerable<T> sequence, Action<JsonWriter, T> serializeFunc)
+        {
+            if (sequence != null)
+            {
+                writer.WriteStartArray();
+
+                foreach (var item in sequence)
+                {
+                    if (item == null)
+                    {
+                        writer.WriteNull();
+                    }
+                    else
+                    {
+                        serializeFunc.Invoke(writer, item);
+                    }
+                }
+
+                writer.WriteEndArray();
             }
         }
     }
