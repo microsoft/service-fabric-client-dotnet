@@ -39,5 +39,15 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates the application or service package is being deactivated. The value is 5.
         /// </summary>
         Deactivating,
+
+        /// <summary>
+        /// Indicates the application or service package has ran to completion successfully. The value is 6.
+        /// </summary>
+        RanToCompletion,
+
+        /// <summary>
+        /// Indicates the application or service package has failed to run to completion. The value is 7.
+        /// </summary>
+        Failed,
     }
 }

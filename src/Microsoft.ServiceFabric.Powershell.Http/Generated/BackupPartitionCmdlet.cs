@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Triggers backup of the partition's state.
     /// </summary>
-    [Cmdlet(VerbsData.Backup, "SFPartition", DefaultParameterSetName = "_Default_")]
+    [Cmdlet(VerbsData.Backup, "SFPartition")]
     public partial class BackupPartitionCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -31,9 +31,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "_Default_")]
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "_FileShare_")]
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "_AzureBlobStore_")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>

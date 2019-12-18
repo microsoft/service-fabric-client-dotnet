@@ -13,7 +13,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     /// <summary>
     /// Triggers restore of the state of the partition using the specified restore partition description.
     /// </summary>
-    [Cmdlet(VerbsData.Restore, "SFPartition", DefaultParameterSetName = "_Default_")]
+    [Cmdlet(VerbsData.Restore, "SFPartition")]
     public partial class RestorePartitionCmdlet : CommonCmdletBase
     {
         /// <summary>
@@ -31,25 +31,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets PartitionId. The identity of the partition.
         /// </summary>
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "_Default_")]
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "_AzureBlobStore_")]
-        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1, ParameterSetName = "_FileShare_")]
+        [Parameter(Mandatory = true, ValueFromPipelineByPropertyName = true, Position = 1)]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
         /// Gets or sets BackupId. Unique backup ID.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "_Default_")]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "_AzureBlobStore_")]
-        [Parameter(Mandatory = true, Position = 2, ParameterSetName = "_FileShare_")]
+        [Parameter(Mandatory = true, Position = 2)]
         public Guid? BackupId { get; set; }
 
         /// <summary>
         /// Gets or sets BackupLocation. Location of the backup relative to the backup storage specified/ configured.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_Default_")]
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_AzureBlobStore_")]
-        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_FileShare_")]
+        [Parameter(Mandatory = true, Position = 3)]
         public string BackupLocation { get; set; }
 
         /// <summary>

@@ -43,6 +43,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var sortOrder = default(UpgradeSortOrder?);
             var monitoringPolicy = default(MonitoringPolicyDescription);
             var applicationHealthPolicy = default(ApplicationHealthPolicy);
+            var instanceCloseDelayDurationInSeconds = default(long?);
 
             do
             {
@@ -87,6 +88,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     applicationHealthPolicy = ApplicationHealthPolicyConverter.Deserialize(reader);
                 }
+                else if (string.Compare("InstanceCloseDelayDurationInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceCloseDelayDurationInSeconds = reader.ReadValueAsLong();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -104,7 +109,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 forceRestart: forceRestart,
                 sortOrder: sortOrder,
                 monitoringPolicy: monitoringPolicy,
-                applicationHealthPolicy: applicationHealthPolicy);
+                applicationHealthPolicy: applicationHealthPolicy,
+                instanceCloseDelayDurationInSeconds: instanceCloseDelayDurationInSeconds);
         }
 
         /// <summary>
@@ -144,6 +150,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ApplicationHealthPolicy != null)
             {
                 writer.WriteProperty(obj.ApplicationHealthPolicy, "ApplicationHealthPolicy", ApplicationHealthPolicyConverter.Serialize);
+            }
+
+            if (obj.InstanceCloseDelayDurationInSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceCloseDelayDurationInSeconds, "InstanceCloseDelayDurationInSeconds", JsonWriterExtensions.WriteLongValue);
             }
 
             writer.WriteEndObject();

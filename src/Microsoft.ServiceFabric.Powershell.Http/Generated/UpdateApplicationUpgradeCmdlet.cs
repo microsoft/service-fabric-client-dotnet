@@ -184,11 +184,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string UpgradeDomainTimeoutInMilliseconds { get; set; }
 
         /// <summary>
+        /// Gets or sets InstanceCloseDelayDurationInSeconds. Duration in seconds, to wait before a stateless instance is
+        /// closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing
+        /// during the application/cluster
+        /// upgrade, only for those instances which have a non-zero delay duration configured in the service description. See
+        /// InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+        /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
+        /// will entirely depend on the delay configured in the stateless service description.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 18)]
+        public long? InstanceCloseDelayDurationInSeconds { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18)]
+        [Parameter(Mandatory = false, Position = 19)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -214,7 +226,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             healthCheckStableDurationInMilliseconds: this.HealthCheckStableDurationInMilliseconds,
             healthCheckRetryTimeoutInMilliseconds: this.HealthCheckRetryTimeoutInMilliseconds,
             upgradeTimeoutInMilliseconds: this.UpgradeTimeoutInMilliseconds,
-            upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds);
+            upgradeDomainTimeoutInMilliseconds: this.UpgradeDomainTimeoutInMilliseconds,
+            instanceCloseDelayDurationInSeconds: this.InstanceCloseDelayDurationInSeconds);
 
             var applicationUpgradeUpdateDescription = new ApplicationUpgradeUpdateDescription(
             name: this.Name,

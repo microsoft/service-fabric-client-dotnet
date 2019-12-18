@@ -35,6 +35,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             var server = default(string);
             var username = default(string);
+            var passwordType = default(ImageRegistryPasswordType?);
             var password = default(string);
 
             do
@@ -47,6 +48,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("username", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     username = reader.ReadValueAsString();
+                }
+                else if (string.Compare("passwordType", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    passwordType = ImageRegistryPasswordTypeConverter.Deserialize(reader);
                 }
                 else if (string.Compare("password", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -62,6 +67,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new ImageRegistryCredential(
                 server: server,
                 username: username,
+                passwordType: passwordType,
                 password: password);
         }
 
@@ -76,6 +82,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteStartObject();
             writer.WriteProperty(obj.Server, "server", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.Username, "username", JsonWriterExtensions.WriteStringValue);
+            writer.WriteProperty(obj.PasswordType, "passwordType", ImageRegistryPasswordTypeConverter.Serialize);
             if (obj.Password != null)
             {
                 writer.WriteProperty(obj.Password, "password", JsonWriterExtensions.WriteStringValue);

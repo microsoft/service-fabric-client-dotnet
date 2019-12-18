@@ -42,6 +42,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var healthCheckRetryTimeoutInMilliseconds = default(string);
             var upgradeTimeoutInMilliseconds = default(string);
             var upgradeDomainTimeoutInMilliseconds = default(string);
+            var instanceCloseDelayDurationInSeconds = default(long?);
 
             do
             {
@@ -82,6 +83,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     upgradeDomainTimeoutInMilliseconds = reader.ReadValueAsString();
                 }
+                else if (string.Compare("InstanceCloseDelayDurationInSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceCloseDelayDurationInSeconds = reader.ReadValueAsLong();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -98,7 +103,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 healthCheckStableDurationInMilliseconds: healthCheckStableDurationInMilliseconds,
                 healthCheckRetryTimeoutInMilliseconds: healthCheckRetryTimeoutInMilliseconds,
                 upgradeTimeoutInMilliseconds: upgradeTimeoutInMilliseconds,
-                upgradeDomainTimeoutInMilliseconds: upgradeDomainTimeoutInMilliseconds);
+                upgradeDomainTimeoutInMilliseconds: upgradeDomainTimeoutInMilliseconds,
+                instanceCloseDelayDurationInSeconds: instanceCloseDelayDurationInSeconds);
         }
 
         /// <summary>
@@ -145,6 +151,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.UpgradeDomainTimeoutInMilliseconds != null)
             {
                 writer.WriteProperty(obj.UpgradeDomainTimeoutInMilliseconds, "UpgradeDomainTimeoutInMilliseconds", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.InstanceCloseDelayDurationInSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceCloseDelayDurationInSeconds, "InstanceCloseDelayDurationInSeconds", JsonWriterExtensions.WriteLongValue);
             }
 
             writer.WriteEndObject();

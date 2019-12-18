@@ -19,7 +19,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="name">The name of the service package as specified in the service manifest.</param>
         /// <param name="version">The version of the service package specified in service manifest.</param>
         /// <param name="status">Specifies the status of a deployed application or service package on a Service Fabric node.
-        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating'</param>
+        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating',
+        /// 'RanToCompletion', 'Failed'</param>
         /// <param name="servicePackageActivationId">The ActivationId of a deployed service package. If
         /// ServicePackageActivationMode specified at the time of creating the service
         /// is 'SharedProcess' (or if it is not specified, in which case it defaults to 'SharedProcess'), then value of
@@ -50,7 +51,8 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets specifies the status of a deployed application or service package on a Service Fabric node.
-        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating'
+        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating',
+        /// 'RanToCompletion', 'Failed'
         /// </summary>
         public DeploymentStatus? Status { get; }
 

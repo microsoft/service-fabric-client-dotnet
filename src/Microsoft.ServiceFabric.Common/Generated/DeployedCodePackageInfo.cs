@@ -31,7 +31,8 @@ namespace Microsoft.ServiceFabric.Common
         /// type is ContainerHost. This is specified as part of container host policies in application manifest while importing
         /// service manifest. Possible values include: 'None', 'Process', 'HyperV'</param>
         /// <param name="status">Specifies the status of a deployed application or service package on a Service Fabric node.
-        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating'</param>
+        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating',
+        /// 'RanToCompletion', 'Failed'</param>
         /// <param name="runFrequencyInterval">The interval at which code package is run. This is used for periodic code
         /// package.</param>
         /// <param name="setupEntryPoint">Information about setup or main entry point of a code package deployed on a Service
@@ -101,7 +102,8 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets specifies the status of a deployed application or service package on a Service Fabric node.
-        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating'
+        /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating',
+        /// 'RanToCompletion', 'Failed'
         /// </summary>
         public DeploymentStatus? Status { get; }
 

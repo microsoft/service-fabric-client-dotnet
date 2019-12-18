@@ -14,5 +14,11 @@ namespace Microsoft.ServiceFabric.Common
         /// A simple secret resource whose plaintext value is provided by the user.
         /// </summary>
         InlinedValue,
+
+        /// <summary>
+        /// A secret resource that references a specific version of a secret stored in Azure Key Vault; the expected value is a
+        /// versioned KeyVault URI corresponding to the version of the secret being referenced.
+        /// </summary>
+        KeyVaultVersionedReference,
     }
 }

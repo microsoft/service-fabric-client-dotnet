@@ -42,6 +42,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = MoveCost.High;
             }
+            else if (string.Compare(value, "VeryHigh", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = MoveCost.VeryHigh;
+            }
 
             return obj;
         }
@@ -66,6 +70,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case MoveCost.High:
                     writer.WriteStringValue("High");
+                    break;
+                case MoveCost.VeryHigh:
+                    writer.WriteStringValue("VeryHigh");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type MoveCost");

@@ -30,6 +30,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = SecretKind.InlinedValue;
             }
+            else if (string.Compare(value, "keyVaultVersionedReference", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = SecretKind.KeyVaultVersionedReference;
+            }
 
             return obj;
         }
@@ -45,6 +49,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 case SecretKind.InlinedValue:
                     writer.WriteStringValue("inlinedValue");
+                    break;
+                case SecretKind.KeyVaultVersionedReference:
+                    writer.WriteStringValue("keyVaultVersionedReference");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type SecretKind");

@@ -96,5 +96,25 @@ namespace Microsoft.ServiceFabric.Client
         /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
         Task<PagedData<ApplicationResourceDescription>> ListAsync(
             CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Gets the progress of the latest upgrade performed on this application resource.
+        /// </summary>
+        /// <remarks>
+        /// Gets the upgrade progress information about the Application resource with the given name. The information include
+        /// percentage of completion and other upgrade state information of the Application resource.
+        /// </remarks>
+        /// <param name ="applicationResourceName">The identity of the application.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<ApplicationResourceUpgradeProgressInfo> GetUpgradeProgressAsync(
+            string applicationResourceName,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

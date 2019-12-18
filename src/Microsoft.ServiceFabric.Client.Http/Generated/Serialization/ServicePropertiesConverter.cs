@@ -35,12 +35,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             var description = default(string);
             var replicaCount = default(int?);
+            var executionPolicy = default(ExecutionPolicy);
             var autoScalingPolicies = default(IEnumerable<AutoScalingPolicy>);
             var status = default(ResourceStatus?);
             var statusDetails = default(string);
             var healthState = default(HealthState?);
             var unhealthyEvaluation = default(string);
             var identityRefs = default(IEnumerable<ServiceIdentity>);
+            var dnsName = default(string);
 
             do
             {
@@ -52,6 +54,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("replicaCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     replicaCount = reader.ReadValueAsInt();
+                }
+                else if (string.Compare("executionPolicy", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    executionPolicy = ExecutionPolicyConverter.Deserialize(reader);
                 }
                 else if (string.Compare("autoScalingPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -77,6 +83,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     identityRefs = reader.ReadList(ServiceIdentityConverter.Deserialize);
                 }
+                else if (string.Compare("dnsName", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    dnsName = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -87,8 +97,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var serviceProperties = new ServiceProperties(
                 description: description,
                 replicaCount: replicaCount,
+                executionPolicy: executionPolicy,
                 autoScalingPolicies: autoScalingPolicies,
-                identityRefs: identityRefs);
+                identityRefs: identityRefs,
+                dnsName: dnsName);
 
             serviceProperties.Status = status;
             serviceProperties.StatusDetails = statusDetails;
@@ -118,6 +130,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.ReplicaCount, "replicaCount", JsonWriterExtensions.WriteIntValue);
             }
 
+            if (obj.ExecutionPolicy != null)
+            {
+                writer.WriteProperty(obj.ExecutionPolicy, "executionPolicy", ExecutionPolicyConverter.Serialize);
+            }
+
             if (obj.AutoScalingPolicies != null)
             {
                 writer.WriteEnumerableProperty(obj.AutoScalingPolicies, "autoScalingPolicies", AutoScalingPolicyConverter.Serialize);
@@ -136,6 +153,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.IdentityRefs != null)
             {
                 writer.WriteEnumerableProperty(obj.IdentityRefs, "identityRefs", ServiceIdentityConverter.Serialize);
+            }
+
+            if (obj.DnsName != null)
+            {
+                writer.WriteProperty(obj.DnsName, "dnsName", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

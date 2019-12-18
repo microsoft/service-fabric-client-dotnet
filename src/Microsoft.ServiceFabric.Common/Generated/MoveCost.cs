@@ -29,5 +29,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Specifies the move cost of the service as High. The value is 3.
         /// </summary>
         High,
+
+        /// <summary>
+        /// Specifies the move cost of the service as VeryHigh. The value is 4.
+        /// </summary>
+        VeryHigh,
     }
 }

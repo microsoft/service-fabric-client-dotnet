@@ -36,6 +36,10 @@ namespace Microsoft.ServiceFabric.Common
         /// - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
         /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
+        /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 2048.
+        /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
+        /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
+        /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -45,7 +49,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="loadMetrics">The service load metrics.</param>
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
-        /// 'High'
+        /// 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </param>
@@ -91,6 +95,10 @@ namespace Microsoft.ServiceFabric.Common
         /// - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
         /// - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
         /// - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
+        /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 2048.
+        /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
+        /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
+        /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
         /// </summary>
         public string Flags { get; }
 
@@ -117,7 +125,7 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<ServicePlacementPolicyDescription> ServicePlacementPolicies { get; }
 
         /// <summary>
-        /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+        /// Gets the move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </summary>

@@ -182,7 +182,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
         /// <summary>
         /// Gets or sets DefaultMoveCost. The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
-        /// 'High'
+        /// 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </summary>
@@ -229,10 +229,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - ReplicaRestartWaitDuration - Indicates the ReplicaRestartWaitDuration property is set. The value is 1.
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
+        /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
         /// </summary>
         [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Named__Stateful_")]
         [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Singleton__Stateful_")]
         [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_UniformInt64Range__Stateful_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Singleton__Stateless_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_UniformInt64Range__Stateless_")]
         public int? Flags { get; set; }
 
         /// <summary>
@@ -263,11 +267,66 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public long? StandByReplicaKeepDurationSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets ServicePlacementTimeLimitSeconds. The duration for which replicas can stay InBuild before reporting
+        /// that build is stuck.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 28, ParameterSetName = "_Named__Stateful_")]
+        [Parameter(Mandatory = false, Position = 28, ParameterSetName = "_Singleton__Stateful_")]
+        [Parameter(Mandatory = false, Position = 28, ParameterSetName = "_UniformInt64Range__Stateful_")]
+        public long? ServicePlacementTimeLimitSeconds { get; set; }
+
+        /// <summary>
+        /// Gets or sets MinInstanceCount. MinInstanceCount is the minimum number of instances that must be up to meet the
+        /// EnsureAvailability safety check during operations like upgrade or deactivate node.
+        /// The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+        /// Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of
+        /// nodes on which the instances are allowed to be placed according to the placement constraints on the service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 29, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = false, Position = 29, ParameterSetName = "_Singleton__Stateless_")]
+        [Parameter(Mandatory = false, Position = 29, ParameterSetName = "_UniformInt64Range__Stateless_")]
+        public int? MinInstanceCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets MinInstancePercentage. MinInstancePercentage is the minimum percentage of InstanceCount that must be
+        /// up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node.
+        /// The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+        /// Note, if InstanceCount is set to -1, during MinInstancePercentage computation, -1 is first converted into the
+        /// number of nodes on which the instances are allowed to be placed according to the placement constraints on the
+        /// service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 30, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = false, Position = 30, ParameterSetName = "_Singleton__Stateless_")]
+        [Parameter(Mandatory = false, Position = 30, ParameterSetName = "_UniformInt64Range__Stateless_")]
+        public int? MinInstancePercentage { get; set; }
+
+        /// <summary>
+        /// Gets or sets InstanceCloseDelayDurationSeconds. Duration in seconds, to wait before a stateless instance is closed,
+        /// to allow the active requests to drain gracefully. This would be effective when the instance is closing during the
+        /// application/cluster upgrade and disabling node.
+        /// The endpoint exposed on this instance is removed prior to starting the delay, which prevents new connections to
+        /// this instance.
+        /// In addition, clients that have subscribed to service endpoint change
+        /// events(https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.registerservicenotificationfilterasync),
+        /// can do
+        /// the following upon receiving the endpoint removal notification:
+        /// - Stop sending new requests to this instance.
+        /// - Close existing connections after in-flight requests have completed.
+        /// - Connect to a different instance of the service partition for future requests.
+        /// Note, the default value of InstanceCloseDelayDuration is 0, which indicates that there won't be any delay or
+        /// removal of the endpoint prior to closing the instance.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 31, ParameterSetName = "_Named__Stateless_")]
+        [Parameter(Mandatory = false, Position = 31, ParameterSetName = "_Singleton__Stateless_")]
+        [Parameter(Mandatory = false, Position = 31, ParameterSetName = "_UniformInt64Range__Stateless_")]
+        public long? InstanceCloseDelayDurationSeconds { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 28)]
+        [Parameter(Mandatory = false, Position = 32)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -316,7 +375,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     flags: this.Flags,
                     replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
                     quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
-                    standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds);
+                    standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds,
+                    servicePlacementTimeLimitSeconds: this.ServicePlacementTimeLimitSeconds);
             }
             else if (this.Stateless.IsPresent)
             {
@@ -335,7 +395,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     isDefaultMoveCostSpecified: this.IsDefaultMoveCostSpecified,
                     servicePackageActivationMode: this.ServicePackageActivationMode,
                     serviceDnsName: this.ServiceDnsName,
-                    scalingPolicies: this.ScalingPolicies);
+                    scalingPolicies: this.ScalingPolicies,
+                    minInstanceCount: this.MinInstanceCount,
+                    minInstancePercentage: this.MinInstancePercentage,
+                    flags: this.Flags,
+                    instanceCloseDelayDurationSeconds: this.InstanceCloseDelayDurationSeconds);
             }
 
             this.ServiceFabricClient.Services.CreateServiceAsync(

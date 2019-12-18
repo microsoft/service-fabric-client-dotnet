@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceLoadMetrics">The service load metrics.</param>
         /// <param name="servicePlacementPolicies">The service placement policies.</param>
         /// <param name="defaultMoveCost">The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium',
-        /// 'High'
+        /// 'High', 'VeryHigh'
         /// 
         /// Specifies the move cost for the service.
         /// </param>
@@ -58,6 +58,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - ReplicaRestartWaitDuration - Indicates the ReplicaRestartWaitDuration property is set. The value is 1.
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
+        /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
         /// </param>
         /// <param name="replicaRestartWaitDurationSeconds">The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.</param>
@@ -65,6 +66,8 @@ namespace Microsoft.ServiceFabric.Common
         /// be in a state of quorum loss.</param>
         /// <param name="standByReplicaKeepDurationSeconds">The definition on how long StandBy replicas should be maintained
         /// before being removed.</param>
+        /// <param name="servicePlacementTimeLimitSeconds">The duration for which replicas can stay InBuild before reporting
+        /// that build is stuck.</param>
         public StatefulServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -86,7 +89,8 @@ namespace Microsoft.ServiceFabric.Common
             int? flags = default(int?),
             long? replicaRestartWaitDurationSeconds = default(long?),
             long? quorumLossWaitDurationSeconds = default(long?),
-            long? standByReplicaKeepDurationSeconds = default(long?))
+            long? standByReplicaKeepDurationSeconds = default(long?),
+            long? servicePlacementTimeLimitSeconds = default(long?))
             : base(
                 serviceName,
                 serviceTypeName,
@@ -112,6 +116,7 @@ namespace Microsoft.ServiceFabric.Common
             replicaRestartWaitDurationSeconds?.ThrowIfOutOfInclusiveRange("replicaRestartWaitDurationSeconds", 0, 4294967295);
             quorumLossWaitDurationSeconds?.ThrowIfOutOfInclusiveRange("quorumLossWaitDurationSeconds", 0, 4294967295);
             standByReplicaKeepDurationSeconds?.ThrowIfOutOfInclusiveRange("standByReplicaKeepDurationSeconds", 0, 4294967295);
+            servicePlacementTimeLimitSeconds?.ThrowIfOutOfInclusiveRange("servicePlacementTimeLimitSeconds", 0, 4294967295);
             this.TargetReplicaSetSize = targetReplicaSetSize;
             this.MinReplicaSetSize = minReplicaSetSize;
             this.HasPersistedState = hasPersistedState;
@@ -119,6 +124,7 @@ namespace Microsoft.ServiceFabric.Common
             this.ReplicaRestartWaitDurationSeconds = replicaRestartWaitDurationSeconds;
             this.QuorumLossWaitDurationSeconds = quorumLossWaitDurationSeconds;
             this.StandByReplicaKeepDurationSeconds = standByReplicaKeepDurationSeconds;
+            this.ServicePlacementTimeLimitSeconds = servicePlacementTimeLimitSeconds;
         }
 
         /// <summary>
@@ -148,6 +154,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - ReplicaRestartWaitDuration - Indicates the ReplicaRestartWaitDuration property is set. The value is 1.
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
+        /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
         /// </summary>
         public int? Flags { get; }
 
@@ -165,5 +172,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the definition on how long StandBy replicas should be maintained before being removed.
         /// </summary>
         public long? StandByReplicaKeepDurationSeconds { get; }
+
+        /// <summary>
+        /// Gets the duration for which replicas can stay InBuild before reporting that build is stuck.
+        /// </summary>
+        public long? ServicePlacementTimeLimitSeconds { get; }
     }
 }

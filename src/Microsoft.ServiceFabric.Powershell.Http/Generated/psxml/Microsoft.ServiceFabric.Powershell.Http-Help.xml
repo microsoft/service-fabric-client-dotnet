@@ -712,6 +712,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="7">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="8">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -731,7 +745,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="8">
+            <command:parameter required="false" position="9">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1470,6 +1484,21 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="21">
+                <maml:name>InstanceCloseDelayDurationInSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing during the application/cluster
+                    upgrade, only for those instances which have a non-zero delay duration configured in the service description. See InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+                    Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior will entirely depend on the delay configured in the stateless service description.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="22">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1783,6 +1812,21 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="10">
+                <maml:name>InstanceCloseDelayDurationInSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing during the application/cluster
+                    upgrade, only for those instances which have a non-zero delay duration configured in the service description. See InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+                    Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior will entirely depend on the delay configured in the stateless service description.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="11">
                 <maml:name>ConsiderWarningAsError</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1794,7 +1838,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>MaxPercentUnhealthyNodes</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1814,7 +1858,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>MaxPercentUnhealthyApplications</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1832,7 +1876,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>ApplicationTypeHealthPolicyMap</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1854,7 +1898,7 @@
                     <maml:name>IEnumerable&lt;ApplicationTypeHealthPolicyMapItem&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>EnableDeltaHealthEvaluation</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1866,7 +1910,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>MaxPercentDeltaUnhealthyNodes</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1878,7 +1922,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>MaxPercentUpgradeDomainDeltaUnhealthyNodes</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1890,7 +1934,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="17">
+            <command:parameter required="false" position="18">
                 <maml:name>ApplicationHealthPolicyMap</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -1902,7 +1946,7 @@
                     <maml:name>IEnumerable&lt;ApplicationHealthPolicyMapItem&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="18">
+            <command:parameter required="false" position="19">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -2483,6 +2527,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="8">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="9">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -2502,7 +2560,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -2664,7 +2722,7 @@
             <command:syntax>
             </command:syntax>
             <maml:description>
-                <maml:para>This implies that it is not possible to recover the persisted state of that node. This generally happens if a hard disk has been wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful. This operation lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric should stop waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not been removed and the node can come back up with its state intact. Starting from Service Fabric 6.5, in order to use this API for seed nodes, please change the seed nodes to regular (non-seed) nodes and then invoke this API to remove the node state. If the cluster is running on Azure, after the seed node goes down, Service Fabric will try to change it to a non-seed node automatically. To make this happen, make sure the number of non-seed nodes in the primary node type is no less than the number of Down seed nodes. If necessary, add more nodes to the primary node type to achieve this. For standalone cluster, if the Down seed node is not expected to come back up with its state intact, please remove the node from the cluster, see https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes</maml:para>
+                <maml:para>This implies that it is not possible to recover the persisted state of that node. This generally happens if a hard disk has been wiped clean, or if a hard disk crashes. The node has to be down for this operation to be successful. This operation lets Service Fabric know that the replicas on that node no longer exist, and that Service Fabric should stop waiting for those replicas to come back up. Do not run this cmdlet if the state on the node has not been removed and the node can come back up with its state intact. Starting from Service Fabric 6.5, in order to use this API for seed nodes, please change the seed nodes to regular (non-seed) nodes and then invoke this API to remove the node state. If the cluster is running on Azure, after the seed node goes down, Service Fabric will try to change it to a non-seed node automatically. To make this happen, make sure the number of non-seed nodes in the primary node type is no less than the number of Down seed nodes. If necessary, add more nodes to the primary node type to achieve this. For standalone cluster, if the Down seed node is not expected to come back up with its state intact, please remove the node from the cluster, see https://docs.microsoft.com/azure/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
@@ -2742,6 +2800,153 @@
             <command:parameterValue required="false">CreateFabricDump?</command:parameterValue>
                 <dev:type>
                     <maml:name>CreateFabricDump?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Remove-SFConfigurationOverrides</command:name>
+                <command:verb>Remove</command:verb>
+                <command:noun>ConfigurationOverrides</command:noun>
+                <maml:description>
+                    <maml:para>Removes configuration overrides on the specified node.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>This api allows removing all existing configuration overrides on specified node.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>NodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFConfigurationOverrides</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ConfigurationOverrides</command:noun>
+                <maml:description>
+                    <maml:para>Gets the list of configuration overrides on the specified node.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>This api allows getting all existing configuration overrides on the specified node.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>NodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Add-SFConfigurationParameterOverrides</command:name>
+                <command:verb>Add</command:verb>
+                <command:noun>ConfigurationParameterOverrides</command:noun>
+                <maml:description>
+                    <maml:para>Adds the list of configuration overrides on the specified node.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>This api allows adding all existing configuration overrides on the specified node.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>NodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>ConfigParameterOverrideList</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Description for adding list of configuration overrides.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">IEnumerable&lt;ConfigParameterOverride&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;ConfigParameterOverride&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>Force</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Force adding configuration overrides on specified nodes.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="3">
@@ -4279,6 +4484,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="8">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="9">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -4298,7 +4517,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -4616,6 +4835,21 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="18">
+                <maml:name>InstanceCloseDelayDurationInSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing during the application/cluster
+                    upgrade, only for those instances which have a non-zero delay duration configured in the service description. See InstanceCloseDelayDurationSeconds property in $ref: "#/definitions/StatelessServiceDescription.yaml" for details.
+                    Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior will entirely depend on the delay configured in the stateless service description.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="19">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -5338,6 +5572,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="9">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="10">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -5357,7 +5605,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -5549,6 +5797,9 @@
                 <command:parameter required="false">
                         <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5561,6 +5812,18 @@
                 <command:parameter required="true">
                         <maml:name>InstanceCount</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Flags</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstancePercentage</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5594,6 +5857,9 @@
                 <command:parameter required="false">
                         <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5608,6 +5874,18 @@
                 </command:parameter>
                 <command:parameter required="true">
                         <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Flags</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstancePercentage</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -5633,11 +5911,26 @@
                 <command:parameter required="false">
                         <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
                 <command:parameter required="true">
                         <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>Flags</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstancePercentage</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
@@ -5860,7 +6153,7 @@
                 <maml:name>DefaultMoveCost</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+                    The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High', 'VeryHigh'
                     
                     Specifies the move cost for the service.
                     
@@ -5934,6 +6227,7 @@
                     - ReplicaRestartWaitDuration - Indicates the ReplicaRestartWaitDuration property is set. The value is 1.
                     - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
                     - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
+                    - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
                     
                     </maml:para>
                 </maml:Description>
@@ -5979,6 +6273,68 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="26">
+                <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The duration for which replicas can stay InBuild before reporting that build is stuck.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="27">
+                <maml:name>MinInstanceCount</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    MinInstanceCount is the minimum number of instances that must be up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node.
+                    The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+                    Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of nodes on which the instances are allowed to be placed according to the placement constraints on the service.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="28">
+                <maml:name>MinInstancePercentage</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    MinInstancePercentage is the minimum percentage of InstanceCount that must be up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node.
+                    The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+                    Note, if InstanceCount is set to -1, during MinInstancePercentage computation, -1 is first converted into the number of nodes on which the instances are allowed to be placed according to the placement constraints on the service.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="29">
+                <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing during the application/cluster upgrade and disabling node.
+                    The endpoint exposed on this instance is removed prior to starting the delay, which prevents new connections to this instance.
+                    In addition, clients that have subscribed to service endpoint change events(https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.registerservicenotificationfilterasync), can do
+                    the following upon receiving the endpoint removal notification:
+                        - Stop sending new requests to this instance.
+                        - Close existing connections after in-flight requests have completed.
+                        - Connect to a different instance of the service partition for future requests.
+                    Note, the default value of InstanceCloseDelayDuration is 0, which indicates that there won't be any delay or removal of the endpoint prior to closing the instance.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="30">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6194,11 +6550,23 @@
                 <command:parameter required="false">
                         <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Update-SFService</maml:name>
                 <command:parameter required="false">
                         <maml:name>InstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstanceCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinInstancePercentage</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
@@ -6241,6 +6609,10 @@
                     - Metrics - Indicates the ServiceLoadMetrics property is set. The value is 256.
                     - DefaultMoveCost - Indicates the DefaultMoveCost property is set. The value is 512.
                     - ScalingPolicy - Indicates the ScalingPolicies property is set. The value is 1024.
+                    - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 2048.
+                    - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
+                    - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
+                    - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
                     
                     </maml:para>
                 </maml:Description>
@@ -6301,7 +6673,7 @@
                 <maml:name>DefaultMoveCost</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High'
+                    The move cost for the service. Possible values include: 'Zero', 'Low', 'Medium', 'High', 'VeryHigh'
                     
                     Specifies the move cost for the service.
                     
@@ -6385,6 +6757,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="13">
+                <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The duration for which replicas can stay InBuild before reporting that build is stuck.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="14">
                 <maml:name>InstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6396,7 +6780,56 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
+                <maml:name>MinInstanceCount</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    MinInstanceCount is the minimum number of instances that must be up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node.
+                    The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+                    Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of nodes on which the instances are allowed to be placed according to the placement constraints on the service.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="16">
+                <maml:name>MinInstancePercentage</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    MinInstancePercentage is the minimum percentage of InstanceCount that must be up to meet the EnsureAvailability safety check during operations like upgrade or deactivate node.
+                    The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
+                    Note, if InstanceCount is set to -1, during MinInstancePercentage computation, -1 is first converted into the number of nodes on which the instances are allowed to be placed according to the placement constraints on the service.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="17">
+                <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Duration in seconds, to wait before a stateless instance is closed, to allow the active requests to drain gracefully. This would be effective when the instance is closing during the application/cluster upgrade and disabling node.
+                    The endpoint exposed on this instance is removed prior to starting the delay, which prevents new connections to this instance.
+                    In addition, clients that have subscribed to service endpoint change events(https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.servicemanagementclient.registerservicenotificationfilterasync), can do
+                    the following upon receiving the endpoint removal notification:
+                        - Stop sending new requests to this instance.
+                        - Close existing connections after in-flight requests have completed.
+                        - Connect to a different instance of the service partition for future requests.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="18">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6919,6 +7352,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="8">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="9">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6938,7 +7385,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7674,6 +8121,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="8">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="9">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7693,7 +8154,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -9629,6 +10090,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="10">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="11">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -9648,7 +10123,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -10523,6 +10998,20 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="10">
+                <maml:name>HealthReportId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A health report ID which identifies the health report and can be used to find more detailed information about a specific health event at
+                    aka.ms/sfhealthid
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="11">
                 <maml:name>Immediate</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -10542,7 +11031,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -12614,6 +13103,35 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="1">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFImageStoreInfo</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>ImageStoreInfo</command:noun>
+                <maml:description>
+                    <maml:para>Gets the overall ImageStore information</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Returns information about the primary ImageStore replica, such as disk capacity and available disk space at the node it is on, and several categories of the ImageStore's file system usage.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="false" position="0">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17926,6 +18444,35 @@
             </command:syntax>
             <maml:description>
                 <maml:para>Gets the information about all application resources in a given resource group. The information include the description and other properties of the Application.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationResourceName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Get-SFUpgradeProgressMeshApplication</command:name>
+                <command:verb>Get</command:verb>
+                <command:noun>UpgradeProgressMeshApplication</command:noun>
+                <maml:description>
+                    <maml:para>Gets the progress of the latest upgrade performed on this application resource.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Gets the upgrade progress information about the Application resource with the given name. The information include percentage of completion and other upgrade state information of the Application resource.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" position="0">

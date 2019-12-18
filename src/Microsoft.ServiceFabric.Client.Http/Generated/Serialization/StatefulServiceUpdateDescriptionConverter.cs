@@ -45,6 +45,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var replicaRestartWaitDurationSeconds = default(string);
             var quorumLossWaitDurationSeconds = default(string);
             var standByReplicaKeepDurationSeconds = default(string);
+            var servicePlacementTimeLimitSeconds = default(string);
 
             do
             {
@@ -97,6 +98,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     standByReplicaKeepDurationSeconds = reader.ReadValueAsString();
                 }
+                else if (string.Compare("ServicePlacementTimeLimitSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    servicePlacementTimeLimitSeconds = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -116,7 +121,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 minReplicaSetSize: minReplicaSetSize,
                 replicaRestartWaitDurationSeconds: replicaRestartWaitDurationSeconds,
                 quorumLossWaitDurationSeconds: quorumLossWaitDurationSeconds,
-                standByReplicaKeepDurationSeconds: standByReplicaKeepDurationSeconds);
+                standByReplicaKeepDurationSeconds: standByReplicaKeepDurationSeconds,
+                servicePlacementTimeLimitSeconds: servicePlacementTimeLimitSeconds);
         }
 
         /// <summary>
@@ -183,6 +189,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.StandByReplicaKeepDurationSeconds != null)
             {
                 writer.WriteProperty(obj.StandByReplicaKeepDurationSeconds, "StandByReplicaKeepDurationSeconds", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ServicePlacementTimeLimitSeconds != null)
+            {
+                writer.WriteProperty(obj.ServicePlacementTimeLimitSeconds, "ServicePlacementTimeLimitSeconds", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

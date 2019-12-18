@@ -50,6 +50,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = DeploymentStatus.Deactivating;
             }
+            else if (string.Compare(value, "RanToCompletion", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = DeploymentStatus.RanToCompletion;
+            }
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = DeploymentStatus.Failed;
+            }
 
             return obj;
         }
@@ -80,6 +88,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case DeploymentStatus.Deactivating:
                     writer.WriteStringValue("Deactivating");
+                    break;
+                case DeploymentStatus.RanToCompletion:
+                    writer.WriteStringValue("RanToCompletion");
+                    break;
+                case DeploymentStatus.Failed:
+                    writer.WriteStringValue("Failed");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type DeploymentStatus");
