@@ -137,27 +137,11 @@ namespace Microsoft.ServiceFabric.Client
                     // if issuer thumbprint is specified verify it.
                     if (x509Name.IssuerCertThumbprint != null)
                     {
-                        var issuerThumbprint = x509Name.IssuerCertThumbprint;
-
-                        // SelfSigned cert matches with index 0, CA signed matches with index 1.
-                        var thumbprint = chain.ChainElements[0].Certificate.Thumbprint;
-
-                        if (thumbprint != null &&
-                            thumbprint.Equals(issuerThumbprint, StringComparison.OrdinalIgnoreCase))
+                        // validate issuer thumbprint against all pairs of RemoteX509Names
+                        if (this.IsServerCertIssuerThumbprintValid(chain, x509Name.IssuerCertThumbprint))
                         {
                             return true;
                         }
-
-                        // Not self-signed, check if its CA signed. Should have at least one issuer
-                        if (chain.ChainElements.Count < 2)
-                        {
-                            return false;
-                        }
-
-                        thumbprint = chain.ChainElements[1].Certificate.Thumbprint;
-
-                        return thumbprint != null &&
-                               thumbprint.Equals(issuerThumbprint, StringComparison.OrdinalIgnoreCase);
                     }
                     else
                     {
@@ -167,6 +151,29 @@ namespace Microsoft.ServiceFabric.Client
             }
 
             return false;
+        }
+
+        private bool IsServerCertIssuerThumbprintValid(X509Chain chain, string expectedIssuerThumbprint)
+        {
+                // SelfSigned cert matches with index 0, CA signed matches with index 1.
+                var thumbprint = chain.ChainElements[0].Certificate.Thumbprint;
+
+                if (thumbprint != null &&
+                    thumbprint.Equals(expectedIssuerThumbprint, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+
+                // Not self-signed, check if its CA signed. Should have at least one issuer
+                if (chain.ChainElements.Count < 2)
+                {
+                    return false;
+                }
+
+                thumbprint = chain.ChainElements[1].Certificate.Thumbprint;
+
+                return thumbprint != null &&
+                       thumbprint.Equals(expectedIssuerThumbprint, StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
