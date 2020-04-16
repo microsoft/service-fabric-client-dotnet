@@ -1,6 +1,11 @@
 ## Microsoft.ServiceFabric.Client.Http
 
 ## Client Library nuget package version and Service Fabric Runtime Compatibility
+### Stable releases
+Nuget Package Version | Compatible Service Fabric Runtime version
+-|-
+3.0.* | >= 6.5
+
 Nuget Package Version | Compatible Service Fabric Runtime version
 -|-
 3.0.* | >= 6.5
