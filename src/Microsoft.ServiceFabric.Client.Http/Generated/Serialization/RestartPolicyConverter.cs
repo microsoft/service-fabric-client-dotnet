@@ -26,11 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(RestartPolicy);
 
-            if (string.Compare(value, "onFailure", StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(value, "OnFailure", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestartPolicy.OnFailure;
             }
-            else if (string.Compare(value, "never", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "Never", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestartPolicy.Never;
             }
@@ -48,10 +48,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             switch (value)
             {
                 case RestartPolicy.OnFailure:
-                    writer.WriteStringValue("onFailure");
+                    writer.WriteStringValue("OnFailure");
                     break;
                 case RestartPolicy.Never:
-                    writer.WriteStringValue("never");
+                    writer.WriteStringValue("Never");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type RestartPolicy");

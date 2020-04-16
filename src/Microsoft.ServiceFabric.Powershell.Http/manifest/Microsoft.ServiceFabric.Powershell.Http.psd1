@@ -18,8 +18,8 @@
         'netframework\Microsoft.ServiceFabric.Powershell.Http.dll'
     }
 
-# Version number of this module.
-ModuleVersion = '1.0.3'
+# Version number of this module. Minor.Patch version matches the Major.Minor version of client lib.
+ModuleVersion = '1.4.1'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
@@ -124,7 +124,7 @@ PrivateData = @{
         # ReleaseNotes = ''
 
         # Prerelease string of this module
-        Prerelease = 'preview2'
+        Prerelease = 'preview1'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update
         # RequireLicenseAcceptance = $false

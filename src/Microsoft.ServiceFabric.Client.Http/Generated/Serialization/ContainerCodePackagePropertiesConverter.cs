@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var name = default(string);
             var image = default(string);
             var imageRegistryCredential = default(ImageRegistryCredential);
-            var entrypoint = default(string);
+            var entryPoint = default(string);
             var commands = default(IEnumerable<string>);
             var environmentVariables = default(IEnumerable<EnvironmentVariable>);
             var settings = default(IEnumerable<Setting>);
@@ -66,9 +66,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     imageRegistryCredential = ImageRegistryCredentialConverter.Deserialize(reader);
                 }
-                else if (string.Compare("entrypoint", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare("entryPoint", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    entrypoint = reader.ReadValueAsString();
+                    entryPoint = reader.ReadValueAsString();
                 }
                 else if (string.Compare("commands", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -133,7 +133,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 name: name,
                 image: image,
                 imageRegistryCredential: imageRegistryCredential,
-                entrypoint: entrypoint,
+                entryPoint: entryPoint,
                 commands: commands,
                 environmentVariables: environmentVariables,
                 settings: settings,
@@ -168,9 +168,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.ImageRegistryCredential, "imageRegistryCredential", ImageRegistryCredentialConverter.Serialize);
             }
 
-            if (obj.Entrypoint != null)
+            if (obj.EntryPoint != null)
             {
-                writer.WriteProperty(obj.Entrypoint, "entrypoint", JsonWriterExtensions.WriteStringValue);
+                writer.WriteProperty(obj.EntryPoint, "entryPoint", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.Commands != null)

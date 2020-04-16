@@ -9,7 +9,9 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// The run to completion execution policy
+    /// The run to completion execution policy, the service will perform its desired operation and complete successfully.
+    /// If the service encounters failure, it will restarted based on restart policy specified. If the service completes
+    /// its operation successfully, it will not be restarted again.
     /// </summary>
     public partial class RunToCompletionExecutionPolicy : ExecutionPolicy
     {
@@ -17,7 +19,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the RunToCompletionExecutionPolicy class.
         /// </summary>
         /// <param name="restart">Enumerates the restart policy for RunToCompletionExecutionPolicy. Possible values include:
-        /// 'onFailure', 'never'</param>
+        /// 'OnFailure', 'Never'</param>
         public RunToCompletionExecutionPolicy(
             RestartPolicy? restart)
             : base(
@@ -28,8 +30,8 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets enumerates the restart policy for RunToCompletionExecutionPolicy. Possible values include: 'onFailure',
-        /// 'never'
+        /// Gets enumerates the restart policy for RunToCompletionExecutionPolicy. Possible values include: 'OnFailure',
+        /// 'Never'
         /// </summary>
         public RestartPolicy? Restart { get; }
     }

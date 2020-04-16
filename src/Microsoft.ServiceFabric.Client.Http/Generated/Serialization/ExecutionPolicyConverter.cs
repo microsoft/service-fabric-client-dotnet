@@ -41,7 +41,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             }
 
             var propValue = reader.ReadValueAsString();
-            if (propValue.Equals("runToCompletion", StringComparison.OrdinalIgnoreCase))
+            if (propValue.Equals("Default", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DefaultExecutionPolicyConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("RunToCompletion", StringComparison.OrdinalIgnoreCase))
             {
                 obj = RunToCompletionExecutionPolicyConverter.GetFromJsonProperties(reader);
             }
@@ -61,7 +65,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static void Serialize(JsonWriter writer, ExecutionPolicy obj)
         {
             var kind = obj.Type;
-            if (kind.Equals(ExecutionPolicyType.RunToCompletion))
+            if (kind.Equals(ExecutionPolicyType.Default))
+            {
+                DefaultExecutionPolicyConverter.Serialize(writer, (DefaultExecutionPolicy)obj);
+            }
+            else if (kind.Equals(ExecutionPolicyType.RunToCompletion))
             {
                 RunToCompletionExecutionPolicyConverter.Serialize(writer, (RunToCompletionExecutionPolicy)obj);
             }

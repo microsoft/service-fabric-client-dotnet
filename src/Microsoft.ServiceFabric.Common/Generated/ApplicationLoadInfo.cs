@@ -34,13 +34,13 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="nodeCount">The number of nodes on which this application is instantiated.
         /// For applications that do not have application capacity defined this value will be zero.
         /// </param>
-        /// <param name="applicationLoadMetricInformation">List of application capacity metric description.</param>
+        /// <param name="applicationLoadMetricInformation">List of application load metric information.</param>
         public ApplicationLoadInfo(
             string id = default(string),
             long? minimumNodes = default(long?),
             long? maximumNodes = default(long?),
             long? nodeCount = default(long?),
-            IEnumerable<ApplicationMetricDescription> applicationLoadMetricInformation = default(IEnumerable<ApplicationMetricDescription>))
+            IEnumerable<ApplicationLoadMetricInformation> applicationLoadMetricInformation = default(IEnumerable<ApplicationLoadMetricInformation>))
         {
             this.Id = id;
             this.MinimumNodes = minimumNodes;
@@ -80,8 +80,8 @@ namespace Microsoft.ServiceFabric.Common
         public long? NodeCount { get; }
 
         /// <summary>
-        /// Gets list of application capacity metric description.
+        /// Gets list of application load metric information.
         /// </summary>
-        public IEnumerable<ApplicationMetricDescription> ApplicationLoadMetricInformation { get; }
+        public IEnumerable<ApplicationLoadMetricInformation> ApplicationLoadMetricInformation { get; }
     }
 }

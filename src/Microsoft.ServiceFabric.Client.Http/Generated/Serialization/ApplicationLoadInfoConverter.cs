@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var minimumNodes = default(long?);
             var maximumNodes = default(long?);
             var nodeCount = default(long?);
-            var applicationLoadMetricInformation = default(IEnumerable<ApplicationMetricDescription>);
+            var applicationLoadMetricInformation = default(IEnumerable<ApplicationLoadMetricInformation>);
 
             do
             {
@@ -60,7 +60,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("ApplicationLoadMetricInformation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    applicationLoadMetricInformation = reader.ReadList(ApplicationMetricDescriptionConverter.Deserialize);
+                    applicationLoadMetricInformation = reader.ReadList(ApplicationLoadMetricInformationConverter.Deserialize);
                 }
                 else
                 {
@@ -108,7 +108,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.ApplicationLoadMetricInformation != null)
             {
-                writer.WriteEnumerableProperty(obj.ApplicationLoadMetricInformation, "ApplicationLoadMetricInformation", ApplicationMetricDescriptionConverter.Serialize);
+                writer.WriteEnumerableProperty(obj.ApplicationLoadMetricInformation, "ApplicationLoadMetricInformation", ApplicationLoadMetricInformationConverter.Serialize);
             }
 
             writer.WriteEndObject();

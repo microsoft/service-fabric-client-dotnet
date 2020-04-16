@@ -28,11 +28,11 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="httpGet">Http probe for the container.</param>
         /// <param name="tcpSocket">Tcp port to probe inside the container.</param>
         public Probe(
-            int? initialDelaySeconds = default(int?),
-            int? periodSeconds = default(int?),
-            int? timeoutSeconds = default(int?),
-            int? successThreshold = default(int?),
-            int? failureThreshold = default(int?),
+            int? initialDelaySeconds = 0,
+            int? periodSeconds = 10,
+            int? timeoutSeconds = 1,
+            int? successThreshold = 1,
+            int? failureThreshold = 3,
             ProbeExec exec = default(ProbeExec),
             ProbeHttpGet httpGet = default(ProbeHttpGet),
             ProbeTcpSocket tcpSocket = default(ProbeTcpSocket))

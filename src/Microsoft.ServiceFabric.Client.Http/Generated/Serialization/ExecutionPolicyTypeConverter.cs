@@ -26,7 +26,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var value = reader.ReadValueAsString();
             var obj = default(ExecutionPolicyType);
 
-            if (string.Compare(value, "runToCompletion", StringComparison.OrdinalIgnoreCase) == 0)
+            if (string.Compare(value, "Default", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ExecutionPolicyType.Default;
+            }
+            else if (string.Compare(value, "RunToCompletion", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = ExecutionPolicyType.RunToCompletion;
             }
@@ -43,8 +47,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             switch (value)
             {
+                case ExecutionPolicyType.Default:
+                    writer.WriteStringValue("Default");
+                    break;
                 case ExecutionPolicyType.RunToCompletion:
-                    writer.WriteStringValue("runToCompletion");
+                    writer.WriteStringValue("RunToCompletion");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type ExecutionPolicyType");

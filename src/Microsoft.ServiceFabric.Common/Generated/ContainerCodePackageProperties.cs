@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="image">The Container image to use.</param>
         /// <param name="resources">The resources required by this container.</param>
         /// <param name="imageRegistryCredential">Image registry credential.</param>
-        /// <param name="entrypoint">Override for the default entry point in the container.</param>
+        /// <param name="entryPoint">Override for the default entry point in the container.</param>
         /// <param name="commands">Command array to execute within the container in exec form.</param>
         /// <param name="environmentVariables">The environment variables to set in this container</param>
         /// <param name="settings">The settings to set in this container. The setting file path can be fetched from environment
@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Common
             string image,
             ResourceRequirements resources,
             ImageRegistryCredential imageRegistryCredential = default(ImageRegistryCredential),
-            string entrypoint = default(string),
+            string entryPoint = default(string),
             IEnumerable<string> commands = default(IEnumerable<string>),
             IEnumerable<EnvironmentVariable> environmentVariables = default(IEnumerable<EnvironmentVariable>),
             IEnumerable<Setting> settings = default(IEnumerable<Setting>),
@@ -64,7 +64,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Image = image;
             this.Resources = resources;
             this.ImageRegistryCredential = imageRegistryCredential;
-            this.Entrypoint = entrypoint;
+            this.EntryPoint = entryPoint;
             this.Commands = commands;
             this.EnvironmentVariables = environmentVariables;
             this.Settings = settings;
@@ -96,7 +96,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets override for the default entry point in the container.
         /// </summary>
-        public string Entrypoint { get; }
+        public string EntryPoint { get; }
 
         /// <summary>
         /// Gets command array to execute within the container in exec form.
