@@ -34,12 +34,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             set;
         }
 
+        /// <summary>
+        /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.
+        /// </summary>
+        [Parameter(Mandatory = false)]
+        public long? ServerTimeout { get; set; }
+
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
             try
             {
-                this.ServiceFabricClient.ImageStore.UploadApplicationPackageAsync(this.ApplicationPackagePath, false, this.ApplicationPackagePathInImageStore, this.CancellationToken).GetAwaiter().GetResult();
+                this.ServiceFabricClient.ImageStore.UploadApplicationPackageAsync(this.ApplicationPackagePath, false, this.ApplicationPackagePathInImageStore, this.ServerTimeout, this.CancellationToken).GetAwaiter().GetResult();
                 Console.WriteLine("Success!");
             }
             catch (Exception ex)
