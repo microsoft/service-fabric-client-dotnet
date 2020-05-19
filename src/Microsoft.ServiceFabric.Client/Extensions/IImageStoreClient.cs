@@ -102,6 +102,9 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name="applicationPackagePathInImageStore">Relative path in the image store where the application package should be copied.
         /// If this is not specified, it defaults to the folder name as specified by applicationPackagePath.
         /// </param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This specifies the time
+        /// duration that the client is willing to wait for the requested file upload operation for each chunk in the file to complete. The default value for this
+        /// parameter is 60 seconds.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
@@ -112,6 +115,7 @@ namespace Microsoft.ServiceFabric.Client
             string applicationPackagePath,
             bool compressPackage = false,
             string applicationPackagePathInImageStore = default(string),
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

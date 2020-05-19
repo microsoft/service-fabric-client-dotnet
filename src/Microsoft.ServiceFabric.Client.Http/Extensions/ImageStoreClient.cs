@@ -29,7 +29,6 @@ namespace Microsoft.ServiceFabric.Client.Http
         private const int MaxConcurrentUpload = 10;
         private const int MaxUploadTry = 2;
         private const string ZipExtension = "zip";
-        private const long ServerTimeOutInSecondsForUpload = 60;
         private string imageStorePath;
         private bool isLocalStore = false;
 
@@ -76,6 +75,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             string applicationPackagePath,
             bool compressPackage = false,
             string applicationPackagePathInImageStore = default(string),
+            long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             applicationPackagePath.ThrowIfNull(nameof(applicationPackagePath));
@@ -152,13 +152,13 @@ namespace Microsoft.ServiceFabric.Client.Http
                 }
 
                 // upload single files with up to MaxConcurrentUpload in parallel. 
-                await this.UploadAllSingleFiles(singleFileUploadInfos, requestId, cancellationToken);
+                await this.UploadAllSingleFiles(singleFileUploadInfos, requestId, serverTimeout, cancellationToken);
 
                 // upload chunks with up to MaxConcurrentUpload in parallel. 
-                await this.UploadAllChunksAsync(chunkInfos, requestId, cancellationToken);
+                await this.UploadAllChunksAsync(chunkInfos, requestId, serverTimeout, cancellationToken);
 
                 // upload _.dirs with up to MaxConcurrentUpload in parallel. 
-                await this.UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, cancellationToken);
+                await this.UploadDirectoryCompletionMarkerFiles(dirPathsInImageStore, requestId, serverTimeout, cancellationToken);
             }
         }
 
@@ -388,6 +388,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         private async Task UploadAllChunksAsync(
             ICollection<ChunkInfo> chunkInfos,
             Guid requestId,
+            long? serverTimeout,
             CancellationToken cancellationToken)
         {
             if (chunkInfos.Count > 0)
@@ -398,6 +399,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                         this.UploadChunkAsync(
                             chunkInfo,
                             requestId.ToString(),
+                            serverTimeout,
                             cancellationToken),
                     chunkInfosBag.TryTake,
                     MaxConcurrentUpload);
@@ -428,6 +430,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         private async Task UploadChunkAsync(
             ChunkInfo chunkInfo,
             string parentRequestId,
+            long? serverTimeout,
             CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -459,7 +462,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     chunkInfo.EndPosition,
                     chunkInfo.FileUploadInfo.FileInfo.Length,
                     $"{parentRequestId}:{Guid.NewGuid()}",
-                    ServerTimeOutInSecondsForUpload,
+                    serverTimeout,
                     cancellationToken);
             }
             catch (ServiceFabricRequestException)
@@ -476,6 +479,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         private Task UploadAllSingleFiles(
             IEnumerable<FileUploadInfo> singleFileUploadInfos,
             Guid requestId,
+            long? serverTimeout,
             CancellationToken cancellationToken)
         {
             var singleFileUploadInfosBag = new ConcurrentBag<FileUploadInfo>(singleFileUploadInfos);
@@ -485,6 +489,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                         File.ReadAllBytes(uploadInfo.FileInfo.FullName),
                         uploadInfo.FilePathInImageStore,
                         requestId.ToString(),
+                        serverTimeout,
                         cancellationToken),
                 singleFileUploadInfosBag.TryTake,
                 MaxConcurrentUpload);
@@ -495,6 +500,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         private Task UploadDirectoryCompletionMarkerFiles(
             IEnumerable<string> dirPathsInImageStore,
             Guid requestId,
+            long? serverTimeout,
             CancellationToken cancellationToken)
         {
             var dirPaths = new ConcurrentBag<string>(dirPathsInImageStore);
@@ -504,6 +510,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                         new byte[0],
                         $"{dirPathInImageStore}{Path.DirectorySeparatorChar}_.dir",
                         requestId.ToString(),
+                        serverTimeout,
                         cancellationToken),
                 dirPaths.TryTake,
                 MaxConcurrentUpload);
@@ -515,6 +522,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             byte[] fileContent,
             string filePathInImageStore,
             string parentRequestId,
+            long? serverTimeout,
             CancellationToken cancellationToken)
         {
             // retry once on network, timeout issues
@@ -527,7 +535,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     fileContent,
                     filePathInImageStore,
                     $"{parentRequestId}:{Guid.NewGuid()}",
-                    ServerTimeOutInSecondsForUpload,
+                    serverTimeout,
                     cancellationToken);
             }
             catch (ServiceFabricRequestException)
