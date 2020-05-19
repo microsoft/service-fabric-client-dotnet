@@ -121,6 +121,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         }
 
         /// <summary>
+        /// Gets or sets client timeout in seconds used by underlying http client to wait before the request times out. The default value for
+        /// this parameter is 90 seconds.
+        /// </summary>
+        [Parameter(Mandatory = false, ParameterSetName = "Default")]
+        [Parameter(Mandatory = true,  ParameterSetName = "Windows")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_FindClientCert")]
+        [Parameter(Mandatory = false, ParameterSetName = "X509_ClientCertProvided")]
+        [Parameter(Mandatory = true,  ParameterSetName = "Aad")]
+        [Parameter(Mandatory = true,  ParameterSetName = "Dsts")]
+        public long? ClientTimeout { get; set; } = 90;
+
+        /// <summary>
         /// Gets or sets the switch to get Azure Active Directory metadata. When this switch is specified, Connect commandlet displays the Azure aCtive Directory metadata without validating the connection with AAD credentials.
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Aad")]
@@ -279,6 +291,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     (ct) => Task.FromResult<SecuritySettings>(new DstsClaimsSecuritySettings(CredentialsUtil.GetAccessTokenDstsAsync, remoteX509SecuritySettings));
 
                 builder.UseClaimsSecurity(securitySettings);
+            }
+
+            // set the client timeout.
+            if (this.ClientTimeout != null)
+            {
+                builder.ConfigureClientSettings(settings => settings.ClientTimeout = TimeSpan.FromSeconds(this.ClientTimeout.Value));
             }
 
             // build the client
