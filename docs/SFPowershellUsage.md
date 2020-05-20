@@ -25,7 +25,7 @@ Install-Module -Name PowerShellGet -Force
 ## PS Module and Service Fabric Runtime Compatibility
 Module Version | Compatible Service Fabric Runtime version
 -|-
-Adding PS 1.4.0-preview module version info 
+1.4.1-preview* | >= 7.1.*
 1.4.0-preview* | >= 7.0.*
 1.0.3-preview* | >= 6.4.*
 
