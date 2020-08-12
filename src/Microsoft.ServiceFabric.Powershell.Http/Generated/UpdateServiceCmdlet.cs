@@ -62,6 +62,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
         public string Flags { get; set; }
@@ -149,9 +150,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string ServicePlacementTimeLimitSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets DropSourceReplicaOnMove. Indicates whether to drop source Secondary replica even if the target replica
+        /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
+        /// if not it is false.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_Stateful_")]
+        public bool? DropSourceReplicaOnMove { get; set; }
+
+        /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_Stateless_")]
         public int? InstanceCount { get; set; }
 
         /// <summary>
@@ -161,7 +170,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of
         /// nodes on which the instances are allowed to be placed according to the placement constraints on the service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_Stateless_")]
         public int? MinInstanceCount { get; set; }
 
         /// <summary>
@@ -172,7 +181,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// number of nodes on which the instances are allowed to be placed according to the placement constraints on the
         /// service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_Stateless_")]
         public int? MinInstancePercentage { get; set; }
 
         /// <summary>
@@ -189,7 +198,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Close existing connections after in-flight requests have completed.
         /// - Connect to a different instance of the service partition for future requests.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_Stateless_")]
         public string InstanceCloseDelayDurationSeconds { get; set; }
 
         /// <summary>
@@ -197,7 +206,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19)]
+        [Parameter(Mandatory = false, Position = 20)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -219,7 +228,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
                     quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
                     standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds,
-                    servicePlacementTimeLimitSeconds: this.ServicePlacementTimeLimitSeconds);
+                    servicePlacementTimeLimitSeconds: this.ServicePlacementTimeLimitSeconds,
+                    dropSourceReplicaOnMove: this.DropSourceReplicaOnMove);
             }
             else if (this.Stateless.IsPresent)
             {

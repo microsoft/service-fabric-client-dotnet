@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -99,6 +100,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
         /// </summary>
         public string Flags { get; }
 
