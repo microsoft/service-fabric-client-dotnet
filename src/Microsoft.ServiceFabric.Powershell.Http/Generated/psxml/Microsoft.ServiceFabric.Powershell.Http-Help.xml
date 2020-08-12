@@ -5800,6 +5800,9 @@
                 <command:parameter required="false">
                         <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>DropSourceReplicaOnMove</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5860,6 +5863,9 @@
                 <command:parameter required="false">
                         <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>DropSourceReplicaOnMove</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5913,6 +5919,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>DropSourceReplicaOnMove</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -6228,6 +6237,7 @@
                     - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
                     - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
                     - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
+                    - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 16.
                     
                     </maml:para>
                 </maml:Description>
@@ -6285,6 +6295,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="27">
+                <maml:name>DropSourceReplicaOnMove</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Indicates whether to drop source Secondary replica even if the target replica has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true, if not it is false.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="28">
                 <maml:name>MinInstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6299,7 +6321,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="28">
+            <command:parameter required="false" position="29">
                 <maml:name>MinInstancePercentage</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6314,7 +6336,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="29">
+            <command:parameter required="false" position="30">
                 <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6334,7 +6356,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="30">
+            <command:parameter required="false" position="31">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6553,6 +6575,9 @@
                 <command:parameter required="false">
                         <maml:name>ServicePlacementTimeLimitSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>DropSourceReplicaOnMove</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Update-SFService</maml:name>
@@ -6613,6 +6638,7 @@
                     - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
                     - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
                     - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
+                    - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
                     
                     </maml:para>
                 </maml:Description>
@@ -6769,6 +6795,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="14">
+                <maml:name>DropSourceReplicaOnMove</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Indicates whether to drop source Secondary replica even if the target replica has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true, if not it is false.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="15">
                 <maml:name>InstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6780,7 +6818,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>MinInstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6795,7 +6833,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>MinInstancePercentage</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6810,7 +6848,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="17">
+            <command:parameter required="false" position="18">
                 <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6829,7 +6867,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="18">
+            <command:parameter required="false" position="19">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>

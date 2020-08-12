@@ -39,6 +39,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -63,6 +64,9 @@ namespace Microsoft.ServiceFabric.Common
         /// before being removed.</param>
         /// <param name="servicePlacementTimeLimitSeconds">The duration for which replicas can stay InBuild before reporting
         /// that build is stuck.</param>
+        /// <param name="dropSourceReplicaOnMove">Indicates whether to drop source Secondary replica even if the target replica
+        /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
+        /// if not it is false.</param>
         public StatefulServiceUpdateDescription(
             string flags = default(string),
             string placementConstraints = default(string),
@@ -76,7 +80,8 @@ namespace Microsoft.ServiceFabric.Common
             string replicaRestartWaitDurationSeconds = default(string),
             string quorumLossWaitDurationSeconds = default(string),
             string standByReplicaKeepDurationSeconds = default(string),
-            string servicePlacementTimeLimitSeconds = default(string))
+            string servicePlacementTimeLimitSeconds = default(string),
+            bool? dropSourceReplicaOnMove = default(bool?))
             : base(
                 Common.ServiceKind.Stateful,
                 flags,
@@ -95,6 +100,7 @@ namespace Microsoft.ServiceFabric.Common
             this.QuorumLossWaitDurationSeconds = quorumLossWaitDurationSeconds;
             this.StandByReplicaKeepDurationSeconds = standByReplicaKeepDurationSeconds;
             this.ServicePlacementTimeLimitSeconds = servicePlacementTimeLimitSeconds;
+            this.DropSourceReplicaOnMove = dropSourceReplicaOnMove;
         }
 
         /// <summary>
@@ -126,5 +132,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the duration for which replicas can stay InBuild before reporting that build is stuck.
         /// </summary>
         public string ServicePlacementTimeLimitSeconds { get; }
+
+        /// <summary>
+        /// Gets indicates whether to drop source Secondary replica even if the target replica has not finished build. If
+        /// desired behavior is to drop it as soon as possible the value of this property is true, if not it is false.
+        /// </summary>
+        public bool? DropSourceReplicaOnMove { get; }
     }
 }

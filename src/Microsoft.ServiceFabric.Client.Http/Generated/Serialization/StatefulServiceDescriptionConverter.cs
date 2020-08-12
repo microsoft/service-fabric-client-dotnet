@@ -55,6 +55,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var quorumLossWaitDurationSeconds = default(long?);
             var standByReplicaKeepDurationSeconds = default(long?);
             var servicePlacementTimeLimitSeconds = default(long?);
+            var dropSourceReplicaOnMove = default(bool?);
 
             do
             {
@@ -147,6 +148,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     servicePlacementTimeLimitSeconds = reader.ReadValueAsLong();
                 }
+                else if (string.Compare("DropSourceReplicaOnMove", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    dropSourceReplicaOnMove = reader.ReadValueAsBool();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -176,7 +181,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 replicaRestartWaitDurationSeconds: replicaRestartWaitDurationSeconds,
                 quorumLossWaitDurationSeconds: quorumLossWaitDurationSeconds,
                 standByReplicaKeepDurationSeconds: standByReplicaKeepDurationSeconds,
-                servicePlacementTimeLimitSeconds: servicePlacementTimeLimitSeconds);
+                servicePlacementTimeLimitSeconds: servicePlacementTimeLimitSeconds,
+                dropSourceReplicaOnMove: dropSourceReplicaOnMove);
         }
 
         /// <summary>
@@ -265,6 +271,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ServicePlacementTimeLimitSeconds != null)
             {
                 writer.WriteProperty(obj.ServicePlacementTimeLimitSeconds, "ServicePlacementTimeLimitSeconds", JsonWriterExtensions.WriteLongValue);
+            }
+
+            if (obj.DropSourceReplicaOnMove != null)
+            {
+                writer.WriteProperty(obj.DropSourceReplicaOnMove, "DropSourceReplicaOnMove", JsonWriterExtensions.WriteBoolValue);
             }
 
             writer.WriteEndObject();

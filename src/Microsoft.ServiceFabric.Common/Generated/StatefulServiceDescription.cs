@@ -59,6 +59,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
         /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 16.
         /// </param>
         /// <param name="replicaRestartWaitDurationSeconds">The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.</param>
@@ -68,6 +69,9 @@ namespace Microsoft.ServiceFabric.Common
         /// before being removed.</param>
         /// <param name="servicePlacementTimeLimitSeconds">The duration for which replicas can stay InBuild before reporting
         /// that build is stuck.</param>
+        /// <param name="dropSourceReplicaOnMove">Indicates whether to drop source Secondary replica even if the target replica
+        /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
+        /// if not it is false.</param>
         public StatefulServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -90,7 +94,8 @@ namespace Microsoft.ServiceFabric.Common
             long? replicaRestartWaitDurationSeconds = default(long?),
             long? quorumLossWaitDurationSeconds = default(long?),
             long? standByReplicaKeepDurationSeconds = default(long?),
-            long? servicePlacementTimeLimitSeconds = default(long?))
+            long? servicePlacementTimeLimitSeconds = default(long?),
+            bool? dropSourceReplicaOnMove = default(bool?))
             : base(
                 serviceName,
                 serviceTypeName,
@@ -125,6 +130,7 @@ namespace Microsoft.ServiceFabric.Common
             this.QuorumLossWaitDurationSeconds = quorumLossWaitDurationSeconds;
             this.StandByReplicaKeepDurationSeconds = standByReplicaKeepDurationSeconds;
             this.ServicePlacementTimeLimitSeconds = servicePlacementTimeLimitSeconds;
+            this.DropSourceReplicaOnMove = dropSourceReplicaOnMove;
         }
 
         /// <summary>
@@ -155,6 +161,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - QuorumLossWaitDuration - Indicates the QuorumLossWaitDuration property is set. The value is 2.
         /// - StandByReplicaKeepDuration - Indicates the StandByReplicaKeepDuration property is set. The value is 4.
         /// - ServicePlacementTimeLimit - Indicates the ServicePlacementTimeLimit property is set. The value is 8.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 16.
         /// </summary>
         public int? Flags { get; }
 
@@ -177,5 +184,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the duration for which replicas can stay InBuild before reporting that build is stuck.
         /// </summary>
         public long? ServicePlacementTimeLimitSeconds { get; }
+
+        /// <summary>
+        /// Gets indicates whether to drop source Secondary replica even if the target replica has not finished build. If
+        /// desired behavior is to drop it as soon as possible the value of this property is true, if not it is false.
+        /// </summary>
+        public bool? DropSourceReplicaOnMove { get; }
     }
 }
