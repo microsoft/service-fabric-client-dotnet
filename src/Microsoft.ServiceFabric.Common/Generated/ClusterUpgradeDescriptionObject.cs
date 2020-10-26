@@ -39,15 +39,8 @@ namespace Microsoft.ServiceFabric.Common
         /// </param>
         /// <param name="clusterUpgradeHealthPolicy">Defines a health policy used to evaluate the health of the cluster during
         /// a cluster upgrade.</param>
-        /// <param name="applicationHealthPolicyMap">Defines a map that contains specific application health policies for
-        /// different applications.
-        /// Each entry specifies as key the application name and as value an ApplicationHealthPolicy used to evaluate the
-        /// application health.
-        /// If an application is not specified in the map, the application health evaluation uses the ApplicationHealthPolicy
-        /// found in its application manifest or the default application health policy (if no health policy is defined in the
-        /// manifest).
-        /// The map is empty by default.
-        /// </param>
+        /// <param name="applicationHealthPolicyMap">Represents the map of application health policies for a ServiceFabric
+        /// cluster upgrade</param>
         public ClusterUpgradeDescriptionObject(
             string configVersion = default(string),
             string codeVersion = default(string),
@@ -60,7 +53,7 @@ namespace Microsoft.ServiceFabric.Common
             MonitoringPolicyDescription monitoringPolicy = default(MonitoringPolicyDescription),
             ClusterHealthPolicy clusterHealthPolicy = default(ClusterHealthPolicy),
             ClusterUpgradeHealthPolicyObject clusterUpgradeHealthPolicy = default(ClusterUpgradeHealthPolicyObject),
-            IEnumerable<ApplicationHealthPolicyMapItem> applicationHealthPolicyMap = default(IEnumerable<ApplicationHealthPolicyMapItem>))
+            ApplicationHealthPolicyMapObject applicationHealthPolicyMap = default(ApplicationHealthPolicyMapObject))
         {
             this.ConfigVersion = configVersion;
             this.CodeVersion = codeVersion;
@@ -139,14 +132,8 @@ namespace Microsoft.ServiceFabric.Common
         public ClusterUpgradeHealthPolicyObject ClusterUpgradeHealthPolicy { get; }
 
         /// <summary>
-        /// Gets defines a map that contains specific application health policies for different applications.
-        /// Each entry specifies as key the application name and as value an ApplicationHealthPolicy used to evaluate the
-        /// application health.
-        /// If an application is not specified in the map, the application health evaluation uses the ApplicationHealthPolicy
-        /// found in its application manifest or the default application health policy (if no health policy is defined in the
-        /// manifest).
-        /// The map is empty by default.
+        /// Gets represents the map of application health policies for a ServiceFabric cluster upgrade
         /// </summary>
-        public IEnumerable<ApplicationHealthPolicyMapItem> ApplicationHealthPolicyMap { get; }
+        public ApplicationHealthPolicyMapObject ApplicationHealthPolicyMap { get; }
     }
 }

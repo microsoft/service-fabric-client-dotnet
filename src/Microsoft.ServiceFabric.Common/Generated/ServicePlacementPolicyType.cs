@@ -50,5 +50,12 @@ namespace Microsoft.ServiceFabric.Common
         /// particular partition of the service should be placed atomically. The value is 5.
         /// </summary>
         NonPartiallyPlaceService,
+
+        /// <summary>
+        /// Indicates that the ServicePlacementPolicyDescription is of type
+        /// ServicePlacementAllowMultipleStatelessInstancesOnNodePolicyDescription, which indicates that multiple stateless
+        /// instances of a particular partition of the service can be placed on a node. The value is 6.
+        /// </summary>
+        AllowMultipleStatelessInstancesOnNode,
     }
 }

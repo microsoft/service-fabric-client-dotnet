@@ -8586,6 +8586,59 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>Update-SFPartitionLoad</command:name>
+                <command:verb>Update</command:verb>
+                <command:noun>PartitionLoad</command:noun>
+                <maml:description>
+                    <maml:para>Update the loads of provided partitions for specific metrics.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Updates the load value and predicted load value for all the partitions provided for specified metrics.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>PartitionMetricLoadDescriptionList</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Description of updating load for list of partitions.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">IEnumerable&lt;PartitionMetricLoadDescription&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;PartitionMetricLoadDescription&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>MaxResults</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>New-SFRepairTask</command:name>
                 <command:verb>New</command:verb>
                 <command:noun>RepairTask</command:noun>
@@ -14124,6 +14177,24 @@
                 <command:syntaxItem>
                     <maml:name>New-SFBackupPolicy</maml:name>
                 <command:parameter required="true">
+                        <maml:name>Interval</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
                         <maml:name>ScheduleFrequencyType</maml:name>
                 </command:parameter>
                 <command:parameter required="true">
@@ -14173,6 +14244,30 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>New-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ScheduleFrequencyType</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RunTimes</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>RunDays</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>MinimumNumberOfBackups</maml:name>
@@ -14298,6 +14393,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="true" position="9">
+                <maml:name>StorageCredentialsSourceLocation</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The source location of the storage credentials to connect to the Dsms Azure blob store.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="10">
                 <maml:name>RetentionDuration</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14309,7 +14416,7 @@
                     <maml:name>TimeSpan?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>RunDays</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14321,7 +14428,7 @@
                     <maml:name>IEnumerable&lt;DayOfWeek?&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14333,7 +14440,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14345,7 +14452,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14357,7 +14464,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14369,7 +14476,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14381,7 +14488,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>MinimumNumberOfBackups</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14393,7 +14500,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="17">
+            <command:parameter required="false" position="18">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14633,6 +14740,24 @@
                 <command:syntaxItem>
                     <maml:name>Update-SFBackupPolicy</maml:name>
                 <command:parameter required="true">
+                        <maml:name>Interval</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Update-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
                         <maml:name>ScheduleFrequencyType</maml:name>
                 </command:parameter>
                 <command:parameter required="true">
@@ -14682,6 +14807,30 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>SecondaryPassword</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MinimumNumberOfBackups</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Update-SFBackupPolicy</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ScheduleFrequencyType</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RunTimes</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>RetentionDuration</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>RunDays</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>MinimumNumberOfBackups</maml:name>
@@ -14807,6 +14956,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="true" position="9">
+                <maml:name>StorageCredentialsSourceLocation</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The source location of the storage credentials to connect to the Dsms Azure blob store.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="10">
                 <maml:name>RetentionDuration</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14818,7 +14979,7 @@
                     <maml:name>TimeSpan?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="10">
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="11">
                 <maml:name>BackupPolicyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14830,7 +14991,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>RunDays</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14842,7 +15003,7 @@
                     <maml:name>IEnumerable&lt;DayOfWeek?&gt;</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14854,7 +15015,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14866,7 +15027,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14878,7 +15039,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14890,7 +15051,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14902,7 +15063,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="17">
+            <command:parameter required="false" position="18">
                 <maml:name>MinimumNumberOfBackups</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -14914,7 +15075,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="18">
+            <command:parameter required="false" position="19">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -15969,6 +16130,15 @@
                 <command:syntaxItem>
                     <maml:name>Backup-SFPartition</maml:name>
                 <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Backup-SFPartition</maml:name>
+                <command:parameter required="true">
                         <maml:name>Path</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
@@ -16039,7 +16209,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="4">
+            <command:parameter required="true" position="4">
+                <maml:name>StorageCredentialsSourceLocation</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The source location of the storage credentials to connect to the Dsms Azure blob store.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="5">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16051,7 +16233,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="5">
+            <command:parameter required="false" position="6">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16063,7 +16245,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="6">
+            <command:parameter required="false" position="7">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16075,7 +16257,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="7">
+            <command:parameter required="false" position="8">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16087,7 +16269,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="8">
+            <command:parameter required="false" position="9">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16099,7 +16281,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>BackupTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16111,7 +16293,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16184,6 +16366,15 @@
                 </command:parameter>
                 <command:parameter required="true">
                         <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Restore-SFPartition</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -16283,7 +16474,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="6">
+            <command:parameter required="true" position="6">
+                <maml:name>StorageCredentialsSourceLocation</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The source location of the storage credentials to connect to the Dsms Azure blob store.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="7">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16295,7 +16498,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="7">
+            <command:parameter required="false" position="8">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16307,7 +16510,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="8">
+            <command:parameter required="false" position="9">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16319,7 +16522,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16331,7 +16534,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16343,7 +16546,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>RestoreTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16355,7 +16558,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16452,6 +16655,45 @@
                 </command:parameter>
                 <command:parameter required="true">
                         <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>PartitionId</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ApplicationName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceName</maml:name>
+                </command:parameter>
+                </command:syntaxItem>
+                <command:syntaxItem>
+                    <maml:name>Get-SFBackupsFromBackupLocation</maml:name>
+                <command:parameter required="true">
+                        <maml:name>ContainerName</maml:name>
+                </command:parameter>
+                <command:parameter required="true">
+                        <maml:name>StorageCredentialsSourceLocation</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServiceName</maml:name>
@@ -16568,7 +16810,19 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="3">
+            <command:parameter required="true" position="3">
+                <maml:name>StorageCredentialsSourceLocation</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The source location of the storage credentials to connect to the Dsms Azure blob store.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
                 <maml:name>StartDateTimeFilter</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16580,7 +16834,7 @@
                     <maml:name>DateTime?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="4">
+            <command:parameter required="false" position="5">
                 <maml:name>EndDateTimeFilter</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16592,7 +16846,7 @@
                     <maml:name>DateTime?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="5">
+            <command:parameter required="false" position="6">
                 <maml:name>Latest</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16604,7 +16858,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="6">
+            <command:parameter required="false" position="7">
                 <maml:name>FriendlyName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16616,7 +16870,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="7">
+            <command:parameter required="false" position="8">
                 <maml:name>PrimaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16628,7 +16882,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="8">
+            <command:parameter required="false" position="9">
                 <maml:name>PrimaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16640,7 +16894,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="9">
+            <command:parameter required="false" position="10">
                 <maml:name>SecondaryUserName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16652,7 +16906,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="10">
+            <command:parameter required="false" position="11">
                 <maml:name>SecondaryPassword</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16664,7 +16918,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="11">
+            <command:parameter required="false" position="12">
                 <maml:name>ApplicationName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16676,7 +16930,7 @@
                     <maml:name>ApplicationName</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="12">
+            <command:parameter required="false" position="13">
                 <maml:name>ServiceName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16688,7 +16942,7 @@
                     <maml:name>ServiceName</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>PartitionId</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16700,7 +16954,7 @@
                     <maml:name>PartitionId</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="14">
+            <command:parameter required="false" position="15">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16712,7 +16966,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>MaxResults</maml:name>
                 <maml:Description>
                     <maml:para>
