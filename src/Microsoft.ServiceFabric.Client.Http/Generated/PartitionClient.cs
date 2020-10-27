@@ -524,7 +524,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ListTConverter<ConfigParameterOverride>.Serialize(new JsonTextWriter(sw), partitionMetricLoadDescriptionList, PartitionMetricLoadDescriptionConverter.Serialize);
+                ListTConverter<PartitionMetricLoadDescription>.Serialize(new JsonTextWriter(sw), partitionMetricLoadDescriptionList, PartitionMetricLoadDescriptionConverter.Serialize);
                 content = sw.ToString();
             }
 
