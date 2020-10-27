@@ -38,6 +38,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = BackupStorageKind.AzureBlobStore;
             }
+            else if (string.Compare(value, "DsmsAzureBlobStore", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = BackupStorageKind.DsmsAzureBlobStore;
+            }
 
             return obj;
         }
@@ -59,6 +63,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case BackupStorageKind.AzureBlobStore:
                     writer.WriteStringValue("AzureBlobStore");
+                    break;
+                case BackupStorageKind.DsmsAzureBlobStore:
+                    writer.WriteStringValue("DsmsAzureBlobStore");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type BackupStorageKind");

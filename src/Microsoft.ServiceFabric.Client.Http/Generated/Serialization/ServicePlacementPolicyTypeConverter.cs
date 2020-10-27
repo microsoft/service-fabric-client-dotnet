@@ -50,6 +50,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ServicePlacementPolicyType.NonPartiallyPlaceService;
             }
+            else if (string.Compare(value, "AllowMultipleStatelessInstancesOnNode", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ServicePlacementPolicyType.AllowMultipleStatelessInstancesOnNode;
+            }
 
             return obj;
         }
@@ -80,6 +84,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case ServicePlacementPolicyType.NonPartiallyPlaceService:
                     writer.WriteStringValue("NonPartiallyPlaceService");
+                    break;
+                case ServicePlacementPolicyType.AllowMultipleStatelessInstancesOnNode:
+                    writer.WriteStringValue("AllowMultipleStatelessInstancesOnNode");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type ServicePlacementPolicyType");

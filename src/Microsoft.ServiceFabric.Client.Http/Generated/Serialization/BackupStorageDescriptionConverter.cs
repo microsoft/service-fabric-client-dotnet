@@ -49,6 +49,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FileShareBackupStorageDescriptionConverter.GetFromJsonProperties(reader);
             }
+            else if (propValue.Equals("DsmsAzureBlobStore", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DsmsAzureBlobBackupStorageDescriptionConverter.GetFromJsonProperties(reader);
+            }
             else
             {
                 throw new InvalidOperationException("Unknown StorageKind.");
@@ -72,6 +76,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (kind.Equals(BackupStorageKind.FileShare))
             {
                 FileShareBackupStorageDescriptionConverter.Serialize(writer, (FileShareBackupStorageDescription)obj);
+            }
+            else if (kind.Equals(BackupStorageKind.DsmsAzureBlobStore))
+            {
+                DsmsAzureBlobBackupStorageDescriptionConverter.Serialize(writer, (DsmsAzureBlobBackupStorageDescription)obj);
             }
             else
             {

@@ -502,5 +502,36 @@ namespace Microsoft.ServiceFabric.Client
             bool? ignoreConstraints = false,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Update the loads of provided partitions for specific metrics.
+        /// </summary>
+        /// <remarks>
+        /// Updates the load value and predicted load value for all the partitions provided for specified metrics.
+        /// </remarks>
+        /// <param name ="partitionMetricLoadDescriptionList">Description of updating load for list of partitions.</param>
+        /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
+        /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
+        /// defines the upper bound on the number of results returned. The results returned can be less than the specified
+        /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
+        /// that fit in the return message.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<PagedData<UpdatePartitionLoadResult>> UpdatePartitionLoadAsync(
+            IEnumerable<PartitionMetricLoadDescription> partitionMetricLoadDescriptionList,
+            ContinuationToken continuationToken = default(ContinuationToken),
+            long? maxResults = 0,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

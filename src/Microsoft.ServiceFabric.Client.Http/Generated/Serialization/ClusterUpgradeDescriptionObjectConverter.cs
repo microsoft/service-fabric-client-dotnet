@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var monitoringPolicy = default(MonitoringPolicyDescription);
             var clusterHealthPolicy = default(ClusterHealthPolicy);
             var clusterUpgradeHealthPolicy = default(ClusterUpgradeHealthPolicyObject);
-            var applicationHealthPolicyMap = default(IEnumerable<ApplicationHealthPolicyMapItem>);
+            var applicationHealthPolicyMap = default(ApplicationHealthPolicyMapObject);
 
             do
             {
@@ -95,7 +95,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("ApplicationHealthPolicyMap", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    applicationHealthPolicyMap = reader.ReadList(ApplicationHealthPolicyMapItemConverter.Deserialize);
+                    applicationHealthPolicyMap = ApplicationHealthPolicyMapObjectConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -173,7 +173,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.ApplicationHealthPolicyMap != null)
             {
-                writer.WriteEnumerableProperty(obj.ApplicationHealthPolicyMap, "ApplicationHealthPolicyMap", ApplicationHealthPolicyMapItemConverter.Serialize);
+                writer.WriteProperty(obj.ApplicationHealthPolicyMap, "ApplicationHealthPolicyMap", ApplicationHealthPolicyMapObjectConverter.Serialize);
             }
 
             writer.WriteEndObject();
