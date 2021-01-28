@@ -44,6 +44,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var monitoringPolicy = default(MonitoringPolicyDescription);
             var applicationHealthPolicy = default(ApplicationHealthPolicy);
             var instanceCloseDelayDurationInSeconds = default(long?);
+            var managedApplicationIdentity = default(ManagedApplicationIdentityDescription);
 
             do
             {
@@ -92,6 +93,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceCloseDelayDurationInSeconds = reader.ReadValueAsLong();
                 }
+                else if (string.Compare("ManagedApplicationIdentity", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    managedApplicationIdentity = ManagedApplicationIdentityDescriptionConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -110,7 +115,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 sortOrder: sortOrder,
                 monitoringPolicy: monitoringPolicy,
                 applicationHealthPolicy: applicationHealthPolicy,
-                instanceCloseDelayDurationInSeconds: instanceCloseDelayDurationInSeconds);
+                instanceCloseDelayDurationInSeconds: instanceCloseDelayDurationInSeconds,
+                managedApplicationIdentity: managedApplicationIdentity);
         }
 
         /// <summary>
@@ -155,6 +161,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceCloseDelayDurationInSeconds != null)
             {
                 writer.WriteProperty(obj.InstanceCloseDelayDurationInSeconds, "InstanceCloseDelayDurationInSeconds", JsonWriterExtensions.WriteLongValue);
+            }
+
+            if (obj.ManagedApplicationIdentity != null)
+            {
+                writer.WriteProperty(obj.ManagedApplicationIdentity, "ManagedApplicationIdentity", ManagedApplicationIdentityDescriptionConverter.Serialize);
             }
 
             writer.WriteEndObject();

@@ -219,6 +219,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationDefinitionKind", applicationInfo.ApplicationDefinitionKind));
             strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ManagedApplicationIdentityDescription", applicationInfo.ManagedApplicationIdentity));
+            strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();
         }

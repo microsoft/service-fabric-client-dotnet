@@ -5827,6 +5827,9 @@
                 <command:parameter required="false">
                         <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5893,6 +5896,9 @@
                 <command:parameter required="false">
                         <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -5940,6 +5946,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
@@ -6357,6 +6366,21 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="31">
+                <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    When a stateless instance goes down, this timer starts. When it expires Service Fabric will create a new instance on any node in the cluster. 
+                    This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down is likely to recover in a short time. For example, during an upgrade.
+                    The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately start building its replacement.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="32">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6592,6 +6616,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
             </command:syntax>
@@ -6868,6 +6895,21 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="19">
+                <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    When a stateless instance goes down, this timer starts. When it expires Service Fabric will create a new instance on any node in the cluster. 
+                    This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down is likely to recover in a short time. For example, during an upgrade.
+                    The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately start building its replacement.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="20">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>

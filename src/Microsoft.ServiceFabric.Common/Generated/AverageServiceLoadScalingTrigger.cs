@@ -23,11 +23,18 @@ namespace Microsoft.ServiceFabric.Common
         /// performed.</param>
         /// <param name="scaleIntervalInSeconds">The period in seconds on which a decision is made whether to scale or
         /// not.</param>
+        /// <param name="useOnlyPrimaryLoad">Flag determines whether only the load of primary replica should be considered for
+        /// scaling.
+        /// If set to true, then trigger will only consider the load of primary replicas of stateful service.
+        /// If set to false, trigger will consider load of all replicas.
+        /// This parameter cannot be set to true for stateless service.
+        /// </param>
         public AverageServiceLoadScalingTrigger(
             string metricName,
             string lowerLoadThreshold,
             string upperLoadThreshold,
-            long? scaleIntervalInSeconds)
+            long? scaleIntervalInSeconds,
+            bool? useOnlyPrimaryLoad)
             : base(
                 Common.ScalingTriggerKind.AverageServiceLoad)
         {
@@ -35,11 +42,13 @@ namespace Microsoft.ServiceFabric.Common
             lowerLoadThreshold.ThrowIfNull(nameof(lowerLoadThreshold));
             upperLoadThreshold.ThrowIfNull(nameof(upperLoadThreshold));
             scaleIntervalInSeconds.ThrowIfNull(nameof(scaleIntervalInSeconds));
+            useOnlyPrimaryLoad.ThrowIfNull(nameof(useOnlyPrimaryLoad));
             scaleIntervalInSeconds?.ThrowIfOutOfInclusiveRange("scaleIntervalInSeconds", 0, 4294967295);
             this.MetricName = metricName;
             this.LowerLoadThreshold = lowerLoadThreshold;
             this.UpperLoadThreshold = upperLoadThreshold;
             this.ScaleIntervalInSeconds = scaleIntervalInSeconds;
+            this.UseOnlyPrimaryLoad = useOnlyPrimaryLoad;
         }
 
         /// <summary>
@@ -61,5 +70,13 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the period in seconds on which a decision is made whether to scale or not.
         /// </summary>
         public long? ScaleIntervalInSeconds { get; }
+
+        /// <summary>
+        /// Gets flag determines whether only the load of primary replica should be considered for scaling.
+        /// If set to true, then trigger will only consider the load of primary replicas of stateful service.
+        /// If set to false, trigger will consider load of all replicas.
+        /// This parameter cannot be set to true for stateless service.
+        /// </summary>
+        public bool? UseOnlyPrimaryLoad { get; }
     }
 }
