@@ -51,6 +51,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Note, the default value of InstanceCloseDelayDurationInSeconds is 4294967295, which indicates that the behavior
         /// will entirely depend on the delay configured in the stateless service description.
         /// </param>
+        /// <param name="managedApplicationIdentity">Managed application identity description.</param>
         public ApplicationUpgradeDescription(
             string name,
             string targetApplicationTypeVersion,
@@ -62,7 +63,8 @@ namespace Microsoft.ServiceFabric.Common
             UpgradeSortOrder? sortOrder = Common.UpgradeSortOrder.Default,
             MonitoringPolicyDescription monitoringPolicy = default(MonitoringPolicyDescription),
             ApplicationHealthPolicy applicationHealthPolicy = default(ApplicationHealthPolicy),
-            long? instanceCloseDelayDurationInSeconds = default(long?))
+            long? instanceCloseDelayDurationInSeconds = default(long?),
+            ManagedApplicationIdentityDescription managedApplicationIdentity = default(ManagedApplicationIdentityDescription))
         {
             name.ThrowIfNull(nameof(name));
             targetApplicationTypeVersion.ThrowIfNull(nameof(targetApplicationTypeVersion));
@@ -78,6 +80,7 @@ namespace Microsoft.ServiceFabric.Common
             this.MonitoringPolicy = monitoringPolicy;
             this.ApplicationHealthPolicy = applicationHealthPolicy;
             this.InstanceCloseDelayDurationInSeconds = instanceCloseDelayDurationInSeconds;
+            this.ManagedApplicationIdentity = managedApplicationIdentity;
         }
 
         /// <summary>
@@ -146,5 +149,10 @@ namespace Microsoft.ServiceFabric.Common
         /// will entirely depend on the delay configured in the stateless service description.
         /// </summary>
         public long? InstanceCloseDelayDurationInSeconds { get; }
+
+        /// <summary>
+        /// Gets managed application identity description.
+        /// </summary>
+        public ManagedApplicationIdentityDescription ManagedApplicationIdentity { get; }
     }
 }

@@ -44,6 +44,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var minInstanceCount = default(int?);
             var minInstancePercentage = default(int?);
             var instanceCloseDelayDurationSeconds = default(string);
+            var instanceRestartWaitDurationSeconds = default(long?);
 
             do
             {
@@ -92,6 +93,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceCloseDelayDurationSeconds = reader.ReadValueAsString();
                 }
+                else if (string.Compare("InstanceRestartWaitDurationSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceRestartWaitDurationSeconds = reader.ReadValueAsLong();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -110,7 +115,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 instanceCount: instanceCount,
                 minInstanceCount: minInstanceCount,
                 minInstancePercentage: minInstancePercentage,
-                instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds);
+                instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds,
+                instanceRestartWaitDurationSeconds: instanceRestartWaitDurationSeconds);
         }
 
         /// <summary>
@@ -172,6 +178,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceCloseDelayDurationSeconds != null)
             {
                 writer.WriteProperty(obj.InstanceCloseDelayDurationSeconds, "InstanceCloseDelayDurationSeconds", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.InstanceRestartWaitDurationSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceRestartWaitDurationSeconds, "InstanceRestartWaitDurationSeconds", JsonWriterExtensions.WriteLongValue);
             }
 
             writer.WriteEndObject();

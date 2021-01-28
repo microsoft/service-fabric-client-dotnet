@@ -33,6 +33,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="applicationDefinitionKind">The mechanism used to define a Service Fabric application.
         /// . Possible values include: 'Invalid', 'ServiceFabricApplicationDescription', 'Compose'</param>
+        /// <param name="managedApplicationIdentity">Managed application identity description.</param>
         public ApplicationInfo(
             string id = default(string),
             ApplicationName name = default(ApplicationName),
@@ -41,7 +42,8 @@ namespace Microsoft.ServiceFabric.Common
             ApplicationStatus? status = default(ApplicationStatus?),
             IReadOnlyDictionary<string, string> parameters = default(IReadOnlyDictionary<string, string>),
             HealthState? healthState = default(HealthState?),
-            ApplicationDefinitionKind? applicationDefinitionKind = default(ApplicationDefinitionKind?))
+            ApplicationDefinitionKind? applicationDefinitionKind = default(ApplicationDefinitionKind?),
+            ManagedApplicationIdentityDescription managedApplicationIdentity = default(ManagedApplicationIdentityDescription))
         {
             this.Id = id;
             this.Name = name;
@@ -51,6 +53,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Parameters = parameters;
             this.HealthState = healthState;
             this.ApplicationDefinitionKind = applicationDefinitionKind;
+            this.ManagedApplicationIdentity = managedApplicationIdentity;
         }
 
         /// <summary>
@@ -100,5 +103,10 @@ namespace Microsoft.ServiceFabric.Common
         /// . Possible values include: 'Invalid', 'ServiceFabricApplicationDescription', 'Compose'
         /// </summary>
         public ApplicationDefinitionKind? ApplicationDefinitionKind { get; }
+
+        /// <summary>
+        /// Gets managed application identity description.
+        /// </summary>
+        public ManagedApplicationIdentityDescription ManagedApplicationIdentity { get; }
     }
 }

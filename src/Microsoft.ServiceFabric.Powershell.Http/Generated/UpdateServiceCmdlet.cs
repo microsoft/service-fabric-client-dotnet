@@ -202,11 +202,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string InstanceCloseDelayDurationSeconds { get; set; }
 
         /// <summary>
+        /// Gets or sets InstanceRestartWaitDurationSeconds. When a stateless instance goes down, this timer starts. When it
+        /// expires Service Fabric will create a new instance on any node in the cluster.
+        /// This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down
+        /// is likely to recover in a short time. For example, during an upgrade.
+        /// The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately
+        /// start building its replacement.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_Stateless_")]
+        public long? InstanceRestartWaitDurationSeconds { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20)]
+        [Parameter(Mandatory = false, Position = 21)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -244,7 +255,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     instanceCount: this.InstanceCount,
                     minInstanceCount: this.MinInstanceCount,
                     minInstancePercentage: this.MinInstancePercentage,
-                    instanceCloseDelayDurationSeconds: this.InstanceCloseDelayDurationSeconds);
+                    instanceCloseDelayDurationSeconds: this.InstanceCloseDelayDurationSeconds,
+                    instanceRestartWaitDurationSeconds: this.InstanceRestartWaitDurationSeconds);
             }
 
             this.ServiceFabricClient.Services.UpdateServiceAsync(

@@ -37,6 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var lowerLoadThreshold = default(string);
             var upperLoadThreshold = default(string);
             var scaleIntervalInSeconds = default(long?);
+            var useOnlyPrimaryLoad = default(bool?);
 
             do
             {
@@ -57,6 +58,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     scaleIntervalInSeconds = reader.ReadValueAsLong();
                 }
+                else if (string.Compare("UseOnlyPrimaryLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    useOnlyPrimaryLoad = reader.ReadValueAsBool();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -68,7 +73,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 metricName: metricName,
                 lowerLoadThreshold: lowerLoadThreshold,
                 upperLoadThreshold: upperLoadThreshold,
-                scaleIntervalInSeconds: scaleIntervalInSeconds);
+                scaleIntervalInSeconds: scaleIntervalInSeconds,
+                useOnlyPrimaryLoad: useOnlyPrimaryLoad);
         }
 
         /// <summary>
@@ -85,6 +91,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.LowerLoadThreshold, "LowerLoadThreshold", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.UpperLoadThreshold, "UpperLoadThreshold", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.ScaleIntervalInSeconds, "ScaleIntervalInSeconds", JsonWriterExtensions.WriteLongValue);
+            writer.WriteProperty(obj.UseOnlyPrimaryLoad, "UseOnlyPrimaryLoad", JsonWriterExtensions.WriteBoolValue);
             writer.WriteEndObject();
         }
     }
