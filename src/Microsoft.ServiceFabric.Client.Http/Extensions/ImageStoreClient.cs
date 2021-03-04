@@ -62,7 +62,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 fileChunkToUpload,
                 pathInImageStore,
                 sessionId,
-                endBytePosition,
+                startBytePosition,
                 endBytePosition,
                 length,
                 null,
@@ -241,7 +241,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// When uploading file chunks to the image store,  the Content Range information is sent to server.
         /// Example: if the total file length is 20,000 bytes, and chunk being uploaded is for first 5,000 bytes,
         /// value of <paramref name="startBytePosition"/> would be 0, value of <paramref name="endBytePosition"/> would be 4999 and value of
-        /// <paramref name="length"/> would be 5000.
+        /// <paramref name="length"/> would be 20000.
         /// </remarks>
         internal Task UploadFileChunkAsync(
             byte[] fileChunkToUpload,
