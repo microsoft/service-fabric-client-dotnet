@@ -16,7 +16,7 @@ namespace Microsoft.ServiceFabric.Common
         Http,
 
         /// <summary>
-        /// Indicates that the probe is https. No cert validaton.
+        /// Indicates that the probe is https. No cert validation.
         /// </summary>
         Https,
     }

@@ -45,6 +45,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
+        /// <param name="tagsRequiredToPlace">Tags for placement of this service.</param>
+        /// <param name="tagsRequiredToRun">Tags for running of this service.</param>
         protected ServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -60,7 +62,9 @@ namespace Microsoft.ServiceFabric.Common
             bool? isDefaultMoveCostSpecified = default(bool?),
             ServicePackageActivationMode? servicePackageActivationMode = default(ServicePackageActivationMode?),
             string serviceDnsName = default(string),
-            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>))
+            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
+            NodeTagsDescription tagsRequiredToPlace = default(NodeTagsDescription),
+            NodeTagsDescription tagsRequiredToRun = default(NodeTagsDescription))
         {
             serviceName.ThrowIfNull(nameof(serviceName));
             serviceTypeName.ThrowIfNull(nameof(serviceTypeName));
@@ -81,6 +85,8 @@ namespace Microsoft.ServiceFabric.Common
             this.ServicePackageActivationMode = servicePackageActivationMode;
             this.ServiceDnsName = serviceDnsName;
             this.ScalingPolicies = scalingPolicies;
+            this.TagsRequiredToPlace = tagsRequiredToPlace;
+            this.TagsRequiredToRun = tagsRequiredToRun;
         }
 
         /// <summary>
@@ -161,6 +167,16 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets scaling policies for this service.
         /// </summary>
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; }
+
+        /// <summary>
+        /// Gets tags for placement of this service.
+        /// </summary>
+        public NodeTagsDescription TagsRequiredToPlace { get; }
+
+        /// <summary>
+        /// Gets tags for running of this service.
+        /// </summary>
+        public NodeTagsDescription TagsRequiredToRun { get; }
 
         /// <summary>
         /// Gets the kind of service (Stateless or Stateful).

@@ -37,6 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var maxPercentUnhealthyNodes = default(int?);
             var maxPercentUnhealthyApplications = default(int?);
             var applicationTypeHealthPolicyMap = default(IEnumerable<ApplicationTypeHealthPolicyMapItem>);
+            var nodeTypeHealthPolicyMap = default(IEnumerable<NodeTypeHealthPolicyMapItem>);
 
             do
             {
@@ -57,6 +58,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     applicationTypeHealthPolicyMap = reader.ReadList(ApplicationTypeHealthPolicyMapItemConverter.Deserialize);
                 }
+                else if (string.Compare("NodeTypeHealthPolicyMap", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    nodeTypeHealthPolicyMap = reader.ReadList(NodeTypeHealthPolicyMapItemConverter.Deserialize);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -68,7 +73,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 considerWarningAsError: considerWarningAsError,
                 maxPercentUnhealthyNodes: maxPercentUnhealthyNodes,
                 maxPercentUnhealthyApplications: maxPercentUnhealthyApplications,
-                applicationTypeHealthPolicyMap: applicationTypeHealthPolicyMap);
+                applicationTypeHealthPolicyMap: applicationTypeHealthPolicyMap,
+                nodeTypeHealthPolicyMap: nodeTypeHealthPolicyMap);
         }
 
         /// <summary>
@@ -98,6 +104,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ApplicationTypeHealthPolicyMap != null)
             {
                 writer.WriteEnumerableProperty(obj.ApplicationTypeHealthPolicyMap, "ApplicationTypeHealthPolicyMap", ApplicationTypeHealthPolicyMapItemConverter.Serialize);
+            }
+
+            if (obj.NodeTypeHealthPolicyMap != null)
+            {
+                writer.WriteEnumerableProperty(obj.NodeTypeHealthPolicyMap, "NodeTypeHealthPolicyMap", NodeTypeHealthPolicyMapItemConverter.Serialize);
             }
 
             writer.WriteEndObject();

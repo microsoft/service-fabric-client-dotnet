@@ -40,7 +40,11 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
-        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
+        /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -55,6 +59,9 @@ namespace Microsoft.ServiceFabric.Common
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
+        /// <param name="serviceDnsName">The DNS name of the service.</param>
+        /// <param name="tagsForPlacement">Tags for placement of this service.</param>
+        /// <param name="tagsForRunning">Tags for running of this service.</param>
         protected ServiceUpdateDescription(
             ServiceKind? serviceKind,
             string flags = default(string),
@@ -63,7 +70,10 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<ServiceLoadMetricDescription> loadMetrics = default(IEnumerable<ServiceLoadMetricDescription>),
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             MoveCost? defaultMoveCost = default(MoveCost?),
-            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>))
+            IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
+            string serviceDnsName = default(string),
+            NodeTagsDescription tagsForPlacement = default(NodeTagsDescription),
+            NodeTagsDescription tagsForRunning = default(NodeTagsDescription))
         {
             serviceKind.ThrowIfNull(nameof(serviceKind));
             this.ServiceKind = serviceKind;
@@ -74,6 +84,9 @@ namespace Microsoft.ServiceFabric.Common
             this.ServicePlacementPolicies = servicePlacementPolicies;
             this.DefaultMoveCost = defaultMoveCost;
             this.ScalingPolicies = scalingPolicies;
+            this.ServiceDnsName = serviceDnsName;
+            this.TagsForPlacement = tagsForPlacement;
+            this.TagsForRunning = tagsForRunning;
         }
 
         /// <summary>
@@ -100,7 +113,11 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
-        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
+        /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </summary>
         public string Flags { get; }
 
@@ -137,6 +154,21 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets scaling policies for this service.
         /// </summary>
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; }
+
+        /// <summary>
+        /// Gets the DNS name of the service.
+        /// </summary>
+        public string ServiceDnsName { get; }
+
+        /// <summary>
+        /// Gets tags for placement of this service.
+        /// </summary>
+        public NodeTagsDescription TagsForPlacement { get; }
+
+        /// <summary>
+        /// Gets tags for running of this service.
+        /// </summary>
+        public NodeTagsDescription TagsForRunning { get; }
 
         /// <summary>
         /// Gets the kind of service (Stateless or Stateful).

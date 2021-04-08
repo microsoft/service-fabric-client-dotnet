@@ -121,6 +121,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = UpgradeDomainNodesHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
+            else if (propValue.Equals("NodeTypeNodes", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeTypeNodesHealthEvaluationConverter.GetFromJsonProperties(reader);
+            }
             else
             {
                 throw new InvalidOperationException("Unknown Kind.");
@@ -216,6 +220,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (kind.Equals(HealthEvaluationKind.UpgradeDomainNodes))
             {
                 UpgradeDomainNodesHealthEvaluationConverter.Serialize(writer, (UpgradeDomainNodesHealthEvaluation)obj);
+            }
+            else if (kind.Equals(HealthEvaluationKind.NodeTypeNodes))
+            {
+                NodeTypeNodesHealthEvaluationConverter.Serialize(writer, (NodeTypeNodesHealthEvaluation)obj);
             }
             else
             {

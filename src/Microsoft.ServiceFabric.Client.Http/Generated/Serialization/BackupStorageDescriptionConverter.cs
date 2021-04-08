@@ -53,6 +53,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = DsmsAzureBlobBackupStorageDescriptionConverter.GetFromJsonProperties(reader);
             }
+            else if (propValue.Equals("ManagedIdentityAzureBlobStore", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ManagedIdentityAzureBlobBackupStorageDescriptionConverter.GetFromJsonProperties(reader);
+            }
             else
             {
                 throw new InvalidOperationException("Unknown StorageKind.");
@@ -80,6 +84,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (kind.Equals(BackupStorageKind.DsmsAzureBlobStore))
             {
                 DsmsAzureBlobBackupStorageDescriptionConverter.Serialize(writer, (DsmsAzureBlobBackupStorageDescription)obj);
+            }
+            else if (kind.Equals(BackupStorageKind.ManagedIdentityAzureBlobStore))
+            {
+                ManagedIdentityAzureBlobBackupStorageDescriptionConverter.Serialize(writer, (ManagedIdentityAzureBlobBackupStorageDescription)obj);
             }
             else
             {

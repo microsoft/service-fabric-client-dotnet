@@ -45,6 +45,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceDnsName">The DNS name of the service. It requires the DNS system service to be enabled in
         /// Service Fabric cluster.</param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
+        /// <param name="tagsRequiredToPlace">Tags for placement of this service.</param>
+        /// <param name="tagsRequiredToRun">Tags for running of this service.</param>
         /// <param name="minInstanceCount">MinInstanceCount is the minimum number of instances that must be up to meet the
         /// EnsureAvailability safety check during operations like upgrade or deactivate node.
         /// The actual number that is used is max( MinInstanceCount, ceil( MinInstancePercentage/100.0 * InstanceCount) ).
@@ -82,6 +84,8 @@ namespace Microsoft.ServiceFabric.Common
         /// Note, the default value of InstanceCloseDelayDuration is 0, which indicates that there won't be any delay or
         /// removal of the endpoint prior to closing the instance.
         /// </param>
+        /// <param name="instanceLifecycleDescription">Defines how instances of this service will behave during their
+        /// lifecycle.</param>
         /// <param name="instanceRestartWaitDurationSeconds">When a stateless instance goes down, this timer starts. When it
         /// expires Service Fabric will create a new instance on any node in the cluster.
         /// This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down
@@ -105,10 +109,13 @@ namespace Microsoft.ServiceFabric.Common
             ServicePackageActivationMode? servicePackageActivationMode = default(ServicePackageActivationMode?),
             string serviceDnsName = default(string),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
+            NodeTagsDescription tagsRequiredToPlace = default(NodeTagsDescription),
+            NodeTagsDescription tagsRequiredToRun = default(NodeTagsDescription),
             int? minInstanceCount = default(int?),
             int? minInstancePercentage = default(int?),
             int? flags = default(int?),
             long? instanceCloseDelayDurationSeconds = default(long?),
+            InstanceLifecycleDescription instanceLifecycleDescription = default(InstanceLifecycleDescription),
             long? instanceRestartWaitDurationSeconds = default(long?))
             : base(
                 serviceName,
@@ -125,7 +132,9 @@ namespace Microsoft.ServiceFabric.Common
                 isDefaultMoveCostSpecified,
                 servicePackageActivationMode,
                 serviceDnsName,
-                scalingPolicies)
+                scalingPolicies,
+                tagsRequiredToPlace,
+                tagsRequiredToRun)
         {
             instanceCount.ThrowIfNull(nameof(instanceCount));
             instanceCount?.ThrowIfLessThan("instanceCount", -1);
@@ -136,6 +145,7 @@ namespace Microsoft.ServiceFabric.Common
             this.MinInstancePercentage = minInstancePercentage;
             this.Flags = flags;
             this.InstanceCloseDelayDurationSeconds = instanceCloseDelayDurationSeconds;
+            this.InstanceLifecycleDescription = instanceLifecycleDescription;
             this.InstanceRestartWaitDurationSeconds = instanceRestartWaitDurationSeconds;
         }
 
@@ -192,6 +202,11 @@ namespace Microsoft.ServiceFabric.Common
         /// removal of the endpoint prior to closing the instance.
         /// </summary>
         public long? InstanceCloseDelayDurationSeconds { get; }
+
+        /// <summary>
+        /// Gets defines how instances of this service will behave during their lifecycle.
+        /// </summary>
+        public InstanceLifecycleDescription InstanceLifecycleDescription { get; }
 
         /// <summary>
         /// Gets when a stateless instance goes down, this timer starts. When it expires Service Fabric will create a new

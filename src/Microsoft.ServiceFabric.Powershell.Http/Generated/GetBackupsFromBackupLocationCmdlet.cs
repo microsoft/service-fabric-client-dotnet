@@ -41,11 +41,20 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public SwitchParameter DsmsAzureBlobStore { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityAzureBlobStore flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
+        public SwitchParameter ManagedIdentityAzureBlobStore { get; set; }
+
+        /// <summary>
         /// Gets or sets Application flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_AzureBlobStore__Application_")]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FileShare__Application_")]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_DsmsAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
         public SwitchParameter Application { get; set; }
 
         /// <summary>
@@ -54,6 +63,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_AzureBlobStore__Service_")]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FileShare__Service_")]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_DsmsAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
         public SwitchParameter Service { get; set; }
 
         /// <summary>
@@ -62,6 +72,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_AzureBlobStore__Partition_")]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FileShare__Partition_")]
         [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
         public SwitchParameter Partition { get; set; }
 
         /// <summary>
@@ -81,6 +92,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_DsmsAzureBlobStore__Application_")]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_DsmsAzureBlobStore__Service_")]
         [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = true, Position = 3, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
         public string ContainerName { get; set; }
 
         /// <summary>
@@ -101,89 +115,111 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string StorageCredentialsSourceLocation { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityType. The type of managed identity to be used to connect to Azure Blob Store via
+        /// Managed Identity.
+        /// . Possible values include: 'Invalid', 'VMSS', 'Cluster'
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
+        public ManagedIdentityType? ManagedIdentityType { get; set; }
+
+        /// <summary>
+        /// Gets or sets BlobServiceUri. The Blob Service Uri to connect to the Azure blob store..
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
+        public string BlobServiceUri { get; set; }
+
+        /// <summary>
         /// Gets or sets StartDateTimeFilter. Specifies the start date time in ISO8601 from which to enumerate backups. If not
         /// specified, backups are enumerated from the beginning.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 6)]
+        [Parameter(Mandatory = false, Position = 8)]
         public DateTime? StartDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets EndDateTimeFilter. Specifies the end date time in ISO8601 till which to enumerate backups. If not
         /// specified, backups are enumerated till the end.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 7)]
+        [Parameter(Mandatory = false, Position = 9)]
         public DateTime? EndDateTimeFilter { get; set; }
 
         /// <summary>
         /// Gets or sets Latest. If specified as true, gets the most recent backup (within the specified time range) for every
         /// partition under the specified backup entity.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 8)]
+        [Parameter(Mandatory = false, Position = 10)]
         public bool? Latest { get; set; } = false;
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9)]
+        [Parameter(Mandatory = false, Position = 11)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_FileShare__Application_")]
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_FileShare__Service_")]
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Partition_")]
         public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_FileShare__Application_")]
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_FileShare__Service_")]
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Partition_")]
         public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Application_")]
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Service_")]
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_FileShare__Partition_")]
         public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Application_")]
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Service_")]
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Partition_")]
         public string SecondaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_AzureBlobStore__Application_")]
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_FileShare__Application_")]
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_DsmsAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_DsmsAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
         public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_AzureBlobStore__Service_")]
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Service_")]
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_DsmsAzureBlobStore__Service_")]
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_AzureBlobStore__Partition_")]
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_FileShare__Partition_")]
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_DsmsAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The partition ID identifying the partition.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_AzureBlobStore__Partition_")]
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_FileShare__Partition_")]
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
@@ -191,7 +227,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17)]
+        [Parameter(Mandatory = false, Position = 19)]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
@@ -201,7 +237,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18)]
+        [Parameter(Mandatory = false, Position = 20)]
         public long? MaxResults { get; set; }
 
         /// <inheritdoc/>
@@ -229,6 +265,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             {
                 backupStorageDescription = new DsmsAzureBlobBackupStorageDescription(
                     storageCredentialsSourceLocation: this.StorageCredentialsSourceLocation,
+                    containerName: this.ContainerName,
+                    friendlyName: this.FriendlyName);
+            }
+            else if (this.ManagedIdentityAzureBlobStore.IsPresent)
+            {
+                backupStorageDescription = new ManagedIdentityAzureBlobBackupStorageDescription(
+                    managedIdentityType: this.ManagedIdentityType,
+                    blobServiceUri: this.BlobServiceUri,
                     containerName: this.ContainerName,
                     friendlyName: this.FriendlyName);
             }

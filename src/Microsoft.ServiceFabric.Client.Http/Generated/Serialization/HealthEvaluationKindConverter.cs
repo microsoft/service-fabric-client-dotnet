@@ -114,6 +114,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = HealthEvaluationKind.ApplicationTypeApplications;
             }
+            else if (string.Compare(value, "NodeTypeNodes", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = HealthEvaluationKind.NodeTypeNodes;
+            }
 
             return obj;
         }
@@ -192,6 +196,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case HealthEvaluationKind.ApplicationTypeApplications:
                     writer.WriteStringValue("ApplicationTypeApplications");
+                    break;
+                case HealthEvaluationKind.NodeTypeNodes:
+                    writer.WriteStringValue("NodeTypeNodes");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type HealthEvaluationKind");

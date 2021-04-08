@@ -62,7 +62,11 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
-        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
+        /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
         public string Flags { get; set; }
@@ -110,43 +114,61 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public IEnumerable<ScalingPolicyDescription> ScalingPolicies { get; set; }
 
         /// <summary>
+        /// Gets or sets ServiceDnsName. The DNS name of the service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 9)]
+        public string ServiceDnsName { get; set; }
+
+        /// <summary>
+        /// Gets or sets TagsForPlacement. Tags for placement of this service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 10)]
+        public NodeTagsDescription TagsForPlacement { get; set; }
+
+        /// <summary>
+        /// Gets or sets TagsForRunning. Tags for running of this service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 11)]
+        public NodeTagsDescription TagsForRunning { get; set; }
+
+        /// <summary>
         /// Gets or sets TargetReplicaSetSize. The target replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 9, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_Stateful_")]
         public int? TargetReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets MinReplicaSetSize. The minimum replica set size as a number.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 10, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_Stateful_")]
         public int? MinReplicaSetSize { get; set; }
 
         /// <summary>
         /// Gets or sets ReplicaRestartWaitDurationSeconds. The duration, in seconds, between when a replica goes down and when
         /// a new replica is created.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_Stateful_")]
         public string ReplicaRestartWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets QuorumLossWaitDurationSeconds. The maximum duration, in seconds, for which a partition is allowed to
         /// be in a state of quorum loss.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_Stateful_")]
         public string QuorumLossWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets StandByReplicaKeepDurationSeconds. The definition on how long StandBy replicas should be maintained
         /// before being removed.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_Stateful_")]
         public string StandByReplicaKeepDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets ServicePlacementTimeLimitSeconds. The duration for which replicas can stay InBuild before reporting
         /// that build is stuck.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_Stateful_")]
         public string ServicePlacementTimeLimitSeconds { get; set; }
 
         /// <summary>
@@ -154,13 +176,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
         /// if not it is false.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_Stateful_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_Stateful_")]
         public bool? DropSourceReplicaOnMove { get; set; }
+
+        /// <summary>
+        /// Gets or sets ReplicaLifecycleDescription. Defines how replicas of this service will behave during their lifecycle.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_Stateful_")]
+        public ReplicaLifecycleDescription ReplicaLifecycleDescription { get; set; }
 
         /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_Stateless_")]
         public int? InstanceCount { get; set; }
 
         /// <summary>
@@ -170,7 +198,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of
         /// nodes on which the instances are allowed to be placed according to the placement constraints on the service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "_Stateless_")]
         public int? MinInstanceCount { get; set; }
 
         /// <summary>
@@ -181,7 +209,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// number of nodes on which the instances are allowed to be placed according to the placement constraints on the
         /// service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_Stateless_")]
         public int? MinInstancePercentage { get; set; }
 
         /// <summary>
@@ -198,8 +226,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Close existing connections after in-flight requests have completed.
         /// - Connect to a different instance of the service partition for future requests.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_Stateless_")]
         public string InstanceCloseDelayDurationSeconds { get; set; }
+
+        /// <summary>
+        /// Gets or sets InstanceLifecycleDescription. Defines how instances of this service will behave during their
+        /// lifecycle.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Stateless_")]
+        public InstanceLifecycleDescription InstanceLifecycleDescription { get; set; }
 
         /// <summary>
         /// Gets or sets InstanceRestartWaitDurationSeconds. When a stateless instance goes down, this timer starts. When it
@@ -209,15 +244,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately
         /// start building its replacement.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_Stateless_")]
-        public long? InstanceRestartWaitDurationSeconds { get; set; }
+        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "_Stateless_")]
+        public string InstanceRestartWaitDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21)]
+        [Parameter(Mandatory = false, Position = 26)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -234,13 +269,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     servicePlacementPolicies: this.ServicePlacementPolicies,
                     defaultMoveCost: this.DefaultMoveCost,
                     scalingPolicies: this.ScalingPolicies,
+                    serviceDnsName: this.ServiceDnsName,
+                    tagsForPlacement: this.TagsForPlacement,
+                    tagsForRunning: this.TagsForRunning,
                     targetReplicaSetSize: this.TargetReplicaSetSize,
                     minReplicaSetSize: this.MinReplicaSetSize,
                     replicaRestartWaitDurationSeconds: this.ReplicaRestartWaitDurationSeconds,
                     quorumLossWaitDurationSeconds: this.QuorumLossWaitDurationSeconds,
                     standByReplicaKeepDurationSeconds: this.StandByReplicaKeepDurationSeconds,
                     servicePlacementTimeLimitSeconds: this.ServicePlacementTimeLimitSeconds,
-                    dropSourceReplicaOnMove: this.DropSourceReplicaOnMove);
+                    dropSourceReplicaOnMove: this.DropSourceReplicaOnMove,
+                    replicaLifecycleDescription: this.ReplicaLifecycleDescription);
             }
             else if (this.Stateless.IsPresent)
             {
@@ -252,10 +291,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     servicePlacementPolicies: this.ServicePlacementPolicies,
                     defaultMoveCost: this.DefaultMoveCost,
                     scalingPolicies: this.ScalingPolicies,
+                    serviceDnsName: this.ServiceDnsName,
+                    tagsForPlacement: this.TagsForPlacement,
+                    tagsForRunning: this.TagsForRunning,
                     instanceCount: this.InstanceCount,
                     minInstanceCount: this.MinInstanceCount,
                     minInstancePercentage: this.MinInstancePercentage,
                     instanceCloseDelayDurationSeconds: this.InstanceCloseDelayDurationSeconds,
+                    instanceLifecycleDescription: this.InstanceLifecycleDescription,
                     instanceRestartWaitDurationSeconds: this.InstanceRestartWaitDurationSeconds);
             }
 
