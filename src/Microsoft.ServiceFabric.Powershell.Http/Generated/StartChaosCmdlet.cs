@@ -129,9 +129,40 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; set; }
 
         /// <summary>
-        /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
+        /// Gets or sets NodeTypeHealthPolicyMap. Defines a map with max percentage unhealthy nodes for specific node types.
+        /// Each entry specifies as key the node type name and as value an integer that represents the MaxPercentUnhealthyNodes
+        /// percentage used to evaluate the nodes of the specified node type.
+        /// 
+        /// The node type health policy map can be used during cluster health evaluation to describe special node types.
+        /// They are evaluated against the percentages associated with their node type name in the map.
+        /// Setting this has no impact on the global pool of nodes used for MaxPercentUnhealthyNodes.
+        /// The node type health policy map is used only if the cluster manifest enables node type health evaluation using the
+        /// configuration entry for HealthManager/EnableNodeTypeHealthEvaluation.
+        /// 
+        /// For example, given a cluster with many nodes of different types, with important work hosted on node type
+        /// "SpecialNodeType" that should not tolerate any nodes down.
+        /// You can specify global MaxPercentUnhealthyNodes to 20% to tolerate some failures for all nodes, but for the node
+        /// type "SpecialNodeType", set the MaxPercentUnhealthyNodes to 0 by
+        /// setting the value in the key value pair in NodeTypeHealthPolicyMapItem. The key is the node type name.
+        /// This way, as long as no nodes of type "SpecialNodeType" are in Error state,
+        /// even if some of the many nodes in the global pool are in Error state, but below the global unhealthy percentage,
+        /// the cluster would be evaluated to Warning.
+        /// A Warning health state does not impact cluster upgrade or other monitoring triggered by Error health state.
+        /// But even one node of type SpecialNodeType in Error would make cluster unhealthy (in Error rather than Warning/Ok),
+        /// which triggers rollback or pauses the cluster upgrade, depending on the upgrade configuration.
+        /// 
+        /// Conversely, setting the global MaxPercentUnhealthyNodes to 0, and setting SpecialNodeType's max percent unhealthy
+        /// nodes to 100,
+        /// with one node of type SpecialNodeType in Error state would still put the cluster in an Error state, since the
+        /// global restriction is more strict in this case.
         /// </summary>
         [Parameter(Mandatory = false, Position = 10)]
+        public IEnumerable<NodeTypeHealthPolicyMapItem> NodeTypeHealthPolicyMap { get; set; }
+
+        /// <summary>
+        /// Gets or sets Map. Describes a map that contains a collection of ChaosContextMapItem's.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 11)]
         public System.Collections.Hashtable Map { get; set; }
 
         /// <summary>
@@ -146,7 +177,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// At most 100 node type names can be included in this list, to increase this number, a config upgrade is required for
         /// MaxNumberOfNodeTypesInChaosEntityFilter configuration.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 11)]
+        [Parameter(Mandatory = false, Position = 12)]
         public IEnumerable<string> NodeTypeInclusionList { get; set; }
 
         /// <summary>
@@ -162,7 +193,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// At most 1000 application names can be included in this list, to increase this number, a config upgrade is required
         /// for MaxNumberOfApplicationsInChaosEntityFilter configuration.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 12)]
+        [Parameter(Mandatory = false, Position = 13)]
         public IEnumerable<string> ApplicationInclusionList { get; set; }
 
         /// <summary>
@@ -170,7 +201,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13)]
+        [Parameter(Mandatory = false, Position = 14)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -180,7 +211,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             considerWarningAsError: this.ConsiderWarningAsError,
             maxPercentUnhealthyNodes: this.MaxPercentUnhealthyNodes,
             maxPercentUnhealthyApplications: this.MaxPercentUnhealthyApplications,
-            applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap);
+            applicationTypeHealthPolicyMap: this.ApplicationTypeHealthPolicyMap,
+            nodeTypeHealthPolicyMap: this.NodeTypeHealthPolicyMap);
 
             var chaosContext = new ChaosContext(
             map: this.Map?.ToDictionary<string, string>());

@@ -29,15 +29,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public NodeName CurrentNodeName { get; set; }
 
         /// <summary>
-        /// Gets or sets NewNodeName. The name of the target node for secondary replica move. If not specified, replica is
-        /// moved to a random node.
+        /// Gets or sets NewNodeName. The name of the target node for secondary replica or instance move. If not specified,
+        /// replica or instance is moved to a random node.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
         public NodeName NewNodeName { get; set; }
 
         /// <summary>
-        /// Gets or sets IgnoreConstraints. Ignore constraints when moving a replica. If this parameter is not specified, all
-        /// constraints are honored.
+        /// Gets or sets IgnoreConstraints. Ignore constraints when moving a replica or instance. If this parameter is not
+        /// specified, all constraints are honored.
         /// </summary>
         [Parameter(Mandatory = false, Position = 3)]
         public bool? IgnoreConstraints { get; set; }

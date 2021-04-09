@@ -29,5 +29,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Indicates Dsms Azure blob store to be used as backup storage.
         /// </summary>
         DsmsAzureBlobStore,
+
+        /// <summary>
+        /// Indicates Azure blob store to be used as backup storage using managed identity.
+        /// </summary>
+        ManagedIdentityAzureBlobStore,
     }
 }

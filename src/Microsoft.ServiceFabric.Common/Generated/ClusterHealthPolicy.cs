@@ -60,16 +60,45 @@ namespace Microsoft.ServiceFabric.Common
         /// The application type health policy map is used only if the cluster manifest enables application type health
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </param>
+        /// <param name="nodeTypeHealthPolicyMap">Defines a map with max percentage unhealthy nodes for specific node types.
+        /// Each entry specifies as key the node type name and as value an integer that represents the MaxPercentUnhealthyNodes
+        /// percentage used to evaluate the nodes of the specified node type.
+        /// 
+        /// The node type health policy map can be used during cluster health evaluation to describe special node types.
+        /// They are evaluated against the percentages associated with their node type name in the map.
+        /// Setting this has no impact on the global pool of nodes used for MaxPercentUnhealthyNodes.
+        /// The node type health policy map is used only if the cluster manifest enables node type health evaluation using the
+        /// configuration entry for HealthManager/EnableNodeTypeHealthEvaluation.
+        /// 
+        /// For example, given a cluster with many nodes of different types, with important work hosted on node type
+        /// "SpecialNodeType" that should not tolerate any nodes down.
+        /// You can specify global MaxPercentUnhealthyNodes to 20% to tolerate some failures for all nodes, but for the node
+        /// type "SpecialNodeType", set the MaxPercentUnhealthyNodes to 0 by
+        /// setting the value in the key value pair in NodeTypeHealthPolicyMapItem. The key is the node type name.
+        /// This way, as long as no nodes of type "SpecialNodeType" are in Error state,
+        /// even if some of the many nodes in the global pool are in Error state, but below the global unhealthy percentage,
+        /// the cluster would be evaluated to Warning.
+        /// A Warning health state does not impact cluster upgrade or other monitoring triggered by Error health state.
+        /// But even one node of type SpecialNodeType in Error would make cluster unhealthy (in Error rather than Warning/Ok),
+        /// which triggers rollback or pauses the cluster upgrade, depending on the upgrade configuration.
+        /// 
+        /// Conversely, setting the global MaxPercentUnhealthyNodes to 0, and setting SpecialNodeType's max percent unhealthy
+        /// nodes to 100,
+        /// with one node of type SpecialNodeType in Error state would still put the cluster in an Error state, since the
+        /// global restriction is more strict in this case.
+        /// </param>
         public ClusterHealthPolicy(
             bool? considerWarningAsError = false,
             int? maxPercentUnhealthyNodes = 0,
             int? maxPercentUnhealthyApplications = 0,
-            IEnumerable<ApplicationTypeHealthPolicyMapItem> applicationTypeHealthPolicyMap = default(IEnumerable<ApplicationTypeHealthPolicyMapItem>))
+            IEnumerable<ApplicationTypeHealthPolicyMapItem> applicationTypeHealthPolicyMap = default(IEnumerable<ApplicationTypeHealthPolicyMapItem>),
+            IEnumerable<NodeTypeHealthPolicyMapItem> nodeTypeHealthPolicyMap = default(IEnumerable<NodeTypeHealthPolicyMapItem>))
         {
             this.ConsiderWarningAsError = considerWarningAsError;
             this.MaxPercentUnhealthyNodes = maxPercentUnhealthyNodes;
             this.MaxPercentUnhealthyApplications = maxPercentUnhealthyApplications;
             this.ApplicationTypeHealthPolicyMap = applicationTypeHealthPolicyMap;
+            this.NodeTypeHealthPolicyMap = nodeTypeHealthPolicyMap;
         }
 
         /// <summary>
@@ -126,5 +155,35 @@ namespace Microsoft.ServiceFabric.Common
         /// evaluation using the configuration entry for HealthManager/EnableApplicationTypeHealthEvaluation.
         /// </summary>
         public IEnumerable<ApplicationTypeHealthPolicyMapItem> ApplicationTypeHealthPolicyMap { get; }
+
+        /// <summary>
+        /// Gets defines a map with max percentage unhealthy nodes for specific node types.
+        /// Each entry specifies as key the node type name and as value an integer that represents the MaxPercentUnhealthyNodes
+        /// percentage used to evaluate the nodes of the specified node type.
+        /// 
+        /// The node type health policy map can be used during cluster health evaluation to describe special node types.
+        /// They are evaluated against the percentages associated with their node type name in the map.
+        /// Setting this has no impact on the global pool of nodes used for MaxPercentUnhealthyNodes.
+        /// The node type health policy map is used only if the cluster manifest enables node type health evaluation using the
+        /// configuration entry for HealthManager/EnableNodeTypeHealthEvaluation.
+        /// 
+        /// For example, given a cluster with many nodes of different types, with important work hosted on node type
+        /// "SpecialNodeType" that should not tolerate any nodes down.
+        /// You can specify global MaxPercentUnhealthyNodes to 20% to tolerate some failures for all nodes, but for the node
+        /// type "SpecialNodeType", set the MaxPercentUnhealthyNodes to 0 by
+        /// setting the value in the key value pair in NodeTypeHealthPolicyMapItem. The key is the node type name.
+        /// This way, as long as no nodes of type "SpecialNodeType" are in Error state,
+        /// even if some of the many nodes in the global pool are in Error state, but below the global unhealthy percentage,
+        /// the cluster would be evaluated to Warning.
+        /// A Warning health state does not impact cluster upgrade or other monitoring triggered by Error health state.
+        /// But even one node of type SpecialNodeType in Error would make cluster unhealthy (in Error rather than Warning/Ok),
+        /// which triggers rollback or pauses the cluster upgrade, depending on the upgrade configuration.
+        /// 
+        /// Conversely, setting the global MaxPercentUnhealthyNodes to 0, and setting SpecialNodeType's max percent unhealthy
+        /// nodes to 100,
+        /// with one node of type SpecialNodeType in Error state would still put the cluster in an Error state, since the
+        /// global restriction is more strict in this case.
+        /// </summary>
+        public IEnumerable<NodeTypeHealthPolicyMapItem> NodeTypeHealthPolicyMap { get; }
     }
 }

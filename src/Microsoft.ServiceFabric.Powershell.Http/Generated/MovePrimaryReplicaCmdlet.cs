@@ -29,8 +29,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public NodeName NodeName { get; set; }
 
         /// <summary>
-        /// Gets or sets IgnoreConstraints. Ignore constraints when moving a replica. If this parameter is not specified, all
-        /// constraints are honored.
+        /// Gets or sets IgnoreConstraints. Ignore constraints when moving a replica or instance. If this parameter is not
+        /// specified, all constraints are honored.
         /// </summary>
         [Parameter(Mandatory = false, Position = 2)]
         public bool? IgnoreConstraints { get; set; }

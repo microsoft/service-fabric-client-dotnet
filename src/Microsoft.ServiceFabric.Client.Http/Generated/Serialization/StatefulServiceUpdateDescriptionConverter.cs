@@ -40,6 +40,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>);
             var defaultMoveCost = default(MoveCost?);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
+            var serviceDnsName = default(string);
+            var tagsForPlacement = default(NodeTagsDescription);
+            var tagsForRunning = default(NodeTagsDescription);
             var targetReplicaSetSize = default(int?);
             var minReplicaSetSize = default(int?);
             var replicaRestartWaitDurationSeconds = default(string);
@@ -47,6 +50,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var standByReplicaKeepDurationSeconds = default(string);
             var servicePlacementTimeLimitSeconds = default(string);
             var dropSourceReplicaOnMove = default(bool?);
+            var replicaLifecycleDescription = default(ReplicaLifecycleDescription);
 
             do
             {
@@ -79,6 +83,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
                 }
+                else if (string.Compare("ServiceDnsName", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    serviceDnsName = reader.ReadValueAsString();
+                }
+                else if (string.Compare("TagsForPlacement", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    tagsForPlacement = NodeTagsDescriptionConverter.Deserialize(reader);
+                }
+                else if (string.Compare("TagsForRunning", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    tagsForRunning = NodeTagsDescriptionConverter.Deserialize(reader);
+                }
                 else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     targetReplicaSetSize = reader.ReadValueAsInt();
@@ -107,6 +123,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     dropSourceReplicaOnMove = reader.ReadValueAsBool();
                 }
+                else if (string.Compare("ReplicaLifecycleDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    replicaLifecycleDescription = ReplicaLifecycleDescriptionConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -122,13 +142,17 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 servicePlacementPolicies: servicePlacementPolicies,
                 defaultMoveCost: defaultMoveCost,
                 scalingPolicies: scalingPolicies,
+                serviceDnsName: serviceDnsName,
+                tagsForPlacement: tagsForPlacement,
+                tagsForRunning: tagsForRunning,
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
                 replicaRestartWaitDurationSeconds: replicaRestartWaitDurationSeconds,
                 quorumLossWaitDurationSeconds: quorumLossWaitDurationSeconds,
                 standByReplicaKeepDurationSeconds: standByReplicaKeepDurationSeconds,
                 servicePlacementTimeLimitSeconds: servicePlacementTimeLimitSeconds,
-                dropSourceReplicaOnMove: dropSourceReplicaOnMove);
+                dropSourceReplicaOnMove: dropSourceReplicaOnMove,
+                replicaLifecycleDescription: replicaLifecycleDescription);
         }
 
         /// <summary>
@@ -172,6 +196,21 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
+            if (obj.ServiceDnsName != null)
+            {
+                writer.WriteProperty(obj.ServiceDnsName, "ServiceDnsName", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.TagsForPlacement != null)
+            {
+                writer.WriteProperty(obj.TagsForPlacement, "TagsForPlacement", NodeTagsDescriptionConverter.Serialize);
+            }
+
+            if (obj.TagsForRunning != null)
+            {
+                writer.WriteProperty(obj.TagsForRunning, "TagsForRunning", NodeTagsDescriptionConverter.Serialize);
+            }
+
             if (obj.TargetReplicaSetSize != null)
             {
                 writer.WriteProperty(obj.TargetReplicaSetSize, "TargetReplicaSetSize", JsonWriterExtensions.WriteIntValue);
@@ -205,6 +244,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.DropSourceReplicaOnMove != null)
             {
                 writer.WriteProperty(obj.DropSourceReplicaOnMove, "DropSourceReplicaOnMove", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.ReplicaLifecycleDescription != null)
+            {
+                writer.WriteProperty(obj.ReplicaLifecycleDescription, "ReplicaLifecycleDescription", ReplicaLifecycleDescriptionConverter.Serialize);
             }
 
             writer.WriteEndObject();

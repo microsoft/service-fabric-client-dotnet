@@ -34,6 +34,42 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <inheritdoc />
+        public Task<PagedData<LoadedPartitionInformationResult>> GetLoadedPartitionInfoListAsync(
+            string metricName,
+            string serviceName = default(string),
+            Ordering? ordering = Ordering.Desc,
+            long? maxResults = 0,
+            ContinuationToken continuationToken = default(ContinuationToken),
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            metricName.ThrowIfNull(nameof(metricName));
+            maxResults?.ThrowIfLessThan("maxResults", 0);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/GetLoadedPartitionInfoList";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            metricName?.AddToQueryParameters(queryParams, $"MetricName={metricName}");
+            serviceName?.AddToQueryParameters(queryParams, $"ServiceName={serviceName}");
+            ordering?.AddToQueryParameters(queryParams, $"Ordering={ordering.ToString()}");
+            maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
+            continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
+            queryParams.Add("api-version=8.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Get,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, LoadedPartitionInformationResultConverter.Deserialize, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
         public Task<PagedData<ServicePartitionInfo>> GetPartitionInfoListAsync(
             string serviceId,
             ContinuationToken continuationToken = default(ContinuationToken),
@@ -540,6 +576,45 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return this.httpClient.SendAsyncGetResponseAsPagedData(RequestFunc, url, UpdatePartitionLoadResultConverter.Deserialize, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task MoveInstanceAsync(
+            string serviceId,
+            PartitionId partitionId,
+            NodeName currentNodeName = default(NodeName),
+            NodeName newNodeName = default(NodeName),
+            bool? ignoreConstraints = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serviceId.ThrowIfNull(nameof(serviceId));
+            partitionId.ThrowIfNull(nameof(partitionId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Services/{serviceId}/$/GetPartitions/{partitionId}/$/MoveInstance";
+            url = url.Replace("{serviceId}", serviceId);
+            url = url.Replace("{partitionId}", partitionId.ToString());
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            currentNodeName?.AddToQueryParameters(queryParams, $"CurrentNodeName={currentNodeName.ToString()}");
+            newNodeName?.AddToQueryParameters(queryParams, $"NewNodeName={newNodeName.ToString()}");
+            ignoreConstraints?.AddToQueryParameters(queryParams, $"IgnoreConstraints={ignoreConstraints}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=8.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
     }
 }

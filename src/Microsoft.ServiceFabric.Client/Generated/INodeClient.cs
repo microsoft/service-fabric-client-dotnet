@@ -418,5 +418,47 @@ namespace Microsoft.ServiceFabric.Client
             bool? force = default(bool?),
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Removes the list of tags from the specified node.
+        /// </summary>
+        /// <remarks>
+        /// This api allows removing set of tags from the specified node.
+        /// </remarks>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="nodeTags">Description for adding list of node tags.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task RemoveNodeTagsAsync(
+            NodeName nodeName,
+            IEnumerable<string> nodeTags,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Adds the list of tags on the specified node.
+        /// </summary>
+        /// <remarks>
+        /// This api allows adding tags to the specified node.
+        /// </remarks>
+        /// <param name ="nodeName">The name of the node.</param>
+        /// <param name ="nodeTags">Description for adding list of node tags.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task AddNodeTagsAsync(
+            NodeName nodeName,
+            IEnumerable<string> nodeTags,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

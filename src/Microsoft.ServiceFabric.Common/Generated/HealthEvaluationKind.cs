@@ -121,5 +121,10 @@ namespace Microsoft.ServiceFabric.Common
         /// – Indicates that the health evaluation is for applications of an application type. The value is 21.
         /// </summary>
         ApplicationTypeApplications,
+
+        /// <summary>
+        /// – Indicates that the health evaluation is for nodes of a node type. The value is 22.
+        /// </summary>
+        NodeTypeNodes,
     }
 }
