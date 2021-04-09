@@ -19,7 +19,7 @@
     }
 
 # Version number of this module. Minor.Patch version matches the Major.Minor version of client lib.
-ModuleVersion = '1.4.2'
+ModuleVersion = '1.4.4'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Core', 'Desktop'
