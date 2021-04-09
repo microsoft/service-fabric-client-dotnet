@@ -22,6 +22,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
         public SwitchParameter FrequencyBased { get; set; }
 
         /// <summary>
@@ -30,6 +31,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 0, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public SwitchParameter TimeBased { get; set; }
 
         /// <summary>
@@ -54,14 +56,23 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public SwitchParameter DsmsAzureBlobStore { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityAzureBlobStore flag
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 1, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
+        public SwitchParameter ManagedIdentityAzureBlobStore { get; set; }
+
+        /// <summary>
         /// Gets or sets Basic flag
         /// </summary>
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 2, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public SwitchParameter Basic { get; set; }
 
         /// <summary>
@@ -95,6 +106,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
         [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 6, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
         public TimeSpan? Interval { get; set; }
 
         /// <summary>
@@ -104,6 +116,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 7, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public BackupScheduleFrequencyType? ScheduleFrequencyType { get; set; }
 
         /// <summary>
@@ -113,6 +126,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 8, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = true, Position = 8, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         [Parameter(Mandatory = true, Position = 8, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 8, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public IEnumerable<DateTime?> RunTimes { get; set; }
 
         /// <summary>
@@ -129,6 +143,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
         [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
         [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 10, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public string ContainerName { get; set; }
 
         /// <summary>
@@ -147,58 +163,77 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string StorageCredentialsSourceLocation { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityType. The type of managed identity to be used to connect to Azure Blob Store via
+        /// Managed Identity.
+        /// . Possible values include: 'Invalid', 'VMSS', 'Cluster'
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
+        public ManagedIdentityType? ManagedIdentityType { get; set; }
+
+        /// <summary>
+        /// Gets or sets BlobServiceUri. The Blob Service Uri to connect to the Azure blob store..
+        /// </summary>
+        [Parameter(Mandatory = true, Position = 14, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 14, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
+        public string BlobServiceUri { get; set; }
+
+        /// <summary>
         /// Gets or sets RetentionDuration. It is the minimum duration for which a backup created, will remain stored in the
         /// storage and might get deleted after that span of time. It should be specified in ISO8601 format.
         /// </summary>
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_TimeBased__FileShare__Basic_")]
-        [Parameter(Mandatory = true, Position = 13, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = true, Position = 15, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public TimeSpan? RetentionDuration { get; set; }
 
         /// <summary>
         /// Gets or sets RunDays. List of days of a week when to trigger the periodic backup. This is valid only when the
         /// backup schedule frequency type is weekly.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_TimeBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 14, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public IEnumerable<DayOfWeek?> RunDays { get; set; }
 
         /// <summary>
         /// Gets or sets FriendlyName. Friendly name for this backup storage.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 17)]
         public string FriendlyName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryUserName. Primary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         public string PrimaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets PrimaryPassword. Primary password to access the share location.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         public string PrimaryPassword { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryUserName. Secondary user name to access the file share.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         public string SecondaryUserName { get; set; }
 
         /// <summary>
         /// Gets or sets SecondaryPassword. Secondary password to access the share location
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "_TimeBased__FileShare__Basic_")]
         public string SecondaryPassword { get; set; }
 
         /// <summary>
@@ -206,12 +241,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// specified with a non zero value, backups will not be deleted even if the backups have gone past retention duration
         /// and have number of backups less than or equal to it.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_TimeBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 20, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public int? MinimumNumberOfBackups { get; set; }
 
         /// <summary>
@@ -219,8 +256,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21)]
+        [Parameter(Mandatory = false, Position = 23)]
         public long? ServerTimeout { get; set; }
+
+        /// <summary>
+        /// Gets or sets ValidateConnection. Specifies whether to validate the storage connection and credentials before
+        /// creating or updating the backup policies.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 24)]
+        public bool? ValidateConnection { get; set; }
 
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
@@ -264,6 +308,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     containerName: this.ContainerName,
                     friendlyName: this.FriendlyName);
             }
+            else if (this.ManagedIdentityAzureBlobStore.IsPresent)
+            {
+                backupStorageDescription = new ManagedIdentityAzureBlobBackupStorageDescription(
+                    managedIdentityType: this.ManagedIdentityType,
+                    blobServiceUri: this.BlobServiceUri,
+                    containerName: this.ContainerName,
+                    friendlyName: this.FriendlyName);
+            }
 
             RetentionPolicyDescription retentionPolicyDescription = null;
             if (this.Basic.IsPresent)
@@ -284,6 +336,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             this.ServiceFabricClient.BackupRestore.CreateBackupPolicyAsync(
                 backupPolicyDescription: backupPolicyDescription,
                 serverTimeout: this.ServerTimeout,
+                validateConnection: this.ValidateConnection,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
             Console.WriteLine("Success!");

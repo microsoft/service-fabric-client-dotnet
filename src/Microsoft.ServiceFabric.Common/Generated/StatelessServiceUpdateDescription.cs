@@ -39,7 +39,11 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
-        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
+        /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -54,6 +58,9 @@ namespace Microsoft.ServiceFabric.Common
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
+        /// <param name="serviceDnsName">The DNS name of the service.</param>
+        /// <param name="tagsForPlacement">Tags for placement of this service.</param>
+        /// <param name="tagsForRunning">Tags for running of this service.</param>
         /// <param name="instanceCount">The instance count.</param>
         /// <param name="minInstanceCount">MinInstanceCount is the minimum number of instances that must be up to meet the
         /// EnsureAvailability safety check during operations like upgrade or deactivate node.
@@ -81,6 +88,8 @@ namespace Microsoft.ServiceFabric.Common
         /// - Close existing connections after in-flight requests have completed.
         /// - Connect to a different instance of the service partition for future requests.
         /// </param>
+        /// <param name="instanceLifecycleDescription">Defines how instances of this service will behave during their
+        /// lifecycle.</param>
         /// <param name="instanceRestartWaitDurationSeconds">When a stateless instance goes down, this timer starts. When it
         /// expires Service Fabric will create a new instance on any node in the cluster.
         /// This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down
@@ -96,11 +105,15 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             MoveCost? defaultMoveCost = default(MoveCost?),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
+            string serviceDnsName = default(string),
+            NodeTagsDescription tagsForPlacement = default(NodeTagsDescription),
+            NodeTagsDescription tagsForRunning = default(NodeTagsDescription),
             int? instanceCount = default(int?),
             int? minInstanceCount = default(int?),
             int? minInstancePercentage = default(int?),
             string instanceCloseDelayDurationSeconds = default(string),
-            long? instanceRestartWaitDurationSeconds = default(long?))
+            InstanceLifecycleDescription instanceLifecycleDescription = default(InstanceLifecycleDescription),
+            string instanceRestartWaitDurationSeconds = default(string))
             : base(
                 Common.ServiceKind.Stateless,
                 flags,
@@ -109,14 +122,17 @@ namespace Microsoft.ServiceFabric.Common
                 loadMetrics,
                 servicePlacementPolicies,
                 defaultMoveCost,
-                scalingPolicies)
+                scalingPolicies,
+                serviceDnsName,
+                tagsForPlacement,
+                tagsForRunning)
         {
             instanceCount?.ThrowIfLessThan("instanceCount", -1);
-            instanceRestartWaitDurationSeconds?.ThrowIfOutOfInclusiveRange("instanceRestartWaitDurationSeconds", 0, 4294967295);
             this.InstanceCount = instanceCount;
             this.MinInstanceCount = minInstanceCount;
             this.MinInstancePercentage = minInstancePercentage;
             this.InstanceCloseDelayDurationSeconds = instanceCloseDelayDurationSeconds;
+            this.InstanceLifecycleDescription = instanceLifecycleDescription;
             this.InstanceRestartWaitDurationSeconds = instanceRestartWaitDurationSeconds;
         }
 
@@ -161,6 +177,11 @@ namespace Microsoft.ServiceFabric.Common
         public string InstanceCloseDelayDurationSeconds { get; }
 
         /// <summary>
+        /// Gets defines how instances of this service will behave during their lifecycle.
+        /// </summary>
+        public InstanceLifecycleDescription InstanceLifecycleDescription { get; }
+
+        /// <summary>
         /// Gets when a stateless instance goes down, this timer starts. When it expires Service Fabric will create a new
         /// instance on any node in the cluster.
         /// This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down
@@ -168,6 +189,6 @@ namespace Microsoft.ServiceFabric.Common
         /// The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately
         /// start building its replacement.
         /// </summary>
-        public long? InstanceRestartWaitDurationSeconds { get; }
+        public string InstanceRestartWaitDurationSeconds { get; }
     }
 }

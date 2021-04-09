@@ -39,7 +39,11 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
-        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
+        /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -54,6 +58,9 @@ namespace Microsoft.ServiceFabric.Common
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
+        /// <param name="serviceDnsName">The DNS name of the service.</param>
+        /// <param name="tagsForPlacement">Tags for placement of this service.</param>
+        /// <param name="tagsForRunning">Tags for running of this service.</param>
         /// <param name="targetReplicaSetSize">The target replica set size as a number.</param>
         /// <param name="minReplicaSetSize">The minimum replica set size as a number.</param>
         /// <param name="replicaRestartWaitDurationSeconds">The duration, in seconds, between when a replica goes down and when
@@ -67,6 +74,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="dropSourceReplicaOnMove">Indicates whether to drop source Secondary replica even if the target replica
         /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
         /// if not it is false.</param>
+        /// <param name="replicaLifecycleDescription">Defines how replicas of this service will behave during their
+        /// lifecycle.</param>
         public StatefulServiceUpdateDescription(
             string flags = default(string),
             string placementConstraints = default(string),
@@ -75,13 +84,17 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             MoveCost? defaultMoveCost = default(MoveCost?),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
+            string serviceDnsName = default(string),
+            NodeTagsDescription tagsForPlacement = default(NodeTagsDescription),
+            NodeTagsDescription tagsForRunning = default(NodeTagsDescription),
             int? targetReplicaSetSize = default(int?),
             int? minReplicaSetSize = default(int?),
             string replicaRestartWaitDurationSeconds = default(string),
             string quorumLossWaitDurationSeconds = default(string),
             string standByReplicaKeepDurationSeconds = default(string),
             string servicePlacementTimeLimitSeconds = default(string),
-            bool? dropSourceReplicaOnMove = default(bool?))
+            bool? dropSourceReplicaOnMove = default(bool?),
+            ReplicaLifecycleDescription replicaLifecycleDescription = default(ReplicaLifecycleDescription))
             : base(
                 Common.ServiceKind.Stateful,
                 flags,
@@ -90,7 +103,10 @@ namespace Microsoft.ServiceFabric.Common
                 loadMetrics,
                 servicePlacementPolicies,
                 defaultMoveCost,
-                scalingPolicies)
+                scalingPolicies,
+                serviceDnsName,
+                tagsForPlacement,
+                tagsForRunning)
         {
             targetReplicaSetSize?.ThrowIfLessThan("targetReplicaSetSize", 1);
             minReplicaSetSize?.ThrowIfLessThan("minReplicaSetSize", 1);
@@ -101,6 +117,7 @@ namespace Microsoft.ServiceFabric.Common
             this.StandByReplicaKeepDurationSeconds = standByReplicaKeepDurationSeconds;
             this.ServicePlacementTimeLimitSeconds = servicePlacementTimeLimitSeconds;
             this.DropSourceReplicaOnMove = dropSourceReplicaOnMove;
+            this.ReplicaLifecycleDescription = replicaLifecycleDescription;
         }
 
         /// <summary>
@@ -138,5 +155,10 @@ namespace Microsoft.ServiceFabric.Common
         /// desired behavior is to drop it as soon as possible the value of this property is true, if not it is false.
         /// </summary>
         public bool? DropSourceReplicaOnMove { get; }
+
+        /// <summary>
+        /// Gets defines how replicas of this service will behave during their lifecycle.
+        /// </summary>
+        public ReplicaLifecycleDescription ReplicaLifecycleDescription { get; }
     }
 }

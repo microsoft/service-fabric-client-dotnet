@@ -19,6 +19,37 @@ namespace Microsoft.ServiceFabric.Client
     public partial interface IPartitionClient
     {
         /// <summary>
+        /// Gets ordered list of partitions.
+        /// </summary>
+        /// <remarks>
+        /// Retrieves partitions which are most/least loaded according to specified metric.
+        /// </remarks>
+        /// <param name ="metricName">Name of the metric based on which to get ordered list of partitions.</param>
+        /// <param name ="serviceName">The name of a service.</param>
+        /// <param name ="ordering">Ordering of partitions' load. Possible values include: 'Desc', 'Asc'</param>
+        /// <param name ="maxResults">The maximum number of results to be returned as part of the paged queries. This parameter
+        /// defines the upper bound on the number of results returned. The results returned can be less than the specified
+        /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
+        /// that fit in the return message.</param>
+        /// <param name ="continuationToken">The continuation token to obtain next set of results</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task<PagedData<LoadedPartitionInformationResult>> GetLoadedPartitionInfoListAsync(
+            string metricName,
+            string serviceName = default(string),
+            Ordering? ordering = Ordering.Desc,
+            long? maxResults = 0,
+            ContinuationToken continuationToken = default(ContinuationToken),
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Gets the list of partitions of a Service Fabric service.
         /// </summary>
         /// <remarks>
@@ -447,8 +478,8 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="nodeName">The name of the node.</param>
-        /// <param name ="ignoreConstraints">Ignore constraints when moving a replica. If this parameter is not specified, all
-        /// constraints are honored.</param>
+        /// <param name ="ignoreConstraints">Ignore constraints when moving a replica or instance. If this parameter is not
+        /// specified, all constraints are honored.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
@@ -480,10 +511,10 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="currentNodeName">The name of the source node for secondary replica move.</param>
-        /// <param name ="newNodeName">The name of the target node for secondary replica move. If not specified, replica is
-        /// moved to a random node.</param>
-        /// <param name ="ignoreConstraints">Ignore constraints when moving a replica. If this parameter is not specified, all
-        /// constraints are honored.</param>
+        /// <param name ="newNodeName">The name of the target node for secondary replica or instance move. If not specified,
+        /// replica or instance is moved to a random node.</param>
+        /// <param name ="ignoreConstraints">Ignore constraints when moving a replica or instance. If this parameter is not
+        /// specified, all constraints are honored.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
@@ -531,6 +562,51 @@ namespace Microsoft.ServiceFabric.Client
             IEnumerable<PartitionMetricLoadDescription> partitionMetricLoadDescriptionList,
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Moves the instance of a partition of a stateless service.
+        /// </summary>
+        /// <remarks>
+        /// This command moves the instance of a partition of a stateless service, respecting all constraints.
+        /// Partition id and service name must be specified to be able to move the instance.
+        /// CurrentNodeName when specified identifies the instance that is moved. If not specified, random instance will be
+        /// moved
+        /// New node name can be omitted, and in that case instance is moved to a random node.
+        /// If IgnoreConstraints parameter is specified and set to true, then instance will be moved regardless of the
+        /// constraints.
+        /// </remarks>
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
+        /// <param name ="partitionId">The identity of the partition.</param>
+        /// <param name ="currentNodeName">The name of the source node for instance move. If not specified, instance is moved
+        /// from a random node.</param>
+        /// <param name ="newNodeName">The name of the target node for secondary replica or instance move. If not specified,
+        /// replica or instance is moved to a random node.</param>
+        /// <param name ="ignoreConstraints">Ignore constraints when moving a replica or instance. If this parameter is not
+        /// specified, all constraints are honored.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task MoveInstanceAsync(
+            string serviceId,
+            PartitionId partitionId,
+            NodeName currentNodeName = default(NodeName),
+            NodeName newNodeName = default(NodeName),
+            bool? ignoreConstraints = false,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
     }

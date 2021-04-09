@@ -492,5 +492,81 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task RemoveNodeTagsAsync(
+            NodeName nodeName,
+            IEnumerable<string> nodeTags,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            nodeName.ThrowIfNull(nameof(nodeName));
+            nodeTags.ThrowIfNull(nameof(nodeTags));
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Nodes/{nodeName}/$/RemoveNodeTags";
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            queryParams.Add("api-version=7.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ListTConverter<string>.Serialize(new JsonTextWriter(sw), nodeTags, StringConverter.Serialize);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task AddNodeTagsAsync(
+            NodeName nodeName,
+            IEnumerable<string> nodeTags,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            nodeName.ThrowIfNull(nameof(nodeName));
+            nodeTags.ThrowIfNull(nameof(nodeTags));
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Nodes/{nodeName}/$/AddNodeTags";
+            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            queryParams.Add("api-version=7.2");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ListTConverter<string>.Serialize(new JsonTextWriter(sw), nodeTags, StringConverter.Serialize);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

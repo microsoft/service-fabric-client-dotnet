@@ -37,6 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         public Task CreateBackupPolicyAsync(
             BackupPolicyDescription backupPolicyDescription,
             long? serverTimeout = 60,
+            bool? validateConnection = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             backupPolicyDescription.ThrowIfNull(nameof(backupPolicyDescription));
@@ -47,6 +48,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            validateConnection?.AddToQueryParameters(queryParams, $"ValidateConnection={validateConnection}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
@@ -203,6 +205,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             BackupPolicyDescription backupPolicyDescription,
             string backupPolicyName,
             long? serverTimeout = 60,
+            bool? validateConnection = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             backupPolicyDescription.ThrowIfNull(nameof(backupPolicyDescription));
@@ -215,6 +218,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             
             // Append to queryParams if not null.
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            validateConnection?.AddToQueryParameters(queryParams, $"ValidateConnection={validateConnection}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             

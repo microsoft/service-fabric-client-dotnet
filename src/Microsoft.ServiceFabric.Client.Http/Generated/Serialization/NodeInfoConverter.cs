@@ -51,6 +51,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var nodeDownTimeInSeconds = default(string);
             var nodeUpAt = default(DateTime?);
             var nodeDownAt = default(DateTime?);
+            var nodeTags = default(IEnumerable<string>);
 
             do
             {
@@ -127,6 +128,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     nodeDownAt = reader.ReadValueAsDateTime();
                 }
+                else if (string.Compare("NodeTags", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    nodeTags = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -152,7 +157,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 isStopped: isStopped,
                 nodeDownTimeInSeconds: nodeDownTimeInSeconds,
                 nodeUpAt: nodeUpAt,
-                nodeDownAt: nodeDownAt);
+                nodeDownAt: nodeDownAt,
+                nodeTags: nodeTags);
         }
 
         /// <summary>
@@ -244,6 +250,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.NodeDownAt != null)
             {
                 writer.WriteProperty(obj.NodeDownAt, "NodeDownAt", JsonWriterExtensions.WriteDateTimeValue);
+            }
+
+            if (obj.NodeTags != null)
+            {
+                writer.WriteEnumerableProperty(obj.NodeTags, "NodeTags", (w, v) => writer.WriteStringValue(v));
             }
 
             writer.WriteEndObject();

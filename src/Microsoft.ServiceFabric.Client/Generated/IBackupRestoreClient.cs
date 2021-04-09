@@ -29,6 +29,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
+        /// <param name ="validateConnection">Specifies whether to validate the storage connection and credentials before
+        /// creating or updating the backup policies.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -40,6 +42,7 @@ namespace Microsoft.ServiceFabric.Client
         Task CreateBackupPolicyAsync(
             BackupPolicyDescription backupPolicyDescription,
             long? serverTimeout = 60,
+            bool? validateConnection = false,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -161,6 +164,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
+        /// <param name ="validateConnection">Specifies whether to validate the storage connection and credentials before
+        /// creating or updating the backup policies.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -173,6 +178,7 @@ namespace Microsoft.ServiceFabric.Client
             BackupPolicyDescription backupPolicyDescription,
             string backupPolicyName,
             long? serverTimeout = 60,
+            bool? validateConnection = false,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>

@@ -21,7 +21,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="periodSeconds">Periodic seconds to execute probe.</param>
         /// <param name="timeoutSeconds">Period after which probe is considered as failed if it hasn't completed
         /// successfully.</param>
-        /// <param name="successThreshold">The count of succcessful probe executions after which probe is considered
+        /// <param name="successThreshold">The count of successful probe executions after which probe is considered
         /// success.</param>
         /// <param name="failureThreshold">The count of failures after which probe is considered failed.</param>
         /// <param name="exec">Exec command to run inside the container.</param>
@@ -63,7 +63,7 @@ namespace Microsoft.ServiceFabric.Common
         public int? TimeoutSeconds { get; }
 
         /// <summary>
-        /// Gets the count of succcessful probe executions after which probe is considered success.
+        /// Gets the count of successful probe executions after which probe is considered success.
         /// </summary>
         public int? SuccessThreshold { get; }
 

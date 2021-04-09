@@ -47,11 +47,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var servicePackageActivationMode = default(ServicePackageActivationMode?);
             var serviceDnsName = default(string);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
+            var tagsRequiredToPlace = default(NodeTagsDescription);
+            var tagsRequiredToRun = default(NodeTagsDescription);
             var instanceCount = default(int?);
             var minInstanceCount = default(int?);
             var minInstancePercentage = default(int?);
             var flags = default(int?);
             var instanceCloseDelayDurationSeconds = default(long?);
+            var instanceLifecycleDescription = default(InstanceLifecycleDescription);
             var instanceRestartWaitDurationSeconds = default(long?);
 
             do
@@ -113,6 +116,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
                 }
+                else if (string.Compare("TagsRequiredToPlace", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    tagsRequiredToPlace = NodeTagsDescriptionConverter.Deserialize(reader);
+                }
+                else if (string.Compare("TagsRequiredToRun", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    tagsRequiredToRun = NodeTagsDescriptionConverter.Deserialize(reader);
+                }
                 else if (string.Compare("InstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceCount = reader.ReadValueAsInt();
@@ -132,6 +143,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("InstanceCloseDelayDurationSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceCloseDelayDurationSeconds = reader.ReadValueAsLong();
+                }
+                else if (string.Compare("InstanceLifecycleDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceLifecycleDescription = InstanceLifecycleDescriptionConverter.Deserialize(reader);
                 }
                 else if (string.Compare("InstanceRestartWaitDurationSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -159,11 +174,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 servicePackageActivationMode: servicePackageActivationMode,
                 serviceDnsName: serviceDnsName,
                 scalingPolicies: scalingPolicies,
+                tagsRequiredToPlace: tagsRequiredToPlace,
+                tagsRequiredToRun: tagsRequiredToRun,
                 instanceCount: instanceCount,
                 minInstanceCount: minInstanceCount,
                 minInstancePercentage: minInstancePercentage,
                 flags: flags,
                 instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds,
+                instanceLifecycleDescription: instanceLifecycleDescription,
                 instanceRestartWaitDurationSeconds: instanceRestartWaitDurationSeconds);
         }
 
@@ -228,6 +246,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
+            if (obj.TagsRequiredToPlace != null)
+            {
+                writer.WriteProperty(obj.TagsRequiredToPlace, "TagsRequiredToPlace", NodeTagsDescriptionConverter.Serialize);
+            }
+
+            if (obj.TagsRequiredToRun != null)
+            {
+                writer.WriteProperty(obj.TagsRequiredToRun, "TagsRequiredToRun", NodeTagsDescriptionConverter.Serialize);
+            }
+
             if (obj.MinInstanceCount != null)
             {
                 writer.WriteProperty(obj.MinInstanceCount, "MinInstanceCount", JsonWriterExtensions.WriteIntValue);
@@ -246,6 +274,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceCloseDelayDurationSeconds != null)
             {
                 writer.WriteProperty(obj.InstanceCloseDelayDurationSeconds, "InstanceCloseDelayDurationSeconds", JsonWriterExtensions.WriteLongValue);
+            }
+
+            if (obj.InstanceLifecycleDescription != null)
+            {
+                writer.WriteProperty(obj.InstanceLifecycleDescription, "InstanceLifecycleDescription", InstanceLifecycleDescriptionConverter.Serialize);
             }
 
             if (obj.InstanceRestartWaitDurationSeconds != null)

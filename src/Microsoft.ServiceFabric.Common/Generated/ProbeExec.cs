@@ -16,7 +16,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Initializes a new instance of the ProbeExec class.
         /// </summary>
-        /// <param name="command">Comma seperated command to run inside the container for example "sh, -c, echo hello
+        /// <param name="command">Comma separated command to run inside the container for example "sh, -c, echo hello
         /// world".</param>
         public ProbeExec(
             string command)
@@ -26,7 +26,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets comma seperated command to run inside the container for example "sh, -c, echo hello world".
+        /// Gets comma separated command to run inside the container for example "sh, -c, echo hello world".
         /// </summary>
         public string Command { get; }
     }
