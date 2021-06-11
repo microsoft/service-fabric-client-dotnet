@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>);
             var defaultMoveCost = default(MoveCost?);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
+            var serviceDnsName = default(string);
             var targetReplicaSetSize = default(int?);
             var minReplicaSetSize = default(int?);
             var replicaRestartWaitDurationSeconds = default(string);
@@ -78,6 +79,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("ScalingPolicies", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
+                }
+                else if (string.Compare("ServiceDnsName", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    serviceDnsName = reader.ReadValueAsString();
                 }
                 else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -122,6 +127,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 servicePlacementPolicies: servicePlacementPolicies,
                 defaultMoveCost: defaultMoveCost,
                 scalingPolicies: scalingPolicies,
+                serviceDnsName: serviceDnsName,
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
                 replicaRestartWaitDurationSeconds: replicaRestartWaitDurationSeconds,
@@ -170,6 +176,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ScalingPolicies != null)
             {
                 writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
+            }
+
+            if (obj.ServiceDnsName != null)
+            {
+                writer.WriteProperty(obj.ServiceDnsName, "ServiceDnsName", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.TargetReplicaSetSize != null)

@@ -117,6 +117,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = UpgradeDomainDeltaNodesCheckHealthEvaluationConverter.GetFromJsonProperties(reader);
             }
+            else if (propValue.Equals("UpgradeDomainDeployedApplications", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = UpgradeDomainDeployedApplicationsHealthEvaluationConverter.GetFromJsonProperties(reader);
+            }
             else if (propValue.Equals("UpgradeDomainNodes", StringComparison.OrdinalIgnoreCase))
             {
                 obj = UpgradeDomainNodesHealthEvaluationConverter.GetFromJsonProperties(reader);
@@ -212,6 +216,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (kind.Equals(HealthEvaluationKind.UpgradeDomainDeltaNodesCheck))
             {
                 UpgradeDomainDeltaNodesCheckHealthEvaluationConverter.Serialize(writer, (UpgradeDomainDeltaNodesCheckHealthEvaluation)obj);
+            }
+            else if (kind.Equals(HealthEvaluationKind.UpgradeDomainDeployedApplications))
+            {
+                UpgradeDomainDeployedApplicationsHealthEvaluationConverter.Serialize(writer, (UpgradeDomainDeployedApplicationsHealthEvaluation)obj);
             }
             else if (kind.Equals(HealthEvaluationKind.UpgradeDomainNodes))
             {

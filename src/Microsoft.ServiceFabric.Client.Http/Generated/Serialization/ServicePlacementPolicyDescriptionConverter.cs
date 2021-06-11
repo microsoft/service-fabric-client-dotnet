@@ -49,6 +49,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ServicePlacementNonPartiallyPlaceServicePolicyDescriptionConverter.GetFromJsonProperties(reader);
             }
+            else if (propValue.Equals("AllowMultipleStatelessInstancesOnNode", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ServicePlacementAllowMultipleStatelessInstancesOnNodePolicyDescriptionConverter.GetFromJsonProperties(reader);
+            }
             else if (propValue.Equals("PreferPrimaryDomain", StringComparison.OrdinalIgnoreCase))
             {
                 obj = ServicePlacementPreferPrimaryDomainPolicyDescriptionConverter.GetFromJsonProperties(reader);
@@ -84,6 +88,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (kind.Equals(ServicePlacementPolicyType.NonPartiallyPlaceService))
             {
                 ServicePlacementNonPartiallyPlaceServicePolicyDescriptionConverter.Serialize(writer, (ServicePlacementNonPartiallyPlaceServicePolicyDescription)obj);
+            }
+            else if (kind.Equals(ServicePlacementPolicyType.AllowMultipleStatelessInstancesOnNode))
+            {
+                ServicePlacementAllowMultipleStatelessInstancesOnNodePolicyDescriptionConverter.Serialize(writer, (ServicePlacementAllowMultipleStatelessInstancesOnNodePolicyDescription)obj);
             }
             else if (kind.Equals(ServicePlacementPolicyType.PreferPrimaryDomain))
             {

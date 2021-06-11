@@ -135,6 +135,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             result.Properties.Add(new PSNoteProperty("ApplicationStatus", outputResult.Status));
             result.Properties.Add(new PSNoteProperty("ApplicationParameterList", outputResult.Parameters));
             result.Properties.Add(new PSNoteProperty("ApplicationDefinitionKind", outputResult.ApplicationDefinitionKind));
+            result.Properties.Add(new PSNoteProperty("ManagedApplicationIdentityDescription", outputResult.ManagedApplicationIdentity));
 
             return result;
         }

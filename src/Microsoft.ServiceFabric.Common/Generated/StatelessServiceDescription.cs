@@ -65,6 +65,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// - None - Does not indicate any other properties are set. The value is zero.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 1.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceRestartWaitDurationSeconds property is set. The value is 2.
         /// </param>
         /// <param name="instanceCloseDelayDurationSeconds">Duration in seconds, to wait before a stateless instance is closed,
         /// to allow the active requests to drain gracefully. This would be effective when the instance is closing during the
@@ -80,6 +81,13 @@ namespace Microsoft.ServiceFabric.Common
         /// - Connect to a different instance of the service partition for future requests.
         /// Note, the default value of InstanceCloseDelayDuration is 0, which indicates that there won't be any delay or
         /// removal of the endpoint prior to closing the instance.
+        /// </param>
+        /// <param name="instanceRestartWaitDurationSeconds">When a stateless instance goes down, this timer starts. When it
+        /// expires Service Fabric will create a new instance on any node in the cluster.
+        /// This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down
+        /// is likely to recover in a short time. For example, during an upgrade.
+        /// The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately
+        /// start building its replacement.
         /// </param>
         public StatelessServiceDescription(
             ServiceName serviceName,
@@ -100,7 +108,8 @@ namespace Microsoft.ServiceFabric.Common
             int? minInstanceCount = default(int?),
             int? minInstancePercentage = default(int?),
             int? flags = default(int?),
-            long? instanceCloseDelayDurationSeconds = default(long?))
+            long? instanceCloseDelayDurationSeconds = default(long?),
+            long? instanceRestartWaitDurationSeconds = default(long?))
             : base(
                 serviceName,
                 serviceTypeName,
@@ -121,11 +130,13 @@ namespace Microsoft.ServiceFabric.Common
             instanceCount.ThrowIfNull(nameof(instanceCount));
             instanceCount?.ThrowIfLessThan("instanceCount", -1);
             instanceCloseDelayDurationSeconds?.ThrowIfOutOfInclusiveRange("instanceCloseDelayDurationSeconds", 0, 4294967295);
+            instanceRestartWaitDurationSeconds?.ThrowIfOutOfInclusiveRange("instanceRestartWaitDurationSeconds", 0, 4294967295);
             this.InstanceCount = instanceCount;
             this.MinInstanceCount = minInstanceCount;
             this.MinInstancePercentage = minInstancePercentage;
             this.Flags = flags;
             this.InstanceCloseDelayDurationSeconds = instanceCloseDelayDurationSeconds;
+            this.InstanceRestartWaitDurationSeconds = instanceRestartWaitDurationSeconds;
         }
 
         /// <summary>
@@ -160,6 +171,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// - None - Does not indicate any other properties are set. The value is zero.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 1.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceRestartWaitDurationSeconds property is set. The value is 2.
         /// </summary>
         public int? Flags { get; }
 
@@ -180,5 +192,15 @@ namespace Microsoft.ServiceFabric.Common
         /// removal of the endpoint prior to closing the instance.
         /// </summary>
         public long? InstanceCloseDelayDurationSeconds { get; }
+
+        /// <summary>
+        /// Gets when a stateless instance goes down, this timer starts. When it expires Service Fabric will create a new
+        /// instance on any node in the cluster.
+        /// This configuration is to reduce unnecessary creation of a new instance in situations where the instance going down
+        /// is likely to recover in a short time. For example, during an upgrade.
+        /// The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately
+        /// start building its replacement.
+        /// </summary>
+        public long? InstanceRestartWaitDurationSeconds { get; }
     }
 }

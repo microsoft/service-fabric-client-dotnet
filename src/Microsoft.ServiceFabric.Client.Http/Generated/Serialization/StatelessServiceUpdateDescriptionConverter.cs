@@ -40,10 +40,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>);
             var defaultMoveCost = default(MoveCost?);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
+            var serviceDnsName = default(string);
             var instanceCount = default(int?);
             var minInstanceCount = default(int?);
             var minInstancePercentage = default(int?);
             var instanceCloseDelayDurationSeconds = default(string);
+            var instanceRestartWaitDurationSeconds = default(string);
 
             do
             {
@@ -76,6 +78,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     scalingPolicies = reader.ReadList(ScalingPolicyDescriptionConverter.Deserialize);
                 }
+                else if (string.Compare("ServiceDnsName", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    serviceDnsName = reader.ReadValueAsString();
+                }
                 else if (string.Compare("InstanceCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     instanceCount = reader.ReadValueAsInt();
@@ -92,6 +98,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceCloseDelayDurationSeconds = reader.ReadValueAsString();
                 }
+                else if (string.Compare("InstanceRestartWaitDurationSeconds", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    instanceRestartWaitDurationSeconds = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -107,10 +117,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 servicePlacementPolicies: servicePlacementPolicies,
                 defaultMoveCost: defaultMoveCost,
                 scalingPolicies: scalingPolicies,
+                serviceDnsName: serviceDnsName,
                 instanceCount: instanceCount,
                 minInstanceCount: minInstanceCount,
                 minInstancePercentage: minInstancePercentage,
-                instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds);
+                instanceCloseDelayDurationSeconds: instanceCloseDelayDurationSeconds,
+                instanceRestartWaitDurationSeconds: instanceRestartWaitDurationSeconds);
         }
 
         /// <summary>
@@ -154,6 +166,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.ScalingPolicies, "ScalingPolicies", ScalingPolicyDescriptionConverter.Serialize);
             }
 
+            if (obj.ServiceDnsName != null)
+            {
+                writer.WriteProperty(obj.ServiceDnsName, "ServiceDnsName", JsonWriterExtensions.WriteStringValue);
+            }
+
             if (obj.InstanceCount != null)
             {
                 writer.WriteProperty(obj.InstanceCount, "InstanceCount", JsonWriterExtensions.WriteIntValue);
@@ -172,6 +189,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceCloseDelayDurationSeconds != null)
             {
                 writer.WriteProperty(obj.InstanceCloseDelayDurationSeconds, "InstanceCloseDelayDurationSeconds", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.InstanceRestartWaitDurationSeconds != null)
+            {
+                writer.WriteProperty(obj.InstanceRestartWaitDurationSeconds, "InstanceRestartWaitDurationSeconds", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

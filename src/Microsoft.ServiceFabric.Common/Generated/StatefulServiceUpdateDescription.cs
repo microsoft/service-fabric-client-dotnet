@@ -39,7 +39,9 @@ namespace Microsoft.ServiceFabric.Common
         /// - MinInstanceCount - Indicates the MinInstanceCount property is set. The value is 4096.
         /// - MinInstancePercentage - Indicates the MinInstancePercentage property is set. The value is 8192.
         /// - InstanceCloseDelayDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 16384.
-        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 32768.
+        /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
+        /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
+        /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -54,6 +56,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Specifies the move cost for the service.
         /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
+        /// <param name="serviceDnsName">The DNS name of the service.</param>
         /// <param name="targetReplicaSetSize">The target replica set size as a number.</param>
         /// <param name="minReplicaSetSize">The minimum replica set size as a number.</param>
         /// <param name="replicaRestartWaitDurationSeconds">The duration, in seconds, between when a replica goes down and when
@@ -75,6 +78,7 @@ namespace Microsoft.ServiceFabric.Common
             IEnumerable<ServicePlacementPolicyDescription> servicePlacementPolicies = default(IEnumerable<ServicePlacementPolicyDescription>),
             MoveCost? defaultMoveCost = default(MoveCost?),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
+            string serviceDnsName = default(string),
             int? targetReplicaSetSize = default(int?),
             int? minReplicaSetSize = default(int?),
             string replicaRestartWaitDurationSeconds = default(string),
@@ -90,7 +94,8 @@ namespace Microsoft.ServiceFabric.Common
                 loadMetrics,
                 servicePlacementPolicies,
                 defaultMoveCost,
-                scalingPolicies)
+                scalingPolicies,
+                serviceDnsName)
         {
             targetReplicaSetSize?.ThrowIfLessThan("targetReplicaSetSize", 1);
             minReplicaSetSize?.ThrowIfLessThan("minReplicaSetSize", 1);
