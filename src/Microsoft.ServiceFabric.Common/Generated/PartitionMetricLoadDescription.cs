@@ -10,7 +10,8 @@ namespace Microsoft.ServiceFabric.Common
 
     /// <summary>
     /// Represents load information for a partition, which contains the metrics load information about primary, all
-    /// secondary replicas/instances or a specific secondary replica/instance located on a specific node.
+    /// secondary replicas/instances or a specific secondary replica/instance on a specific node , all auxiliary replicas
+    /// or a specific auxiliary replica on a specific node.
     /// </summary>
     public partial class PartitionMetricLoadDescription
     {
@@ -27,16 +28,25 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="secondaryReplicaOrInstanceLoadEntriesPerNode">Partition's load information for a specific secondary
         /// replica or instance located on a specific node.
         /// </param>
+        /// <param name="auxiliaryReplicasLoadEntries">Partition's load information for all auxiliary replicas.
+        /// </param>
+        /// <param name="auxiliaryReplicaLoadEntriesPerNode">Partition's load information for a specific auxiliary replica
+        /// located on a specific node.
+        /// </param>
         public PartitionMetricLoadDescription(
             PartitionId partitionId = default(PartitionId),
             IEnumerable<MetricLoadDescription> primaryReplicaLoadEntries = default(IEnumerable<MetricLoadDescription>),
             IEnumerable<MetricLoadDescription> secondaryReplicasOrInstancesLoadEntries = default(IEnumerable<MetricLoadDescription>),
-            IEnumerable<ReplicaMetricLoadDescription> secondaryReplicaOrInstanceLoadEntriesPerNode = default(IEnumerable<ReplicaMetricLoadDescription>))
+            IEnumerable<ReplicaMetricLoadDescription> secondaryReplicaOrInstanceLoadEntriesPerNode = default(IEnumerable<ReplicaMetricLoadDescription>),
+            IEnumerable<MetricLoadDescription> auxiliaryReplicasLoadEntries = default(IEnumerable<MetricLoadDescription>),
+            IEnumerable<ReplicaMetricLoadDescription> auxiliaryReplicaLoadEntriesPerNode = default(IEnumerable<ReplicaMetricLoadDescription>))
         {
             this.PartitionId = partitionId;
             this.PrimaryReplicaLoadEntries = primaryReplicaLoadEntries;
             this.SecondaryReplicasOrInstancesLoadEntries = secondaryReplicasOrInstancesLoadEntries;
             this.SecondaryReplicaOrInstanceLoadEntriesPerNode = secondaryReplicaOrInstanceLoadEntriesPerNode;
+            this.AuxiliaryReplicasLoadEntries = auxiliaryReplicasLoadEntries;
+            this.AuxiliaryReplicaLoadEntriesPerNode = auxiliaryReplicaLoadEntriesPerNode;
         }
 
         /// <summary>
@@ -58,5 +68,15 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets partition's load information for a specific secondary replica or instance located on a specific node.
         /// </summary>
         public IEnumerable<ReplicaMetricLoadDescription> SecondaryReplicaOrInstanceLoadEntriesPerNode { get; }
+
+        /// <summary>
+        /// Gets partition's load information for all auxiliary replicas.
+        /// </summary>
+        public IEnumerable<MetricLoadDescription> AuxiliaryReplicasLoadEntries { get; }
+
+        /// <summary>
+        /// Gets partition's load information for a specific auxiliary replica located on a specific node.
+        /// </summary>
+        public IEnumerable<ReplicaMetricLoadDescription> AuxiliaryReplicaLoadEntriesPerNode { get; }
     }
 }

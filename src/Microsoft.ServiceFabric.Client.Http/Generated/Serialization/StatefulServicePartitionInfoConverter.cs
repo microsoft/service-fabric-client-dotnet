@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var partitionInformation = default(PartitionInformation);
             var targetReplicaSetSize = default(long?);
             var minReplicaSetSize = default(long?);
+            var auxiliaryReplicaCount = default(long?);
             var lastQuorumLossDuration = default(TimeSpan?);
             var primaryEpoch = default(Epoch);
 
@@ -64,6 +65,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     minReplicaSetSize = reader.ReadValueAsLong();
                 }
+                else if (string.Compare("AuxiliaryReplicaCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    auxiliaryReplicaCount = reader.ReadValueAsLong();
+                }
                 else if (string.Compare("LastQuorumLossDuration", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     lastQuorumLossDuration = reader.ReadValueAsTimeSpan();
@@ -85,6 +90,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 partitionInformation: partitionInformation,
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
+                auxiliaryReplicaCount: auxiliaryReplicaCount,
                 lastQuorumLossDuration: lastQuorumLossDuration,
                 primaryEpoch: primaryEpoch);
         }
@@ -114,6 +120,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.MinReplicaSetSize != null)
             {
                 writer.WriteProperty(obj.MinReplicaSetSize, "MinReplicaSetSize", JsonWriterExtensions.WriteLongValue);
+            }
+
+            if (obj.AuxiliaryReplicaCount != null)
+            {
+                writer.WriteProperty(obj.AuxiliaryReplicaCount, "AuxiliaryReplicaCount", JsonWriterExtensions.WriteLongValue);
             }
 
             if (obj.LastQuorumLossDuration != null)

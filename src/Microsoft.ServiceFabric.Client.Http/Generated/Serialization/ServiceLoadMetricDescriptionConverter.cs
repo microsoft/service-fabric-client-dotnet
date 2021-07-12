@@ -37,6 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var weight = default(ServiceLoadMetricWeight?);
             var primaryDefaultLoad = default(int?);
             var secondaryDefaultLoad = default(int?);
+            var auxiliaryDefaultLoad = default(int?);
             var defaultLoad = default(int?);
 
             do
@@ -58,6 +59,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     secondaryDefaultLoad = reader.ReadValueAsInt();
                 }
+                else if (string.Compare("AuxiliaryDefaultLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    auxiliaryDefaultLoad = reader.ReadValueAsInt();
+                }
                 else if (string.Compare("DefaultLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultLoad = reader.ReadValueAsInt();
@@ -74,6 +79,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 weight: weight,
                 primaryDefaultLoad: primaryDefaultLoad,
                 secondaryDefaultLoad: secondaryDefaultLoad,
+                auxiliaryDefaultLoad: auxiliaryDefaultLoad,
                 defaultLoad: defaultLoad);
         }
 
@@ -96,6 +102,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.SecondaryDefaultLoad != null)
             {
                 writer.WriteProperty(obj.SecondaryDefaultLoad, "SecondaryDefaultLoad", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.AuxiliaryDefaultLoad != null)
+            {
+                writer.WriteProperty(obj.AuxiliaryDefaultLoad, "AuxiliaryDefaultLoad", JsonWriterExtensions.WriteIntValue);
             }
 
             if (obj.DefaultLoad != null)

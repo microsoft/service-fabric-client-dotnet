@@ -616,5 +616,44 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task MoveAuxiliaryReplicaAsync(
+            string serviceId,
+            PartitionId partitionId,
+            NodeName currentNodeName = default(NodeName),
+            NodeName newNodeName = default(NodeName),
+            bool? ignoreConstraints = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serviceId.ThrowIfNull(nameof(serviceId));
+            partitionId.ThrowIfNull(nameof(partitionId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Services/{serviceId}/$/GetPartitions/{partitionId}/$/MoveAuxiliaryReplica";
+            url = url.Replace("{serviceId}", serviceId);
+            url = url.Replace("{partitionId}", partitionId.ToString());
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            currentNodeName?.AddToQueryParameters(queryParams, $"CurrentNodeName={currentNodeName.ToString()}");
+            newNodeName?.AddToQueryParameters(queryParams, $"NewNodeName={newNodeName.ToString()}");
+            ignoreConstraints?.AddToQueryParameters(queryParams, $"IgnoreConstraints={ignoreConstraints}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=8.1");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

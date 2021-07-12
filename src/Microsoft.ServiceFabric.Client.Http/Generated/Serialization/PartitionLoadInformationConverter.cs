@@ -36,6 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var partitionId = default(PartitionId);
             var primaryLoadMetricReports = default(IEnumerable<LoadMetricReport>);
             var secondaryLoadMetricReports = default(IEnumerable<LoadMetricReport>);
+            var auxiliaryLoadMetricReports = default(IEnumerable<LoadMetricReport>);
 
             do
             {
@@ -52,6 +53,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     secondaryLoadMetricReports = reader.ReadList(LoadMetricReportConverter.Deserialize);
                 }
+                else if (string.Compare("AuxiliaryLoadMetricReports", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    auxiliaryLoadMetricReports = reader.ReadList(LoadMetricReportConverter.Deserialize);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -62,7 +67,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new PartitionLoadInformation(
                 partitionId: partitionId,
                 primaryLoadMetricReports: primaryLoadMetricReports,
-                secondaryLoadMetricReports: secondaryLoadMetricReports);
+                secondaryLoadMetricReports: secondaryLoadMetricReports,
+                auxiliaryLoadMetricReports: auxiliaryLoadMetricReports);
         }
 
         /// <summary>
@@ -87,6 +93,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.SecondaryLoadMetricReports != null)
             {
                 writer.WriteEnumerableProperty(obj.SecondaryLoadMetricReports, "SecondaryLoadMetricReports", LoadMetricReportConverter.Serialize);
+            }
+
+            if (obj.AuxiliaryLoadMetricReports != null)
+            {
+                writer.WriteEnumerableProperty(obj.AuxiliaryLoadMetricReports, "AuxiliaryLoadMetricReports", LoadMetricReportConverter.Serialize);
             }
 
             writer.WriteEndObject();

@@ -9,7 +9,8 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Represents load information for a partition, which contains the primary and secondary reported load metrics.
+    /// Represents load information for a partition, which contains the primary, secondary and auxiliary reported load
+    /// metrics.
     /// In case there is no load reported, PartitionLoadInformation will contain the default load for the service of the
     /// partition.
     /// For default loads, LoadMetricReport's LastReportedUtc is set to 0.
@@ -25,14 +26,20 @@ namespace Microsoft.ServiceFabric.Common
         /// partition.
         /// Array only contains the latest reported load for each metric.
         /// </param>
+        /// <param name="auxiliaryLoadMetricReports">Array of aggregated load reports from all auxiliary replicas for this
+        /// partition.
+        /// Array only contains the latest reported load for each metric.
+        /// </param>
         public PartitionLoadInformation(
             PartitionId partitionId = default(PartitionId),
             IEnumerable<LoadMetricReport> primaryLoadMetricReports = default(IEnumerable<LoadMetricReport>),
-            IEnumerable<LoadMetricReport> secondaryLoadMetricReports = default(IEnumerable<LoadMetricReport>))
+            IEnumerable<LoadMetricReport> secondaryLoadMetricReports = default(IEnumerable<LoadMetricReport>),
+            IEnumerable<LoadMetricReport> auxiliaryLoadMetricReports = default(IEnumerable<LoadMetricReport>))
         {
             this.PartitionId = partitionId;
             this.PrimaryLoadMetricReports = primaryLoadMetricReports;
             this.SecondaryLoadMetricReports = secondaryLoadMetricReports;
+            this.AuxiliaryLoadMetricReports = auxiliaryLoadMetricReports;
         }
 
         /// <summary>
@@ -50,5 +57,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Array only contains the latest reported load for each metric.
         /// </summary>
         public IEnumerable<LoadMetricReport> SecondaryLoadMetricReports { get; }
+
+        /// <summary>
+        /// Gets array of aggregated load reports from all auxiliary replicas for this partition.
+        /// Array only contains the latest reported load for each metric.
+        /// </summary>
+        public IEnumerable<LoadMetricReport> AuxiliaryLoadMetricReports { get; }
     }
 }

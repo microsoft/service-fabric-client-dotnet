@@ -46,6 +46,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ReplicaRole.ActiveSecondary;
             }
+            else if (string.Compare(value, "IdleAuxiliary", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ReplicaRole.IdleAuxiliary;
+            }
+            else if (string.Compare(value, "ActiveAuxiliary", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ReplicaRole.ActiveAuxiliary;
+            }
+            else if (string.Compare(value, "PrimaryAuxiliary", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ReplicaRole.PrimaryAuxiliary;
+            }
 
             return obj;
         }
@@ -73,6 +85,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case ReplicaRole.ActiveSecondary:
                     writer.WriteStringValue("ActiveSecondary");
+                    break;
+                case ReplicaRole.IdleAuxiliary:
+                    writer.WriteStringValue("IdleAuxiliary");
+                    break;
+                case ReplicaRole.ActiveAuxiliary:
+                    writer.WriteStringValue("ActiveAuxiliary");
+                    break;
+                case ReplicaRole.PrimaryAuxiliary:
+                    writer.WriteStringValue("PrimaryAuxiliary");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type ReplicaRole");

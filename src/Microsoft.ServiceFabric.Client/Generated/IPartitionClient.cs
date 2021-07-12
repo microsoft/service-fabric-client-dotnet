@@ -609,5 +609,48 @@ namespace Microsoft.ServiceFabric.Client
             bool? ignoreConstraints = false,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Moves the auxiliary replica of a partition of a stateful service.
+        /// </summary>
+        /// <remarks>
+        /// This command moves the auxiliary replica of a partition of a stateful service, respecting all constraints.
+        /// CurrentNodeName can be omitted, and in that case a random auxiliary replica is chosen.
+        /// NewNodeName can be omitted, and in that case the auxiliary replica is moved to a random node.
+        /// If IgnoreConstraints parameter is specified and set to true, then auxiliary will be moved regardless of the
+        /// constraints.
+        /// </remarks>
+        /// <param name ="serviceId">The identity of the service. This ID is typically the full name of the service without the
+        /// 'fabric:' URI scheme.
+        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
+        /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
+        /// 6.0+ and "myapp/app1/svc1" in previous versions.
+        /// </param>
+        /// <param name ="partitionId">The identity of the partition.</param>
+        /// <param name ="currentNodeName">The name of the source node for instance move. If not specified, instance is moved
+        /// from a random node.</param>
+        /// <param name ="newNodeName">The name of the target node for secondary replica or instance move. If not specified,
+        /// replica or instance is moved to a random node.</param>
+        /// <param name ="ignoreConstraints">Ignore constraints when moving a replica or instance. If this parameter is not
+        /// specified, all constraints are honored.</param>
+        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
+        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
+        /// this parameter is 60 seconds.</param>
+        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// </returns>
+        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
+        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
+        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
+        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
+        Task MoveAuxiliaryReplicaAsync(
+            string serviceId,
+            PartitionId partitionId,
+            NodeName currentNodeName = default(NodeName),
+            NodeName newNodeName = default(NodeName),
+            bool? ignoreConstraints = false,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken));
     }
 }

@@ -41,7 +41,7 @@ namespace Microsoft.ServiceFabric.Common
         /// different value for the id. Sometimes the id of a stateless service instance is also referred as a replica
         /// id.</param>
         /// <param name="replicaRole">The role of a replica of a stateful service. Possible values include: 'Unknown', 'None',
-        /// 'Primary', 'IdleSecondary', 'ActiveSecondary'</param>
+        /// 'Primary', 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary', 'PrimaryAuxiliary'</param>
         /// <param name="reconfigurationInformation">Information about current reconfiguration like phase, type, previous
         /// configuration role of replica and reconfiguration start date time.</param>
         public DeployedStatefulServiceReplicaInfo(
@@ -84,7 +84,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the role of a replica of a stateful service. Possible values include: 'Unknown', 'None', 'Primary',
-        /// 'IdleSecondary', 'ActiveSecondary'
+        /// 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary', 'PrimaryAuxiliary'
         /// </summary>
         public ReplicaRole? ReplicaRole { get; }
 

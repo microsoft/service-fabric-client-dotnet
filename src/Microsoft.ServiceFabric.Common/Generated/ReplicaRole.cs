@@ -42,5 +42,26 @@ namespace Microsoft.ServiceFabric.Common
         /// configurable that the reliability subsystem should maintain. The value is 4.
         /// </summary>
         ActiveSecondary,
+
+        /// <summary>
+        /// Refers to a replica in the set that receives a state transfer from the Primary replica to prepare for becoming an
+        /// ActiveAuxiliary replica. There can be multiple IdleAuxiliary replicas in a replica set at a time. IdleAuxiliary
+        /// replicas do not count as a part of a write quorum. The value is 5.
+        /// </summary>
+        IdleAuxiliary,
+
+        /// <summary>
+        /// Refers to a replica in the set that receives state updates from the Primary replica, applies them, and sends
+        /// acknowledgements back. ActiveAuxiliary replicas must participate in the write quorum for a replica set. There can
+        /// be multiple active ActiveAuxiliary replicas in a replica set at a time. The number of active ActiveAuxiliary
+        /// replicas is configurable that the reliability subsystem should maintain. The value is 6.
+        /// </summary>
+        ActiveAuxiliary,
+
+        /// <summary>
+        /// Refers to the replica in the set that is used to rebuild a new Secondary replica to relinquish primary status to.
+        /// It cannot field read or write requests. The value is 7.
+        /// </summary>
+        PrimaryAuxiliary,
     }
 }
