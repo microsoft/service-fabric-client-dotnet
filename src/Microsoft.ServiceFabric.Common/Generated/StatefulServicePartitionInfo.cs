@@ -24,6 +24,8 @@ namespace Microsoft.ServiceFabric.Common
         /// by it.</param>
         /// <param name="targetReplicaSetSize">The target replica set size as a number.</param>
         /// <param name="minReplicaSetSize">The minimum replica set size as a number.</param>
+        /// <param name="auxiliaryReplicaCount">The auxiliary replica count as a number. To use Auxiliary replicas the
+        /// following must be true, AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
         /// <param name="lastQuorumLossDuration">The duration for which this partition was in quorum loss. If the partition is
         /// currently in quorum loss, it returns the duration since it has been in that state. This field is using ISO8601
         /// format for specifying the duration.</param>
@@ -37,6 +39,7 @@ namespace Microsoft.ServiceFabric.Common
             PartitionInformation partitionInformation = default(PartitionInformation),
             long? targetReplicaSetSize = default(long?),
             long? minReplicaSetSize = default(long?),
+            long? auxiliaryReplicaCount = default(long?),
             TimeSpan? lastQuorumLossDuration = default(TimeSpan?),
             Epoch primaryEpoch = default(Epoch))
             : base(
@@ -47,6 +50,7 @@ namespace Microsoft.ServiceFabric.Common
         {
             this.TargetReplicaSetSize = targetReplicaSetSize;
             this.MinReplicaSetSize = minReplicaSetSize;
+            this.AuxiliaryReplicaCount = auxiliaryReplicaCount;
             this.LastQuorumLossDuration = lastQuorumLossDuration;
             this.PrimaryEpoch = primaryEpoch;
         }
@@ -60,6 +64,12 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the minimum replica set size as a number.
         /// </summary>
         public long? MinReplicaSetSize { get; }
+
+        /// <summary>
+        /// Gets the auxiliary replica count as a number. To use Auxiliary replicas the following must be true,
+        /// AuxiliaryReplicaCount &amp;lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize &amp;gt;=3.
+        /// </summary>
+        public long? AuxiliaryReplicaCount { get; }
 
         /// <summary>
         /// Gets the duration for which this partition was in quorum loss. If the partition is currently in quorum loss, it

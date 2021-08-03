@@ -51,6 +51,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var servicePlacementTimeLimitSeconds = default(string);
             var dropSourceReplicaOnMove = default(bool?);
             var replicaLifecycleDescription = default(ReplicaLifecycleDescription);
+            var auxiliaryReplicaCount = default(int?);
 
             do
             {
@@ -127,6 +128,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     replicaLifecycleDescription = ReplicaLifecycleDescriptionConverter.Deserialize(reader);
                 }
+                else if (string.Compare("AuxiliaryReplicaCount", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    auxiliaryReplicaCount = reader.ReadValueAsInt();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -152,7 +157,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 standByReplicaKeepDurationSeconds: standByReplicaKeepDurationSeconds,
                 servicePlacementTimeLimitSeconds: servicePlacementTimeLimitSeconds,
                 dropSourceReplicaOnMove: dropSourceReplicaOnMove,
-                replicaLifecycleDescription: replicaLifecycleDescription);
+                replicaLifecycleDescription: replicaLifecycleDescription,
+                auxiliaryReplicaCount: auxiliaryReplicaCount);
         }
 
         /// <summary>
@@ -249,6 +255,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ReplicaLifecycleDescription != null)
             {
                 writer.WriteProperty(obj.ReplicaLifecycleDescription, "ReplicaLifecycleDescription", ReplicaLifecycleDescriptionConverter.Serialize);
+            }
+
+            if (obj.AuxiliaryReplicaCount != null)
+            {
+                writer.WriteProperty(obj.AuxiliaryReplicaCount, "AuxiliaryReplicaCount", JsonWriterExtensions.WriteIntValue);
             }
 
             writer.WriteEndObject();

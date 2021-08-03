@@ -5097,6 +5097,121 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>Update-SFApplication</command:name>
+                <command:verb>Update</command:verb>
+                <command:noun>Application</command:noun>
+                <maml:description>
+                    <maml:para>Updates a Service Fabric application.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Updates a Service Fabric application instance. The set of properties that can be updated are a subset of the properties that were specified at the time of creating the application.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>ApplicationId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application. This is typically the full name of the application without the 'fabric:' URI scheme.
+                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
+                    For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in 6.0+ and "myapp/app1" in previous versions.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>Flags</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Flags indicating whether other properties are set. Each of the associated properties corresponds to a flag, specified below, which, if set, indicate that the property is specified.
+                    If flags are not specified for a certain property, the property will not be updated even if the new value is provided.
+                    This property can be a combination of those flags obtained using bitwise 'OR' operator. Exception is RemoveApplicationCapacity which cannot be specified along with other parameters.
+                    For example, if the provided value is 3 then the flags for MinimumNodes (1) and MaximumNodes (2) are set.
+                    
+                    - None - Does not indicate any other properties are set. The value is 0.
+                    - MinimumNodes - Indicates whether the MinimumNodes property is set. The value is 1.
+                    - MaximumNodes - Indicates whether the MinimumNodes property is set. The value is  2.
+                    - ApplicationMetrics - Indicates whether the ApplicationMetrics property is set. The value is 4.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>RemoveApplicationCapacity</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Used to clear all parameters related to Application Capacity for this application. |
+                    It is not possible to specify this parameter together with other Application Capacity parameters.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>MinimumNodes</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The minimum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. If this property is set to zero, no capacity will be reserved. The value of this property cannot be more than the value of the MaximumNodes property.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
+                <maml:name>MaximumNodes</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The maximum number of nodes where Service Fabric will reserve capacity for this application. Note that this does not mean that the services of this application will be placed on all of those nodes. By default, the value of this property is zero and it means that the services can be placed on any node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="5">
+                <maml:name>ApplicationMetrics</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    List of application capacity metric description.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">IEnumerable&lt;ApplicationMetricDescription&gt;</command:parameterValue>
+                <dev:type>
+                    <maml:name>IEnumerable&lt;ApplicationMetricDescription&gt;</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="6">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Resume-SFApplicationUpgrade</command:name>
                 <command:verb>Resume</command:verb>
                 <command:noun>ApplicationUpgrade</command:noun>
@@ -6038,6 +6153,9 @@
                 <command:parameter required="false">
                         <maml:name>ReplicaLifecycleDescription</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>AuxiliaryReplicaCount</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -6110,6 +6228,9 @@
                 <command:parameter required="false">
                         <maml:name>ReplicaLifecycleDescription</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>AuxiliaryReplicaCount</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -6175,6 +6296,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ReplicaLifecycleDescription</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>AuxiliaryReplicaCount</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -6593,7 +6717,7 @@
                 <maml:name>ReplicaLifecycleDescription</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Defines how replicas of this service will behave during their lifecycle.
+                    Defines how replicas of this service will behave during ther lifecycle.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">ReplicaLifecycleDescription</command:parameterValue>
@@ -6602,6 +6726,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="31">
+                <maml:name>AuxiliaryReplicaCount</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The auxiliary replica count as a number. To use Auxiliary replicas, the following must be true: AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="32">
                 <maml:name>MinInstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6616,7 +6752,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="32">
+            <command:parameter required="false" position="33">
                 <maml:name>MinInstancePercentage</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6631,7 +6767,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="33">
+            <command:parameter required="false" position="34">
                 <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6651,7 +6787,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="34">
+            <command:parameter required="false" position="35">
                 <maml:name>InstanceLifecycleDescription</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6663,7 +6799,7 @@
                     <maml:name>InstanceLifecycleDescription</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="35">
+            <command:parameter required="false" position="36">
                 <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6678,7 +6814,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="36">
+            <command:parameter required="false" position="37">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -6902,6 +7038,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ReplicaLifecycleDescription</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>AuxiliaryReplicaCount</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -7181,7 +7320,7 @@
                 <maml:name>ReplicaLifecycleDescription</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Defines how replicas of this service will behave during their lifecycle.
+                    Defines how replicas of this service will behave during ther lifecycle.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">ReplicaLifecycleDescription</command:parameterValue>
@@ -7190,6 +7329,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="19">
+                <maml:name>AuxiliaryReplicaCount</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The auxiliary replica count as a number. To use Auxiliary replicas, the following must be true: AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="20">
                 <maml:name>InstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7201,7 +7352,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="20">
+            <command:parameter required="false" position="21">
                 <maml:name>MinInstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7216,7 +7367,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="21">
+            <command:parameter required="false" position="22">
                 <maml:name>MinInstancePercentage</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7231,7 +7382,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="22">
+            <command:parameter required="false" position="23">
                 <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7250,7 +7401,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="23">
+            <command:parameter required="false" position="24">
                 <maml:name>InstanceLifecycleDescription</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7262,7 +7413,7 @@
                     <maml:name>InstanceLifecycleDescription</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="24">
+            <command:parameter required="false" position="25">
                 <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7277,7 +7428,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="25">
+            <command:parameter required="false" position="26">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -9129,6 +9280,102 @@
                 CurrentNodeName when specified identifies the instance that is moved. If not specified, random instance will be moved 
                 New node name can be omitted, and in that case instance is moved to a random node.
                 If IgnoreConstraints parameter is specified and set to true, then instance will be moved regardless of the constraints.
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>ServiceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the service. This ID is typically the full name of the service without the 'fabric:' URI scheme.
+                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
+                    For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="1">
+                <maml:name>PartitionId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the partition.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">PartitionId</command:parameterValue>
+                <dev:type>
+                    <maml:name>PartitionId</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>CurrentNodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the source node for instance move. If not specified, instance is moved from a random node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>NewNodeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the target node for secondary replica or instance move. If not specified, replica or instance is moved to a random node.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">NodeName</command:parameterValue>
+                <dev:type>
+                    <maml:name>NodeName</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
+                <maml:name>IgnoreConstraints</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Ignore constraints when moving a replica or instance. If this parameter is not specified, all constraints are honored.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="5">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Move-SFAuxiliaryReplica</command:name>
+                <command:verb>Move</command:verb>
+                <command:noun>AuxiliaryReplica</command:noun>
+                <maml:description>
+                    <maml:para>Moves the auxiliary replica of a partition of a stateful service.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>This command moves the auxiliary replica of a partition of a stateful service, respecting all constraints.
+                CurrentNodeName can be omitted, and in that case a random auxiliary replica is chosen.
+                NewNodeName can be omitted, and in that case the auxiliary replica is moved to a random node.
+                If IgnoreConstraints parameter is specified and set to true, then auxiliary will be moved regardless of the constraints.
                 </maml:para>
             </maml:description>
             <command:parameters>

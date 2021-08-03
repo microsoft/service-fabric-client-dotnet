@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="address">The address the replica is listening on.</param>
         /// <param name="lastInBuildDurationInSeconds">The last in build duration of the replica in seconds.</param>
         /// <param name="replicaRole">The role of a replica of a stateful service. Possible values include: 'Unknown', 'None',
-        /// 'Primary', 'IdleSecondary', 'ActiveSecondary'</param>
+        /// 'Primary', 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary', 'PrimaryAuxiliary'</param>
         /// <param name="replicaId">Id of a stateful service replica. ReplicaId is used by Service Fabric to uniquely identify
         /// a replica of a partition. It is unique within a partition and does not change for the lifetime of the replica. If a
         /// replica gets dropped and another replica gets created on the same node for the same partition, it will get a
@@ -53,7 +53,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the role of a replica of a stateful service. Possible values include: 'Unknown', 'None', 'Primary',
-        /// 'IdleSecondary', 'ActiveSecondary'
+        /// 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary', 'PrimaryAuxiliary'
         /// </summary>
         public ReplicaRole? ReplicaRole { get; }
 

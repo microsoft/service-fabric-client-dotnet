@@ -18,7 +18,8 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the ReconfigurationInformation class.
         /// </summary>
         /// <param name="previousConfigurationRole">Replica role before reconfiguration started. Possible values include:
-        /// 'Unknown', 'None', 'Primary', 'IdleSecondary', 'ActiveSecondary'
+        /// 'Unknown', 'None', 'Primary', 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary',
+        /// 'PrimaryAuxiliary'
         /// 
         /// The role of a replica of a stateful service.
         /// </param>
@@ -49,7 +50,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets replica role before reconfiguration started. Possible values include: 'Unknown', 'None', 'Primary',
-        /// 'IdleSecondary', 'ActiveSecondary'
+        /// 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary', 'PrimaryAuxiliary'
         /// 
         /// The role of a replica of a stateful service.
         /// </summary>

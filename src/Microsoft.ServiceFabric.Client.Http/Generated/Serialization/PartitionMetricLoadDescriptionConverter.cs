@@ -37,6 +37,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var primaryReplicaLoadEntries = default(IEnumerable<MetricLoadDescription>);
             var secondaryReplicasOrInstancesLoadEntries = default(IEnumerable<MetricLoadDescription>);
             var secondaryReplicaOrInstanceLoadEntriesPerNode = default(IEnumerable<ReplicaMetricLoadDescription>);
+            var auxiliaryReplicasLoadEntries = default(IEnumerable<MetricLoadDescription>);
+            var auxiliaryReplicaLoadEntriesPerNode = default(IEnumerable<ReplicaMetricLoadDescription>);
 
             do
             {
@@ -57,6 +59,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     secondaryReplicaOrInstanceLoadEntriesPerNode = reader.ReadList(ReplicaMetricLoadDescriptionConverter.Deserialize);
                 }
+                else if (string.Compare("AuxiliaryReplicasLoadEntries", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    auxiliaryReplicasLoadEntries = reader.ReadList(MetricLoadDescriptionConverter.Deserialize);
+                }
+                else if (string.Compare("AuxiliaryReplicaLoadEntriesPerNode", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    auxiliaryReplicaLoadEntriesPerNode = reader.ReadList(ReplicaMetricLoadDescriptionConverter.Deserialize);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -68,7 +78,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 partitionId: partitionId,
                 primaryReplicaLoadEntries: primaryReplicaLoadEntries,
                 secondaryReplicasOrInstancesLoadEntries: secondaryReplicasOrInstancesLoadEntries,
-                secondaryReplicaOrInstanceLoadEntriesPerNode: secondaryReplicaOrInstanceLoadEntriesPerNode);
+                secondaryReplicaOrInstanceLoadEntriesPerNode: secondaryReplicaOrInstanceLoadEntriesPerNode,
+                auxiliaryReplicasLoadEntries: auxiliaryReplicasLoadEntries,
+                auxiliaryReplicaLoadEntriesPerNode: auxiliaryReplicaLoadEntriesPerNode);
         }
 
         /// <summary>
@@ -98,6 +110,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.SecondaryReplicaOrInstanceLoadEntriesPerNode != null)
             {
                 writer.WriteEnumerableProperty(obj.SecondaryReplicaOrInstanceLoadEntriesPerNode, "SecondaryReplicaOrInstanceLoadEntriesPerNode", ReplicaMetricLoadDescriptionConverter.Serialize);
+            }
+
+            if (obj.AuxiliaryReplicasLoadEntries != null)
+            {
+                writer.WriteEnumerableProperty(obj.AuxiliaryReplicasLoadEntries, "AuxiliaryReplicasLoadEntries", MetricLoadDescriptionConverter.Serialize);
+            }
+
+            if (obj.AuxiliaryReplicaLoadEntriesPerNode != null)
+            {
+                writer.WriteEnumerableProperty(obj.AuxiliaryReplicaLoadEntriesPerNode, "AuxiliaryReplicaLoadEntriesPerNode", ReplicaMetricLoadDescriptionConverter.Serialize);
             }
 
             writer.WriteEndObject();

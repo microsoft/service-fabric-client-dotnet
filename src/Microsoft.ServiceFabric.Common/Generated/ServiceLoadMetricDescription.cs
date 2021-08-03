@@ -28,6 +28,8 @@ namespace Microsoft.ServiceFabric.Common
         /// this service creates for this metric when it is a Primary replica.</param>
         /// <param name="secondaryDefaultLoad">Used only for Stateful services. The default amount of load, as a number, that
         /// this service creates for this metric when it is a Secondary replica.</param>
+        /// <param name="auxiliaryDefaultLoad">Used only for Stateful services. The default amount of load, as a number, that
+        /// this service creates for this metric when it is an Auxiliary replica.</param>
         /// <param name="defaultLoad">Used only for Stateless services. The default amount of load, as a number, that this
         /// service creates for this metric.</param>
         public ServiceLoadMetricDescription(
@@ -35,6 +37,7 @@ namespace Microsoft.ServiceFabric.Common
             ServiceLoadMetricWeight? weight = default(ServiceLoadMetricWeight?),
             int? primaryDefaultLoad = default(int?),
             int? secondaryDefaultLoad = default(int?),
+            int? auxiliaryDefaultLoad = default(int?),
             int? defaultLoad = default(int?))
         {
             name.ThrowIfNull(nameof(name));
@@ -42,6 +45,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Weight = weight;
             this.PrimaryDefaultLoad = primaryDefaultLoad;
             this.SecondaryDefaultLoad = secondaryDefaultLoad;
+            this.AuxiliaryDefaultLoad = auxiliaryDefaultLoad;
             this.DefaultLoad = defaultLoad;
         }
 
@@ -71,6 +75,12 @@ namespace Microsoft.ServiceFabric.Common
         /// metric when it is a Secondary replica.
         /// </summary>
         public int? SecondaryDefaultLoad { get; }
+
+        /// <summary>
+        /// Gets used only for Stateful services. The default amount of load, as a number, that this service creates for this
+        /// metric when it is an Auxiliary replica.
+        /// </summary>
+        public int? AuxiliaryDefaultLoad { get; }
 
         /// <summary>
         /// Gets used only for Stateless services. The default amount of load, as a number, that this service creates for this

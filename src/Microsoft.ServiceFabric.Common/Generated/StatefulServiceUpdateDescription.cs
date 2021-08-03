@@ -74,8 +74,10 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="dropSourceReplicaOnMove">Indicates whether to drop source Secondary replica even if the target replica
         /// has not finished build. If desired behavior is to drop it as soon as possible the value of this property is true,
         /// if not it is false.</param>
-        /// <param name="replicaLifecycleDescription">Defines how replicas of this service will behave during their
+        /// <param name="replicaLifecycleDescription">Defines how replicas of this service will behave during ther
         /// lifecycle.</param>
+        /// <param name="auxiliaryReplicaCount">The auxiliary replica count as a number. To use Auxiliary replicas, the
+        /// following must be true: AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
         public StatefulServiceUpdateDescription(
             string flags = default(string),
             string placementConstraints = default(string),
@@ -94,7 +96,8 @@ namespace Microsoft.ServiceFabric.Common
             string standByReplicaKeepDurationSeconds = default(string),
             string servicePlacementTimeLimitSeconds = default(string),
             bool? dropSourceReplicaOnMove = default(bool?),
-            ReplicaLifecycleDescription replicaLifecycleDescription = default(ReplicaLifecycleDescription))
+            ReplicaLifecycleDescription replicaLifecycleDescription = default(ReplicaLifecycleDescription),
+            int? auxiliaryReplicaCount = default(int?))
             : base(
                 Common.ServiceKind.Stateful,
                 flags,
@@ -110,6 +113,7 @@ namespace Microsoft.ServiceFabric.Common
         {
             targetReplicaSetSize?.ThrowIfLessThan("targetReplicaSetSize", 1);
             minReplicaSetSize?.ThrowIfLessThan("minReplicaSetSize", 1);
+            auxiliaryReplicaCount?.ThrowIfLessThan("auxiliaryReplicaCount", 0);
             this.TargetReplicaSetSize = targetReplicaSetSize;
             this.MinReplicaSetSize = minReplicaSetSize;
             this.ReplicaRestartWaitDurationSeconds = replicaRestartWaitDurationSeconds;
@@ -118,6 +122,7 @@ namespace Microsoft.ServiceFabric.Common
             this.ServicePlacementTimeLimitSeconds = servicePlacementTimeLimitSeconds;
             this.DropSourceReplicaOnMove = dropSourceReplicaOnMove;
             this.ReplicaLifecycleDescription = replicaLifecycleDescription;
+            this.AuxiliaryReplicaCount = auxiliaryReplicaCount;
         }
 
         /// <summary>
@@ -157,8 +162,14 @@ namespace Microsoft.ServiceFabric.Common
         public bool? DropSourceReplicaOnMove { get; }
 
         /// <summary>
-        /// Gets defines how replicas of this service will behave during their lifecycle.
+        /// Gets defines how replicas of this service will behave during ther lifecycle.
         /// </summary>
         public ReplicaLifecycleDescription ReplicaLifecycleDescription { get; }
+
+        /// <summary>
+        /// Gets the auxiliary replica count as a number. To use Auxiliary replicas, the following must be true:
+        /// AuxiliaryReplicaCount &amp;lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize &amp;gt;=3.
+        /// </summary>
+        public int? AuxiliaryReplicaCount { get; }
     }
 }
