@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="targetReplicaSetSize">The target replica set size as a number.</param>
         /// <param name="minReplicaSetSize">The minimum replica set size as a number.</param>
         /// <param name="auxiliaryReplicaCount">The auxiliary replica count as a number. To use Auxiliary replicas the
-        /// following must be true, AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
+        /// following must be true, AuxiliaryReplicaCount &lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
         /// <param name="lastQuorumLossDuration">The duration for which this partition was in quorum loss. If the partition is
         /// currently in quorum loss, it returns the duration since it has been in that state. This field is using ISO8601
         /// format for specifying the duration.</param>

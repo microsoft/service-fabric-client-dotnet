@@ -17,8 +17,8 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the RollingUpgradeUpdateDescription class.
         /// </summary>
         /// <param name="rollingUpgradeMode">The mode used to monitor health during a rolling upgrade. The values are
-        /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
-        /// 'UnmonitoredManual', 'Monitored'</param>
+        /// UnmonitoredAuto, UnmonitoredManual, Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid',
+        /// 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored', 'UnmonitoredDeferred'</param>
         /// <param name="forceRestart">If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).</param>
         /// <param name="replicaSetCheckTimeoutInMilliseconds">The maximum amount of time to block processing of an upgrade
@@ -83,7 +83,8 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the mode used to monitor health during a rolling upgrade. The values are UnmonitoredAuto, UnmonitoredManual,
-        /// and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored'
+        /// Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual',
+        /// 'Monitored', 'UnmonitoredDeferred'
         /// </summary>
         public UpgradeMode? RollingUpgradeMode { get; }
 

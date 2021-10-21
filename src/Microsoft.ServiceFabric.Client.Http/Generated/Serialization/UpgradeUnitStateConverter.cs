@@ -12,39 +12,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="UpgradeMode" />.
+    /// Converter for <see cref="UpgradeUnitState" />.
     /// </summary>
-    internal class UpgradeModeConverter
+    internal class UpgradeUnitStateConverter
     {
         /// <summary>
         /// Gets the enum value by reading string value from reader.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The enum Value.</returns>
-        public static UpgradeMode? Deserialize(JsonReader reader)
+        public static UpgradeUnitState? Deserialize(JsonReader reader)
         {
             var value = reader.ReadValueAsString();
-            var obj = default(UpgradeMode);
+            var obj = default(UpgradeUnitState);
 
             if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.Invalid;
+                obj = UpgradeUnitState.Invalid;
             }
-            else if (string.Compare(value, "UnmonitoredAuto", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "Pending", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.UnmonitoredAuto;
+                obj = UpgradeUnitState.Pending;
             }
-            else if (string.Compare(value, "UnmonitoredManual", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "InProgress", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.UnmonitoredManual;
+                obj = UpgradeUnitState.InProgress;
             }
-            else if (string.Compare(value, "Monitored", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "Completed", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.Monitored;
+                obj = UpgradeUnitState.Completed;
             }
-            else if (string.Compare(value, "UnmonitoredDeferred", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "Failed", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.UnmonitoredDeferred;
+                obj = UpgradeUnitState.Failed;
             }
 
             return obj;
@@ -55,27 +55,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="value">The object to serialize to JSON.</param>
-        public static void Serialize(JsonWriter writer, UpgradeMode? value)
+        public static void Serialize(JsonWriter writer, UpgradeUnitState? value)
         {
             switch (value)
             {
-                case UpgradeMode.Invalid:
+                case UpgradeUnitState.Invalid:
                     writer.WriteStringValue("Invalid");
                     break;
-                case UpgradeMode.UnmonitoredAuto:
-                    writer.WriteStringValue("UnmonitoredAuto");
+                case UpgradeUnitState.Pending:
+                    writer.WriteStringValue("Pending");
                     break;
-                case UpgradeMode.UnmonitoredManual:
-                    writer.WriteStringValue("UnmonitoredManual");
+                case UpgradeUnitState.InProgress:
+                    writer.WriteStringValue("InProgress");
                     break;
-                case UpgradeMode.Monitored:
-                    writer.WriteStringValue("Monitored");
+                case UpgradeUnitState.Completed:
+                    writer.WriteStringValue("Completed");
                     break;
-                case UpgradeMode.UnmonitoredDeferred:
-                    writer.WriteStringValue("UnmonitoredDeferred");
+                case UpgradeUnitState.Failed:
+                    writer.WriteStringValue("Failed");
                     break;
                 default:
-                    throw new ArgumentException($"Invalid value {value.ToString()} for enum type UpgradeMode");
+                    throw new ArgumentException($"Invalid value {value.ToString()} for enum type UpgradeUnitState");
             }
         }
     }

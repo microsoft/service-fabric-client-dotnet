@@ -77,7 +77,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="replicaLifecycleDescription">Defines how replicas of this service will behave during ther
         /// lifecycle.</param>
         /// <param name="auxiliaryReplicaCount">The auxiliary replica count as a number. To use Auxiliary replicas, the
-        /// following must be true: AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
+        /// following must be true: AuxiliaryReplicaCount &lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
         public StatefulServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,

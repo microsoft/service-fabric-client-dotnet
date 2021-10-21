@@ -308,7 +308,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
         /// <summary>
         /// Gets or sets AuxiliaryReplicaCount. The auxiliary replica count as a number. To use Auxiliary replicas, the
-        /// following must be true: AuxiliaryReplicaCount &lt;TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.
+        /// following must be true: AuxiliaryReplicaCount &lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.
         /// </summary>
         [Parameter(Mandatory = false, Position = 33, ParameterSetName = "_Named__Stateful_")]
         [Parameter(Mandatory = false, Position = 33, ParameterSetName = "_Singleton__Stateful_")]

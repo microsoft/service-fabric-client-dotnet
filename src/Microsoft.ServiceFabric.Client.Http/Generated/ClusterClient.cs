@@ -828,5 +828,43 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task<ValidateClusterUpgradeResult> ValidateClusterUpgradeAsync(
+            StartClusterUpgradeDescription startClusterUpgradeDescription,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            startClusterUpgradeDescription.ThrowIfNull(nameof(startClusterUpgradeDescription));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "$/ValidateUpgrade";
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=8.2");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                StartClusterUpgradeDescriptionConverter.Serialize(new JsonTextWriter(sw), startClusterUpgradeDescription);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ValidateClusterUpgradeResultConverter.Deserialize, requestId, cancellationToken);
+        }
     }
 }

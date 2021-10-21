@@ -20,14 +20,18 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="upgradePhase">The state of the upgrading node. Possible values include: 'Invalid',
         /// 'PreUpgradeSafetyCheck', 'Upgrading', 'PostUpgradeSafetyCheck'</param>
         /// <param name="pendingSafetyChecks">List of pending safety checks</param>
+        /// <param name="upgradeDuration">The estimated time spent processing the node since it was deactivated during a
+        /// node-by-node upgrade.</param>
         public NodeUpgradeProgressInfo(
             NodeName nodeName = default(NodeName),
             NodeUpgradePhase? upgradePhase = default(NodeUpgradePhase?),
-            IEnumerable<SafetyCheckWrapper> pendingSafetyChecks = default(IEnumerable<SafetyCheckWrapper>))
+            IEnumerable<SafetyCheckWrapper> pendingSafetyChecks = default(IEnumerable<SafetyCheckWrapper>),
+            string upgradeDuration = default(string))
         {
             this.NodeName = nodeName;
             this.UpgradePhase = upgradePhase;
             this.PendingSafetyChecks = pendingSafetyChecks;
+            this.UpgradeDuration = upgradeDuration;
         }
 
         /// <summary>
@@ -45,5 +49,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets list of pending safety checks
         /// </summary>
         public IEnumerable<SafetyCheckWrapper> PendingSafetyChecks { get; }
+
+        /// <summary>
+        /// Gets the estimated time spent processing the node since it was deactivated during a node-by-node upgrade.
+        /// </summary>
+        public string UpgradeDuration { get; }
     }
 }

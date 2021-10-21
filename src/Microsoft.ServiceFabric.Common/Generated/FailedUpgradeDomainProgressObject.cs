@@ -9,7 +9,8 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// The detailed upgrade progress for nodes in the current upgrade domain at the point of failure.
+    /// The detailed upgrade progress for nodes in the current upgrade domain at the point of failure. Not applicable to
+    /// node-by-node upgrades.
     /// </summary>
     public partial class FailedUpgradeDomainProgressObject
     {

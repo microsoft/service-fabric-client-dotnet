@@ -12,39 +12,35 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
     using Newtonsoft.Json.Linq;
 
     /// <summary>
-    /// Converter for <see cref="UpgradeMode" />.
+    /// Converter for <see cref="ServiceHostUpgradeImpact" />.
     /// </summary>
-    internal class UpgradeModeConverter
+    internal class ServiceHostUpgradeImpactConverter
     {
         /// <summary>
         /// Gets the enum value by reading string value from reader.
         /// </summary>
         /// <param name="reader">The <see cref="T: Newtonsoft.Json.JsonReader" /> to read from, reader must be placed at first property.</param>
         /// <returns>The enum Value.</returns>
-        public static UpgradeMode? Deserialize(JsonReader reader)
+        public static ServiceHostUpgradeImpact? Deserialize(JsonReader reader)
         {
             var value = reader.ReadValueAsString();
-            var obj = default(UpgradeMode);
+            var obj = default(ServiceHostUpgradeImpact);
 
             if (string.Compare(value, "Invalid", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.Invalid;
+                obj = ServiceHostUpgradeImpact.Invalid;
             }
-            else if (string.Compare(value, "UnmonitoredAuto", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "None", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.UnmonitoredAuto;
+                obj = ServiceHostUpgradeImpact.None;
             }
-            else if (string.Compare(value, "UnmonitoredManual", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "ServiceHostRestart", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.UnmonitoredManual;
+                obj = ServiceHostUpgradeImpact.ServiceHostRestart;
             }
-            else if (string.Compare(value, "Monitored", StringComparison.OrdinalIgnoreCase) == 0)
+            else if (string.Compare(value, "UnexpectedServiceHostRestart", StringComparison.OrdinalIgnoreCase) == 0)
             {
-                obj = UpgradeMode.Monitored;
-            }
-            else if (string.Compare(value, "UnmonitoredDeferred", StringComparison.OrdinalIgnoreCase) == 0)
-            {
-                obj = UpgradeMode.UnmonitoredDeferred;
+                obj = ServiceHostUpgradeImpact.UnexpectedServiceHostRestart;
             }
 
             return obj;
@@ -55,27 +51,24 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// </summary>
         /// <param name="writer">The <see cref="T: Newtonsoft.Json.JsonWriter" /> to write to.</param>
         /// <param name="value">The object to serialize to JSON.</param>
-        public static void Serialize(JsonWriter writer, UpgradeMode? value)
+        public static void Serialize(JsonWriter writer, ServiceHostUpgradeImpact? value)
         {
             switch (value)
             {
-                case UpgradeMode.Invalid:
+                case ServiceHostUpgradeImpact.Invalid:
                     writer.WriteStringValue("Invalid");
                     break;
-                case UpgradeMode.UnmonitoredAuto:
-                    writer.WriteStringValue("UnmonitoredAuto");
+                case ServiceHostUpgradeImpact.None:
+                    writer.WriteStringValue("None");
                     break;
-                case UpgradeMode.UnmonitoredManual:
-                    writer.WriteStringValue("UnmonitoredManual");
+                case ServiceHostUpgradeImpact.ServiceHostRestart:
+                    writer.WriteStringValue("ServiceHostRestart");
                     break;
-                case UpgradeMode.Monitored:
-                    writer.WriteStringValue("Monitored");
-                    break;
-                case UpgradeMode.UnmonitoredDeferred:
-                    writer.WriteStringValue("UnmonitoredDeferred");
+                case ServiceHostUpgradeImpact.UnexpectedServiceHostRestart:
+                    writer.WriteStringValue("UnexpectedServiceHostRestart");
                     break;
                 default:
-                    throw new ArgumentException($"Invalid value {value.ToString()} for enum type UpgradeMode");
+                    throw new ArgumentException($"Invalid value {value.ToString()} for enum type ServiceHostUpgradeImpact");
             }
         }
     }
