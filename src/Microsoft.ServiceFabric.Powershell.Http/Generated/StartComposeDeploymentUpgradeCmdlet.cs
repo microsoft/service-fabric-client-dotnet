@@ -55,8 +55,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
         /// <summary>
         /// Gets or sets RollingUpgradeMode. The mode used to monitor health during a rolling upgrade. The values are
-        /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
-        /// 'UnmonitoredManual', 'Monitored'
+        /// UnmonitoredAuto, UnmonitoredManual, Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid',
+        /// 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored', 'UnmonitoredDeferred'
         /// </summary>
         [Parameter(Mandatory = false, Position = 6)]
         public UpgradeMode? RollingUpgradeMode { get; set; } = Common.UpgradeMode.UnmonitoredAuto;

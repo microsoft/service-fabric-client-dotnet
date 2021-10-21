@@ -52,6 +52,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var nodeUpAt = default(DateTime?);
             var nodeDownAt = default(DateTime?);
             var nodeTags = default(IEnumerable<string>);
+            var isNodeByNodeUpgradeInProgress = default(bool?);
+            var infrastructurePlacementID = default(string);
 
             do
             {
@@ -132,6 +134,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     nodeTags = reader.ReadList(JsonReaderExtensions.ReadValueAsString);
                 }
+                else if (string.Compare("IsNodeByNodeUpgradeInProgress", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    isNodeByNodeUpgradeInProgress = reader.ReadValueAsBool();
+                }
+                else if (string.Compare("InfrastructurePlacementID", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    infrastructurePlacementID = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -158,7 +168,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 nodeDownTimeInSeconds: nodeDownTimeInSeconds,
                 nodeUpAt: nodeUpAt,
                 nodeDownAt: nodeDownAt,
-                nodeTags: nodeTags);
+                nodeTags: nodeTags,
+                isNodeByNodeUpgradeInProgress: isNodeByNodeUpgradeInProgress,
+                infrastructurePlacementID: infrastructurePlacementID);
         }
 
         /// <summary>
@@ -255,6 +267,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.NodeTags != null)
             {
                 writer.WriteEnumerableProperty(obj.NodeTags, "NodeTags", (w, v) => writer.WriteStringValue(v));
+            }
+
+            if (obj.IsNodeByNodeUpgradeInProgress != null)
+            {
+                writer.WriteProperty(obj.IsNodeByNodeUpgradeInProgress, "IsNodeByNodeUpgradeInProgress", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.InfrastructurePlacementID != null)
+            {
+                writer.WriteProperty(obj.InfrastructurePlacementID, "InfrastructurePlacementID", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

@@ -31,5 +31,11 @@ namespace Microsoft.ServiceFabric.Common
         /// value is 3.
         /// </summary>
         Monitored,
+
+        /// <summary>
+        /// Perform a node-by-node upgrade. No action is performed when upgrade starts; upgrade is applied on each node when it
+        /// is deactivated with intent restart or higher. The value is 4.
+        /// </summary>
+        UnmonitoredDeferred,
     }
 }

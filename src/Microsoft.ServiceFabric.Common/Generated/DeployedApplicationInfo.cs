@@ -24,6 +24,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </param>
         /// <param name="name">The name of the application, including the 'fabric:' URI scheme.</param>
         /// <param name="typeName">The application type name as defined in the application manifest.</param>
+        /// <param name="typeVersion">The version of the application type as defined in the application manifest.</param>
         /// <param name="status">The status of the application deployed on the node. Following are the possible values.
         /// . Possible values include: 'Invalid', 'Downloading', 'Activating', 'Active', 'Upgrading', 'Deactivating'</param>
         /// <param name="workDirectory">The work directory of the application on the node. The work directory can be used to
@@ -38,6 +39,7 @@ namespace Microsoft.ServiceFabric.Common
             string id = default(string),
             ApplicationName name = default(ApplicationName),
             string typeName = default(string),
+            string typeVersion = default(string),
             DeployedApplicationStatus? status = default(DeployedApplicationStatus?),
             string workDirectory = default(string),
             string logDirectory = default(string),
@@ -47,6 +49,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Id = id;
             this.Name = name;
             this.TypeName = typeName;
+            this.TypeVersion = typeVersion;
             this.Status = status;
             this.WorkDirectory = workDirectory;
             this.LogDirectory = logDirectory;
@@ -72,6 +75,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the application type name as defined in the application manifest.
         /// </summary>
         public string TypeName { get; }
+
+        /// <summary>
+        /// Gets the version of the application type as defined in the application manifest.
+        /// </summary>
+        public string TypeVersion { get; }
 
         /// <summary>
         /// Gets the status of the application deployed on the node. Following are the possible values.

@@ -29,8 +29,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="parameters">List of application parameters with overridden values from their default values specified
         /// in the application manifest.</param>
         /// <param name="rollingUpgradeMode">The mode used to monitor health during a rolling upgrade. The values are
-        /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
-        /// 'UnmonitoredManual', 'Monitored'</param>
+        /// UnmonitoredAuto, UnmonitoredManual, Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid',
+        /// 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored', 'UnmonitoredDeferred'</param>
         /// <param name="upgradeReplicaSetCheckTimeoutInSeconds">The maximum amount of time to block processing of an upgrade
         /// domain and prevent loss of availability when there are unexpected issues. When this timeout expires, processing of
         /// the upgrade domain will proceed regardless of availability loss issues. The timeout is reset at the start of each
@@ -106,7 +106,8 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the mode used to monitor health during a rolling upgrade. The values are UnmonitoredAuto, UnmonitoredManual,
-        /// and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored'
+        /// Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual',
+        /// 'Monitored', 'UnmonitoredDeferred'
         /// </summary>
         public UpgradeMode? RollingUpgradeMode { get; }
 

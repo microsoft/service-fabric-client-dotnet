@@ -36,6 +36,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var nodeName = default(NodeName);
             var upgradePhase = default(NodeUpgradePhase?);
             var pendingSafetyChecks = default(IEnumerable<SafetyCheckWrapper>);
+            var upgradeDuration = default(string);
 
             do
             {
@@ -52,6 +53,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     pendingSafetyChecks = reader.ReadList(SafetyCheckWrapperConverter.Deserialize);
                 }
+                else if (string.Compare("UpgradeDuration", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    upgradeDuration = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -62,7 +67,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             return new NodeUpgradeProgressInfo(
                 nodeName: nodeName,
                 upgradePhase: upgradePhase,
-                pendingSafetyChecks: pendingSafetyChecks);
+                pendingSafetyChecks: pendingSafetyChecks,
+                upgradeDuration: upgradeDuration);
         }
 
         /// <summary>
@@ -83,6 +89,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.PendingSafetyChecks != null)
             {
                 writer.WriteEnumerableProperty(obj.PendingSafetyChecks, "PendingSafetyChecks", SafetyCheckWrapperConverter.Serialize);
+            }
+
+            if (obj.UpgradeDuration != null)
+            {
+                writer.WriteProperty(obj.UpgradeDuration, "UpgradeDuration", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

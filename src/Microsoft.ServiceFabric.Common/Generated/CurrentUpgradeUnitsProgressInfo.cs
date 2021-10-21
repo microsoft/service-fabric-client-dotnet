@@ -9,16 +9,16 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Information about the current in-progress upgrade domain. Not applicable to node-by-node upgrades.
+    /// Information about the current in-progress upgrade units.
     /// </summary>
-    public partial class CurrentUpgradeDomainProgressInfo
+    public partial class CurrentUpgradeUnitsProgressInfo
     {
         /// <summary>
-        /// Initializes a new instance of the CurrentUpgradeDomainProgressInfo class.
+        /// Initializes a new instance of the CurrentUpgradeUnitsProgressInfo class.
         /// </summary>
-        /// <param name="domainName">The name of the upgrade domain</param>
+        /// <param name="domainName">The name of the upgrade domain. Not applicable to node-by-node upgrades.</param>
         /// <param name="nodeUpgradeProgressList">List of upgrading nodes and their statuses</param>
-        public CurrentUpgradeDomainProgressInfo(
+        public CurrentUpgradeUnitsProgressInfo(
             string domainName = default(string),
             IEnumerable<NodeUpgradeProgressInfo> nodeUpgradeProgressList = default(IEnumerable<NodeUpgradeProgressInfo>))
         {
@@ -27,7 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         }
 
         /// <summary>
-        /// Gets the name of the upgrade domain
+        /// Gets the name of the upgrade domain. Not applicable to node-by-node upgrades.
         /// </summary>
         public string DomainName { get; }
 

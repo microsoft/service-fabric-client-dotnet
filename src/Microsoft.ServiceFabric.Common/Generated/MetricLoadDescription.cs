@@ -18,7 +18,9 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="metricName">The name of the reported metric.</param>
         /// <param name="currentLoad">The current value of the metric load.</param>
-        /// <param name="predictedLoad">The predicted value of the metric load.</param>
+        /// <param name="predictedLoad">The predicted value of the metric load. Predicted metric load values is currently a
+        /// preview feature. It allows predicted load values to be reported and used at the Service Fabric side, but that
+        /// feature is currently not enabled.</param>
         public MetricLoadDescription(
             string metricName = default(string),
             long? currentLoad = default(long?),
@@ -40,7 +42,9 @@ namespace Microsoft.ServiceFabric.Common
         public long? CurrentLoad { get; }
 
         /// <summary>
-        /// Gets the predicted value of the metric load.
+        /// Gets the predicted value of the metric load. Predicted metric load values is currently a preview feature. It allows
+        /// predicted load values to be reported and used at the Service Fabric side, but that feature is currently not
+        /// enabled.
         /// </summary>
         public long? PredictedLoad { get; }
     }

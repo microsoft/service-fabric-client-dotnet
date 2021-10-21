@@ -26,8 +26,8 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="upgradeKind">The kind of upgrade out of the following possible values. Possible values include:
         /// 'Invalid', 'Rolling'</param>
         /// <param name="rollingUpgradeMode">The mode used to monitor health during a rolling upgrade. The values are
-        /// UnmonitoredAuto, UnmonitoredManual, and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto',
-        /// 'UnmonitoredManual', 'Monitored'</param>
+        /// UnmonitoredAuto, UnmonitoredManual, Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid',
+        /// 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored', 'UnmonitoredDeferred'</param>
         /// <param name="forceRestart">If true, then processes are forcefully restarted during upgrade even when the code
         /// version has not changed (the upgrade only changes configuration or data).</param>
         /// <param name="upgradeReplicaSetCheckTimeoutInSeconds">The maximum amount of time to block processing of an upgrade
@@ -48,7 +48,8 @@ namespace Microsoft.ServiceFabric.Common
         /// number representing the total number of milliseconds.</param>
         /// <param name="applicationUnhealthyEvaluations">List of health evaluations that resulted in the current aggregated
         /// health state.</param>
-        /// <param name="currentUpgradeDomainProgress">Information about the current in-progress upgrade domain.</param>
+        /// <param name="currentUpgradeDomainProgress">Information about the current in-progress upgrade domain. Not applicable
+        /// to node-by-node upgrades.</param>
         /// <param name="startTimestampUtc">The estimated UTC datetime when the upgrade started.</param>
         /// <param name="failureTimestampUtc">The estimated UTC datetime when the upgrade failed and FailureAction was
         /// executed.</param>
@@ -132,7 +133,8 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the mode used to monitor health during a rolling upgrade. The values are UnmonitoredAuto, UnmonitoredManual,
-        /// and Monitored. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual', 'Monitored'
+        /// Monitored, and UnmonitoredDeferred. Possible values include: 'Invalid', 'UnmonitoredAuto', 'UnmonitoredManual',
+        /// 'Monitored', 'UnmonitoredDeferred'
         /// </summary>
         public UpgradeMode? RollingUpgradeMode { get; }
 
@@ -185,7 +187,7 @@ namespace Microsoft.ServiceFabric.Common
         public IEnumerable<HealthEvaluationWrapper> ApplicationUnhealthyEvaluations { get; }
 
         /// <summary>
-        /// Gets information about the current in-progress upgrade domain.
+        /// Gets information about the current in-progress upgrade domain. Not applicable to node-by-node upgrades.
         /// </summary>
         public CurrentUpgradeDomainProgressInfo CurrentUpgradeDomainProgress { get; }
 

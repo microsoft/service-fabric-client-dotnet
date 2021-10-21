@@ -37,6 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var typeName = default(string);
             var targetApplicationTypeVersion = default(string);
             var upgradeDomains = default(IEnumerable<UpgradeDomainInfo>);
+            var upgradeUnits = default(IEnumerable<UpgradeUnitInfo>);
             var upgradeState = default(UpgradeState?);
             var nextUpgradeDomain = default(string);
             var rollingUpgradeMode = default(UpgradeMode?);
@@ -45,11 +46,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var upgradeDomainDurationInMilliseconds = default(string);
             var unhealthyEvaluations = default(IEnumerable<HealthEvaluationWrapper>);
             var currentUpgradeDomainProgress = default(CurrentUpgradeDomainProgressInfo);
+            var currentUpgradeUnitsProgress = default(CurrentUpgradeUnitsProgressInfo);
             var startTimestampUtc = default(string);
             var failureTimestampUtc = default(string);
             var failureReason = default(FailureReason?);
             var upgradeDomainProgressAtFailure = default(FailureUpgradeDomainProgressInfo);
             var upgradeStatusDetails = default(string);
+            var isNodeByNode = default(bool?);
 
             do
             {
@@ -69,6 +72,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("UpgradeDomains", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     upgradeDomains = reader.ReadList(UpgradeDomainInfoConverter.Deserialize);
+                }
+                else if (string.Compare("UpgradeUnits", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    upgradeUnits = reader.ReadList(UpgradeUnitInfoConverter.Deserialize);
                 }
                 else if (string.Compare("UpgradeState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -102,6 +109,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     currentUpgradeDomainProgress = CurrentUpgradeDomainProgressInfoConverter.Deserialize(reader);
                 }
+                else if (string.Compare("CurrentUpgradeUnitsProgress", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    currentUpgradeUnitsProgress = CurrentUpgradeUnitsProgressInfoConverter.Deserialize(reader);
+                }
                 else if (string.Compare("StartTimestampUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     startTimestampUtc = reader.ReadValueAsString();
@@ -122,6 +133,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     upgradeStatusDetails = reader.ReadValueAsString();
                 }
+                else if (string.Compare("IsNodeByNode", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    isNodeByNode = reader.ReadValueAsBool();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -134,6 +149,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 typeName: typeName,
                 targetApplicationTypeVersion: targetApplicationTypeVersion,
                 upgradeDomains: upgradeDomains,
+                upgradeUnits: upgradeUnits,
                 upgradeState: upgradeState,
                 nextUpgradeDomain: nextUpgradeDomain,
                 rollingUpgradeMode: rollingUpgradeMode,
@@ -142,11 +158,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 upgradeDomainDurationInMilliseconds: upgradeDomainDurationInMilliseconds,
                 unhealthyEvaluations: unhealthyEvaluations,
                 currentUpgradeDomainProgress: currentUpgradeDomainProgress,
+                currentUpgradeUnitsProgress: currentUpgradeUnitsProgress,
                 startTimestampUtc: startTimestampUtc,
                 failureTimestampUtc: failureTimestampUtc,
                 failureReason: failureReason,
                 upgradeDomainProgressAtFailure: upgradeDomainProgressAtFailure,
-                upgradeStatusDetails: upgradeStatusDetails);
+                upgradeStatusDetails: upgradeStatusDetails,
+                isNodeByNode: isNodeByNode);
         }
 
         /// <summary>
@@ -181,6 +199,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteEnumerableProperty(obj.UpgradeDomains, "UpgradeDomains", UpgradeDomainInfoConverter.Serialize);
             }
 
+            if (obj.UpgradeUnits != null)
+            {
+                writer.WriteEnumerableProperty(obj.UpgradeUnits, "UpgradeUnits", UpgradeUnitInfoConverter.Serialize);
+            }
+
             if (obj.NextUpgradeDomain != null)
             {
                 writer.WriteProperty(obj.NextUpgradeDomain, "NextUpgradeDomain", JsonWriterExtensions.WriteStringValue);
@@ -211,6 +234,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.CurrentUpgradeDomainProgress, "CurrentUpgradeDomainProgress", CurrentUpgradeDomainProgressInfoConverter.Serialize);
             }
 
+            if (obj.CurrentUpgradeUnitsProgress != null)
+            {
+                writer.WriteProperty(obj.CurrentUpgradeUnitsProgress, "CurrentUpgradeUnitsProgress", CurrentUpgradeUnitsProgressInfoConverter.Serialize);
+            }
+
             if (obj.StartTimestampUtc != null)
             {
                 writer.WriteProperty(obj.StartTimestampUtc, "StartTimestampUtc", JsonWriterExtensions.WriteStringValue);
@@ -229,6 +257,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.UpgradeStatusDetails != null)
             {
                 writer.WriteProperty(obj.UpgradeStatusDetails, "UpgradeStatusDetails", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.IsNodeByNode != null)
+            {
+                writer.WriteProperty(obj.IsNodeByNode, "IsNodeByNode", JsonWriterExtensions.WriteBoolValue);
             }
 
             writer.WriteEndObject();
