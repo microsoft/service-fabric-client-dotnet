@@ -31,6 +31,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="serviceStatus">The status of the application. Possible values include: 'Unknown', 'Active',
         /// 'Upgrading', 'Deleting', 'Creating', 'Failed'</param>
         /// <param name="isServiceGroup">Whether the service is in a service group.</param>
+        /// <param name="serviceMetadata">Metadata associated with a specific service.</param>
         protected ServiceInfo(
             ServiceKind? serviceKind,
             string id = default(string),
@@ -39,7 +40,8 @@ namespace Microsoft.ServiceFabric.Common
             string manifestVersion = default(string),
             HealthState? healthState = default(HealthState?),
             ServiceStatus? serviceStatus = default(ServiceStatus?),
-            bool? isServiceGroup = default(bool?))
+            bool? isServiceGroup = default(bool?),
+            ServiceMetadata serviceMetadata = default(ServiceMetadata))
         {
             serviceKind.ThrowIfNull(nameof(serviceKind));
             this.ServiceKind = serviceKind;
@@ -50,6 +52,7 @@ namespace Microsoft.ServiceFabric.Common
             this.HealthState = healthState;
             this.ServiceStatus = serviceStatus;
             this.IsServiceGroup = isServiceGroup;
+            this.ServiceMetadata = serviceMetadata;
         }
 
         /// <summary>
@@ -92,6 +95,11 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets whether the service is in a service group.
         /// </summary>
         public bool? IsServiceGroup { get; }
+
+        /// <summary>
+        /// Gets metadata associated with a specific service.
+        /// </summary>
+        public ServiceMetadata ServiceMetadata { get; }
 
         /// <summary>
         /// Gets the kind of service (Stateless or Stateful).

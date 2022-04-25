@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var healthState = default(HealthState?);
             var serviceStatus = default(ServiceStatus?);
             var isServiceGroup = default(bool?);
+            var serviceMetadata = default(ServiceMetadata);
             var hasPersistedState = default(bool?);
 
             do
@@ -73,6 +74,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     isServiceGroup = reader.ReadValueAsBool();
                 }
+                else if (string.Compare("ServiceMetadata", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    serviceMetadata = ServiceMetadataConverter.Deserialize(reader);
+                }
                 else if (string.Compare("HasPersistedState", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     hasPersistedState = reader.ReadValueAsBool();
@@ -92,6 +97,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 healthState: healthState,
                 serviceStatus: serviceStatus,
                 isServiceGroup: isServiceGroup,
+                serviceMetadata: serviceMetadata,
                 hasPersistedState: hasPersistedState);
         }
 
@@ -130,6 +136,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.IsServiceGroup != null)
             {
                 writer.WriteProperty(obj.IsServiceGroup, "IsServiceGroup", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.ServiceMetadata != null)
+            {
+                writer.WriteProperty(obj.ServiceMetadata, "ServiceMetadata", ServiceMetadataConverter.Serialize);
             }
 
             if (obj.HasPersistedState != null)

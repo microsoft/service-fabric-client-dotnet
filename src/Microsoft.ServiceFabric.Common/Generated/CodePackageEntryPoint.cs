@@ -27,6 +27,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="instanceId">The instance ID for current running entry point. For a code package setup entry point (if
         /// specified) runs first and after it finishes main entry point is started. Each time entry point executable is run,
         /// its instance id will change.</param>
+        /// <param name="containerId">The container ID of the entry point. Only valid for container hosts.</param>
         public CodePackageEntryPoint(
             string entryPointLocation = default(string),
             string processId = default(string),
@@ -34,7 +35,8 @@ namespace Microsoft.ServiceFabric.Common
             CodePackageEntryPointStatistics codePackageEntryPointStatistics = default(CodePackageEntryPointStatistics),
             EntryPointStatus? status = default(EntryPointStatus?),
             DateTime? nextActivationTime = default(DateTime?),
-            string instanceId = default(string))
+            string instanceId = default(string),
+            string containerId = default(string))
         {
             this.EntryPointLocation = entryPointLocation;
             this.ProcessId = processId;
@@ -43,6 +45,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Status = status;
             this.NextActivationTime = nextActivationTime;
             this.InstanceId = instanceId;
+            this.ContainerId = containerId;
         }
 
         /// <summary>
@@ -82,5 +85,10 @@ namespace Microsoft.ServiceFabric.Common
         /// will change.
         /// </summary>
         public string InstanceId { get; }
+
+        /// <summary>
+        /// Gets the container ID of the entry point. Only valid for container hosts.
+        /// </summary>
+        public string ContainerId { get; }
     }
 }

@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="applicationDefinitionKind">The mechanism used to define a Service Fabric application.
         /// . Possible values include: 'Invalid', 'ServiceFabricApplicationDescription', 'Compose'</param>
         /// <param name="managedApplicationIdentity">Managed application identity description.</param>
+        /// <param name="applicationMetadata">Metadata associated with a specific application.</param>
         public ApplicationInfo(
             string id = default(string),
             ApplicationName name = default(ApplicationName),
@@ -43,7 +44,8 @@ namespace Microsoft.ServiceFabric.Common
             IReadOnlyDictionary<string, string> parameters = default(IReadOnlyDictionary<string, string>),
             HealthState? healthState = default(HealthState?),
             ApplicationDefinitionKind? applicationDefinitionKind = default(ApplicationDefinitionKind?),
-            ManagedApplicationIdentityDescription managedApplicationIdentity = default(ManagedApplicationIdentityDescription))
+            ManagedApplicationIdentityDescription managedApplicationIdentity = default(ManagedApplicationIdentityDescription),
+            ApplicationMetadata applicationMetadata = default(ApplicationMetadata))
         {
             this.Id = id;
             this.Name = name;
@@ -54,6 +56,7 @@ namespace Microsoft.ServiceFabric.Common
             this.HealthState = healthState;
             this.ApplicationDefinitionKind = applicationDefinitionKind;
             this.ManagedApplicationIdentity = managedApplicationIdentity;
+            this.ApplicationMetadata = applicationMetadata;
         }
 
         /// <summary>
@@ -108,5 +111,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets managed application identity description.
         /// </summary>
         public ManagedApplicationIdentityDescription ManagedApplicationIdentity { get; }
+
+        /// <summary>
+        /// Gets metadata associated with a specific application.
+        /// </summary>
+        public ApplicationMetadata ApplicationMetadata { get; }
     }
 }
