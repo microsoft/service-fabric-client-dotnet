@@ -3881,6 +3881,84 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>Update-SFApplicationTypeArmMetadata</command:name>
+                <command:verb>Update</command:verb>
+                <command:noun>ApplicationTypeArmMetadata</command:noun>
+                <maml:description>
+                    <maml:para>Updates the Arm Metadata for a specific Application Type.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Updates the Arm Metadata for a specific Application Type. Is able to be called immediately after the provision app type API is called.  
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationTypeName</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The name of the application type.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="true" position="1">
+                <maml:name>ApplicationTypeVersion</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The version of the application type.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>ArmResourceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A string containing the ArmResourceId.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
+                <maml:name>Force</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Force parameter used to prevent accidental Arm metadata update.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Get-SFApplicationManifest</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>ApplicationManifest</command:noun>
@@ -3928,6 +4006,75 @@
             <command:parameterValue required="false">long?</command:parameterValue>
                 <dev:type>
                     <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Update-SFApplicationArmMetadata</command:name>
+                <command:verb>Update</command:verb>
+                <command:noun>ApplicationArmMetadata</command:noun>
+                <maml:description>
+                    <maml:para>Updates the Arm Metadata for a specific Application.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Updates the Arm Metadata for a specific Application. Is able to be called immediately after the create app API is called.  
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application. This is typically the full name of the application without the 'fabric:' URI scheme.
+                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
+                    For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in 6.0+ and "myapp/app1" in previous versions.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ArmResourceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A string containing the ArmResourceId.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>Force</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Force parameter used to prevent accidental Arm metadata update.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             </command:parameters>
@@ -8507,6 +8654,75 @@
             <command:parameterValue required="false">long?</command:parameterValue>
                 <dev:type>
                     <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Update-SFServiceArmMetadata</command:name>
+                <command:verb>Update</command:verb>
+                <command:noun>ServiceArmMetadata</command:noun>
+                <maml:description>
+                    <maml:para>Updates the Arm Metadata for a specific service.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Updates the Arm Metadata for a specific service.  
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ServiceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the service. This ID is typically the full name of the service without the 'fabric:' URI scheme.
+                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
+                    For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ArmResourceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A string containing the ArmResourceId.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>Force</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Force parameter used to prevent accidental Arm metadata update.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             </command:parameters>

@@ -39,6 +39,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var status = default(ApplicationTypeStatus?);
             var statusDetails = default(string);
             var applicationTypeDefinitionKind = default(ApplicationTypeDefinitionKind?);
+            var applicationTypeMetadata = default(ApplicationTypeMetadata);
 
             do
             {
@@ -67,6 +68,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     applicationTypeDefinitionKind = ApplicationTypeDefinitionKindConverter.Deserialize(reader);
                 }
+                else if (string.Compare("ApplicationTypeMetadata", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    applicationTypeMetadata = ApplicationTypeMetadataConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -80,7 +85,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 defaultParameterList: defaultParameterList,
                 status: status,
                 statusDetails: statusDetails,
-                applicationTypeDefinitionKind: applicationTypeDefinitionKind);
+                applicationTypeDefinitionKind: applicationTypeDefinitionKind,
+                applicationTypeMetadata: applicationTypeMetadata);
         }
 
         /// <summary>
@@ -112,6 +118,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.StatusDetails != null)
             {
                 writer.WriteProperty(obj.StatusDetails, "StatusDetails", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ApplicationTypeMetadata != null)
+            {
+                writer.WriteProperty(obj.ApplicationTypeMetadata, "ApplicationTypeMetadata", ApplicationTypeMetadataConverter.Serialize);
             }
 
             writer.WriteEndObject();

@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var status = default(EntryPointStatus?);
             var nextActivationTime = default(DateTime?);
             var instanceId = default(string);
+            var containerId = default(string);
 
             do
             {
@@ -72,6 +73,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     instanceId = reader.ReadValueAsString();
                 }
+                else if (string.Compare("ContainerId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    containerId = reader.ReadValueAsString();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -86,7 +91,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 codePackageEntryPointStatistics: codePackageEntryPointStatistics,
                 status: status,
                 nextActivationTime: nextActivationTime,
-                instanceId: instanceId);
+                instanceId: instanceId,
+                containerId: containerId);
         }
 
         /// <summary>
@@ -127,6 +133,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.InstanceId != null)
             {
                 writer.WriteProperty(obj.InstanceId, "InstanceId", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ContainerId != null)
+            {
+                writer.WriteProperty(obj.ContainerId, "ContainerId", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

@@ -42,6 +42,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var healthState = default(HealthState?);
             var applicationDefinitionKind = default(ApplicationDefinitionKind?);
             var managedApplicationIdentity = default(ManagedApplicationIdentityDescription);
+            var applicationMetadata = default(ApplicationMetadata);
 
             do
             {
@@ -82,6 +83,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     managedApplicationIdentity = ManagedApplicationIdentityDescriptionConverter.Deserialize(reader);
                 }
+                else if (string.Compare("ApplicationMetadata", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    applicationMetadata = ApplicationMetadataConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -98,7 +103,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 parameters: parameters,
                 healthState: healthState,
                 applicationDefinitionKind: applicationDefinitionKind,
-                managedApplicationIdentity: managedApplicationIdentity);
+                managedApplicationIdentity: managedApplicationIdentity,
+                applicationMetadata: applicationMetadata);
         }
 
         /// <summary>
@@ -141,6 +147,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ManagedApplicationIdentity != null)
             {
                 writer.WriteProperty(obj.ManagedApplicationIdentity, "ManagedApplicationIdentity", ManagedApplicationIdentityDescriptionConverter.Serialize);
+            }
+
+            if (obj.ApplicationMetadata != null)
+            {
+                writer.WriteProperty(obj.ApplicationMetadata, "ApplicationMetadata", ApplicationMetadataConverter.Serialize);
             }
 
             writer.WriteEndObject();

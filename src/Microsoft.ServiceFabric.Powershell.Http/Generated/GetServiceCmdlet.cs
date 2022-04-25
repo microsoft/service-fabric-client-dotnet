@@ -114,6 +114,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             result.Properties.Add(new PSNoteProperty("HealthState", outputResult.HealthState));
             result.Properties.Add(new PSNoteProperty("ServiceStatus", outputResult.ServiceStatus));
             result.Properties.Add(new PSNoteProperty("IsServiceGroup", outputResult.IsServiceGroup));
+            result.Properties.Add(new PSNoteProperty("ServiceMetadata", outputResult.ServiceMetadata));
 
             if (output is StatefulServiceInfo statefulServiceInfo)
             {

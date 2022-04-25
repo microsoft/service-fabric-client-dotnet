@@ -513,5 +513,48 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, UnplacedReplicaInformationConverter.Deserialize, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task UpdateServiceArmMetadataAsync(
+            string serviceId,
+            ArmMetadata serviceArmMetadataUpdateDescription,
+            long? serverTimeout = 60,
+            bool? force = default(bool?),
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            serviceId.ThrowIfNull(nameof(serviceId));
+            serviceArmMetadataUpdateDescription.ThrowIfNull(nameof(serviceArmMetadataUpdateDescription));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Services/{serviceId}/$/UpdateArmMetadata";
+            url = url.Replace("{serviceId}", serviceId);
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            force?.AddToQueryParameters(queryParams, $"Force={force}");
+            queryParams.Add("api-version=9.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ArmMetadataConverter.Serialize(new JsonTextWriter(sw), serviceArmMetadataUpdateDescription);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }
