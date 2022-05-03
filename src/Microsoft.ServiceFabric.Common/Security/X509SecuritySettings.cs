@@ -19,10 +19,18 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// </summary>
         /// <param name="clientCertificate">The client certificate for the communication with server.</param>
         /// <param name="remoteX509SecuritySettings">Security settings to verify remote X509 certificate.</param>
-        public X509SecuritySettings(X509Certificate2 clientCertificate, RemoteX509SecuritySettings remoteX509SecuritySettings)
+        /// <param name="clientCertificates">Optional list of client certificates</param>
+
+        public X509SecuritySettings(X509Certificate2 clientCertificate, RemoteX509SecuritySettings remoteX509SecuritySettings, X509Certificate2[] clientCertificates = null)
             : base(SecurityType.X509)
         {
-            clientCertificate.ThrowIfNull(nameof(clientCertificate));
+            if(clientCertificates == null) {
+                clientCertificate.ThrowIfNull(nameof(clientCertificate));
+                this.clientCertificates = new X509Certificate2[] { clientCertificate};
+            }else{
+                this.clientCertificates = clientCertificates;
+            }
+
             remoteX509SecuritySettings.ThrowIfNull(nameof(remoteX509SecuritySettings));
 
             if (!clientCertificate.HasPrivateKey)
@@ -30,15 +38,14 @@ namespace Microsoft.ServiceFabric.Common.Security
                 throw new InvalidOperationException(SR.ClientCertDoesntContainPrivateKey);
             }
 
-            this.ClientCertificate = clientCertificate;
+            // this.ClientCertificate = clientCertificate;
             this.RemoteX509SecuritySettings = remoteX509SecuritySettings;
         }
 
         /// <summary>
-        /// Gets the client certificate for communication with server.
+        /// The list of client certificates to be used for communcation with the server.
         /// </summary>
-        /// <value><see cref="System.Security.Cryptography.X509Certificates.X509Certificate2"/> to communicate with server.</value>
-        public X509Certificate2 ClientCertificate { get; }
+        public X509Certificate2[] clientCertificates { get; }
 
         /// <summary>
         /// Gets the settings to validate remote certificate.

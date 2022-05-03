@@ -65,9 +65,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             else if (settings.SecurityType == SecurityType.X509)
             {
                 var x509Settings = settings as X509SecuritySettings;
-                if (!this.httpClientHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
+                foreach (var certificate in x509Settings.clientCertificates)
                 {
-                    this.httpClientHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
+                    if (!this.httpClientHandler.ClientCertificates.Contains(certificate))
+                    {
+                        this.httpClientHandler.ClientCertificates.Add(certificate);
+                    }
                 }
 
                 this.serverCertValidator = new ServerCertificateValidatorHttpWrapper(x509Settings.RemoteX509SecuritySettings);
@@ -117,9 +120,13 @@ namespace Microsoft.ServiceFabric.Client.Http
                 // Add new client cert and update RemoteX509SecuritySettings for cert validator.
                 var x509Settings = settings as X509SecuritySettings;
                 this.httpClientHandler.ClientCertificates.Clear();
-                if (!this.httpClientHandler.ClientCertificates.Contains(x509Settings.ClientCertificate))
+
+                foreach (var certificate in x509Settings.clientCertificates)
                 {
-                    this.httpClientHandler.ClientCertificates.Add(x509Settings.ClientCertificate);
+                    if (!this.httpClientHandler.ClientCertificates.Contains(certificate))
+                    {
+                        this.httpClientHandler.ClientCertificates.Add(certificate);
+                    }
                 }
 
                 this.serverCertValidator.UpdateSecuritySettings(x509Settings.RemoteX509SecuritySettings);
