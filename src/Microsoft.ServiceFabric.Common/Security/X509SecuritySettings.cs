@@ -20,15 +20,17 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// <param name="clientCertificate">The client certificate for the communication with server.</param>
         /// <param name="remoteX509SecuritySettings">Security settings to verify remote X509 certificate.</param>
         /// <param name="clientCertificates">Optional list of client certificates</param>
-
         public X509SecuritySettings(X509Certificate2 clientCertificate, RemoteX509SecuritySettings remoteX509SecuritySettings, X509Certificate2[] clientCertificates = null)
             : base(SecurityType.X509)
         {
-            if(clientCertificates == null) {
+            if (clientCertificates == null)
+            {
                 clientCertificate.ThrowIfNull(nameof(clientCertificate));
-                this.clientCertificates = new X509Certificate2[] { clientCertificate};
-            }else{
-                this.clientCertificates = clientCertificates;
+                this.ClientCertificates = new X509Certificate2[] { clientCertificate };
+            }
+            else
+            {
+                this.ClientCertificates = clientCertificates;
             }
 
             remoteX509SecuritySettings.ThrowIfNull(nameof(remoteX509SecuritySettings));
@@ -43,9 +45,9 @@ namespace Microsoft.ServiceFabric.Common.Security
         }
 
         /// <summary>
-        /// The list of client certificates to be used for communcation with the server.
+        /// Gets The list of client certificates to be used for communcation with the server.
         /// </summary>
-        public X509Certificate2[] clientCertificates { get; }
+        public X509Certificate2[] ClientCertificates { get; }
 
         /// <summary>
         /// Gets the settings to validate remote certificate.

@@ -65,7 +65,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             else if (settings.SecurityType == SecurityType.X509)
             {
                 var x509Settings = settings as X509SecuritySettings;
-                foreach (var certificate in x509Settings.clientCertificates)
+                foreach (var certificate in x509Settings.ClientCertificates)
                 {
                     if (!this.httpClientHandler.ClientCertificates.Contains(certificate))
                     {
@@ -121,7 +121,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 var x509Settings = settings as X509SecuritySettings;
                 this.httpClientHandler.ClientCertificates.Clear();
 
-                foreach (var certificate in x509Settings.clientCertificates)
+                foreach (var certificate in x509Settings.ClientCertificates)
                 {
                     if (!this.httpClientHandler.ClientCertificates.Contains(certificate))
                     {
