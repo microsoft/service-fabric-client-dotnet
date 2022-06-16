@@ -156,6 +156,7 @@ namespace Microsoft.ServiceFabric.Client
         private bool IsServerCertIssuerThumbprintValid(X509Chain chain, string expectedIssuerThumbprint)
         {
                 var issuers = expectedIssuerThumbprint.ToLower().Split(',');
+
                 // SelfSigned cert matches with index 0, CA signed matches with index 1.
                 var thumbprint = chain.ChainElements[0].Certificate.Thumbprint.ToLower();
 
