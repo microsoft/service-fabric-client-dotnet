@@ -221,6 +221,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ManagedApplicationIdentityDescription", applicationInfo.ManagedApplicationIdentity));
             strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationMetadata", applicationInfo.ApplicationMetadata));
+            strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();
         }
@@ -245,6 +247,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationTypeStatus", applicationTypeInfo.Status));
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationTypeDefinitionKind", applicationTypeInfo.ApplicationTypeDefinitionKind));
+            strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationTypeMetadata", applicationTypeInfo.ApplicationTypeMetadata));
             strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();
@@ -526,6 +530,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ServiceStatus", serviceInfo.ServiceStatus));
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "IsServiceGroup", serviceInfo.IsServiceGroup));
+            strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ServiceMetadata", serviceInfo.ServiceMetadata));
             strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();

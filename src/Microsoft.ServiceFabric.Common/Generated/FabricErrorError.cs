@@ -104,6 +104,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_VOLUME_ALREADY_EXISTS"
         /// - "FABRIC_E_VOLUME_NOT_FOUND"
         /// - "SerializationError"
+        /// - "FABRIC_E_CERTIFICATE_NOT_FOUND"
         /// 
         /// - Possible values of the error code for HTTP status code 503 (Service Unavailable)
         /// - "FABRIC_E_NO_WRITE_QUORUM"
@@ -148,7 +149,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'FABRIC_E_INVALID_SERVICE_SCALING_POLICY', 'E_INVALIDARG',
         /// 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS', 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND',
         /// 'FABRIC_E_VOLUME_ALREADY_EXISTS', 'FABRIC_E_VOLUME_NOT_FOUND', 'SerializationError',
-        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR'</param>
+        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR', 'FABRIC_E_CERTIFICATE_NOT_FOUND'</param>
         /// <param name="message">Error message.</param>
         public FabricErrorError(
             FabricErrorCodes? code,
@@ -248,6 +249,7 @@ namespace Microsoft.ServiceFabric.Common
         /// - "FABRIC_E_VOLUME_ALREADY_EXISTS"
         /// - "FABRIC_E_VOLUME_NOT_FOUND"
         /// - "SerializationError"
+        /// - "FABRIC_E_CERTIFICATE_NOT_FOUND"
         /// 
         /// - Possible values of the error code for HTTP status code 503 (Service Unavailable)
         /// - "FABRIC_E_NO_WRITE_QUORUM"
@@ -292,7 +294,7 @@ namespace Microsoft.ServiceFabric.Common
         /// 'FABRIC_E_BACKUP_POLICY_ALREADY_EXISTING', 'FABRIC_E_INVALID_SERVICE_SCALING_POLICY', 'E_INVALIDARG',
         /// 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_ALREADY_EXISTS', 'FABRIC_E_SINGLE_INSTANCE_APPLICATION_NOT_FOUND',
         /// 'FABRIC_E_VOLUME_ALREADY_EXISTS', 'FABRIC_E_VOLUME_NOT_FOUND', 'SerializationError',
-        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR'
+        /// 'FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR', 'FABRIC_E_CERTIFICATE_NOT_FOUND'
         /// </summary>
         public FabricErrorCodes? Code { get; }
 

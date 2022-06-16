@@ -362,6 +362,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricErrorCodes.FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR;
             }
+            else if (string.Compare(value, "FABRIC_E_CERTIFICATE_NOT_FOUND", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricErrorCodes.FABRIC_E_CERTIFICATE_NOT_FOUND;
+            }
 
             return obj;
         }
@@ -626,6 +630,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case FabricErrorCodes.FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR:
                     writer.WriteStringValue("FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR");
+                    break;
+                case FabricErrorCodes.FABRIC_E_CERTIFICATE_NOT_FOUND:
+                    writer.WriteStringValue("FABRIC_E_CERTIFICATE_NOT_FOUND");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type FabricErrorCodes");

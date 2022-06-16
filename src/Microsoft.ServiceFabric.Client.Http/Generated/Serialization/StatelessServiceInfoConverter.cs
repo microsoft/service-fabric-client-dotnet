@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var healthState = default(HealthState?);
             var serviceStatus = default(ServiceStatus?);
             var isServiceGroup = default(bool?);
+            var serviceMetadata = default(ServiceMetadata);
 
             do
             {
@@ -72,6 +73,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     isServiceGroup = reader.ReadValueAsBool();
                 }
+                else if (string.Compare("ServiceMetadata", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    serviceMetadata = ServiceMetadataConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -86,7 +91,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 manifestVersion: manifestVersion,
                 healthState: healthState,
                 serviceStatus: serviceStatus,
-                isServiceGroup: isServiceGroup);
+                isServiceGroup: isServiceGroup,
+                serviceMetadata: serviceMetadata);
         }
 
         /// <summary>
@@ -124,6 +130,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.IsServiceGroup != null)
             {
                 writer.WriteProperty(obj.IsServiceGroup, "IsServiceGroup", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.ServiceMetadata != null)
+            {
+                writer.WriteProperty(obj.ServiceMetadata, "ServiceMetadata", ServiceMetadataConverter.Serialize);
             }
 
             writer.WriteEndObject();

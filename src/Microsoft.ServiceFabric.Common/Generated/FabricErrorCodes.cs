@@ -439,5 +439,10 @@ namespace Microsoft.ServiceFabric.Common
         /// FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR.
         /// </summary>
         FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR,
+
+        /// <summary>
+        /// FABRIC_E_CERTIFICATE_NOT_FOUND.
+        /// </summary>
+        FABRIC_E_CERTIFICATE_NOT_FOUND,
     }
 }

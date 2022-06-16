@@ -146,6 +146,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             result.Properties.Add(new PSNoteProperty("ApplicationTypeParameterList", outputResult.DefaultParameterList));
             result.Properties.Add(new PSNoteProperty("ApplicationTypeStatus", outputResult.Status));
             result.Properties.Add(new PSNoteProperty("ApplicationTypeDefinitionKind", outputResult.ApplicationTypeDefinitionKind));
+            result.Properties.Add(new PSNoteProperty("ApplicationTypeMetadata", outputResult.ApplicationTypeMetadata));
 
             return result;
         }

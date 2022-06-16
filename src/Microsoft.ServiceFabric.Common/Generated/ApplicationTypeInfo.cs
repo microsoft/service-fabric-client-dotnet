@@ -25,13 +25,15 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="statusDetails">Additional detailed information about the status of the application type.</param>
         /// <param name="applicationTypeDefinitionKind">The mechanism used to define a Service Fabric application type.
         /// . Possible values include: 'Invalid', 'ServiceFabricApplicationPackage', 'Compose'</param>
+        /// <param name="applicationTypeMetadata">Metadata associated with a specific application type.</param>
         public ApplicationTypeInfo(
             string name = default(string),
             string version = default(string),
             IReadOnlyDictionary<string, string> defaultParameterList = default(IReadOnlyDictionary<string, string>),
             ApplicationTypeStatus? status = default(ApplicationTypeStatus?),
             string statusDetails = default(string),
-            ApplicationTypeDefinitionKind? applicationTypeDefinitionKind = default(ApplicationTypeDefinitionKind?))
+            ApplicationTypeDefinitionKind? applicationTypeDefinitionKind = default(ApplicationTypeDefinitionKind?),
+            ApplicationTypeMetadata applicationTypeMetadata = default(ApplicationTypeMetadata))
         {
             this.Name = name;
             this.Version = version;
@@ -39,6 +41,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Status = status;
             this.StatusDetails = statusDetails;
             this.ApplicationTypeDefinitionKind = applicationTypeDefinitionKind;
+            this.ApplicationTypeMetadata = applicationTypeMetadata;
         }
 
         /// <summary>
@@ -72,5 +75,10 @@ namespace Microsoft.ServiceFabric.Common
         /// . Possible values include: 'Invalid', 'ServiceFabricApplicationPackage', 'Compose'
         /// </summary>
         public ApplicationTypeDefinitionKind? ApplicationTypeDefinitionKind { get; }
+
+        /// <summary>
+        /// Gets metadata associated with a specific application type.
+        /// </summary>
+        public ApplicationTypeMetadata ApplicationTypeMetadata { get; }
     }
 }
