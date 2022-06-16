@@ -155,11 +155,11 @@ namespace Microsoft.ServiceFabric.Client
 
         private bool IsServerCertIssuerThumbprintValid(X509Chain chain, string expectedIssuerThumbprint)
         {
+                var issuers = expectedIssuerThumbprint.ToLower().Split(',');
                 // SelfSigned cert matches with index 0, CA signed matches with index 1.
-                var thumbprint = chain.ChainElements[0].Certificate.Thumbprint;
+                var thumbprint = chain.ChainElements[0].Certificate.Thumbprint.ToLower();
 
-                if (thumbprint != null &&
-                    thumbprint.Equals(expectedIssuerThumbprint, StringComparison.OrdinalIgnoreCase))
+                if (thumbprint != null && issuers.Contains(thumbprint))
                 {
                     return true;
                 }
@@ -170,10 +170,9 @@ namespace Microsoft.ServiceFabric.Client
                     return false;
                 }
 
-                thumbprint = chain.ChainElements[1].Certificate.Thumbprint;
+                thumbprint = chain.ChainElements[1].Certificate.Thumbprint.ToLower();
 
-                return thumbprint != null &&
-                       thumbprint.Equals(expectedIssuerThumbprint, StringComparison.OrdinalIgnoreCase);
+                return thumbprint != null && issuers.Contains(thumbprint);
         }
 
         /// <summary>
