@@ -50,6 +50,9 @@ Func<CancellationToken, Task<SecuritySettings>> GetSecurityCredentials = (ct) =>
 };
 ```
 
+#### Handling multiple issuer thumbprints
+You can specify a comma delimited list as the issuerCertThumbprint for a RemoteX509SecuritySettings object to check against multiple issuers.
+
 ### Connecting to cluster secured with Azure Active Directory
 There are different ways to connect to the cluster secured with Azure Active Directory depending on if you have the AAD metadata(authority, resource, clientId) to get the token from Azure Active Directory. If you have the AAD metadata, use the option 1 below, if you don't have the AAD metadata, use the option 2 below.
 #### 1. You have the AAD metadata to get the token from Azure Active Directory.

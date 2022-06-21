@@ -153,13 +153,14 @@ namespace Microsoft.ServiceFabric.Client
             return false;
         }
 
-        private bool IsServerCertIssuerThumbprintValid(X509Chain chain, string expectedIssuerThumbprint)
+        private bool IsServerCertIssuerThumbprintValid(X509Chain chain, string expectedIssuerThumbprints)
         {
-                // SelfSigned cert matches with index 0, CA signed matches with index 1.
-                var thumbprint = chain.ChainElements[0].Certificate.Thumbprint;
+                var issuers = expectedIssuerThumbprints.ToLower().Split(',');
 
-                if (thumbprint != null &&
-                    thumbprint.Equals(expectedIssuerThumbprint, StringComparison.OrdinalIgnoreCase))
+                // SelfSigned cert matches with index 0, CA signed matches with index 1.
+                var thumbprint = chain.ChainElements[0].Certificate.Thumbprint.ToLower();
+
+                if (thumbprint != null && issuers.Contains(thumbprint))
                 {
                     return true;
                 }
@@ -170,10 +171,9 @@ namespace Microsoft.ServiceFabric.Client
                     return false;
                 }
 
-                thumbprint = chain.ChainElements[1].Certificate.Thumbprint;
+                thumbprint = chain.ChainElements[1].Certificate.Thumbprint.ToLower();
 
-                return thumbprint != null &&
-                       thumbprint.Equals(expectedIssuerThumbprint, StringComparison.OrdinalIgnoreCase);
+                return thumbprint != null && issuers.Contains(thumbprint);
         }
 
         /// <summary>

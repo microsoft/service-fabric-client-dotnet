@@ -20,7 +20,7 @@ namespace Microsoft.ServiceFabric.Common.Security
         /// </param>
         /// <param name="issuerCertThumbprint">
         ///   <para>Certificate thumbprint to identify issuer. Default value is null which means that issuer thumbprint will not be verified.
-        ///   for the certificate found with the common name.</para>
+        ///   for the certificate found with the common name. A Comma delimited string can be used to verify against multiple certificate issuer thumbprints</para>
         /// </param>
         public X509Name(string name, string issuerCertThumbprint = null)
         {
@@ -42,7 +42,7 @@ namespace Microsoft.ServiceFabric.Common.Security
         public string Name { get; }
 
         /// <summary>
-        /// Gets the certificate thumbprint to identify issuer.
+        /// Gets the certificate thumbprint to identify issuer. This can additionally be a comma delimited string of multiple issuer certificate thumbprints
         /// </summary>
         /// <value>
         ///   <para>Certificate thumbprint to identify issuer</para>
