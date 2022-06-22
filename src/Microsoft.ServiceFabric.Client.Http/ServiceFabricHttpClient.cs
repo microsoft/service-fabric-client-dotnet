@@ -133,6 +133,25 @@ namespace Microsoft.ServiceFabric.Client.Http
         }
 
         /// <summary>
+        /// Sends an HTTP get request to cluster http gateway.
+        /// </summary>
+        /// <param name="requestFunc">Func to create HttpRequest to send.</param>
+        /// <param name="relativeUri">Relative request Uri.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The payload of the GET response.</returns>
+        /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
+        public override async Task<HttpResponseMessage> SendAsync(
+            Func<HttpRequestMessage> requestFunc,
+            string relativeUri,
+            CancellationToken cancellationToken) 
+        {
+            var endpoint = this.randomizedEndpoints.GetElement();
+            var requestUri = new Uri(endpoint, relativeUri);
+            var requestId = Guid.NewGuid().ToString();
+            return await this.SendAsyncHandleUnsuccessfulResponse(requestFunc, requestUri, requestId, cancellationToken);            
+        }
+
+        /// <summary>
         /// Disposes resources.
         /// </summary>
         public override void Dispose()

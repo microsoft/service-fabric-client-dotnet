@@ -6,6 +6,10 @@
 namespace Microsoft.ServiceFabric.Client
 {
     using System;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using Microsoft.ServiceFabric.Common.Exceptions;
 
     /// <summary>
     /// Interface for Service Fabric client.
@@ -179,5 +183,18 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <returns>The <see cref="IMeshServiceReplicasClient"/></returns>
         IMeshCodePackagesClient MeshCodePackages { get; }
+
+        /// <summary>
+        /// Sends an HTTP get request to cluster http gateway.
+        /// </summary>
+        /// <param name="requestFunc">Func to create HttpRequest to send.</param>
+        /// <param name="relativeUri">Relative request Uri.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The payload of the GET response.</returns>
+        /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
+        Task<HttpResponseMessage> SendAsync(
+            Func<HttpRequestMessage> requestFunc,
+            string relativeUri,
+            CancellationToken cancellationToken);
     }
 }
