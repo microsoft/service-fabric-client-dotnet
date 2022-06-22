@@ -8,10 +8,11 @@ namespace Microsoft.ServiceFabric.Client
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Runtime.ExceptionServices;
+    using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.ServiceFabric.Client.Resources;
+    using Microsoft.ServiceFabric.Common.Exceptions;
     using Microsoft.ServiceFabric.Common.Security;
 
     /// <summary>
@@ -153,6 +154,19 @@ namespace Microsoft.ServiceFabric.Client
         /// </summary>
         /// <value>Cluster endpoint <see cref="System.Uri"/> .</value>
         protected IReadOnlyList<Uri> ClusterEndpoints { get; }
+
+        /// <summary>
+        /// Sends an HTTP get request to cluster http gateway.
+        /// </summary>
+        /// <param name="requestFunc">Func to create HttpRequest to send.</param>
+        /// <param name="relativeUri">Relative request Uri.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The payload of the GET response.</returns>
+        /// <exception cref="ServiceFabricException">When the response is not a success.</exception>
+        public abstract Task<HttpResponseMessage> SendAsync(
+            Func<HttpRequestMessage> requestFunc,
+            string relativeUri,
+            CancellationToken cancellationToken);
 
         /// <inheritdoc/>
         public abstract void Dispose();
