@@ -284,6 +284,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                 request.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/octet-stream");
                 request.Content.Headers.ContentRange =
                     new ContentRangeHeaderValue(startBytePosition, endBytePosition, length);
+                request.Content.Headers.Add("Expect", "100-continue");
                 return request;
             }
 
