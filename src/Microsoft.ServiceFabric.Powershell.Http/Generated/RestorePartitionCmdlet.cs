@@ -130,13 +130,21 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string SecondaryPassword { get; set; }
 
         /// <summary>
+        /// Gets or sets Latest. Specifies whether BackupRestore Service whould automatically determine the latest backup
+        /// available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will
+        /// automatically fetch the latest backup and Restore the partition using that.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 15)]
+        public bool? Latest { get; set; }
+
+        /// <summary>
         /// Gets or sets RestoreTimeout. Specifies the maximum amount of time to wait, in minutes, for the restore operation to
         /// complete. Post that, the operation returns back with timeout error. However, in certain corner cases it could be
         /// that the restore operation goes through even though it completes with timeout. In case of timeout error, its
         /// recommended to invoke this operation again with a greater timeout value. the default value for the same is 10
         /// minutes.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 16)]
         public int? RestoreTimeout { get; set; }
 
         /// <summary>
@@ -144,7 +152,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 17)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -192,6 +200,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             this.ServiceFabricClient.BackupRestore.RestorePartitionAsync(
                 partitionId: this.PartitionId,
                 restorePartitionDescription: restorePartitionDescription,
+                latest: this.Latest,
                 restoreTimeout: this.RestoreTimeout,
                 serverTimeout: this.ServerTimeout,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

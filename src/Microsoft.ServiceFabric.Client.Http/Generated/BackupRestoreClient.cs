@@ -975,13 +975,13 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task RestorePartitionAsync(
             PartitionId partitionId,
-            RestorePartitionDescription restorePartitionDescription,
+            RestorePartitionDescription restorePartitionDescription = default(RestorePartitionDescription),
+            bool? latest = false,
             int? restoreTimeout = 10,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             partitionId.ThrowIfNull(nameof(partitionId));
-            restorePartitionDescription.ThrowIfNull(nameof(restorePartitionDescription));
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Partitions/{partitionId}/$/Restore";
@@ -989,6 +989,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             var queryParams = new List<string>();
             
             // Append to queryParams if not null.
+            latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
             restoreTimeout?.AddToQueryParameters(queryParams, $"RestoreTimeout={restoreTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
             queryParams.Add("api-version=6.4");
@@ -997,7 +998,11 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                RestorePartitionDescriptionConverter.Serialize(new JsonTextWriter(sw), restorePartitionDescription);
+                if (restorePartitionDescription != default(RestorePartitionDescription))
+                {
+                    RestorePartitionDescriptionConverter.Serialize(new JsonTextWriter(sw), restorePartitionDescription);
+                }
+
                 content = sw.ToString();
             }
 
@@ -1009,6 +1014,38 @@ namespace Microsoft.ServiceFabric.Client.Http
                     Content = new StringContent(content, Encoding.UTF8),
                 };
                 request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        public Task SkipRestorePartitionAsync(
+            PartitionId partitionId,
+            int? restoreTimeout = 10,
+            long? serverTimeout = 60,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            partitionId.ThrowIfNull(nameof(partitionId));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Partitions/{partitionId}/$/SkipAutoRestore";
+            url = url.Replace("{partitionId}", partitionId.ToString());
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            restoreTimeout?.AddToQueryParameters(queryParams, $"RestoreTimeout={restoreTimeout}");
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            queryParams.Add("api-version=9.1");
+            url += "?" + string.Join("&", queryParams);
+            
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                };
                 return request;
             }
 

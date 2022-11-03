@@ -139,7 +139,10 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             var outputResult = output as ApplicationTypeInfo;
 
-            var result = new PSObject();
+            var managedKeyVaultReferenceParameterListObj = new PSObject(outputResult.ManagedKeyVaultReferenceParameterList);
+            managedKeyVaultReferenceParameterListObj.Members.Add(new PSCodeMethod("ToString", typeof(OutputFormatter).GetMethod("FormatObject")));
+
+            var result = new PSObject(outputResult);
 
             result.Properties.Add(new PSNoteProperty("ApplicationTypeName", outputResult.Name));
             result.Properties.Add(new PSNoteProperty("ApplicationTypeVersion", outputResult.Version));

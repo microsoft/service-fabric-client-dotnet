@@ -230,6 +230,49 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Overloaded ToString function for formatting the output on the console.
         /// </summary>
+        /// <param name="managedKeyVaultReferenceParameter"> List of ManagedKeyVaultReferenceParameter </param>
+        /// <returns>
+        /// Returns formatted string.
+        /// </returns>
+        public static string ToString(IList<ManagedKeyVaultReferenceParameter> managedKeyVaultReferenceParameter)
+        {
+            if (managedKeyVaultReferenceParameter.Count == 0)
+            {
+                return "None";
+            }
+
+            var strBuilder = new StringBuilder();
+            foreach (var item in managedKeyVaultReferenceParameter)
+            {
+                strBuilder.Append(Environment.NewLine);
+                strBuilder.Append(ToString(item));
+            }
+
+            return strBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Overloaded ToString function for formatting the output on the console.
+        /// </summary>
+        /// <param name="managedKeyVaultReferenceParameter"> Object of type ManagedKeyVaultReferenceParameter </param>
+        /// <returns>
+        /// Returns formatted string.
+        /// </returns>
+        public static string ToString(ManagedKeyVaultReferenceParameter managedKeyVaultReferenceParameter)
+        {
+            var strBuilder = new StringBuilder();
+
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0, -21} : {1}", "ParameterName", managedKeyVaultReferenceParameter.ParameterName));
+            strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0, -21} : \n{1}", "ApplicationIdentityReference", managedKeyVaultReferenceParameter.ApplicationIdentityReference));
+            strBuilder.Append(Environment.NewLine);
+
+            return strBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Overloaded ToString function for formatting the output on the console.
+        /// </summary>
         /// <param name="applicationTypeInfo"> Object of type ApplicationTypeInfo </param>
         /// <returns>
         /// Returns formatted string.
@@ -249,6 +292,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationTypeDefinitionKind", applicationTypeInfo.ApplicationTypeDefinitionKind));
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationTypeMetadata", applicationTypeInfo.ApplicationTypeMetadata));
+            strBuilder.Append(Environment.NewLine);
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ManagedKeyVaultReferenceParameterList", OutputFormatter.ToString(applicationTypeInfo.ManagedKeyVaultReferenceParameterList.ToList())));
             strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();
@@ -828,6 +873,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             { typeof(List<ApplicationHealthState>), new Func<IList<ApplicationHealthState>, string>(ToString) },
             { typeof(ApplicationHealthState), new Func<ApplicationHealthState, string>(ToString) },
             { typeof(Common.ApplicationInfo), new Func<Common.ApplicationInfo, string>(ToString) },
+            { typeof(List<ManagedKeyVaultReferenceParameter>), new Func<IList<ManagedKeyVaultReferenceParameter>, string>(ToString) },
+            { typeof(ManagedKeyVaultReferenceParameter), new Func<ManagedKeyVaultReferenceParameter, string>(ToString) },
             { typeof(ApplicationTypeInfo), new Func<ApplicationTypeInfo, string>(ToString) },
             { typeof(List<NodeHealthState>), new Func<IList<NodeHealthState>, string>(ToString) },
             { typeof(NodeHealthState), new Func<NodeHealthState, string>(ToString) },
