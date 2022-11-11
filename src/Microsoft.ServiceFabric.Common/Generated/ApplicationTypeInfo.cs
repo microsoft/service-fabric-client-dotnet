@@ -26,6 +26,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="applicationTypeDefinitionKind">The mechanism used to define a Service Fabric application type.
         /// . Possible values include: 'Invalid', 'ServiceFabricApplicationPackage', 'Compose'</param>
         /// <param name="applicationTypeMetadata">Metadata associated with a specific application type.</param>
+        /// <param name="managedKeyVaultReferenceParameterList">A list of ManagedKeyVaultReferenceParameter objects.</param>
         public ApplicationTypeInfo(
             string name = default(string),
             string version = default(string),
@@ -33,7 +34,8 @@ namespace Microsoft.ServiceFabric.Common
             ApplicationTypeStatus? status = default(ApplicationTypeStatus?),
             string statusDetails = default(string),
             ApplicationTypeDefinitionKind? applicationTypeDefinitionKind = default(ApplicationTypeDefinitionKind?),
-            ApplicationTypeMetadata applicationTypeMetadata = default(ApplicationTypeMetadata))
+            ApplicationTypeMetadata applicationTypeMetadata = default(ApplicationTypeMetadata),
+            IEnumerable<ManagedKeyVaultReferenceParameter> managedKeyVaultReferenceParameterList = default(IEnumerable<ManagedKeyVaultReferenceParameter>))
         {
             this.Name = name;
             this.Version = version;
@@ -42,6 +44,7 @@ namespace Microsoft.ServiceFabric.Common
             this.StatusDetails = statusDetails;
             this.ApplicationTypeDefinitionKind = applicationTypeDefinitionKind;
             this.ApplicationTypeMetadata = applicationTypeMetadata;
+            this.ManagedKeyVaultReferenceParameterList = managedKeyVaultReferenceParameterList;
         }
 
         /// <summary>
@@ -80,5 +83,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets metadata associated with a specific application type.
         /// </summary>
         public ApplicationTypeMetadata ApplicationTypeMetadata { get; }
+
+        /// <summary>
+        /// Gets a list of ManagedKeyVaultReferenceParameter objects.
+        /// </summary>
+        public IEnumerable<ManagedKeyVaultReferenceParameter> ManagedKeyVaultReferenceParameterList { get; }
     }
 }

@@ -18209,6 +18209,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="14">
+                <maml:name>Latest</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether BackupRestore Service whould automatically determine the latest backup available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will automatically fetch the latest backup and Restore the partition using that.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="15">
                 <maml:name>RestoreTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18220,7 +18232,60 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
+                <command:name>Skip-SFRestorePartition</command:name>
+                <command:verb>Skip</command:verb>
+                <command:noun>RestorePartition</command:noun>
+                <maml:description>
+                    <maml:para>Triggers Skipping of Restore of  partition if partition is stuck on trying to Restore and user wants to get out of OnDataLossAsync and continue with the replica data instead of restoring.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>SkipRestore API initiates Skipping of ongoing Restore attempt by Backup Restore service on a partition, if AutoRestoreOnDataLoss is enabled on the partition's Backup Policy. This helps in skipping LSN check and Restoring directly from the replica instead of Backup.</maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+                <maml:name>PartitionId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the partition.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">PartitionId</command:parameterValue>
+                <dev:type>
+                    <maml:name>PartitionId</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>RestoreTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies the maximum amount of time to wait, in minutes, for the Skip restore operation to complete. Post that, the operation returns back with timeout error. However, in certain corner cases it could be that the restore operation goes through even though it completes with timeout. In case of timeout error, its recommended to invoke this operation again with a greater timeout value. the default value for the same is 10 minutes.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">int?</command:parameterValue>
+                <dev:type>
+                    <maml:name>int?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
