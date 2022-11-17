@@ -701,6 +701,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             var httpClientInstance = new HttpClient(pipeline, true);
+
+            httpClientInstance.DefaultRequestHeaders.ExpectContinue = true;
+
             if (this.ClientSettings?.ClientTimeout != null)
             {
                 httpClientInstance.Timeout = (TimeSpan)this.ClientSettings.ClientTimeout;
