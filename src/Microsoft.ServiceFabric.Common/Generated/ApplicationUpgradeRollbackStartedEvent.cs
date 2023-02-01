@@ -45,8 +45,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationUpgradeRollbackStarted,
                 applicationId,
+                Common.ApplicationEventKind.ApplicationUpgradeRollbackStarted,
                 category,
                 hasCorrelatedEvents)
         {

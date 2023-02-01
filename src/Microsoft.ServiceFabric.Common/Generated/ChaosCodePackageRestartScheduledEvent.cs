@@ -47,8 +47,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosCodePackageRestartScheduled,
                 applicationId,
+                Common.ApplicationEventKind.ChaosCodePackageRestartScheduled,
                 category,
                 hasCorrelatedEvents)
         {

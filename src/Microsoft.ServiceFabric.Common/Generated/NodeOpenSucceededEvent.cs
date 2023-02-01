@@ -19,7 +19,6 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
-        /// <param name="nodeInstance">Id of Node instance.</param>
         /// <param name="nodeId">Id of Node.</param>
         /// <param name="upgradeDomain">Upgrade domain of Node.</param>
         /// <param name="faultDomain">Fault domain of Node.</param>
@@ -29,11 +28,11 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="nodeVersion">Version of Node.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
+        /// <param name="nodeInstance">Id of Node instance.</param>
         public NodeOpenSucceededEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             NodeName nodeName,
-            long? nodeInstance,
             string nodeId,
             string upgradeDomain,
             string faultDomain,
@@ -42,16 +41,17 @@ namespace Microsoft.ServiceFabric.Common
             bool? isSeedNode,
             string nodeVersion,
             string category = default(string),
-            bool? hasCorrelatedEvents = default(bool?))
+            bool? hasCorrelatedEvents = default(bool?),
+            long? nodeInstance = default(long?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.NodeOpenSucceeded,
                 nodeName,
+                Common.NodeEventKind.NodeOpenSucceeded,
                 category,
-                hasCorrelatedEvents)
+                hasCorrelatedEvents,
+                nodeInstance)
         {
-            nodeInstance.ThrowIfNull(nameof(nodeInstance));
             nodeId.ThrowIfNull(nameof(nodeId));
             upgradeDomain.ThrowIfNull(nameof(upgradeDomain));
             faultDomain.ThrowIfNull(nameof(faultDomain));
@@ -59,7 +59,6 @@ namespace Microsoft.ServiceFabric.Common
             hostname.ThrowIfNull(nameof(hostname));
             isSeedNode.ThrowIfNull(nameof(isSeedNode));
             nodeVersion.ThrowIfNull(nameof(nodeVersion));
-            this.NodeInstance = nodeInstance;
             this.NodeId = nodeId;
             this.UpgradeDomain = upgradeDomain;
             this.FaultDomain = faultDomain;
@@ -68,11 +67,6 @@ namespace Microsoft.ServiceFabric.Common
             this.IsSeedNode = isSeedNode;
             this.NodeVersion = nodeVersion;
         }
-
-        /// <summary>
-        /// Gets id of Node instance.
-        /// </summary>
-        public long? NodeInstance { get; }
 
         /// <summary>
         /// Gets id of Node.

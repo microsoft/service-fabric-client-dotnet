@@ -24,6 +24,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="faultId">Id of fault.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
+        /// <param name="nodeInstance">Id of Node instance.</param>
         public ChaosNodeRestartScheduledEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
@@ -32,14 +33,16 @@ namespace Microsoft.ServiceFabric.Common
             Guid? faultGroupId,
             Guid? faultId,
             string category = default(string),
-            bool? hasCorrelatedEvents = default(bool?))
+            bool? hasCorrelatedEvents = default(bool?),
+            long? nodeInstance = default(long?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosNodeRestartScheduled,
                 nodeName,
+                Common.NodeEventKind.ChaosNodeRestartScheduled,
                 category,
-                hasCorrelatedEvents)
+                hasCorrelatedEvents,
+                nodeInstance)
         {
             nodeInstanceId.ThrowIfNull(nameof(nodeInstanceId));
             faultGroupId.ThrowIfNull(nameof(faultGroupId));

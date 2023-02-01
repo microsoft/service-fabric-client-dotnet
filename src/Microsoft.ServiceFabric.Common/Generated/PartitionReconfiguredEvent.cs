@@ -59,8 +59,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.PartitionReconfigured,
                 partitionId,
+                Common.PartitionEventKind.PartitionReconfigured,
                 category,
                 hasCorrelatedEvents)
         {

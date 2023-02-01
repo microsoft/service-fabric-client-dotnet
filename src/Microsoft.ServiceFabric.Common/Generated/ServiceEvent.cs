@@ -11,39 +11,61 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Represents the base for all Service Events.
     /// </summary>
-    public partial class ServiceEvent : FabricEvent
+    public abstract partial class ServiceEvent
     {
         /// <summary>
         /// Initializes a new instance of the ServiceEvent class.
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
-        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="serviceId">The identity of the service. This ID is an encoded representation of the service name. This
         /// is used in the REST APIs to identify the service resource.
         /// Starting in version 6.0, hierarchical names are delimited with the "\~" character. For example, if the service name
         /// is "fabric:/myapp/app1/svc1",
         /// the service identity would be "myapp~app1\~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
+        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
-        public ServiceEvent(
+        protected ServiceEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
-            FabricEventKind? kind,
             string serviceId,
+            ServiceEventKind? kind,
             string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
-            : base(
-                eventInstanceId,
-                timeStamp,
-                Common.FabricEventKind.ServiceEvent,
-                category,
-                hasCorrelatedEvents)
         {
+            eventInstanceId.ThrowIfNull(nameof(eventInstanceId));
+            timeStamp.ThrowIfNull(nameof(timeStamp));
             serviceId.ThrowIfNull(nameof(serviceId));
+            kind.ThrowIfNull(nameof(kind));
+            this.EventInstanceId = eventInstanceId;
+            this.TimeStamp = timeStamp;
             this.ServiceId = serviceId;
+            this.Kind = kind;
+            this.Category = category;
+            this.HasCorrelatedEvents = hasCorrelatedEvents;
         }
+
+        /// <summary>
+        /// Gets the identifier for the FabricEvent instance.
+        /// </summary>
+        public Guid? EventInstanceId { get; }
+
+        /// <summary>
+        /// Gets the category of event.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
+        /// Gets the time event was logged.
+        /// </summary>
+        public DateTime? TimeStamp { get; }
+
+        /// <summary>
+        /// Gets shows there is existing related events available.
+        /// </summary>
+        public bool? HasCorrelatedEvents { get; }
 
         /// <summary>
         /// Gets the identity of the service. This ID is an encoded representation of the service name. This is used in the
@@ -53,5 +75,10 @@ namespace Microsoft.ServiceFabric.Common
         /// the service identity would be "myapp~app1\~svc1" in 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </summary>
         public string ServiceId { get; }
+
+        /// <summary>
+        /// Gets the kind of FabricEvent.
+        /// </summary>
+        public ServiceEventKind? Kind { get; }
     }
 }

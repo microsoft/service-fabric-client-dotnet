@@ -59,8 +59,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationContainerInstanceExited,
                 applicationId,
+                Common.ApplicationEventKind.ApplicationContainerInstanceExited,
                 category,
                 hasCorrelatedEvents)
         {

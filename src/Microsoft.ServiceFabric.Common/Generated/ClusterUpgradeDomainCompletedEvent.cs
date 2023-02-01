@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ClusterUpgradeDomainCompleted,
+                Common.ClusterEventKind.ClusterUpgradeDomainCompleted,
                 category,
                 hasCorrelatedEvents)
         {

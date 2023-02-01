@@ -11,7 +11,7 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Represents the base for all Cluster Events.
     /// </summary>
-    public partial class ClusterEvent : FabricEvent
+    public abstract partial class ClusterEvent
     {
         /// <summary>
         /// Initializes a new instance of the ClusterEvent class.
@@ -21,19 +21,46 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
-        public ClusterEvent(
+        protected ClusterEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
-            FabricEventKind? kind,
+            ClusterEventKind? kind,
             string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
-            : base(
-                eventInstanceId,
-                timeStamp,
-                Common.FabricEventKind.ClusterEvent,
-                category,
-                hasCorrelatedEvents)
         {
+            eventInstanceId.ThrowIfNull(nameof(eventInstanceId));
+            timeStamp.ThrowIfNull(nameof(timeStamp));
+            kind.ThrowIfNull(nameof(kind));
+            this.EventInstanceId = eventInstanceId;
+            this.TimeStamp = timeStamp;
+            this.Kind = kind;
+            this.Category = category;
+            this.HasCorrelatedEvents = hasCorrelatedEvents;
         }
+
+        /// <summary>
+        /// Gets the identifier for the FabricEvent instance.
+        /// </summary>
+        public Guid? EventInstanceId { get; }
+
+        /// <summary>
+        /// Gets the category of event.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
+        /// Gets the time event was logged.
+        /// </summary>
+        public DateTime? TimeStamp { get; }
+
+        /// <summary>
+        /// Gets shows there is existing related events available.
+        /// </summary>
+        public bool? HasCorrelatedEvents { get; }
+
+        /// <summary>
+        /// Gets the kind of FabricEvent.
+        /// </summary>
+        public ClusterEventKind? Kind { get; }
     }
 }

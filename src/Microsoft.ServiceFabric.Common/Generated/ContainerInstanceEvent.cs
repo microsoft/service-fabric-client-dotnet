@@ -11,27 +11,56 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Represents the base for all Container Events.
     /// </summary>
-    public partial class ContainerInstanceEvent : FabricEvent
+    public abstract partial class ContainerInstanceEvent
     {
         /// <summary>
         /// Initializes a new instance of the ContainerInstanceEvent class.
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
+        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
-        public ContainerInstanceEvent(
+        protected ContainerInstanceEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
+            ContainerEventKind? kind,
             string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
-            : base(
-                eventInstanceId,
-                timeStamp,
-                Common.FabricEventKind.ContainerInstanceEvent,
-                category,
-                hasCorrelatedEvents)
         {
+            eventInstanceId.ThrowIfNull(nameof(eventInstanceId));
+            timeStamp.ThrowIfNull(nameof(timeStamp));
+            kind.ThrowIfNull(nameof(kind));
+            this.EventInstanceId = eventInstanceId;
+            this.TimeStamp = timeStamp;
+            this.Kind = kind;
+            this.Category = category;
+            this.HasCorrelatedEvents = hasCorrelatedEvents;
         }
+
+        /// <summary>
+        /// Gets the identifier for the FabricEvent instance.
+        /// </summary>
+        public Guid? EventInstanceId { get; }
+
+        /// <summary>
+        /// Gets the category of event.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
+        /// Gets the time event was logged.
+        /// </summary>
+        public DateTime? TimeStamp { get; }
+
+        /// <summary>
+        /// Gets shows there is existing related events available.
+        /// </summary>
+        public bool? HasCorrelatedEvents { get; }
+
+        /// <summary>
+        /// Gets the kind of FabricEvent.
+        /// </summary>
+        public ContainerEventKind? Kind { get; }
     }
 }

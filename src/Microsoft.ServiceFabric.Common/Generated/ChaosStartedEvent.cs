@@ -48,7 +48,7 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosStarted,
+                Common.ClusterEventKind.ChaosStarted,
                 category,
                 hasCorrelatedEvents)
         {

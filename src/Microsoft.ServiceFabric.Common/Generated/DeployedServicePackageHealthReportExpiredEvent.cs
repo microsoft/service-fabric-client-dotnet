@@ -59,8 +59,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.DeployedServicePackageHealthReportExpired,
                 applicationId,
+                Common.ApplicationEventKind.DeployedServicePackageHealthReportExpired,
                 category,
                 hasCorrelatedEvents)
         {

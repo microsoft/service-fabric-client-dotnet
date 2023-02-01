@@ -39,8 +39,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationDeleted,
                 applicationId,
+                Common.ApplicationEventKind.ApplicationDeleted,
                 category,
                 hasCorrelatedEvents)
         {

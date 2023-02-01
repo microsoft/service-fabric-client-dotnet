@@ -45,9 +45,9 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosReplicaRestartScheduled,
                 partitionId,
                 replicaId,
+                Common.ReplicaEventKind.ChaosReplicaRestartScheduled,
                 category,
                 hasCorrelatedEvents)
         {

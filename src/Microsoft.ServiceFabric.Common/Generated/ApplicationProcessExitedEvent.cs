@@ -59,8 +59,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationProcessExited,
                 applicationId,
+                Common.ApplicationEventKind.ApplicationProcessExited,
                 category,
                 hasCorrelatedEvents)
         {

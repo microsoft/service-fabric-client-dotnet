@@ -18,27 +18,27 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
-        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="partitionId">An internal ID used by Service Fabric to uniquely identify a partition. This is a
         /// randomly generated GUID when the service was created. The partition ID is unique and does not change for the
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
+        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="metadata">Metadata about an Analysis Event.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         public PartitionAnalysisEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
-            FabricEventKind? kind,
             PartitionId partitionId,
+            PartitionEventKind? kind,
             AnalysisEventMetadata metadata,
             string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.PartitionAnalysisEvent,
                 partitionId,
+                Common.PartitionEventKind.PartitionAnalysisEvent,
                 category,
                 hasCorrelatedEvents)
         {

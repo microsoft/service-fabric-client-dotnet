@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ClusterNewHealthReport,
+                Common.ClusterEventKind.ClusterNewHealthReport,
                 category,
                 hasCorrelatedEvents)
         {

@@ -49,8 +49,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.PartitionHealthReportExpired,
                 partitionId,
+                Common.PartitionEventKind.PartitionHealthReportExpired,
                 category,
                 hasCorrelatedEvents)
         {

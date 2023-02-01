@@ -58,8 +58,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ServiceCreated,
                 serviceId,
+                Common.ServiceEventKind.ServiceCreated,
                 category,
                 hasCorrelatedEvents)
         {

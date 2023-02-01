@@ -44,7 +44,7 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ClusterHealthReportExpired,
+                Common.ClusterEventKind.ClusterHealthReportExpired,
                 category,
                 hasCorrelatedEvents)
         {

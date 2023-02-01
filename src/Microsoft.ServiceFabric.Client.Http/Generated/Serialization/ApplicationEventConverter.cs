@@ -33,129 +33,84 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ApplicationEvent GetFromJsonProperties(JsonReader reader)
         {
-            var eventInstanceId = default(Guid?);
-            var category = default(string);
-            var timeStamp = default(DateTime?);
-            var hasCorrelatedEvents = default(bool?);
-            var applicationId = default(string);
-
-            do
+            ApplicationEvent obj = null;
+            var propName = reader.ReadPropertyName();
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
-                var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
-                {
-                    var propValue = reader.ReadValueAsString();
-
-                    if (propValue.Equals("ApplicationCreated", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationCreatedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationDeleted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationDeletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationUpgradeStartedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return DeployedApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return DeployedApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationProcessExited", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationProcessExitedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ApplicationContainerInstanceExitedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return DeployedServicePackageNewHealthReportEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return DeployedServicePackageHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ChaosCodePackageRestartScheduledEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ApplicationEvent", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // kind specified as same type, deserialize using properties.
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Unknown Discriminator.");
-                    }
-                }
-                else
-                {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        eventInstanceId = reader.ReadValueAsGuid();
-                    }
-                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        category = reader.ReadValueAsString();
-                    }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        timeStamp = reader.ReadValueAsDateTime();
-                    }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        hasCorrelatedEvents = reader.ReadValueAsBool();
-                    }
-                    else if (string.Compare("ApplicationId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        applicationId = reader.ReadValueAsString();
-                    }
-                    else
-                    {
-                        reader.SkipPropertyValue();
-                    }
-                }
+                throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
-            while (reader.TokenType != JsonToken.EndObject);
 
-            return new ApplicationEvent(
-                kind: Common.FabricEventKind.ApplicationEvent,
-                eventInstanceId: eventInstanceId,
-                category: category,
-                timeStamp: timeStamp,
-                hasCorrelatedEvents: hasCorrelatedEvents,
-                applicationId: applicationId);
+            var propValue = reader.ReadValueAsString();
+            if (propValue.Equals("ApplicationCreated", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationCreatedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationDeleted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationDeletedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationUpgradeCompleted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationUpgradeCompletedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationUpgradeDomainCompleted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationUpgradeDomainCompletedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationUpgradeRollbackCompletedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationUpgradeRollbackStarted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationUpgradeRollbackStartedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationUpgradeStarted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationUpgradeStartedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("DeployedApplicationNewHealthReport", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DeployedApplicationNewHealthReportEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("DeployedApplicationHealthReportExpired", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DeployedApplicationHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationProcessExited", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationProcessExitedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ApplicationContainerInstanceExited", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ApplicationContainerInstanceExitedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("DeployedServicePackageNewHealthReport", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DeployedServicePackageNewHealthReportEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("DeployedServicePackageHealthReportExpired", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DeployedServicePackageHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ChaosCodePackageRestartScheduled", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ChaosCodePackageRestartScheduledEventConverter.GetFromJsonProperties(reader);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
+
+            return obj;
         }
 
         /// <summary>
@@ -165,23 +120,75 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <param name="obj">The object to serialize to JSON.</param>
         internal static void Serialize(JsonWriter writer, ApplicationEvent obj)
         {
-            // Required properties are always serialized, optional properties are serialized when not null.
-            writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
-            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
-            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
-            writer.WriteProperty(obj.ApplicationId, "ApplicationId", JsonWriterExtensions.WriteStringValue);
-            if (obj.Category != null)
+            var kind = obj.Kind;
+            if (kind.Equals(ApplicationEventKind.ApplicationCreated))
             {
-                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+                ApplicationCreatedEventConverter.Serialize(writer, (ApplicationCreatedEvent)obj);
             }
-
-            if (obj.HasCorrelatedEvents != null)
+            else if (kind.Equals(ApplicationEventKind.ApplicationDeleted))
             {
-                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+                ApplicationDeletedEventConverter.Serialize(writer, (ApplicationDeletedEvent)obj);
             }
-
-            writer.WriteEndObject();
+            else if (kind.Equals(ApplicationEventKind.ApplicationNewHealthReport))
+            {
+                ApplicationNewHealthReportEventConverter.Serialize(writer, (ApplicationNewHealthReportEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationHealthReportExpired))
+            {
+                ApplicationHealthReportExpiredEventConverter.Serialize(writer, (ApplicationHealthReportExpiredEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationUpgradeCompleted))
+            {
+                ApplicationUpgradeCompletedEventConverter.Serialize(writer, (ApplicationUpgradeCompletedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationUpgradeDomainCompleted))
+            {
+                ApplicationUpgradeDomainCompletedEventConverter.Serialize(writer, (ApplicationUpgradeDomainCompletedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationUpgradeRollbackCompleted))
+            {
+                ApplicationUpgradeRollbackCompletedEventConverter.Serialize(writer, (ApplicationUpgradeRollbackCompletedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationUpgradeRollbackStarted))
+            {
+                ApplicationUpgradeRollbackStartedEventConverter.Serialize(writer, (ApplicationUpgradeRollbackStartedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationUpgradeStarted))
+            {
+                ApplicationUpgradeStartedEventConverter.Serialize(writer, (ApplicationUpgradeStartedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.DeployedApplicationNewHealthReport))
+            {
+                DeployedApplicationNewHealthReportEventConverter.Serialize(writer, (DeployedApplicationNewHealthReportEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.DeployedApplicationHealthReportExpired))
+            {
+                DeployedApplicationHealthReportExpiredEventConverter.Serialize(writer, (DeployedApplicationHealthReportExpiredEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationProcessExited))
+            {
+                ApplicationProcessExitedEventConverter.Serialize(writer, (ApplicationProcessExitedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ApplicationContainerInstanceExited))
+            {
+                ApplicationContainerInstanceExitedEventConverter.Serialize(writer, (ApplicationContainerInstanceExitedEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.DeployedServicePackageNewHealthReport))
+            {
+                DeployedServicePackageNewHealthReportEventConverter.Serialize(writer, (DeployedServicePackageNewHealthReportEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.DeployedServicePackageHealthReportExpired))
+            {
+                DeployedServicePackageHealthReportExpiredEventConverter.Serialize(writer, (DeployedServicePackageHealthReportExpiredEvent)obj);
+            }
+            else if (kind.Equals(ApplicationEventKind.ChaosCodePackageRestartScheduled))
+            {
+                ChaosCodePackageRestartScheduledEventConverter.Serialize(writer, (ChaosCodePackageRestartScheduledEvent)obj);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
         }
     }
 }

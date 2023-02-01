@@ -45,8 +45,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.PartitionPrimaryMoveAnalysis,
                 partitionId,
+                Common.PartitionEventKind.PartitionPrimaryMoveAnalysis,
                 metadata,
                 category,
                 hasCorrelatedEvents)

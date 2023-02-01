@@ -20,32 +20,31 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="timeStamp">The time event was logged.</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
         /// <param name="nodeId">Id of Node.</param>
-        /// <param name="nodeInstance">Id of Node instance.</param>
         /// <param name="error">Describes error.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
+        /// <param name="nodeInstance">Id of Node instance.</param>
         public NodeClosedEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
             NodeName nodeName,
             string nodeId,
-            long? nodeInstance,
             string error,
             string category = default(string),
-            bool? hasCorrelatedEvents = default(bool?))
+            bool? hasCorrelatedEvents = default(bool?),
+            long? nodeInstance = default(long?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.NodeClosed,
                 nodeName,
+                Common.NodeEventKind.NodeClosed,
                 category,
-                hasCorrelatedEvents)
+                hasCorrelatedEvents,
+                nodeInstance)
         {
             nodeId.ThrowIfNull(nameof(nodeId));
-            nodeInstance.ThrowIfNull(nameof(nodeInstance));
             error.ThrowIfNull(nameof(error));
             this.NodeId = nodeId;
-            this.NodeInstance = nodeInstance;
             this.Error = error;
         }
 
@@ -53,11 +52,6 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets id of Node.
         /// </summary>
         public string NodeId { get; }
-
-        /// <summary>
-        /// Gets id of Node instance.
-        /// </summary>
-        public long? NodeInstance { get; }
 
         /// <summary>
         /// Gets error.

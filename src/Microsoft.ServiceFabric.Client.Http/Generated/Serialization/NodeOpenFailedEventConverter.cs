@@ -37,8 +37,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var category = default(string);
             var timeStamp = default(DateTime?);
             var hasCorrelatedEvents = default(bool?);
-            var nodeName = default(NodeName);
             var nodeInstance = default(long?);
+            var nodeName = default(NodeName);
             var nodeId = default(string);
             var upgradeDomain = default(string);
             var faultDomain = default(string);
@@ -67,13 +67,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     hasCorrelatedEvents = reader.ReadValueAsBool();
                 }
-                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                {
-                    nodeName = NodeNameConverter.Deserialize(reader);
-                }
                 else if (string.Compare("NodeInstance", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     nodeInstance = reader.ReadValueAsLong();
+                }
+                else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    nodeName = NodeNameConverter.Deserialize(reader);
                 }
                 else if (string.Compare("NodeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -119,8 +119,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 category: category,
                 timeStamp: timeStamp,
                 hasCorrelatedEvents: hasCorrelatedEvents,
-                nodeName: nodeName,
                 nodeInstance: nodeInstance,
+                nodeName: nodeName,
                 nodeId: nodeId,
                 upgradeDomain: upgradeDomain,
                 faultDomain: faultDomain,
@@ -140,11 +140,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         {
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
+            writer.WriteProperty(obj.Kind, "Kind", NodeEventKindConverter.Serialize);
             writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
             writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
             writer.WriteProperty(obj.NodeName, "NodeName", NodeNameConverter.Serialize);
-            writer.WriteProperty(obj.NodeInstance, "NodeInstance", JsonWriterExtensions.WriteLongValue);
             writer.WriteProperty(obj.NodeId, "NodeId", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.UpgradeDomain, "UpgradeDomain", JsonWriterExtensions.WriteStringValue);
             writer.WriteProperty(obj.FaultDomain, "FaultDomain", JsonWriterExtensions.WriteStringValue);
@@ -161,6 +160,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.NodeInstance != null)
+            {
+                writer.WriteProperty(obj.NodeInstance, "NodeInstance", JsonWriterExtensions.WriteLongValue);
             }
 
             writer.WriteEndObject();

@@ -33,93 +33,48 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static PartitionEvent GetFromJsonProperties(JsonReader reader)
         {
-            var eventInstanceId = default(Guid?);
-            var category = default(string);
-            var timeStamp = default(DateTime?);
-            var hasCorrelatedEvents = default(bool?);
-            var partitionId = default(PartitionId);
-
-            do
+            PartitionEvent obj = null;
+            var propName = reader.ReadPropertyName();
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
-                var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
-                {
-                    var propValue = reader.ReadValueAsString();
-
-                    if (propValue.Equals("PartitionAnalysisEvent", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return PartitionAnalysisEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("PartitionNewHealthReport", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return PartitionNewHealthReportEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("PartitionHealthReportExpired", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return PartitionHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("PartitionReconfigured", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return PartitionReconfiguredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return PartitionPrimaryMoveAnalysisEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosPartitionSecondaryMoveScheduled", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ChaosPartitionSecondaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosPartitionPrimaryMoveScheduled", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ChaosPartitionPrimaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("PartitionEvent", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // kind specified as same type, deserialize using properties.
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Unknown Discriminator.");
-                    }
-                }
-                else
-                {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        eventInstanceId = reader.ReadValueAsGuid();
-                    }
-                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        category = reader.ReadValueAsString();
-                    }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        timeStamp = reader.ReadValueAsDateTime();
-                    }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        hasCorrelatedEvents = reader.ReadValueAsBool();
-                    }
-                    else if (string.Compare("PartitionId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        partitionId = PartitionIdConverter.Deserialize(reader);
-                    }
-                    else
-                    {
-                        reader.SkipPropertyValue();
-                    }
-                }
+                throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
-            while (reader.TokenType != JsonToken.EndObject);
 
-            return new PartitionEvent(
-                kind: Common.FabricEventKind.PartitionEvent,
-                eventInstanceId: eventInstanceId,
-                category: category,
-                timeStamp: timeStamp,
-                hasCorrelatedEvents: hasCorrelatedEvents,
-                partitionId: partitionId);
+            var propValue = reader.ReadValueAsString();
+            if (propValue.Equals("PartitionAnalysisEvent", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = PartitionAnalysisEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("PartitionNewHealthReport", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = PartitionNewHealthReportEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("PartitionHealthReportExpired", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = PartitionHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("PartitionReconfigured", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = PartitionReconfiguredEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("PartitionPrimaryMoveAnalysis", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = PartitionPrimaryMoveAnalysisEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ChaosPartitionSecondaryMoveScheduled", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ChaosPartitionSecondaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ChaosPartitionPrimaryMoveScheduled", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ChaosPartitionPrimaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
+
+            return obj;
         }
 
         /// <summary>
@@ -129,23 +84,39 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <param name="obj">The object to serialize to JSON.</param>
         internal static void Serialize(JsonWriter writer, PartitionEvent obj)
         {
-            // Required properties are always serialized, optional properties are serialized when not null.
-            writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
-            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
-            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
-            writer.WriteProperty(obj.PartitionId, "PartitionId", PartitionIdConverter.Serialize);
-            if (obj.Category != null)
+            var kind = obj.Kind;
+            if (kind.Equals(PartitionEventKind.PartitionAnalysisEvent))
             {
-                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+                PartitionAnalysisEventConverter.Serialize(writer, (PartitionAnalysisEvent)obj);
             }
-
-            if (obj.HasCorrelatedEvents != null)
+            else if (kind.Equals(PartitionEventKind.PartitionNewHealthReport))
             {
-                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+                PartitionNewHealthReportEventConverter.Serialize(writer, (PartitionNewHealthReportEvent)obj);
             }
-
-            writer.WriteEndObject();
+            else if (kind.Equals(PartitionEventKind.PartitionHealthReportExpired))
+            {
+                PartitionHealthReportExpiredEventConverter.Serialize(writer, (PartitionHealthReportExpiredEvent)obj);
+            }
+            else if (kind.Equals(PartitionEventKind.PartitionReconfigured))
+            {
+                PartitionReconfiguredEventConverter.Serialize(writer, (PartitionReconfiguredEvent)obj);
+            }
+            else if (kind.Equals(PartitionEventKind.PartitionPrimaryMoveAnalysis))
+            {
+                PartitionPrimaryMoveAnalysisEventConverter.Serialize(writer, (PartitionPrimaryMoveAnalysisEvent)obj);
+            }
+            else if (kind.Equals(PartitionEventKind.ChaosPartitionSecondaryMoveScheduled))
+            {
+                ChaosPartitionSecondaryMoveScheduledEventConverter.Serialize(writer, (ChaosPartitionSecondaryMoveScheduledEvent)obj);
+            }
+            else if (kind.Equals(PartitionEventKind.ChaosPartitionPrimaryMoveScheduled))
+            {
+                ChaosPartitionPrimaryMoveScheduledEventConverter.Serialize(writer, (ChaosPartitionPrimaryMoveScheduledEvent)obj);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
         }
     }
 }

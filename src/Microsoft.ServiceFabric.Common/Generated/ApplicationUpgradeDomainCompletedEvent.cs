@@ -47,8 +47,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ApplicationUpgradeDomainCompleted,
                 applicationId,
+                Common.ApplicationEventKind.ApplicationUpgradeDomainCompleted,
                 category,
                 hasCorrelatedEvents)
         {

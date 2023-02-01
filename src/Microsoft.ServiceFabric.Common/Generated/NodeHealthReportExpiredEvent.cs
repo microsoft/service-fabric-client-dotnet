@@ -30,6 +30,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="sourceUtcTimestamp">Source time.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
+        /// <param name="nodeInstance">Id of Node instance.</param>
         public NodeHealthReportExpiredEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
@@ -44,14 +45,16 @@ namespace Microsoft.ServiceFabric.Common
             bool? removeWhenExpired,
             DateTime? sourceUtcTimestamp,
             string category = default(string),
-            bool? hasCorrelatedEvents = default(bool?))
+            bool? hasCorrelatedEvents = default(bool?),
+            long? nodeInstance = default(long?))
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.NodeHealthReportExpired,
                 nodeName,
+                Common.NodeEventKind.NodeHealthReportExpired,
                 category,
-                hasCorrelatedEvents)
+                hasCorrelatedEvents,
+                nodeInstance)
         {
             nodeInstanceId.ThrowIfNull(nameof(nodeInstanceId));
             sourceId.ThrowIfNull(nameof(sourceId));

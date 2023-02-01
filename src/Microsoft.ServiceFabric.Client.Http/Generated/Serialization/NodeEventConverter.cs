@@ -33,117 +33,72 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static NodeEvent GetFromJsonProperties(JsonReader reader)
         {
-            var eventInstanceId = default(Guid?);
-            var category = default(string);
-            var timeStamp = default(DateTime?);
-            var hasCorrelatedEvents = default(bool?);
-            var nodeName = default(NodeName);
-
-            do
+            NodeEvent obj = null;
+            var propName = reader.ReadPropertyName();
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
-                var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
-                {
-                    var propValue = reader.ReadValueAsString();
-
-                    if (propValue.Equals("NodeAborted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeAbortedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeAddedToCluster", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeAddedToClusterEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeClosed", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeClosedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeDeactivateCompletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeDeactivateStarted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeDeactivateStartedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeDown", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeDownEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeNewHealthReport", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeNewHealthReportEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeHealthReportExpired", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeOpenSucceeded", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeOpenSucceededEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeOpenFailed", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeOpenFailedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeRemovedFromClusterEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeUp", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return NodeUpEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ChaosNodeRestartScheduledEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("NodeEvent", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // kind specified as same type, deserialize using properties.
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Unknown Discriminator.");
-                    }
-                }
-                else
-                {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        eventInstanceId = reader.ReadValueAsGuid();
-                    }
-                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        category = reader.ReadValueAsString();
-                    }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        timeStamp = reader.ReadValueAsDateTime();
-                    }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        hasCorrelatedEvents = reader.ReadValueAsBool();
-                    }
-                    else if (string.Compare("NodeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        nodeName = NodeNameConverter.Deserialize(reader);
-                    }
-                    else
-                    {
-                        reader.SkipPropertyValue();
-                    }
-                }
+                throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
-            while (reader.TokenType != JsonToken.EndObject);
 
-            return new NodeEvent(
-                kind: Common.FabricEventKind.NodeEvent,
-                eventInstanceId: eventInstanceId,
-                category: category,
-                timeStamp: timeStamp,
-                hasCorrelatedEvents: hasCorrelatedEvents,
-                nodeName: nodeName);
+            var propValue = reader.ReadValueAsString();
+            if (propValue.Equals("NodeAborted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeAbortedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeAddedToCluster", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeAddedToClusterEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeClosed", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeClosedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeDeactivateCompleted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeDeactivateCompletedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeDeactivateStarted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeDeactivateStartedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeDown", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeDownEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeNewHealthReport", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeNewHealthReportEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeHealthReportExpired", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeOpenSucceeded", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeOpenSucceededEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeOpenFailed", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeOpenFailedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeRemovedFromCluster", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeRemovedFromClusterEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("NodeUp", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = NodeUpEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ChaosNodeRestartScheduled", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ChaosNodeRestartScheduledEventConverter.GetFromJsonProperties(reader);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
+
+            return obj;
         }
 
         /// <summary>
@@ -153,23 +108,63 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <param name="obj">The object to serialize to JSON.</param>
         internal static void Serialize(JsonWriter writer, NodeEvent obj)
         {
-            // Required properties are always serialized, optional properties are serialized when not null.
-            writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
-            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
-            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
-            writer.WriteProperty(obj.NodeName, "NodeName", NodeNameConverter.Serialize);
-            if (obj.Category != null)
+            var kind = obj.Kind;
+            if (kind.Equals(NodeEventKind.NodeAborted))
             {
-                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+                NodeAbortedEventConverter.Serialize(writer, (NodeAbortedEvent)obj);
             }
-
-            if (obj.HasCorrelatedEvents != null)
+            else if (kind.Equals(NodeEventKind.NodeAddedToCluster))
             {
-                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+                NodeAddedToClusterEventConverter.Serialize(writer, (NodeAddedToClusterEvent)obj);
             }
-
-            writer.WriteEndObject();
+            else if (kind.Equals(NodeEventKind.NodeClosed))
+            {
+                NodeClosedEventConverter.Serialize(writer, (NodeClosedEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeDeactivateCompleted))
+            {
+                NodeDeactivateCompletedEventConverter.Serialize(writer, (NodeDeactivateCompletedEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeDeactivateStarted))
+            {
+                NodeDeactivateStartedEventConverter.Serialize(writer, (NodeDeactivateStartedEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeDown))
+            {
+                NodeDownEventConverter.Serialize(writer, (NodeDownEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeNewHealthReport))
+            {
+                NodeNewHealthReportEventConverter.Serialize(writer, (NodeNewHealthReportEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeHealthReportExpired))
+            {
+                NodeHealthReportExpiredEventConverter.Serialize(writer, (NodeHealthReportExpiredEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeOpenSucceeded))
+            {
+                NodeOpenSucceededEventConverter.Serialize(writer, (NodeOpenSucceededEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeOpenFailed))
+            {
+                NodeOpenFailedEventConverter.Serialize(writer, (NodeOpenFailedEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeRemovedFromCluster))
+            {
+                NodeRemovedFromClusterEventConverter.Serialize(writer, (NodeRemovedFromClusterEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.NodeUp))
+            {
+                NodeUpEventConverter.Serialize(writer, (NodeUpEvent)obj);
+            }
+            else if (kind.Equals(NodeEventKind.ChaosNodeRestartScheduled))
+            {
+                ChaosNodeRestartScheduledEventConverter.Serialize(writer, (ChaosNodeRestartScheduledEvent)obj);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
         }
     }
 }

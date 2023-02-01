@@ -45,8 +45,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosPartitionSecondaryMoveScheduled,
                 partitionId,
+                Common.PartitionEventKind.ChaosPartitionSecondaryMoveScheduled,
                 category,
                 hasCorrelatedEvents)
         {

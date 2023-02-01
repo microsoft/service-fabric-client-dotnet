@@ -33,81 +33,36 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <returns>The object Value.</returns>
         internal static ServiceEvent GetFromJsonProperties(JsonReader reader)
         {
-            var eventInstanceId = default(Guid?);
-            var category = default(string);
-            var timeStamp = default(DateTime?);
-            var hasCorrelatedEvents = default(bool?);
-            var serviceId = default(string);
-
-            do
+            ServiceEvent obj = null;
+            var propName = reader.ReadPropertyName();
+            if (!propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
             {
-                var propName = reader.ReadPropertyName();
-                if (propName.Equals("Kind", StringComparison.OrdinalIgnoreCase))
-                {
-                    var propValue = reader.ReadValueAsString();
-
-                    if (propValue.Equals("ServiceCreated", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ServiceCreatedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ServiceDeleted", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ServiceDeletedEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ServiceNewHealthReport", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ServiceNewHealthReportEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ServiceHealthReportExpired", StringComparison.OrdinalIgnoreCase))
-                    {
-                        return ServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
-                    }
-                    else if (propValue.Equals("ServiceEvent", StringComparison.OrdinalIgnoreCase))
-                    {
-                        // kind specified as same type, deserialize using properties.
-                    }
-                    else
-                    {
-                        throw new InvalidOperationException("Unknown Discriminator.");
-                    }
-                }
-                else
-                {
-                    if (string.Compare("EventInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        eventInstanceId = reader.ReadValueAsGuid();
-                    }
-                    else if (string.Compare("Category", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        category = reader.ReadValueAsString();
-                    }
-                    else if (string.Compare("TimeStamp", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        timeStamp = reader.ReadValueAsDateTime();
-                    }
-                    else if (string.Compare("HasCorrelatedEvents", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        hasCorrelatedEvents = reader.ReadValueAsBool();
-                    }
-                    else if (string.Compare("ServiceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                    {
-                        serviceId = reader.ReadValueAsString();
-                    }
-                    else
-                    {
-                        reader.SkipPropertyValue();
-                    }
-                }
+                throw new JsonReaderException($"Incorrect discriminator property name {propName}, Expected discriminator property name is Kind.");
             }
-            while (reader.TokenType != JsonToken.EndObject);
 
-            return new ServiceEvent(
-                kind: Common.FabricEventKind.ServiceEvent,
-                eventInstanceId: eventInstanceId,
-                category: category,
-                timeStamp: timeStamp,
-                hasCorrelatedEvents: hasCorrelatedEvents,
-                serviceId: serviceId);
+            var propValue = reader.ReadValueAsString();
+            if (propValue.Equals("ServiceCreated", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ServiceCreatedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ServiceDeleted", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ServiceDeletedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ServiceNewHealthReport", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ServiceNewHealthReportEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ServiceHealthReportExpired", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ServiceHealthReportExpiredEventConverter.GetFromJsonProperties(reader);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
+
+            return obj;
         }
 
         /// <summary>
@@ -117,23 +72,27 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         /// <param name="obj">The object to serialize to JSON.</param>
         internal static void Serialize(JsonWriter writer, ServiceEvent obj)
         {
-            // Required properties are always serialized, optional properties are serialized when not null.
-            writer.WriteStartObject();
-            writer.WriteProperty(obj.Kind, "Kind", FabricEventKindConverter.Serialize);
-            writer.WriteProperty(obj.EventInstanceId, "EventInstanceId", JsonWriterExtensions.WriteGuidValue);
-            writer.WriteProperty(obj.TimeStamp, "TimeStamp", JsonWriterExtensions.WriteDateTimeValue);
-            writer.WriteProperty(obj.ServiceId, "ServiceId", JsonWriterExtensions.WriteStringValue);
-            if (obj.Category != null)
+            var kind = obj.Kind;
+            if (kind.Equals(ServiceEventKind.ServiceCreated))
             {
-                writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
+                ServiceCreatedEventConverter.Serialize(writer, (ServiceCreatedEvent)obj);
             }
-
-            if (obj.HasCorrelatedEvents != null)
+            else if (kind.Equals(ServiceEventKind.ServiceDeleted))
             {
-                writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+                ServiceDeletedEventConverter.Serialize(writer, (ServiceDeletedEvent)obj);
             }
-
-            writer.WriteEndObject();
+            else if (kind.Equals(ServiceEventKind.ServiceNewHealthReport))
+            {
+                ServiceNewHealthReportEventConverter.Serialize(writer, (ServiceNewHealthReportEvent)obj);
+            }
+            else if (kind.Equals(ServiceEventKind.ServiceHealthReportExpired))
+            {
+                ServiceHealthReportExpiredEventConverter.Serialize(writer, (ServiceHealthReportExpiredEvent)obj);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unknown Kind.");
+            }
         }
     }
 }

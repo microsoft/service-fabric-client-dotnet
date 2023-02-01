@@ -30,7 +30,7 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ChaosStopped,
+                Common.ClusterEventKind.ChaosStopped,
                 category,
                 hasCorrelatedEvents)
         {

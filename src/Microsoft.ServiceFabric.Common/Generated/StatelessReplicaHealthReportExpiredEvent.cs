@@ -55,9 +55,9 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.StatelessReplicaHealthReportExpired,
                 partitionId,
                 replicaId,
+                Common.ReplicaEventKind.StatelessReplicaHealthReportExpired,
                 category,
                 hasCorrelatedEvents)
         {

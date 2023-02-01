@@ -53,8 +53,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ServiceNewHealthReport,
                 serviceId,
+                Common.ServiceEventKind.ServiceNewHealthReport,
                 category,
                 hasCorrelatedEvents)
         {

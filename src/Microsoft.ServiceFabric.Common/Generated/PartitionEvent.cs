@@ -11,37 +11,59 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Represents the base for all Partition Events.
     /// </summary>
-    public partial class PartitionEvent : FabricEvent
+    public abstract partial class PartitionEvent
     {
         /// <summary>
         /// Initializes a new instance of the PartitionEvent class.
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
-        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="partitionId">An internal ID used by Service Fabric to uniquely identify a partition. This is a
         /// randomly generated GUID when the service was created. The partition ID is unique and does not change for the
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
+        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
-        public PartitionEvent(
+        protected PartitionEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
-            FabricEventKind? kind,
             PartitionId partitionId,
+            PartitionEventKind? kind,
             string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
-            : base(
-                eventInstanceId,
-                timeStamp,
-                Common.FabricEventKind.PartitionEvent,
-                category,
-                hasCorrelatedEvents)
         {
+            eventInstanceId.ThrowIfNull(nameof(eventInstanceId));
+            timeStamp.ThrowIfNull(nameof(timeStamp));
             partitionId.ThrowIfNull(nameof(partitionId));
+            kind.ThrowIfNull(nameof(kind));
+            this.EventInstanceId = eventInstanceId;
+            this.TimeStamp = timeStamp;
             this.PartitionId = partitionId;
+            this.Kind = kind;
+            this.Category = category;
+            this.HasCorrelatedEvents = hasCorrelatedEvents;
         }
+
+        /// <summary>
+        /// Gets the identifier for the FabricEvent instance.
+        /// </summary>
+        public Guid? EventInstanceId { get; }
+
+        /// <summary>
+        /// Gets the category of event.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
+        /// Gets the time event was logged.
+        /// </summary>
+        public DateTime? TimeStamp { get; }
+
+        /// <summary>
+        /// Gets shows there is existing related events available.
+        /// </summary>
+        public bool? HasCorrelatedEvents { get; }
 
         /// <summary>
         /// Gets an internal ID used by Service Fabric to uniquely identify a partition. This is a randomly generated GUID when
@@ -49,5 +71,10 @@ namespace Microsoft.ServiceFabric.Common
         /// same service was deleted and recreated the IDs of its partitions would be different.
         /// </summary>
         public PartitionId PartitionId { get; }
+
+        /// <summary>
+        /// Gets the kind of FabricEvent.
+        /// </summary>
+        public PartitionEventKind? Kind { get; }
     }
 }

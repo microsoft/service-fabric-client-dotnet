@@ -34,7 +34,7 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ClusterUpgradeRollbackCompleted,
+                Common.ClusterEventKind.ClusterUpgradeRollbackCompleted,
                 category,
                 hasCorrelatedEvents)
         {

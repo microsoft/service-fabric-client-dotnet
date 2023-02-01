@@ -53,8 +53,8 @@ namespace Microsoft.ServiceFabric.Common
             : base(
                 eventInstanceId,
                 timeStamp,
-                Common.FabricEventKind.ServiceDeleted,
                 serviceId,
+                Common.ServiceEventKind.ServiceDeleted,
                 category,
                 hasCorrelatedEvents)
         {

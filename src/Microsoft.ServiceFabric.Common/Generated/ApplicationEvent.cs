@@ -11,39 +11,61 @@ namespace Microsoft.ServiceFabric.Common
     /// <summary>
     /// Represents the base for all Application Events.
     /// </summary>
-    public partial class ApplicationEvent : FabricEvent
+    public abstract partial class ApplicationEvent
     {
         /// <summary>
         /// Initializes a new instance of the ApplicationEvent class.
         /// </summary>
         /// <param name="eventInstanceId">The identifier for the FabricEvent instance.</param>
         /// <param name="timeStamp">The time event was logged.</param>
-        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="applicationId">The identity of the application. This is an encoded representation of the application
         /// name. This is used in the REST APIs to identify the application resource.
         /// Starting in version 6.0, hierarchical names are delimited with the "\~" character. For example, if the application
         /// name is "fabric:/myapp/app1",
         /// the application identity would be "myapp\~app1" in 6.0+ and "myapp/app1" in previous versions.
         /// </param>
+        /// <param name="kind">The kind of FabricEvent.</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
-        public ApplicationEvent(
+        protected ApplicationEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
-            FabricEventKind? kind,
             string applicationId,
+            ApplicationEventKind? kind,
             string category = default(string),
             bool? hasCorrelatedEvents = default(bool?))
-            : base(
-                eventInstanceId,
-                timeStamp,
-                Common.FabricEventKind.ApplicationEvent,
-                category,
-                hasCorrelatedEvents)
         {
+            eventInstanceId.ThrowIfNull(nameof(eventInstanceId));
+            timeStamp.ThrowIfNull(nameof(timeStamp));
             applicationId.ThrowIfNull(nameof(applicationId));
+            kind.ThrowIfNull(nameof(kind));
+            this.EventInstanceId = eventInstanceId;
+            this.TimeStamp = timeStamp;
             this.ApplicationId = applicationId;
+            this.Kind = kind;
+            this.Category = category;
+            this.HasCorrelatedEvents = hasCorrelatedEvents;
         }
+
+        /// <summary>
+        /// Gets the identifier for the FabricEvent instance.
+        /// </summary>
+        public Guid? EventInstanceId { get; }
+
+        /// <summary>
+        /// Gets the category of event.
+        /// </summary>
+        public string Category { get; }
+
+        /// <summary>
+        /// Gets the time event was logged.
+        /// </summary>
+        public DateTime? TimeStamp { get; }
+
+        /// <summary>
+        /// Gets shows there is existing related events available.
+        /// </summary>
+        public bool? HasCorrelatedEvents { get; }
 
         /// <summary>
         /// Gets the identity of the application. This is an encoded representation of the application name. This is used in
@@ -53,5 +75,10 @@ namespace Microsoft.ServiceFabric.Common
         /// the application identity would be "myapp\~app1" in 6.0+ and "myapp/app1" in previous versions.
         /// </summary>
         public string ApplicationId { get; }
+
+        /// <summary>
+        /// Gets the kind of FabricEvent.
+        /// </summary>
+        public ApplicationEventKind? Kind { get; }
     }
 }
