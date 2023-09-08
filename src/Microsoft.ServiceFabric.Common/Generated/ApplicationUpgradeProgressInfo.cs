@@ -55,6 +55,12 @@ namespace Microsoft.ServiceFabric.Common
         /// failure.</param>
         /// <param name="upgradeStatusDetails">Additional detailed information about the status of the pending upgrade.</param>
         /// <param name="isNodeByNode">Indicates whether this upgrade is node-by-node.</param>
+        /// <param name="healthCheckElapsedTime">The estimated elapsed time spent in the current health check phase.</param>
+        /// <param name="healthCheckPhase">Specifies the current health check phase of a monitored upgrade when upgrading an
+        /// application instance or cluster. Possible values include: 'Invalid', 'WaitDuration', 'StableDuration',
+        /// 'Retry'</param>
+        /// <param name="healthCheckRetryFlips">The number of times the health evaluation has toggled, causing the
+        /// HealthCheckPhase to change and resetting the HealthCheckElapsedTime.</param>
         public ApplicationUpgradeProgressInfo(
             string name = default(string),
             string typeName = default(string),
@@ -75,7 +81,10 @@ namespace Microsoft.ServiceFabric.Common
             FailureReason? failureReason = default(FailureReason?),
             FailureUpgradeDomainProgressInfo upgradeDomainProgressAtFailure = default(FailureUpgradeDomainProgressInfo),
             string upgradeStatusDetails = default(string),
-            bool? isNodeByNode = false)
+            bool? isNodeByNode = false,
+            string healthCheckElapsedTime = default(string),
+            MonitoredUpgradeHealthCheckPhase? healthCheckPhase = Common.MonitoredUpgradeHealthCheckPhase.Invalid,
+            int? healthCheckRetryFlips = default(int?))
         {
             this.Name = name;
             this.TypeName = typeName;
@@ -97,6 +106,9 @@ namespace Microsoft.ServiceFabric.Common
             this.UpgradeDomainProgressAtFailure = upgradeDomainProgressAtFailure;
             this.UpgradeStatusDetails = upgradeStatusDetails;
             this.IsNodeByNode = isNodeByNode;
+            this.HealthCheckElapsedTime = healthCheckElapsedTime;
+            this.HealthCheckPhase = healthCheckPhase;
+            this.HealthCheckRetryFlips = healthCheckRetryFlips;
         }
 
         /// <summary>
@@ -207,5 +219,22 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets indicates whether this upgrade is node-by-node.
         /// </summary>
         public bool? IsNodeByNode { get; }
+
+        /// <summary>
+        /// Gets the estimated elapsed time spent in the current health check phase.
+        /// </summary>
+        public string HealthCheckElapsedTime { get; }
+
+        /// <summary>
+        /// Gets specifies the current health check phase of a monitored upgrade when upgrading an application instance or
+        /// cluster. Possible values include: 'Invalid', 'WaitDuration', 'StableDuration', 'Retry'
+        /// </summary>
+        public MonitoredUpgradeHealthCheckPhase? HealthCheckPhase { get; }
+
+        /// <summary>
+        /// Gets the number of times the health evaluation has toggled, causing the HealthCheckPhase to change and resetting
+        /// the HealthCheckElapsedTime.
+        /// </summary>
+        public int? HealthCheckRetryFlips { get; }
     }
 }

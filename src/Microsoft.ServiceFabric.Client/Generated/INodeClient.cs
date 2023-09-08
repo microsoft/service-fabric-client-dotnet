@@ -244,7 +244,8 @@ namespace Microsoft.ServiceFabric.Client
         /// reactivated before services will be placed on that node.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
-        /// <param name ="deactivationIntentDescription">Describes the intent or reason for deactivating the node.</param>
+        /// <param name ="deactivationIntentDescription">Describes the intent or reason for deactivating the node.
+        /// DeactivationDescription is an optional field.</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>

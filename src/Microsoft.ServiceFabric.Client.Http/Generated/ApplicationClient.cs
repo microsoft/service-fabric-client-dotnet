@@ -769,5 +769,48 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
+
+        /// <inheritdoc />
+        public Task UpdateApplicationArmMetadataAsync(
+            string applicationId,
+            ApplicationArmMetadataUpdateDescription applicationArmMetadataUpdateDescription,
+            long? serverTimeout = 60,
+            bool? force = default(bool?),
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            applicationId.ThrowIfNull(nameof(applicationId));
+            applicationArmMetadataUpdateDescription.ThrowIfNull(nameof(applicationArmMetadataUpdateDescription));
+            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
+            var requestId = Guid.NewGuid().ToString();
+            var url = "Applications/{applicationId}/$/UpdateArmMetadata";
+            url = url.Replace("{applicationId}", applicationId);
+            var queryParams = new List<string>();
+            
+            // Append to queryParams if not null.
+            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            force?.AddToQueryParameters(queryParams, $"Force={force}");
+            queryParams.Add("api-version=9.0");
+            url += "?" + string.Join("&", queryParams);
+            
+            string content;
+            using (var sw = new StringWriter())
+            {
+                ApplicationArmMetadataUpdateDescriptionConverter.Serialize(new JsonTextWriter(sw), applicationArmMetadataUpdateDescription);
+                content = sw.ToString();
+            }
+
+            HttpRequestMessage RequestFunc()
+            {
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    Content = new StringContent(content, Encoding.UTF8),
+                };
+                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
+                return request;
+            }
+
+            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
+        }
     }
 }

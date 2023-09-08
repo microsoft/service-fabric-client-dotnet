@@ -74,6 +74,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return ChaosPartitionPrimaryMoveScheduledEventConverter.GetFromJsonProperties(reader);
                     }
+                    else if (propValue.Equals("BRSWarningPartition", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BRSWarningPartitionEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("BRSInfoPartition", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BRSInfoPartitionEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("BRSErrorPartition", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BRSErrorPartitionEventConverter.GetFromJsonProperties(reader);
+                    }
                     else if (propValue.Equals("PartitionEvent", StringComparison.OrdinalIgnoreCase))
                     {
                         // kind specified as same type, deserialize using properties.

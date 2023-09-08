@@ -176,7 +176,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="applicationTypeName">The name of the application type.</param>
         /// <param name ="applicationTypeVersion">The version of the application type.</param>
-        /// <param name ="applicationTypeArmMetadataUpdateDescription">The Arm metadata to be assocated with a specific
+        /// <param name ="applicationTypeArmMetadataUpdateDescription">The Arm metadata to be associated with a specific
         /// application type</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
@@ -193,7 +193,7 @@ namespace Microsoft.ServiceFabric.Client
         Task UpdateApplicationTypeArmMetadataAsync(
             string applicationTypeName,
             string applicationTypeVersion,
-            ArmMetadata applicationTypeArmMetadataUpdateDescription,
+            ApplicationTypeArmMetadataUpdateDescription applicationTypeArmMetadataUpdateDescription,
             long? serverTimeout = 60,
             bool? force = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken));
@@ -221,40 +221,6 @@ namespace Microsoft.ServiceFabric.Client
             string applicationTypeName,
             string applicationTypeVersion,
             long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Updates the Arm Metadata for a specific Application.
-        /// </summary>
-        /// <remarks>
-        /// Updates the Arm Metadata for a specific Application. Is able to be called immediately after the create app API is
-        /// called.
-        /// </remarks>
-        /// <param name ="applicationId">The identity of the application. This is typically the full name of the application
-        /// without the 'fabric:' URI scheme.
-        /// Starting from version 6.0, hierarchical names are delimited with the "~" character.
-        /// For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in
-        /// 6.0+ and "myapp/app1" in previous versions.
-        /// </param>
-        /// <param name ="applicationArmMetadataUpdateDescription">The Arm metadata to be assocated with a specific
-        /// application</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
-        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
-        /// this parameter is 60 seconds.</param>
-        /// <param name ="force">Force parameter used to prevent accidental Arm metadata update.</param>
-        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
-        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
-        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
-        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task UpdateApplicationArmMetadataAsync(
-            string applicationId,
-            ArmMetadata applicationArmMetadataUpdateDescription,
-            long? serverTimeout = 60,
-            bool? force = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken));
     }
 }

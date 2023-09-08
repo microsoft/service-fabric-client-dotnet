@@ -36,7 +36,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var id = default(string);
             var name = default(ApplicationName);
             var typeName = default(string);
-            var typeVersion = default(string);
             var status = default(DeployedApplicationStatus?);
             var workDirectory = default(string);
             var logDirectory = default(string);
@@ -57,10 +56,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 else if (string.Compare("TypeName", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     typeName = reader.ReadValueAsString();
-                }
-                else if (string.Compare("TypeVersion", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                {
-                    typeVersion = reader.ReadValueAsString();
                 }
                 else if (string.Compare("Status", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -93,7 +88,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 id: id,
                 name: name,
                 typeName: typeName,
-                typeVersion: typeVersion,
                 status: status,
                 workDirectory: workDirectory,
                 logDirectory: logDirectory,
@@ -125,11 +119,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.TypeName != null)
             {
                 writer.WriteProperty(obj.TypeName, "TypeName", JsonWriterExtensions.WriteStringValue);
-            }
-
-            if (obj.TypeVersion != null)
-            {
-                writer.WriteProperty(obj.TypeVersion, "TypeVersion", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.WorkDirectory != null)

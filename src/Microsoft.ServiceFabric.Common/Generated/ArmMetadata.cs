@@ -9,7 +9,7 @@ namespace Microsoft.ServiceFabric.Common
     using System.Collections.Generic;
 
     /// <summary>
-    /// Common ArmMetadata assocaited with Service Fabric Entities.
+    /// Common ArmMetadata associated with Service Fabric Entities.
     /// </summary>
     public partial class ArmMetadata
     {

@@ -230,6 +230,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = FabricEventKind.ClusterUpgradeDomainCompleted;
             }
+            else if (string.Compare(value, "ClusterUpgradesNodesComplete", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.ClusterUpgradesNodesComplete;
+            }
             else if (string.Compare(value, "ClusterUpgradeRollbackCompleted", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ClusterUpgradeRollbackCompleted;
@@ -273,6 +277,42 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (string.Compare(value, "ChaosNodeRestartScheduled", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = FabricEventKind.ChaosNodeRestartScheduled;
+            }
+            else if (string.Compare(value, "ReadinessProbeFailed", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.ReadinessProbeFailed;
+            }
+            else if (string.Compare(value, "LivenessProbeFailed", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.LivenessProbeFailed;
+            }
+            else if (string.Compare(value, "Decision", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.Decision;
+            }
+            else if (string.Compare(value, "BRSWarningCluster", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.BRSWarningCluster;
+            }
+            else if (string.Compare(value, "BRSInfoCluster", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.BRSInfoCluster;
+            }
+            else if (string.Compare(value, "BRSErrorCluster", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.BRSErrorCluster;
+            }
+            else if (string.Compare(value, "BRSWarningPartition", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.BRSWarningPartition;
+            }
+            else if (string.Compare(value, "BRSInfoPartition", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.BRSInfoPartition;
+            }
+            else if (string.Compare(value, "BRSErrorPartition", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = FabricEventKind.BRSErrorPartition;
             }
 
             return obj;
@@ -440,6 +480,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 case FabricEventKind.ClusterUpgradeDomainCompleted:
                     writer.WriteStringValue("ClusterUpgradeDomainCompleted");
                     break;
+                case FabricEventKind.ClusterUpgradesNodesComplete:
+                    writer.WriteStringValue("ClusterUpgradesNodesComplete");
+                    break;
                 case FabricEventKind.ClusterUpgradeRollbackCompleted:
                     writer.WriteStringValue("ClusterUpgradeRollbackCompleted");
                     break;
@@ -472,6 +515,33 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case FabricEventKind.ChaosNodeRestartScheduled:
                     writer.WriteStringValue("ChaosNodeRestartScheduled");
+                    break;
+                case FabricEventKind.ReadinessProbeFailed:
+                    writer.WriteStringValue("ReadinessProbeFailed");
+                    break;
+                case FabricEventKind.LivenessProbeFailed:
+                    writer.WriteStringValue("LivenessProbeFailed");
+                    break;
+                case FabricEventKind.Decision:
+                    writer.WriteStringValue("Decision");
+                    break;
+                case FabricEventKind.BRSWarningCluster:
+                    writer.WriteStringValue("BRSWarningCluster");
+                    break;
+                case FabricEventKind.BRSInfoCluster:
+                    writer.WriteStringValue("BRSInfoCluster");
+                    break;
+                case FabricEventKind.BRSErrorCluster:
+                    writer.WriteStringValue("BRSErrorCluster");
+                    break;
+                case FabricEventKind.BRSWarningPartition:
+                    writer.WriteStringValue("BRSWarningPartition");
+                    break;
+                case FabricEventKind.BRSInfoPartition:
+                    writer.WriteStringValue("BRSInfoPartition");
+                    break;
+                case FabricEventKind.BRSErrorPartition:
+                    writer.WriteStringValue("BRSErrorPartition");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type FabricEventKind");

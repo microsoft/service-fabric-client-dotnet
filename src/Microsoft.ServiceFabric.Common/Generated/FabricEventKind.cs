@@ -266,6 +266,11 @@ namespace Microsoft.ServiceFabric.Common
         ClusterUpgradeDomainCompleted,
 
         /// <summary>
+        /// ClusterUpgradesNodesComplete.
+        /// </summary>
+        ClusterUpgradesNodesComplete,
+
+        /// <summary>
         /// ClusterUpgradeRollbackCompleted.
         /// </summary>
         ClusterUpgradeRollbackCompleted,
@@ -319,5 +324,50 @@ namespace Microsoft.ServiceFabric.Common
         /// ChaosNodeRestartScheduled.
         /// </summary>
         ChaosNodeRestartScheduled,
+
+        /// <summary>
+        /// ReadinessProbeFailed.
+        /// </summary>
+        ReadinessProbeFailed,
+
+        /// <summary>
+        /// LivenessProbeFailed.
+        /// </summary>
+        LivenessProbeFailed,
+
+        /// <summary>
+        /// Decision.
+        /// </summary>
+        Decision,
+
+        /// <summary>
+        /// BRSWarningCluster.
+        /// </summary>
+        BRSWarningCluster,
+
+        /// <summary>
+        /// BRSInfoCluster.
+        /// </summary>
+        BRSInfoCluster,
+
+        /// <summary>
+        /// BRSErrorCluster.
+        /// </summary>
+        BRSErrorCluster,
+
+        /// <summary>
+        /// BRSWarningPartition.
+        /// </summary>
+        BRSWarningPartition,
+
+        /// <summary>
+        /// BRSInfoPartition.
+        /// </summary>
+        BRSInfoPartition,
+
+        /// <summary>
+        /// BRSErrorPartition.
+        /// </summary>
+        BRSErrorPartition,
     }
 }

@@ -38,10 +38,12 @@ namespace Microsoft.ServiceFabric.Client.Http
             string applicationId,
             string serviceTypeName = default(string),
             ContinuationToken continuationToken = default(ContinuationToken),
+            long? maxResults = 0,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             applicationId.ThrowIfNull(nameof(applicationId));
+            maxResults?.ThrowIfLessThan("maxResults", 0);
             serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
             var requestId = Guid.NewGuid().ToString();
             var url = "Applications/{applicationId}/$/GetServices";
@@ -51,8 +53,9 @@ namespace Microsoft.ServiceFabric.Client.Http
             // Append to queryParams if not null.
             serviceTypeName?.AddToQueryParameters(queryParams, $"ServiceTypeName={serviceTypeName}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
+            maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=6.0");
+            queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -517,7 +520,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         /// <inheritdoc />
         public Task UpdateServiceArmMetadataAsync(
             string serviceId,
-            ArmMetadata serviceArmMetadataUpdateDescription,
+            ServiceArmMetadataUpdateDescription serviceArmMetadataUpdateDescription,
             long? serverTimeout = 60,
             bool? force = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
@@ -539,7 +542,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ArmMetadataConverter.Serialize(new JsonTextWriter(sw), serviceArmMetadataUpdateDescription);
+                ServiceArmMetadataUpdateDescriptionConverter.Serialize(new JsonTextWriter(sw), serviceArmMetadataUpdateDescription);
                 content = sw.ToString();
             }
 

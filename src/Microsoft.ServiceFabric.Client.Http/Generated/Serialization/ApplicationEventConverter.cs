@@ -110,6 +110,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return ChaosCodePackageRestartScheduledEventConverter.GetFromJsonProperties(reader);
                     }
+                    else if (propValue.Equals("ReadinessProbeFailed", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return ReadinessProbeFailedEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("LivenessProbeFailed", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return LivenessProbeFailedEventConverter.GetFromJsonProperties(reader);
+                    }
                     else if (propValue.Equals("ApplicationEvent", StringComparison.OrdinalIgnoreCase))
                     {
                         // kind specified as same type, deserialize using properties.

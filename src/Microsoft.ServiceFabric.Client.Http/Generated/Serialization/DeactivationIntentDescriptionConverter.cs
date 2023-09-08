@@ -34,6 +34,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
         internal static DeactivationIntentDescription GetFromJsonProperties(JsonReader reader)
         {
             var deactivationIntent = default(DeactivationIntent?);
+            var deactivationDescription = default(string);
 
             do
             {
@@ -41,6 +42,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 if (string.Compare("DeactivationIntent", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     deactivationIntent = DeactivationIntentConverter.Deserialize(reader);
+                }
+                else if (string.Compare("DeactivationDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    deactivationDescription = reader.ReadValueAsString();
                 }
                 else
                 {
@@ -50,7 +55,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             while (reader.TokenType != JsonToken.EndObject);
 
             return new DeactivationIntentDescription(
-                deactivationIntent: deactivationIntent);
+                deactivationIntent: deactivationIntent,
+                deactivationDescription: deactivationDescription);
         }
 
         /// <summary>
@@ -63,6 +69,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             // Required properties are always serialized, optional properties are serialized when not null.
             writer.WriteStartObject();
             writer.WriteProperty(obj.DeactivationIntent, "DeactivationIntent", DeactivationIntentConverter.Serialize);
+            if (obj.DeactivationDescription != null)
+            {
+                writer.WriteProperty(obj.DeactivationDescription, "DeactivationDescription", JsonWriterExtensions.WriteStringValue);
+            }
+
             writer.WriteEndObject();
         }
     }
