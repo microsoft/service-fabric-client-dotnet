@@ -191,7 +191,7 @@ namespace Microsoft.ServiceFabric.Client.Http
         public Task UpdateApplicationTypeArmMetadataAsync(
             string applicationTypeName,
             string applicationTypeVersion,
-            ArmMetadata applicationTypeArmMetadataUpdateDescription,
+            ApplicationTypeArmMetadataUpdateDescription applicationTypeArmMetadataUpdateDescription,
             long? serverTimeout = 60,
             bool? force = default(bool?),
             CancellationToken cancellationToken = default(CancellationToken))
@@ -215,7 +215,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             string content;
             using (var sw = new StringWriter())
             {
-                ArmMetadataConverter.Serialize(new JsonTextWriter(sw), applicationTypeArmMetadataUpdateDescription);
+                ApplicationTypeArmMetadataUpdateDescriptionConverter.Serialize(new JsonTextWriter(sw), applicationTypeArmMetadataUpdateDescription);
                 content = sw.ToString();
             }
 
@@ -264,49 +264,6 @@ namespace Microsoft.ServiceFabric.Client.Http
             }
 
             return this.httpClient.SendAsyncGetResponse(RequestFunc, url, ApplicationTypeManifestConverter.Deserialize, requestId, cancellationToken);
-        }
-
-        /// <inheritdoc />
-        public Task UpdateApplicationArmMetadataAsync(
-            string applicationId,
-            ArmMetadata applicationArmMetadataUpdateDescription,
-            long? serverTimeout = 60,
-            bool? force = default(bool?),
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            applicationId.ThrowIfNull(nameof(applicationId));
-            applicationArmMetadataUpdateDescription.ThrowIfNull(nameof(applicationArmMetadataUpdateDescription));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "Applications/{applicationId}/$/UpdateArmMetadata";
-            url = url.Replace("{applicationId}", applicationId);
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            force?.AddToQueryParameters(queryParams, $"Force={force}");
-            queryParams.Add("api-version=9.0");
-            url += "?" + string.Join("&", queryParams);
-            
-            string content;
-            using (var sw = new StringWriter())
-            {
-                ArmMetadataConverter.Serialize(new JsonTextWriter(sw), applicationArmMetadataUpdateDescription);
-                content = sw.ToString();
-            }
-
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Post,
-                    Content = new StringContent(content, Encoding.UTF8),
-                };
-                request.Content.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json; charset=utf-8");
-                return request;
-            }
-
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
     }
 }

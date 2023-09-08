@@ -44,12 +44,22 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string ServiceTypeName { get; set; }
 
         /// <summary>
+        /// Gets or sets MaxResults. The maximum number of results to be returned as part of the paged queries. This parameter
+        /// defines the upper bound on the number of results returned. The results returned can be less than the specified
+        /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
+        /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
+        /// that fit in the return message.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceInfoList")]
+        public long? MaxResults { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceInfoList")]
-        [Parameter(Mandatory = false, Position = 3, ParameterSetName = "GetServiceInfo")]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetServiceInfoList")]
+        [Parameter(Mandatory = false, Position = 4, ParameterSetName = "GetServiceInfo")]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -64,6 +74,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                         applicationId: this.ApplicationId,
                         serviceTypeName: this.ServiceTypeName,
                         continuationToken: continuationToken,
+                        maxResults: this.MaxResults,
                         serverTimeout: this.ServerTimeout,
                         cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 

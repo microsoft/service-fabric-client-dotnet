@@ -3159,6 +3159,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="2">
+                <maml:name>DeactivationDescription</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Describes the reason or more information about node deactivation. Maximum  number of characters allowed is 200.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -4006,75 +4018,6 @@
             <command:parameterValue required="false">long?</command:parameterValue>
                 <dev:type>
                     <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            </command:parameters>
-    </command:command>
-    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-            <command:details>
-                <command:name>Update-SFApplicationArmMetadata</command:name>
-                <command:verb>Update</command:verb>
-                <command:noun>ApplicationArmMetadata</command:noun>
-                <maml:description>
-                    <maml:para>Updates the Arm Metadata for a specific Application.</maml:para>
-                </maml:description>
-            </command:details>
-            <command:syntax>
-            </command:syntax>
-            <maml:description>
-                <maml:para>Updates the Arm Metadata for a specific Application. Is able to be called immediately after the create app API is called.  
-                </maml:para>
-            </maml:description>
-            <command:parameters>
-            <command:parameter required="true" position="0">
-                <maml:name>ApplicationId</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The identity of the application. This is typically the full name of the application without the 'fabric:' URI scheme.
-                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
-                    For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in 6.0+ and "myapp/app1" in previous versions.
-                    
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="true">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="1">
-                <maml:name>ArmResourceId</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    A string containing the ArmResourceId.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">string</command:parameterValue>
-                <dev:type>
-                    <maml:name>string</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="2">
-                <maml:name>ServerTimeout</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">long?</command:parameterValue>
-                <dev:type>
-                    <maml:name>long?</maml:name>
-                </dev:type>
-            </command:parameter>
-            <command:parameter required="false" position="3">
-                <maml:name>Force</maml:name>
-                <maml:Description>
-                    <maml:para>
-                    Force parameter used to prevent accidental Arm metadata update.
-                    </maml:para>
-                </maml:Description>
-            <command:parameterValue required="false">bool?</command:parameterValue>
-                <dev:type>
-                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             </command:parameters>
@@ -6468,6 +6411,75 @@
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
+                <command:name>Update-SFApplicationArmMetadata</command:name>
+                <command:verb>Update</command:verb>
+                <command:noun>ApplicationArmMetadata</command:noun>
+                <maml:description>
+                    <maml:para>Updates the Arm Metadata for a specific Application.</maml:para>
+                </maml:description>
+            </command:details>
+            <command:syntax>
+            </command:syntax>
+            <maml:description>
+                <maml:para>Updates the Arm Metadata for a specific Application. Is able to be called immediately after the create app API is called.  
+                </maml:para>
+            </maml:description>
+            <command:parameters>
+            <command:parameter required="true" position="0">
+                <maml:name>ApplicationId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The identity of the application. This is typically the full name of the application without the 'fabric:' URI scheme.
+                    Starting from version 6.0, hierarchical names are delimited with the "~" character.
+                    For example, if the application name is "fabric:/myapp/app1", the application identity would be "myapp~app1" in 6.0+ and "myapp/app1" in previous versions.
+                    
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="true">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="1">
+                <maml:name>ArmResourceId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    A string containing the ArmResourceId.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">string</command:parameterValue>
+                <dev:type>
+                    <maml:name>string</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="2">
+                <maml:name>ServerTimeout</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="3">
+                <maml:name>Force</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Force parameter used to prevent accidental Arm metadata update.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+            <command:details>
                 <command:name>Get-SFService</command:name>
                 <command:verb>Get</command:verb>
                 <command:noun>Service</command:noun>
@@ -6483,6 +6495,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServiceTypeName</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>MaxResults</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServerTimeout</maml:name>
@@ -6548,6 +6563,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="3">
+                <maml:name>MaxResults</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The maximum number of results to be returned as part of the paged queries. This parameter defines the upper bound on the number of results returned. The results returned can be less than the specified maximum results if they do not fit in the message as per the max message size restrictions defined in the configuration. If this parameter is zero or not specified, the paged query includes as many results as possible that fit in the return message.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">long?</command:parameterValue>
+                <dev:type>
+                    <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="4">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>

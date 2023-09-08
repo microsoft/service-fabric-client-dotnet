@@ -50,6 +50,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var exitCode = default(long?);
             var unexpectedTermination = default(bool?);
             var startTime = default(DateTime?);
+            var exitReason = default(string);
+            var nodeId = default(NodeId);
+            var nodeInstanceId = default(long?);
 
             do
             {
@@ -122,6 +125,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     startTime = reader.ReadValueAsDateTime();
                 }
+                else if (string.Compare("ExitReason", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    exitReason = reader.ReadValueAsString();
+                }
+                else if (string.Compare("NodeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    nodeId = NodeIdConverter.Deserialize(reader);
+                }
+                else if (string.Compare("NodeInstanceId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    nodeInstanceId = reader.ReadValueAsLong();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -146,7 +161,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 hostId: hostId,
                 exitCode: exitCode,
                 unexpectedTermination: unexpectedTermination,
-                startTime: startTime);
+                startTime: startTime,
+                exitReason: exitReason,
+                nodeId: nodeId,
+                nodeInstanceId: nodeInstanceId);
         }
 
         /// <summary>
@@ -174,6 +192,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.ExitCode, "ExitCode", JsonWriterExtensions.WriteLongValue);
             writer.WriteProperty(obj.UnexpectedTermination, "UnexpectedTermination", JsonWriterExtensions.WriteBoolValue);
             writer.WriteProperty(obj.StartTime, "StartTime", JsonWriterExtensions.WriteDateTimeValue);
+            writer.WriteProperty(obj.NodeId, "NodeId", NodeIdConverter.Serialize);
+            writer.WriteProperty(obj.NodeInstanceId, "NodeInstanceId", JsonWriterExtensions.WriteLongValue);
             if (obj.Category != null)
             {
                 writer.WriteProperty(obj.Category, "Category", JsonWriterExtensions.WriteStringValue);
@@ -182,6 +202,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.HasCorrelatedEvents != null)
             {
                 writer.WriteProperty(obj.HasCorrelatedEvents, "HasCorrelatedEvents", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.ExitReason != null)
+            {
+                writer.WriteProperty(obj.ExitReason, "ExitReason", JsonWriterExtensions.WriteStringValue);
             }
 
             writer.WriteEndObject();

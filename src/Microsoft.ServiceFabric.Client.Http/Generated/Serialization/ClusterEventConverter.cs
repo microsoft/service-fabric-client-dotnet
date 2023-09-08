@@ -81,6 +81,26 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     {
                         return ChaosStartedEventConverter.GetFromJsonProperties(reader);
                     }
+                    else if (propValue.Equals("Decision", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return DecisionEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("ClusterUpgradesNodesComplete", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return ClusterUpgradesNodesCompleteEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("BRSWarningCluster", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BRSWarningClusterEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("BRSInfoCluster", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BRSInfoClusterEventConverter.GetFromJsonProperties(reader);
+                    }
+                    else if (propValue.Equals("BRSErrorCluster", StringComparison.OrdinalIgnoreCase))
+                    {
+                        return BRSErrorClusterEventConverter.GetFromJsonProperties(reader);
+                    }
                     else if (propValue.Equals("ClusterEvent", StringComparison.OrdinalIgnoreCase))
                     {
                         // kind specified as same type, deserialize using properties.

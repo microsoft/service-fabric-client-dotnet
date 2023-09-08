@@ -31,6 +31,12 @@ namespace Microsoft.ServiceFabric.Common
         /// replica gets dropped and another replica gets created on the same node for the same partition, it will get a
         /// different value for the id. Sometimes the id of a stateless service instance is also referred as a replica
         /// id.</param>
+        /// <param name="previousReplicaRole">The previous role of a replica of a stateful service during a reconfiguration.
+        /// Possible values include: 'Unknown', 'None', 'Primary', 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary',
+        /// 'ActiveAuxiliary', 'PrimaryAuxiliary'
+        /// 
+        /// The role of a replica of a stateful service.
+        /// </param>
         public StatefulServiceReplicaInfo(
             ReplicaStatus? replicaStatus = default(ReplicaStatus?),
             HealthState? healthState = default(HealthState?),
@@ -38,7 +44,8 @@ namespace Microsoft.ServiceFabric.Common
             string address = default(string),
             string lastInBuildDurationInSeconds = default(string),
             ReplicaRole? replicaRole = default(ReplicaRole?),
-            ReplicaId replicaId = default(ReplicaId))
+            ReplicaId replicaId = default(ReplicaId),
+            ReplicaRole? previousReplicaRole = default(ReplicaRole?))
             : base(
                 Common.ServiceKind.Stateful,
                 replicaStatus,
@@ -49,6 +56,7 @@ namespace Microsoft.ServiceFabric.Common
         {
             this.ReplicaRole = replicaRole;
             this.ReplicaId = replicaId;
+            this.PreviousReplicaRole = previousReplicaRole;
         }
 
         /// <summary>
@@ -64,5 +72,14 @@ namespace Microsoft.ServiceFabric.Common
         /// the id. Sometimes the id of a stateless service instance is also referred as a replica id.
         /// </summary>
         public ReplicaId ReplicaId { get; }
+
+        /// <summary>
+        /// Gets the previous role of a replica of a stateful service during a reconfiguration. Possible values include:
+        /// 'Unknown', 'None', 'Primary', 'IdleSecondary', 'ActiveSecondary', 'IdleAuxiliary', 'ActiveAuxiliary',
+        /// 'PrimaryAuxiliary'
+        /// 
+        /// The role of a replica of a stateful service.
+        /// </summary>
+        public ReplicaRole? PreviousReplicaRole { get; }
     }
 }

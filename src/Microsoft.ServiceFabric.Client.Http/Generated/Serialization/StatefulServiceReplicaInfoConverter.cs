@@ -40,6 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var lastInBuildDurationInSeconds = default(string);
             var replicaRole = default(ReplicaRole?);
             var replicaId = default(ReplicaId);
+            var previousReplicaRole = default(ReplicaRole?);
 
             do
             {
@@ -72,6 +73,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     replicaId = ReplicaIdConverter.Deserialize(reader);
                 }
+                else if (string.Compare("PreviousReplicaRole", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    previousReplicaRole = ReplicaRoleConverter.Deserialize(reader);
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -86,7 +91,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 address: address,
                 lastInBuildDurationInSeconds: lastInBuildDurationInSeconds,
                 replicaRole: replicaRole,
-                replicaId: replicaId);
+                replicaId: replicaId,
+                previousReplicaRole: previousReplicaRole);
         }
 
         /// <summary>
@@ -102,6 +108,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.ReplicaStatus, "ReplicaStatus", ReplicaStatusConverter.Serialize);
             writer.WriteProperty(obj.HealthState, "HealthState", HealthStateConverter.Serialize);
             writer.WriteProperty(obj.ReplicaRole, "ReplicaRole", ReplicaRoleConverter.Serialize);
+            writer.WriteProperty(obj.PreviousReplicaRole, "PreviousReplicaRole", ReplicaRoleConverter.Serialize);
             if (obj.NodeName != null)
             {
                 writer.WriteProperty(obj.NodeName, "NodeName", NodeNameConverter.Serialize);

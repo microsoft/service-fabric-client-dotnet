@@ -381,7 +381,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             eventsTypesFilter?.AddToQueryParameters(queryParams, $"EventsTypesFilter={eventsTypesFilter}");
             excludeAnalysisEvents?.AddToQueryParameters(queryParams, $"ExcludeAnalysisEvents={excludeAnalysisEvents}");
             skipCorrelationLookup?.AddToQueryParameters(queryParams, $"SkipCorrelationLookup={skipCorrelationLookup}");
-            queryParams.Add("api-version=6.4");
+            queryParams.Add("api-version=7.2");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()
@@ -420,7 +420,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             eventsTypesFilter?.AddToQueryParameters(queryParams, $"EventsTypesFilter={eventsTypesFilter}");
             excludeAnalysisEvents?.AddToQueryParameters(queryParams, $"ExcludeAnalysisEvents={excludeAnalysisEvents}");
             skipCorrelationLookup?.AddToQueryParameters(queryParams, $"SkipCorrelationLookup={skipCorrelationLookup}");
-            queryParams.Add("api-version=6.4");
+            queryParams.Add("api-version=7.2");
             url += "?" + string.Join("&", queryParams);
             
             HttpRequestMessage RequestFunc()

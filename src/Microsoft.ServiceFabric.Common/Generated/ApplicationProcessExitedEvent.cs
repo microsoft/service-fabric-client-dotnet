@@ -36,8 +36,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="exitCode">Exit code of process.</param>
         /// <param name="unexpectedTermination">Indicates if termination is unexpected.</param>
         /// <param name="startTime">Start time of process.</param>
+        /// <param name="nodeId">An internal ID used by Service Fabric to uniquely identify a node. Node Id is
+        /// deterministically generated from node name.</param>
+        /// <param name="nodeInstanceId">the ID of a Node Instance</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
+        /// <param name="exitReason">reason for exit</param>
         public ApplicationProcessExitedEvent(
             Guid? eventInstanceId,
             DateTime? timeStamp,
@@ -54,8 +58,11 @@ namespace Microsoft.ServiceFabric.Common
             long? exitCode,
             bool? unexpectedTermination,
             DateTime? startTime,
+            NodeId nodeId,
+            long? nodeInstanceId,
             string category = default(string),
-            bool? hasCorrelatedEvents = default(bool?))
+            bool? hasCorrelatedEvents = default(bool?),
+            string exitReason = default(string))
             : base(
                 eventInstanceId,
                 timeStamp,
@@ -76,6 +83,8 @@ namespace Microsoft.ServiceFabric.Common
             exitCode.ThrowIfNull(nameof(exitCode));
             unexpectedTermination.ThrowIfNull(nameof(unexpectedTermination));
             startTime.ThrowIfNull(nameof(startTime));
+            nodeId.ThrowIfNull(nameof(nodeId));
+            nodeInstanceId.ThrowIfNull(nameof(nodeInstanceId));
             this.ServiceName = serviceName;
             this.ServicePackageName = servicePackageName;
             this.ServicePackageActivationId = servicePackageActivationId;
@@ -88,6 +97,9 @@ namespace Microsoft.ServiceFabric.Common
             this.ExitCode = exitCode;
             this.UnexpectedTermination = unexpectedTermination;
             this.StartTime = startTime;
+            this.NodeId = nodeId;
+            this.NodeInstanceId = nodeInstanceId;
+            this.ExitReason = exitReason;
         }
 
         /// <summary>
@@ -149,5 +161,21 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets start time of process.
         /// </summary>
         public DateTime? StartTime { get; }
+
+        /// <summary>
+        /// Gets reason for exit
+        /// </summary>
+        public string ExitReason { get; }
+
+        /// <summary>
+        /// Gets an internal ID used by Service Fabric to uniquely identify a node. Node Id is deterministically generated from
+        /// node name.
+        /// </summary>
+        public NodeId NodeId { get; }
+
+        /// <summary>
+        /// Gets the ID of a Node Instance
+        /// </summary>
+        public long? NodeInstanceId { get; }
     }
 }

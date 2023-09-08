@@ -52,9 +52,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             var armMetadata = new ArmMetadata(
             armResourceId: this.ArmResourceId);
 
+            var serviceArmMetadataUpdateDescription = new ServiceArmMetadataUpdateDescription(
+            armMetadata: armMetadata);
+
             this.ServiceFabricClient.Services.UpdateServiceArmMetadataAsync(
                 serviceId: this.ServiceId,
-                serviceArmMetadataUpdateDescription: armMetadata,
+                serviceArmMetadataUpdateDescription: serviceArmMetadataUpdateDescription,
                 serverTimeout: this.ServerTimeout,
                 force: this.Force,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();

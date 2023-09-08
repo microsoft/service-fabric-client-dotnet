@@ -289,6 +289,46 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ChaosNodeRestartScheduledEventConverter.GetFromJsonProperties(reader);
             }
+            else if (propValue.Equals("ReadinessProbeFailed", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ReadinessProbeFailedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("LivenessProbeFailed", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = LivenessProbeFailedEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("Decision", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = DecisionEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("ClusterUpgradesNodesComplete", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = ClusterUpgradesNodesCompleteEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("BRSWarningCluster", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = BRSWarningClusterEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("BRSInfoCluster", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = BRSInfoClusterEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("BRSErrorCluster", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = BRSErrorClusterEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("BRSWarningPartition", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = BRSWarningPartitionEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("BRSInfoPartition", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = BRSInfoPartitionEventConverter.GetFromJsonProperties(reader);
+            }
+            else if (propValue.Equals("BRSErrorPartition", StringComparison.OrdinalIgnoreCase))
+            {
+                obj = BRSErrorPartitionEventConverter.GetFromJsonProperties(reader);
+            }
             else
             {
                 throw new InvalidOperationException("Unknown Kind.");
@@ -552,6 +592,46 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             else if (kind.Equals(FabricEventKind.ChaosNodeRestartScheduled))
             {
                 ChaosNodeRestartScheduledEventConverter.Serialize(writer, (ChaosNodeRestartScheduledEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.ReadinessProbeFailed))
+            {
+                ReadinessProbeFailedEventConverter.Serialize(writer, (ReadinessProbeFailedEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.LivenessProbeFailed))
+            {
+                LivenessProbeFailedEventConverter.Serialize(writer, (LivenessProbeFailedEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.Decision))
+            {
+                DecisionEventConverter.Serialize(writer, (DecisionEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.ClusterUpgradesNodesComplete))
+            {
+                ClusterUpgradesNodesCompleteEventConverter.Serialize(writer, (ClusterUpgradesNodesCompleteEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.BRSWarningCluster))
+            {
+                BRSWarningClusterEventConverter.Serialize(writer, (BRSWarningClusterEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.BRSInfoCluster))
+            {
+                BRSInfoClusterEventConverter.Serialize(writer, (BRSInfoClusterEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.BRSErrorCluster))
+            {
+                BRSErrorClusterEventConverter.Serialize(writer, (BRSErrorClusterEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.BRSWarningPartition))
+            {
+                BRSWarningPartitionEventConverter.Serialize(writer, (BRSWarningPartitionEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.BRSInfoPartition))
+            {
+                BRSInfoPartitionEventConverter.Serialize(writer, (BRSInfoPartitionEvent)obj);
+            }
+            else if (kind.Equals(FabricEventKind.BRSErrorPartition))
+            {
+                BRSErrorPartitionEventConverter.Serialize(writer, (BRSErrorPartitionEvent)obj);
             }
             else
             {

@@ -17,7 +17,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the ApplicationTypeMetadata class.
         /// </summary>
         /// <param name="applicationTypeProvisionTimestamp">The timestamp when the application type was provisioned.</param>
-        /// <param name="armMetadata">Common ArmMetadata assocaited with Service Fabric Entities.</param>
+        /// <param name="armMetadata">Common ArmMetadata associated with Service Fabric Entities.</param>
         public ApplicationTypeMetadata(
             string applicationTypeProvisionTimestamp = default(string),
             ArmMetadata armMetadata = default(ArmMetadata))
@@ -32,7 +32,7 @@ namespace Microsoft.ServiceFabric.Common
         public string ApplicationTypeProvisionTimestamp { get; }
 
         /// <summary>
-        /// Gets common ArmMetadata assocaited with Service Fabric Entities.
+        /// Gets common ArmMetadata associated with Service Fabric Entities.
         /// </summary>
         public ArmMetadata ArmMetadata { get; }
     }

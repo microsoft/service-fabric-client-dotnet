@@ -51,6 +51,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var failureReason = default(FailureReason?);
             var upgradeDomainProgressAtFailure = default(FailedUpgradeDomainProgressObject);
             var isNodeByNode = default(bool?);
+            var healthCheckElapsedTime = default(string);
+            var healthCheckPhase = default(MonitoredUpgradeHealthCheckPhase?);
+            var healthCheckRetryFlips = default(int?);
 
             do
             {
@@ -127,6 +130,18 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     isNodeByNode = reader.ReadValueAsBool();
                 }
+                else if (string.Compare("HealthCheckElapsedTime", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    healthCheckElapsedTime = reader.ReadValueAsString();
+                }
+                else if (string.Compare("HealthCheckPhase", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    healthCheckPhase = MonitoredUpgradeHealthCheckPhaseConverter.Deserialize(reader);
+                }
+                else if (string.Compare("HealthCheckRetryFlips", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    healthCheckRetryFlips = reader.ReadValueAsInt();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -152,7 +167,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 failureTimestampUtc: failureTimestampUtc,
                 failureReason: failureReason,
                 upgradeDomainProgressAtFailure: upgradeDomainProgressAtFailure,
-                isNodeByNode: isNodeByNode);
+                isNodeByNode: isNodeByNode,
+                healthCheckElapsedTime: healthCheckElapsedTime,
+                healthCheckPhase: healthCheckPhase,
+                healthCheckRetryFlips: healthCheckRetryFlips);
         }
 
         /// <summary>
@@ -167,6 +185,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.UpgradeState, "UpgradeState", UpgradeStateConverter.Serialize);
             writer.WriteProperty(obj.RollingUpgradeMode, "RollingUpgradeMode", UpgradeModeConverter.Serialize);
             writer.WriteProperty(obj.FailureReason, "FailureReason", FailureReasonConverter.Serialize);
+            writer.WriteProperty(obj.HealthCheckPhase, "HealthCheckPhase", MonitoredUpgradeHealthCheckPhaseConverter.Serialize);
             if (obj.CodeVersion != null)
             {
                 writer.WriteProperty(obj.CodeVersion, "CodeVersion", JsonWriterExtensions.WriteStringValue);
@@ -240,6 +259,16 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.IsNodeByNode != null)
             {
                 writer.WriteProperty(obj.IsNodeByNode, "IsNodeByNode", JsonWriterExtensions.WriteBoolValue);
+            }
+
+            if (obj.HealthCheckElapsedTime != null)
+            {
+                writer.WriteProperty(obj.HealthCheckElapsedTime, "HealthCheckElapsedTime", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.HealthCheckRetryFlips != null)
+            {
+                writer.WriteProperty(obj.HealthCheckRetryFlips, "HealthCheckRetryFlips", JsonWriterExtensions.WriteIntValue);
             }
 
             writer.WriteEndObject();
