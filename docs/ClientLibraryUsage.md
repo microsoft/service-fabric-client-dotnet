@@ -75,8 +75,28 @@ public static async Task<string> GetAccessTokenAsync(CancellationToken cancellat
 {
     // get token from azure active directory using Active Directory APIs
     var authority = @"https://login.microsoftonline.com/" + "tenant_Id";
-    var authContext = new AuthenticationContext(authority);
-    var authResult = await authContext.AcquireTokenAsync("resource_Id", "client_Id", new UserCredential());
+    var clientId = "client_Id";
+    var pca = PublicClientApplicationBuilder
+                                    .Create(client_Id)
+                                    .WithBroker()
+                                    .Build();
+
+    var accounts = await pca.GetAccountsAsync();
+    AuthenticationResult authResult;
+
+    // On full .net framework, use interactive logon to get token.
+    // On dotnet core, acquire token using device id.
+    // https://learn.microsoft.com/en-us/azure/active-directory/develop/scenario-desktop-acquire-token-device-code-flow?tabs=dotnet
+    var scopes = new string[] { $"{client_Id}/.default" };
+    try
+    {
+        authResult = await pca.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+    }
+    catch (MsalUiRequiredException)
+    { 
+        authResult = await pca.AcquireTokenInteractive(scopes).ExecuteAsync();
+    }
+
     return authResult.AccessToken;
 }
 ```
@@ -98,10 +118,29 @@ Func<CancellationToken, Task<SecuritySettings>> GetSecurityCredentials = (ct) =>
 
 public static async Task<string> GetAccessTokenAsync(AadMetadata aad, CancellationToken cancellationToken)
 {
-    // get token from azure active directory using Active Directory APIs
-    var authContext = new AuthenticationContext(aad.Authority);
-    var authResult = await authContext.AcquireTokenAsync(aad.Cluster, aad.Client, new UserCredential());
-    return authResult.AccessToken;
+            var pca = PublicClientApplicationBuilder
+                                            .Create(aad.Client)
+                                            .WithAuthority(aad.Authority)
+                                            .WithRedirectUri(aad.Redirect)
+                                            .Build();
+
+            var accounts = await pca.GetAccountsAsync();
+            AuthenticationResult authResult;
+
+            // On full .net framework, use interactive logon to get token.
+            // On dotnet core, acquire token using device id.
+            // https://learn.microsoft.com/en-us/azure/active-directory/develop/scenario-desktop-acquire-token-device-code-flow?tabs=dotnet
+            var scopes = new string[] { $"{aad.Cluster}/.default" };
+            try
+            {
+                authResult = await pca.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+            }
+            catch (MsalUiRequiredException)
+            { 
+                authResult = await pca.AcquireTokenInteractive(scopes).ExecuteAsync();
+            }
+
+            return authResult.AccessToken;
 }
 
 ```
