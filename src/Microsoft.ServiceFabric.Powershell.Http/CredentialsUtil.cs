@@ -24,11 +24,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             var pca = PublicClientApplicationBuilder
                                             .Create(aad.Client)
-                                            .WithAuthority(aad.Authority)
-                                            .WithRedirectUri(aad.Redirect)
-                                            .Build();
+                                            .WithAuthority(aad.Authority).WithRedirectUri(aad.Redirect)
 
-            var accounts = await pca.GetAccountsAsync();
+                                            .Build();
+            var account = pca.GetAccountAsync(aad.Client)
+                .ConfigureAwait(false)
+                .GetAwaiter()
+                .GetResult();
             AuthenticationResult authResult;
 
             // On full .net framework, use interactive logon to get token.
@@ -37,13 +39,13 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             var scopes = new string[] { $"{aad.Cluster}/.default" };
             try
             {
-                authResult = await pca.AcquireTokenSilent(scopes, accounts.FirstOrDefault()).ExecuteAsync();
+                authResult = await pca.AcquireTokenSilent(scopes, account).ExecuteAsync();
             }
             catch (MsalUiRequiredException)
             { 
                 try
                 {
-                    authResult = await pca.AcquireTokenInteractive(scopes).ExecuteAsync();
+                    authResult = await pca.AcquireTokenInteractive(scopes).WithAccount(account).ExecuteAsync();
                 }
                 catch (Exception ex)
                 {
