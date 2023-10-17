@@ -24,9 +24,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             var pca = PublicClientApplicationBuilder
                                             .Create(aad.Client)
-                                            .WithAuthority(aad.Authority).WithRedirectUri(aad.Redirect)
+                                            .WithAuthority(aad.Authority)
+                                           .Build();
+/*            .WithRedirectUri(aad.Redirect)
+*/
 
-                                            .Build();
+            Console.WriteLine(aad.Client);
+            Console.WriteLine(aad.Authority);
+            Console.WriteLine(aad.Redirect);
+
             var account = pca.GetAccountAsync(aad.Client)
                 .ConfigureAwait(false)
                 .GetAwaiter()
@@ -45,7 +51,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             { 
                 try
                 {
-                    authResult = await pca.AcquireTokenInteractive(scopes).WithAccount(account).ExecuteAsync();
+                    authResult = await pca.AcquireTokenInteractive(scopes).WithUseEmbeddedWebView(false).ExecuteAsync();
                 }
                 catch (Exception ex)
                 {
