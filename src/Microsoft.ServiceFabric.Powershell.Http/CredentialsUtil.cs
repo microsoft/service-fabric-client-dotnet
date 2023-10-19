@@ -22,22 +22,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
     {
         public static async Task<string> GetAccessTokenAsync(AadMetadata aad, CancellationToken cancellationToken)
         {
-            var pca = PublicClientApplicationBuilder
-                                            .Create(aad.Client)
-                                            .WithAuthority(aad.Authority)
-                                           .Build();
-/*            .WithRedirectUri(aad.Redirect)
-*/
+            var pca = PublicClientApplicationBuilder.Create(aad.Client).WithAuthority(aad.Authority).Build();
 
-            Console.WriteLine(aad.Client);
-            Console.WriteLine(aad.Authority);
-            Console.WriteLine(aad.Redirect);
-
-            var account = pca.GetAccountAsync(aad.Client)
-                .ConfigureAwait(false)
-                .GetAwaiter()
-                .GetResult();
-            AuthenticationResult authResult;
+            var account = await pca.GetAccountAsync(aad.Client);
 
             // On full .net framework, use interactive logon to get token.
             // On dotnet core, acquire token using device id.
@@ -45,23 +32,48 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             var scopes = new string[] { $"{aad.Cluster}/.default" };
             try
             {
-                authResult = await pca.AcquireTokenSilent(scopes, account).ExecuteAsync();
+                var silentAuthResult = await pca.AcquireTokenSilent(scopes, account).ExecuteAsync();
+                return silentAuthResult.AccessToken;
             }
             catch (MsalUiRequiredException)
-            { 
+            {
                 try
                 {
-                    authResult = await pca.AcquireTokenInteractive(scopes).WithUseEmbeddedWebView(false).ExecuteAsync();
+                    var interactiveAuthResult = await pca.AcquireTokenInteractive(scopes).WithAccount(account).ExecuteAsync();
+                    return interactiveAuthResult.AccessToken;
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(Resource.ErrorAAD);
                     Console.WriteLine("Message: " + ex.Message + "\n");
-                    throw ex;
+                    Console.WriteLine("Attempting Device Code Login");
+                    try
+                    {
+                        var deviceCodeAuthResult = await pca.AcquireTokenWithDeviceCode(scopes, deviceCodeResult =>
+                        {
+                            // This will print the message on the console which tells the user where to go sign-in using
+                            // a separate browser and the code to enter once they sign in.
+                            // The AcquireTokenWithDeviceCode() method will poll the server after firing this
+                            // device code callback to look for the successful login of the user via that browser.
+                            // This background polling (whose interval and timeout data is also provided as fields in the
+                            // deviceCodeCallback class) will occur until:
+                            // * The user has successfully logged in via browser and entered the proper code
+                            // * The timeout specified by the server for the lifetime of this code (typically ~15 minutes) has been reached
+                            // * The developing application calls the Cancel() method on a CancellationToken sent into the method.
+                            //   If this occurs, an OperationCanceledException will be thrown (see catch below for more details).
+                            Console.WriteLine(deviceCodeResult.Message);
+                            return Task.FromResult(0);
+                        }).ExecuteAsync();
+
+                        return deviceCodeAuthResult.AccessToken;
+                    }
+                    catch (Exception ex2)
+                    {
+                        Console.WriteLine("Message: " + ex2.Message + "\n");
+                        throw;
+                    }
                 }
             }
-
-            return authResult.AccessToken;
         }
 
         public static X509Certificate2 GetCertificate(StoreLocation storeLocation, string storeName, object findValue, X509FindType findType)
