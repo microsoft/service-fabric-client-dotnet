@@ -23,12 +23,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public static async Task<string> GetAccessTokenAsync(AadMetadata aad, CancellationToken cancellationToken)
         {
             var pca = PublicClientApplicationBuilder.Create(aad.Client).WithAuthority(aad.Authority).Build();
-
             var account = await pca.GetAccountAsync(aad.Client);
-
-            // On full .net framework, use interactive logon to get token.
-            // On dotnet core, acquire token using device id.
-            // https://learn.microsoft.com/en-us/azure/active-directory/develop/scenario-desktop-acquire-token-device-code-flow?tabs=dotnet
             var scopes = new string[] { $"{aad.Cluster}/.default" };
             try
             {
@@ -67,9 +62,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
 
                         return deviceCodeAuthResult.AccessToken;
                     }
-                    catch (Exception ex2)
+                    catch (Exception deviceCodeError)
                     {
-                        Console.WriteLine("Message: " + ex2.Message + "\n");
+                        Console.WriteLine("Message: " + deviceCodeError.Message + "\n");
                         throw;
                     }
                 }
