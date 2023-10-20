@@ -33,7 +33,6 @@
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\YamlDotNet.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.CSharp.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.Identity.Client.*"/>
-      <BinairesPSModuleNetFramework Include="$(RepoRoot)src\netframework\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)\Microsoft.IdentityModel.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.*"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\settings.json"/>
       <BinairesPSModuleNetFramework Include="$(RepoRoot)refs\SfSbzYamlMergeLib.*"/>

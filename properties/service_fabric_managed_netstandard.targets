@@ -43,7 +43,6 @@
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Newtonsoft.Json.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\YamlDotNet.dll"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.Identity.Client.dll"/>
-      <BinairesPSModuleNetStandard Include="$(RepoRoot)src\Microsoft.ServiceFabric.Powershell.Http\$(OutputPath)Publish\Microsoft.IdentityModel.*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\Microsoft.ServiceFabric.YamlUtils.*"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\settings.json"/>
       <BinairesPSModuleNetStandard Include="$(RepoRoot)refs\SfSbzYamlMergeLib.*"/>
