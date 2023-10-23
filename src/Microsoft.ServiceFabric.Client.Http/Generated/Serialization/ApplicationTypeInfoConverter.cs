@@ -40,7 +40,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var statusDetails = default(string);
             var applicationTypeDefinitionKind = default(ApplicationTypeDefinitionKind?);
             var applicationTypeMetadata = default(ApplicationTypeMetadata);
-            var managedKeyVaultReferenceParameterList = default(IEnumerable<ManagedKeyVaultReferenceParameter>);
+            var managedKeyVaultReferenceParameters = default(IEnumerable<ManagedKeyVaultReferenceParameter>);
 
             do
             {
@@ -73,9 +73,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     applicationTypeMetadata = ApplicationTypeMetadataConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ManagedKeyVaultReferenceParameterList", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare("ManagedKeyVaultReferenceParameters", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    managedKeyVaultReferenceParameterList = reader.ReadList(ManagedKeyVaultReferenceParameterConverter.Deserialize);
+                    managedKeyVaultReferenceParameters = reader.ReadList(ManagedKeyVaultReferenceParameterConverter.Deserialize);
                 }
                 else
                 {
@@ -92,7 +92,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 statusDetails: statusDetails,
                 applicationTypeDefinitionKind: applicationTypeDefinitionKind,
                 applicationTypeMetadata: applicationTypeMetadata,
-                managedKeyVaultReferenceParameterList: managedKeyVaultReferenceParameterList);
+                managedKeyVaultReferenceParameters: managedKeyVaultReferenceParameters);
         }
 
         /// <summary>
@@ -131,9 +131,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.ApplicationTypeMetadata, "ApplicationTypeMetadata", ApplicationTypeMetadataConverter.Serialize);
             }
 
-            if (obj.ManagedKeyVaultReferenceParameterList != null)
+            if (obj.ManagedKeyVaultReferenceParameters != null)
             {
-                writer.WriteEnumerableProperty(obj.ManagedKeyVaultReferenceParameterList, "ManagedKeyVaultReferenceParameterList", ManagedKeyVaultReferenceParameterConverter.Serialize);
+                writer.WriteEnumerableProperty(obj.ManagedKeyVaultReferenceParameters, "ManagedKeyVaultReferenceParameters", ManagedKeyVaultReferenceParameterConverter.Serialize);
             }
 
             writer.WriteEndObject();

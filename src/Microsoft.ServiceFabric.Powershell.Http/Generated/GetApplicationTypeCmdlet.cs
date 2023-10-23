@@ -139,8 +139,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         {
             var outputResult = output as ApplicationTypeInfo;
 
-            var managedKeyVaultReferenceParameterListObj = new PSObject(outputResult.ManagedKeyVaultReferenceParameterList);
-            managedKeyVaultReferenceParameterListObj.Members.Add(new PSCodeMethod("ToString", typeof(OutputFormatter).GetMethod("FormatObject")));
+            var managedKeyVaultReferenceParametersObj = new PSObject(outputResult.ManagedKeyVaultReferenceParameters);
+            managedKeyVaultReferenceParametersObj.Members.Add(new PSCodeMethod("ToString", typeof(OutputFormatter).GetMethod("FormatObject")));
 
             var result = new PSObject(outputResult);
 
