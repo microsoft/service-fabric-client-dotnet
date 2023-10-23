@@ -293,7 +293,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             strBuilder.Append(Environment.NewLine);
             strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ApplicationTypeMetadata", applicationTypeInfo.ApplicationTypeMetadata));
             strBuilder.Append(Environment.NewLine);
-            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ManagedKeyVaultReferenceParameterList", OutputFormatter.ToString(applicationTypeInfo.ManagedKeyVaultReferenceParameterList.ToList())));
+            strBuilder.Append(string.Format(CultureInfo.CurrentCulture, "{0} : {1}", "ManagedKeyVaultReferenceParameters", OutputFormatter.ToString(applicationTypeInfo.ManagedKeyVaultReferenceParameters.ToList())));
             strBuilder.Append(Environment.NewLine);
 
             return strBuilder.ToString();
