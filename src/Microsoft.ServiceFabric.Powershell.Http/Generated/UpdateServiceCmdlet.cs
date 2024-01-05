@@ -193,9 +193,15 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public int? AuxiliaryReplicaCount { get; set; }
 
         /// <summary>
+        /// Gets or sets ServiceSensitivityDescription. Defines default levels of replica sensitivity of this service.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "_Stateful_")]
+        public ServiceSensitivityDescription ServiceSensitivityDescription { get; set; }
+
+        /// <summary>
         /// Gets or sets InstanceCount. The instance count.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 21, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_Stateless_")]
         public int? InstanceCount { get; set; }
 
         /// <summary>
@@ -205,7 +211,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// Note, if InstanceCount is set to -1, during MinInstanceCount computation -1 is first converted into the number of
         /// nodes on which the instances are allowed to be placed according to the placement constraints on the service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 22, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_Stateless_")]
         public int? MinInstanceCount { get; set; }
 
         /// <summary>
@@ -216,7 +222,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// number of nodes on which the instances are allowed to be placed according to the placement constraints on the
         /// service.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Stateless_")]
         public int? MinInstancePercentage { get; set; }
 
         /// <summary>
@@ -233,14 +239,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// - Close existing connections after in-flight requests have completed.
         /// - Connect to a different instance of the service partition for future requests.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "_Stateless_")]
         public string InstanceCloseDelayDurationSeconds { get; set; }
 
         /// <summary>
         /// Gets or sets InstanceLifecycleDescription. Defines how instances of this service will behave during their
         /// lifecycle.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 25, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 26, ParameterSetName = "_Stateless_")]
         public InstanceLifecycleDescription InstanceLifecycleDescription { get; set; }
 
         /// <summary>
@@ -251,7 +257,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// The default value is 0, which indicates that when stateless instance goes down, Service Fabric will immediately
         /// start building its replacement.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 26, ParameterSetName = "_Stateless_")]
+        [Parameter(Mandatory = false, Position = 27, ParameterSetName = "_Stateless_")]
         public string InstanceRestartWaitDurationSeconds { get; set; }
 
         /// <summary>
@@ -259,7 +265,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 27)]
+        [Parameter(Mandatory = false, Position = 28)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -287,7 +293,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     servicePlacementTimeLimitSeconds: this.ServicePlacementTimeLimitSeconds,
                     dropSourceReplicaOnMove: this.DropSourceReplicaOnMove,
                     replicaLifecycleDescription: this.ReplicaLifecycleDescription,
-                    auxiliaryReplicaCount: this.AuxiliaryReplicaCount);
+                    auxiliaryReplicaCount: this.AuxiliaryReplicaCount,
+                    serviceSensitivityDescription: this.ServiceSensitivityDescription);
             }
             else if (this.Stateless.IsPresent)
             {

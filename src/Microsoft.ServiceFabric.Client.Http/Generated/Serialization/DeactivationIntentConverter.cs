@@ -38,6 +38,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = DeactivationIntent.RemoveData;
             }
+            else if (string.Compare(value, "RemoveNode", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = DeactivationIntent.RemoveNode;
+            }
 
             return obj;
         }
@@ -59,6 +63,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case DeactivationIntent.RemoveData:
                     writer.WriteStringValue("RemoveData");
+                    break;
+                case DeactivationIntent.RemoveNode:
+                    writer.WriteStringValue("RemoveNode");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type DeactivationIntent");

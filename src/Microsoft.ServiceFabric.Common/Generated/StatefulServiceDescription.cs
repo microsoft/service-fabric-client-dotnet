@@ -67,8 +67,8 @@ namespace Microsoft.ServiceFabric.Common
         /// a new replica is created.</param>
         /// <param name="quorumLossWaitDurationSeconds">The maximum duration, in seconds, for which a partition is allowed to
         /// be in a state of quorum loss.</param>
-        /// <param name="standByReplicaKeepDurationSeconds">The definition on how long StandBy replicas should be maintained
-        /// before being removed.</param>
+        /// <param name="standByReplicaKeepDurationSeconds">Defines how long StandBy replicas should be maintained before being
+        /// removed.</param>
         /// <param name="servicePlacementTimeLimitSeconds">The duration for which replicas can stay InBuild before reporting
         /// that build is stuck.</param>
         /// <param name="dropSourceReplicaOnMove">Indicates whether to drop source Secondary replica even if the target replica
@@ -78,6 +78,7 @@ namespace Microsoft.ServiceFabric.Common
         /// lifecycle.</param>
         /// <param name="auxiliaryReplicaCount">The auxiliary replica count as a number. To use Auxiliary replicas, the
         /// following must be true: AuxiliaryReplicaCount &lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize >=3.</param>
+        /// <param name="serviceSensitivityDescription">Defines default levels of replica sensitivity of this service.</param>
         public StatefulServiceDescription(
             ServiceName serviceName,
             string serviceTypeName,
@@ -105,7 +106,8 @@ namespace Microsoft.ServiceFabric.Common
             long? servicePlacementTimeLimitSeconds = default(long?),
             bool? dropSourceReplicaOnMove = default(bool?),
             ReplicaLifecycleDescription replicaLifecycleDescription = default(ReplicaLifecycleDescription),
-            int? auxiliaryReplicaCount = default(int?))
+            int? auxiliaryReplicaCount = default(int?),
+            ServiceSensitivityDescription serviceSensitivityDescription = default(ServiceSensitivityDescription))
             : base(
                 serviceName,
                 serviceTypeName,
@@ -146,6 +148,7 @@ namespace Microsoft.ServiceFabric.Common
             this.DropSourceReplicaOnMove = dropSourceReplicaOnMove;
             this.ReplicaLifecycleDescription = replicaLifecycleDescription;
             this.AuxiliaryReplicaCount = auxiliaryReplicaCount;
+            this.ServiceSensitivityDescription = serviceSensitivityDescription;
         }
 
         /// <summary>
@@ -191,7 +194,7 @@ namespace Microsoft.ServiceFabric.Common
         public long? QuorumLossWaitDurationSeconds { get; }
 
         /// <summary>
-        /// Gets the definition on how long StandBy replicas should be maintained before being removed.
+        /// Gets defines how long StandBy replicas should be maintained before being removed.
         /// </summary>
         public long? StandByReplicaKeepDurationSeconds { get; }
 
@@ -216,5 +219,10 @@ namespace Microsoft.ServiceFabric.Common
         /// AuxiliaryReplicaCount &amp;lt; (TargetReplicaSetSize+1)/2 and TargetReplicaSetSize &amp;gt;=3.
         /// </summary>
         public int? AuxiliaryReplicaCount { get; }
+
+        /// <summary>
+        /// Gets defines default levels of replica sensitivity of this service.
+        /// </summary>
+        public ServiceSensitivityDescription ServiceSensitivityDescription { get; }
     }
 }

@@ -38,6 +38,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var primaryDefaultLoad = default(int?);
             var secondaryDefaultLoad = default(int?);
             var auxiliaryDefaultLoad = default(int?);
+            var maximumLoad = default(int?);
             var defaultLoad = default(int?);
 
             do
@@ -63,6 +64,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     auxiliaryDefaultLoad = reader.ReadValueAsInt();
                 }
+                else if (string.Compare("MaximumLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    maximumLoad = reader.ReadValueAsInt();
+                }
                 else if (string.Compare("DefaultLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     defaultLoad = reader.ReadValueAsInt();
@@ -80,6 +85,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 primaryDefaultLoad: primaryDefaultLoad,
                 secondaryDefaultLoad: secondaryDefaultLoad,
                 auxiliaryDefaultLoad: auxiliaryDefaultLoad,
+                maximumLoad: maximumLoad,
                 defaultLoad: defaultLoad);
         }
 
@@ -107,6 +113,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.AuxiliaryDefaultLoad != null)
             {
                 writer.WriteProperty(obj.AuxiliaryDefaultLoad, "AuxiliaryDefaultLoad", JsonWriterExtensions.WriteIntValue);
+            }
+
+            if (obj.MaximumLoad != null)
+            {
+                writer.WriteProperty(obj.MaximumLoad, "MaximumLoad", JsonWriterExtensions.WriteIntValue);
             }
 
             if (obj.DefaultLoad != null)
