@@ -4,6 +4,8 @@
 ### Stable releases
 Nuget Package Version | Compatible Service Fabric Runtime version
 -|-
+4.10.* | >= 10.0
+4.8.* | >= 9.1
 4.7.* | >= 9.0
 4.6.* | >= 8.2
 4.5.* | >= 8.1
