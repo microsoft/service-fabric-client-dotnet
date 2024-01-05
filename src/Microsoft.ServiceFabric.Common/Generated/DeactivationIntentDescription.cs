@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Common
         /// </summary>
         /// <param name="deactivationIntent">Describes the intent or reason for deactivating the node. The possible values are
         /// following.
-        /// . Possible values include: 'Pause', 'Restart', 'RemoveData'</param>
+        /// . Possible values include: 'Pause', 'Restart', 'RemoveData', 'RemoveNode'</param>
         /// <param name="deactivationDescription">Describes the reason or more information about node deactivation. Maximum 
         /// number of characters allowed is 200.</param>
         public DeactivationIntentDescription(
@@ -31,7 +31,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets the intent or reason for deactivating the node. The possible values are following.
-        /// . Possible values include: 'Pause', 'Restart', 'RemoveData'
+        /// . Possible values include: 'Pause', 'Restart', 'RemoveData', 'RemoveNode'
         /// </summary>
         public DeactivationIntent? DeactivationIntent { get; }
 

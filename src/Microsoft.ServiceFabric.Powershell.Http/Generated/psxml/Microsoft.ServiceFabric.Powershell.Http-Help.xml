@@ -3150,7 +3150,7 @@
                 <maml:Description>
                     <maml:para>
                     Describes the intent or reason for deactivating the node. The possible values are following.
-                    . Possible values include: 'Pause', 'Restart', 'RemoveData'
+                    . Possible values include: 'Pause', 'Restart', 'RemoveData', 'RemoveNode'
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">DeactivationIntent?</command:parameterValue>
@@ -6683,6 +6683,9 @@
                 <command:parameter required="false">
                         <maml:name>AuxiliaryReplicaCount</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceSensitivityDescription</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -6758,6 +6761,9 @@
                 <command:parameter required="false">
                         <maml:name>AuxiliaryReplicaCount</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceSensitivityDescription</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>New-SFService</maml:name>
@@ -6826,6 +6832,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>AuxiliaryReplicaCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceSensitivityDescription</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -7208,7 +7217,7 @@
                 <maml:name>StandByReplicaKeepDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
-                    The definition on how long StandBy replicas should be maintained before being removed.
+                    Defines how long StandBy replicas should be maintained before being removed.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">long?</command:parameterValue>
@@ -7265,6 +7274,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="32">
+                <maml:name>ServiceSensitivityDescription</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Defines default levels of replica sensitivity of this service.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">ServiceSensitivityDescription</command:parameterValue>
+                <dev:type>
+                    <maml:name>ServiceSensitivityDescription</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="33">
                 <maml:name>MinInstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7279,7 +7300,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="33">
+            <command:parameter required="false" position="34">
                 <maml:name>MinInstancePercentage</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7294,7 +7315,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="34">
+            <command:parameter required="false" position="35">
                 <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7314,7 +7335,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="35">
+            <command:parameter required="false" position="36">
                 <maml:name>InstanceLifecycleDescription</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7326,7 +7347,7 @@
                     <maml:name>InstanceLifecycleDescription</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="36">
+            <command:parameter required="false" position="37">
                 <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7341,7 +7362,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="37">
+            <command:parameter required="false" position="38">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7568,6 +7589,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>AuxiliaryReplicaCount</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ServiceSensitivityDescription</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -7868,6 +7892,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="20">
+                <maml:name>ServiceSensitivityDescription</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Defines default levels of replica sensitivity of this service.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">ServiceSensitivityDescription</command:parameterValue>
+                <dev:type>
+                    <maml:name>ServiceSensitivityDescription</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="21">
                 <maml:name>InstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7879,7 +7915,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="21">
+            <command:parameter required="false" position="22">
                 <maml:name>MinInstanceCount</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7894,7 +7930,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="22">
+            <command:parameter required="false" position="23">
                 <maml:name>MinInstancePercentage</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7909,7 +7945,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="23">
+            <command:parameter required="false" position="24">
                 <maml:name>InstanceCloseDelayDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7928,7 +7964,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="24">
+            <command:parameter required="false" position="25">
                 <maml:name>InstanceLifecycleDescription</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7940,7 +7976,7 @@
                     <maml:name>InstanceLifecycleDescription</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="25">
+            <command:parameter required="false" position="26">
                 <maml:name>InstanceRestartWaitDurationSeconds</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -7955,7 +7991,7 @@
                     <maml:name>string</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="26">
+            <command:parameter required="false" position="27">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>

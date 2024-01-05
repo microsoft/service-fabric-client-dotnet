@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// <summary>
         /// Gets or sets DeactivationIntent. Describes the intent or reason for deactivating the node. The possible values are
         /// following.
-        /// . Possible values include: 'Pause', 'Restart', 'RemoveData'
+        /// . Possible values include: 'Pause', 'Restart', 'RemoveData', 'RemoveNode'
         /// </summary>
         [Parameter(Mandatory = false, Position = 1)]
         public DeactivationIntent? DeactivationIntent { get; set; }
