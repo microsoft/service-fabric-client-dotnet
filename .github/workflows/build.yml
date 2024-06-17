@@ -4,20 +4,20 @@ on:
   push:
     branches:
       - develop
-      - release_7*
+      - release_*
     tags:
       - v*
     
   pull_request:
     branches: 
     - develop
-    - release_7*
+    - release_*
 
 jobs:
   build:
     name: Build
-    runs-on: windows-2019
-    # info about windows-2019 https://github.com/actions/virtual-environments/blob/master/images/win/Windows2019-Readme.md
+    runs-on: windows-latest
+    # info about windows-latest https://github.com/actions/runner-images
     env:
       DROP_DIR: drop
     steps:
