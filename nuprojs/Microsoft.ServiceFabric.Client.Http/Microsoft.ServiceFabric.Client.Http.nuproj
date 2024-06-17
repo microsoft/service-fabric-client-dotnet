@@ -6,6 +6,7 @@
     <Title>Microsoft.ServiceFabric.Client.Http</Title>
     <Description>This package contains the reference assemblies for connecting to Service Fabric cluster over Http and performing operations to create and manage micro-services.</Description>
     <Summary>This package contains the reference assemblies for connecting to Service Fabric cluster over Http and performing operations to create and manage micro-services.</Summary>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
   </PropertyGroup>
   
   <Import Project="$(NuProjPath)\NuProj.props" />
