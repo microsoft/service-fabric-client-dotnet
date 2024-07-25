@@ -24,11 +24,13 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="containerName">The name of the container in the blob store to store and enumerate backups
         /// from.</param>
         /// <param name="friendlyName">Friendly name for this backup storage.</param>
+        /// <param name="managedIdentityClientId">The ClientId of User-Assigned Managed Identity</param>
         public ManagedIdentityAzureBlobBackupStorageDescription(
             ManagedIdentityType? managedIdentityType,
             string blobServiceUri,
             string containerName,
-            string friendlyName = default(string))
+            string friendlyName = default(string),
+            Guid? managedIdentityClientId = default(Guid?))
             : base(
                 Common.BackupStorageKind.ManagedIdentityAzureBlobStore,
                 friendlyName)
@@ -39,6 +41,7 @@ namespace Microsoft.ServiceFabric.Common
             this.ManagedIdentityType = managedIdentityType;
             this.BlobServiceUri = blobServiceUri;
             this.ContainerName = containerName;
+            this.ManagedIdentityClientId = managedIdentityClientId;
         }
 
         /// <summary>
@@ -56,5 +59,10 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the name of the container in the blob store to store and enumerate backups from.
         /// </summary>
         public string ContainerName { get; }
+
+        /// <summary>
+        /// Gets the ClientId of User-Assigned Managed Identity
+        /// </summary>
+        public Guid? ManagedIdentityClientId { get; }
     }
 }

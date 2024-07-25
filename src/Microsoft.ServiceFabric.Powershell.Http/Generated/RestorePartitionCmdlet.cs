@@ -130,11 +130,17 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string SecondaryPassword { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityClientId. The ClientId of User-Assigned Managed Identity
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 15, ParameterSetName = "_ManagedIdentityAzureBlobStore_")]
+        public Guid? ManagedIdentityClientId { get; set; }
+
+        /// <summary>
         /// Gets or sets Latest. Specifies whether BackupRestore Service whould automatically determine the latest backup
         /// available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will
         /// automatically fetch the latest backup and Restore the partition using that.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 15)]
+        [Parameter(Mandatory = false, Position = 16)]
         public bool? Latest { get; set; }
 
         /// <summary>
@@ -144,7 +150,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// recommended to invoke this operation again with a greater timeout value. the default value for the same is 10
         /// minutes.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16)]
+        [Parameter(Mandatory = false, Position = 17)]
         public int? RestoreTimeout { get; set; }
 
         /// <summary>
@@ -152,7 +158,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17)]
+        [Parameter(Mandatory = false, Position = 18)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -189,7 +195,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     managedIdentityType: this.ManagedIdentityType,
                     blobServiceUri: this.BlobServiceUri,
                     containerName: this.ContainerName,
-                    friendlyName: this.FriendlyName);
+                    friendlyName: this.FriendlyName,
+                    managedIdentityClientId: this.ManagedIdentityClientId);
             }
 
             var restorePartitionDescription = new RestorePartitionDescription(

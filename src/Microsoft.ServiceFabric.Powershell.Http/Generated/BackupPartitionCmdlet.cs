@@ -118,13 +118,19 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string SecondaryPassword { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityClientId. The ClientId of User-Assigned Managed Identity
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 13, ParameterSetName = "_ManagedIdentityAzureBlobStore_")]
+        public Guid? ManagedIdentityClientId { get; set; }
+
+        /// <summary>
         /// Gets or sets BackupTimeout. Specifies the maximum amount of time, in minutes, to wait for the backup operation to
         /// complete. Post that, the operation completes with timeout error. However, in certain corner cases it could be that
         /// though the operation returns back timeout, the backup actually goes through. In case of timeout error, its
         /// recommended to invoke this operation again with a greater timeout value. The default value for the same is 10
         /// minutes.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 13)]
+        [Parameter(Mandatory = false, Position = 14)]
         public int? BackupTimeout { get; set; }
 
         /// <summary>
@@ -132,7 +138,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 14)]
+        [Parameter(Mandatory = false, Position = 15)]
         public long? ServerTimeout { get; set; }
 
         /// <inheritdoc/>
@@ -169,7 +175,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     managedIdentityType: this.ManagedIdentityType,
                     blobServiceUri: this.BlobServiceUri,
                     containerName: this.ContainerName,
-                    friendlyName: this.FriendlyName);
+                    friendlyName: this.FriendlyName,
+                    managedIdentityClientId: this.ManagedIdentityClientId);
             }
 
             var backupPartitionDescription = new BackupPartitionDescription(

@@ -15691,6 +15691,9 @@
                         <maml:name>RetentionDuration</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
                         <maml:name>MinimumNumberOfBackups</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
@@ -15797,6 +15800,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>RunDays</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>MinimumNumberOfBackups</maml:name>
@@ -16043,6 +16049,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="19">
+                <maml:name>ManagedIdentityClientId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The ClientId of User-Assigned Managed Identity
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">Guid?</command:parameterValue>
+                <dev:type>
+                    <maml:name>Guid?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="20">
                 <maml:name>MinimumNumberOfBackups</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16054,7 +16072,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="20">
+            <command:parameter required="false" position="21">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16066,7 +16084,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="21">
+            <command:parameter required="false" position="22">
                 <maml:name>ValidateConnection</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16339,6 +16357,9 @@
                         <maml:name>RetentionDuration</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
                         <maml:name>MinimumNumberOfBackups</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
@@ -16445,6 +16466,9 @@
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>RunDays</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>MinimumNumberOfBackups</maml:name>
@@ -16703,6 +16727,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="20">
+                <maml:name>ManagedIdentityClientId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The ClientId of User-Assigned Managed Identity
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">Guid?</command:parameterValue>
+                <dev:type>
+                    <maml:name>Guid?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="21">
                 <maml:name>MinimumNumberOfBackups</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16714,7 +16750,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="21">
+            <command:parameter required="false" position="22">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16726,7 +16762,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="22">
+            <command:parameter required="false" position="23">
                 <maml:name>ValidateConnection</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17798,6 +17834,9 @@
                 <command:parameter required="true">
                         <maml:name>BlobServiceUri</maml:name>
                 </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
+                </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
                     <maml:name>Backup-SFPartition</maml:name>
@@ -17970,6 +18009,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="12">
+                <maml:name>ManagedIdentityClientId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The ClientId of User-Assigned Managed Identity
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">Guid?</command:parameterValue>
+                <dev:type>
+                    <maml:name>Guid?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="13">
                 <maml:name>BackupTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -17981,7 +18032,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="13">
+            <command:parameter required="false" position="14">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18075,6 +18126,9 @@
                 </command:parameter>
                 <command:parameter required="true">
                         <maml:name>BlobServiceUri</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
                 <command:syntaxItem>
@@ -18272,6 +18326,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="14">
+                <maml:name>ManagedIdentityClientId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The ClientId of User-Assigned Managed Identity
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">Guid?</command:parameterValue>
+                <dev:type>
+                    <maml:name>Guid?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="15">
                 <maml:name>Latest</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18283,7 +18349,7 @@
                     <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>RestoreTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18295,7 +18361,7 @@
                     <maml:name>int?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18504,6 +18570,9 @@
                         <maml:name>BlobServiceUri</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
                         <maml:name>ApplicationName</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
@@ -18519,6 +18588,9 @@
                         <maml:name>BlobServiceUri</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
                         <maml:name>ServiceName</maml:name>
                 </command:parameter>
                 </command:syntaxItem>
@@ -18532,6 +18604,9 @@
                 </command:parameter>
                 <command:parameter required="true">
                         <maml:name>BlobServiceUri</maml:name>
+                </command:parameter>
+                <command:parameter required="false">
+                        <maml:name>ManagedIdentityClientId</maml:name>
                 </command:parameter>
                 <command:parameter required="false">
                         <maml:name>ServiceName</maml:name>
@@ -18782,6 +18857,18 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="14">
+                <maml:name>ManagedIdentityClientId</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    The ClientId of User-Assigned Managed Identity
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">Guid?</command:parameterValue>
+                <dev:type>
+                    <maml:name>Guid?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="15">
                 <maml:name>ApplicationName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18793,7 +18880,7 @@
                     <maml:name>ApplicationName</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="15">
+            <command:parameter required="false" position="16">
                 <maml:name>ServiceName</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18805,7 +18892,7 @@
                     <maml:name>ServiceName</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="16">
+            <command:parameter required="false" position="17">
                 <maml:name>PartitionId</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18817,7 +18904,7 @@
                     <maml:name>PartitionId</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="17">
+            <command:parameter required="false" position="18">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -18829,7 +18916,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="18">
+            <command:parameter required="false" position="19">
                 <maml:name>MaxResults</maml:name>
                 <maml:Description>
                     <maml:para>

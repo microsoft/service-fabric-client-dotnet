@@ -243,18 +243,25 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string SecondaryPassword { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityClientId. The ClientId of User-Assigned Managed Identity
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
+        public Guid? ManagedIdentityClientId { get; set; }
+
+        /// <summary>
         /// Gets or sets MinimumNumberOfBackups. It is the minimum number of backups to be retained at any point of time. If
         /// specified with a non zero value, backups will not be deleted even if the backups have gone past retention duration
         /// and have number of backups less than or equal to it.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_TimeBased__FileShare__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
-        [Parameter(Mandatory = false, Position = 23, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_FrequencyBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_FrequencyBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_FrequencyBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_FrequencyBased__ManagedIdentityAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_TimeBased__AzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_TimeBased__FileShare__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_TimeBased__DsmsAzureBlobStore__Basic_")]
+        [Parameter(Mandatory = false, Position = 24, ParameterSetName = "_TimeBased__ManagedIdentityAzureBlobStore__Basic_")]
         public int? MinimumNumberOfBackups { get; set; }
 
         /// <summary>
@@ -262,14 +269,14 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 24)]
+        [Parameter(Mandatory = false, Position = 25)]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets ValidateConnection. Specifies whether to validate the storage connection and credentials before
         /// creating or updating the backup policies.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 25)]
+        [Parameter(Mandatory = false, Position = 26)]
         public bool? ValidateConnection { get; set; }
 
         /// <inheritdoc/>
@@ -320,7 +327,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     managedIdentityType: this.ManagedIdentityType,
                     blobServiceUri: this.BlobServiceUri,
                     containerName: this.ContainerName,
-                    friendlyName: this.FriendlyName);
+                    friendlyName: this.FriendlyName,
+                    managedIdentityClientId: this.ManagedIdentityClientId);
             }
 
             RetentionPolicyDescription retentionPolicyDescription = null;
