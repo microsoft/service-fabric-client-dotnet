@@ -192,34 +192,42 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public string SecondaryPassword { get; set; }
 
         /// <summary>
+        /// Gets or sets ManagedIdentityClientId. The ClientId of User-Assigned Managed Identity
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
+        public Guid? ManagedIdentityClientId { get; set; }
+
+        /// <summary>
         /// Gets or sets ApplicationName. The name of the application, including the 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_AzureBlobStore__Application_")]
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_FileShare__Application_")]
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_DsmsAzureBlobStore__Application_")]
-        [Parameter(Mandatory = false, Position = 16, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_AzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_FileShare__Application_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_DsmsAzureBlobStore__Application_")]
+        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_ManagedIdentityAzureBlobStore__Application_")]
         public ApplicationName ApplicationName { get; set; }
 
         /// <summary>
         /// Gets or sets ServiceName. The full name of the service with 'fabric:' URI scheme.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_AzureBlobStore__Service_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_FileShare__Service_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_DsmsAzureBlobStore__Service_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_AzureBlobStore__Partition_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_FileShare__Partition_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
-        [Parameter(Mandatory = false, Position = 17, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_AzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_FileShare__Service_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_DsmsAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_ManagedIdentityAzureBlobStore__Service_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
         public ServiceName ServiceName { get; set; }
 
         /// <summary>
         /// Gets or sets PartitionId. The partition ID identifying the partition.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_AzureBlobStore__Partition_")]
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_FileShare__Partition_")]
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
-        [Parameter(Mandatory = false, Position = 18, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_AzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_FileShare__Partition_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_DsmsAzureBlobStore__Partition_")]
+        [Parameter(Mandatory = false, Position = 19, ParameterSetName = "_ManagedIdentityAzureBlobStore__Partition_")]
         public PartitionId PartitionId { get; set; }
 
         /// <summary>
@@ -227,7 +235,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 19)]
+        [Parameter(Mandatory = false, Position = 20)]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
@@ -237,7 +245,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 20)]
+        [Parameter(Mandatory = false, Position = 21)]
         public long? MaxResults { get; set; }
 
         /// <inheritdoc/>
@@ -274,7 +282,8 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     managedIdentityType: this.ManagedIdentityType,
                     blobServiceUri: this.BlobServiceUri,
                     containerName: this.ContainerName,
-                    friendlyName: this.FriendlyName);
+                    friendlyName: this.FriendlyName,
+                    managedIdentityClientId: this.ManagedIdentityClientId);
             }
 
             BackupEntity backupEntity = null;

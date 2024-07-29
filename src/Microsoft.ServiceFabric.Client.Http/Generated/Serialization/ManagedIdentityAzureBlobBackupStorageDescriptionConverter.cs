@@ -37,6 +37,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var managedIdentityType = default(ManagedIdentityType?);
             var blobServiceUri = default(string);
             var containerName = default(string);
+            var managedIdentityClientId = default(Guid?);
 
             do
             {
@@ -57,6 +58,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     containerName = reader.ReadValueAsString();
                 }
+                else if (string.Compare("ManagedIdentityClientId", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    managedIdentityClientId = reader.ReadValueAsGuid();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -68,7 +73,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 friendlyName: friendlyName,
                 managedIdentityType: managedIdentityType,
                 blobServiceUri: blobServiceUri,
-                containerName: containerName);
+                containerName: containerName,
+                managedIdentityClientId: managedIdentityClientId);
         }
 
         /// <summary>
@@ -87,6 +93,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.FriendlyName != null)
             {
                 writer.WriteProperty(obj.FriendlyName, "FriendlyName", JsonWriterExtensions.WriteStringValue);
+            }
+
+            if (obj.ManagedIdentityClientId != null)
+            {
+                writer.WriteProperty(obj.ManagedIdentityClientId, "ManagedIdentityClientId", JsonWriterExtensions.WriteGuidValue);
             }
 
             writer.WriteEndObject();
