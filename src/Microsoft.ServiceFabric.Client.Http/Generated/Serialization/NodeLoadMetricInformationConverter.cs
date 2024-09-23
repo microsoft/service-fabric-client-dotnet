@@ -40,10 +40,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var isCapacityViolation = default(bool?);
             var nodeBufferedCapacity = default(string);
             var nodeRemainingBufferedCapacity = default(string);
-            var currentNodeLoad = default(int?);
-            var nodeCapacityRemaining = default(int?);
-            var bufferedNodeCapacityRemaining = default(int?);
-            var plannedNodeLoadRemoval = default(int?);
+            var currentNodeLoad = default(double?);
+            var nodeCapacityRemaining = default(double?);
+            var bufferedNodeCapacityRemaining = default(double?);
+            var plannedNodeLoadRemoval = default(double?);
 
             do
             {
@@ -78,19 +78,19 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("CurrentNodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    currentNodeLoad = reader.ReadValueAsInt();
+                    currentNodeLoad = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("NodeCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    nodeCapacityRemaining = reader.ReadValueAsInt();
+                    nodeCapacityRemaining = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("BufferedNodeCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    bufferedNodeCapacityRemaining = reader.ReadValueAsInt();
+                    bufferedNodeCapacityRemaining = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("PlannedNodeLoadRemoval", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    plannedNodeLoadRemoval = reader.ReadValueAsInt();
+                    plannedNodeLoadRemoval = reader.ReadValueAsDouble();
                 }
                 else
                 {
@@ -159,22 +159,22 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.CurrentNodeLoad != null)
             {
-                writer.WriteProperty(obj.CurrentNodeLoad, "CurrentNodeLoad", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.CurrentNodeLoad, "CurrentNodeLoad", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.NodeCapacityRemaining != null)
             {
-                writer.WriteProperty(obj.NodeCapacityRemaining, "NodeCapacityRemaining", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.NodeCapacityRemaining, "NodeCapacityRemaining", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.BufferedNodeCapacityRemaining != null)
             {
-                writer.WriteProperty(obj.BufferedNodeCapacityRemaining, "BufferedNodeCapacityRemaining", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.BufferedNodeCapacityRemaining, "BufferedNodeCapacityRemaining", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.PlannedNodeLoadRemoval != null)
             {
-                writer.WriteProperty(obj.PlannedNodeLoadRemoval, "PlannedNodeLoadRemoval", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.PlannedNodeLoadRemoval, "PlannedNodeLoadRemoval", JsonWriterExtensions.WriteDoubleValue);
             }
 
             writer.WriteEndObject();

@@ -44,10 +44,10 @@ namespace Microsoft.ServiceFabric.Common
             bool? isCapacityViolation = default(bool?),
             string nodeBufferedCapacity = default(string),
             string nodeRemainingBufferedCapacity = default(string),
-            int? currentNodeLoad = default(int?),
-            int? nodeCapacityRemaining = default(int?),
-            int? bufferedNodeCapacityRemaining = default(int?),
-            int? plannedNodeLoadRemoval = default(int?))
+            double? currentNodeLoad = default(double?),
+            double? nodeCapacityRemaining = default(double?),
+            double? bufferedNodeCapacityRemaining = default(double?),
+            double? plannedNodeLoadRemoval = default(double?))
         {
             this.Name = name;
             this.NodeCapacity = nodeCapacity;
@@ -103,23 +103,23 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets current load on the node for this metric.
         /// </summary>
-        public int? CurrentNodeLoad { get; }
+        public double? CurrentNodeLoad { get; }
 
         /// <summary>
         /// Gets the remaining capacity on the node for the metric.
         /// </summary>
-        public int? NodeCapacityRemaining { get; }
+        public double? NodeCapacityRemaining { get; }
 
         /// <summary>
         /// Gets the remaining capacity which is not reserved by NodeBufferPercentage for this metric on the node.
         /// </summary>
-        public int? BufferedNodeCapacityRemaining { get; }
+        public double? BufferedNodeCapacityRemaining { get; }
 
         /// <summary>
         /// Gets this value represents the load of the replicas that are planned to be removed in the future.
         /// This kind of load is reported for replicas that are currently being moving to other nodes and for replicas that are
         /// currently being dropped but still use the load on the source node.
         /// </summary>
-        public int? PlannedNodeLoadRemoval { get; }
+        public double? PlannedNodeLoadRemoval { get; }
     }
 }
