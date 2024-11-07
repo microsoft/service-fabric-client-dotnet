@@ -62,26 +62,26 @@ namespace Microsoft.ServiceFabric.Common
             bool? isBalancedAfter = default(bool?),
             double? deviationBefore = default(double?),
             double? deviationAfter = default(double?),
-            int? balancingThreshold = default(int?),
+            double? balancingThreshold = default(double?),
             string action = default(string),
-            int? activityThreshold = default(int?),
+            string activityThreshold = default(string),
             string clusterCapacity = default(string),
             string clusterLoad = default(string),
-            int? currentClusterLoad = default(int?),
+            double? currentClusterLoad = default(double?),
             string clusterRemainingCapacity = default(string),
-            int? clusterCapacityRemaining = default(int?),
+            double? clusterCapacityRemaining = default(double?),
             bool? isClusterCapacityViolation = default(bool?),
-            int? nodeBufferPercentage = default(int?),
+            double? nodeBufferPercentage = default(double?),
             string clusterBufferedCapacity = default(string),
-            int? bufferedClusterCapacityRemaining = default(int?),
-            int? clusterRemainingBufferedCapacity = default(int?),
+            double? bufferedClusterCapacityRemaining = default(double?),
+            string clusterRemainingBufferedCapacity = default(string),
             string minNodeLoadValue = default(string),
-            int? minimumNodeLoad = default(int?),
+            double? minimumNodeLoad = default(double?),
             NodeId minNodeLoadNodeId = default(NodeId),
             string maxNodeLoadValue = default(string),
-            int? maximumNodeLoad = default(int?),
+            double? maximumNodeLoad = default(double?),
             NodeId maxNodeLoadNodeId = default(NodeId),
-            int? plannedLoadRemoval = default(int?))
+            double? plannedLoadRemoval = default(double?))
         {
             this.Name = name;
             this.IsBalancedBefore = isBalancedBefore;
@@ -138,7 +138,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the balancing threshold for a certain metric.
         /// </summary>
-        public int? BalancingThreshold { get; }
+        public double? BalancingThreshold { get; }
 
         /// <summary>
         /// Gets the current action being taken with regard to this metric
@@ -148,7 +148,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the Activity Threshold specified for this metric in the system Cluster Manifest.
         /// </summary>
-        public int? ActivityThreshold { get; }
+        public string ActivityThreshold { get; }
 
         /// <summary>
         /// Gets the total cluster capacity for a given metric
@@ -164,7 +164,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the total cluster load.
         /// </summary>
-        public int? CurrentClusterLoad { get; }
+        public double? CurrentClusterLoad { get; }
 
         /// <summary>
         /// Gets the remaining capacity for the metric in the cluster. In future releases of Service Fabric this parameter will
@@ -175,7 +175,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the remaining capacity for the metric in the cluster.
         /// </summary>
-        public int? ClusterCapacityRemaining { get; }
+        public double? ClusterCapacityRemaining { get; }
 
         /// <summary>
         /// Gets indicates that the metric is currently over capacity in the cluster.
@@ -185,7 +185,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the reserved percentage of total node capacity for this metric.
         /// </summary>
-        public int? NodeBufferPercentage { get; }
+        public double? NodeBufferPercentage { get; }
 
         /// <summary>
         /// Gets remaining capacity in the cluster excluding the reserved space. In future releases of Service Fabric this
@@ -196,12 +196,12 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets remaining capacity in the cluster excluding the reserved space.
         /// </summary>
-        public int? BufferedClusterCapacityRemaining { get; }
+        public double? BufferedClusterCapacityRemaining { get; }
 
         /// <summary>
         /// Gets the remaining percentage of cluster total capacity for this metric.
         /// </summary>
-        public int? ClusterRemainingBufferedCapacity { get; }
+        public string ClusterRemainingBufferedCapacity { get; }
 
         /// <summary>
         /// Gets the minimum load on any node for this metric. In future releases of Service Fabric this parameter will be
@@ -212,7 +212,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the minimum load on any node for this metric.
         /// </summary>
-        public int? MinimumNodeLoad { get; }
+        public double? MinimumNodeLoad { get; }
 
         /// <summary>
         /// Gets the node id of the node with the minimum load for this metric.
@@ -228,7 +228,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the maximum load on any node for this metric.
         /// </summary>
-        public int? MaximumNodeLoad { get; }
+        public double? MaximumNodeLoad { get; }
 
         /// <summary>
         /// Gets the node id of the node with the maximum load for this metric.
@@ -241,6 +241,6 @@ namespace Microsoft.ServiceFabric.Common
         /// This kind of load is reported for replicas that are currently being moving to other nodes and for replicas that are
         /// currently being dropped but still use the load on the source node.
         /// </summary>
-        public int? PlannedLoadRemoval { get; }
+        public double? PlannedLoadRemoval { get; }
     }
 }
