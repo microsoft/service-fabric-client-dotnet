@@ -38,26 +38,26 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var isBalancedAfter = default(bool?);
             var deviationBefore = default(double?);
             var deviationAfter = default(double?);
-            var balancingThreshold = default(int?);
+            var balancingThreshold = default(double?);
             var action = default(string);
-            var activityThreshold = default(int?);
+            var activityThreshold = default(string);
             var clusterCapacity = default(string);
             var clusterLoad = default(string);
-            var currentClusterLoad = default(int?);
+            var currentClusterLoad = default(double?);
             var clusterRemainingCapacity = default(string);
-            var clusterCapacityRemaining = default(int?);
+            var clusterCapacityRemaining = default(double?);
             var isClusterCapacityViolation = default(bool?);
-            var nodeBufferPercentage = default(int?);
+            var nodeBufferPercentage = default(double?);
             var clusterBufferedCapacity = default(string);
-            var bufferedClusterCapacityRemaining = default(int?);
-            var clusterRemainingBufferedCapacity = default(int?);
+            var bufferedClusterCapacityRemaining = default(double?);
+            var clusterRemainingBufferedCapacity = default(string);
             var minNodeLoadValue = default(string);
-            var minimumNodeLoad = default(int?);
+            var minimumNodeLoad = default(double?);
             var minNodeLoadNodeId = default(NodeId);
             var maxNodeLoadValue = default(string);
-            var maximumNodeLoad = default(int?);
+            var maximumNodeLoad = default(double?);
             var maxNodeLoadNodeId = default(NodeId);
-            var plannedLoadRemoval = default(int?);
+            var plannedLoadRemoval = default(double?);
 
             do
             {
@@ -84,7 +84,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("BalancingThreshold", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    balancingThreshold = reader.ReadValueAsInt();
+                    balancingThreshold = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("Action", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -92,7 +92,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("ActivityThreshold", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    activityThreshold = reader.ReadValueAsInt();
+                    activityThreshold = reader.ReadValueAsString();
                 }
                 else if (string.Compare("ClusterCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -104,7 +104,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("CurrentClusterLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    currentClusterLoad = reader.ReadValueAsInt();
+                    currentClusterLoad = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("ClusterRemainingCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -112,7 +112,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("ClusterCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    clusterCapacityRemaining = reader.ReadValueAsInt();
+                    clusterCapacityRemaining = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("IsClusterCapacityViolation", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -120,7 +120,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("NodeBufferPercentage", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    nodeBufferPercentage = reader.ReadValueAsInt();
+                    nodeBufferPercentage = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("ClusterBufferedCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -128,11 +128,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("BufferedClusterCapacityRemaining", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    bufferedClusterCapacityRemaining = reader.ReadValueAsInt();
+                    bufferedClusterCapacityRemaining = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("ClusterRemainingBufferedCapacity", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    clusterRemainingBufferedCapacity = reader.ReadValueAsInt();
+                    clusterRemainingBufferedCapacity = reader.ReadValueAsString();
                 }
                 else if (string.Compare("MinNodeLoadValue", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -140,7 +140,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("MinimumNodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    minimumNodeLoad = reader.ReadValueAsInt();
+                    minimumNodeLoad = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("MinNodeLoadNodeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -152,7 +152,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("MaximumNodeLoad", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    maximumNodeLoad = reader.ReadValueAsInt();
+                    maximumNodeLoad = reader.ReadValueAsDouble();
                 }
                 else if (string.Compare("MaxNodeLoadNodeId", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -160,7 +160,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 }
                 else if (string.Compare("PlannedLoadRemoval", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    plannedLoadRemoval = reader.ReadValueAsInt();
+                    plannedLoadRemoval = reader.ReadValueAsDouble();
                 }
                 else
                 {
@@ -233,7 +233,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.BalancingThreshold != null)
             {
-                writer.WriteProperty(obj.BalancingThreshold, "BalancingThreshold", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.BalancingThreshold, "BalancingThreshold", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.Action != null)
@@ -243,7 +243,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.ActivityThreshold != null)
             {
-                writer.WriteProperty(obj.ActivityThreshold, "ActivityThreshold", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.ActivityThreshold, "ActivityThreshold", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.ClusterCapacity != null)
@@ -258,7 +258,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.CurrentClusterLoad != null)
             {
-                writer.WriteProperty(obj.CurrentClusterLoad, "CurrentClusterLoad", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.CurrentClusterLoad, "CurrentClusterLoad", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.ClusterRemainingCapacity != null)
@@ -268,7 +268,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.ClusterCapacityRemaining != null)
             {
-                writer.WriteProperty(obj.ClusterCapacityRemaining, "ClusterCapacityRemaining", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.ClusterCapacityRemaining, "ClusterCapacityRemaining", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.IsClusterCapacityViolation != null)
@@ -278,7 +278,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.NodeBufferPercentage != null)
             {
-                writer.WriteProperty(obj.NodeBufferPercentage, "NodeBufferPercentage", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.NodeBufferPercentage, "NodeBufferPercentage", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.ClusterBufferedCapacity != null)
@@ -288,12 +288,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.BufferedClusterCapacityRemaining != null)
             {
-                writer.WriteProperty(obj.BufferedClusterCapacityRemaining, "BufferedClusterCapacityRemaining", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.BufferedClusterCapacityRemaining, "BufferedClusterCapacityRemaining", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.ClusterRemainingBufferedCapacity != null)
             {
-                writer.WriteProperty(obj.ClusterRemainingBufferedCapacity, "ClusterRemainingBufferedCapacity", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.ClusterRemainingBufferedCapacity, "ClusterRemainingBufferedCapacity", JsonWriterExtensions.WriteStringValue);
             }
 
             if (obj.MinNodeLoadValue != null)
@@ -303,7 +303,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.MinimumNodeLoad != null)
             {
-                writer.WriteProperty(obj.MinimumNodeLoad, "MinimumNodeLoad", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.MinimumNodeLoad, "MinimumNodeLoad", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.MinNodeLoadNodeId != null)
@@ -318,7 +318,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.MaximumNodeLoad != null)
             {
-                writer.WriteProperty(obj.MaximumNodeLoad, "MaximumNodeLoad", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.MaximumNodeLoad, "MaximumNodeLoad", JsonWriterExtensions.WriteDoubleValue);
             }
 
             if (obj.MaxNodeLoadNodeId != null)
@@ -328,7 +328,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
 
             if (obj.PlannedLoadRemoval != null)
             {
-                writer.WriteProperty(obj.PlannedLoadRemoval, "PlannedLoadRemoval", JsonWriterExtensions.WriteIntValue);
+                writer.WriteProperty(obj.PlannedLoadRemoval, "PlannedLoadRemoval", JsonWriterExtensions.WriteDoubleValue);
             }
 
             writer.WriteEndObject();
