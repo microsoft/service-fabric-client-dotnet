@@ -64,7 +64,7 @@ namespace Microsoft.ServiceFabric.Common
             double? deviationAfter = default(double?),
             double? balancingThreshold = default(double?),
             string action = default(string),
-            long? activityThreshold = default(long?),
+            string activityThreshold = default(string),
             string clusterCapacity = default(string),
             string clusterLoad = default(string),
             double? currentClusterLoad = default(double?),
@@ -74,7 +74,7 @@ namespace Microsoft.ServiceFabric.Common
             double? nodeBufferPercentage = default(double?),
             string clusterBufferedCapacity = default(string),
             double? bufferedClusterCapacityRemaining = default(double?),
-            long? clusterRemainingBufferedCapacity = default(long?),
+            string clusterRemainingBufferedCapacity = default(string),
             string minNodeLoadValue = default(string),
             double? minimumNodeLoad = default(double?),
             NodeId minNodeLoadNodeId = default(NodeId),
@@ -148,7 +148,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the Activity Threshold specified for this metric in the system Cluster Manifest.
         /// </summary>
-        public long? ActivityThreshold { get; }
+        public string ActivityThreshold { get; }
 
         /// <summary>
         /// Gets the total cluster capacity for a given metric
@@ -201,7 +201,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <summary>
         /// Gets the remaining percentage of cluster total capacity for this metric.
         /// </summary>
-        public long? ClusterRemainingBufferedCapacity { get; }
+        public string ClusterRemainingBufferedCapacity { get; }
 
         /// <summary>
         /// Gets the minimum load on any node for this metric. In future releases of Service Fabric this parameter will be
