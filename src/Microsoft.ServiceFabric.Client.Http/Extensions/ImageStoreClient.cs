@@ -419,6 +419,7 @@ namespace Microsoft.ServiceFabric.Client.Http
                     sessionId =>
                         this.httpClient.ImageStore.CommitImageStoreUploadSessionAsync(
                             sessionId,
+                            serverTimeout: serverTimeout,
                             cancellationToken: cancellationToken),
                     sessiodIds.TryTake,
                     MaxConcurrentUpload);
