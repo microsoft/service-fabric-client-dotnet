@@ -16073,6 +16073,30 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="21">
+                <maml:name>CompressionStrategy</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies the compression strategy to be used for backups. Default is ZIP. Possible values include: 'ZIP', 'ZSTANDARD'
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">CompressionStrategy?</command:parameterValue>
+                <dev:type>
+                    <maml:name>CompressionStrategy?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="22">
+                <maml:name>QuickRecovery</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether to enable quick recovery for this backup policy. When enabled, allows for faster restore operations at the cost of additional storage overhead. Default is false.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="23">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16084,7 +16108,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="22">
+            <command:parameter required="false" position="24">
                 <maml:name>ValidateConnection</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16751,6 +16775,30 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="22">
+                <maml:name>CompressionStrategy</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies the compression strategy to be used for backups. Default is ZIP. Possible values include: 'ZIP', 'ZSTANDARD'
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">CompressionStrategy?</command:parameterValue>
+                <dev:type>
+                    <maml:name>CompressionStrategy?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="23">
+                <maml:name>QuickRecovery</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether to enable quick recovery for this backup policy. When enabled, allows for faster restore operations at the cost of additional storage overhead. Default is false.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="24">
                 <maml:name>ServerTimeout</maml:name>
                 <maml:Description>
                     <maml:para>
@@ -16762,7 +16810,7 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
-            <command:parameter required="false" position="23">
+            <command:parameter required="false" position="25">
                 <maml:name>ValidateConnection</maml:name>
                 <maml:Description>
                     <maml:para>

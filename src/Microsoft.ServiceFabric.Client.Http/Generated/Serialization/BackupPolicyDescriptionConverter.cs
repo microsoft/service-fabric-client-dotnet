@@ -39,6 +39,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var schedule = default(BackupScheduleDescription);
             var storage = default(BackupStorageDescription);
             var retentionPolicy = default(RetentionPolicyDescription);
+            var compressionStrategy = default(CompressionStrategy?);
+            var quickRecovery = default(bool?);
 
             do
             {
@@ -67,6 +69,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     retentionPolicy = RetentionPolicyDescriptionConverter.Deserialize(reader);
                 }
+                else if (string.Compare("CompressionStrategy", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    compressionStrategy = CompressionStrategyConverter.Deserialize(reader);
+                }
+                else if (string.Compare("QuickRecovery", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                {
+                    quickRecovery = reader.ReadValueAsBool();
+                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -80,7 +90,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 maxIncrementalBackups: maxIncrementalBackups,
                 schedule: schedule,
                 storage: storage,
-                retentionPolicy: retentionPolicy);
+                retentionPolicy: retentionPolicy,
+                compressionStrategy: compressionStrategy,
+                quickRecovery: quickRecovery);
         }
 
         /// <summary>
@@ -97,9 +109,15 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.MaxIncrementalBackups, "MaxIncrementalBackups", JsonWriterExtensions.WriteIntValue);
             writer.WriteProperty(obj.Schedule, "Schedule", BackupScheduleDescriptionConverter.Serialize);
             writer.WriteProperty(obj.Storage, "Storage", BackupStorageDescriptionConverter.Serialize);
+            writer.WriteProperty(obj.CompressionStrategy, "CompressionStrategy", CompressionStrategyConverter.Serialize);
             if (obj.RetentionPolicy != null)
             {
                 writer.WriteProperty(obj.RetentionPolicy, "RetentionPolicy", RetentionPolicyDescriptionConverter.Serialize);
+            }
+
+            if (obj.QuickRecovery != null)
+            {
+                writer.WriteProperty(obj.QuickRecovery, "QuickRecovery", JsonWriterExtensions.WriteBoolValue);
             }
 
             writer.WriteEndObject();

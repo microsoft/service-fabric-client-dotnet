@@ -265,18 +265,32 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public int? MinimumNumberOfBackups { get; set; }
 
         /// <summary>
+        /// Gets or sets CompressionStrategy. Specifies the compression strategy to be used for backups. Default is ZIP.
+        /// Possible values include: 'ZIP', 'ZSTANDARD'
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 25)]
+        public CompressionStrategy? CompressionStrategy { get; set; }
+
+        /// <summary>
+        /// Gets or sets QuickRecovery. Specifies whether to enable quick recovery for this backup policy. When enabled, allows
+        /// for faster restore operations at the cost of additional storage overhead. Default is false.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 26)]
+        public bool? QuickRecovery { get; set; }
+
+        /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 25)]
+        [Parameter(Mandatory = false, Position = 27)]
         public long? ServerTimeout { get; set; }
 
         /// <summary>
         /// Gets or sets ValidateConnection. Specifies whether to validate the storage connection and credentials before
         /// creating or updating the backup policies.
         /// </summary>
-        [Parameter(Mandatory = false, Position = 26)]
+        [Parameter(Mandatory = false, Position = 28)]
         public bool? ValidateConnection { get; set; }
 
         /// <inheritdoc/>
@@ -345,7 +359,9 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             maxIncrementalBackups: this.MaxIncrementalBackups,
             schedule: backupScheduleDescription,
             storage: backupStorageDescription,
-            retentionPolicy: retentionPolicyDescription);
+            retentionPolicy: retentionPolicyDescription,
+            compressionStrategy: this.CompressionStrategy,
+            quickRecovery: this.QuickRecovery);
 
             this.ServiceFabricClient.BackupRestore.UpdateBackupPolicyAsync(
                 backupPolicyDescription: backupPolicyDescription,

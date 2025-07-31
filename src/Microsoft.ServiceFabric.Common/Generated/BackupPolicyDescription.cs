@@ -29,13 +29,19 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="schedule">Describes the backup schedule parameters.</param>
         /// <param name="storage">Describes the details of backup storage where to store the periodic backups.</param>
         /// <param name="retentionPolicy">Describes the policy to retain backups in storage.</param>
+        /// <param name="compressionStrategy">Specifies the compression strategy to be used for backups. Default is ZIP.
+        /// Possible values include: 'ZIP', 'ZSTANDARD'</param>
+        /// <param name="quickRecovery">Specifies whether to enable quick recovery for this backup policy. When enabled, allows
+        /// for faster restore operations at the cost of additional storage overhead. Default is false.</param>
         public BackupPolicyDescription(
             string name,
             bool? autoRestoreOnDataLoss,
             int? maxIncrementalBackups,
             BackupScheduleDescription schedule,
             BackupStorageDescription storage,
-            RetentionPolicyDescription retentionPolicy = default(RetentionPolicyDescription))
+            RetentionPolicyDescription retentionPolicy = default(RetentionPolicyDescription),
+            CompressionStrategy? compressionStrategy = default(CompressionStrategy?),
+            bool? quickRecovery = default(bool?))
         {
             name.ThrowIfNull(nameof(name));
             autoRestoreOnDataLoss.ThrowIfNull(nameof(autoRestoreOnDataLoss));
@@ -49,6 +55,8 @@ namespace Microsoft.ServiceFabric.Common
             this.Schedule = schedule;
             this.Storage = storage;
             this.RetentionPolicy = retentionPolicy;
+            this.CompressionStrategy = compressionStrategy;
+            this.QuickRecovery = quickRecovery;
         }
 
         /// <summary>
@@ -86,5 +94,17 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the policy to retain backups in storage.
         /// </summary>
         public RetentionPolicyDescription RetentionPolicy { get; }
+
+        /// <summary>
+        /// Gets specifies the compression strategy to be used for backups. Default is ZIP. Possible values include: 'ZIP',
+        /// 'ZSTANDARD'
+        /// </summary>
+        public CompressionStrategy? CompressionStrategy { get; }
+
+        /// <summary>
+        /// Gets specifies whether to enable quick recovery for this backup policy. When enabled, allows for faster restore
+        /// operations at the cost of additional storage overhead. Default is false.
+        /// </summary>
+        public bool? QuickRecovery { get; }
     }
 }
