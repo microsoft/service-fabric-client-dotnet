@@ -161,6 +161,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, Position = 18)]
         public long? ServerTimeout { get; set; }
 
+        /// <summary>
+        /// Gets or sets MetadataFromBlob. Specifies whether to fetch backup metadata from the backup blob in the response.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 19)]
+        public bool? MetadataFromBlob { get; set; }
+
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
@@ -210,6 +216,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                 latest: this.Latest,
                 restoreTimeout: this.RestoreTimeout,
                 serverTimeout: this.ServerTimeout,
+                metadataFromBlob: this.MetadataFromBlob,
                 cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
             Console.WriteLine("Success!");

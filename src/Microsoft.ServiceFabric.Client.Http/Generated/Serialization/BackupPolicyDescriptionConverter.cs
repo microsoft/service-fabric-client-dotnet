@@ -39,8 +39,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var schedule = default(BackupScheduleDescription);
             var storage = default(BackupStorageDescription);
             var retentionPolicy = default(RetentionPolicyDescription);
-            var compressionStrategy = default(CompressionStrategy?);
-            var quickRecovery = default(bool?);
+            var compressionType = default(CompressionType?);
+            var quickRecovery = default(QuickRecovery?);
 
             do
             {
@@ -69,13 +69,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     retentionPolicy = RetentionPolicyDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("CompressionStrategy", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare("CompressionType", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    compressionStrategy = CompressionStrategyConverter.Deserialize(reader);
+                    compressionType = CompressionTypeConverter.Deserialize(reader);
                 }
                 else if (string.Compare("QuickRecovery", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    quickRecovery = reader.ReadValueAsBool();
+                    quickRecovery = QuickRecoveryConverter.Deserialize(reader);
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 schedule: schedule,
                 storage: storage,
                 retentionPolicy: retentionPolicy,
-                compressionStrategy: compressionStrategy,
+                compressionType: compressionType,
                 quickRecovery: quickRecovery);
         }
 
@@ -109,15 +109,11 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             writer.WriteProperty(obj.MaxIncrementalBackups, "MaxIncrementalBackups", JsonWriterExtensions.WriteIntValue);
             writer.WriteProperty(obj.Schedule, "Schedule", BackupScheduleDescriptionConverter.Serialize);
             writer.WriteProperty(obj.Storage, "Storage", BackupStorageDescriptionConverter.Serialize);
-            writer.WriteProperty(obj.CompressionStrategy, "CompressionStrategy", CompressionStrategyConverter.Serialize);
+            writer.WriteProperty(obj.CompressionType, "CompressionType", CompressionTypeConverter.Serialize);
+            writer.WriteProperty(obj.QuickRecovery, "QuickRecovery", QuickRecoveryConverter.Serialize);
             if (obj.RetentionPolicy != null)
             {
                 writer.WriteProperty(obj.RetentionPolicy, "RetentionPolicy", RetentionPolicyDescriptionConverter.Serialize);
-            }
-
-            if (obj.QuickRecovery != null)
-            {
-                writer.WriteProperty(obj.QuickRecovery, "QuickRecovery", JsonWriterExtensions.WriteBoolValue);
             }
 
             writer.WriteEndObject();

@@ -29,10 +29,10 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="schedule">Describes the backup schedule parameters.</param>
         /// <param name="storage">Describes the details of backup storage where to store the periodic backups.</param>
         /// <param name="retentionPolicy">Describes the policy to retain backups in storage.</param>
-        /// <param name="compressionStrategy">Specifies the compression strategy to be used for backups. Default is ZIP.
-        /// Possible values include: 'ZIP', 'ZSTANDARD'</param>
-        /// <param name="quickRecovery">Specifies whether to enable quick recovery for this backup policy. When enabled, allows
-        /// for faster restore operations at the cost of additional storage overhead. Default is false.</param>
+        /// <param name="compressionType">Specifies the compression type to be used for backups. Default is CLUSTER_DEFINED.
+        /// Possible values include: 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'</param>
+        /// <param name="quickRecovery">Specifies the quick recovery strategy for this backup policy. Default is Disabled.
+        /// Possible values include: 'Disabled', 'FromPrimary'</param>
         public BackupPolicyDescription(
             string name,
             bool? autoRestoreOnDataLoss,
@@ -40,8 +40,8 @@ namespace Microsoft.ServiceFabric.Common
             BackupScheduleDescription schedule,
             BackupStorageDescription storage,
             RetentionPolicyDescription retentionPolicy = default(RetentionPolicyDescription),
-            CompressionStrategy? compressionStrategy = default(CompressionStrategy?),
-            bool? quickRecovery = default(bool?))
+            CompressionType? compressionType = default(CompressionType?),
+            QuickRecovery? quickRecovery = default(QuickRecovery?))
         {
             name.ThrowIfNull(nameof(name));
             autoRestoreOnDataLoss.ThrowIfNull(nameof(autoRestoreOnDataLoss));
@@ -55,7 +55,7 @@ namespace Microsoft.ServiceFabric.Common
             this.Schedule = schedule;
             this.Storage = storage;
             this.RetentionPolicy = retentionPolicy;
-            this.CompressionStrategy = compressionStrategy;
+            this.CompressionType = compressionType;
             this.QuickRecovery = quickRecovery;
         }
 
@@ -96,15 +96,15 @@ namespace Microsoft.ServiceFabric.Common
         public RetentionPolicyDescription RetentionPolicy { get; }
 
         /// <summary>
-        /// Gets specifies the compression strategy to be used for backups. Default is ZIP. Possible values include: 'ZIP',
-        /// 'ZSTANDARD'
+        /// Gets specifies the compression type to be used for backups. Default is CLUSTER_DEFINED. Possible values include:
+        /// 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'
         /// </summary>
-        public CompressionStrategy? CompressionStrategy { get; }
+        public CompressionType? CompressionType { get; }
 
         /// <summary>
-        /// Gets specifies whether to enable quick recovery for this backup policy. When enabled, allows for faster restore
-        /// operations at the cost of additional storage overhead. Default is false.
+        /// Gets specifies the quick recovery strategy for this backup policy. Default is Disabled. Possible values include:
+        /// 'Disabled', 'FromPrimary'
         /// </summary>
-        public bool? QuickRecovery { get; }
+        public QuickRecovery? QuickRecovery { get; }
     }
 }

@@ -265,18 +265,18 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public int? MinimumNumberOfBackups { get; set; }
 
         /// <summary>
-        /// Gets or sets CompressionStrategy. Specifies the compression strategy to be used for backups. Default is ZIP.
-        /// Possible values include: 'ZIP', 'ZSTANDARD'
+        /// Gets or sets CompressionType. Specifies the compression type to be used for backups. Default is CLUSTER_DEFINED.
+        /// Possible values include: 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'
         /// </summary>
         [Parameter(Mandatory = false, Position = 25)]
-        public CompressionStrategy? CompressionStrategy { get; set; }
+        public CompressionType? CompressionType { get; set; }
 
         /// <summary>
-        /// Gets or sets QuickRecovery. Specifies whether to enable quick recovery for this backup policy. When enabled, allows
-        /// for faster restore operations at the cost of additional storage overhead. Default is false.
+        /// Gets or sets QuickRecovery. Specifies the quick recovery strategy for this backup policy. Default is Disabled.
+        /// Possible values include: 'Disabled', 'FromPrimary'
         /// </summary>
         [Parameter(Mandatory = false, Position = 26)]
-        public bool? QuickRecovery { get; set; }
+        public QuickRecovery? QuickRecovery { get; set; }
 
         /// <summary>
         /// Gets or sets ServerTimeout. The server timeout for performing the operation in seconds. This timeout specifies the
@@ -360,7 +360,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
             schedule: backupScheduleDescription,
             storage: backupStorageDescription,
             retentionPolicy: retentionPolicyDescription,
-            compressionStrategy: this.CompressionStrategy,
+            compressionType: this.CompressionType,
             quickRecovery: this.QuickRecovery);
 
             this.ServiceFabricClient.BackupRestore.UpdateBackupPolicyAsync(

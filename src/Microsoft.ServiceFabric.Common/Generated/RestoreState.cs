@@ -26,6 +26,11 @@ namespace Microsoft.ServiceFabric.Common
         RestoreInProgress,
 
         /// <summary>
+        /// Restore operation for secondary replicas has been triggered and is under process.
+        /// </summary>
+        SecondariesInProgress,
+
+        /// <summary>
         /// Operation completed with success.
         /// </summary>
         Success,

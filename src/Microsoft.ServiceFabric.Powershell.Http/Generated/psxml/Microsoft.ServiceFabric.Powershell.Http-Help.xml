@@ -16073,27 +16073,27 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="21">
-                <maml:name>CompressionStrategy</maml:name>
+                <maml:name>CompressionType</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Specifies the compression strategy to be used for backups. Default is ZIP. Possible values include: 'ZIP', 'ZSTANDARD'
+                    Specifies the compression type to be used for backups. Default is CLUSTER_DEFINED. Possible values include: 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'
                     </maml:para>
                 </maml:Description>
-            <command:parameterValue required="false">CompressionStrategy?</command:parameterValue>
+            <command:parameterValue required="false">CompressionType?</command:parameterValue>
                 <dev:type>
-                    <maml:name>CompressionStrategy?</maml:name>
+                    <maml:name>CompressionType?</maml:name>
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="22">
                 <maml:name>QuickRecovery</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Specifies whether to enable quick recovery for this backup policy. When enabled, allows for faster restore operations at the cost of additional storage overhead. Default is false.
+                    Specifies the quick recovery strategy for this backup policy. Default is Disabled. Possible values include: 'Disabled', 'FromPrimary'
                     </maml:para>
                 </maml:Description>
-            <command:parameterValue required="false">bool?</command:parameterValue>
+            <command:parameterValue required="false">QuickRecovery?</command:parameterValue>
                 <dev:type>
-                    <maml:name>bool?</maml:name>
+                    <maml:name>QuickRecovery?</maml:name>
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="23">
@@ -16775,27 +16775,27 @@
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="22">
-                <maml:name>CompressionStrategy</maml:name>
+                <maml:name>CompressionType</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Specifies the compression strategy to be used for backups. Default is ZIP. Possible values include: 'ZIP', 'ZSTANDARD'
+                    Specifies the compression type to be used for backups. Default is CLUSTER_DEFINED. Possible values include: 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'
                     </maml:para>
                 </maml:Description>
-            <command:parameterValue required="false">CompressionStrategy?</command:parameterValue>
+            <command:parameterValue required="false">CompressionType?</command:parameterValue>
                 <dev:type>
-                    <maml:name>CompressionStrategy?</maml:name>
+                    <maml:name>CompressionType?</maml:name>
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="23">
                 <maml:name>QuickRecovery</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Specifies whether to enable quick recovery for this backup policy. When enabled, allows for faster restore operations at the cost of additional storage overhead. Default is false.
+                    Specifies the quick recovery strategy for this backup policy. Default is Disabled. Possible values include: 'Disabled', 'FromPrimary'
                     </maml:para>
                 </maml:Description>
-            <command:parameterValue required="false">bool?</command:parameterValue>
+            <command:parameterValue required="false">QuickRecovery?</command:parameterValue>
                 <dev:type>
-                    <maml:name>bool?</maml:name>
+                    <maml:name>QuickRecovery?</maml:name>
                 </dev:type>
             </command:parameter>
             <command:parameter required="false" position="24">
@@ -17085,6 +17085,18 @@
             <command:parameterValue required="false">long?</command:parameterValue>
                 <dev:type>
                     <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="6">
+                <maml:name>MetadataFromBlob</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether to fetch backup metadata from the backup blob in the response.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             </command:parameters>
@@ -17441,6 +17453,18 @@
                     <maml:name>long?</maml:name>
                 </dev:type>
             </command:parameter>
+            <command:parameter required="false" position="6">
+                <maml:name>MetadataFromBlob</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether to fetch backup metadata from the backup blob in the response.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
+                </dev:type>
+            </command:parameter>
             </command:parameters>
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
@@ -17757,6 +17781,18 @@
             <command:parameterValue required="false">DateTime?</command:parameterValue>
                 <dev:type>
                     <maml:name>DateTime?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="5">
+                <maml:name>MetadataFromBlob</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether to fetch backup metadata from the backup blob in the response.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             </command:parameters>
@@ -18419,6 +18455,18 @@
             <command:parameterValue required="false">long?</command:parameterValue>
                 <dev:type>
                     <maml:name>long?</maml:name>
+                </dev:type>
+            </command:parameter>
+            <command:parameter required="false" position="18">
+                <maml:name>MetadataFromBlob</maml:name>
+                <maml:Description>
+                    <maml:para>
+                    Specifies whether to fetch backup metadata from the backup blob in the response.
+                    </maml:para>
+                </maml:Description>
+            <command:parameterValue required="false">bool?</command:parameterValue>
+                <dev:type>
+                    <maml:name>bool?</maml:name>
                 </dev:type>
             </command:parameter>
             </command:parameters>

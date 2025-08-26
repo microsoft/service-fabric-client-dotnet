@@ -17,7 +17,8 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the RestoreProgressInfo class.
         /// </summary>
         /// <param name="restoreState">Represents the current state of the partition restore operation.
-        /// . Possible values include: 'Invalid', 'Accepted', 'RestoreInProgress', 'Success', 'Failure', 'Timeout'</param>
+        /// . Possible values include: 'Invalid', 'Accepted', 'RestoreInProgress', 'SecondariesInProgress', 'Success',
+        /// 'Failure', 'Timeout'</param>
         /// <param name="timeStampUtc">Timestamp when operation succeeded or failed.</param>
         /// <param name="restoredEpoch">Describes the epoch at which the partition is restored.</param>
         /// <param name="restoredLsn">Restored LSN.</param>
@@ -38,7 +39,8 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Gets represents the current state of the partition restore operation.
-        /// . Possible values include: 'Invalid', 'Accepted', 'RestoreInProgress', 'Success', 'Failure', 'Timeout'
+        /// . Possible values include: 'Invalid', 'Accepted', 'RestoreInProgress', 'SecondariesInProgress', 'Success',
+        /// 'Failure', 'Timeout'
         /// </summary>
         public RestoreState? RestoreState { get; }
 

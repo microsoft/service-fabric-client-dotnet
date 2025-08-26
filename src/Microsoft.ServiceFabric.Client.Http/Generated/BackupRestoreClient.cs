@@ -372,6 +372,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             DateTime? endDateTimeFilter = default(DateTime?),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             applicationId.ThrowIfNull(nameof(applicationId));
@@ -389,6 +390,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
@@ -593,6 +595,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             DateTime? endDateTimeFilter = default(DateTime?),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             serviceId.ThrowIfNull(nameof(serviceId));
@@ -610,6 +613,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             continuationToken?.AddToQueryParameters(queryParams, $"ContinuationToken={continuationToken.ToString()}");
             maxResults?.AddToQueryParameters(queryParams, $"MaxResults={maxResults}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
@@ -807,6 +811,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
             DateTime? endDateTimeFilter = default(DateTime?),
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             partitionId.ThrowIfNull(nameof(partitionId));
@@ -821,6 +826,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
             startDateTimeFilter?.AddToQueryParameters(queryParams, $"StartDateTimeFilter={System.Xml.XmlConvert.ToString(startDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
             endDateTimeFilter?.AddToQueryParameters(queryParams, $"EndDateTimeFilter={System.Xml.XmlConvert.ToString(endDateTimeFilter.Value, System.Xml.XmlDateTimeSerializationMode.Utc).ToString()}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
@@ -979,6 +985,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             bool? latest = false,
             int? restoreTimeout = 10,
             long? serverTimeout = 60,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken))
         {
             partitionId.ThrowIfNull(nameof(partitionId));
@@ -992,6 +999,7 @@ namespace Microsoft.ServiceFabric.Client.Http
             latest?.AddToQueryParameters(queryParams, $"Latest={latest}");
             restoreTimeout?.AddToQueryParameters(queryParams, $"RestoreTimeout={restoreTimeout}");
             serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
+            metadataFromBlob?.AddToQueryParameters(queryParams, $"MetadataFromBlob={metadataFromBlob}");
             queryParams.Add("api-version=6.4");
             url += "?" + string.Join("&", queryParams);
             
