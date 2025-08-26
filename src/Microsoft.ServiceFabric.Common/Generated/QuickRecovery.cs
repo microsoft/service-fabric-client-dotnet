@@ -16,8 +16,8 @@ namespace Microsoft.ServiceFabric.Common
         Disabled,
 
         /// <summary>
-        /// Recover from primary replica when primary has newer or equal data. Require manual intervention when backup has
-        /// newer data.
+        /// Recover from primary replica when primary has newer or equal data in case of Partial Data Loss. Requires manual
+        /// intervention when backup has newer data.
         /// </summary>
         FromPrimary,
     }
