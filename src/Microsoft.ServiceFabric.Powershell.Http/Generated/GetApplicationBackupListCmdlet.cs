@@ -67,6 +67,12 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         [Parameter(Mandatory = false, Position = 5)]
         public long? MaxResults { get; set; }
 
+        /// <summary>
+        /// Gets or sets MetadataFromBlob. Specifies whether to fetch backup metadata from the backup blob in the response.
+        /// </summary>
+        [Parameter(Mandatory = false, Position = 6)]
+        public bool? MetadataFromBlob { get; set; }
+
         /// <inheritdoc/>
         protected override void ProcessRecordInternal()
         {
@@ -81,6 +87,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
                     endDateTimeFilter: this.EndDateTimeFilter,
                     continuationToken: continuationToken,
                     maxResults: this.MaxResults,
+                    metadataFromBlob: this.MetadataFromBlob,
                     cancellationToken: this.CancellationToken).GetAwaiter().GetResult();
 
                 if (result == null)

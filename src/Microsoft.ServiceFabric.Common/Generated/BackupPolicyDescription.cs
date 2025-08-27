@@ -29,13 +29,19 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="schedule">Describes the backup schedule parameters.</param>
         /// <param name="storage">Describes the details of backup storage where to store the periodic backups.</param>
         /// <param name="retentionPolicy">Describes the policy to retain backups in storage.</param>
+        /// <param name="compressionType">Specifies the compression type to be used for backups. Default is CLUSTER_DEFINED.
+        /// Possible values include: 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'</param>
+        /// <param name="quickRecovery">Specifies the quick recovery strategy for this backup policy. Default is Disabled.
+        /// Possible values include: 'Disabled', 'FromPrimary'</param>
         public BackupPolicyDescription(
             string name,
             bool? autoRestoreOnDataLoss,
             int? maxIncrementalBackups,
             BackupScheduleDescription schedule,
             BackupStorageDescription storage,
-            RetentionPolicyDescription retentionPolicy = default(RetentionPolicyDescription))
+            RetentionPolicyDescription retentionPolicy = default(RetentionPolicyDescription),
+            CompressionType? compressionType = default(CompressionType?),
+            QuickRecovery? quickRecovery = default(QuickRecovery?))
         {
             name.ThrowIfNull(nameof(name));
             autoRestoreOnDataLoss.ThrowIfNull(nameof(autoRestoreOnDataLoss));
@@ -49,6 +55,8 @@ namespace Microsoft.ServiceFabric.Common
             this.Schedule = schedule;
             this.Storage = storage;
             this.RetentionPolicy = retentionPolicy;
+            this.CompressionType = compressionType;
+            this.QuickRecovery = quickRecovery;
         }
 
         /// <summary>
@@ -86,5 +94,17 @@ namespace Microsoft.ServiceFabric.Common
         /// Gets the policy to retain backups in storage.
         /// </summary>
         public RetentionPolicyDescription RetentionPolicy { get; }
+
+        /// <summary>
+        /// Gets specifies the compression type to be used for backups. Default is CLUSTER_DEFINED. Possible values include:
+        /// 'CLUSTER_DEFINED', 'ZIP', 'ZSTANDARD'
+        /// </summary>
+        public CompressionType? CompressionType { get; }
+
+        /// <summary>
+        /// Gets specifies the quick recovery strategy for this backup policy. Default is Disabled. Possible values include:
+        /// 'Disabled', 'FromPrimary'
+        /// </summary>
+        public QuickRecovery? QuickRecovery { get; }
     }
 }

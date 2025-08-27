@@ -38,6 +38,10 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = RestoreState.RestoreInProgress;
             }
+            else if (string.Compare(value, "SecondariesInProgress", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = RestoreState.SecondariesInProgress;
+            }
             else if (string.Compare(value, "Success", StringComparison.OrdinalIgnoreCase) == 0)
             {
                 obj = RestoreState.Success;
@@ -71,6 +75,9 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case RestoreState.RestoreInProgress:
                     writer.WriteStringValue("RestoreInProgress");
+                    break;
+                case RestoreState.SecondariesInProgress:
+                    writer.WriteStringValue("SecondariesInProgress");
                     break;
                 case RestoreState.Success:
                     writer.WriteStringValue("Success");

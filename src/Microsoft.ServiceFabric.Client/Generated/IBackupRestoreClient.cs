@@ -311,6 +311,8 @@ namespace Microsoft.ServiceFabric.Client
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
+        /// <param name ="metadataFromBlob">Specifies whether to fetch backup metadata from the backup blob in the
+        /// response.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -327,6 +329,7 @@ namespace Microsoft.ServiceFabric.Client
             DateTime? endDateTimeFilter = default(DateTime?),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -522,6 +525,8 @@ namespace Microsoft.ServiceFabric.Client
         /// maximum results if they do not fit in the message as per the max message size restrictions defined in the
         /// configuration. If this parameter is zero or not specified, the paged query includes as many results as possible
         /// that fit in the return message.</param>
+        /// <param name ="metadataFromBlob">Specifies whether to fetch backup metadata from the backup blob in the
+        /// response.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -538,6 +543,7 @@ namespace Microsoft.ServiceFabric.Client
             DateTime? endDateTimeFilter = default(DateTime?),
             ContinuationToken continuationToken = default(ContinuationToken),
             long? maxResults = 0,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -698,6 +704,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="endDateTimeFilter">Specify the end date time till which to enumerate backups, in datetime format. The
         /// date time must be specified in ISO8601 format. This is an optional parameter. If not specified, enumeration is done
         /// till the most recent backup.</param>
+        /// <param name ="metadataFromBlob">Specifies whether to fetch backup metadata from the backup blob in the
+        /// response.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -712,6 +720,7 @@ namespace Microsoft.ServiceFabric.Client
             bool? latest = false,
             DateTime? startDateTimeFilter = default(DateTime?),
             DateTime? endDateTimeFilter = default(DateTime?),
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
@@ -846,6 +855,8 @@ namespace Microsoft.ServiceFabric.Client
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>
+        /// <param name ="metadataFromBlob">Specifies whether to fetch backup metadata from the backup blob in the
+        /// response.</param>
         /// <param name ="cancellationToken">Cancels the client-side operation.</param>
         /// <returns>
         /// A task that represents the asynchronous operation.
@@ -860,6 +871,7 @@ namespace Microsoft.ServiceFabric.Client
             bool? latest = false,
             int? restoreTimeout = 10,
             long? serverTimeout = 60,
+            bool? metadataFromBlob = false,
             CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
