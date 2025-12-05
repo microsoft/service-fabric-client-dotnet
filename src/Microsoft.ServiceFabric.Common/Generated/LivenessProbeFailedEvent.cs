@@ -36,7 +36,7 @@ namespace Microsoft.ServiceFabric.Common
         /// <param name="stdOut">the standard output stream</param>
         /// <param name="stdErr">the standard error stream</param>
         /// <param name="errorCode">the error code for the process</param>
-        /// <param name="message">message emited from the failed event</param>
+        /// <param name="message">message emitted from the failed event</param>
         /// <param name="category">The category of event.</param>
         /// <param name="hasCorrelatedEvents">Shows there is existing related events available.</param>
         /// <param name="codePackageName">Name of Code package.</param>
@@ -171,7 +171,7 @@ namespace Microsoft.ServiceFabric.Common
         public string ErrorCode { get; }
 
         /// <summary>
-        /// Gets message emited from the failed event
+        /// Gets message emitted from the failed event
         /// </summary>
         public string Message { get; }
     }

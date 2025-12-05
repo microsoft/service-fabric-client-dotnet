@@ -40,5 +40,16 @@ namespace Microsoft.ServiceFabric.Common
         /// state has been deleted. The value is 5.
         /// </summary>
         Dropped,
+
+        /// <summary>
+        /// The replica is completed. This means that the replica has been removed from the replica set. The value is 6.
+        /// </summary>
+        Completed,
+
+        /// <summary>
+        /// The replica is to be removed. This means that the replica has been removed from the replica set; however its data
+        /// is still preserved on disk temporarily and can be restored if manual actions are taken. The value is 7.
+        /// </summary>
+        ToBeRemoved,
     }
 }
