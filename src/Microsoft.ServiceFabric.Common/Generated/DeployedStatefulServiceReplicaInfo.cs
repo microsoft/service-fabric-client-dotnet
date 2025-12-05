@@ -25,7 +25,7 @@ namespace Microsoft.ServiceFabric.Common
         /// lifetime of the service. If the same service was deleted and recreated the IDs of its partitions would be
         /// different.</param>
         /// <param name="replicaStatus">The status of a replica of a service. Possible values include: 'Invalid', 'InBuild',
-        /// 'Standby', 'Ready', 'Down', 'Dropped'</param>
+        /// 'Standby', 'Ready', 'Down', 'Dropped', 'Completed', 'ToBeRemoved'</param>
         /// <param name="address">The last address returned by the replica in Open or ChangeRole.</param>
         /// <param name="servicePackageActivationId">The ActivationId of a deployed service package. If
         /// ServicePackageActivationMode specified at the time of creating the service

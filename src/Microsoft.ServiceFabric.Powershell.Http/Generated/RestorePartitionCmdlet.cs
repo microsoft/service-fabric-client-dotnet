@@ -136,7 +136,7 @@ namespace Microsoft.ServiceFabric.Powershell.Http
         public Guid? ManagedIdentityClientId { get; set; }
 
         /// <summary>
-        /// Gets or sets Latest. Specifies whether BackupRestore Service whould automatically determine the latest backup
+        /// Gets or sets Latest. Specifies whether BackupRestore Service would automatically determine the latest backup
         /// available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will
         /// automatically fetch the latest backup and Restore the partition using that.
         /// </summary>
