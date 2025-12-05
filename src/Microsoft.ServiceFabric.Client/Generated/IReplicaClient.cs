@@ -349,10 +349,7 @@ namespace Microsoft.ServiceFabric.Client
         /// of the replica from the cluster. This API tests the replica state removal path, and simulates the report fault
         /// permanent path through client APIs. Warning - There are no safety checks performed when this API is used. Incorrect
         /// use of this API can lead to data loss for stateful services. In addition, the forceRemove flag impacts all other
-        /// replicas hosted in the same process. If the cluster has the replica soft delete feature enabled, the flow is
-        /// updated to no longer remove all of the state information of the replica from the cluster. This state is instead
-        /// persisted on the disk to be restorable from in the case of unexpected quorum loss. If the partition is otherwise
-        /// healthy, Service Fabric will permanently delete the replica state periodically.
+        /// replicas hosted in the same process.
         /// </remarks>
         /// <param name ="nodeName">The name of the node.</param>
         /// <param name ="partitionId">The identity of the partition.</param>
@@ -376,36 +373,6 @@ namespace Microsoft.ServiceFabric.Client
             PartitionId partitionId,
             ReplicaId replicaId,
             bool? forceRemove = default(bool?),
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken));
-
-        /// <summary>
-        /// Recovers a ToBeRemoved replica by reopening the stateful service replica.
-        /// </summary>
-        /// <remarks>
-        /// Recovers a ToBeRemoved replica by reopening the stateful service replica. Use this if the partition is stuck in
-        /// quorum loss in order to prevent data loss. In the event of Quorum Loss, customers should restore all soft deleted
-        /// (ToBeRemoved) replicas using this API. Service Fabric automatically determines which replicas to retain to restore
-        /// quorum. This command has no effect on replicas which are not in the ToBeRemoved state.
-        /// </remarks>
-        /// <param name ="nodeName">The name of the node.</param>
-        /// <param name ="partitionId">The identity of the partition.</param>
-        /// <param name ="replicaId">The identifier of the replica.</param>
-        /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
-        /// time duration that the client is willing to wait for the requested operation to complete. The default value for
-        /// this parameter is 60 seconds.</param>
-        /// <param name ="cancellationToken">Cancels the client-side operation.</param>
-        /// <returns>
-        /// A task that represents the asynchronous operation.
-        /// </returns>
-        /// <exception cref="InvalidCredentialsException">Thrown when invalid credentials are used while making request to cluster.</exception>
-        /// <exception cref="ServiceFabricRequestException">Thrown when request to Service Fabric cluster failed due to an underlying issue such as network connectivity, DNS failure or timeout.</exception>
-        /// <exception cref="ServiceFabricException">Thrown when the requested operation failed at server. Exception contains Error code <see cref="FabricError.ErrorCode"/>, message indicating the failure. It also contains a flag wether the exception is transient or not, client operations can be retried if its transient.</exception>
-        /// <exception cref="OperationCanceledException">Thrown when cancellation is requested for the cancellation token.</exception>
-        Task RestoreReplicaAsync(
-            NodeName nodeName,
-            PartitionId partitionId,
-            ReplicaId replicaId,
             long? serverTimeout = 60,
             CancellationToken cancellationToken = default(CancellationToken));
     }

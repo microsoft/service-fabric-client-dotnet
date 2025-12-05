@@ -24,7 +24,7 @@ namespace Microsoft.ServiceFabric.Common
 
         /// <summary>
         /// Indicates the intent is for the node to remove data. You might specify this setting when the hard disk is being
-        /// re-imaged. The value is 3.
+        /// reimaged. The value is 3.
         /// </summary>
         RemoveData,
 

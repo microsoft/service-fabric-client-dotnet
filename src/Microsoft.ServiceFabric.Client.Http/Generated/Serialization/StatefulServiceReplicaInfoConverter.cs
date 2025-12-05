@@ -41,7 +41,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var replicaRole = default(ReplicaRole?);
             var replicaId = default(ReplicaId);
             var previousReplicaRole = default(ReplicaRole?);
-            var toBeRemovedExpirationTimeUtc = default(DateTime?);
 
             do
             {
@@ -78,10 +77,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     previousReplicaRole = ReplicaRoleConverter.Deserialize(reader);
                 }
-                else if (string.Compare("ToBeRemovedExpirationTimeUtc", propName, StringComparison.OrdinalIgnoreCase) == 0)
-                {
-                    toBeRemovedExpirationTimeUtc = reader.ReadValueAsDateTime();
-                }
                 else
                 {
                     reader.SkipPropertyValue();
@@ -97,8 +92,7 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 lastInBuildDurationInSeconds: lastInBuildDurationInSeconds,
                 replicaRole: replicaRole,
                 replicaId: replicaId,
-                previousReplicaRole: previousReplicaRole,
-                toBeRemovedExpirationTimeUtc: toBeRemovedExpirationTimeUtc);
+                previousReplicaRole: previousReplicaRole);
         }
 
         /// <summary>
@@ -133,11 +127,6 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             if (obj.ReplicaId != null)
             {
                 writer.WriteProperty(obj.ReplicaId, "ReplicaId", ReplicaIdConverter.Serialize);
-            }
-
-            if (obj.ToBeRemovedExpirationTimeUtc != null)
-            {
-                writer.WriteProperty(obj.ToBeRemovedExpirationTimeUtc, "ToBeRemovedExpirationTimeUtc", JsonWriterExtensions.WriteDateTimeValue);
             }
 
             writer.WriteEndObject();

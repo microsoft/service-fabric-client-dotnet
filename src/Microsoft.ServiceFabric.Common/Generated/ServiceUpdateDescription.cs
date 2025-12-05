@@ -43,8 +43,8 @@ namespace Microsoft.ServiceFabric.Common
         /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
         /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
         /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
-        /// - ServiceTags TagsRequiredToPlace - Indicates the TagsRequiredToPlace property is set. The value is 1048576.
-        /// - ServiceTags TagsRequiredToRun - Indicates the TagsRequiredToRun property is set. The value is 2097152.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </param>
         /// <param name="placementConstraints">The placement constraints as a string. Placement constraints are boolean
         /// expressions on node properties and allow for restricting a service to particular nodes based on the service
@@ -60,8 +60,8 @@ namespace Microsoft.ServiceFabric.Common
         /// </param>
         /// <param name="scalingPolicies">Scaling policies for this service.</param>
         /// <param name="serviceDnsName">The DNS name of the service.</param>
-        /// <param name="serviceTags">Service tags collections for placement and running of the service.</param>
-        /// <param name="repartitionDescription">The repartition description as an object.</param>
+        /// <param name="tagsForPlacement">Tags for placement of this service.</param>
+        /// <param name="tagsForRunning">Tags for running of this service.</param>
         protected ServiceUpdateDescription(
             ServiceKind? serviceKind,
             string flags = default(string),
@@ -72,8 +72,8 @@ namespace Microsoft.ServiceFabric.Common
             MoveCost? defaultMoveCost = default(MoveCost?),
             IEnumerable<ScalingPolicyDescription> scalingPolicies = default(IEnumerable<ScalingPolicyDescription>),
             string serviceDnsName = default(string),
-            ServiceTags serviceTags = default(ServiceTags),
-            RepartitionSchemeDescription repartitionDescription = default(RepartitionSchemeDescription))
+            NodeTagsDescription tagsForPlacement = default(NodeTagsDescription),
+            NodeTagsDescription tagsForRunning = default(NodeTagsDescription))
         {
             serviceKind.ThrowIfNull(nameof(serviceKind));
             this.ServiceKind = serviceKind;
@@ -85,8 +85,8 @@ namespace Microsoft.ServiceFabric.Common
             this.DefaultMoveCost = defaultMoveCost;
             this.ScalingPolicies = scalingPolicies;
             this.ServiceDnsName = serviceDnsName;
-            this.ServiceTags = serviceTags;
-            this.RepartitionDescription = repartitionDescription;
+            this.TagsForPlacement = tagsForPlacement;
+            this.TagsForRunning = tagsForRunning;
         }
 
         /// <summary>
@@ -116,8 +116,8 @@ namespace Microsoft.ServiceFabric.Common
         /// - InstanceRestartWaitDuration - Indicates the InstanceCloseDelayDuration property is set. The value is 32768.
         /// - DropSourceReplicaOnMove - Indicates the DropSourceReplicaOnMove property is set. The value is 65536.
         /// - ServiceDnsName - Indicates the ServiceDnsName property is set. The value is 131072.
-        /// - ServiceTags TagsRequiredToPlace - Indicates the TagsRequiredToPlace property is set. The value is 1048576.
-        /// - ServiceTags TagsRequiredToRun - Indicates the TagsRequiredToRun property is set. The value is 2097152.
+        /// - TagsForPlacement - Indicates the TagsForPlacement property is set. The value is 1048576.
+        /// - TagsForRunning - Indicates the TagsForRunning property is set. The value is 2097152.
         /// </summary>
         public string Flags { get; }
 
@@ -161,14 +161,14 @@ namespace Microsoft.ServiceFabric.Common
         public string ServiceDnsName { get; }
 
         /// <summary>
-        /// Gets service tags collections for placement and running of the service.
+        /// Gets tags for placement of this service.
         /// </summary>
-        public ServiceTags ServiceTags { get; }
+        public NodeTagsDescription TagsForPlacement { get; }
 
         /// <summary>
-        /// Gets the repartition description as an object.
+        /// Gets tags for running of this service.
         /// </summary>
-        public RepartitionSchemeDescription RepartitionDescription { get; }
+        public NodeTagsDescription TagsForRunning { get; }
 
         /// <summary>
         /// Gets the kind of service (Stateless or Stateful).

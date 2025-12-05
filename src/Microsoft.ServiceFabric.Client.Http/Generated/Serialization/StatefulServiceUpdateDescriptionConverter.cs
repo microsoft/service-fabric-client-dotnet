@@ -41,8 +41,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             var defaultMoveCost = default(MoveCost?);
             var scalingPolicies = default(IEnumerable<ScalingPolicyDescription>);
             var serviceDnsName = default(string);
-            var serviceTags = default(ServiceTags);
-            var repartitionDescription = default(RepartitionSchemeDescription);
+            var tagsForPlacement = default(NodeTagsDescription);
+            var tagsForRunning = default(NodeTagsDescription);
             var targetReplicaSetSize = default(int?);
             var minReplicaSetSize = default(int?);
             var replicaRestartWaitDurationSeconds = default(string);
@@ -89,13 +89,13 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 {
                     serviceDnsName = reader.ReadValueAsString();
                 }
-                else if (string.Compare("ServiceTags", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare("TagsForPlacement", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    serviceTags = ServiceTagsConverter.Deserialize(reader);
+                    tagsForPlacement = NodeTagsDescriptionConverter.Deserialize(reader);
                 }
-                else if (string.Compare("RepartitionDescription", propName, StringComparison.OrdinalIgnoreCase) == 0)
+                else if (string.Compare("TagsForRunning", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
-                    repartitionDescription = RepartitionSchemeDescriptionConverter.Deserialize(reader);
+                    tagsForRunning = NodeTagsDescriptionConverter.Deserialize(reader);
                 }
                 else if (string.Compare("TargetReplicaSetSize", propName, StringComparison.OrdinalIgnoreCase) == 0)
                 {
@@ -153,8 +153,8 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 defaultMoveCost: defaultMoveCost,
                 scalingPolicies: scalingPolicies,
                 serviceDnsName: serviceDnsName,
-                serviceTags: serviceTags,
-                repartitionDescription: repartitionDescription,
+                tagsForPlacement: tagsForPlacement,
+                tagsForRunning: tagsForRunning,
                 targetReplicaSetSize: targetReplicaSetSize,
                 minReplicaSetSize: minReplicaSetSize,
                 replicaRestartWaitDurationSeconds: replicaRestartWaitDurationSeconds,
@@ -213,14 +213,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                 writer.WriteProperty(obj.ServiceDnsName, "ServiceDnsName", JsonWriterExtensions.WriteStringValue);
             }
 
-            if (obj.ServiceTags != null)
+            if (obj.TagsForPlacement != null)
             {
-                writer.WriteProperty(obj.ServiceTags, "ServiceTags", ServiceTagsConverter.Serialize);
+                writer.WriteProperty(obj.TagsForPlacement, "TagsForPlacement", NodeTagsDescriptionConverter.Serialize);
             }
 
-            if (obj.RepartitionDescription != null)
+            if (obj.TagsForRunning != null)
             {
-                writer.WriteProperty(obj.RepartitionDescription, "RepartitionDescription", RepartitionSchemeDescriptionConverter.Serialize);
+                writer.WriteProperty(obj.TagsForRunning, "TagsForRunning", NodeTagsDescriptionConverter.Serialize);
             }
 
             if (obj.TargetReplicaSetSize != null)

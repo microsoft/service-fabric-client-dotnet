@@ -588,8 +588,7 @@ namespace Microsoft.ServiceFabric.Client
         /// For example, if the service name is "fabric:/myapp/app1/svc1", the service identity would be "myapp~app1~svc1" in
         /// 6.0+ and "myapp/app1/svc1" in previous versions.
         /// </param>
-        /// <param name ="serviceArmMetadataUpdateDescription">The Arm metadata to be associated with a specific
-        /// service</param>
+        /// <param name ="serviceArmMetadataUpdateDescription">The Arm metadata to be assocated with a specific service</param>
         /// <param name ="serverTimeout">The server timeout for performing the operation in seconds. This timeout specifies the
         /// time duration that the client is willing to wait for the requested operation to complete. The default value for
         /// this parameter is 60 seconds.</param>

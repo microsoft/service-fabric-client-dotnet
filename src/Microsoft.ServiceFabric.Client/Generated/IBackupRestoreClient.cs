@@ -844,7 +844,7 @@ namespace Microsoft.ServiceFabric.Client
         /// </remarks>
         /// <param name ="partitionId">The identity of the partition.</param>
         /// <param name ="restorePartitionDescription">Describes the parameters to restore the partition.</param>
-        /// <param name ="latest">Specifies whether BackupRestore Service would automatically determine the latest backup
+        /// <param name ="latest">Specifies whether BackupRestore Service whould automatically determine the latest backup
         /// available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will
         /// automatically fetch the latest backup and Restore the partition using that.</param>
         /// <param name ="restoreTimeout">Specifies the maximum amount of time to wait, in minutes, for the restore operation

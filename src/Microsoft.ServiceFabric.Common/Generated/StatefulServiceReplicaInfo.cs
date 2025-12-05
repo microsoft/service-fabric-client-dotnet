@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the StatefulServiceReplicaInfo class.
         /// </summary>
         /// <param name="replicaStatus">The status of a replica of a service. Possible values include: 'Invalid', 'InBuild',
-        /// 'Standby', 'Ready', 'Down', 'Dropped', 'Completed', 'ToBeRemoved'</param>
+        /// 'Standby', 'Ready', 'Down', 'Dropped'</param>
         /// <param name="healthState">The health state of a Service Fabric entity such as Cluster, Node, Application, Service,
         /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
@@ -37,9 +37,6 @@ namespace Microsoft.ServiceFabric.Common
         /// 
         /// The role of a replica of a stateful service.
         /// </param>
-        /// <param name="toBeRemovedExpirationTimeUtc">The best effort time when a ToBeRemoved replica will automatically be
-        /// deleted if no manual action to recover is taken. This value has no effect if the replica status is not
-        /// ToBeRemoved.</param>
         public StatefulServiceReplicaInfo(
             ReplicaStatus? replicaStatus = default(ReplicaStatus?),
             HealthState? healthState = default(HealthState?),
@@ -48,8 +45,7 @@ namespace Microsoft.ServiceFabric.Common
             string lastInBuildDurationInSeconds = default(string),
             ReplicaRole? replicaRole = default(ReplicaRole?),
             ReplicaId replicaId = default(ReplicaId),
-            ReplicaRole? previousReplicaRole = default(ReplicaRole?),
-            DateTime? toBeRemovedExpirationTimeUtc = default(DateTime?))
+            ReplicaRole? previousReplicaRole = default(ReplicaRole?))
             : base(
                 Common.ServiceKind.Stateful,
                 replicaStatus,
@@ -61,7 +57,6 @@ namespace Microsoft.ServiceFabric.Common
             this.ReplicaRole = replicaRole;
             this.ReplicaId = replicaId;
             this.PreviousReplicaRole = previousReplicaRole;
-            this.ToBeRemovedExpirationTimeUtc = toBeRemovedExpirationTimeUtc;
         }
 
         /// <summary>
@@ -86,11 +81,5 @@ namespace Microsoft.ServiceFabric.Common
         /// The role of a replica of a stateful service.
         /// </summary>
         public ReplicaRole? PreviousReplicaRole { get; }
-
-        /// <summary>
-        /// Gets the best effort time when a ToBeRemoved replica will automatically be deleted if no manual action to recover
-        /// is taken. This value has no effect if the replica status is not ToBeRemoved.
-        /// </summary>
-        public DateTime? ToBeRemovedExpirationTimeUtc { get; }
     }
 }

@@ -410,41 +410,5 @@ namespace Microsoft.ServiceFabric.Client.Http
 
             return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
         }
-
-        /// <inheritdoc />
-        public Task RestoreReplicaAsync(
-            NodeName nodeName,
-            PartitionId partitionId,
-            ReplicaId replicaId,
-            long? serverTimeout = 60,
-            CancellationToken cancellationToken = default(CancellationToken))
-        {
-            nodeName.ThrowIfNull(nameof(nodeName));
-            partitionId.ThrowIfNull(nameof(partitionId));
-            replicaId.ThrowIfNull(nameof(replicaId));
-            serverTimeout?.ThrowIfOutOfInclusiveRange("serverTimeout", 1, 4294967295);
-            var requestId = Guid.NewGuid().ToString();
-            var url = "Nodes/{nodeName}/$/GetPartitions/{partitionId}/$/GetReplicas/{replicaId}/$/Restore";
-            url = url.Replace("{nodeName}", Uri.EscapeDataString(nodeName.ToString()));
-            url = url.Replace("{partitionId}", partitionId.ToString());
-            url = url.Replace("{replicaId}", replicaId.ToString());
-            var queryParams = new List<string>();
-            
-            // Append to queryParams if not null.
-            serverTimeout?.AddToQueryParameters(queryParams, $"timeout={serverTimeout}");
-            queryParams.Add("api-version=11.3");
-            url += "?" + string.Join("&", queryParams);
-            
-            HttpRequestMessage RequestFunc()
-            {
-                var request = new HttpRequestMessage()
-                {
-                    Method = HttpMethod.Post,
-                };
-                return request;
-            }
-
-            return this.httpClient.SendAsync(RequestFunc, url, requestId, cancellationToken);
-        }
     }
 }

@@ -18,7 +18,7 @@ namespace Microsoft.ServiceFabric.Common
         /// Initializes a new instance of the StatelessServiceInstanceInfo class.
         /// </summary>
         /// <param name="replicaStatus">The status of a replica of a service. Possible values include: 'Invalid', 'InBuild',
-        /// 'Standby', 'Ready', 'Down', 'Dropped', 'Completed', 'ToBeRemoved'</param>
+        /// 'Standby', 'Ready', 'Down', 'Dropped'</param>
         /// <param name="healthState">The health state of a Service Fabric entity such as Cluster, Node, Application, Service,
         /// Partition, Replica etc. Possible values include: 'Invalid', 'Ok', 'Warning', 'Error', 'Unknown'</param>
         /// <param name="nodeName">The name of a Service Fabric node.</param>
