@@ -50,6 +50,14 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
             {
                 obj = ReplicaStatus.Dropped;
             }
+            else if (string.Compare(value, "Completed", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ReplicaStatus.Completed;
+            }
+            else if (string.Compare(value, "ToBeRemoved", StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                obj = ReplicaStatus.ToBeRemoved;
+            }
 
             return obj;
         }
@@ -80,6 +88,12 @@ namespace Microsoft.ServiceFabric.Client.Http.Serialization
                     break;
                 case ReplicaStatus.Dropped:
                     writer.WriteStringValue("Dropped");
+                    break;
+                case ReplicaStatus.Completed:
+                    writer.WriteStringValue("Completed");
+                    break;
+                case ReplicaStatus.ToBeRemoved:
+                    writer.WriteStringValue("ToBeRemoved");
                     break;
                 default:
                     throw new ArgumentException($"Invalid value {value.ToString()} for enum type ReplicaStatus");

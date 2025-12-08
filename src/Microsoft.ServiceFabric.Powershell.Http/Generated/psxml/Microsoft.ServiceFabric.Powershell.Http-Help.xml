@@ -11928,7 +11928,7 @@
             <command:syntax>
             </command:syntax>
             <maml:description>
-                <maml:para>This API simulates a Service Fabric replica failure by removing a replica from a Service Fabric cluster. The removal closes the replica, transitions the replica to the role None, and then removes all of the state information of the replica from the cluster. This API tests the replica state removal path, and simulates the report fault permanent path through client APIs. Warning - There are no safety checks performed when this API is used. Incorrect use of this API can lead to data loss for stateful services. In addition, the forceRemove flag impacts all other replicas hosted in the same process.</maml:para>
+                <maml:para>This API simulates a Service Fabric replica failure by removing a replica from a Service Fabric cluster. The removal closes the replica, transitions the replica to the role None, and then removes all of the state information of the replica from the cluster. This API tests the replica state removal path, and simulates the report fault permanent path through client APIs. Warning - There are no safety checks performed when this API is used. Incorrect use of this API can lead to data loss for stateful services. In addition, the forceRemove flag impacts all other replicas hosted in the same process. If the cluster has the replica soft delete feature enabled, the flow is updated to no longer remove all of the state information of the replica from the cluster. This state is instead persisted on the disk to be restorable from in the case of unexpected quorum loss. If the partition is otherwise healthy, Service Fabric will permanently delete the replica state periodically.</maml:para>
             </maml:description>
             <command:parameters>
             <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
@@ -11992,6 +11992,71 @@
                 </dev:type>
             </command:parameter>
             </command:parameters>
+    </command:command>
+    <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+        <command:details>
+            <command:name>Restore-SFReplica</command:name>
+            <command:verb>Restore</command:verb>
+            <command:noun>Replica</command:noun>
+            <maml:description>
+                <maml:para>Recovers a ToBeRemoved replica by reopening the stateful service replica.</maml:para>
+            </maml:description>
+        </command:details>
+        <command:syntax>
+        </command:syntax>
+        <maml:description>
+            <maml:para>Recovers a ToBeRemoved replica by reopening the stateful service replica. Use this if the partition is stuck in quorum loss in order to prevent data loss. In the event of Quorum Loss, customers should restore all soft deleted (ToBeRemoved) replicas using this API. Service Fabric automatically determines which replicas to retain to restore quorum. This command has no effect on replicas which are not in the ToBeRemoved state.</maml:para>
+        </maml:description>
+        <command:parameters>
+        <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="0">
+            <maml:name>NodeName</maml:name>
+            <maml:Description>
+                <maml:para>
+                The name of the node.
+                </maml:para>
+            </maml:Description>
+        <command:parameterValue required="true">NodeName</command:parameterValue>
+            <dev:type>
+                <maml:name>NodeName</maml:name>
+            </dev:type>
+        </command:parameter>
+        <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="1">
+            <maml:name>PartitionId</maml:name>
+            <maml:Description>
+                <maml:para>
+                The identity of the partition.
+                </maml:para>
+            </maml:Description>
+        <command:parameterValue required="true">PartitionId</command:parameterValue>
+            <dev:type>
+                <maml:name>PartitionId</maml:name>
+            </dev:type>
+        </command:parameter>
+        <command:parameter required="true" pipelineInput="True(ByPropertyName)" position="2">
+            <maml:name>ReplicaId</maml:name>
+            <maml:Description>
+                <maml:para>
+                The identifier of the replica.
+                </maml:para>
+            </maml:Description>
+        <command:parameterValue required="true">ReplicaId</command:parameterValue>
+            <dev:type>
+                <maml:name>ReplicaId</maml:name>
+            </dev:type>
+        </command:parameter>
+        <command:parameter required="false" position="3">
+            <maml:name>ServerTimeout</maml:name>
+            <maml:Description>
+                <maml:para>
+                The server timeout for performing the operation in seconds. This timeout specifies the time duration that the client is willing to wait for the requested operation to complete. The default value for this parameter is 60 seconds.
+                </maml:para>
+            </maml:Description>
+        <command:parameterValue required="false">long?</command:parameterValue>
+            <dev:type>
+                <maml:name>long?</maml:name>
+            </dev:type>
+        </command:parameter>
+        </command:parameters>
     </command:command>
     <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
             <command:details>
@@ -18425,7 +18490,7 @@
                 <maml:name>Latest</maml:name>
                 <maml:Description>
                     <maml:para>
-                    Specifies whether BackupRestore Service whould automatically determine the latest backup available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will automatically fetch the latest backup and Restore the partition using that.
+                    Specifies whether BackupRestore Service would automatically determine the latest backup available and Restore using that. Set to false by default, but user can pass True and BackupRestore service will automatically fetch the latest backup and Restore the partition using that.
                     </maml:para>
                 </maml:Description>
             <command:parameterValue required="false">bool?</command:parameterValue>
